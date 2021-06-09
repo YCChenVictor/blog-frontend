@@ -2,7 +2,7 @@
 layout: post
 title: (Rails_26) Active Storage
 date: '2021-06-09'
-categories: [rails]
+categories: rails
 note: 可以使用 marketplace 那個 project 做 demo
 ---
 
@@ -21,8 +21,6 @@ gem ‘image\_processing’, ‘~> 1.2’
 `has\_one\_attached` is the grammar of active storage
 
 with has\_one\_attached, we can actively upload and store data with third-party cloud services such as AWS …etc.
-
-### What
 
 With Active Storage, in `erb` files, in `url_for`, `link_to`, `image_tag`, input the variable, rails can show the file in html.
 
@@ -59,6 +57,7 @@ image_tag @image.file
 <%= link_to document.filename %>
 ```
   
+### What
 
 ### Reference
 
