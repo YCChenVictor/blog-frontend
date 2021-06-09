@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_13) Relation in Model
-description: 'one-to-one, one-to-many, many-to-many, HABTM'
-date: '2021-03-03T06:04:13.493Z'
-categories: []
+date: '2021-03-03'
+categories: rails
 keywords: []
-slug: /@t5204713910/rails-13-relation-in-model-ab8377267982
+note: 'one-to-one, one-to-many, many-to-many, HABTM'
 ---
 
 There are three types of relation in model, one-to-one, one-to-many, many-to-many

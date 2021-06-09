@@ -1,10 +1,9 @@
 ---
+layout: post
 title: '(Rails_2) User Name Display, N+1 Query, Gem'
-description: 'reference: railsbook.pdf'
 date: '2021-02-06T05:55:54.810Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-2-user-name-display-n-1-query-81c8462c494f
+categories: rails
+note: none
 ---
 
 After the procedure of [Rails\_1](https://t5204713910.medium.com/rails-installation-building-4a6de1641b84), let’s now solve the user name displaying problem

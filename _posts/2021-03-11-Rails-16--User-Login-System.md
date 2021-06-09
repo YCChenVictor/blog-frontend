@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_16) User Login System
-description: Demonstrating the basic structure of login
-date: '2021-03-11T00:13:44.048Z'
-categories: []
+date: '2021-03-11'
+categories: rails
 keywords: []
-slug: /@t5204713910/rails-16-user-login-system-908a71f64723
+note: Demonstrating the basic structure of login
 ---
 
 ### Structure Explanation

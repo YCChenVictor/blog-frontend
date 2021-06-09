@@ -1,12 +1,11 @@
 ---
+layout: post
 title: (Rails_6) CRUD details without scaffold
-description: >-
-  The steps: Add View for Data Adding Page (7) -> Add Controller for Data Adding
-  Page (8) -> Add Controller for Data Creating (9)
 date: '2021-02-26T06:06:30.016Z'
-categories: []
-keywords: []
+categories: rails
 slug: /@t5204713910/rails-6-crud-details-without-scaffold-7937953fe550
+note: Add View for Data Adding Page (7) -> Add Controller for Data Adding
+  Page (8) -> Add Controller for Data Creating (9)
 ---
 
 ### General Concept:

@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_18) Devise
 description: ''
-date: '2021-03-19T14:49:46.842Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-18-devise-75db6d99d4d7
+date: '2021-03-19'
+categories: rails
+note: unmodified
 ---
 
 ### Introduction

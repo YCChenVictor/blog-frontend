@@ -1,10 +1,9 @@
 ---
+layout: post
 title: (Ruby_4) Class and Module
-description: Class
 date: '2021-02-15T08:48:34.784Z'
-categories: []
-keywords: []
-slug: /@t5204713910/ruby-4-class-and-module-42f73f26f215
+categories: ruby
+note: none
 ---
 
 ### Class

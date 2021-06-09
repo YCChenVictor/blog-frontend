@@ -1,11 +1,10 @@
 ---
+layout: post
 title: '(Git_6) Historical Commits — Insert, Reorder, Delete; Label'
 description: Insert commit
 date: '2021-02-24T09:55:43.708Z'
-categories: []
-keywords: []
-slug: >-
-  /@t5204713910/git-6-historical-commits-insert-reorder-delete-label-aa7130689b40
+categories: git
+note: Insert commit
 ---
 
 ### Insert commits

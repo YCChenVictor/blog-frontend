@@ -1,10 +1,9 @@
 ---
+layout: post
 title: (Rails_14) Model Validation and Callback
-description: ''
-date: '2021-03-04T05:47:12.449Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-14-model-validation-and-callback-692e7c79818
+date: '2021-03-04'
+categories: rails
+note: 
 ---
 
 ### Validation

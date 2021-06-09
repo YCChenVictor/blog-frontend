@@ -1,12 +1,10 @@
 ---
-title: (Python) Create Virtualenv in folder
-description: >-
-  why we need it? Multiple versions of python exists, so we need to separate the
-  environments by virtualenv. Then the conflicts will not…
+layout: post
+title: (Python_1) Create Virtualenv in folder
 date: '2021-02-04T08:39:13.606Z'
-categories: []
-keywords: []
-slug: /@t5204713910/python-create-virtualenv-in-folder-d3926ba15ab1
+categories: python
+note: why we need it? Multiple versions of python exists, so we need to separate the
+  environments by virtualenv. Then the conflicts will not…
 ---
 
 ### Set path to that fold:

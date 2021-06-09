@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_9) CRUD details without scaffold
 description: 'The steps: Add model for Voting (17) -> Solve N+1 Problem (18)'
-date: '2021-03-01T05:38:03.822Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-9-crud-details-without-scaffold-83b3f39b66de
+date: '2021-03-01T09:38:03.822Z'
+categories: rails
+note: 'The steps: Add model for Voting (17) -> Solve N+1 Problem (18)'
 ---
 
 ### General Concept:

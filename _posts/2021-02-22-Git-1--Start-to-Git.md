@@ -1,10 +1,9 @@
 ---
+layout: post
 title: (Git_1) Start to Git
-description: Introduction
 date: '2021-02-22T08:21:40.819Z'
-categories: []
-keywords: []
-slug: /@t5204713910/git-1-installation-presetting-start-to-git-4a5935312db8
+categories: git
+note: none
 ---
 
 ### Introduction

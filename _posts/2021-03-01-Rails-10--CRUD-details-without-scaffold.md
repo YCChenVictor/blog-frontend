@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_10) CRUD details without scaffold
 description: 'The steps: Neat Controller (19) -> Use Bootstrap (20)'
-date: '2021-03-01T09:06:29.925Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-10-crud-details-without-scaffold-5affa4eb6fec
+date: '2021-03-01T10:38:03.822Z'
+categories: rails
+note: 'The steps: Neat Controller (19) -> Use Bootstrap (20)'
 ---
 
 ### General Concept:

@@ -1,12 +1,10 @@
 ---
+layout: post
 title: (Rails_4) Controller
-description: >-
-  Build ‘route -> controller -> view -> controller -> model -> database’ from
-  scratch
 date: '2021-02-19T08:09:43.772Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-4-controller-4536ac0dae44
+categories: rails
+note: Build ‘route -> controller -> view -> controller -> model -> database’ from
+  scratch
 ---
 
 After the [route](https://t5204713910.medium.com/rails-3-struture-route-21e66185e3c7)s, let’s start to explore controller.

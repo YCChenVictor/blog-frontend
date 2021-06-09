@@ -1,12 +1,11 @@
 ---
+layout: post
 title: >-
   (Ruby_1) Install, Version Control, Variable, Constant, Flow Controller, Loop
   and Iteration
-description: Use Ruby Version Manager to manage Ruby
 date: '2021-02-04T08:50:32.446Z'
-categories: []
-keywords: []
-slug: /@t5204713910/ruby-installation-21b24ebfb0ea
+categories: ruby
+note: Use Ruby Version Manager to manage Ruby
 ---
 
 ### RVM

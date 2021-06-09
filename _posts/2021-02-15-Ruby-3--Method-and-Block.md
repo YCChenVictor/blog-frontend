@@ -1,10 +1,9 @@
 ---
+layout: post
 title: (Ruby_3) Method and Block
-description: Method
 date: '2021-02-15T03:45:11.410Z'
-categories: []
-keywords: []
-slug: /@t5204713910/ruby-3-method-and-block-c7d68e2619fc
+categories: ruby
+note: method
 ---
 
 ### Method

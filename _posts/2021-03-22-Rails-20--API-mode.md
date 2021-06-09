@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_20) API mode
 description: ''
 date: '2021-03-22T08:32:35.494Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-20-api-mode-21e759aa4345
+categories: rails
+note: unmodified
 ---
 
 ### Introduction

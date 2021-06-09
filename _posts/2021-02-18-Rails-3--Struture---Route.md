@@ -1,12 +1,10 @@
 ---
+layout: post
 title: (Rails_3) Struture — Route
-description: >-
-  Build route -> controller -> view -> controller -> model -> database’ from
-  scratch
 date: '2021-02-18T09:35:47.456Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-3-struture-route-21e66185e3c7
+categories: rails
+note: Build route -> controller -> view -> controller -> model -> database’ from
+  scratch
 ---
 
 ### MVC Structure

@@ -1,12 +1,10 @@
 ---
+layout: post
 title: (Rails_7) CRUD details without scaffold
-description: >-
-  The steps: Add Button in View for Data Editing (10) -> Add View for Data
-  Editing (11) -> Add Controller for Data Editing (12)
 date: '2021-02-26T07:34:09.150Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-7-crud-details-without-scaffold-b55f8dac113d
+categories: rails
+note: Add Button in View for Data Editing (10) -> Add View for Data
+  Editing (11) -> Add Controller for Data Editing (12)
 ---
 
 ### General Concept:

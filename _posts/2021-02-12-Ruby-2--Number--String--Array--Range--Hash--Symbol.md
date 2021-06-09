@@ -1,10 +1,9 @@
 ---
+layout: post
 title: '(Ruby_2) Number, String, Array, Range, Hash, Symbol'
-description: Number
 date: '2021-02-12T12:03:35.917Z'
-categories: []
-keywords: []
-slug: /@t5204713910/ruby-2-number-string-array-range-hash-symbol-169796c09def
+categories: ruby
+note: none
 ---
 
 ### Number

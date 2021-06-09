@@ -1,10 +1,9 @@
 ---
+layout: post
 title: '(Git_2) Remove, Rename, Modify message, Add directory'
-description: ''
 date: '2021-02-22T09:40:50.986Z'
-categories: []
-keywords: []
-slug: /@t5204713910/git-2-remove-rename-modify-message-add-directory-e5559021a91a
+categories: git
+note: none
 ---
 
 ### Introduction

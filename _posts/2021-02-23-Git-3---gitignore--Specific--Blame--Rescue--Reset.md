@@ -1,10 +1,9 @@
 ---
+layout: post
 title: "(Git_3)\_.gitignore, Specific, Blame, Rescue, Reset"
-description: .
 date: '2021-02-23T06:01:00.590Z'
-categories: []
-keywords: []
-slug: /@t5204713910/git-3-gitignore-specific-blame-rescue-reset-e5b0cc2513e1
+categories: git
+note: none
 ---
 
 ### .gitignore

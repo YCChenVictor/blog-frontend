@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_11) View-Layout
-description: CSRF (Cross-site request forgery
-date: '2021-03-02T04:06:21.786Z'
-categories: []
+date: '2021-03-02'
+categories: rails
 keywords: []
-slug: /@t5204713910/rails-11-view-layout-a9b26ace5ab6
+note: CSRF (Cross-site request forgery
 ---
 
 ### CSRF (Cross-site request forgery)

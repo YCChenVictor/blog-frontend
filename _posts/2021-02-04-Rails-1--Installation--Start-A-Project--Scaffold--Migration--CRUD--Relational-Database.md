@@ -1,12 +1,11 @@
 ---
+layout: post
 title: >-
   (Rails_1) Installation, Start A Project, Scaffold, Migration, CRUD, Relational
   Database
-description: 'reference: railsbook.pdf'
 date: '2021-02-04T10:38:37.553Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-installation-building-4a6de1641b84
+categories: rails
+note: none
 ---
 
 ### Install

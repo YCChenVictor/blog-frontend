@@ -1,10 +1,9 @@
 ---
+layout: post
 title: '(Git_5) Historical Commits — Change, Merge, Decompose'
-description: Change Historical Commit
 date: '2021-02-24T08:11:44.849Z'
-categories: []
-keywords: []
-slug: /@t5204713910/git-5-historical-commits-change-merge-decompose-53e86b917489
+categories: git
+note: Change Historical Commit
 ---
 
 ### Change Historical Commits

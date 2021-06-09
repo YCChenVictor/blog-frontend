@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Git_7) Other Topics
-description: ''
 date: '2021-02-25T07:06:05.067Z'
-categories: []
-keywords: []
+categories: git
 slug: /@t5204713910/git-7-other-topics-b763f5a9c3d7
+note: none
 ---
 
 ### Solve the private information problem

@@ -1,12 +1,11 @@
 ---
+layout: post
 title: (Rails_8) CRUD details without scaffold
-description: >-
-  The steps: Add Controller for Updating (13) -> Add Controller for Deleting
-  (14) -> Add Routes for Voting (15) -> Add Method for Voting (16)
 date: '2021-02-26T08:53:42.587Z'
-categories: []
-keywords: []
+categories: rails
 slug: /@t5204713910/rails-8-crud-details-without-scaffold-c47ec5026c53
+note: Add Controller for Updating (13) -> Add Controller for Deleting
+  (14) -> Add Routes for Voting (15) -> Add Method for Voting (16)
 ---
 
 ### General Concept:

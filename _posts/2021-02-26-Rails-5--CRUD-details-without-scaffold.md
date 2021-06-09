@@ -1,12 +1,10 @@
 ---
-title: (Rails_5) CRUD details without scaffold
-description: >-
-  The steps: Modify Route (1) -> Add Controller (2) -> Add Method (3) -> Add
-  Model (4) -> Migration (5) -> Add View (6)
+layout: post
+title: (Rails_5) CRUD details without scaffold  
 date: '2021-02-26T04:18:25.484Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-5-crud-details-without-scaffold-e4c9a68e690c
+categories: rails
+note: Modify Route (1) -> Add Controller (2) -> Add Method (3) -> Add
+  Model (4) -> Migration (5) -> Add View (6)
 ---
 
 ### General Concept

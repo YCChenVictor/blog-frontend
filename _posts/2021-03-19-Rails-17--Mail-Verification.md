@@ -1,10 +1,9 @@
 ---
+layout: post
 title: (Rails_17) Mail Verification
 description: ''
-date: '2021-03-19T06:49:01.045Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-17-mail-verification-46b964a8ba19
+date: '2021-03-19'
+categories: rails
 ---
 
 ### Mail Sending

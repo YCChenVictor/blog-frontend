@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_19) Template
 description: ''
-date: '2021-03-19T04:44:47.269Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-19-template-aefeeeb9e8ec
+date: '2021-03-19'
+categories: rails
+note: unmodified
 ---
 
 ### Introduction
