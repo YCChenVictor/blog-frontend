@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (JavaScript_1) Overview
 description: Introduction
 date: '2021-04-26T09:55:52.243Z'
-categories: []
-keywords: []
-slug: /@t5204713910/javascript-1-overview-40b978fa301c
+state: unmodified
+categories: javascript
 ---
 
 ### Introduction

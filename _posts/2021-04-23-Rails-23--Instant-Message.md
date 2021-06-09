@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_23) Instant Message
-description: ''
+description: Taiwan only
 date: '2021-04-23T10:06:45.684Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-instant-message-e32b71f035f1
+states: unmodified
+categories: rails
 ---
 
 ### Introduction

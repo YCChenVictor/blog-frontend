@@ -2,9 +2,8 @@
 layout: post
 title: (Javascript_2) localStorage
 date: '2021-06-02'
-categories: []
-keywords: []
-state: pending
+state: done
+categories: javascript
 ---
 
 ### Introduction (mozilla)

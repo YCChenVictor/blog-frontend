@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_22) google map
-description: Introductio
+description: Taiwan only
 date: '2021-04-18T09:52:16.889Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-22-google-map-e0d8277a9ebc
+states: unmodified
+categories: rails
 ---
 
 ### Introduction

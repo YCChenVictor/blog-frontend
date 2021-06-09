@@ -1,10 +1,10 @@
 ---
+layout: post
 title: (Rails_21) Test Driven Development
-description: 'With Framework, RSpec and The Functions for Automation, Capybara and Selenium'
+description: Taiwan only
 date: '2021-04-06T12:13:45.562Z'
-categories: []
-keywords: []
-slug: /@t5204713910/rails-21-test-driven-development-524eb001bbeb
+states: unmodified
+categories: rails
 ---
 
 ### Introduction

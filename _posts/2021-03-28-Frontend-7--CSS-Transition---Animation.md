@@ -1,10 +1,10 @@
 ---
-title: (Frontend_7) CSS Transition & Animation
+layout: post
+title: (CSS_7) Transition & Animation
 description: ''
 date: '2021-03-28T08:13:52.813Z'
-categories: []
-keywords: []
-slug: /@t5204713910/frontend-7-transition-animation-ad7d2b4cca36
+states: unmodified
+categories: css
 ---
 
 ### Transition
