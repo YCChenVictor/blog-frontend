@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails_27) Sidekiq
+title: (Rails_27) Sidekiq (Activejob)
 description:
 date: '2021-06-09'
 categories: [rails]
@@ -19,7 +19,7 @@ For example, if a request takes too much time, sometimes users may reload again,
 
 For example, if we want a resource to be inactive or deleted automatically at a particular moment. After the creation, we can put this action to the background with sidekiq and activate this action automatically once the condition meets.
 
-##### install sidekiq
+#### install sidekiq
 1. In Gemfile,
 ```
 gem 'sidekiq', '~> 6.1', '>= 6.1.2'
