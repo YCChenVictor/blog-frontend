@@ -29,7 +29,7 @@ title: Category
 
   <ul>
 	{% for categorie in categories %}
-	  <a href="#{{ categorie | slugify }}"> {{ categorie }} </a>
+	  <a href="#{{ categorie | slugify }}"> <i class="fas fa-bookmark"></i> {{ categorie }}  </a>
     {% endfor %}
   </ul>
   
