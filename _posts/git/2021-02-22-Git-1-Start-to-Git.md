@@ -1,80 +1,86 @@
 ---
 layout: post
-title: (Git_1) Start to Git
+title: (Git_1) Getting Started
 date: '2021-02-22T08:21:40.819Z'
 categories: git
-note: none
+note: to be continue
 ---
 
 ### Introduction
-
-Git is the most popular version control system.
+The most popular version control system.
 
 ### Why
-
 We need version control to track changes and identify why key decision were made along the way.
 
-### (How) Before Git
+### How
+#### Installation
 
-#### Install
+On mac, open terminal
 
-On mac, use homebrew to install git
-
-$ `brew install git`
+```
+$ brew install git
+```
 
 #### Check the version of git
 
+```
 $ which git
-
+```
 or
-
+```
 $ git --version
+```
 
 #### Setting
 
 **check current setting**
-
+```
 $ git config --list
+```
 
 **add global setting**
 
-To change the setting that fit into ‘all’ project,
-
+To change the setting that fit into **all** project, for example, change the username of git
+```
 $ git config --global user.name "the name you want"
-
-or
-
+```
+or for changing user's email
+```
 $ git config --global user.email "xxx@yyy.com"
+```
 
 **add specific setting**
 
 To change the setting only being used in specific project
-
+```
 $ git config --local user.name "the name you want"
-
+```
 or
-
+```
 $ git config --local user.email "xxx@yyy.com"
-
-### (How) Start to Git
+```
 
 #### initializing git
 
 To start version control with git in current directory
-
+```
 $ git init
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__syxu__rH684iHYmn1BZtxPg.png)
+```
+![git_init](assets/img/git_init.jpg)
 
 #### remove git
 
-If you want to remove git on your directory
-
+If you want to remove git on your directory, just delete the whole .git files
+```
 $ rm -rf .git
+```
 
 Then we can input following to check whether there is file related to git
-
+```
 $ ls -al
+```
+
+# to be continued
 
 #### Check status
 

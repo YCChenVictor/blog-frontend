@@ -3,7 +3,7 @@ layout: post
 title: (tensorflow) Clone Teachable Machine
 description:
 date: '2021-06-11'
-categories: tensorflow
+categories: tensorflow react
 note: to be continued
 ---
 
@@ -22,13 +22,11 @@ I just want to learn tensorflow and this project seems can practice both image a
 After deleting all files
 * [**react**](https://reactjs.org/docs/create-a-new-react-app.html) for SPA.
 
-The basic layouts with header and cards of this project would be 
+The file structure would be as follow:
+然後這邊要一一解釋一下每個 directory 是在幹嘛
 
-Then for webcam snapshot, please install [**webcamJS**](https://www.npmjs.com/package/webcamjs)
-
-我可能會需要一個 layout，因為 header 是重複的
-
-
+### Webcam
+https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos
 
 
 

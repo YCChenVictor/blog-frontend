@@ -1,10 +1,10 @@
 ---
 layout: post
-title: (React_2) React.Component
+title: (React_2) Component & Prop
 description:
 date: '2021-06-15'
 categories: react
-note: to be continued
+note: to be continued 1.沒有真的有 function 在 component 中的例子、2. 除了在 parent 層 import，也可以用 reactDOM 塞進去
 ---
 
 ## Introduction
@@ -15,15 +15,17 @@ skip
 
 ## How
 
-A really basic object can be created as follow, which is literally a function that return a object with css and html and can be called somewhere else
+A really basic object can be created as follow, which is literally a function that return an object with css and html and can be called somewhere else
 ```
 function Card() {
   return (
-    ...
+    <h1 className="blablabla">
+      blablabla
+    </h1>
   )
 }
 ```
-and we can call this card multiple times in another file as follow
+and we can call this Card multiple times in another file as follow
 ```
 function App() {
   return (
@@ -41,7 +43,7 @@ function App() {
   );
 }
 ```
-However, if we want to truly have a component that possess some behavior, then we need to have functions and the functions should have the abilities to change the component's states; as a result, I am going to modify these two components as follow:
+However, if we want to truly have a component customizable, then we need to modify these two components as follow:
 
 #### Card
 ```
@@ -64,7 +66,7 @@ class Card extends Component {
   }
 }
 ```
-as you can see, there is a way to chnange the Name `this.props.projectName` and we can customize the projectName with renderCard function in the App component
+as you can see, there is a way to change the Name `this.props.projectName` and we can customize the projectName with renderCard function in the App component
 ```
 class App extends React.Component {
 

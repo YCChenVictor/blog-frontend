@@ -1,57 +1,66 @@
 ---
 layout: post
-title: (Git_7) Other Topics
+title: (Git_7) Private Information, Remove a File in Git, Commit in other branch, Github
 date: '2021-02-25T07:06:05.067Z'
 categories: git
-slug: /@t5204713910/git-7-other-topics-b763f5a9c3d7
-note: none
+note: to be continued
 ---
 
-### Solve the private information problem
+## Remove Private Information
 
-After changing the password or information
-
-#### First Method: delete whole .git file
+**After removing the private information from a file** such that
+```
+password: 123
+```
+to
+```
+password: ENV["password"]
+```
+there are two method to solve this problem.
+### First Method: delete whole .git file
 
 Although this method discard the whole history, it still works
 
-#### Second Method: filter-branch
+### Second Method: filter-branch
 
 For example, if the private information exists in aaa.txt. We can
-
+```
 $ git filter-branch --tree-filter "rm aaa.txt" HEAD
-
-This command will remove all the aaa.txt file in each commit. And the sha1 saved in refs in .git
+```
+and then we can save this file with correct information again and commit it again. 
+This command will remove all the aaa.txt file in each commit and the sha1 saved in refs in .git
 
 If we regret the filter-branch process, we can use
-
+```
 $ git reset refs/original/refs/heads/master --hard
-
+``` 
 It will recover the sha1 value before filter-branch
 
 ### How to truly remove a file from git
 
 After filter-branch, we still can use refs to recover the file, so
-
+```
 $ rm .git/refs/original/refs/heads/master
-
+```
 It removes this file, so that we cannot recover from it.
 
 Then delete reflog, which stores all the commits sha-1 states
-
+```
 $ git reflog expire --all --expire=now
-
+```
 The above code advances the expire date to now
 
 Then delete all deleted commits with
-
+```
 $ git gc --prune=now
-
+```
 Check any miscellaneous
-
+```
 $ git fsck
-
+```
 If empty, then we are done
+
+# to be continued
 
 ### What if we want commit in other branch
 
@@ -70,5 +79,4 @@ and the commits in master
 
 ### Reference:
 
-[**什麼是 Git？為什麼要學習它？ - 為你自己學 Git | 高見龍**  
-_← 上一章：寫在最前面 - 為你自己學 Git！ 下一章：與其它版本控制系統的差異 → 如果你問大部份正在使用 Git 這個工具的人「什麼是 Git」，他們大多可能會回答你「Git 是一種版本控制系統」，專業一點的可能會回答你說「Git…_gitbook.tw](https://gitbook.tw/chapters/introduction/what-is-git.html "https://gitbook.tw/chapters/introduction/what-is-git.html")[](https://gitbook.tw/chapters/introduction/what-is-git.html)
+[**什麼是 Git？為什麼要學習它?**](https://gitbook.tw/chapters/introduction/what-is-git.html "https://gitbook.tw/chapters/introduction/what-is-git.html")
