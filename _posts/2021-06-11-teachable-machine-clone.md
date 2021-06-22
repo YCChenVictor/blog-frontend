@@ -3,12 +3,12 @@ layout: post
 title: (tensorflow) Clone Teachable Machine
 description:
 date: '2021-06-11'
-categories: tensorflow react
+categories: react
 note: to be continued
 ---
 
 ## Introduction
-This article serves as a note for cloning tensorflow open source project, teachable machine.
+This article serves as a note for cloning tensorflow open source project, [teachable machine](https://teachablemachine.withgoogle.com/).
 
 ## Why
 I just want to learn tensorflow and this project seems can practice both image and audio recognization.
@@ -21,16 +21,21 @@ I just want to learn tensorflow and this project seems can practice both image a
 
 After deleting all files
 * [**react**](https://reactjs.org/docs/create-a-new-react-app.html) for SPA.
+* [**tailwind**](https://tailwindcss.com/docs/guides/create-react-app) for inline code styling.
 
 The file structure would be as follow:
 然後這邊要一一解釋一下每個 directory 是在幹嘛
 
-### Webcam
-https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos
+These files are we going to build. The basic concept in to decompose the website into lots of small components, making them as reusable as possible.
 
+### image project
+The first project in this website is image recognition. The first step is to connect webcam as follow
 
+#### Webcam
+Please refer to [Taking still photos with WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos). The way how promise used in react should be emphasized, related to lifecycle methods such as componentDidMount and componentWillUnmount. Please refer to this [repo](https://github.com/YCChenVictor/my_teachable_machine).
 
-# index.html
+#### Take Picture
+
 
 ### What
 

@@ -7,16 +7,30 @@ categories: react
 note: to be continued
 ---
 
-這邊就是用 official 的文章來將 life cycle 跟 state 講清楚，就這樣，這篇文寫好後，應該先去把 javascript 的 callback hell 跟 promise 搞清楚
+這邊就是用 official 的文章來將 life cycle 跟 state 講清楚，就這樣
 
-因為現在主要都是用 hook 在解決問題，而這是建立在 component + life cycle 簡化，所以了解完 component 後，我要來了解一下什麼是 life cycle。然後我應該要做下一件事情
+因為現在主要都是用 hook 在解決問題，而這是建立在 component + life cycle 簡化，所以了解完 component 後，我要來了解一下什麼是 life cycle。
 
 ## Introduction
+Please refer to this [website](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) for the diagram of the life cycle. React life cycle:
+<img src="/assets/img/react_lifecycle.png" alt="react_lifecycle">
+As you can see, there are three main steps: Mounting (Birth), Updating (Growth), Unmounting (Death) of the components.
+
 
 ## Why
-skip
+The essence of a framework is the life cycle of the components, the series of events from birth to death.
 
 ## How
+I am going to go through all the methods in life cycle. The simplest way to build 
+
+
+### constructor
+
+### render
+### componentDidMount
+### componentDidupdate
+### componentWillUnmount
+
 For example, with following function
 ```
 function Card() {
@@ -41,7 +55,7 @@ function Card() {
   );
 }
 ```
-so that the virtual DOM can be inserted into the container DOM. Notice! If you put these code in a file loaded before `App.js` loaded, the virtual DOM would only insert once when reload; as a result, to see the effects please load your file correctly. Then, we may want to specify when these virtual dom loaded, meaning we need to have methods to observe the states changing.
+so that the virtual DOM can be inserted into the container DOM. Notice! If you put these code in a file loaded before `App.js` loaded, the virtual DOM would only insert once when reload; as a result, to see the effects, please load your file correctly. Then, we may want to specify when these virtual dom loaded, meaning we need to have methods to observe the states changing.
 
 To use these functions, we need to use serval hooks to listen to states changing. To use states and hooks, we need to turn function into components:
 ```
@@ -90,9 +104,13 @@ class Webcam extends Component {
   }
 }
 ```
-Then we can access  `video div` from the component
+Then we can access `video div` from the component
 
 ## What
 
 ## Reference
 [**State and Lifecycle**](https://reactjs.org/docs/state-and-lifecycle.html)
+
+[**React Lifecycle Methods – A Deep Dive by Mosh Hamedani**](https://programmingwithmosh.com/javascript/react-lifecycle-methods/)
+
+[**Life Cycle Diagram**](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
