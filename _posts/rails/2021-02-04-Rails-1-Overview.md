@@ -1,51 +1,59 @@
 ---
 layout: post
 title: >-
-  (Rails_1) Installation, Start A Project, Scaffold, Migration, CRUD, Relational
-  Database
+  (Rails_1) Overview
 date: '2021-02-04T10:38:37.553Z'
 categories: rails
-note: none
+state: to be continued
 ---
 
-### Install
+## Introduction
+skip
 
-#### Install through Gem
+## Why
+skip
 
+## How
+The following steps show how to build a basic app with most basic commands within rails. The steps as follow: 
+1. Installation
+2. Start A Project
+3. Scaffold
+4. Migration
+5. CRUD
+6. Relational
+
+`$` means input the coding into terminal.
+
+### Installation
+```
 $ gem install rails -v 5.1.1
+```
+The code above will install the rails version, 5.1.1
 
 #### Check rails version
-
+```
 $ rails -v
+```
 
 ### Start A Project
-
-#### Create rails project with newest version
-
 ```
 $ rails new app_name
 ```
-
-#### Create rails project with particular version
-
+If you want to create rails project with particular version, then
 ```
 $ rails _3.2.14_ new app_name
 ```
-
-#### Check whether it is built
-
-1.  cd into the project directory
-2.  start the server
-
+;after the creation, please `cd` into the project directory and start the server with
 ```
 $ rails s 
 ```
+<img src="/assets/img/rails_server_start.png" alt="rails_server_start">
 
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__vv3iL6uoDA59vwFZWe7__UA.png)
+open browsers and input `http://localhost:3000`
 
-3\. open browsers and input ‘http://localhost:3000’
+<img src="/assets/img/rails_start_page.png" alt="rails_start_page">
 
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__v48M__Mcco97tCjUt6Pilag.png)
+先到這邊好了
 
 ### Scaffold
 
