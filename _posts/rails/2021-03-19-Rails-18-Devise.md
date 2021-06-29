@@ -1,0 +1,245 @@
+---
+layout: post
+title: (Rails 18) Devise
+description: ''
+date: '2021-03-19'
+categories: rails
+note: unmodified
+---
+
+## Introduction
+
+Devise is a customizable solution for authentication in Rails. It is based on Warden, the framework for authentication in ruby; it has some characteristics:
+
+1.  It is Rack based
+2.  It is a complete MVC solution in Rails
+3.  With one line `:authenticate_user!`, we can prevent any usage from user not signed in and once singed in, user can do various things.
+4.  With modularity, we can choose **only** the modules we want
+
+## Why?
+
+The most popular authentication solution for Rails applications is _Devise._ The advantages:
+
+1.  time saving; authentication by hand requires multiple controllers and a mass time of setup
+2.  useful helpers
+3.  simple routes settings
+
+## How?
+
+There are ten modules: **Database Authenticatable, Omniauthable, Confirmable, Recoverable, Registerable, Rememberable, Trackablem Timeoutable, Validatable, Lockable**
+
+please refer to [**devise-github**](https://github.com/heartcombo/devise) for further information
+
+### We are going to add devise to user login as follow:
+
+In Gemfile, add the following
+```
+gem ‘devise’
+```
+Then run `bundle install`
+
+After installing, we need the following generator to describe all the setting related to `devise`
+```
+$ rails generate devise:install
+```
+Then it will create `initializer` in app/config and the following message:
+<img src="/assets/img/1__MsUb__hbwzJSKDnXPvOED__A.png" alt="">
+
+With the messages in terminal, we need to do the following tasks:
+
+For message_1: If we are going to send email to users, then in `config/environments/development.rb` add the default website for mailer.
+```
+config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+```
+
+For message_2: change the root path
+
+For message_3: we need to add flash message in html file to let user know if they are doing something wrong. In `app/views/layouts/application.html.erb,` add coding
+```
+<p class="notice"><%= notice %></p>  
+<p class="alert"><%= alert %></p>
+```
+as follow
+```
+<!DOCTYPE html>  
+<html>  
+  <head>  
+    <title>DeviseExample1</title>  
+    <meta name="viewport" content="width=device-width,initial-scale=1">  
+    <%= csrf\_meta\_tags %>  
+    <%= csp\_meta\_tag %>
+
+<%= stylesheet\_link\_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>  
+    <%= javascript\_pack\_tag 'application', 'data-turbolinks-track': 'reload' %>  
+  </head>
+
+<body>  
+    <p class="notice"><%= notice %></p>  
+    <p class="alert"><%= alert %></p>  
+    <%= yield %>  
+  </body>  
+</html>
+```
+Input`rails g devise:views` to generate HTML templates for registration, login, forget password, email, which are all in _app/views/devise._
+
+Input`rails g devise user` to generate User model and Migration. (You can create any model with devise)
+
+Before we do migration, we should go to `db/migrate/_devise_create_users.rb` to change the setting. For example, if we want the trackable effect, we can uncomment the lines of code below ##trackable.
+```
+# frozen_string_literal: true
+
+class DeviseCreateUsers < ActiveRecord::Migration[6.1]  
+  def change  
+    create_table :users do |t|  
+      ## Database authenticatable  
+      t.string :email,              null: false, default: ""  
+      t.string :encrypted_password, null: false, default: ""
+
+## Recoverable  
+      t.string   :reset_password_token  
+      t.datetime :reset_password_sent_at
+
+## Rememberable  
+      t.datetime :remember_created_at
+
+## Trackable  
+      # t.integer  :sign_in_count, default: 0, null: false  
+      # t.datetime :current_sign_in_at  
+      # t.datetime :last_sign_in_at  
+      # t.string   :current_sign_in_ip  
+      # t.string   :last_sign_in_ip
+
+## Confirmable  
+      # t.string   :confirmation_token  
+      # t.datetime :confirmed_at  
+      # t.datetime :confirmation_sent_at  
+      # t.string   :unconfirmed_email # Only if using reconfirmable
+
+## Lockable  
+      # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts  
+      # t.string   :unlock_token # Only if unlock strategy is :email or :both  
+      # t.datetime :locked_at
+
+t.timestamps null: false  
+    end
+
+add_index :users, :email,                unique: true  
+    add_index :users, :reset_password_token, unique: true  
+    # add_index :users, :confirmation_token,   unique: true  
+    # add_index :users, :unlock_token,         unique: true  
+  end  
+end
+```
+Then we can do migration `rails db:migrate`.
+
+For the basic example of User model, we can add first and last name with `$ rails generate migration add_name_to_users name:string surname:string` and do migration again. Input `$ rails db:migrate` to do database migration again. (This step also means that we can add more models and do lots of modifications to customize the contents)
+
+Then in [http://127.0.0.1:3000/users/sign\_up](http://127.0.0.1:3000/users/sign_up), we should see the following
+<img src="/assets/img/1__ZiHmL8e8t0hh07BzD1VGbg.png" alt="">
+
+do some modification: adding two field for name and surname below the field for email in
+
+```
+<<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+<div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :surname %><br />
+    <%= f.text_field :surname %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+```
+
+Then we can do experiment, adding a user with the sign up webpage. In rails console, we should see the following
+<img src="/assets/img/1__yH__l67xnLP4ohEnftZ8Pug.png" alt="">
+
+Notice! There is no name and surname in the database because we need to explicitly tell rails to accept these two fields in the form. As a result, in `app/controllers/application_controller.rb`
+
+```
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
+  before_action :update_allowed_parameters, if: :devise_controller?
+
+  protected
+
+  def update_allowed_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :surname, :email, :password)}
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :surname, :email, :password, :current_password)}
+  end
+end
+```
+
+With method`update_allowed_parameters,` it can add name and surname in the database.
+
+Let’s delete the user in rails console with`User.first.delete` and sign up again. Then the data we want is successfully input into database.
+<img src="/assets/img/1__uPJ4Cvv2NnvZS976d9opqg.png" alt="">
+
+## What?
+
+The above steps show how to install devise in rails. With devise, we can have authentication in rails. It also shows how to do customized settings to database and related them to devise, meaning we can do it to other model we want in the future.
+
+### Add authentication
+
+For example, if I want user to login before any action to a model, we can put
+```
+before_action :authenticate_user!, except: [:index, :show]
+```
+in that controller.
+
+### The object auto-created by devise
+
+If the model created by devise is User, then the following methods:
+
+**user_signed_in?**: to check whether a user signed in and return true or false.
+
+**current_user**: to get the current login user.
+
+**user_session**: it returns `warden.session` for model User and `warden.session` returns `rack.session`, which has encoding method and devise used it for authentication.
+
+You can get the source code from `devise/lib/devise/controllers/helpers.rb`
+
+### Reference
+
+[**heartcombo/devise**](https://github.com/heartcombo/devise)
+
+[**Ruby on Rails 實戰聖經**](https://ihower.tw/rails/auth.html)
+
+[**Using Devise In Your Ruby on Rails Application [A Step-by-Step Guide] Hacker Noon**](https://hackernoon.com/using-devise-in-your-ruby-on-rails-application-a-step-by-step-guide-m92i3y5s)
+
+[**heartcombo/devise**](https://github.com/heartcombo/devise/blob/master/lib/devise/controllers/helpers.rb)
+
+[**Warden 的代码学习**](https://ruby-china.org/topics/32842)
+
+[**wardencommunity/warden**](https://github.com/wardencommunity/warden/blob/master/lib/warden/mixins/common.rb)
+
+[**Devise Authentication with Rails 5**](https://levelup.gitconnected.com/devise-authentication-with-rails-5-815b5a9d6daf)

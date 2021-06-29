@@ -1,0 +1,86 @@
+---
+layout: post
+title: (Rails 20) API mode
+description: ''
+date: '2021-03-22'
+categories: rails
+note:
+---
+
+## Introduction
+API(Application Programming Interface) is the **interface** to exchange the files with particular format such as JSON or XML.
+
+## Why?
+skip
+
+There are two method: render & Jbuilder
+
+### 1. With render
+#### Setting up
+Create a user in a rails project. (`$ rails new project` -> `$ rails g scaffold User name:string email:string` -> `$ User.create name: “aaa”, email: “bbb”`)
+
+Then in User Controller, specify the method, `index`
+```
+def index  
+  @users = User.all  
+  render json: @users  
+end
+```
+#### Then the webpage of index of user:
+<img src="/assets/img/1__hPlz0iX3HD__zZnfYYZ__s5A.png" alt="">
+With this API, we can write AJAX on the frontend to achieve the seperation of frontend and backend.
+
+However, the webpage cannot show what it initially should be; as a result, we can use following to get the webpage (HTML) as well as JSON file.
+```
+def index  
+  @users = User.all  
+  respond_to do |format|  
+    format.json { render json: @users }  
+    format.html { render :index }  
+  end
+end
+```
+**Respond_to ([reference](https://stackoverflow.com/questions/9492362/rails-how-does-the-respond-to-block-work)**)
+
+*   `respond_to` is a method on the superclass `ActionController`.
+*   it takes a block, which is like a delegate. The block is from `do` until `end`, with `|format|` as an argument to the block.
+*   respond\_to executes your block, passing a Responder into the `format` argument.
+
+### 2. With Jbuilder
+
+#### Setting up
+
+After the scaffold method, there would be .erb files in views but also .json.jbuilder files. We can use gem Jbuilder to export result into JSON format.
+
+In `app/views/users/index.json.jbuilder`, following code
+```
+json.array! @users, partial: "users/user", as: :user
+```
+This line of code means render `user/_user`, following code
+```
+json.extract! user, :id, :name, :email, :created_at, :updated_at  
+json.url user_url(user, format: :json)
+```
+The two line of code means extract the data in model, `user` and then input them into url with format json. Then we can use url to acquire the data with json format.
+
+With `$rails routes`,
+<img src="/assets/img/1__brFbtd9__9PWhAHWTlb1F3w.png" alt="">
+
+As we can see, `.:format` means we need to specify the format of the file name and the default file format is html, meaning we can change it into json format to show it on web browser.
+
+#### The webpage of index of user.json:
+<img src="/assets/img/1__uUOWYl6zKKP8gmFz4d5rHA.png" alt="">
+
+### minor intermezzo
+
+We can also specify API-Only mode with
+```
+$ rails new Project_Name --api
+```
+to create rails project in api only mode with smaller number of Gem and middleware.
+
+### Reference
+
+[**Rails: How does the respond_to block work?**](https://stackoverflow.com/questions/9492362/rails-how-does-the-respond-to-block-work)
+
+[https://railsbook.tw/](https://railsbook.tw/)
