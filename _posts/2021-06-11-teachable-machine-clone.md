@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (tensorflow) Clone Teachable Machine
+title: (React) Clone Teachable Machine
 description:
 date: '2021-06-11'
 categories: react

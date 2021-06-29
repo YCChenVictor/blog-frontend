@@ -6,7 +6,7 @@ categories: rails
 note: none
 ---
 
-After the procedure of [Rails\_1](https://t5204713910.medium.com/rails-installation-building-4a6de1641b84), let’s now solve the user name displaying problem
+After the procedure of [Rails_1](https://t5204713910.medium.com/rails-installation-building-4a6de1641b84), let’s now solve the user name displaying problem
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__g4zDElZxyre__9LnjAmv2__A.png)
 

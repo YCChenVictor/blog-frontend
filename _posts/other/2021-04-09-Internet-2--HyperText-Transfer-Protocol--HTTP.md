@@ -1,8 +1,9 @@
 ---
+layout: post
 title: (Internet_2) HyperText Transfer Protocol (HTTP)
 description: ''
 date: '2021-04-09T03:37:42.357Z'
-categories: []
+categories: other
 keywords: []
 slug: /@t5204713910/internet-2-hypertext-transfer-protocol-http-56ca40bec4f
 ---

@@ -86,59 +86,52 @@ which is going to pop up notice after CRUD.
 
 ### Solve N+1 Problem (18)
 
-The main page is as follow:
+The main page:
+<img src="/assets/img/1__HOz__H2u9AH3hINfXOFyf4Q.png" alt="">
 
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__HOz__H2u9AH3hINfXOFyf4Q.png)
+and the log after we open the main page:
+<img src="/assets/img/1__MtuyUY0et73BpCsKcB__Z__Q.png" alt="">
 
-and the log is as follow:
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__MtuyUY0et73BpCsKcB__Z__Q.png)
-
-which means with 2 candidates, there are 3 SELECT to database, causing efficiency problem. We are going to change it into 1 query. In rails, we solve it with Counter Cache.
+,meaning with 2 candidates, there are 3 `SELECT` in database, causing efficiency problem. We are going to change it into 1 query. In rails, we solve it with Counter Cache.
 
 #### Counter Cache
 
-It is to cache the number of vote into candidates model rather than in VoteLog model so it will not query the number of vote from VoteLog with a lot of query but only query the number of vote from candidates database.
+It is to **cache** the number of vote in candidates model rather than in VoteLog model.
 
 As rails [Active Record Migrations](https://guides.rubyonrails.org/active_record_migrations.html) noted:
 
-> If the migration name is of the form “AddColumnToTable” or “RemoveColumnFromTable” and is followed by a list of column names and types then a migration containing the appropriate `[add_column](https://api.rubyonrails.org/v6.1.3/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_column)` and `[remove_column](https://api.rubyonrails.org/v6.1.3/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-remove_column)` statements will be created.
+Because we want to add a column to count votes in candidate model, we can use following migration
+```
+$ rails generate migration add_counter_to_candidate vote_logs_count:integer
+```
+which is going to add a vote_logs_count into candidate model with migration, AddCounterToCandidate
 
-Because we want to add a column to count votes in candidate model, we can us following migration
-
-rails generate migration add\_counter\_to\_candidate vote\_logs  
-\_count:integer
-
-which is going to add a vote\_logs\_count into candidate model with migration, AddCounterToCandidate
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__g10yu__KJvGZBEoiInOuIEA.png)
+(If the migration name is of the form “AddColumnToTable” or “RemoveColumnFromTable” and is followed by a list of column names and types then a migration containing the appropriate [add_column](https://api.rubyonrails.org/v6.1.3/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_column) and [remove_column](https://api.rubyonrails.org/v6.1.3/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-remove_column)` statements will be created)
+<img src="/assets/img/1__g10yu__KJvGZBEoiInOuIEA.png" alt="">
 
 Then start migration
-
-rails db:migrate
-
-and add `counter_cache: true` in app/models/vote\_log.rb
-
+```
+$ rails db:migrate
+```
+and add `counter_cache: true` in `app/models/vote_log.rb`
+```
 class VoteLog < ApplicationRecord  
-  belongs\_to :candidate, counter\_cache: true  
+  belongs_to :candidate, counter_cache: true  
 end
-
-Then change app/views/candidates/index.html.erb from
-
-<td><%= candidate.vote\_logs.count %></td>
-
+```
+Then change `app/views/candidates/index.html.erb` from
+```
+<td><%= candidate.vote_logs.count %></td>
+```
 to
-
-<td><%= candidate.vote\_logs.size %></td>
-
+```
+<td><%= candidate.vote_logs.size %></td>
+```
 Then it will query only once
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__ILLD40yar1sr0KBfJGtlxA.png)
+<img src="/assets/img/counter_cache.png" alt="">
 
 ### Reference:
 
-[**Active Record Migrations - Ruby on Rails Guides**  
-_Active Record MigrationsMigrations are a feature of Active Record that allows you to evolve your database schema over…_guides.rubyonrails.org](https://guides.rubyonrails.org/active_record_migrations.html "https://guides.rubyonrails.org/active_record_migrations.html")[](https://guides.rubyonrails.org/active_record_migrations.html)
+[**Active Record Migrations - Ruby on Rails Guides**](https://guides.rubyonrails.org/active_record_migrations.html "https://guides.rubyonrails.org/active_record_migrations.html")
 
-[**為你自己學 Ruby on Rails | 高見龍**  
-_如其標題，學習不需要為公司、長官或同事，不需要為別人，只為你自己。 立即購買 以下所有內容是我在 五倍紅寶石 Ruby on Rails 培訓課程所用到的補充教材，實體書已在各書店通路上市。本書以 Ruby 2.4.1 以及 Rails…_railsbook.tw](https://railsbook.tw/ "https://railsbook.tw/")[](https://railsbook.tw/)
+[**為你自己學 Ruby on Rails 高見龍**](https://railsbook.tw)

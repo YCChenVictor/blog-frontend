@@ -9,7 +9,7 @@ note: unmodified
 
 ### Introduction
 
-In rails, we can use template to set up websites quickly. For example, the following
+In rails, we can use template to set up websites quickly.
 
 ### Why?
 
@@ -49,26 +49,25 @@ $ bin/rails app:template LOCATION=http://example.com/template.rb
 
 ```
 # template.rb
-```
 
-\# 1 add gem  
-`gem "xxx"`
+# 1 add gem  
+gem "xxx"
 
-\# 2 add gem in specific mode: development and test  
-`gem_group :development, :test do  
+# 2 add gem in specific mode: development and test  
+gem_group :development, :test do  
   gem "yyy"  
-end`
+end
 
-\# 3 add gem from specific website  
-`add_source "http://gems.github.com/" do  
+# 3 add gem from specific website  
+add_source "http://gems.github.com/" do  
   gem "rspec-rails"  
-end`
+end
 
-\# 4 Adds a line inside the `Application` class for `config/application.rb`  
-`environment 'config.action_mailer.default_url_options = {host: "http://yourwebsite.example.com"}', env: 'production'`
+# 4 Adds a line inside the Application class for config/application.rb  
+environment 'config.action_mailer.default_url_options = {host: "http://yourwebsite.example.com"}', env: 'production'
 
-\# 5 add initializer in `config/initializers`  
-`initializer 'bloatlol.rb', **<<-**CODE  
+# 5 add initializer in config/initializers  
+initializer 'bloatlol.rb', **<<-**CODE  
   class Object  
     def not_nil?  
       !nil?  
@@ -78,10 +77,10 @@ end`
       !blank?  
     end  
   end  
-CODE`
+CODE
 
-\# 6 create a new rake file in `lib/tasks`   
-`rakefile("bootstrap.rake") do  
+# 6 create a new rake file in lib/tasks   
+rakefile("bootstrap.rake") do  
   **<<-**TASK  
     namespace :boot do  
       task :strap do  
@@ -89,62 +88,61 @@ CODE`
       end  
     end  
   TASK  
-end`
+end
 
-\# 7 generate scaffold  
-`generate(:scaffold, "person", "name:string", "address:text", "age:number")`
+# 7 generate scaffold  
+generate(:scaffold, "person", "name:string", "address:text", "age:number")
 
-\# 8 run command in terminal (linux)  
-`run "rm README.rdoc"`
+# 8 run command in terminal (linux)  
+run "rm README.rdoc"
 
-\# 9 run rails commands  
-`rails_command "db:migrate"` 
+# 9 run rails commands  
+rails_command "db:migrate" 
 
-\# 10 Adds a route entry to the `config/routes.rb  
-route "root to: 'person#index'"`
+# 10 Adds a route entry to the config/routes.rb  
+route "root to: 'person#index'"
 
-\# 11 in given path (/vender), do linux code (symbolic link)  
-`inside('vendor') do  
+# 11 in given path (/vender), do linux code (symbolic link)  
+inside('vendor') do  
   run "ln -s ~/commit-rails/rails rails"  
-end`
+end
 
-\# 12 ask something while implementing template.rb  
+# 12 ask something while implementing template.rb  
 ask()
 
-\# 13 check whether a block of code ("db:migrate") that user are going to use  
-`rails_command("db:migrate") if yes?("Run database migrations?")`
+# 13 check whether a block of code ("db:migrate") that user are going to use  
+rails_command("db:migrate") if yes?("Run database migrations?")
 
-\# 14 run git commands  
-`git :init  
+# 14 run git commands  
+git :init  
 git add: "."  
-git commit: "-a -m 'Initial commit'"`
+git commit: "-a -m 'Initial commit'"
 
-\# 15 run the code (git commands) after bundle install  
-`after_bundle do  
+# 15 run the code (git commands) after bundle install  
+after_bundle do  
   git :init  
   git add: '.'  
   git commit: "-a -m 'Initial commit'"  
-end`
+end
+```
 
 We can also define method to do the above coding; for example,
 
 ```
 def xxx  yyyend
-```
 
-```
 xxx
 ```
 
 ### What?
 
 Take this as [example](https://github.com/justalever/kickoff_tailwind/blob/master/template.rb), the template.rb looks like
-
+```
 def yyy  
   yy  
 end
 
-\# Main Step  
+# Main Step  
 xxx  
 yyy
 
@@ -154,15 +152,13 @@ after bundle
   git aaa  
   say "good"  
 end
-
+```
 Then it will do the following:
 
 xxx -> yyy -> bundle install -> zzz -> rails\_commnad -> git commands -> interact with users
 
 ### reference
 
-[**Rails Application Templates - Ruby on Rails Guides**  
-_Rails Application TemplatesApplication templates are simple Ruby files containing DSL for adding gems, initializers…_guides.rubyonrails.org](https://guides.rubyonrails.org/rails_application_templates.html "https://guides.rubyonrails.org/rails_application_templates.html")[](https://guides.rubyonrails.org/rails_application_templates.html)
+[**Rails Application Templates - Ruby on Rails Guides**](https://guides.rubyonrails.org/rails_application_templates.html)
 
-[**justalever/kickoff\_tailwind**  
-_A rapid Rails 6 application template for personal use bundled with Tailwind CSS - justalever/kickoff\_tailwind_github.com](https://github.com/justalever/kickoff_tailwind/blob/master/template.rb "https://github.com/justalever/kickoff_tailwind/blob/master/template.rb")[](https://github.com/justalever/kickoff_tailwind/blob/master/template.rb)
+[**justalever/kickoff\_tailwind**](https://github.com/justalever/kickoff_tailwind/blob/master/template.rb)

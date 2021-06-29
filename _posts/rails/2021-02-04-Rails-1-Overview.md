@@ -53,8 +53,6 @@ open browsers and input `http://localhost:3000`
 
 <img src="/assets/img/rails_start_page.png" alt="rails_start_page">
 
-先到這邊好了
-
 ### Scaffold
 
 Scaffold in rails is a quick way to create MVC structure. If you want to create a MVC structure with DataBase, User (name(string), email(string), tel(string)), cd into the project directory and then type following code in terminal
@@ -62,8 +60,7 @@ Scaffold in rails is a quick way to create MVC structure. If you want to create 
 ```
 $ rails g scaffold User name:string email:string tel:string
 ```
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__p5eI09hN9pyvsxCo102__nw.png)
+<img src="/assets/img/1__p5eI09hN9pyvsxCo102__nw.png" alt="">
 
 ### Migration
 
@@ -73,9 +70,8 @@ After the step of scaffold, we need to use migration to create the tables we wan
 $ rails db:migrate
 ```
 
-The file (ex: 20210204105628\_create\_users.rb) to create the tables is as follow
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__UQZ9f5TDYy2MpzaBUt__N8w.png)
+The file (ex: 20210204105628_create_users.rb) to create the tables is as follow
+<img src="/assets/img/1__UQZ9f5TDYy2MpzaBUt__N8w.png" alt="">
 
 After migration, start the server again
 
@@ -84,8 +80,9 @@ $ rails s
 ```
 
 And input the website: [http://localhost:3000/users](http://localhost:3000/users) in browser. Then the following main page:
+<img src="/assets/img/1____Yp2j7kic__5QHtdcRC2X8g.png" alt="">
 
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1____Yp2j7kic__5QHtdcRC2X8g.png)
+## 先到這邊
 
 ### CRUD
 

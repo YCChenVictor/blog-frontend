@@ -8,7 +8,7 @@ note: to be continued
 ---
 
 ## Introduction
-skip
+I am going to build a basic layout with react.
 
 ## Why
 skip
@@ -20,7 +20,7 @@ skip
 
 After the setup, I am going to build a boring website with title and cards just like youtbe for basic setting practice. Create two component, title and card in component folder as follow:
 
-![](./img/react_basic_layout.png)
+<img src="/assets/img/react_basic_layout.png" alt="react_basic_layout">
 
 Then add the followings in components folder
 
@@ -190,4 +190,6 @@ export default App;
 ```
 
 ### What
-![](./img/react_basic_layout_what.png)
+As you can see, the basic concept of react is to decompose the website into lots of components.
+<img src="/assets/img/react_basic_layout_what.png" alt="react_basic_layout_what">
+

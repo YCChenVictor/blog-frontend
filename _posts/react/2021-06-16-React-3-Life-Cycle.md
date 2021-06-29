@@ -7,10 +7,6 @@ categories: react
 note: to be continued
 ---
 
-這邊就是用 official 的文章來將 life cycle 跟 state 講清楚，就這樣
-
-因為現在主要都是用 hook 在解決問題，而這是建立在 component + life cycle 簡化，所以了解完 component 後，我要來了解一下什麼是 life cycle。
-
 ## Introduction
 Please refer to this [website](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) for the diagram of the life cycle. React life cycle:
 <img src="/assets/img/react_lifecycle.png" alt="react_lifecycle">
@@ -21,45 +17,27 @@ As you can see, there are three main steps: Mounting (Birth), Updating (Growth),
 The essence of a framework is the life cycle of the components, the series of events from birth to death.
 
 ## How
-I am going to go through all the methods in life cycle. The simplest way to build 
-
-
-### constructor
-
-### render
-### componentDidMount
-### componentDidupdate
-### componentWillUnmount
-
-For example, with following function
-```
-function Card() {
-  return (
-    <h1 className="blablabla">
-      blablabla
-    </h1>
-  )
-}
-```
-we can add [**virtual DOM**](https://programmingwithmosh.com/react/react-virtual-dom-explained/) to render it once the function called as follow
-```
-function Card() {
-  const card = (    
-    <h1 className="blablabla">
-      blablabla
-    </h1>
-  );
-  ReactDOM.render(
-    card,
-    document.getElementById('root')
-  );
-}
-```
-so that the virtual DOM can be inserted into the container DOM. Notice! If you put these code in a file loaded before `App.js` loaded, the virtual DOM would only insert once when reload; as a result, to see the effects, please load your file correctly. Then, we may want to specify when these virtual dom loaded, meaning we need to have methods to observe the states changing.
-
-To use these functions, we need to use serval hooks to listen to states changing. To use states and hooks, we need to turn function into components:
+I am going to go through all the methods in life cycle. Take the `Clock` as example, the following clock class can only show the fixed date and the life cyle method I use is only `render`
 ```
 class Clock extends React.Component {
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is 2021-06-25.</h2>
+      </div>
+    );
+  }
+
+}
+```
+If I want to update current datetime on page refreshing at least, I need constructor for state changing.
+### constructor
+The concept of constructor: skip
+```
+class Clock extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {date: new Date()};
@@ -73,38 +51,76 @@ class Clock extends React.Component {
       </div>
     );
   }
+
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+export default Clock;
 ```
-As you can see, there is a constructor in the Clock and there is an object state in it. Then we can perform some behavior while states changing; for example, 這邊可以加一個 state: open 背景就變成紅色之類的。先跳過
-```
-先跳過
-```
-There are some default functions as follow: componentDidMount, componentWillUnmount
+other note: 
+
+1. `selectElementById` in Vanilla JS: in constructor, `this.inputField = React.createRef()` and in html: `<input type="text" ref={this.inputField} />`
+
+However, the clock above cannot update datetime regularly, we need to use `componentDidMount`.
+
 ### componentDidMount
-Actually, this is an async function, which is waiting this component to be mounted ((inserted into the tree); for example, if we want to get an element by id from the component, we can do
+The concept of componentDidMount: it will be called as soon as this component mounted.
 ```
-class Webcam extends Component {
-  
+class Clock extends React.Component {
+
+  ...
+
   componentDidMount() {
-    const video = document.getElementById("video");
+    setInterval(
+      () => this.setState({
+          date: new Date()
+        }),
+      1000
+    );
   }
 
-  render() {
-    return (
-      <div className="camera">
-        <video id="video">Video stream not available.</video>
-        <button id="startbutton">Take photo</button>
-      </div>
-    )
-  }
+  ...
+
 }
 ```
-Then we can access `video div` from the component
+As you can see, there is a `setState` which can modify the state, `date` and the `setInterval` function tells this component to update state, `date` per second.
+
+However, the setInterval will alaways work after the website initialize the `Clock`. As a result, we need a method to tell react remove this `setInterval` after this component disappear as follow:
+
+### componentWillUnmount
+```
+class Clock extends React.Component {
+
+  ...
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.setState({
+          date: new Date()
+        }),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  ...
+
+}
+```
+As you can see, in the `componentWillUnmount` step, the process to update date regularly can be cleared.
+
+### componentDidupdate
+
+The following methods are Uncommon React Lifecycle Methods
+### shouldComponentUpdate()
+### static getDerivedStateFromProps()
+### getSnapshotBeforeUpdate()
+
+目前還太弱，寫不出個所以然，先這樣吧
+
+
 
 ## What
 

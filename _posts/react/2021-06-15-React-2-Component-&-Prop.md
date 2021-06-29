@@ -4,98 +4,93 @@ title: (React_2) Component & Prop
 description:
 date: '2021-06-15'
 categories: react
-note: to be continued 1.沒有真的有 function 在 component 中的例子、2. 除了在 parent 層 import，也可以用 reactDOM 塞進去
+note: to be continued
 ---
 
 ## Introduction
-skip
+I am going to render component: Clock, trying to explain the concept of component and props.
 
 ## Why
-skip
+Why to use component? skip
 
 ## How
-
-A really basic object can be created as follow, which is literally a function that return an object with css and html and can be called somewhere else
+### Basic Concept
+A truly basic object can be created as follow, which is literally a function that return an object with css and html and can be called somewhere else
 ```
-function Card() {
+function Clock() {
   return (
-    <h1 className="blablabla">
-      blablabla
-    </h1>
-  )
-}
-```
-and we can call this Card multiple times in another file as follow
-```
-function App() {
-  return (
-    <div className="bg-gray-100 font-Roboto antialised">
-      <Header />
-      <Aside />
-      <main className="ml-24 pt-16">
-        <div className="grid grid-cols-4 row-gap-10 col-gap-2">
-          <Card />
-          <Card />
-          ...
-        </div>
-      </main>
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is 2021-06-21.</h2>
     </div>
   );
 }
 ```
-However, if we want to truly have a component customizable, then we need to modify these two components as follow:
+and we can call this `Clock` with two method:
 
-#### Card
+First method: virtual dom
 ```
-class Card extends Component {
+const clock = <Clock />;
+ReactDOM.render(
+  clock,
+  document.getElementById('root')
+);
+```
+
+Second method: render it with `date` input
+```
+function App() {
+  return (
+    <div>
+      <Clock date="2021-06-21"/>
+    </div>
+  );
+}
+```
+However, if we want to truly have a component customizable, then we need to modify these two functions as follow so that there are props for customization:
+```
+function Clock(props) {
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {props.date}.</h2>
+    </div>
+  );
+}
+```
+As you can see, there is a way to change the date, `props.date`.
+```
+function App() {
+  return (
+    <div>
+      <Clock date="2021-06-21"/>
+      <Clock date="2021-06-22"/>
+    </div>
+  );
+}
+```
+The following output:
+
+<img src="/assets/img/component_date.png" alt="component_date"  width="400" height="300">
+
+As you can see, the `<Clock />` can be customized; however, the clock can only show what inputted in props. We need to use state for clock to update the time regularly per second or at least update the current time. To use state, we need to turn this functional form into class form. The clock class could be
+```
+class Clock extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
 
   render() {
     return (
-      <div className="col-span-4 sm:col-span-4 md:col-span-2 lg:col-span-1 xl:col-span-1 flex flex-col items-center" >
-        ...
-        <div className="bg-white shadow-lg rounded-lg -mt-4 w-64">
-          <div className="py-5 px-5">
-            <span className="font-bold text-gray-800 text-lg">{this.props.projectName}</span>
-            <div className="flex items-center justify-between">
-              ...
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-}
-```
-as you can see, there is a way to change the Name `this.props.projectName` and we can customize the projectName with renderCard function in the App component
-```
-class App extends React.Component {
-
-  renderCard(name) {
-    return (
-      <Card
-        projectName={name}
-      />
-    );
-  }
-
-  render() {
-    return (
-      <div className="bg-gray-100 font-Roboto antialised">
-        <Header />
-        <Aside />
-        <main className="ml-24 pt-16">
-          <div className="grid grid-cols-4 row-gap-10 col-gap-2">
-            {this.renderCard("image project")}
-            {this.renderCard("audio project")}
-            {this.renderCard("pose project")}
-          </div>
-        </main>
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
 }
 ```
-As you can see, the `<Card />` can be customized by `renderCard` in App component.
-
-### What
+Then the current time can be updated in the `Clock` component. To let the clock update the time regularly we need use lifecycle methods.
 
