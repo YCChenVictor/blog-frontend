@@ -1,10 +1,9 @@
 ---
 layout: post
-title: (Rails_23) Instant Message (Action Cable)
-description: Taiwan only
+title: (Rails 14) Instant Message (Action Cable)
 date: '2021-04-23T10:06:45.684Z'
-states: unmodified
 categories: rails
+note: 還沒時間修正完成
 ---
 
 ### Introduction

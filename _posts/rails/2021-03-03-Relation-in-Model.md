@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails_Elementary_13) Relation in Model
+title: (Rails Elementary 6) Relation in Model
 date: '2021-03-03'
 categories: rails
 keywords: []

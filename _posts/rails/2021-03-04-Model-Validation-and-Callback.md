@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails_14) Model Validation and Callback
+title: (Rails Elementary 7) Model Validation and Callback
 date: '2021-03-04'
 categories: rails
 note: 

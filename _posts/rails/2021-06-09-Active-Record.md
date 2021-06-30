@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails_28) Active Record
+title: (Rails) Active Record
 date: '2021-06-10'
 categories: rails
 note: to be continued
@@ -19,7 +19,7 @@ User.all
 ```
 rather than
 ```
-SELECT \* FROM User
+SELECT * FROM User
 ```
 and also avoid different syntax problem on different database language.
 
@@ -37,10 +37,9 @@ I did not elaborate it because it just some basic operations.
 
 #### Callbacks
 The life cycle of an object in a framework always plays key role. The process:
+<img src="/assets/img/active_record_callbacks.png" alt="">(reference: [**railsbook.pdf**](https://railsbook.tw/))
 
-![](./img/active_record_callbacks.png) (reference: [**railsbook.pdf**](https://railsbook.tw/))
-
-For more information, please refer to [**active record callbacks**](https://guides.rubyonrails.org/active_record_callbacks.html)
+The above cycle only shows the hooks of save. For more information, please refer to [**active record callbacks**](https://guides.rubyonrails.org/active_record_callbacks.html)
 
 #### Query
 For more information, please refer to [**active record queries**](https://guides.rubyonrails.org/active_record_querying.html).
@@ -163,7 +162,7 @@ For more detail, please refer to [**Active Record - Association**](https://guide
 
 Interesting topic:
 
-**polymorphic**
+# polymorphic
 
 For example, if we want to setup an platform and users can be both employer and employee for a task and each task can only have one employer and employee.
 
@@ -191,11 +190,6 @@ class Employee < User
 end
 ```
 Notice! Employer and Employee use the concept of STI(Single-table inheritance).
-
-### What
-skip
-
-
 
 ### Reference
 

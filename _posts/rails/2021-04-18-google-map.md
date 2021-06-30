@@ -1,10 +1,9 @@
 ---
 layout: post
-title: (Rails_22) google map
-description: Taiwan only
+title: (Rails 13) google map
 date: '2021-04-18T09:52:16.889Z'
-states: unmodified
 categories: rails
+note: 要把 dynamic map 也加進去，然後因為時間不夠，所以 其實都還沒修正完成，先跳過
 ---
 
 ### Introduction
@@ -18,18 +17,18 @@ Ruby 3.0 & Rails 6.0
 ### How
 
 #### create a project
-
+```
 $ rails new GoogleMap
-
+```
 #### scaffold
-
+```
 $ rails generate scaffold Location name:string latitude:float longitude:float
-
+```
 #### migration
-
+```
 rails db:migrate
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__p4qsyc7cq1OmTpvnEf__YhQ.png)
+```
+<img src="/assets/img/1__p4qsyc7cq1OmTpvnEf__YhQ.png" alt="">
 
 #### Add Gem to Gemfile
 

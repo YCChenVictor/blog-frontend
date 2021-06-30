@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails_25) Action View
+title: (Rails) Action View
 description:
 date: '2021-06-09'
 categories: rails
@@ -21,19 +21,18 @@ With Action View, we can use more maintainable and readable method to produce HT
 There are three components: **templates, partials, layouts**. If we directly use `scaffold` command in rails to generate an article class.
 
 ```
-rails generate scaffold article
+$ rails generate scaffold article
 ```
 
 Then the structure of view will be
-
-![](./img/1__i__PlmVyHz7AafRauDSnL__g.png)
+<img src="/assets/img/1__i__PlmVyHz7AafRauDSnL__g.png" alt="">
 
 #### Templates
 
 As you can see, there are templates for `index.html.erb`(Listing and Options for Reading or **Deleting**), `edit.html.erb`(**Updating**), `new.html.erb`(**Creating**), `show.html.erb`(**Reading**). There is no template for Deleting, but in the `index.html.erb` file, we can see the following code
 
 ```
-<%= link\_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
 ```
 
 and the html will be
@@ -66,18 +65,18 @@ There is also a layout directory and the files are application and mailer. These
 
 In rails, with above template structure, we can use functions to output HTML. With these functions, we can have more secure, maintainable, neat coding structure to build HTML files. The common functions:
 
-#### simple\_format
+#### simple_format
 
 code:
 
 ```
-<%= simple_format("foo\nbar") %>
+<%= simple_format("foonbar") %>
 ```
 
 result:
 
 ```
-<% # "<p>foo\\n<br />bar</p>" %>
+<% # "<p>foon<br />bar</p>" %>
 ```
 
 #### truncate
@@ -94,11 +93,11 @@ result:
 <% # "Once upon a time in a world..." %>
 ```
 
-#### strip\_tags
+#### strip_tags
 
 code:
 
-<%= strip\_tags("Strip <i>these</i> tags!") %>
+<%= strip_tags("Strip <i>these</i> tags!") %>
 
 result:
 
@@ -106,19 +105,19 @@ result:
 "Strip these tags!"
 ```
 
-#### strip\_links
+#### strip_links
 
 code:
 
 ```
-[strip\_links](https://apidock.com/rails/ActionView/Helpers/SanitizeHelper/strip_links)**('**<a href="http://www.rubyonrails.org">Ruby on Rails</a>**')**
+[strip_links](https://apidock.com/rails/ActionView/Helpers/SanitizeHelper/strip_links)**('**<a href="http://www.rubyonrails.org">Ruby on Rails</a>**')**
 ```
 
 result:
 
 _"Ruby on Rails" (with url)_
 
-#### distance\_of\_time\_in\_words
+#### distance_of_time_in_words
 
 code:
 
@@ -132,7 +131,7 @@ result:
 => "about 1 hour"
 ```
 
-#### distance\_of\_time\_in\_words\_to\_now
+#### distance_of_time_in_words_to_now
 
 code:
 
@@ -146,7 +145,7 @@ result:
 => "less than a minute"
 ```
 
-#### time\_tag
+#### time_tag
 
 code:
 
@@ -157,10 +156,10 @@ time_tag(Time.now)
 result:
 
 ```
-=> "<time datetime=\"2014-11-03T23:55:11+08:00\">November 03, 2014 23:55</time>"
+=> "<time datetime="2014-11-03T23:55:11+08:00">November 03, 2014 23:55</time>"
 ```
 
-#### number\_with\_delimiter
+#### number_with_delimiter
 
 code:
 
@@ -174,7 +173,7 @@ result:
 => "1,234,567"
 ```
 
-#### number\_with\_precision
+#### number_with_precision
 
 code
 
@@ -188,12 +187,12 @@ result
 => "123.46"
 ```
 
-#### link\_to
+#### link_to
 
 code:
 
 ```
-<%= link\_to 'Destroy', article %>
+<%= link_to 'Destroy', article %>
 ```
 
 result:
@@ -219,7 +218,7 @@ and the appearance:
 ##### to be continued...
 In rails, we can use `form_for` or `form_tag` to do so. The key difference between these two functions is `form_tag` does not need model; as a result, if you only want user to input data but not to store it, `form_tag` is your good friend.
 
-**form\_for**
+**form_for**
 
 for example, in a blog project, for user to add an article, the code would be as follow
 
@@ -235,7 +234,7 @@ and the result as follow
 
 as you can see the default method is `post` and the id and name are create with model name and instances name; for example, `id=”article_title”` and `name="article[title]"` and a button to submit input data with `”Create"` text on it.
 
-**form\_tag**
+**form_tag**
 
 For example, if we just want to do some search, we may only want user to input text they want to search and submit to do the action; as a result, the coding would be
 
@@ -250,24 +249,24 @@ and result would be
 ```
   
 
-**form\_with**
+**form_with**
 
-<%= link\_to 'Destroy', article %>
+<%= link_to 'Destroy', article %>
 
 <a href="/articles/1">Destroy</a>
 
-#### form\_for
+#### form_for
 
-#### form\_with
+#### form_with
 
 For example, the basic setting:
 
-<%= form\_with url: "/search" do |form| %>  
+<%= form_with url: "/search" do |form| %>  
 <% end %>
 
 then the html
 
-<form action="/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity\_token" value="1ZCLR8L5yjrMBU5rf0tlemZr6amLW4p0vi7xuqv5sdGaGkhtHSGaY5IUrEoZRokm64HnCXvoJUI47JSPQdLTvg">  
+<form action="/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="1ZCLR8L5yjrMBU5rf0tlemZr6amLW4p0vi7xuqv5sdGaGkhtHSGaY5IUrEoZRokm64HnCXvoJUI47JSPQdLTvg">  
 </form>
 
 The meaning of this html: create a form section for url: `"/search"` , meaning after we input 
