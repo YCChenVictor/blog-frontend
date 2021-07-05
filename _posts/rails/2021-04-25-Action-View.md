@@ -8,17 +8,17 @@ keywords: []
 state: to be continued
 note: 這個了解夠清楚才會知道 commentable 的 reply 怎麼做
 ---
-### Introduction
+## Introduction
 
 Action View templates are written with embedded Ruby in tags **mingled** with HTML. Action View responsible for compiling the response from action controller, communicating with the database and performing CRUD actions. There are also action view helpers for creating neat templates for views.
 
-### Why
+## Why
 
 With Action View, we can use more maintainable and readable method to produce HTML files. Action View gives us a more structured way to write HTML files for websites.
 
-### Structures
+## Structures
 
-There are three components: **templates, partials, layouts**. If we directly use `scaffold` command in rails to generate an article class.
+There are three components: **templates, partials, layouts**. If we directly use `scaffold` command in rails to generate an `article` class.
 
 ```
 $ rails generate scaffold article
@@ -27,7 +27,7 @@ $ rails generate scaffold article
 Then the structure of view will be
 <img src="/assets/img/1__i__PlmVyHz7AafRauDSnL__g.png" alt="">
 
-#### Templates
+### Templates
 
 As you can see, there are templates for `index.html.erb`(Listing and Options for Reading or **Deleting**), `edit.html.erb`(**Updating**), `new.html.erb`(**Creating**), `show.html.erb`(**Reading**). There is no template for Deleting, but in the `index.html.erb` file, we can see the following code
 
@@ -45,7 +45,7 @@ The `data: { confirm:'xxx' }` will send data to browser and pops up while deleti
 
 There are also other file type: [Builder](https://guides.rubyonrails.org/action_view_overview.html#builder) (generating XML) and [Jbuilder](https://guides.rubyonrails.org/action_view_overview.html#jbuilder) (generating JSON), letting us to communicate with other device in other date types.
 
-#### Partials
+### Partials
 
 In the structure, there is `_form.html.erb` and the Punctuation Marks `_` means we can render it in other html file; for example, in `edit.html.erb` , add
 
@@ -55,17 +55,17 @@ In the structure, there is `_form.html.erb` and the Punctuation Marks `_` means 
 
 Then, the html in the `_form.html.erb` will be inserted into the file, `edit.html.erb` and all the `product` in `_form.html.erb` will be `@product` .
 
-#### Layouts
+### Layouts
 
 There is also a layout directory and the files are application and mailer. These files will be the whole setting for html files.
 
-#### [Partial Layouts](https://guides.rubyonrails.org/action_view_overview.html#partial-layouts) (skip)
+### [Partial Layouts](https://guides.rubyonrails.org/action_view_overview.html#partial-layouts) (skip)
 
-### Helper
+## Helper
 
 In rails, with above template structure, we can use functions to output HTML. With these functions, we can have more secure, maintainable, neat coding structure to build HTML files. The common functions:
 
-#### simple_format
+### simple_format
 
 code:
 
@@ -79,7 +79,7 @@ result:
 <% # "<p>foon<br />bar</p>" %>
 ```
 
-#### truncate
+### truncate
 
 code:
 
@@ -93,7 +93,7 @@ result:
 <% # "Once upon a time in a world..." %>
 ```
 
-#### strip_tags
+### strip_tags
 
 code:
 
@@ -105,7 +105,7 @@ result:
 "Strip these tags!"
 ```
 
-#### strip_links
+### strip_links
 
 code:
 
@@ -117,7 +117,7 @@ result:
 
 _"Ruby on Rails" (with url)_
 
-#### distance_of_time_in_words
+### distance_of_time_in_words
 
 code:
 
@@ -131,7 +131,7 @@ result:
 => "about 1 hour"
 ```
 
-#### distance_of_time_in_words_to_now
+### distance_of_time_in_words_to_now
 
 code:
 
@@ -145,7 +145,7 @@ result:
 => "less than a minute"
 ```
 
-#### time_tag
+### time_tag
 
 code:
 
@@ -159,7 +159,7 @@ result:
 => "<time datetime="2014-11-03T23:55:11+08:00">November 03, 2014 23:55</time>"
 ```
 
-#### number_with_delimiter
+### number_with_delimiter
 
 code:
 
@@ -173,7 +173,7 @@ result:
 => "1,234,567"
 ```
 
-#### number_with_precision
+### number_with_precision
 
 code
 
@@ -187,7 +187,7 @@ result
 => "123.46"
 ```
 
-#### link_to
+### link_to
 
 code:
 
@@ -199,7 +199,7 @@ result:
 
 <a href="/articles/1">Destroy</a>
 
-#### forms
+### forms
 
 In html, `<form>` is for user input; for example,
 
@@ -213,28 +213,42 @@ In html, `<form>` is for user input; for example,
 
 and the appearance:
 
-![](./img/1__Ikm0E1AT__q86UnFkFVHQaw.png)
+<img src="/assets/img/1__Ikm0E1AT__q86UnFkFVHQaw.png" alt="">
 
-##### to be continued...
-In rails, we can use `form_for` or `form_tag` to do so. The key difference between these two functions is `form_tag` does not need model; as a result, if you only want user to input data but not to store it, `form_tag` is your good friend.
+In rails, we can use `form_for` or `form_tag` to do so. The key difference between these two methods is `form_tag` does not need model; as a result, if you only want user to input data but not to store it, `form_tag` is your good choose.
 
-**form_for**
+#### form_for
 
 for example, in a blog project, for user to add an article, the code would be as follow
 
 ```
-<%=
+<%= form_for :article do |f| %>
+  title: <%= f.text_field :first_name %><br />
+  body:  <%= f.text_field :last_name %><br />
+  <%= f.submit %>
+<% end %>
 ```
 
-and the result as follow
+**:remote**: if we want the `submit` button to be AJAX, we can set it to true and rails will use UJS to handle this button.
 
+**How data flow from view to controller?**
+Please use `byebug` and check `params` in rails server. Then the following message:
+```
+ActionController::Parameters {"comment"=>{"body"=>"q"}, "commit"=>"Create Comment", "controller"=>"comments", "action"=>"create", "product_id"=>"1"} permitted: false
+```
+As you can see, `"controller"=>"comments"`, `"action"=>"create"`
+
+****
+
+
+and the result as follow (這可以之後再處理)
 ```
 <form
 ```
 
 as you can see the default method is `post` and the id and name are create with model name and instances name; for example, `id=”article_title”` and `name="article[title]"` and a button to submit input data with `”Create"` text on it.
 
-**form_tag**
+#### form_tag
 
 For example, if we just want to do some search, we may only want user to input text they want to search and submit to do the action; as a result, the coding would be
 
@@ -255,20 +269,19 @@ and result would be
 
 <a href="/articles/1">Destroy</a>
 
-#### form_for
-
 #### form_with
 
 For example, the basic setting:
-
+```
 <%= form_with url: "/search" do |form| %>  
 <% end %>
-
+```
 then the html
-
-<form action="/search" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="1ZCLR8L5yjrMBU5rf0tlemZr6amLW4p0vi7xuqv5sdGaGkhtHSGaY5IUrEoZRokm64HnCXvoJUI47JSPQdLTvg">  
+```
+<form action="/search" accept-charset="UTF-8" method="post">
+  <input type="hidden" name="authenticity_token" value="1ZCLR8L5yjrMBU5rf0tlemZr6amLW4p0vi7xuqv5sdGaGkhtHSGaY5IUrEoZRokm64HnCXvoJUI47JSPQdLTvg">  
 </form>
-
+```
 The meaning of this html: create a form section for url: `"/search"` , meaning after we input 
 
   
@@ -299,6 +312,8 @@ As you can see, the `form_with` method require us to input `url` and `:get` met
 
   
 
+
+
   
 
 #### Self-defined Helper (skip)
@@ -319,10 +334,10 @@ As you can see, the `form_with` method require us to input `url` and `:get` met
 
 ### Reference
 
-[**Action View Overview - Ruby on Rails Guides**](https://guides.rubyonrails.org/action_view_overview.html "https://guides.rubyonrails.org/action_view_overview.html")[](https://guides.rubyonrails.org/action_view_overview.html)
+[**Action View Overview - Ruby on Rails Guides**](https://guides.rubyonrails.org/action_view_overview.html)
 
-[**Action View Helpers - Ruby on Rails Guides**](https://guides.rubyonrails.org/action_view_helpers.html "https://guides.rubyonrails.org/action_view_helpers.html")[](https://guides.rubyonrails.org/action_view_helpers.html)
+[**Action View Helpers - Ruby on Rails Guides**](https://guides.rubyonrails.org/action_view_helpers.html)
 
-[**Action View - Helpers 方法**](https://ihower.tw/rails/actionview-helpers.html "https://ihower.tw/rails/actionview-helpers.html")[](https://ihower.tw/rails/actionview-helpers.html)
+[**Action View - Helpers 方法**](https://ihower.tw/rails/actionview-helpers.html)
 
 [**HTML Forms**](https://www.w3schools.com/html/html_forms.asp "https://www.w3schools.com/html/html_forms.asp")[](https://www.w3schools.com/html/html_forms.asp)

@@ -42,7 +42,7 @@ class CandidatesController < ApplicationController
 
 end
 ```
-### If I want multiple yield?
+### What if I want multiple yield in the same file?
 
 To have multiple yield in one html, you need to have tag for rails identifying which yield to fill in. For example, when I call main page, by default, rails will go to layout to find `application.html.erb`. Then it detects yield, so it go to the views/xxx/yyy.html.erb to find what to be filled into yield if we call a method in webpage xxx/yyy. To help rails to identify which yield to choose, in `yyy.html.erb`
 ```

@@ -7,7 +7,7 @@ keywords: []
 note: 'one-to-one, one-to-many, many-to-many, HABTM'
 ---
 
-There are three types of relation in model: one-to-one, one-to-many, many-to-many
+There are three types of relation: one-to-one, one-to-many, many-to-many
 
 For example, if we want to build an online store system. The relations:
 
@@ -17,23 +17,22 @@ For example, if we want to build an online store system. The relations:
 
 ### one-to-one
 
-Let's build User Model
+Let's build `User` model
 ```
 $ rails g model User name email tel
 ```
-Then build Store Model
+Then build `Store` model
 ```
-$ rails g model Store title tel address user\_id:integer
+$ rails g model Store title tel address user_id:integer
 ```
-In the generate of Store, `user_id:integer` used as foreign key to match id in User database.
-
+`user_id:integer` makes `Store` to have foreign key matching id in User database.
+<img src="/assets/img/1__UcS6Mtj0CLEY5dsfGnY5TA.png" alt="">
 Then
 ```
 $ rails db:migrate
 ```
-<img src="/assets/img/1__UcS6Mtj0CLEY5dsfGnY5TA.png" alt="">
 
-Then setting relation as follow
+Then setting relation up as follow
 
 In user model
 ```

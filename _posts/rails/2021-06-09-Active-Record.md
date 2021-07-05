@@ -163,8 +163,31 @@ For more detail, please refer to [**Active Record - Association**](https://guide
 Interesting topic:
 
 # polymorphic
+When to use `polymorphic`? If we want a model belongs to more than one model. For example, both product and user can be commented, so we can create `Comment` model with
+```
+$ rails g model Comment commentable_type:string commentable_id:integer body:text
+```
+and the model setting would be as follow:
+```
+class Comment < ApplicationRecord
+  belongs_to :commentable, polymorphic: true
+end
 
-For example, if we want to setup an platform and users can be both employer and employee for a task and each task can only have one employer and employee.
+class Product < ApplicationRecord
+  has_many :comments, as: :commentable
+end
+
+class User < ApplicationRecord
+  has_many :comments, as: :commentable
+end
+```
+As the setting above, the `commentable_id` will save the id of `product` and `user` and because of the `commentable_type`, no worries if the id of `product` and `user` are the same.
+
+# STI (single table inheritance)
+When to use `single table inheritance`? (skip)
+
+# Polymorphic + STI
+For example, if we want to setup a platform and users can be both employer and employee for a task and each task can only have one employer and employee.
 
 Then, the model setups would be
 
