@@ -20,7 +20,9 @@ The routes are in `app_name/config/routes.rb`
 
 ### Controller
 
-Controllers are in `app/controllers`. 
+Controllers are in `app/controllers`.
+
+What is controller? it coordinates the interaction between user (routes), view, and model.
 
 The file names and the controller names are linked; for example,
 

@@ -6,12 +6,15 @@ categories: rails
 note: CSRF (Cross-site request forgery)
 ---
 
-### CSRF (Cross-site request forgery)
-CSRF: (要去查一下定義)
+### CSRF (Cross-Site Request Forgery)
 
-In `app/views/layouts/application.html.erb`,
+#### What is CSRF?
+wiki: Cross-site request forgery, also known as **one-click attack** or session riding and abbreviated as CSRF or XSRF, is a type of malicious exploit of a website where **unauthorized commands** are submitted from **a user that the web application trusts**.
+
+#### How to prevent it in rails?
+In `application_controller.rb`,
 ```
-<%= csrf_meta_tags %>
+protect_from_forgery
 ```
 
 ### How rails find layout for specific method?
@@ -146,3 +149,7 @@ Then the logic in html can be written as
 ### Reference:
 
 [**為你自己學 Ruby on Rails 高見龍**](https://railsbook.tw/)
+
+[**CSRF-wiki**](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
+
+[**rails-security**](https://guides.rubyonrails.org/security.html)
