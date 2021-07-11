@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails 8) User Login System
+title: (Rails) User Login System
 date: '2021-03-11'
 categories: rails
 note: session logout 為何需要兩個 route?

@@ -9,6 +9,10 @@ note: to be continued
 ### Introduction
 Active Record: The layer responsible for business data and logic and the model in MVC structure. In a business, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
 
+1. Table map to classes
+2. Rows map to objects
+3. Columns map to object attributes
+
 ### Why
 
 There are lots of database management system such as MySQL, SQLite, and PostgreSQL with different syntax, so ORM (object-relational mapping) born to help us for using same syntax for same purpose on different databases.
@@ -162,8 +166,8 @@ For more detail, please refer to [**Active Record - Association**](https://guide
 
 Interesting topic:
 
-# polymorphic
-When to use `polymorphic`? If we want a model belongs to more than one model. For example, both product and user can be commented, so we can create `Comment` model with
+# polymorphic (這邊真的要再順一下，為什麼不用兩個 has_many, belongs_to)
+When to use `polymorphic`? If a model belongs to more than one model. For example, both product and user can be commented, so we can create `Comment` model with
 ```
 $ rails g model Comment commentable_type:string commentable_id:integer body:text
 ```
@@ -182,6 +186,22 @@ class User < ApplicationRecord
 end
 ```
 As the setting above, the `commentable_id` will save the id of `product` and `user` and because of the `commentable_type`, no worries if the id of `product` and `user` are the same.
+
+Note that the structure can be written as follow:
+```
+class Comment < ApplicationRecord
+  belongs_to :product
+  belongs_to :user
+end
+
+class Product < ApplicationRecord
+  has_many :comments
+end
+
+class User < ApplicationRecord
+  has_many :comments
+end
+```
 
 # STI (single table inheritance)
 When to use `single table inheritance`? (skip)

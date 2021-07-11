@@ -1,13 +1,32 @@
 ---
-title: MySQL_0(uninstall and install)
+title: (MySQL 1) Overview
 description: 'Uninstall:'
-date: ''
+date: '2021-07-06'
 categories: []
 keywords: []
 slug: ''
+note: introduction, uninstall and install
 ---
 
-  
+## Summary
+
+## Why?
+
+## How?
+
+### introduction
+w3school: SQL is a standard language for storing, manipulating and retrieving data in databases.
+
+### The basic structure of a SQL command
+```
+SELECT
+FROM
+WHERE
+
+
+```
+
+## What?
 
 #### Uninstall:
 
@@ -25,3 +44,7 @@ slug: ''
 #### Install:
 
 [https://dev.mysql.com/doc/refman/8.0/en/osx-installation-pkg.html](https://dev.mysql.com/doc/refman/8.0/en/osx-installation-pkg.html)
+
+
+## reference
+[**w3school**](https://www.w3schools.com/SQl/default.asp)

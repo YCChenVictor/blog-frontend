@@ -1,64 +1,73 @@
 ---
 layout: post
-title: >-
-  (Ruby_1) Install, Version Control, Variable, Constant, Flow Controller, Loop
-  and Iteration
+title: (Ruby 1) Overview
 date: '2021-02-04T08:50:32.446Z'
 categories: ruby
-note: Use Ruby Version Manager to manage Ruby
+note: Install (1), Version Control (2), Variable (3), Constant (4), Flow Controller (5), Loop (6), and Iteration (7)
+state: to be continued
 ---
 
-### RVM
+## Install (1)
 
-#### Install RVM (Ruby Version Manager)
+### Install RVM (Ruby Version Manager)
+```
+$ curl -sSL https://get.rvm.io | bash -s stable
+```
+### Open RVM
 
-\\curl -sSL https://get.rvm.io | bash -s stable
-
-#### Open RVM
-
-You should know your own path. Take Mac as example, the path should be ‘/Users/user\_name/.rvm/scripts/rvm’
-
+You should know your own path of ruby. Take Mac as example, the path should be ‘/Users/user_name/.rvm/scripts/rvm’
+```
 source 'your own path'
+```
+## Version Control
 
-### Version Control
-
-#### All Versions of Ruby that can be installed
-
+### All Versions of Ruby that can be installed
+```
 rvm list known
-
-#### Install Ruby 2.6
-
+```
+### Install Ruby 2.6
+```
 rvm install 2.6
+```
+### Errors Fixing
+#### Check the log
+You may have the following path to access it (please replace your_user_name with your user name)
+```
+/Users/your_user_name/.rvm/log/1625795250_ruby-2.7.1/make.log
+```
+[**solve the ruby old version cannot install on M1 problem**](https://github.com/ffi/ffi/issues/869)
 
-#### Check Installed Versions
+### to be continued
+
+### Check Installed Versions
 
 rvm list
 
-#### Check Current Version
+### Check Current Version
 
 ruby -v
 
-#### Use Other Ruby Version
+### Use Other Ruby Version
 
 rvm use 3.0.0
 
-#### Change Default Ruby Version
+### Change Default Ruby Version
 
 rvm --default use 2.4.1
 
-### Variable
+## Variable
 
-#### Types
+### Types
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__ywZBLRlHrf____K66pKUAsiA.png)
 
-#### Scope
+### Scope
 
 Scope means the range that the variable can be use. If we define a variable, **name,** in a function then this variable can only be called in the function, not anywhere else; for example,
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__MXgPL__Bv9Bnc4Uvdib2sfA.png)
 
-### Constant
+## Constant
 
 The only rule of constant is the first letter must be uppercase; for example,
 
@@ -66,13 +75,13 @@ The only rule of constant is the first letter must be uppercase; for example,
 
 Actually, all the class and module name must be constant
 
-### Flow Controller
+## Flow Controller
 
-#### True or False
+### True or False
 
 Only nil and false are considered as false
 
-#### if…elsif…else…
+### if…elsif…else…
 
 **inversion:** we can put if statement to the back as inversion. That is, from
 
@@ -82,9 +91,9 @@ to
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1____YrEzmpfvZQwtxKoNb1nBA.png)
 
-#### Unless = if not
+### Unless = if not
 
-#### Ternary
+### Ternary
 
 It is constructed from ? and : For example, from
 
@@ -94,7 +103,7 @@ to
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__qQyOxf0g4uJw__LuwemEOfA.png)
 
-#### Case…When
+### Case…When
 
 Can make the if…else… to be more concise; for example, from
 
@@ -104,9 +113,9 @@ to
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__KrrerIAP2FlTa428FEJeMg.png)
 
-### Loop and Iteration
+## Loop and Iteration
 
-#### while
+### while
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__vmyHyYWlhFwAm7B80aOaTw.png)
 
@@ -114,7 +123,7 @@ The output
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__N3smaWfVEBY__l3bcxEUisw.png)
 
-#### for..in
+### for..in
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__lEAzOu5d2h__5spbfOdG1DA.png)
 
@@ -122,7 +131,7 @@ The output
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__iUP5j__juAx7id9rPi8u8Xw.png)
 
-#### times
+### times
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__Kvng6LeQ11jSJsC__XozqZA.png)
 
@@ -130,7 +139,7 @@ The output
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__diLIswcl3Hy0mtG____w4OVg.png)
 
-#### upto
+### upto
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__SB____f42imMaSTu1AdUKmcw.png)
 
@@ -138,7 +147,7 @@ The output
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__as__mN9vWXCbkOumfPR27uA.png)
 
-#### downto
+### downto
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__YdGvN__U__ZN6__aTsmOrG7Yw.png)
 
@@ -146,7 +155,7 @@ The output
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__7__n__vCqNJ__Hk9UZ8u2KmOQ.png)
 
-#### interation
+### interation
 
 ![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__a5kax8tR__ucMhzDKgmKqNg.png)
 

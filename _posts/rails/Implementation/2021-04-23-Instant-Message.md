@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails 14) Instant Message (Action Cable)
+title: (Rails) Instant Message (Action Cable)
 date: '2021-04-23T10:06:45.684Z'
 categories: rails
 note: 還沒時間修正完成

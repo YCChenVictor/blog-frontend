@@ -6,7 +6,7 @@ date: '2021-06-09'
 categories: rails
 keywords: []
 state: to be continued
-note: 這個了解夠清楚才會知道 commentable 的 reply 怎麼做
+note: 這個了解夠清楚才會知道 commentable 的 reply 怎麼做，如果有流水帳，要記得拿掉，這應該放特殊的操作或是特別的理解即可
 ---
 ## Introduction
 

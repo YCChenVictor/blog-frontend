@@ -2,9 +2,7 @@
 title: What is RESTful API
 description: ''
 date: '2021-02-18T08:15:19.463Z'
-categories: []
-keywords: []
-slug: /@t5204713910/what-is-restful-api-816a9ea6fe6a
+categories: Other
 ---
 
 ### REST
@@ -51,5 +49,4 @@ Layer means the system has multiple layers, many intermediary servers.
 
 ### references:
 
-[**表现层状态转换**  
-_表现层状态转换（ 英语： Representational State Transfer ， 縮寫： REST）是博士于2000年在他的博士论文中提出来的一种 万维网…_zh.wikipedia.org](https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2 "https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2")[](https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2)
+[**表现层状态转换**](https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2)

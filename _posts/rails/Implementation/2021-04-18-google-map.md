@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails 13) google map
+title: (Rails) google map
 date: '2021-04-18T09:52:16.889Z'
 categories: rails
 note: 要把 dynamic map 也加進去，然後因為時間不夠，所以 其實都還沒修正完成，先跳過

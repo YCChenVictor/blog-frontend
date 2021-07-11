@@ -12,7 +12,7 @@ There are three types of relation: one-to-one, one-to-many, many-to-many
 For example, if we want to build an online store system. The relations:
 
 1.  one-to-one: every user can create one store
-2.  one-to-many: a store can sell many product
+2.  one-to-many: a store can sell many products
 3.  many-to-many: Each store can sell many products and each product can be sold in many stores
 
 ### one-to-one
@@ -25,46 +25,54 @@ Then build `Store` model
 ```
 $ rails g model Store title tel address user_id:integer
 ```
+You can also use
+```
+$ rails g model Store title tel address user:references
+```
 `user_id:integer` makes `Store` to have foreign key matching id in User database.
 <img src="/assets/img/1__UcS6Mtj0CLEY5dsfGnY5TA.png" alt="">
 Then
 ```
 $ rails db:migrate
 ```
+Before setting relation in model, if we directly create `user` and `store` and build relation as follow:
+```
+user1 = User.new(name: "aaa")
+store1 = Store.new(title: "aaa")
+user1.store = store1
+```
+Then the following error occurs:
+```
+NoMethodError (undefined method `store=' for #<User:0x00000001212dada8>)
+```
+,meaning the user does not have the method to set relation with store, setting relation up as follow
 
-Then setting relation up as follow
-
-In user model
+In user model,
 ```
 class User < ApplicationRecord  
   has_one :store  
 end
 ```
-In store model
+In store model,
 ```
 class Store < ApplicationRecord  
   belongs_to :user  
 end
 ```
 Then we can use model to manipulate database with model as follow
-
-#### **Create user**
-```
-user1 = User.new(name: "aaa")
-```
-#### **Create store**
-```
-store1 = Store.new(title: "aaa")
-```
-#### **Point store to user.store**
 ```
 user1.store = store1
+or
+store1.user = user1
 ```
 #### **save it**
 ```
 user1.save
 ```
 <img src="/assets/img/1__4____gMZvS0GRwn01ADm__BGA.png" alt="">
+
+As you can see, there are two `INSERT`. One for `user1` and one for `store1` because there is relation set up above.
+
 
 ### one-to-many
 
@@ -106,6 +114,13 @@ store1 = Store.first
 ```
 store1.products = [product1, product2]
 ```
+
+### scope in has_many
+```
+has_many :comments, -> { where(author_id: 1) }
+```
+Use lambda function to specify the scope of this has_many
+
 ### many-to-many
 
 #### **Create WareHouse for the following relation**

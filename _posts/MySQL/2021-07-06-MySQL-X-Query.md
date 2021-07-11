@@ -8,8 +8,11 @@ categories: MySQL
 ## Summary
 
 ## Why?
+Now I am preparing backend interview.
 
 ## How?
+
+
 
 ## What?
 

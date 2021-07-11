@@ -6,9 +6,11 @@ categories: ruby
 note: none
 ---
 
+這不應該寫得很像流水帳，要這樣就直接去看手冊就好（https://docs.ruby-lang.org/en/3.0.0/String.html）
+
 ## Number (1)
 
-In the world of Ruby, anything is object. The classes of number: integer, float, rational
+In the world of Ruby, anything is object. The classes of number: integer, float, rational, decimal
 
 ### Integer
 
@@ -200,6 +202,9 @@ In Ruby, a new string will cost a new memory but a new symbol always cost one po
 2. true, false, and nil are singleton instances of TrueClass, FalseClass, and NilClass
 3. The superclass of TrueClass, FalseClass, and NilClass is Object
 4. When requiring Boolean value, nil behaves like false, and any value other than nil or false behaves like true
+
+## Symbol vs String (8)
+
 
 ## reference
 [**rational**](https://ruby-doc.org/core-2.5.0/Rational.html)

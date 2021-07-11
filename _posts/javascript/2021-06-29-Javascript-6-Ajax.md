@@ -11,12 +11,11 @@ note: 這之後要把不用 reload 的效果做出來，雖然我不知道怎麼
 2. It achieves the result of updating parts of the web page -> reduce the interactions bet. client and server -> the application can have more special effect.
 3. The process: Request data from external server -> Parse the data -> Load data **without** a refresh -> Data can be formats like (XML, JSON, HTML)
 
-
 ## Why
 skip
 
 ## How
-From wiki: with Ajax, web applications can send and retrieve data from a server asynchronously (in the background) without interfering with the display and behaviour of the existing page. I am going to show an example with https://jsonplaceholder.typicode.com/,
+From wiki: with Ajax, web applications can send and retrieve data from a server asynchronously (in the background) without interfering with the display and behaviour of the existing page. I am going to show an example with `https://jsonplaceholder.typicode.com/`,
 ### Basic Setting
 #### index.html
 ```

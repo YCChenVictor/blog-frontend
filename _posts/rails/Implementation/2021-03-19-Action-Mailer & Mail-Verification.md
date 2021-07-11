@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Rails 9) Action Mailer & Mail Verification
+title: (Rails) Action Mailer & Mail Verification
 description: ''
 date: '2021-03-19'
 categories: rails

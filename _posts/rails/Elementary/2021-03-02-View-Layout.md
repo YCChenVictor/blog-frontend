@@ -9,7 +9,9 @@ note: CSRF (Cross-site request forgery)
 ### CSRF (Cross-Site Request Forgery)
 
 #### What is CSRF?
-wiki: Cross-site request forgery, also known as **one-click attack** or session riding and abbreviated as CSRF or XSRF, is a type of malicious exploit of a website where **unauthorized commands** are submitted from **a user that the web application trusts**.
+wiki: Cross-site request forgery, also known as **one-click attack** or session riding and abbreviated as CSRF or XSRF, is a type of malicious exploit of a website where **unauthorized commands** are submitted from **a user that the web application trusts**
+
+For example, after a user login a webpage, the information would be saved in cookie then we can induce users to click a website we built to send malicious command to the webpage through the cookie. (這個例子還不確定)
 
 #### How to prevent it in rails?
 In `application_controller.rb`,
