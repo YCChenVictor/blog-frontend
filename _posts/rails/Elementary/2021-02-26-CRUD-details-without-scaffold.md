@@ -26,7 +26,7 @@ I am going to follow the steps: Modify Route (1) -> Add Controller (2) -> Add Me
 In `/config/route.rb`, add `resources` for routes creating
 ```
 Rails.application.routes.draw do  
-  resources :candidates  
+  resources :candidates
 end
 ```
 Then input the following to see the routes

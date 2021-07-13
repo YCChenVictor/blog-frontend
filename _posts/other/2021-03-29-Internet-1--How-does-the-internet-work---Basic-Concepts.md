@@ -1,51 +1,47 @@
 ---
-title: (Internet_1) How does the internet work? (Basic Concepts)
-description: What Is Internet Protocol Suite & How Do The Layers Work?
+layout: post
+title: (Internet 1) How does the internet work? (Basic Concepts)
 date: '2021-03-29T04:54:22.522Z'
-categories: []
-keywords: []
-slug: >-
-  /@t5204713910/internet-1-how-does-the-internet-work-basic-concepts-39cfcc3af18b
+categories: internet
 ---
 
-### Introduction
+## Introduction
 
 The internet is a system to connect all computers globally, mainly using internet protocol suite to communicate with all the objects in the network.
 
 ### What Is Internet Protocol Suite?
 
-It is a kind of **conceptual model** used in a network model. The foundation of it: Transmission Control Protocol (TCP) and Internet Protocol (IP)
+It is a kind of **conceptual model** used in a network model. The foundation is "Transmission Control Protocol" (TCP) and "Internet Protocol" (IP)
 
-The diagram of TCP/IP may be as follow:
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__RwTbhJGkPNdHriCUy6vDww.png)
+A simple structure of TCP/IP is as follow:
+<img src="/assets/img/1__RwTbhJGkPNdHriCUy6vDww.png" alt="" width=500>
 
 ### How Do The Layers Work?
 
-#### **_Link layer:_**
+#### Link layer:
 
-for example, if a computer (sender) want to send data to another computer (receiver), the sender will send electromagnetic signals. These signals walk through wired or wireless connection from sender to receiver.
+For example, if a computer (sender) want to send data to another computer (receiver), the sender will send electromagnetic signals. These signals walk through wired or wireless connection from sender to receiver.
 
-#### **_Network layer (IP):_**
+#### Network layer (IP):
 
-Once the number of computer grow, we need to specify the address to identify which one is receiver. The address for identification is IP address. We called all the computer in this network **node**.
+Once the number of computers grow, we need to specify the address to identify which one is receiver. The address for identification is IP address. We called all the computer in this network **nodes**.
 
 Now the network looks like
 
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__mVyP5CqkMyQBf6____g1V6bA.jpeg)
+<img src="/assets/img/internet_network.png" alt="">
 
-#### **_Transport layer (TCP):_**
+#### Transport layer (TCP):
 
-As you can see in the network plot above, if a sender want to send signal to another computer, there are many path for signal to walk.
+In the network plot above, if a sender wants to send signal to another computer, there are many path for signal to walk.
 
 (interlude) **Packet Switching:**
 
-1.  concept: It break down the data into small pieces and transfer these pieces with any possible routes to the destination and reassemble these pieces to show the complete data to the users at the destination.
-2.  the way to decompose the data and the way to transfer it: For example, at the moment which the data is going to be sent, the available routes may be as follow:
+The concept of packet switching is that it **breaks down the data** into small pieces and transfer these pieces with any possible routes to the destination and reassemble these pieces to show the complete data to the users at the destination.
 
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__kF7aAIKeqLdK7SH9b0vavw.png)
+I am going to explain the way to decompose the data and the way to transfer it with following example:
 
-There are three main aspect in this diagram:
+At the moment when the data is going to be sent, the available routes may be as follow:
+<img src="/assets/img/1__kF7aAIKeqLdK7SH9b0vavw.png" alt="" width=500>
 
 1.  If there is arrows between nodes, then there is connection between the two computers and we call it the **path**.
 2.  The number near the arrow is the cost to send a unit of data from sender to receiver.
@@ -60,13 +56,13 @@ Based on these two concepts, we can define algorithms such as walk through minim
 4.  the packets walk through the routes in networks and being reassembled at destination
 5.  if the receiver did not receive the data, then tell sender to send again.
 
-#### Application Layer:
+### Application Layer:
 
 After the data arrives at destination, the receiver use Hypertext Transfer Protocol (HTTP) to translate the data from sender and then the page will show up on the receiver’s browsers.
 
 [**How HTTP works?**](https://t5204713910.medium.com/internet-2-hypertext-transfer-protocol-http-56ca40bec4f)
 
-### Reference
+## Reference
 
 [**Internet - Wikipedia**  
 _The Internet ( or internet ) is the global system of interconnected computer networks that uses the Internet protocol…_en.wikipedia.org](https://en.wikipedia.org/wiki/Internet "https://en.wikipedia.org/wiki/Internet")[](https://en.wikipedia.org/wiki/Internet)
