@@ -4,14 +4,13 @@ title: (React_3) Life Cycle & State
 description:
 date: '2021-06-17'
 categories: react
-note: to be continued
+note: componentDidUpdate 的例子其實還沒測過，或許應該想一個更完整的例子，看未來會不會遇到。
 ---
 
 ## Introduction
 Please refer to this [website](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) for the diagram of the life cycle. React life cycle:
 <img src="/assets/img/react_lifecycle.png" alt="react_lifecycle">
 As you can see, there are three main steps: Mounting (Birth), Updating (Growth), Unmounting (Death) of the components.
-
 
 ## Why
 The essence of a framework is the life cycle of the components, the series of events from birth to death.
@@ -33,8 +32,10 @@ class Clock extends React.Component {
 }
 ```
 If I want to update current datetime on page refreshing at least, I need constructor for state changing.
+
 ### constructor
-The concept of constructor: skip
+constructor is the method to initialize the object's state in a class, triggered when the creation of an object in a class occurs.
+
 ```
 class Clock extends React.Component {
 
@@ -56,9 +57,9 @@ class Clock extends React.Component {
 
 export default Clock;
 ```
-other note: 
+note: 
 
-1. `selectElementById` in Vanilla JS: in constructor, `this.inputField = React.createRef()` and in html: `<input type="text" ref={this.inputField} />`
+1. `selectElementById` in Vanilla JS = In constructor, `this.inputField = React.createRef()` and in html: `<input type="text" ref={this.inputField} />`
 
 However, the clock above cannot update datetime regularly, we need to use `componentDidMount`.
 
@@ -112,15 +113,19 @@ class Clock extends React.Component {
 As you can see, in the `componentWillUnmount` step, the process to update date regularly can be cleared.
 
 ### componentDidupdate
+According to the official introduction, this step serves as a verification for component has been updated. For example, we can check whether one second passed on this clock and if not refresh the webpage (or fetch API again to update newest information)
+```
+componentDidUpdate(prevState) {
+  if (this.state.date.toLocaleTimeString() !== prevState.date.toLocaleTimeString() + 1000) {
+    window.location.reload();
+  }
+}
+```
 
-The following methods are Uncommon React Lifecycle Methods
+## The following methods are Uncommon React Lifecycle Methods
 ### shouldComponentUpdate()
 ### static getDerivedStateFromProps()
 ### getSnapshotBeforeUpdate()
-
-目前還太弱，寫不出個所以然，先這樣吧
-
-
 
 ## What
 

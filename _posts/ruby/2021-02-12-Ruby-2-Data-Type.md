@@ -6,22 +6,19 @@ categories: ruby
 note: none
 ---
 
-這不應該寫得很像流水帳，要這樣就直接去看手冊就好（https://docs.ruby-lang.org/en/3.0.0/String.html）
+## Summary
+1. Please refer to [**official site**](https://docs.ruby-lang.org/en/3.0.0) for more clear and detailed information.
+2. This article presents some comparations and experience while writing ruby.
+3. In the world of Ruby, anything is object. nil belongs to nil class.
 
 ## Number (1)
+The classes of number:
+1. integer
+2. float
+3. rational
+4. decimal
 
-In the world of Ruby, anything is object. The classes of number: integer, float, rational, decimal
-
-### Integer
-
-#### class:
-
-open the irb
-<img src="/assets/img/1__qSREyWwh2F__rdK__2FfGeMA.png" alt="">
-
-The number 1 is an instance of the class of Integer
-
-#### Arithmetics of integers:
+### Arithmetics of integers:
 
 If we use integers to do arithmetics, it returns integer; for example,
 
@@ -34,21 +31,17 @@ The output is 3. If we want to solve this problem, change an integer into float 
 puts 10/3.0
 ```
 
-The output is 3.33333333
-
-### float (skip)
-
-### rational
-
-#### class:
-
-open the irb
-<img src="/assets/img/rational_example.png" alt="">
+The output is `3.33333333`
 
 ## String (2)
 
 ### string interpolation:
-<img src="/assets/img/1__h__1sxr5VXhJ101Bqia6Syg.png" alt="">
+```
+a = "aaa"
+b = 18
+
+puts "zzz, #{a}, #{b}"
+```
 
 The output:
 ```
@@ -58,12 +51,15 @@ zzz, aaa, 18
 ### number of words in sentence
 In irb,
 ```
-$ words = "I like it"
-$ p words.split.count
+words = "I like it"
+p words.split.count
+puts words.split.count
 ```
 The result:
-
-<img src="/assets/img/result_of_num_of_words.png" alt="">
+```
+3 # => the output of p
+nil # => the output of puts
+```
 
 ### Up Case, Down Case, Swap Case, capitalize, empty
 ```
@@ -94,73 +90,42 @@ puts "Hello, Ruby".end_with?("y") # => true
 puts "Hello, Ruby".include?("R") # => true
 ```
 ### Change a word to another word in string
-
-puts "PHP is good".sub(/PHP/, "Ruby")
-
-#=> Ruby is good
-
+```
+puts "PHP is good".sub(/PHP/, "Ruby") # => Ruby is good
+```
 ## Array (3)
-
-### construction
-
-**first method:**
-
-p Array.new(2, "Ruby") # => ["Ruby", "Ruby"]
-
-**second method:**
-
-list = ["Ruby", "Ruby"]
-
-### element acquiring
-
-list = ["a", "b", "c"]
-
-p list[0] # => a  
-p list.second = # => b
+nothing to elaborate
 
 ## Range (4)
+The difference between array and range is that range has **start** and **end**. That is, the order of the elements of array can be illogic.
 
-### construction
-
-There are two method
-
-1. (1..5).to_a # => [1, 2, 3, 4, 5]  
-2. (1...5).to_a # => [1, 2, 3, 4]  
-3. [*1..5] # => [1, 2, 3, 4, 5]
-
-### string range
-
+```
+(1..5).to_a # => [1, 2, 3, 4, 5]  
 ('a'..'z').to_a # => ['a', 'b', ..., 'z']  
-('A'..'Z').to_a # => ['A', 'B', ..., 'Z']
+```
 
 ## Hash (5)
-
-### construction
-
-**first method:**
-
+```
 old_hash = {:title => "Ruby", :price => 350}
-
-**second method:**
-
 new_hash = {title: "Ruby", price: 350}
+```
 
 ### item extracting with key
-
+```
 test = {name: "name"}  
 puts test["name"] # nothing happened  
 puts test[:name] # => name
-
+```
 ### print out keys
-
+```
 profile = {name: "name", age: 11}  
 p profile.keys # => [:name, :age]
-
+```
 ### print out items
-
+```
 test = {name: "name", age: 11}  
 puts test.values # => name, 11
-
+```
 ## Symbol (6)
 
 ### Form

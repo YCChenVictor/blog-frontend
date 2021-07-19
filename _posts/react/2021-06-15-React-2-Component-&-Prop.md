@@ -7,15 +7,16 @@ categories: react
 note: to be continued
 ---
 
-## Introduction
-I am going to render component: Clock, trying to explain the concept of component and props.
+## Summary
+1. I am going to render component: Clock, trying to explain the concept of component and props.
+2. The main concept: from functional form to class form.
 
 ## Why
 Why to use component? skip
 
 ## How
 ### Basic Concept
-A truly basic object can be created as follow, which is literally a function that return an object with css and html and can be called somewhere else
+A truly basic object can be created as follow, which is literally a function that returns an object with css and html and can be called somewhere else
 ```
 function Clock() {
   return (
@@ -73,7 +74,7 @@ The following output:
 
 <img src="/assets/img/component_date.png" alt="component_date"  width="400" height="300">
 
-As you can see, the `<Clock />` can be customized; however, the clock can only show what inputted in props. We need to use state for clock to update the time regularly per second or at least update the current time. To use state, we need to turn this functional form into class form. The clock class could be
+As you can see, the `<Clock />` can be customized; however, the clock can only show what inputted in `props`. We need to use `state` for clock to update the time regularly per second or at least update the current time. To use state, we need to turn this functional form into class form. The clock class could be
 ```
 class Clock extends React.Component {
 
@@ -92,5 +93,7 @@ class Clock extends React.Component {
   }
 }
 ```
-Then the current time can be updated in the `Clock` component. To let the clock update the time regularly we need use lifecycle methods.
+Then the current time can be updated in the `Clock` component. To let the clock update the time regularly we need use lifecycle methods which is going to be explained in the next article.
+
+### The difference between props & state
 

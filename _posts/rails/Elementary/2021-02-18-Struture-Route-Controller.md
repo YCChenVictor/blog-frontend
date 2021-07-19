@@ -10,7 +10,7 @@ note: to be continued
 
 [explanation](https://www.youtube.com/watch?v=DUg2SWWK18I)
 
-## Rails Structure: Route + Model, View, Controller
+## Rails Structure: Route + Controller, Model, View
 
 Open the rails project file
 
@@ -75,7 +75,7 @@ Then we start to build controller.
 
 ## Routes (2) (RESTful API)
 
-REST means Representational State Transfer. The [full explanation](之後要設定連結到 what-is-RESTful-API 那篇). The benefit of RESTful API is unity. All coders have the consensus to write it in the same form. The direct implementation in rails is to use `resources` method as follow:
+REST means Representational State Transfer ([full explanation](之後要設定連結到 what-is-RESTful-API 那篇)). The benefit of RESTful API is unity. All coders have the consensus to write it in the same form. The direct implementation in rails is to use `resources` method as follow:
 <img src="/assets/img/1_qGzuUl1QZXrzLIrEjFjV1A.png" alt="">
 
 Then we can use again
@@ -85,9 +85,7 @@ $ rails routes
 the results: (8 routes related to users)
 <img src="/assets/img/1__ZNgXbOxIkg0wSKGXm8aDCw.png" alt="">
 
-The following table explains the usage of these routes (之後要從 medium 那邊想辦法拿到)
-
-if we don’t want so many routes, we can use `only`or `except`
+We can use `only` or `except` to set the only routes we need
 ```
 Rails.application.routes.draw do  
   resources :products, only: [:index, :show]
@@ -95,7 +93,7 @@ Rails.application.routes.draw do
   # resources :products, except: [:new, :create, :edit, :update, :destroy]
 end
 ```
-we can use `collection`and `member` to add sub layer for more manipulation; for example,
+we can use `collection` and `member` to add sub layer for more manipulation; for example,
 ### collection
 ```
 Rails.application.routes.draw do  
@@ -108,12 +106,13 @@ end
 ```
 Then the routes:
 <img src="/assets/img/1_YTaNYTwb6aA41Ukylqj-og.png" alt="">
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__YTaNYTwb6aA41Ukylqj__og.png)
 
 There is one more route: `cancelled_orders`
 ### member
 時間不夠，來不及補，跟 collection 的差別是，member 會帶 id，collection 不會
+
 member: xxx/id/xxx
+
 collection: xxx/xxx
 
 ### Admin Routes

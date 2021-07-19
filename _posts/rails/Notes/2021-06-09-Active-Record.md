@@ -6,14 +6,16 @@ categories: rails
 note: to be continued
 ---
 
-### Introduction
+## Introduction
 Active Record: The layer responsible for business data and logic and the model in MVC structure. In a business, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
 
 1. Table map to classes
 2. Rows map to objects
 3. Columns map to object attributes
 
-### Why
+This article serves as a note for me to record some interesting topics.
+
+## Why
 
 There are lots of database management system such as MySQL, SQLite, and PostgreSQL with different syntax, so ORM (object-relational mapping) born to help us for using same syntax for same purpose on different databases.
 
@@ -27,28 +29,37 @@ SELECT * FROM User
 ```
 and also avoid different syntax problem on different database language.
 
-### How
+## How
 
 A table in a database maps a class in programming language. An object instance in programming language maps a single row of table and the column data in each single row serves as an attribute of the instance.
 
-#### CRUD
+### CRUD
 Basic CRUD can be refered to [**Active Record - Ruby on Rails**](https://guides.rubyonrails.org/active_record_basics.html)
   
-#### Validation
-For data to be consistent in a model, we should validate it before writing into a database. The methods for validation in [**Active Record Validation - Ruby on Rails**](https://guides.rubyonrails.org/active_record_validations.html)
+### Validation
+For data to be consistent in a model, we should validate it **before** inserting into a database. The methods for validation in [**Active Record Validation - Ruby on Rails**](https://guides.rubyonrails.org/active_record_validations.html)
 
-I did not elaborate it because it just some basic operations.
+### Callbacks
+Callback is the function that are going to be call after a function executed.
 
-#### Callbacks
 The life cycle of an object in a framework always plays key role. The process:
 <img src="/assets/img/active_record_callbacks.png" alt="">(reference: [**railsbook.pdf**](https://railsbook.tw/))
 
 The above cycle only shows the hooks of save. For more information, please refer to [**active record callbacks**](https://guides.rubyonrails.org/active_record_callbacks.html)
 
-#### Query
+### Query
 For more information, please refer to [**active record queries**](https://guides.rubyonrails.org/active_record_querying.html).
 
-Some interesting queries: (I cannot understand it right now)
+The rails command maps to SQL command:
+```
+SELECT 
+FROM
+ORDER BY ASC
+WHERE IN
+LIMIT
+```
+
+#### Some interesting queries: (I cannot understand it right now)
 
 **Iteration**: If we want to send an email to all users
 ```
@@ -161,13 +172,11 @@ def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: 
 end
 ```
 
-#### Association
-For more detail, please refer to [**Active Record - Association**](https://guides.rubyonrails.org/association_basics.html)
+### Association
+For more detail, please refer to [**Active Record - Association**](https://guides.rubyonrails.org/association_basics.html). Some interesting association: polymorphic, STI, polymorphic + STI
 
-Interesting topic:
-
-# polymorphic (這邊真的要再順一下，為什麼不用兩個 has_many, belongs_to)
-When to use `polymorphic`? If a model belongs to more than one model. For example, both product and user can be commented, so we can create `Comment` model with
+#### polymorphic
+We should use `polymorphic`, if a model belongs to more than one model and the meaning of the `belongs_to` are almost the same. However, if the `belongs_to` has significantly different meanings, then we should use multiple `has_many` and `belongs_to` rather than `polymorphic`. For example, both product and user can be commented, so we can create `Comment` model with
 ```
 $ rails g model Comment commentable_type:string commentable_id:integer body:text
 ```
@@ -203,10 +212,10 @@ class User < ApplicationRecord
 end
 ```
 
-# STI (single table inheritance)
+#### STI (single table inheritance)
 When to use `single table inheritance`? (skip)
 
-# Polymorphic + STI
+#### Polymorphic + STI
 For example, if we want to setup a platform and users can be both employer and employee for a task and each task can only have one employer and employee.
 
 Then, the model setups would be
@@ -234,7 +243,7 @@ end
 ```
 Notice! Employer and Employee use the concept of STI(Single-table inheritance).
 
-### Reference
+## Reference
 
 [**Active Record - 维基百科，自由的百科全书**](https://zh.wikipedia.org/wiki/Active_Record)
 

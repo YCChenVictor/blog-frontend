@@ -11,18 +11,18 @@ note: to be continued
 I am going to build a basic layout with react.
 
 ## Why
-skip
+Because I want to practice react.
 
 ## How
-* [**react**](https://reactjs.org/docs/create-a-new-react-app.html) for SPA.
+* [**react**](https://reactjs.org/docs/create-a-new-react-app.html) for SPA (Single Page Application).
 * [**tailwind**](https://tailwindcss.com/docs/guides/create-react-app) for react.
 * [**fontawesome**](https://codesandbox.io/s/b6vxt?file=/src/components/AnimatingIcons.js:384-390) for icon.
 
 After the setup, I am going to build a boring website with title and cards just like youtbe for basic setting practice. Create two component, title and card in component folder as follow:
 
-<img src="/assets/img/react_basic_layout.png" alt="react_basic_layout">
+<img src="/assets/img/react_basic_layout.png" alt="react_basic_layout" width=300>
 
-Then add the followings in components folder
+Then add the following components in `components` folder
 
 #### Header.js
 ```

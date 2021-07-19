@@ -18,6 +18,16 @@ skip
 先擺著，之後再來寫
 https://dev.to/admantium/structuring-react-components-n6g
 
+### array
+we cannot use push to update the array
+https://www.techiediaries.com/react-usestate-hook-update-array/
+```
+setImage(images => [...images, {
+  id: images.length,
+  img: imageSrc
+}])
+```
+
 ## What
 
 ## Reference
