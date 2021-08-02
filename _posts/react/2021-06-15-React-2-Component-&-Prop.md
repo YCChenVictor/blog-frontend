@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (React_2) Component & Prop
+title: (React 2) Component & Prop
 description:
 date: '2021-06-15'
 categories: react

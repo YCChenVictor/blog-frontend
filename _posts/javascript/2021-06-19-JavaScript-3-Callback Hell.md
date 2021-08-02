@@ -1,21 +1,18 @@
 ---
 layout: post
-title: (JavaScript_3) Callback Hell, Promise, and Async/Await
+title: (JavaScript 3) Callback Hell, Promise, and Async/Await
 date: '2021-06-19'
 state: none
 categories: javascript
 ---
 
-### Introduction
-The concept of Async: letting some steps be skipped and do it latter once conditions matched. Asynchronous programming is common in javascript, because the process of rendering data from server takes time and we do not want our page to be stalled and wait until the process finished. To achieve it, we use callback function.
+## Introduction & Why
+The concept of Async: letting some steps be skipped and do it latter once conditions matched. Asynchronous programming is common in javascript, because the process of rendering data from server takes time and we do not want our page to be stalled. To achieve it, we use callback function.
 
-### Why
-skip
+## How
+For example, thinking of my webpage is the burger store and I serve burgers. The ingredients are simply as follow: sauce, patty, lettuce. The chef(backend) needs time to prepare the ingredients. One second for lettuce cutting, two seconds for patty slicing, and three seconds for sauce cooking. I use `setTimeout()` to simulate the delivery time from backend. The Chef can cut and slice while the sauce is boiled. Then the coding may be as follow:
 
-### How
-For example, thinking of my webpage is the burger store and I serve burgers. The ingredients are simple as follow: sauce, patty, lettuce. The chef(backend) needs time to prepare the ingredients. One second for lettuce cutting, two seconds for patty slicing, and three seconds for sauce cooking. I use setTimeout() to simulate the delivery time from backend. The Chef can cut and slice while the sauce is boiled. Then the coding may be as follow:
-
-#### index.html
+### index.html
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +29,7 @@ For example, thinking of my webpage is the burger store and I serve burgers. The
 </html>
 ```
 
-#### main.js
+### main.js
 ```
 const ingredients = [
   'buns'
@@ -60,12 +57,13 @@ function createIngredient(ingredient) {
 }
 ```
 Then the burger looks like
-![burger](./assets/img/burger.png)
+
+<img src="/assets/img/burger.png" alt="" width=500> 
 
 However, what if we do not know how much time each ingredient takes, meaning the waiter may go to get the meal too early and may serve Semi-finished products if the chef did not notice; for example, taking the 4000 out from the setTimout() in the function, serveBurger.
 
 We need callback function to help us. With callback function, we can tell the waiter back after the burger prepared; for example, we call the waiter back every 0.5 second and check whether ingredients prepared. The code:
-#### js
+### js
 ```
 const requiredIngredients = ['lettuce', 'patty', 'sauce']
 
@@ -124,7 +122,7 @@ createIngredient(recipes[i], () => {
 ```
 As you can see, the more steps to wait, the more callbacks would be, making the code looks like boomerang and this is called the **callback hell**. To solve this kind of issue, we can use **promise**
 
-#### Promise
+### Promise
 I am going to solve the callback part in the callback hell. With promise, we can eliminate callback from the function first. For example, the checkIngredient(), changing from
 ```
 function createIngredient(ingredient, callback) {
@@ -169,7 +167,7 @@ createIngredient(recipes[i])
 ```
 However, there is still a hell like chain structure, so I am going to use async/await.
 
-#### Async/Await
+### Async/Await
 With the promise function defined above, we can turn the chain structure into
 ```
 async function step(recipe) {
@@ -186,7 +184,7 @@ for (let i = 0; i < requiredIngredients.length; i++) {
 ```
 
 
-### Reference
+## Reference
 [**Using Promise (MDN)**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
 
 [**Promise (MDN)**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)

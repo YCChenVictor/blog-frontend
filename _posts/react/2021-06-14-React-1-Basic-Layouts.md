@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (React_1) basic layouts
+title: (React 1) basic layouts
 description:
 date: '2021-06-14'
 categories: react

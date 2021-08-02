@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (React_3) Life Cycle & State
+title: (React 3) Life Cycle & State
 description:
 date: '2021-06-17'
 categories: react
