@@ -63,8 +63,7 @@ Then use the vim coding we can change the message to what we want
 **add file to last commit**
 
 If there is a file we want to combine into last commit, we can just use — amend. That is,
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__25__eiVQ__E0az2mjGdDn__KQ.png)
+<img src="/assets/img/1__25__eiVQ__E0az2mjGdDn__KQ.png">
 
 As we can see, there is a test2.html file, and use -amend the last commit will be as follow
 
