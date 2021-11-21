@@ -1,9 +1,9 @@
 ---
 layout: post
 title: (Rails) Test Driven Development
-description: Taiwan only
+description: ''
 date: '2021-04-06T12:13:45.562Z'
-states: unmodified
+note: 尚未整理，TDD 跟 BDD 各寫一個範例
 categories: rails
 ---
 
@@ -23,7 +23,7 @@ I am going to use the following [self-built project](https://github.com/YCChenVi
 
 In Gemfile, add
 
-```
+```ruby
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw] 
@@ -39,14 +39,14 @@ end
 
 ### The Different Types of Specification And The Frequency of Testing
 
-1.  Model specs — **always**
-2.  System specs/feature specs — **always**
-3.  Request specs/controller specs — **rarely**
-4.  Helper specs — **rarely**
-5.  View specs — **never**
-6.  Routing specs — **never**
-7.  Mailer specs — **never**
-8.  Job specs — **never**
+1. Model specs — **always**
+2. System specs/feature specs — **always**
+3. Request specs/controller specs — **rarely**
+4. Helper specs — **rarely**
+5. View specs — **never**
+6. Routing specs — **never**
+7. Mailer specs — **never**
+8. Job specs — **never**
 
 ### Try to Describe The Process That A User going to do
 
@@ -54,22 +54,23 @@ The main goal for a website lands on how users feel, meaning if the user like it
 
 In my example, the user is going to do following things to get what they want.
 
-1.  users can login to the website and if user cannot login, then user can sign up successfully
-2.  for buyer, browse the website to find what they want
-3.  for seller, add product
-4.  the buyer should be warranted that he will get the product
-5.  the seller should be warranted that he will get the money
+1. users can login to the website and if user cannot login, then user can sign up successfully
+2. for buyer, browse the website to find what they want
+3. for seller, add product
+4. the buyer should be warranted that he will get the product
+5. the seller should be warranted that he will get the money
 
 ### Generate Specification
 
 In terminal,
 
-```
-$ rails g rspec:system user_login
+```bash
+rails g rspec:system user_login
 ```
 
 Then it will produce a file (spec/system/user_login_spec.rb) with following code:
-```
+
+```ruby
 require 'rails_helper'
 
 RSpec.describe "UserLogins", type: :system do  
@@ -80,27 +81,26 @@ RSpec.describe "UserLogins", type: :system do
   pending "add some scenarios (or delete) #{__FILE__}"  
 end
 ```
+
 Then we can start to build spec.
 
 ### AAA principle (Arrange -> Act -> Assert)
 
 > The basic principle to build spec is AAA principle.
-
 > **arrange:** describe the environment before action begin
-
 > **act:** execute the unit function that we want to test
-
 > **assert:** check whether the result is what we want
 
 For example, a woodcutter go into a forest (**arrange** the environment) -> the woodcutter use the axe to cut the wood (**act** the function) -> and the woodcutter should get the woods (**assert** the result). If the woodcutter does not like the result, woodcutter should modify the axe.
 
-#### AAA principle maps spec:
-```
+#### AAA principle maps spec
+
+```ruby
 RSpec.describe "the_summary", type: :feature do
 
   context "arrange" do
     it "assertion" do
-      "arrange"
+      "act"
     end
   end
 end
@@ -108,14 +108,15 @@ end
 
 ### What?
 
-#### E**xample (BDD)**
+#### Example of BDD
 
-For feature 1 above, the test should be **as follow:**
+For feature 1 above, the test should be as follow:
 
 User goes to the login page (**arrange**) -> Enter email and password and then click login button (**act**) -> the webpage redirect to the webpage user clicked before (**assert**)
 
 In spec/system/user_logins_spec.rb:
-```
+
+```ruby
 require 'rails_helper.rb'
 
 RSpec.describe "the signin process", type: :feature do  
@@ -124,16 +125,18 @@ RSpec.describe "the signin process", type: :feature do
     User.create(email: '[user@example.com](mailto:user@example.com)', password: 'password')  
   end
 
-  it "signs me in" do  
+  context "arrange" do
+    it "signs me in" do
       visit '/users/sign_in'  
       fill_in "user_email", with: '[user@example.com](mailto:user@example.com)'  
       fill_in "user_password", with: 'password'  
       click_button 'Log in'  
       expect(page).to have_content 'Signed in successfully.'  
     end
-  end  
+  end
 end
 ```
+
 ### Run it
 
 Then run the specification,
