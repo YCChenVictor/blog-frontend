@@ -13,7 +13,7 @@ Test Driven Development (TDD) is a kind of software development process, writing
 
 ## Why?
 
-TDD reduces bugs and increase the quality of code, making software to be more maintainable and understandable. With no test, there would be more manual test in the future and it will be hard to update the version.
+TDD reduces bugs and increase the quality of code, making software to be more maintainable and understandable. With no test, there would be more manual test in the future and it would be hard to update the version.
 
 ## How?
 

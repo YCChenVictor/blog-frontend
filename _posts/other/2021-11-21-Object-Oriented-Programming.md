@@ -8,17 +8,12 @@ note:
 
 ## Introduction
 
-main four topics: Abstraction, polymorphism, inheritance and encapsulation
+mainly four topics: Abstraction, polymorphism, inheritance and encapsulation
 
-### Abstraction
-
-### Polymorphism
-
-Treating an object as a generic version of something; for example, car, truck, and bicycle are versions of vehicle.
-
-### Inheritance
-
-### Encapsulation
+1. Abstraction
+2. Polymorphism: treating an object as a generic version of something; for example, car, truck, and bicycle are versions of vehicle.
+3. Inheritance
+4. Encapsulation
 
 ## Why
 

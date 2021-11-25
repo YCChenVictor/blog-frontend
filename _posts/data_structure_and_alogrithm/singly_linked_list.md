@@ -3,7 +3,7 @@ layout: post
 title: (DSA x) singly_linked_list
 date: '2021-11-24'
 categories: DSA
-note:
+note: 這邊要記得用 structure 的角度來了解為什麼 module 是這樣寫
 ---
 
 ## Introduction
@@ -31,7 +31,7 @@ Normally, we can only access the first node of the linked list and with the poin
 
 ## What
 
-I am going to construct it with golang
+Given the concept above, I am going to construct it with golang.
 
 ```go
 // a node in linked list
@@ -45,6 +45,13 @@ type LinkedList struct {
     head *Node
     len  int
 }
+
+// add a node
+
+
+// remove a node
+
+// display the linked list
 ```
 
 
