@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Hello! My name is YCChen.
+Hello! My name is YCChen. Enjoy your life!

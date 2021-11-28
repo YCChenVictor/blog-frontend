@@ -6,11 +6,11 @@ categories: DSA
 note: 這邊要記得用 structure 的角度來了解為什麼 module 是這樣寫
 ---
 
-## Introduction
+## Intro & Why
 
-skip
+Given a memory disk with multiple data preserved and we cannot insert a serial data in it, we may use linked list to achieve it because the nodes can be unserial.
 
-## Why
+The advantage is memory saving but the disadvantage is more time to search.
 
 ## How
 
@@ -27,7 +27,7 @@ node1-> node2 -> node3 -> NULL
 
 every node has a stored data and a pointer pointing the address of the next node. The addresses are the memory location of these nodes.
 
-Normally, we can only access the first node of the linked list and with the pointers in these node, we can traverse in these nodes.
+Normally, we can only access the first node of the linked list and with the pointers in these nodes, we can traverse to get the node we want.
 
 ## What
 
@@ -53,9 +53,6 @@ type LinkedList struct {
 
 // display the linked list
 ```
-
-
-
 
 ## reference
 
