@@ -45,7 +45,7 @@ We ignore the math definition of big o and use the definition of big o in indust
 
 ### space complexity
 
-We also ignore the math definition of big o and use the definition of big o in industry. Space complexity means how many elements for this problem to be done at most; for example, given a singly linked list with n elements, if we want to "remove" a element of this list, given we have the address of this element, we need to find this element first and then change the pointer of the previous node to the next node. On the storage point, we need no more space to find the next node but need one more space to save the address of the next node and change the pointer of previous node to this address, meaning the space complexity = O(1).
+We also ignore the math definition of big o and use the definition of big o in industry. Space complexity means how many elements needed for this problem to be done at most; for example, given a singly linked list with n elements, if we want to "remove" an element of this list, given we have the address of this element, we need to find this element first and then change the pointer of the previous node to the next node. On the storage point, we need no more space to find the next node but need one more space to save the address of the next node and change the pointer of previous node to this address, meaning the space complexity = O(1).
 
 ## What
 
@@ -59,7 +59,19 @@ Arrays are a list of data "serially positioned"; for example,
 
 There are indexes in the array, so that the computer can easily find the elements with indexes; for example, the index of the element, `1` is `0`.
 
+#### create in array
 
+Because of the indexing, we can easily insert the element to the specific position we want, so the time complexity is O(1). But the space complexity is O(n) at most; for example, if we append element at the beginning of the array, we need to shift all elements at once.
+
+#### read in array
+
+Because we won't move any address of the elements in array, there is no space complexity issue and because of indexing, we can find the element in an array without traversing any element, so the time complexity is O(1).
+
+#### delete in array
+
+Same as create in array
+
+#### 
 
 ### stacks
 
