@@ -1,49 +1,49 @@
 ---
-title: (Internet_3) How DNS works?
+title: (Internet 4) How DNS works?
 description: ''
 date: '2021-04-21T09:40:50.036Z'
-categories: []
+categories: internet
 keywords: []
 slug: /@t5204713910/internet-3-how-dns-works-79f17effceea
 ---
 
-### Introduction
+## Introduction
 
 The full name of DNS is Domain Name System. It can find the IP address with the URL; for example, after we input the `www.example.com,` it will try to find the IP address like `74.125.20.113;` that is, DNS can map URL to a IP address to locate the server on the internet.
 
-### Why?
+## Why?
 
 The numbers has no means for human being, so usually we may want a kind of phone book to check the numbers from website name.
 
-### How?
+## How?
 
-Suppose the user now input the website `www.example.com.` The website represents `third-level-domain.second-level-domain.first-level-domain.`
+Suppose the user now input the URL `www.example.com.` The URL represents `third-level-domain.second-level-domain.first-level-domain.`
 
 DNS searching procedure: `first-level-domain` -> `second-level-domain` -> `third-level-domain.`
 
-#### The searching procedure
+### The searching procedure
 
-There are three steps to search the ip address via url with DNS: local cache -> ISP cache -> name server.
+There are three steps to search the ip address via url with DNS: local cache -> ISP cache -> name server
 
-**Step1: via local cahce**
+#### 1. local cache
 
-After we visit a website, the browsers will save the request in the local machine temporally; for example,
+After we visit a website, the browsers will save the response in the local machine temporally; for example,
 
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__Rwx4kgbCYFNuzm0gGcdVWg.png)
+<img src="/assets/img/local_cache.png" alt="" width=500>
 
 As you can see, there is url: `www.google.com` maps to ip: `172.217.164.100` with IPV4, the fourth version of communication protocol for IP layer.
 
 If it finds the mapping on local machine, it will not get ip address from the internet but directly get it on local machine.
 
-**Step2: via ISP cache**
+#### 2. via ISP cache
 
 ISP (internet service provider) provides internet service via Satellite, DSL, Broadband Cable, Fiber-Optic Cable, or Wi-Fi Broadband. While it letting user connect to internet, during user browsing internet, it saves the url mapping IP; as a result, once other user also browses internet via the same route of ISP, although the user did not browse it before, DNS can still get the mapping accordingly.
 
-**Step3: via name server**
+#### 3. via name server
 
 As mentioned above, DNS is going to search the IP address via `first-level-domain` -> `second-level-domain` -> `third-level-domain,` which is `Root-Name-Servers` -> `TLD-Name-Servers` -> `Host-Name-Servers`
 
-### DNS Spoofing
+### Prevent DNS Spoofing
 
 With the method above, we send request to DNS for mapping url to IP address, meaning we can construct fake server to send malware website to a normal urls. To prevent it, we use cryptographic authentication to DNS data, the DNSSEC (Domain Name System Security Extensions)
 

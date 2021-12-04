@@ -1,68 +1,68 @@
 ---
 layout: post
-title: (Internet_2) HyperText Transfer Protocol (HTTP)
+title: (Internet 2) HyperText Transfer Protocol (HTTP)
 description: ''
 date: '2021-04-09T03:37:42.357Z'
-categories: other
+categories: internet
 keywords: []
 slug: /@t5204713910/internet-2-hypertext-transfer-protocol-http-56ca40bec4f
 ---
 
 ### Introduction
 
-HTTP is on the application layer, dealing with any information on the internet. With this layer, people can use easily understandable logic to operate and attain their desires. For example, users can use mouse to click a link on webpage, and then the browser will send request to HTTP and follow the [bottom layers](https://t5204713910.medium.com/internet-1-how-does-the-internet-work-basic-concepts-39cfcc3af18b) to acquire data from other computers.
+HTTP is on the application layer, dealing with any information on the internet. With this layer, people can use easily understandable logic to operate and attain their desires. For example, users can use mouse to click a link on webpage, and then the browser will send request to HTTP and follow the bottom layers to acquire data from other computers.
 
 HTTP is the orange area in the following data flow
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__fyvCxOSifVH6Gsl6SZ__Txg.png)
+<img src="/assets/img/1__RwTbhJGkPNdHriCUy6vDww.png" alt="" width=500>
 
 ### Why?
 
-The full name of HTTP is HyperText Transfer **Protocol**. **Protocol** means an official way to communicate with each other. There are different devices such as Mac, PC, iPhone, and Android and also a lot of servers on the internet, so we need a uniform way to transfer data.
+The full name of HTTP is HyperText Transfer Protocol. **Protocol** means an official way to communicate with each other. There are different devices such as Mac, PC, iPhone, and Android and also a lot of servers on the internet, so we need a uniform way to transfer data.
 
 ### How?
 
-A user is using a browser and want to see news on news website. Then the following steps occur.
+A user is using a browser and want to see news on news website. Then the following steps occuring:
 
-#### Step 1: Input URL (Uniform Resource Locator) for Specific Website
+1. Input URL (Uniform Resource Locator)
+2. Browsers Identify The Specific Server
+3. Browsers Send Reuqest to The Specific Server
+4. The Specific Server Response data
 
-User knows the specific URL to locate the website and input it into web browser. The form of URL:
+#### 1: Input URL
 
-http://www.example.com/index.html
+User knows the specific URL to locate the website and input it into web browser. The form of URL: `http://www.example.com/index.html`
 
-This URL means please use `http` to GET (the behavior to enter the URL)`index.html` file from `www.example.com`
+This URL means please use `http` to "GET", the behavior to enter the URL, `index.html` file from `www.example.com`
 
-#### Step 2: Browsers Identify The Specific Server
+#### 2. Browsers Identify The Specific Server
 
-The browsers will go to the internet try to get `www.example.com.` The way it use identify `www.example.com` is [through IP address](https://t5204713910.medium.com/internet-1-how-does-the-internet-work-basic-concepts-39cfcc3af18b) with DNS (gonna talk about DNS latter). DNS will map `www.example.com` to a specific IP address for browsers locate the specific server.
+The browsers will go to the internet try to get `www.example.com.` The way it use  to identify `www.example.com` is "through IP address" with DNS (gonna talk about DNS latter). DNS will map `www.example.com` to a specific IP address for browsers locate the specific server.
 
-#### Step 3: Browsers Send Data to The Specific Server
+#### 3. Browsers Send Data to The Specific Server
 
-After it locate the server, it will send a HTTP message to the server through internet and the message will go through bottom layers to get the data we want.
+After it locate the server, it will send a HTTP request to the server through internet and the message will go through bottom layers.
 
 A typical message of HTTP:
 
-GET / HTTP/1.1  
+GET / HTTP/1.1
 Host: www.example.com
 
 **The meaning of this message:** get `/` through `HTTP/1.1` from `www.example.com` and `HTTP/1.1` means the version, 1.1 of HTTP.
 
-#### Step 4: Server Sends Data to Browsers
+#### 4. The Specific Server Response data
 
-If the server successfully get the message from browsers, the browsers will return
+If the server successfully get the request from browsers, the browsers will return
 
 HTTP/1.1 200 OK  
 Content-Type: text/html
 
-**The meaning of this message:** Successfully locate `HTTP/1.1` and return status `200` and the type of data to be sent is `text/html.` `200` is a kind of [HTTP status](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes), meaning success.
+**The meaning of this message:** Successfully locate `HTTP/1.1` and return status `200` and the type of data to be sent is `text/html.` `200` is a kind of HTTP status, meaning success.
 
 If fail, the browsers will return
 
 HTTP/1.1 404 NOT FOUND
 
-meaning it cannot found `www.example.com` and return [HTTP status](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes), `404`
-
-#### Step 5: The Browsers Render Data from Servers
+meaning it cannot found `www.example.com` and return HTTP status, `404`
 
 ### Reference
 

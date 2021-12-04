@@ -1,12 +1,24 @@
 # one_string
 
+note: stucked because I do not have money to buy tools -> make money first
+
 ## Introduction
 
 This article records how to practice guitar in only one string and the theory behind it.
 
 ## Why
 
+To fully understand the feeling of each string.
+
 ## How
+
+1. construct the chords progression with modal vamps; for example, III -> VI -> II -> V -> I progression of D dorian (Dm, Em, F, G, Am, Bdim, C) would be Fmaj7 -> Bdim -> Em7 -> Am7 -> Dm9 and it sounds like (I need tools to records the sound)
+
+I need tools to records the sound (stuck)
+
+skip (going to fill it)
+
+2. use the constructed foundation and write melody on it
 
 ## What
 

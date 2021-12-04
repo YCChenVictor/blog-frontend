@@ -18,19 +18,18 @@ A simple structure of TCP/IP is as follow:
 
 ### How Do The Layers Work?
 
-#### Link layer:
+#### Link layer
 
 For example, if a computer (sender) want to send data to another computer (receiver), the sender will send electromagnetic signals. These signals walk through wired or wireless connection from sender to receiver.
 
-#### Network layer (IP):
+#### Network layer (IP)
 
 Once the number of computers grow, we need to specify the address to identify which one is receiver. The address for identification is IP address. We called all the computer in this network **nodes**.
 
 Now the network looks like
-
 <img src="/assets/img/internet_network.png" alt="">
 
-#### Transport layer (TCP):
+#### Transport layer (TCP)
 
 In the network plot above, if a sender wants to send signal to another computer, there are many path for signal to walk.
 
@@ -43,24 +42,22 @@ I am going to explain the way to decompose the data and the way to transfer it w
 At the moment when the data is going to be sent, the available routes may be as follow:
 <img src="/assets/img/1__kF7aAIKeqLdK7SH9b0vavw.png" alt="" width=500>
 
-1.  If there is arrows between nodes, then there is connection between the two computers and we call it the **path**.
-2.  The number near the arrow is the cost to send a unit of data from sender to receiver.
+1. If there is arrows between nodes, then there is connection between the two computers and we call it the **path**.
+2. The number near the arrow is the cost to send a unit of data from sender to receiver.
 
 Based on these two concepts, we can define algorithms such as walk through minimum path and walk through minimum cost.
 
 **TCP is used to make sure the packets are truly transported:**
 
-1.  sender want to send data to receiver
-2.  the data being decomposed into packets
-3.  algorithm pops up to determine how packets being sent
-4.  the packets walk through the routes in networks and being reassembled at destination
-5.  if the receiver did not receive the data, then tell sender to send again.
+1. sender want to send data to receiver
+2. the data being decomposed into packets
+3. algorithm pops up to determine how packets being sent
+4. the packets walk through the routes in networks and being reassembled at destination
+5. if the receiver did not receive the data, then tell sender to send again.
 
-### Application Layer:
+### Application Layer
 
 After the data arrives at destination, the receiver use Hypertext Transfer Protocol (HTTP) to translate the data from sender and then the page will show up on the receiver’s browsers.
-
-[**How HTTP works?**](https://t5204713910.medium.com/internet-2-hypertext-transfer-protocol-http-56ca40bec4f)
 
 ## Reference
 
