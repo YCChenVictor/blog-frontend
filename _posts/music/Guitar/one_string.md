@@ -18,7 +18,10 @@ I need tools to records the sound (stuck)
 
 skip (going to fill it)
 
-2. use the constructed foundation and write melody on it
+2. use the constructed foundation and write melodies on it
+3. document them
+
+I need ways to document them, so I need more knowledge about music theory
 
 ## What
 
