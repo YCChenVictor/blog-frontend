@@ -20,9 +20,16 @@ I want to write songs based on theories, gaining more possibilities.
 
 Key signature is a collection of every "sharp" or "flat" signs in a scale on the right-hand side of clefs.
 
-Take C minor as example,
+Take C minor scale as example,
 
+:::abc
+M:4/4
+L:1/8
+K:Db
+|C2D2E2F2|G2A2B2c2|
+:::
 
+There are three "flat" signatures besides clef.
 
 #### time signatures
 
@@ -41,4 +48,5 @@ skip
 ## reference
 
 [Music theory](https://en.wikipedia.org/wiki/Music_theory)
+
 [Key Signatures](https://www.musictheory.net/lessons/24)

@@ -1,7 +1,7 @@
 ---
 title: (Internet 6) Hosting
 description: ''
-date: '2021-21-04'
+date: '2021-012-04T09:45:50.037Z'
 categories: internet
 note:
 ---

@@ -3,7 +3,7 @@ layout: post
 title: (OS 2) How Operating System Works
 description: ''
 date: '2021-12-04'
-categories: Operating System
+categories: OS
 note:
 ---
 
