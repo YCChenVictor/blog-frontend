@@ -61,19 +61,46 @@ There are indexes in the array, so that the computer can easily find the element
 
 #### create in array
 
-Because of the indexing, we can easily insert the element to the specific position we want, so the time complexity is O(1). But the space complexity is O(n) at most; for example, if we append element at the beginning of the array, we need to shift all elements at once.
+1. time complexity = O(1)
+Because of the indexing, we can easily insert the element to the specific position we want, so the time complexity is O(1).
+
+2. space complexity = O(n)
+The space complexity is O(n) at most; for example, if we append element at the beginning of the array, we need to shift all elements at once.
 
 #### read in array
 
-Because we won't move any address of the elements in array, there is no space complexity issue and because of indexing, we can find the element in an array without traversing any element, so the time complexity is O(1).
+1. time complexity = O(1)
+Because of indexing, we can find the element in an array without traversing any element, so the time complexity is O(1).
+
+2. no space complexity issue
+Because we won't move any address of the elements in array, there is no space complexity issue.
+
+#### Update in array
+
+skip
 
 #### delete in array
 
-Same as create in array
-
-#### 
+skip
 
 ### stacks
+
+#### create in stack
+
+The rule of stack is LIFO (last in first out). Given a stack,
+
+```golang
+[1, 2, 3, 4]
+```
+
+1. time complexity
+
+2. space complexity
+#### read in stack
+
+#### update in stack
+
+#### delete in stack
 
 ### queues
 

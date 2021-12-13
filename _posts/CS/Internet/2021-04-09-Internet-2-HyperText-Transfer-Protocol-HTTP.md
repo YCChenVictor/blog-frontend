@@ -8,18 +8,18 @@ keywords: []
 slug: /@t5204713910/internet-2-hypertext-transfer-protocol-http-56ca40bec4f
 ---
 
-### Introduction
+## Introduction
 
 HTTP is on the application layer, dealing with any information on the internet. With this layer, people can use easily understandable logic to operate and attain their desires. For example, users can use mouse to click a link on webpage, and then the browser will send request to HTTP and follow the bottom layers to acquire data from other computers.
 
 HTTP is the orange area in the following data flow
 <img src="/assets/img/1__RwTbhJGkPNdHriCUy6vDww.png" alt="" width=500>
 
-### Why?
+## Why?
 
 The full name of HTTP is HyperText Transfer Protocol. **Protocol** means an official way to communicate with each other. There are different devices such as Mac, PC, iPhone, and Android and also a lot of servers on the internet, so we need a uniform way to transfer data.
 
-### How?
+## How?
 
 A user is using a browser and want to see news on news website. Then the following steps occuring:
 
@@ -28,64 +28,69 @@ A user is using a browser and want to see news on news website. Then the followi
 3. Browsers Send Reuqest to The Specific Server
 4. The Specific Server Response data
 
-#### 1: Input URL
+### 1. Input URL
 
 User knows the specific URL to locate the website and input it into web browser. The form of URL: `http://www.example.com/index.html`
 
 This URL means please use `http` to "GET", the behavior to enter the URL, `index.html` file from `www.example.com`
 
-#### 2. Browsers Identify The Specific Server
+### 2. Browsers Identify The Specific Server
 
-The browsers will go to the internet try to get `www.example.com.` The way it use  to identify `www.example.com` is "through IP address" with DNS (gonna talk about DNS latter). DNS will map `www.example.com` to a specific IP address for browsers locate the specific server.
+The browsers will go to the internet try to get `www.example.com`. The way it use  to identify `www.example.com` is "through IP address" with DNS (gonna talk about DNS later). DNS will map `www.example.com` to a specific IP address for browsers locate the specific server.
 
-#### 3. Browsers Send Data to The Specific Server
+### 3. Browsers Send Data to The Specific Server
 
 After it locate the server, it will send a HTTP request to the server through internet and the message will go through bottom layers.
 
 A typical message of HTTP:
 
+```bash
 GET / HTTP/1.1
 Host: www.example.com
+```
 
 **The meaning of this message:** get `/` through `HTTP/1.1` from `www.example.com` and `HTTP/1.1` means the version, 1.1 of HTTP.
 
-#### 4. The Specific Server Response data
+### 4. The Specific Server Response data
 
 If the server successfully get the request from browsers, the browsers will return
 
+```bash
 HTTP/1.1 200 OK  
 Content-Type: text/html
+```
 
-**The meaning of this message:** Successfully locate `HTTP/1.1` and return status `200` and the type of data to be sent is `text/html.` `200` is a kind of HTTP status, meaning success.
+**The meaning of this message:** Successfully locate `HTTP/1.1` and return status `200` and the type of data to be sent is `text/html`. `200` is a kind of HTTP status, meaning success.
 
 If fail, the browsers will return
 
+```bash
 HTTP/1.1 404 NOT FOUND
+```
 
 meaning it cannot found `www.example.com` and return HTTP status, `404`
 
+## What
+
+All the status:
+
+
 ### Reference
 
-[**Hypertext Transfer Protocol - Wikipedia**  
-_International standard RFC 1945 HTTP/1.0 (1996) RFC 2616 HTTP/1.1 (1999) RFC 7540 HTTP/2(2015) RFC 7541 Header…_en.wikipedia.org](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol "https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol")[](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
+[Hypertext Transfer Protocol - Wikipedia](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)
 
-[**HTTP: Hypertext Transfer Protocol (article) | Khan Academy**  
-_Learn how browsers load webpages by sending HTTP requests and receiving HTTP responses. Article aligned to the AP…_www.khanacademy.org](https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:web-protocols/a/hypertext-transfer-protocol-http "https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:web-protocols/a/hypertext-transfer-protocol-http")[](https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:web-protocols/a/hypertext-transfer-protocol-http)
+[HTTP: Hypertext Transfer Protocol (article) | Khan Academy](https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:web-protocols/a/hypertext-transfer-protocol-http)
 
-[**An overview of HTTP**  
-_HTTP is a protocol which allows the fetching of resources, such as HTML documents. It is the foundation of any data…_developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview")[](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+[An overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
 
-[**HTTP Requests | Codecademy**  
-_This page is generated by a web of HTML, CSS, and Javascript, sent to you by Codecademy via the internet. The internet…_www.codecademy.com](https://www.codecademy.com/articles/http-requests "https://www.codecademy.com/articles/http-requests")[](https://www.codecademy.com/articles/http-requests)
+[HTTP Requests | Codecademy](https://www.codecademy.com/articles/http-requests)
 
-[**什麼叫做 Protocol (通訊協定)？**  
-_常常聽到別人說，XX通訊協定，或在http這個通訊協定的限制下，我只能做到這樣，其他的通訊協定不支援，那什麼是 Protocol？它在 Internet 上又有什麼重要性呢？…_www.ithome.com.tw](https://www.ithome.com.tw/node/6349 "https://www.ithome.com.tw/node/6349")[](https://www.ithome.com.tw/node/6349)
+[什麼叫做 Protocol (通訊協定)](https://www.ithome.com.tw/node/6349)
 
-[**5 Advantages and Disadvantages of HTTP | Drawbacks & Benefits of HTTP**  
-_Hypertext Transfer Protocol () is a type of stateless protocol that transfers information between the clients and the…_www.hitechwhizz.com](https://www.hitechwhizz.com/2020/08/5-advantages-and-disadvantages-drawbacks-benefits-of-http.html "https://www.hitechwhizz.com/2020/08/5-advantages-and-disadvantages-drawbacks-benefits-of-http.html")[https://tw.alphacamp.co/blog/http-https-difference](https://tw.alphacamp.co/blog/http-https-difference)[](https://www.hitechwhizz.com/2020/08/5-advantages-and-disadvantages-drawbacks-benefits-of-http.html)
+[5 Advantages and Disadvantages of HTTP | Drawbacks & Benefits of HTTP](https://www.hitechwhizz.com/2020/08/5-advantages-and-disadvantages-drawbacks-benefits-of-http.html)
 
-[**一文搞懂 HTTP 和 HTTPS 是什麼？兩者有什麼差別｜ALPHA Camp Blog**  
-_相信大多數的讀者，對這個畫面應該都不陌生吧？當前最熱門的瀏覽器 Google Chrome 從 Chrome 69 開始，會在網站使用 HTTP…_tw.alphacamp.co](https://tw.alphacamp.co/blog/http-https-difference "https://tw.alphacamp.co/blog/http-https-difference")[](https://tw.alphacamp.co/blog/http-https-difference)
+[一文搞懂 HTTP 和 HTTPS 是什麼？兩者有什麼差別｜ALPHA Camp Blog](https://tw.alphacamp.co/blog/http-https-difference)
 
-[**什麼是 URL 網址 IP ？網域 Domain 中文 意思是什麼？｜鵠崙設計**  
-_什麼是 URL 網址 IP ？網域 Domain 中文 意思是什麼？｜鵠崙設計 什麼是 URL 網址 IP ？ 網域 Domain 中文 意思是什麼？----URL，完整名稱是Uniform Resource Locator…_www.design-hu.com](https://www.design-hu.com/web-news/domain.html "https://www.design-hu.com/web-news/domain.html")[](https://www.design-hu.com/web-news/domain.html)
+[什麼是 URL 網址 IP ？網域 Domain 中文 意思是什麼？｜鵠崙設計](https://www.design-hu.com/web-news/domain.html)
+
+[HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
