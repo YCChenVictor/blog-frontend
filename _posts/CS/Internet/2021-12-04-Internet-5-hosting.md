@@ -1,5 +1,5 @@
 ---
-title: (Internet 6) Hosting
+title: (Internet 5) Hosting
 description: ''
 date: '2021-012-04T09:45:50.037Z'
 categories: internet
@@ -15,6 +15,9 @@ hosting means letting others to host your events; for example, your files, datab
 ## How?
 
 ## What?
+
+type of hosting:
+1. web hosting
 
 ## Reference
 

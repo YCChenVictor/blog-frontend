@@ -44,9 +44,61 @@ As you can see, there are four sharp signitures and the order of these sharp sig
 
 #### time signatures
 
+Vertical lines seperate the measures. Two measures as follow:
 
+:::abc
+|xxxx|xxxx|
+:::
+
+4/4 means there are four quarter notes in a measure as follow
+
+:::abc
+|B2 B2 B2 B2|
+:::
 
 #### rhythmic notation
+
+whole
+
+:::abc
+M:4/4
+|B8|
+:::
+
+half
+
+:::abc
+M:4/4
+|B4B4|
+:::
+
+quarter
+
+:::abc
+M:4/4
+|B2B2B2B2|
+:::
+
+eighth
+
+:::abc
+M:4/4
+|B1B1B1B1 B1B1B1B1|
+:::
+
+sixteenth
+
+:::abc
+M:4/4
+|B1/2B1/2B1/2B1/2 B1/2B1/2B1/2B1/2 B1/2B1/2B1/2B1/2 B1/2B1/2B1/2B1/2|
+:::
+
+6. thirty-second
+
+:::abc
+M:4/4
+|B1/4B1/4B1/4B1/4 B1/4B1/4B1/4B1/4 B1/4B1/4B1/4B1/4 B1/4B1/4B1/4B1/4 B1/4B1/4B1/4B1/4 B1/4B1/4B1/4B1/4 B1/4B1/4B1/4B1/4 B1/4B1/4B1/4B1/4|
+:::
 
 ### history & culture (scholars' view)
 
@@ -63,3 +115,5 @@ skip
 [Music theory](https://en.wikipedia.org/wiki/Music_theory)
 
 [Key Signatures](https://www.musictheory.net/lessons/24)
+
+[Measure and Time Signature](https://www.musictheory.net/lessons/12)
