@@ -93,7 +93,7 @@ M:4/4
 |B1/2B1/2B1/2B1/2 B1/2B1/2B1/2B1/2 B1/2B1/2B1/2B1/2 B1/2B1/2B1/2B1/2|
 :::
 
-6. thirty-second
+thirty-second
 
 :::abc
 M:4/4
