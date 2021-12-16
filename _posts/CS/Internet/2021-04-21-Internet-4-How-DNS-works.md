@@ -1,10 +1,9 @@
 ---
 title: (Internet 4) How DNS works?
-description: ''
+description:
 date: '2021-04-21T09:40:50.036Z'
 categories: internet
-keywords: []
-slug: /@t5204713910/internet-3-how-dns-works-79f17effceea
+note:
 ---
 
 ## Introduction
@@ -13,7 +12,7 @@ The full name of DNS is Domain Name System. It can find the IP address with the 
 
 ## Why?
 
-The numbers has no means for human being, so usually we may want a kind of phone book to check the numbers from website name.
+The numbers has no means for human being, so usually we may want a kind of phone book to check the numbers from website name (Domain Name). With Domain Name registered in the DNS, it is easier to memorize as human-being.
 
 ## How?
 

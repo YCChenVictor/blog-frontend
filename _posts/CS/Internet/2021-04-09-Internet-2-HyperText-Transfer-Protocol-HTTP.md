@@ -74,6 +74,13 @@ meaning it cannot found `www.example.com` and return HTTP status, `404`
 
 All the status:
 
+```bash
+Informational responses (100–199)
+Successful responses (200–299)
+Redirection messages (300–399)
+Client error responses (400–499)
+Server error responses (500–599)
+```
 
 ### Reference
 
