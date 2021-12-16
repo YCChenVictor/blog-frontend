@@ -9,7 +9,7 @@ note: 大概知道一下即可
 
 ## Introduction
 
-This article is mainly about the mechanism behind the browser with examples mainly in chrome.
+This article explains the mechanism behind the browser with examples mainly in chrome.
 
 ## Why?
 
