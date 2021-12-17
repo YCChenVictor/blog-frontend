@@ -3,7 +3,7 @@ layout: post
 title: (OS 1) Terminal Usage
 description: ''
 date: '2021-12-04'
-categories: Operating System
+categories: OS
 note:
 ---
 
@@ -13,7 +13,7 @@ This article describes how to use terminal efficiently as backend developer.
 
 ## Why?
 
-learning by doing
+learning by doing and read articles online
 
 skip
 

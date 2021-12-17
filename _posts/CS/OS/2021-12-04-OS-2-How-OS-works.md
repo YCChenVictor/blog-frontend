@@ -20,17 +20,29 @@ Without it, the computer will not operate the Apps we want.
 Try to explain the steps among the gap between App and hardware as follow:
 
 1. user click an app on the computer UI
-2. xxx
-3. xxx
-4. computer start to compute it
-5. xxx
-6. xxx
+2. the app start to run and it need some computation
+3. the data flow to operation system
+4. operation system call hardware (CPU, RAM, I/O) to compute it
+5. data sent back to OS
+6. OS send data back to app
 7. user get what they want in UI
 
 ## What?
 
-Take mac OS for example,
+Typically, functions as follow:
+
+1. memory management
+2. process management
+3. device management
+4. file management
+5. security
+6. control over system performance
+7. job accounting
+8. error detecting aids
+9. coordination between other software and users
 
 ## Reference
 
 [Operating system](https://en.wikipedia.org/wiki/Operating_system)
+
+[os_overview](https://www.tutorialspoint.com/operating_system/os_overview.htm)
