@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Business Development
+title: () Business Development
 description:
 date: '2021-12-17'
 categories: social
-note:
+note: solve marketing and sales first
 ---
 
 ## Intro

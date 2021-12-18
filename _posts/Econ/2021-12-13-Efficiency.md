@@ -32,21 +32,31 @@ Remember that there are smart guys out there, so I can only find a good startup 
 
 ### Music Industry
 
-Because I like music, I dive into this industry first. Dive into current chain and find opportunities: music production -> music uploaded to spotify -> device with smartphone, earphone -> people listen to music
+Because I like music, I dive into this industry first. Dive into current value chain and find opportunities.
 
 #### Demand
 
-When human listen to music, brains release dopamine by human anticipate the peak emotion and then actually experience it. A technology which can increase the degree of this process can be a good startup.
+When human listen to music, brains release dopamine by human anticipating the peak emotion and then actually experience it. A technology which can increase the degree of this process can be a good startup.
 
 The aspects of this degree:
 
-1. frequency: if we use Meta, can we increase the frequency of anticpation and experience of peak emotion?
-2. density: if we use 
+1. frequency: increase the frequency -> no idea
+2. density: increase the density -> no idea
 
 #### Supply
+
+The value chain in music industry as follow:
+creation -> production -> product management -> sales/marketing -> distribution -> platform -> consumption
+
+1. consumption:
+   1. Meta for environment for live perofrmance (enjoy live with lower cost)
+   2. blockchain for music copyright
+   3. blockchain for ownership
 
 ## reference
 
 [Economic Efficiency Definition](https://www.investopedia.com/terms/e/economic_efficiency.asp)
 
 [Why Listening to Music Makes Us Feel Good](https://www.psychologytoday.com/us/blog/your-musical-self/201101/why-listening-music-makes-us-feel-good)
+
+[music value chain](https://www.devamag.com/music-value-chain)

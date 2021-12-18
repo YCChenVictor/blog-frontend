@@ -42,6 +42,15 @@ K:E
 
 As you can see, there are four sharp signitures and the order of these sharp signs could be the first letter in the wording of this sentence: "Father Charles Goes Down And Ends Battle"
 
+Several topics to explore:
+
+1. staff
+2. clef
+3. diatonic keys
+4. circle of fifths
+5. modal folk tunes
+6. middle C
+
 #### time signatures
 
 Vertical lines seperate the measures. Two measures as follow:
@@ -117,3 +126,5 @@ skip
 [Key Signatures](https://www.musictheory.net/lessons/24)
 
 [Measure and Time Signature](https://www.musictheory.net/lessons/12)
+
+[Key Signature](https://en.wikipedia.org/wiki/Key_signature)
