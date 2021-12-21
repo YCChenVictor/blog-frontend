@@ -41,8 +41,13 @@ Typically, functions as follow:
 8. error detecting aids
 9. coordination between other software and users
 
+### memory management
+
+
 ## Reference
 
 [Operating system](https://en.wikipedia.org/wiki/Operating_system)
 
 [os_overview](https://www.tutorialspoint.com/operating_system/os_overview.htm)
+
+[Operating System - Memory Management](https://www.tutorialspoint.com/operating_system/os_memory_management.htm)

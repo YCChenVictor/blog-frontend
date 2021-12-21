@@ -4,7 +4,7 @@ title: market
 description:
 date: '2021-12-17'
 categories: social
-note:
+note: try to describe the process of MECE
 ---
 
 ## Intro
