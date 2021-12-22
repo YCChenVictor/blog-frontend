@@ -43,9 +43,16 @@ Typically, functions as follow:
 
 ### memory management
 
+<<<<<<< HEAD
 Given processes in a computer, memory management checks how much memory to be allocated, what time to allocate the memory, and update the status of memory once some memory gets freed or unallocated.
 
-### process management
+### device management
+
+In order to handle physical and virtual devices, device controller born in OS. Physical device includes all Input/Output devices and virtual devices mimics physical device in software, serving as device in system, making system to believe a particular hardware exists.
+
+### file management
+
+Recorded on secondary or non-volatile storage such as optical disks and used as medium for input and output of data.
 
 ## Reference
 
@@ -54,3 +61,7 @@ Given processes in a computer, memory management checks how much memory to be al
 [os_overview](https://www.tutorialspoint.com/operating_system/os_overview.htm)
 
 [Operating System - Memory Management](https://www.tutorialspoint.com/operating_system/os_memory_management.htm)
+
+[Device Management in Operating System](https://www.javatpoint.com/device-management-in-operating-system)
+
+[ile Systems in Operating System: Structure, Attributes, Types](https://www.guru99.com/file-systems-operating-system.html)
