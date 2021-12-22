@@ -43,6 +43,9 @@ Typically, functions as follow:
 
 ### memory management
 
+Given processes in a computer, memory management checks how much memory to be allocated, what time to allocate the memory, and update the status of memory once some memory gets freed or unallocated.
+
+### process management
 
 ## Reference
 
