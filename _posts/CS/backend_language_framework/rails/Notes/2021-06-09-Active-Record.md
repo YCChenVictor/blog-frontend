@@ -1,19 +1,17 @@
 ---
 layout: post
-title: (Rails) Active Record
+title: (rails) Active Record
 date: '2021-06-10'
 categories: rails
-note: to be continued
+note: the amendment process to the section of CRUD in How section. start to research the source code of activerecord
 ---
 
 ## Introduction
-Active Record: The layer responsible for business data and logic and the model in MVC structure. In a business, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
+In rails document, active record serves as the layer responsible for business data and logic and the model in MVC structure. In business environment, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
 
 1. Table map to classes
 2. Rows map to objects
 3. Columns map to object attributes
-
-This article serves as a note for me to record some interesting topics.
 
 ## Why
 
@@ -31,13 +29,18 @@ and also avoid different syntax problem on different database language.
 
 ## How
 
-A table in a database maps a class in programming language. An object instance in programming language maps a single row of table and the column data in each single row serves as an attribute of the instance.
+I am going to explore the following topics:
+
+1. CRUD
+2. Validation
+3. Callbacks
 
 ### CRUD
-Basic CRUD can be refered to [**Active Record - Ruby on Rails**](https://guides.rubyonrails.org/active_record_basics.html)
-  
+
+The quickest way to understand it is duplication. Let's take a look at the gem,
+
 ### Validation
-For data to be consistent in a model, we should validate it **before** inserting into a database. The methods for validation in [**Active Record Validation - Ruby on Rails**](https://guides.rubyonrails.org/active_record_validations.html)
+For data to be consistent in a model, we should validate it **before** inserting into a database. The methods for validation in [Active Record Validation - Ruby on Rails](https://guides.rubyonrails.org/active_record_validations.html)
 
 ### Callbacks
 Callback is the function that are going to be call after a function executed.
@@ -45,19 +48,7 @@ Callback is the function that are going to be call after a function executed.
 The life cycle of an object in a framework always plays key role. The process:
 <img src="/assets/img/active_record_callbacks.png" alt="">(reference: [**railsbook.pdf**](https://railsbook.tw/))
 
-The above cycle only shows the hooks of save. For more information, please refer to [**active record callbacks**](https://guides.rubyonrails.org/active_record_callbacks.html)
-
-### Query
-For more information, please refer to [**active record queries**](https://guides.rubyonrails.org/active_record_querying.html).
-
-The rails command maps to SQL command:
-```
-SELECT 
-FROM
-ORDER BY ASC
-WHERE IN
-LIMIT
-```
+The above cycle only shows the hooks of save. For more information, please refer to [active record callbacks](https://guides.rubyonrails.org/active_record_callbacks.html)
 
 #### Some interesting queries: (I cannot understand it right now)
 

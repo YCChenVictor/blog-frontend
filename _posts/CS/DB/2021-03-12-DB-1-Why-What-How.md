@@ -1,5 +1,5 @@
 ---
-title: '(DBMS_1) Why, What, How'
+title: '(DB 1) Why, What, How'
 description: 'How (Architecture, Model, Operation)'
 date: '2021-03-12T04:57:20.565Z'
 categories: []
