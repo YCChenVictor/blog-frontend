@@ -37,7 +37,7 @@ I am going to explore the following topics:
 
 ### CRUD
 
-The quickest way to understand it is duplication. Let's take a look at the gem,
+The quickest way to understand a framework is through duplication. Let's take a look at the gem,
 
 ### Validation
 For data to be consistent in a model, we should validate it **before** inserting into a database. The methods for validation in [Active Record Validation - Ruby on Rails](https://guides.rubyonrails.org/active_record_validations.html)
