@@ -3,11 +3,11 @@ layout: post
 title: (rails) Active Record
 date: '2021-06-10'
 categories: rails
-note: the amendment process to the section of CRUD in How section. start to research the source code of activerecord
+note:
 ---
 
 ## Introduction
-In rails document, active record serves as the layer responsible for business data and logic and the model in MVC structure. In business environment, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
+In rails, active record serves as the layer responsible for business data and logic and the model in MVC structure. In business environment, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
 
 1. Table map to classes
 2. Rows map to objects
@@ -37,7 +37,62 @@ I am going to explore the following topics:
 
 ### CRUD
 
-The quickest way to understand a framework is through duplication. Let's take a look at the gem,
+Let's take a look at the gem,
+
+Please rails new a project and create a random table (I create table with `rails g scaffold User name:string email:string` and then `rails db:migrate`) and then we can create a new User with `test = User.create`.
+
+To track the source code, `bundle open activerecord` and it will open the gem in `.rvm/gems/ruby-2.7.4/gems/activerecord-6.1.4.4/lib` and the source of CRUD:
+
+1. `create`: in `activerecord/lib/active_record/persistence.rb`
+2. `find`: in `activerecord/lib/active_record/core.rb` (skip)
+3. `update`: in `activerecord/lib/active_record/persistence.rb` (skip)
+4. `destroy`: in `activerecord/lib/active_record/persistence.rb` (skip)
+
+Then we can put `binding.pry` in the method (make sure you have installed pry) and start to explore it. Try to find the raw SQL code. After you have done, input `bundle pristine kaminari` to recover the gem.
+
+#### create
+
+Add `binding.pry` in class as follow:
+```ruby
+class User < ApplicationRecord
+  binding.pry
+end
+```
+and input `User.create` in rails console
+
+Then the data flow of `create` would be as follow:
+1. `self.create` in `.../research_activerecord/app/models/user.rb`
+2. `register` in `.../.rvm/gems/ruby-2.7.4/gems/bootsnap-1.9.3/lib/bootsnap/load_path_cache/loaded_features_index.rb`
+3. `require` in `.../.rvm/gems/ruby-2.7.4/gems/bootsnap-1.9.3/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb`
+4. `require` in `.../.rvm/gems/ruby-2.7.4/gems/zeitwerk-2.5.3/lib/zeitwerk/kernel.rb`
+5. (key method here) `create` in `.../.rvm/gems/ruby-2.7.4/gems/activerecord-6.1.4.4/lib/active_record/persistence.rb`
+```ruby
+def create(attributes = nil, &block)
+  if attributes.is_a?(Array)
+    attributes.collect { |attr| create(attr, &block) }
+  else
+    object = new(attributes, &block)
+    object.save
+    object
+  end
+end
+```
+`new` method in `object = new()`: 不知道在哪裡...
+
+6. `set_last_value` in `/Users/spare/.rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0/irb/context.rb`
+7. 
+
+adaptor.rb
+
+
+
+Check what adapter using with `Rails.configuration.database_configuration[Rails.env]` and found `mysql2`.
+
+#### find
+
+#### update
+
+#### destroy
 
 ### Validation
 For data to be consistent in a model, we should validate it **before** inserting into a database. The methods for validation in [Active Record Validation - Ruby on Rails](https://guides.rubyonrails.org/active_record_validations.html)
