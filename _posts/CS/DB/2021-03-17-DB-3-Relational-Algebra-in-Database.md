@@ -1,8 +1,8 @@
 ---
 layout: post
-title: (DBMS 3) Relational Algebra in Database
+title: (DB 3) Relational Algebra in Database
 date: '2021-03-17T07:54:46.016Z'
-categories: DBMS
+categories: DB
 status: to be continued
 ---
 

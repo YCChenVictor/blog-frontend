@@ -1,9 +1,9 @@
 ---
 layout: post
-title: (DBMS 5) Indexing
+title: (DB 5) Indexing
 description:
 date: '2021-06-29'
-categories: DBMS
+categories: DB
 note: 
 ---
 

@@ -4,6 +4,5 @@ _site
 .jekyll-metadata
 vendor
 draft
-template.md
 live.md
 note.md

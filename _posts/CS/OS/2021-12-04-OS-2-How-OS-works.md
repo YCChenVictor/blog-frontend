@@ -36,14 +36,13 @@ Typically, functions as follow:
 3. device management
 4. file management
 5. security
-6. control over system performance
+6. performance monitoring
 7. job accounting
 8. error detecting aids
 9. coordination between other software and users
 
 ### memory management
 
-<<<<<<< HEAD
 Given processes in a computer, memory management checks how much memory to be allocated, what time to allocate the memory, and update the status of memory once some memory gets freed or unallocated.
 
 ### device management
@@ -54,6 +53,25 @@ In order to handle physical and virtual devices, device controller born in OS. P
 
 Recorded on secondary or non-volatile storage such as optical disks and used as medium for input and output of data.
 
+### security
+
+To prevent threats and attacks, several ways: regular OS patch updates, antivirus engines and software, firewall, stratification of authorization.
+
+### performance monitoring
+
+To optimize the OS, we need logs from performance monitoring for further optimization.
+
+### job accounting
+
+For tracking the time and resources used by various jobs and users.
+
+### error detecting
+
+Given noise in transmission of data, error detecting ensures reliable delivery of data by patching the data on time.
+
+### coordination
+
+Given lots of program at the sametime, OS corrdination serves to schedule these programs.
 ## Reference
 
 [Operating system](https://en.wikipedia.org/wiki/Operating_system)
@@ -65,3 +83,11 @@ Recorded on secondary or non-volatile storage such as optical disks and used as 
 [Device Management in Operating System](https://www.javatpoint.com/device-management-in-operating-system)
 
 [ile Systems in Operating System: Structure, Attributes, Types](https://www.guru99.com/file-systems-operating-system.html)
+
+[What Does Operating System Security (OS Security) Mean?](https://www.techopedia.com/definition/24774/operating-system-security-os-security)
+
+[Operating System and Process Monitoring Tools](https://www.cse.wustl.edu/~jain/cse567-06/ftp/os_monitors/)
+
+[Job accounting keeping track of time and resources](https://www.coursehero.com/file/p1lu4vm/Job-accounting-Keeping-track-of-time-and-resources-used-by-various-jobs-and/)
+
+[Error detection and correction](https://en.wikipedia.org/wiki/Error_detection_and_correction)
