@@ -48,7 +48,9 @@ To track the source code, `bundle open activerecord` and it will open the gem in
 3. `update`: in `activerecord/lib/active_record/persistence.rb` (skip)
 4. `destroy`: in `activerecord/lib/active_record/persistence.rb` (skip)
 
-Then we can put `binding.pry` in the method (make sure you have installed pry) and start to explore it. Try to find the raw SQL code. After you have done, input `bundle pristine kaminari` to recover the gem.
+Then we can put `binding.pry` in the method (make sure you have installed pry) and start to explore it. Try to find the raw SQL code. After you have done, input `bundle pristine activerecord` to recover the gem.
+
+Or you can use [AppMap](https://appland.com/products/appmap)
 
 #### create
 
@@ -77,16 +79,14 @@ def create(attributes = nil, &block)
   end
 end
 ```
-`new` method in `object = new()`: 不知道在哪裡...
-
-6. `set_last_value` in `/Users/spare/.rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0/irb/context.rb`
-7. 
-
-adaptor.rb
-
-
-
-Check what adapter using with `Rails.configuration.database_configuration[Rails.env]` and found `mysql2`.
+6. `new` in `lib/active_record/inheritance.rb` (not sure)
+7. `ActiveRecord::Base` in `lib/active_record/base.rb` -> `include Core` & `include Persistence`
+8. `set_last_value` in `/Users/spare/.rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0/irb/context.rb`
+9. ... (gonna to explore it someday)
+10. `path_to_adapter = "active_record/connection_adapters/#{db_config.adapter}_adapter"` in `resolve_pool_config` of `connection_pool.rb` to determine which adapter file to be used for connection
+11. xxx_adaptor.rb (xxx is the database name) (Adapter pattern is a design pattern)
+12. `establish_connection` in `active_record/connection_handling.rb`
+13. 接下來就是把 mysql 跟 pg 的 INSERT 解釋一下，大概就是這樣，雖然做得很混，但我盡力了
 
 #### find
 
@@ -296,3 +296,5 @@ Notice! Employer and Employee use the concept of STI(Single-table inheritance).
 [**Active Record - Ruby on Rails**](https://guides.rubyonrails.org/active_record_basics.html)
 
 [**polymorphic + STI**](https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#label-Polymorphic+Associations)
+
+[ODBC and writing your own ActiveRecord adapter](https://eng.localytics.com/odbc-and-writing-your-own-activerecord-adapter/)
