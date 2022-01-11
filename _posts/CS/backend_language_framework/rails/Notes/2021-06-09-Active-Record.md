@@ -37,8 +37,6 @@ I am going to explore the following topics:
 
 ### CRUD
 
-Let's take a look at the gem,
-
 Please rails new a project and create a random table (I create table with `rails g scaffold User name:string email:string` and then `rails db:migrate`) and then we can create a new User with `test = User.create`.
 
 To track the source code, `bundle open activerecord` and it will open the gem in `.rvm/gems/ruby-2.7.4/gems/activerecord-6.1.4.4/lib` and the source of CRUD:
@@ -48,11 +46,26 @@ To track the source code, `bundle open activerecord` and it will open the gem in
 3. `update`: in `activerecord/lib/active_record/persistence.rb` (skip)
 4. `destroy`: in `activerecord/lib/active_record/persistence.rb` (skip)
 
-Then we can put `binding.pry` in the method (make sure you have installed pry) and start to explore it. Try to find the raw SQL code. After you have done, input `bundle pristine activerecord` to recover the gem.
+Then we can track it with `binding.pry`. Try to find the raw SQL code. After you have done, input `bundle pristine activerecord` to recover the gems.
 
-Or you can use [AppMap](https://appland.com/products/appmap)
+In rails console, input `ActiveRecord::Base.connection.adapter_name` to know what database system using.
 
+I am going to use three sections to explain these methods
+1. How `User.create` link to general methods of ActiveRecord of create
+2. How these general methods link the plain SQL
+3. How rails determines which plain SQL being used by connection methods
+4. The conecept of design pattern of these adapters
 #### create
+
+##### How `User.create` link to general methods of ActiveRecord of create
+
+Fire up the rails console, and input `User.create`, then the SQL would be
+```SQL
+TRANSACTION (0.1ms)  begin transaction
+User Create (0.4ms)  INSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2022-01-11 02:01:31.475084"], ["updated_at", "2022-01-11 02:01:31.475084"]]
+TRANSACTION (1.0ms)  commit transaction
+```
+I am using SQLite and the key issue is why rails knows to use the INSERT grammar for SQLite instead of MySQL or PG.
 
 Add `binding.pry` in class as follow:
 ```ruby
@@ -63,11 +76,26 @@ end
 and input `User.create` in rails console
 
 Then the data flow of `create` would be as follow:
-1. `self.create` in `.../research_activerecord/app/models/user.rb`
-2. `register` in `.../.rvm/gems/ruby-2.7.4/gems/bootsnap-1.9.3/lib/bootsnap/load_path_cache/loaded_features_index.rb`
-3. `require` in `.../.rvm/gems/ruby-2.7.4/gems/bootsnap-1.9.3/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb`
-4. `require` in `.../.rvm/gems/ruby-2.7.4/gems/zeitwerk-2.5.3/lib/zeitwerk/kernel.rb`
-5. (key method here) `create` in `.../.rvm/gems/ruby-2.7.4/gems/activerecord-6.1.4.4/lib/active_record/persistence.rb`
+1. `create` method in superclass when calling `user.create` in `.../research_activerecord/app/models/user.rb`
+2. the superclass of `User`: `ApplicationRecord`
+3. the superclass of `ApplicationRecord`: `ActiveRecord::Base`
+4. Have a look at `base.rb`
+```ruby
+module ActiveRecord #:nodoc:
+  ...
+  class Base
+    ...
+    extend ConnectionHandling
+    ...
+    include Core
+    include Persistence
+    ...
+  end
+  ...
+end
+```
+Given that we know, `create` methods equals to `new` + `save`, then in `Core`, there are methods such as `initialize` and in `Persistence`, there are methods such as `save`.
+5. The `create` method in `persistence.rb`
 ```ruby
 def create(attributes = nil, &block)
   if attributes.is_a?(Array)
@@ -79,15 +107,51 @@ def create(attributes = nil, &block)
   end
 end
 ```
-6. `new` in `lib/active_record/inheritance.rb` (not sure)
-7. `ActiveRecord::Base` in `lib/active_record/base.rb` -> `include Core` & `include Persistence`
-8. `set_last_value` in `/Users/spare/.rvm/rubies/ruby-2.7.4/lib/ruby/2.7.0/irb/context.rb`
-9. ... (gonna to explore it someday)
-10. `path_to_adapter = "active_record/connection_adapters/#{db_config.adapter}_adapter"` in `resolve_pool_config` of `connection_pool.rb` to determine which adapter file to be used for connection
-11. xxx_adaptor.rb (xxx is the database name) (Adapter pattern is a design pattern)
-12. `establish_connection` in `active_record/connection_handling.rb`
-13. 接下來就是把 mysql 跟 pg 的 INSERT 解釋一下，大概就是這樣，雖然做得很混，但我盡力了
+As you can see, it will call `new` and then `save` method.
+6. `new` (skip)
+7. `save` in `persistence.rb` -> `create_or_update` -> `result = new_record? ? _create_record(&block) : _update_record(&block)` -> `_create_record(&block)` -> `yield(self)` (追不下去)
 
+##### How these general methods link the plain SQL
+
+1. `insert_all` in `.../lib/active_record/persistence.rb` -> `InsertAll.new(self, attributes, on_duplicate: :skip, returning: returning, unique_by: unique_by).execute`
+  1. `initialize(model, inserts, on_duplicate:, returning: nil, unique_by: nil)` in `.../lib/active_record/insert_all.rb` and the model is `User` in my case
+  2. `execute` in `.../lib/active_record/insert_all.rb`
+2.  `execute` -> `connection.exec_insert_all to_sql, message`
+  1. `connection` in `attr_reader :connection`, which means
+     ```ruby
+     def connection
+       @connection
+     end
+     ```
+  2. `@connection = model.connection` and `model` is the `self` in `InsertAll.new`, which is `User` in my case.
+  3. `exec_insert_all` in `database_statements.rb`
+  4. `to_sql` = `connection.build_insert_sql(ActiveRecord::InsertAll::Builder.new(self))`
+3.  `build_insert_sql` can be in `abstract_adapter.rb`, `abstract_mysql_adapter.rb`, `postgresql_adapter.rb`, or `sqlite3_adapter.rb`
+4. rails determines which `build_insert_sql` to be used by `connection`
+
+##### How rails determines which plain SQL being used by connection methods
+
+Then how does it determine what SQL command to use? 
+1. `establish_connection` in `.../lib/active_record/connection_handling.rb`
+2. it determines which adapter to be used through `establish_connection`
+```ruby
+ActiveRecord::Base.establish_connection(
+  adapter:  "mysql2",
+  host:     "localhost",
+  username: "myuser",
+  password: "mypass",
+  database: "somedatabase"
+)
+```
+3. and it will call `connection_handler`, which is `self.connection_handler` in `core.rb`
+4. call `default_connection_handler` given there is no thread -> `self.default_connection_handler = ConnectionAdapters::ConnectionHandler.new`
+5. `initialize` in `class ConnectionHandler` of `connection_pool.rb`
+6. so it actually call `establish_connection` in `connection_pool.rb` -> `resolve_pool_config` -> `path_to_adapter = "active_record/connection_adapters/#{db_config.adapter}_adapter"` -> `require path_to_adapter` (**where the determination of adapter**)
+7. Take mysql as example, it require `.../lib/active_record/connection_adapters/mysql2_adapter.rb` -> `require "active_record/connection_adapters/abstract_mysql_adapter"`
+8. `build_insert_sql` in `.../lib/active_record/connection_adapters/abstract_mysql_adapter`
+
+##### The conecept of design pattern of these adapters
+to be continued
 #### find
 
 #### update
