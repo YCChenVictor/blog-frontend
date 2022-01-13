@@ -3,7 +3,7 @@ layout: post
 title: 'design pattern ORM rails'
 description: ''
 date: '2022-01-13'
-categories: report
+categories: presentation
 note: 
 ---
 
@@ -25,16 +25,16 @@ and also avoid different syntax problem on different database language.
 
 ## How?
 
-Given I have a project with a model, `User` and track the source code with `bundle open activerecord` and we can use `bundle pristine activerecord` to recover the gem. We know what adapter used in activerecord with `activerecord/lib/active_record/persistence.rb`
+Given I have a project with a model, `User` and track the source code with `bundle open activerecord` (No worries, we can use `bundle pristine activerecord` to recover the gem)
 
 I am going to explain it with steps:
 
-1. How `User.create` link to general methods of ActiveRecord of create
-2. How these general methods link the plain SQL
-3. How rails determines which plain SQL being used by connection methods
+1. How `User.create` link to general methods of create
+2. How these general methods link specific SQL with connection
+3. How connection_handler works
 4. The conecept of design pattern of these adapters
 
-### How `User.create` link to general methods of ActiveRecord of create
+### 1. How `User.create` link to general methods of create
 
 Fire up the rails console, and input `User.create`, then the SQL would be
 ```SQL
@@ -43,7 +43,7 @@ User Create (0.4ms)  INSERT INTO "users" ("created_at", "updated_at") VALUES (?,
 TRANSACTION (1.0ms)  commit transaction
 ```
 
-I am using SQLite and the key issue is why rails knows to use the INSERT grammar for SQLite instead of MySQL or PG.
+I am using SQLite. But why rails knows to use the INSERT grammar for SQLite instead of MySQL or PostgreSQL?
 
 Add `binding.pry` in class as follow:
 
@@ -55,7 +55,7 @@ end
 and input `User.create` in rails console
 
 Then the data flow of `create` would be as follow:
-1. Given that there is no `create` in `.../research_activerecord/app/models/user.rb`, it will call the `create` method in superclass
+1. Given that there is no `create` in `.../app/models/user.rb`, it will call the `create` method in superclass
 2. the superclass of `User` is `ApplicationRecord`
 3. the superclass of `ApplicationRecord` is `ActiveRecord::Base`
 4. Have a look at `base.rb`:
@@ -86,33 +86,49 @@ def create(attributes = nil, &block)
   end
 end
 ```
-As you can see, it will call `new` and then `save` method, meaning `create` methods equals to `new` + `save`. The `initialize` is in `Core` and the `save` is in `Persistence`.
+As you can see, it will call `new` and then `save` method, meaning `create` methods equals to `new` + `save`. The `initialize` is in `Core` and the `save` is in `Persistence`. I am not going to track `new` and `save` method all the way through because it is too difficult and a little bit out of scope.
 
-6. `new` (skip)
-7. `save` in `persistence.rb` -> `create_or_update` -> `result = new_record? ? _create_record(&block) : _update_record(&block)` -> `_create_record(&block)` -> `yield(self)` (追不下去)
+6. `new` method in `Core`
+  ```ruby
+  def initialize(attributes = nil)
+    @new_record = true
+    @attributes = self.class._default_attributes.deep_dup
+  
+    init_internals
+    initialize_internals_callback
+  
+    assign_attributes(attributes) if attributes
+  
+    yield self if block_given?
+    _run_initialize_callbacks
+  end
+  ```
 
-##### How these general methods link the plain SQL
+1. `save` in `persistence.rb`
+```ruby
+def save(**options, &block)
+  create_or_update(**options, &block)
+rescue ActiveRecord::RecordInvalid
+  false
+end
+```
+`create_or_update` -> `result = new_record? ? _create_record(&block) : _update_record(&block)` -> `_create_record(&block)` -> `yield(self)` -> ...
 
-1. `insert_all` in `.../lib/active_record/persistence.rb` -> `InsertAll.new(self, attributes, on_duplicate: :skip, returning: returning, unique_by: unique_by).execute`
-  1. `initialize(model, inserts, on_duplicate:, returning: nil, unique_by: nil)` in `.../lib/active_record/insert_all.rb` and the model is `User` in my case
-  2. `execute` in `.../lib/active_record/insert_all.rb`
-2.  `execute` -> `connection.exec_insert_all to_sql, message`
-  1. `connection` in `attr_reader :connection`, which means
-     ```ruby
-     def connection
-       @connection
-     end
-     ```
-  2. `@connection = model.connection` and `model` is the `self` in `InsertAll.new`, which is `User` in my case.
-  3. `exec_insert_all` in `database_statements.rb`
-  4. `to_sql` = `connection.build_insert_sql(ActiveRecord::InsertAll::Builder.new(self))`
-3.  `build_insert_sql` can be in `abstract_adapter.rb`, `abstract_mysql_adapter.rb`, `postgresql_adapter.rb`, or `sqlite3_adapter.rb`
-4. rails determines which `build_insert_sql` to be used by `connection`
 
-##### How rails determines which plain SQL being used by connection methods
+### 2. How these general methods link specific SQL
 
-Then how does it determine what SQL command to use? 
-1. `establish_connection` in `.../lib/active_record/connection_handling.rb`
+A connection method called once activerecord being loaded and it determines which **adapter** to be used. Given that connection, the methods and plain SQL connect together. Take `insert_all` in `persistence.rb` as example
+
+1. `insert_all` in `persistence.rb` -> `InsertAll.new(...).execute`
+2. `new` will call `initialize(model, ...)` in `insert_all.rb` and the model is `User` in my case
+3.  `execute` will call `connection.exec_insert_all to_sql, message` and the `connection` = `@connection` = `model.connection`
+4. `@connection = model.connection` and `model` is the `self` in `InsertAll.new`, which is `User` in my case -> find `connection` method in superclass -> `retrieve_connection` in `connection_handling.rb` -> `connection_handler` (gonna to explain it in next section)
+5. `exec_insert_all` in `database_statements.rb` -> `to_sql` = `connection.build_insert_sql(...)` -> `build_insert_sql` can be in `abstract_adapter.rb`, `abstract_mysql_adapter.rb`, `postgresql_adapter.rb`, or `sqlite3_adapter.rb`
+6. rails determines which `build_insert_sql` to be used by `connection`, which is setup by `connection_handler`
+
+### 3. How connection_handler works
+
+1. `establish_connection` in `connection_handling.rb`
 2. it determines which adapter to be used through `establish_connection`
 ```ruby
 ActiveRecord::Base.establish_connection(
@@ -123,25 +139,71 @@ ActiveRecord::Base.establish_connection(
   database: "somedatabase"
 )
 ```
-3. and it will call `connection_handler`, which is `self.connection_handler` in `core.rb`
-4. call `default_connection_handler` given there is no thread -> `self.default_connection_handler = ConnectionAdapters::ConnectionHandler.new`
-5. `initialize` in `class ConnectionHandler` of `connection_pool.rb`
-6. so it actually call `establish_connection` in `connection_pool.rb` -> `resolve_pool_config` -> `path_to_adapter = "active_record/connection_adapters/#{db_config.adapter}_adapter"` -> `require path_to_adapter` (**where the determination of adapter**)
+3. and it will call method `connection_handler`, which is `self.connection_handler` in `core.rb`
+4. call `default_connection_handler` given there is no thread currently -> `self.default_connection_handler = ConnectionAdapters::ConnectionHandler.new`
+5. The `new` will call `initialize` in `class ConnectionHandler` of `connection_pool.rb`
+6. so it actually call `establish_connection` in `connection_pool.rb` -> `resolve_pool_config`, which determines which adapter to be used by `path_to_adapter = "active_record/connection_adapters/#{db_config.adapter}_adapter"` and `require path_to_adapter` (**where the determination of adapter**)
 7. Take mysql as example, it require `.../lib/active_record/connection_adapters/mysql2_adapter.rb` -> `require "active_record/connection_adapters/abstract_mysql_adapter"`
-8. `build_insert_sql` in `.../lib/active_record/connection_adapters/abstract_mysql_adapter`
+8. Then now it know to call the `build_insert_sql` in `.../lib/active_record/connection_adapters/abstract_mysql_adapter` in last section
 
-##### The conecept of design pattern of these adapters
-to be continued
+### 4. The conecept of design pattern of these adapters
 
+Take a look at these adapter, they all inherit from `AbstractAdapter`
+```ruby
 SQLite3Adapter < AbstractAdapter
-
 Mysql2Adapter < AbstractMysqlAdapter < AbstractAdapter
-
 PostgreSQLAdapter < AbstractAdapter
+```
 
-之後再從這裡繼續，就是要大概知道這個轉接器怎麼出來的，還有他會怎麼處理 create，至於 object or class adapter 我實在分不出來，算了
-## What?
+Take `supports_ddl_transactions` as example, the default setting in `AbstractAdapter`
+```ruby
+def supports_ddl_transactions?
+  false
+end
+```
+PostgreSQL support it, so rewrite this method with
+```ruby
+def supports_ddl_transactions?
+  true
+end
+```
 
-give an example
+Take `build_insert_sql` as example
 
-## Reference
+In MySQL,
+```ruby
+def build_insert_sql(insert) # :nodoc:
+  sql = +"INSERT #{insert.into} #{insert.values_list}"
+
+  if insert.skip_duplicates?
+    no_op_column = quote_column_name(insert.keys.first)
+    sql << " ON DUPLICATE KEY UPDATE #{no_op_column}=#{no_op_column}"
+  elsif insert.update_duplicates?
+    sql << " ON DUPLICATE KEY UPDATE "
+    sql << insert.touch_model_timestamps_unless { |column| "#{column}<=>VALUES(#{column})" }
+    sql << insert.updatable_columns.map { |column| "#{column}=VALUES(#{column})" }.join(",")
+  end
+
+  sql
+end
+```
+
+In PostgreSQL,
+```ruby
+def build_insert_sql(insert) # :nodoc:
+  sql = +"INSERT #{insert.into} #{insert.values_list}"
+
+  if insert.skip_duplicates?
+    sql << " ON CONFLICT #{insert.conflict_target} DO NOTHING"
+  elsif insert.update_duplicates?
+    sql << " ON CONFLICT #{insert.conflict_target} DO UPDATE SET "
+    sql << insert.touch_model_timestamps_unless { |column| "#{insert.model.quoted_table_name}.#{column} IS NOT DISTINCT FROM excluded.#{column}" }
+    sql << insert.updatable_columns.map { |column| "#{column}=excluded.#{column}" }.join(",")
+  end
+
+  sql << " RETURNING #{insert.returning}" if insert.returning
+  sql
+end
+```
+
+As you can see the framework of sql in `build_insert_sql` is the same as `sql = +"INSERT #{insert.into} #{insert.values_list}"` and given the conditions the sql code modified according to database languages.
