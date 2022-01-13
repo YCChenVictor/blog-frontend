@@ -1,9 +1,9 @@
 ---
-layout: post
-title: Overview
+layout:
+title:
 description:
-date: '2021-12-12'
-categories: personal
+date: ''
+categories:
 note:
 ---
 

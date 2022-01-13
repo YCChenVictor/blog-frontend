@@ -1,9 +1,9 @@
 ---
-layout: post
-title: How to live life
+layout:
+title:
 description: ''
-date: '2021-01-09'
-categories: personal
+date: ''
+categories:
 note: 
 ---
 
