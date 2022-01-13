@@ -2,8 +2,8 @@
 layout: post
 title: Overview
 description:
-date: '2021-12-12'
-categories: personal
+date: ''
+categories:
 note:
 ---
 
