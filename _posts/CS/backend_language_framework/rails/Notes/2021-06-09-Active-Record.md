@@ -3,11 +3,12 @@ layout: post
 title: (rails) Active Record
 date: '2021-06-10'
 categories: rails
-note:
+note: 這篇之後要分拆，太大一篇了
 ---
 
 ## Introduction
-In rails, active record serves as the layer responsible for business data and logic and the model in MVC structure. In business environment, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
+
+In rails, active record serves as the layer between model and database. In business environment, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
 
 1. Table map to classes
 2. Rows map to objects
@@ -65,9 +66,11 @@ TRANSACTION (0.1ms)  begin transaction
 User Create (0.4ms)  INSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2022-01-11 02:01:31.475084"], ["updated_at", "2022-01-11 02:01:31.475084"]]
 TRANSACTION (1.0ms)  commit transaction
 ```
+
 I am using SQLite and the key issue is why rails knows to use the INSERT grammar for SQLite instead of MySQL or PG.
 
 Add `binding.pry` in class as follow:
+
 ```ruby
 class User < ApplicationRecord
   binding.pry
@@ -94,8 +97,11 @@ module ActiveRecord #:nodoc:
   ...
 end
 ```
+
 Given that we know, `create` methods equals to `new` + `save`, then in `Core`, there are methods such as `initialize` and in `Persistence`, there are methods such as `save`.
-5. The `create` method in `persistence.rb`
+
+1. The `create` method in `persistence.rb`
+
 ```ruby
 def create(attributes = nil, &block)
   if attributes.is_a?(Array)
@@ -108,8 +114,9 @@ def create(attributes = nil, &block)
 end
 ```
 As you can see, it will call `new` and then `save` method.
-6. `new` (skip)
-7. `save` in `persistence.rb` -> `create_or_update` -> `result = new_record? ? _create_record(&block) : _update_record(&block)` -> `_create_record(&block)` -> `yield(self)` (追不下去)
+
+1. `new` (skip)
+2. `save` in `persistence.rb` -> `create_or_update` -> `result = new_record? ? _create_record(&block) : _update_record(&block)` -> `_create_record(&block)` -> `yield(self)` (追不下去)
 
 ##### How these general methods link the plain SQL
 
@@ -152,6 +159,15 @@ ActiveRecord::Base.establish_connection(
 
 ##### The conecept of design pattern of these adapters
 to be continued
+
+SQLite3Adapter < AbstractAdapter
+
+Mysql2Adapter < AbstractMysqlAdapter < AbstractAdapter
+
+PostgreSQLAdapter < AbstractAdapter
+
+之後再從這裡繼續，就是要大概知道這個轉接器怎麼出來的，還有他會怎麼處理 create，至於 object or class adapter 我實在分不出來，算了
+
 #### find
 
 #### update
@@ -362,3 +378,5 @@ Notice! Employer and Employee use the concept of STI(Single-table inheritance).
 [**polymorphic + STI**](https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#label-Polymorphic+Associations)
 
 [ODBC and writing your own ActiveRecord adapter](https://eng.localytics.com/odbc-and-writing-your-own-activerecord-adapter/)
+
+(http://www.monkeyandcrow.com/blog/reading_rails_the_adapter_pattern/)
