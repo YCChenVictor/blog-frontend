@@ -9,17 +9,15 @@ note:
 
 ## Introduction
 
-I never thought it is a problem until I am making 1 million NTD a year. Before it happens, I am always trying to make more.
+I never thought it is a problem until I am making 1 million NTD a year. Before it happens, I am always trying to make more because to be more tranquil, I must try to have more resources.
 
 ## Why?
 
-There are lots of rules to follow; for example, making more money, getting a serious relationship, traveling around the world, making good relationship between family members, helping others, keeping being thankful, ...etc
-
-But why? I should start to explore this issue.
+This article serves a guidance to me to find a tranquil status.
 
 ## How?
 
-I really do not know how to deal with this topic, but I can systemically decompose it. Noted that the concept of spirit is not the scope of this article, although I know it exists. As a result, I am going to decompose myself into physically outter world, emotionally inner world, and the concept of spirit and give scores (1 to 5) to these states and should tried my best to raise the scores.
+I am going to decompose myself into physically outter world, emotionally inner world, and the concept of spirit and give scores (1 to 5) to these states based on tranquility and should tried my best to raise the scores.
 
 ### physically outter world
 
@@ -46,7 +44,7 @@ I decompose it into emotion and relationship and gosh this is the main problem h
 #### emotion
 
 1. (2) toward myself: Actually, I do not like myself -> I have to much emotions -> accidentially hurt someone -> keep as little relationships as possible to anyone -> use some talent shit to keep these relationships
-2. (1) toward the past: I do not like my past -> I was a truly annoying kids always crying and emotionally break -> I just cannot deal with variant environments, so much sound, conflicts, trying to fit into society, following the rules -> I do not konw how to deal with it
+2. (1) toward the past: I do not like my past -> I was a truly annoying kids always crying and emotionally break -> I just cannot deal with variant environments, so much sound, conflicts, trying to fit into society, following the rules -> I do not know how to deal with it
 3. (3) toward future: Given what I have now, I think I shall start a company related to music industry -> would be promising?
 4. (3) toward present: I kind of like my present status
 
@@ -62,6 +60,8 @@ I decompose it into emotion and relationship and gosh this is the main problem h
 Just follow my master.
 
 ## What?
+
+If you do not know what to do, think about how to be tranquil.
 
 Given the how with status score lower than 3, I should do the following things: (three aspects at most)
 
