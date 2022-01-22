@@ -9,21 +9,23 @@ note:
 
 ## Introduction
 
-I never thought it is a problem until I am making 1 million NTD a year. Before it happens, I am always trying to make more.
+I never thought it is a problem until I am making 1 million NTD a year. Before it happens, I am always trying to make more because to be more tranquil, I must try to have more resources.
 
 ## Why?
 
-There are lots of rules to follow; for example, making more money, getting a serious relationship, traveling around the world, making good relationship between family members, helping others, keeping being thankful, ...etc
-
-But why? I should start to explore this issue.
+I finally know what I am looking for; that is, tranquility. If I am not tranquil, I cannot be myself because I am affected by the unstable status. I need to explore why I am not tranquil.
 
 ## How?
 
-I really do not know how to deal with this topic, but I can systemically decompose it. Noted that the concept of spirit is not the scope of this article, although I know it exists. As a result, I am going to decompose myself into physically outter world, emotionally inner world, and the concept of spirit and give scores (1 to 5) to these states and should tried my best to raise the scores.
+To be tranquil -> truly understand the reason why I am not tranquil -> decompose myself into outer and inner aspects -> make lots of explorations -> feel it and understand the impact of those relationships happend during explorations -> introspect
+
+Based on tranquility, give scores (1 to 5) to these states and tried my best to raise the scores. In all the relationships I built, some have more untranquil influence, some do not. It must be related to spirit but I am not going to elaborate it more.
 
 ### physically outter world
 
 Easily, based on my observations, I decompose it into health and financial status.
+
+There are too much noise. Given that I cannot avoid it, I should always increase my abilities for survival. That is, I should improve my technical abilities and physical abilities.
 
 #### health status
 
@@ -43,10 +45,12 @@ Easily, based on my observations, I decompose it into health and financial statu
 
 I decompose it into emotion and relationship and gosh this is the main problem here.
 
+The noise of inner world reveals in my dreams. You cannot avoid it because those reasons causing them are reasonable at the time they happened. It is truly ambiguous to find a solution but I found writing and meditation can really help me. I should always compose something and follow master's methods.
+
 #### emotion
 
-1. (2) toward myself: Actually, I do not like myself -> I have to much emotions -> accidentially hurt someone -> keep as little relationships as possible to anyone -> use some talent shit to keep these relationships
-2. (1) toward the past: I do not like my past -> I was a truly annoying kids always crying and emotionally break -> I just cannot deal with variant environments, so much sound, conflicts, trying to fit into society, following the rules -> I do not konw how to deal with it
+1. (2) toward myself: Actually, I do not like myself -> I have too much emotions -> accidentially hurt someone -> keep as little relationships as possible to anyone -> use some talent shit to keep these relationships
+2. (1) toward the past: I do not like my past -> I was a truly annoying kids always crying and emotionally break -> I just cannot deal with variant environments, so much sound, conflicts, trying to fit into society, following the rules -> I do not know how to deal with it
 3. (3) toward future: Given what I have now, I think I shall start a company related to music industry -> would be promising?
 4. (3) toward present: I kind of like my present status
 
@@ -65,8 +69,10 @@ Just follow my master.
 
 Given the how with status score lower than 3, I should do the following things: (three aspects at most)
 
-1. I should try to like myself -> try to know the emotions -> try to express my emotions and using music currently -> **I should do more compositions**
-2. Given I cannot amend my past -> I should try to turn it into some positive shit -> I should do some positive shit such as **volunteering, starting a side project, composing a new song, making good to the earth, ...etc**
-3. Given I cannot blame my family -> maybe I should use some money for **psycological therapy** or try to **follow more master's rules?**
+1. Explore the relationship with myself  -> try to express my emotions and using music currently -> **I should do more compositions**
+2. Given I cannot amend my past -> I may be told to get over it -> I should explore other people's life and gain more ideas -> try to have more conversations with other people
+3. Given I cannot blame my family -> try to explore the relationship with my family -> try to **follow more master's rules?**
+
+**psycological therapy** has no effect to me.
 
 These aspects should be reviewed once two weeks as a sprint. This sprint: 1/17 to 1/28.
