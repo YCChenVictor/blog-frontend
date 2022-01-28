@@ -23,6 +23,8 @@ I am going to decompose myself into physically outter world, emotionally inner w
 
 Easily, based on my observations, I decompose it into health and financial status.
 
+There are too much noise. Given that I cannot avoid it, I should always increase my abilities for survival. That is, I should improve my technical abilities and physical abilities.
+
 #### health status
 
 1. (5) Body: I do not feel any pain but actually tired sometime; as a result, I will gain as much sleep as possible (sometimes over 12 hours a day)
@@ -40,6 +42,8 @@ Easily, based on my observations, I decompose it into health and financial statu
 ### emotionally inner world
 
 I decompose it into emotion and relationship and gosh this is the main problem here.
+
+The noise of inner world reveals in my dreams. You cannot avoid it because those reasons causing them are reasonable at the time they happened. It is truly ambiguous to find a solution but I found writing and meditation can really help me. I should always compose something and follow master's methods.
 
 #### emotion
 
@@ -65,8 +69,10 @@ If you do not know what to do, think about how to be tranquil.
 
 Given the how with status score lower than 3, I should do the following things: (three aspects at most)
 
-1. I should try to like myself -> try to know the emotions -> try to express my emotions and using music currently -> **I should do more compositions**
-2. Given I cannot amend my past -> I should try to turn it into some positive shit -> I should do some positive shit such as **volunteering, starting a side project, composing a new song, making good to the earth, ...etc**
-3. Given I cannot blame my family -> maybe I should use some money for **psycological therapy** or try to **follow more master's rules?**
+1. Explore the relationship with myself  -> try to express my emotions and using music currently -> **I should do more compositions**
+2. Given I cannot amend my past -> I may be told to get over it -> I should explore other people's life and gain more ideas -> try to have more conversations with other people
+3. Given I cannot blame my family -> try to explore the relationship with my family -> try to **follow more master's rules?**
+
+**psycological therapy** has no effect to me.
 
 These aspects should be reviewed once two weeks as a sprint. This sprint: 1/17 to 1/28.

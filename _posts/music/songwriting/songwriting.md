@@ -70,3 +70,5 @@ outro:
 A sentence should take around 8 bars
 
 ## What
+
+find chords: https://www.scales-chords.com/chord-namer/
