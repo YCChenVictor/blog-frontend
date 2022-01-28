@@ -1,25 +1,27 @@
 ---
 layout: post
-title:
+title: coverage
 description: ''
-date: ''
-categories:
-note: 
+date: '2021-11-24'
+categories: test
+note: I have no idea
 ---
 
 ## Introduction
 
-quick explanation
+Test Coverage helps us
 
 ## Why?
 
-focus on why we need it
+
 
 ## How?
 
-focus on the mechanim
+
 ## What?
 
 In rails, we use gem `simplecov`
 
 ## Reference
+
+[Test Coverage in Software Testing](https://www.guru99.com/test-coverage-in-software-testing.html)
