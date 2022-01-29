@@ -9,21 +9,19 @@ note:
 
 ## Introduction
 
-I never thought it is a problem until I am making 1 million NTD a year. Before it happens, I am always trying to make more because to be more tranquil, I must try to have more resources.
+I never thought it is a problem until I am making 1 million NTD a year. Before it happens, I am always trying to make more because I need resources to do what I want to do.
 
 ## Why?
 
-This article serves a guidance to me to find a tranquil status.
+This article serves a guidance for me to have better live status.
 
 ## How?
 
-I am going to decompose myself into physically outter world, emotionally inner world, and the concept of spirit and give scores (1 to 5) to these states based on tranquility and should tried my best to raise the scores.
+I am going to decompose myself into physically outter world, emotionally inner world, and the concept of spirit and give scores (1 to 5) to these states and should tried my best to raise the scores.
 
 ### physically outter world
 
 Easily, based on my observations, I decompose it into health and financial status.
-
-There are too much noise. Given that I cannot avoid it, I should always increase my abilities for survival. That is, I should improve my technical abilities and physical abilities.
 
 #### health status
 
@@ -65,14 +63,10 @@ Just follow my master.
 
 ## What?
 
-If you do not know what to do, think about how to be tranquil.
-
 Given the how with status score lower than 3, I should do the following things: (three aspects at most)
 
-1. Explore the relationship with myself  -> try to express my emotions and using music currently -> **I should do more compositions**
+1. Explore the relationship with myself -> try to express my emotions through music -> **I should do more compositions**
 2. Given I cannot amend my past -> I may be told to get over it -> I should explore other people's life and gain more ideas -> try to have more conversations with other people
 3. Given I cannot blame my family -> try to explore the relationship with my family -> try to **follow more master's rules?**
 
 **psycological therapy** has no effect to me.
-
-These aspects should be reviewed once two weeks as a sprint. This sprint: 1/17 to 1/28.
