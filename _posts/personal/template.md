@@ -4,7 +4,8 @@ title:
 description: ''
 date: ''
 categories:
-note: 
+note:
+mermaid:
 ---
 
 ## Introduction
