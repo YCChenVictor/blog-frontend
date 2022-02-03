@@ -1,6 +1,7 @@
 ---
-layout: default
+layout: page
 title: Category
+permalink: category
 ---
 
 <div class="home">
@@ -40,7 +41,7 @@ title: Category
 		{% if post.categories contains categorie %}
 		<li>
 		  <h3>
-		    <a href="{{ post.url }}">
+		    <a href="{{site.baseurl}}{{ post.url }}">
 		      {{ post.title }}
 		      <small>{{ post.date | date_to_string }}</small>
 		    </a>
