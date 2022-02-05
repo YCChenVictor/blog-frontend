@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (React 1) basic layouts
+title: structure
 description:
 date: '2021-06-14'
 categories: react
@@ -8,15 +8,19 @@ note: to be continued
 ---
 
 ## Introduction
+
 I am going to build a basic layout with react.
 
 ## Why
+
 Because I want to practice react.
 
 ## How
-* [react](https://reactjs.org/docs/create-a-new-react-app.html) for SPA (Single Page Application).
-* [tailwind](https://tailwindcss.com/docs/guides/create-react-app) for react.
-* [fontawesome](https://codesandbox.io/s/b6vxt?file=/src/components/AnimatingIcons.js:384-390) for icon.
+
+* [react](https://reactjs.org/docs/create-a-new-react-app.html) for SPA (Single Page Application)
+* [tailwind](https://tailwindcss.com/docs/guides/create-react-app) for style
+* [fontawesome](https://codesandbox.io/s/b6vxt?file=/src/components/AnimatingIcons.js:384-390) for icon
+* [mui](https://mui.com/getting-started/installation/) for react components
 
 After the setup, I am going to build a boring website with title and cards just like youtbe for basic setting practice. Create two component, title and card in component folder as follow:
 
@@ -25,7 +29,8 @@ After the setup, I am going to build a boring website with title and cards just 
 Then add the following components in `components` folder
 
 #### Header.js
-```
+
+```javascript
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -74,7 +79,8 @@ export default Header
 ```
 
 #### Aside.js
-```
+
+```javascript
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -113,7 +119,8 @@ export default Aside
 ```
 
 #### Card.js
-```
+
+```javascript
 import React from 'react'
 
 function Card() {
@@ -147,7 +154,8 @@ export default Card
 ```
 
 #### App.js
-```
+
+```javascript
 import Header from './components/Header.js';
 import Card from './components/Card.js';
 import Aside from './components/Aside.js';
@@ -182,14 +190,17 @@ function App() {
 
 export default App;
 ```
+
 #### Index.css
+
 ```
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
-### What
+## What
+
 As you can see, the basic concept of react is to decompose the website into lots of components.
 <img src="/assets/img/react_basic_layout_what.png" alt="react_basic_layout_what">
 

@@ -1,33 +1,43 @@
 ---
 layout: post
-title: (Git 1) Getting Started
+title: (Git) Getting Started
 date: '2021-02-22T08:21:40.819Z'
 categories: git
 note:
 ---
 
 ## Introduction
+
 The most popular version control system.
 
+1. Installation
+2. Version
+3. Setting
+4. ...
+
 ## Why
+
 Version control system helps us to track changes and why key decision were made along the way.
 
 ## How
+
 ### Installation
 
 On mac, open terminal
 
-```
+```bash
 $ brew install git
 ```
 
-### Check the version of git
+### Version
 
-```
+```bash
 $ which git
 ```
+
 or
-```
+
+```bash
 $ git --version
 ```
 

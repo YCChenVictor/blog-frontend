@@ -1,12 +1,13 @@
 ---
 layout: post
-title: (Git 2) Common Issue
+title: (Git) Common Issue
 date: '2021-02-22T09:40:50.986Z'
 categories: git
 note: To be continued
 ---
 
 ## Summary
+
 1. Remove
 2. Rename
 3. Modify message
@@ -36,13 +37,14 @@ after we `git add` the changes,
 
 git itself will find they are same file and it is a renaming process
 
-### Modify the message of commits
+### Modify Message
 
-there are four method:
-1.  delete .git (not recommended)
-2.  rebase
-3.  reset
-4.  amend (change the last commit message only)
+there are four methods:
+
+1. delete .git (not recommended)
+2. rebase
+3. reset
+4. amend (change the last commit message only)
 
 #### use amend
 
@@ -50,9 +52,11 @@ For example, if the current historical commit messages is as follow:
 <img src="/assets/img/1__inL5vmok0Njg94hDTirDHw.png">
 
 The last message is inappropriate, then we can use
-```
+
+```bash
 $ git commit --amend
 ```
+
 Then the vim opened
 <img src="/assets/img//1__GAgdrx__4FWfs3eOKozKdvA.png">
 

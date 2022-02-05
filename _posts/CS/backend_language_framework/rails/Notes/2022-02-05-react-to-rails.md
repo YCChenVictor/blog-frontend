@@ -1,7 +1,7 @@
 ---
 layout: post
-title:
-date: ''
+title: (Rails) React
+date: '2022-02-05'
 categories: rails
 note:
 ---

@@ -8,15 +8,20 @@ note: to be continued
 ---
 
 ## Summary
+
 1. I am going to render component: Clock, trying to explain the concept of component and props.
 2. The main concept: from functional form to class form.
 
 ## Why
+
 Why to use component? skip
 
 ## How
+
 ### Basic Concept
+
 A truly basic object can be created as follow, which is literally a function that returns an object with css and html and can be called somewhere else
+
 ```
 function Clock() {
   return (
@@ -27,6 +32,7 @@ function Clock() {
   );
 }
 ```
+
 and we can call this `Clock` with two method:
 
 First method: virtual dom
