@@ -75,27 +75,33 @@ Then we start to build controller.
 
 ## Routes (2) (RESTful API)
 
-REST means Representational State Transfer ([full explanation](之後要設定連結到 what-is-RESTful-API 那篇)). The benefit of RESTful API is unity. All coders have the consensus to write it in the same form. The direct implementation in rails is to use `resources` method as follow:
+REST means Representational State Transfer. The benefit of RESTful API is unity. All coders have the consensus to write it in the same form. The direct implementation in rails is to use `resources` method as follow:
+
 <img src="/assets/img/1_qGzuUl1QZXrzLIrEjFjV1A.png" alt="">
 
 Then we can use again
-```
+
+```bash
 $ rails routes
 ```
+
 the results: (8 routes related to users)
 <img src="/assets/img/1__ZNgXbOxIkg0wSKGXm8aDCw.png" alt="">
 
 We can use `only` or `except` to set the only routes we need
-```
+
+```ruby
 Rails.application.routes.draw do  
   resources :products, only: [:index, :show]
   # or the following codes
   # resources :products, except: [:new, :create, :edit, :update, :destroy]
 end
 ```
+
 we can use `collection` and `member` to add sub layer for more manipulation; for example,
 ### collection
-```
+
+```ruby
 Rails.application.routes.draw do  
   resources :orders do  
     collection do  
@@ -104,6 +110,7 @@ Rails.application.routes.draw do
   end  
 end
 ```
+
 Then the routes:
 <img src="/assets/img/1_YTaNYTwb6aA41Ukylqj-og.png" alt="">
 

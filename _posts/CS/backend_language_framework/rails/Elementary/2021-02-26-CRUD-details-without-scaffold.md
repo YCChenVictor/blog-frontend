@@ -8,10 +8,10 @@ note:
 
 ## General Concept
 
-CRUD means Create, Read, Update, Delete. For rails, we can use following command to build all related stuff:
+CRUD means Create, Read, Update, Delete. In rails, we can use following command to build all related stuff:
 
-```
-$ rails generate scaffold User name:string email:string tel:string
+```bash
+rails generate scaffold User name:string email:string tel:string
 ```
 
 Then it will generate a model named `User` with columns: `name, email, tel`
