@@ -9,6 +9,7 @@
 ## key signatures
 
 * remove a note: Ctrl + Del
+* input a note in certain mearsure: Ctrl + Shift + note
 
 ## time signatures
 
@@ -18,6 +19,7 @@
 ## rhythmic notation
 
 * press ˙ will add a dot to the note and change the rhythm
+* remove ˙ from specific note: shift + Q
 
 ## lyrics
 
