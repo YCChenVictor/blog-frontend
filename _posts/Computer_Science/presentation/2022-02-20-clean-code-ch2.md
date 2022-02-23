@@ -28,9 +28,9 @@ classDiagram
 
   cowork : 1. Use Pronounceable Names
   cowork : 2. Use Searchable Names
-  cowork : 4. Do not Be Cute
-  cowork : 5. Pick One Word per Concept
-  cowork : 6. Do not Pun
+  cowork : 3. Do not Be Cute
+  cowork : 4. Pick One Word per Concept
+  cowork : 5. Do not Pun
 </div>
 
 ## Why?
@@ -122,6 +122,169 @@ TextBook
 Product
 ```
 
+### Avoid Encodings (Hungarian Notation, Member Prefixes, Interfaces and Implementations)
+
+#### variable
+
+From
+
+```ruby
+str_phone = "0901xxxxxx"
+```
+
+to
+
+```ruby
+phone = "0901xxxxxx" # call class method to know the type
+```
+
+#### function
+
+From
+
+```ruby
+def set_name(name)
+  m_dsc = name # avoid m_
+end
+```
+
+to
+
+```ruby
+def set_description(description)
+  self.description = description
+end
+```
+
+### Class Name & Method Name
+
+Use **noun** in class name and use **verb** in method name.
+
+From
+
+```ruby
+class SetEmployeeData
+  def initialize(params)
+  end
+
+  def salary
+  end
+end
+```
+
+to
+
+```ruby
+class Employee
+  def set_salary
+  end
+end
+```
+
+### Avoid Mental Mapping
+
+Avoid reader mapping variables mentally; for example, `child` is better than `x` in following method
+
+From
+
+```ruby
+children.each do |x|
+  if x.age < 18
+    teenagers << x
+  return teenagers
+end
+```
+
+to
+
+```ruby
+children.each do |child|
+  if child.age < 18
+    teenagers << child
+  return teenagers
+end
+```
+
+### Use Solution Domain Name & Use Problem Domain Names
+
+#### Use Solution Domain Name
+
+Use `postgresql_adapter` instead of `postgresql_connection` because programmers have the concept of adapter in design pattern.
+
+#### Use Problem Domain Names
+
+But use problem descriptions when there is no good professional wordings.
+
+### Add Meaningful Context
+
+For example, adding context to explain the logic of following method
+
+From
+
+```ruby
+def printGuessStatistics(candidate, count)
+  if count == 0
+    number = "no"
+    verb = "are"
+    pluralModifier = "s"
+  elsif count == 1
+    number = "1"
+    verb = "is"
+    pluralModifier = ""
+  else
+    number = count.to_s
+    verb = "are"
+    pluralModifier = "s";
+  end
+
+  guessMessage = "There #{verb}, #{number}, #{candidate}#{pluralModifier}"
+end
+```
+
+to
+
+```ruby
+class GuessStatisticsMessage
+  def initialize(candidate, count)
+    create_plural_dependent_message_parts(count)
+    guessMessage = "There #{@verb}, #{@number}, #{@candidate}#{@pluralModifier}"
+  end
+
+  private
+  def create_plural_dependent_message_parts(count)
+    if count == 0
+      there_are_no_letters
+    elsif count == 1
+      there_is_one_letter
+    else
+      there_are_many_letters(count)
+    end
+  end 
+
+  def there_are_many_letters(count)
+    @number = count.to_s
+    @verb = "are"
+    @pluralModifier = "s"
+  end
+
+  def there_is_one_letter
+    @number = "1"
+    @verb = "is"
+    @pluralModifier = ""
+  end
+
+  def there_are_no_letters
+    @number = "no"
+    @verb = "are"
+    @pluralModifier = "s"
+  end
+end
+```
+
+### Do not Add Gratuitous Context
+
+For example, use `Student` instead of `OpenApplyStudent`
+
 ### Use Pronounceable Names
 
 To communicate with other programmers,
@@ -165,175 +328,12 @@ for (let j=0; j < numberOfTasks; j++) {
 
 Then you can search the terms, `sum`, `task`, `per`, ...etc
 
-### Avoid Encodings (Hungarian Notation, Member Prefixes, Interfaces and Implementations)
-
-#### variable
-
-From
-
-```ruby
-str_phone
-```
-
-to
-
-```ruby
-phone # call .class method to know the type
-```
-
-#### function
-
-From
-
-```ruby
-def set_name(name)
-  m_dsc = name # avoid m_
-end
-```
-
-to
-
-```ruby
-def set_description(description)
-  self.description = description
-end
-```
-
-### Avoid Mental Mapping
-
-Avoid reader mapping variables mentally; for example, `cell` is better than `x` in following method
-
-From
-
-```ruby
-children.each do |x|
-  if x.age < 18
-    teenagers << x
-  return teenagers
-end
-```
-
-to
-
-```ruby
-children.each do |child|
-  if child.age < 18
-    teenagers << child
-  return teenagers
-end
-```
-
-### Class Name & Method Name
-
-Use **noun** in class name and use **verb** in method name.
-
-From
-
-```ruby
-class SetEmployeeData
-  def initialize(params)
-  end
-
-  def salary
-  end
-end
-```
-
-to
-
-```ruby
-class Employee
-  def set_salary
-  end
-end
-```
-
-### Don't Be Cute
+### Do not Be Cute
 
 Avoid using jokes such as `burnOutAll` to mean `destroy`
 
 ### Pick One Word per Concept and Don't Pun
 
 Build a team convention, do not use `fetch`, `retrieve`, `get` for the same purpose. But also do not use `get` to all environments. For example, we can use `get` in backend and `fetch` in frontend.
-
-### Use Solution Domain Name & Use Problem Domain Names
-
-#### Use Solution Domain Name
-
-Use `postgresql_adapter` instead of `postgresql_connection` because programmers have the concept of adapter in design pattern.
-
-#### Use Problem Domain Names
-
-But use `API::ForXxxClients` instead of `GetForXxxClients` when we let clients to get data from our database.
-
-### Add Meaningful Context
-
-For example, adding context to explain the logic of following method
-
-From
-
-```ruby
-def printGuessStatistics(candidate, count)
-  if count == 0
-    number = "no"
-    verb = "are"
-    pluralModifier = "s"
-  elsif count == 1
-    number = "1"
-    verb = "is"
-    pluralModifier = ""
-  else
-    number = count.to_s
-    verb = "are"
-    pluralModifier = "s";
-  end
-
-  guessMessage = "There #{verb}, #{number}, #{candidate}, #{pluralModifier}"
-end
-```
-
-to
-
-```ruby
-class GuessStatisticsMessage
-  def make(candidate, count)
-    create_plural_dependent_message_parts(count)
-    guessMessage = "There #{verb}, #{number}, #{candidate}, #{pluralModifier}"
-  end
-
-  private
-  def create_plural_dependent_message_parts(count)
-    if count == 0
-      there_is_no_letters
-    elsif count == 1
-      there_is_one_letter
-    else
-      there_are_many_letters(count)
-    end
-  end 
-
-  def there_are_many_letters(count)
-    number = count.to_s
-    verb = "are"
-    pluralModifier = "s"
-  end
-
-  def there_is_one_letter
-    number = "1"
-    verb = "is"
-    pluralModifier = ""
-  end
-
-  def there_is_no_letters
-    number = "no"
-    verb = "are"
-    pluralModifier = "s"
-  end
-end
-```
-
-### Don’t Add Gratuitous Context
-
-Use `Address` for class name instead of `accountAddress` and `customerAddress`
 
 ## Reference

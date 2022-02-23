@@ -9,7 +9,11 @@ note:
 
 ## Introduction
 
+Design pattern provides elegant solutions to repeating problems.
+
 ## Why?
+
+Design reusable and extensible object-oriented software
 
 ## How?
 
@@ -32,3 +36,5 @@ I cannot tell the difference
 ## Reference
 
 [Software design pattern](https://en.wikipedia.org/wiki/Software_design_pattern)
+
+[Design Patterns in Plain English | Mosh Hamedani](https://www.youtube.com/watch?v=NU_1StN5Tkk)
