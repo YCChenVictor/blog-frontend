@@ -4,7 +4,7 @@ title: clean code ch2
 description: ''
 date: '2022-02-20'
 categories: presentation
-note: 盡量圖像化
+note:
 mermaid: true
 ---
 
@@ -65,8 +65,9 @@ def get_them
   theList.each do |x|
     if (x[0] == 4)
       list1 << x
-    return list1
+    end
   end
+  list1
 end
 ```
 
@@ -78,8 +79,9 @@ def get_flagged_cells
   game_board.each do |cell|
     if (cell.flagged?) # write a method to check the status
       flagged_cells << cell
-    return flagged_cells
+    end
   end
+  flagged_cells
 end
 ```
 
