@@ -4,7 +4,7 @@ title: design pattern
 description: ''
 date: '2022-01-30'
 categories: design
-note: 
+note: 雖然影片適用 JAVA，但可以翻成其他語言 go 或 ruby
 ---
 
 ## Introduction
@@ -19,9 +19,9 @@ Design reusable and extensible object-oriented software
 
 There are three categories:
 
-1. Creational patterns
-2. Structural patterns
-3. behavioral patterns
+1. Creational patterns: different ways to create objects
+2. Structural patterns: the relationship between these objects
+3. behavioral patterns: interaction or communication between these objects
 
 ## What?
 
