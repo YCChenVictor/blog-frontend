@@ -5,10 +5,6 @@ permalink: category
 ---
 
 <div class="home">
-  
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
 
   {% assign rawcategories = "" %}
   {% for post in site.posts %}
@@ -30,7 +26,7 @@ permalink: category
 
   <ul>
 	{% for categorie in categories %}
-	  <a href="#{{ categorie | slugify }}"> <i class="fas fa-bookmark"></i> {{ categorie }}  </a>
+	  <a href="#{{ categorie | slugify }}"> <i class="fa-fire"></i> {{ categorie }}  </a>
     {% endfor %}
   </ul>
   
