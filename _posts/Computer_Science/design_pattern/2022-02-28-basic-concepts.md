@@ -3,12 +3,14 @@ layout: post
 title:
 description: ''
 date: ''
-categories:
-note:
+categories: programming design
+note: 看這篇了解 
 mermaid:
 ---
 
 ## Introduction
+
+To learn design pattern, we need to know object-oriented programming first and the concepts:
 
 1. classes
 2. coupling
@@ -19,13 +21,17 @@ mermaid:
 7. polymorphism
 8. UML
 
+I am going to use golang as example, so before start, I believe I know the concepts in golang.
+
 ## Why?
 
-focus on why we need it
+To learn design pattern, we need to know ...
 
 ## How?
 
-focus on the mechanim
+### classes
+
+
 
 ## What?
 

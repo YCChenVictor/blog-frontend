@@ -2,24 +2,34 @@
 layout: post
 title: Object Oriented Porgramming
 date: '2021-11-21'
-categories: other
-note:
+categories: mindset
+note: 我是覺得還是要用靜態的 OOP 語言來學
 ---
 
 ## Introduction
 
-mainly four topics: Abstraction, polymorphism, inheritance and encapsulation
+Because the reference uses JAVA (static) and I prefer ruby (dynamic), I am going to demonstrate the OOP concepts with both these languages.
 
-1. Abstraction
-2. Polymorphism: treating an object as a generic version of something; for example, car, truck, and bicycle are versions of vehicle.
-3. Inheritance
-4. Encapsulation
+The topics are as follow:
+
+1. classes
+2. coupling
+3. interfaces
+4. encapsulation
+5. abstraction
+6. inheritnace
+7. polymorphism: treating an object as a generic version of something; for example, car, truck, and bicycle are versions of vehicle.
+8. UML
 
 ## Why
 
-skip
+Because we can have deeper understanding in morden software design.
 
 ## How
+
+### classes
+
+
 
 ### OOP in ruby
 
