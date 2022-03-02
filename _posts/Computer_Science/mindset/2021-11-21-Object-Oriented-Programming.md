@@ -8,12 +8,12 @@ note: 我是覺得還是要用靜態的 OOP 語言來學
 
 ## Introduction
 
-Because the reference uses JAVA (static) and I prefer ruby (dynamic), I am going to demonstrate the OOP concepts with both these languages.
+I am going to demonstrate the OOP concepts with ruby and maybe with JAVA.
 
 The topics are as follow:
 
-1. classes
-2. coupling
+1. classes: object-oriented, 
+2. coupling:
 3. interfaces
 4. encapsulation
 5. abstraction
@@ -29,7 +29,30 @@ Because we can have deeper understanding in morden software design.
 
 ### classes
 
+We use class to create objects and the class will define the attributes and methods these objects have. For example, a `User` class in any SaaS product would be as follow:
 
+```ruby
+class MyClass
+  def initialize
+    # attributes
+  end
+  
+  # methods
+  def say_hello
+    puts "Hello World"
+  end
+end
+
+def another_hello
+  puts "Hello World (from a method)"
+end
+
+c = MyClass.new
+c.say_hello
+another_hello
+```
+
+To create a user, we must give the user attributes, email and password and the can use defined methods ... to
 
 ### OOP in ruby
 
