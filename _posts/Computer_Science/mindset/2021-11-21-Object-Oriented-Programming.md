@@ -8,13 +8,11 @@ note: 我是覺得還是要用靜態的 OOP 語言來學
 
 ## Introduction
 
-I am going to demonstrate the OOP concepts with ruby and maybe with JAVA.
+I am going to demonstrate the OOP concepts with ruby.
 
-The topics are as follow:
-
-1. classes: object-oriented, 
-2. coupling:
-3. interfaces
+1. classes: object-oriented style to create object with these classes
+2. coupling & cohesion: in OOP, we want low coupling and high cohesion
+3. interfaces: with this concept, 
 4. encapsulation
 5. abstraction
 6. inheritnace
@@ -32,27 +30,24 @@ Because we can have deeper understanding in morden software design.
 We use class to create objects and the class will define the attributes and methods these objects have. For example, a `User` class in any SaaS product would be as follow:
 
 ```ruby
-class MyClass
-  def initialize
+class User
+  def initialize(name)
     # attributes
+    @name = name
   end
   
   # methods
   def say_hello
-    puts "Hello World"
+    puts "Hello, my name is " + @name
   end
 end
 
-def another_hello
-  puts "Hello World (from a method)"
-end
-
-c = MyClass.new
-c.say_hello
-another_hello
+user = User.new('name')
+user.say_hello
+user.name
 ```
 
-To create a user, we must give the user attributes, email and password and the can use defined methods ... to
+### coupling & cohesion
 
 ### OOP in ruby
 
