@@ -3,7 +3,7 @@ layout: post
 title: Action Cable
 date: '2022-03-06'
 categories: presentation
-note: 即時通訊系統 -> 解釋 action cable 的原理 -> websocket
+note:
 ---
 
 ## Introduction
@@ -22,9 +22,9 @@ With WebSocket protocol, multiple clients(browsers) can maintain constant connec
 
 <img src="/assets/img/websocket-protocol.png" alt="">
 
-image resource: [Real-Time Rails: Implementing WebSockets in Rails 5 with Action Cable]((https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable))
+image resource: [Real-Time Rails: Implementing WebSockets in Rails 5 with Action Cable](https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable)
 
-[websocket official](http://websocketd.com/)
+[websocket wiki](https://en.wikipedia.org/wiki/WebSocket)
 
 ## What
 
