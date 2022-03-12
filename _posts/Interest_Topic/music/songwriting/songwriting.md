@@ -4,16 +4,18 @@ song = lyrics + melodies
 
 ## Introduction
 
+You do not need any music theory to write songs.
+
 ## Why
 
-why I need to write a song? Songs can express my feelings in a safe way.
+Songs can express my feelings in a safe way.
 
 ## How
 
 General:
 
 1. produce a fix amount of music on the daily basis (do not trust inspiration)
-2. do not relay on instruments, please sing out your mind by thinking the feelings
+2. do not relay on instruments, please sing out your mind by thinking the feelings and record it
 3. do not repeat a melody above three time
 4. read literature as much as possible
 5. Remember to add some space (silent is a part of music)
@@ -21,11 +23,11 @@ General:
 
 Steps:
 
-1. live life and feel it and then compose the melodies
-2. get inspirations past music, movie, and literature
+1. live life and feel it and then compose the melodies while thinking about them (you can compose an article first)
+2. get inspirations past music, movie, and literature and also practice compositions from others
 3. drop down melodies for verse, pre-chorus, chorus, bridge
    1. record it directly with phone
-   2. compose music sheet with musescore
+   2. compose music sheet with musescore to find the chords
    3. record it with record audio
 4. arrange bass line for the melodies
 5. arrange chords based on the melodies (the composition of the chords should be the notes in the measure)

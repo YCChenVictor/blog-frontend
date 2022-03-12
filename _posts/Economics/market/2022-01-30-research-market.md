@@ -11,20 +11,24 @@ note:
 
 Describes my way to research a market. Steps as follow:
 
-1. decompose the market into demand and supply
-2. demand side: research the utility each product in this market can offer
-3. supply side: research the cost of producing products in this market
-4. then image a way to benefit the people in this market
+1. decompose the market according to services **directly** facing consumers
+2. according to the price tags of the services, compare why the utilities are different
+3. given the different utilities, the producers' marketing strategies.
+4. decompose the supply chain of each producing.
+5. observes and decompose the problems these people have and then make a MVP
 
 ## Why?
 
-Given my future startup project, I need a systematic way to analyze markets so that I can build an App truly solve the problems.
+Given my future startup projects, I need a systematic way to analyze markets so that I can build an App truly solve the problems.
 
 ## How?
 
-The steps 
+### services
 
-Define an issue -> decompose this issue into trees with concepts of MECE -> find minor solutions to solve a part of this issue -> collect data to support it. If not, find another way -> implementation with MVP
+The principles:
+
+1. consumers can buy these services independently
+2. consumers pay almost no efforts or sacrifices to enjoy these services, they only needs to pay money and time on it
 
 ## What?
 
