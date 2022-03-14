@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Object Oriented Porgramming
+title: object oriented porgramming
 date: '2021-11-21'
 categories: mindset
-note: 我是覺得還是要用靜態的 OOP 語言來學
+note:
 ---
 
 ## Introduction
