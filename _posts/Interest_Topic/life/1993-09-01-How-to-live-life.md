@@ -9,7 +9,7 @@ note:
 
 ## Introduction
 
-I never thought it is a problem until I am making 1 million NTD a year. Before it happens, I am always trying to make more because I need resources to do what I want to do.
+It is a problem until I am making 1 million NTD a year because I now have enough resources.
 
 ## Why?
 
@@ -45,8 +45,8 @@ The noise of inner world reveals in my dreams. You cannot avoid it because those
 
 #### emotion
 
-1. (2) toward myself: Actually, I do not like myself -> I have to much emotions -> accidentially hurt someone -> keep as little relationships as possible to anyone -> use some talent shit to keep these relationships
-2. (1) toward the past: I do not like my past -> I was a truly annoying kids always crying and emotionally break -> I just cannot deal with variant environments, so much sound, conflicts, trying to fit into society, following the rules -> I do not know how to deal with it
+1. (2) toward myself: I do not like myself
+2. (1) toward the past: I do not like my past
 3. (3) toward future: Given what I have now, I think I shall start a company related to music industry -> would be promising?
 4. (3) toward present: I kind of like my present status
 
@@ -65,8 +65,8 @@ Just follow my master.
 
 Given the how with status score lower than 3, I should do the following things: (three aspects at most)
 
-1. Explore the relationship with myself -> try to express my emotions through music -> **I should do more compositions**
-2. Given I cannot amend my past -> I may be told to get over it -> I should explore other people's life and gain more ideas -> try to have more conversations with other people
+1. Deal with I do not like myself -> list what I accomplished and accomplish more
+2. Deal with I do not like myself I cannot amend my past
 3. Given I cannot blame my family -> try to explore the relationship with my family -> try to **follow more master's rules?**
 
 **psycological therapy** has no effect to me.

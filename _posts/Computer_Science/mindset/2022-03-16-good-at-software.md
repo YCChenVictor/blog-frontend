@@ -2,7 +2,7 @@
 layout: post
 title:
 description: good at software
-date: ''
+date: '2022-03-16'
 categories:
 note:
 mermaid:
