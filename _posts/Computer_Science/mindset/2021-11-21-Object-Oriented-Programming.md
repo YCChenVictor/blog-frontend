@@ -5,6 +5,7 @@ date: '2021-11-21'
 categories: mindset
 note:
 usemathjax: true
+mermaid: true
 ---
 
 ## Introduction
@@ -12,13 +13,13 @@ usemathjax: true
 I am going to demonstrate the OOP concepts with ruby.
 
 1. classes: object-oriented style to create objects with these classes
-2. coupling & cohesion: in OOP, we want low coupling and high cohesion
-3. polymorphism: treating an object as a generic version of something; for example, car, truck, and bicycle are versions of vehicle.
+2. coupling & cohesion: in OOP, we want low coupling and high cohesion, having a more independent object
+3. abstraction:
 4. encapsulation:
-5. abstraction
-6. inheritnace
-7. interfaces: with this concept,
-8. UML
+5. interfaces:
+6. inheritnace:
+7. polymorphism: treating an object as a generic version of something; for example, car, truck, and bicycle are versions of vehicle.
+8. Unified Modeling Language (UML):
 
 ## Why
 
@@ -133,6 +134,31 @@ An interface implements Abstraction and Encapsulation throughly, making we only 
 For example, For example, I want to create Animals: Dog, Cat, Bird.
 
 ```ruby
+class Animal
+  def initialize
+  end
+
+  def move
+    puts "#{self.class.name} is moving"
+  end
+end
+
+class Dog < Animal
+end
+
+class Cat < Animal
+end
+
+class Bird < Animal
+end
+
+dog = Dog.new
+cat = Cat.new
+bird = Bird.new
+
+dog.move
+cat.move
+bird.move
 ```
 
 ### Polymorphism
@@ -172,58 +198,37 @@ end
 
 ### polymorphism vs inheritance
 
-polymorphism 沒有每一個 type 都創一個新的 class，inheritance 有。Cat, Dog, ...etc 都可以繼承自 Animal，也可以透過 loop 用 polymoprhism 創立
+It depends on the business logic to determine what programming concept to be used. Think about your database. If we use inheritance, then there will be a new model produced which you can create a table associate with it and you will not need runtime to calculate the logics, of which you cost more space but save more time and vice versa.
 
-### Modules
+For example, the same `Dog` class. If you are running a zoo, you will not need a table for `Dog` and you just need a polymorphism table, `Animal`, to list all the animals with type in that table. But if you are running, a store professionally takes good care about dogs, then you need a `Dog` model inherited from `Animal`.
 
-include modules in other class
+### Unified Model Language
 
-### Setter and Getter Methods
+It is a language to describe the relationship between models. The relationships: inheritance, composition, aggregation, association, link (solid), dependency, realization, link (dashed)
 
-```ruby
-class Human
-  def initialize(name)
-    @name = name
-  end
-end
-```
+<div class="mermaid">
+classDiagram
+  classA --|> classB : Inheritance
+  classC --* classD : Composition
+  classE --o classF : Aggregation
+  classG --> classH : Association
+</div>
 
-If we want to get the name, we need a **getter method**, `name`
+<div class="mermaid">
+classDiagram
+  classI -- classJ : Link(Solid)
+  classK ..> classL : Dependency
+  classM ..|> classN : Realization
+  classO .. classP : Link(Dashed)
+</div>
 
-```ruby
-class Human
-  ...
-  def name
-    @name
-  end
-end
+#### inheritance
 
-test = Human.new('test')
-puts test.name
-```
+A inherited from B -> A has all attributes and methods from B; for example, student is inherited from person.
 
-IF we want to change the name, we need a **setter method**, `name=`
+#### composition
 
-```ruby
-class Human
-  ...
-  def name= new_name
-    @name = new_name
-  end
-end
-
-test = Human.new('test')
-test.name = 'test_new'
-puts test.name
-```
-
-### Super
-
-Super calls a method on the **parent class** with the **same name**.
-
-### Self
-
-Get the object that currently executes.
+A composited from B -> B is a part of A; for example, car is compositied from wheels.
 
 ### Reference
 
@@ -236,3 +241,5 @@ Get the object that currently executes.
 [What is the definition of "interface" in object oriented programming](https://stackoverflow.com/questions/2866987/what-is-the-definition-of-interface-in-object-oriented-programming)
 
 [4.7: Introduction to Polymorphism - The Nature of Code](https://www.youtube.com/watch?v=qqYOYIVrso0)
+
+[Design Patterns in Plain English | Mosh Hamedani](https://www.youtube.com/watch?v=NU_1StN5Tkk&t=935s)

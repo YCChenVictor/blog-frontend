@@ -5,6 +5,7 @@ description: ''
 date: ''
 categories:
 note:
+usemathjax:
 mermaid:
 ---
 
