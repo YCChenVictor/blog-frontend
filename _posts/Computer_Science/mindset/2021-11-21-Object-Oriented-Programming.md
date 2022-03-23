@@ -228,7 +228,9 @@ A inherited from B -> A has all attributes and methods from B; for example, stud
 
 #### composition
 
-A composited from B -> B is a part of A; for example, car is compositied from wheels.
+C composed of D -> D is a part of C; for example, car is composed of wheels.
+
+#### aggregation
 
 ### Reference
 
