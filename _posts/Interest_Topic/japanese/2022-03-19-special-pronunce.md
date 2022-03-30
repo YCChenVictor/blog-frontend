@@ -1,6 +1,6 @@
 ---
 layout: post
-title: pronunce (Japanese)
+title: special pronunce (Japanese)
 description: ''
 date: '2022-03-19'
 categories: language
@@ -14,7 +14,7 @@ mermaid:
 2. long vowels
 3. 促音
 4. loanwords
-5. special pronounce in numbers, age, dollar
+5. special pronounce in numbers, age, dollar, time
 6. tone
 
 ## Why?
@@ -55,7 +55,7 @@ demo with JSON structure as the items in a object are somehow related
 3. { ヴァ(va): '', ヴィ(vi): '', ヴ(vu): '', ヴェ(ve): '',　ヴォ(vo): '' }
 4. { シェ(she): '', チェ(che): '', ジェ(je) :ジェっトき(jet 機) }
 
-### special pronounce in numbers, age, dollar
+### special pronounce in numbers, age, dollar, time
 
 #### numbers
 
@@ -76,6 +76,13 @@ demo with JSON structure as the items in a object are somehow related
 
 1. 4円 pronounced as よえん
 
+#### time
+
+1. four o'clock: 四時 (よじ)
+2. seven o'clock: 七時 (しちじ)
+3. nine o'clock: 九時 (くじ)
+4. 
+
 ### tone
 
 There are many pitch-accent in Japan and we follow the standard way. We use numbering to represent the tones as follow:
@@ -86,15 +93,10 @@ There are many pitch-accent in Japan and we follow the standard way. We use numb
 4. `4` means lower the tone right after the forth letter
 5. `0` means there is no position to lower the tone, meaning the tone is always high after the first letter
 
-#### sentence (should elaborate with sentence)
+#### sentence
 
 1. pronounce subsidiary and the noun together and subsidiary follows the tone of the last letter of noun
-2. but ()
-
-
-## What
-
-skip
+2. The number of 胃(い) is 0 and the number of 目(め) is 1, they have different effects to the tone of subsidiary; the tone of は after 胃 should be higher but the tone of は after 目 should be lower.
 
 ## reference
 
