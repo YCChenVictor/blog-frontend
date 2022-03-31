@@ -292,7 +292,7 @@ end
 to
 
 ```ruby
-employees = Employees.all
+employees = get_employees
 
 employees.each do |employee|
   total_pay += employee.pay
