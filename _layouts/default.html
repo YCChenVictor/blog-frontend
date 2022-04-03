@@ -2,6 +2,11 @@
 <html lang="{{ site.lang | default: " en-US" }}">
 
 <head>
+  <!-- drawing -->
+  {% if page.draw %}
+    {%- include draw.html -%}
+  {% endif %}
+
   <!-- for mathjax support -->
   {% if page.usemathjax %}
     {%- include usemathjax.html -%}
