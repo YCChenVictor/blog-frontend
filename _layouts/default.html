@@ -3,13 +3,13 @@
 
 <head>
   <!-- drawing -->
-  {% if page.draw %}
-    {%- include draw.html -%}
+  {% if page.p5 %}
+    {%- include p5.html -%}
   {% endif %}
 
   <!-- for mathjax support -->
-  {% if page.usemathjax %}
-    {%- include usemathjax.html -%}
+  {% if page.mathjax %}
+    {%- include mathjax.html -%}
   {% endif %}
 
   <!-- mermaid -->
@@ -28,6 +28,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <title>{{ site.title }}</title>
+
   <!-- TailwindCSS and Inter Font-->
   <link rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css">
   <link rel="stylesheet" href="{{site.baseurl}}/assets/css/tailwind.css">

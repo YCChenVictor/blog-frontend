@@ -2,8 +2,8 @@
   "name": "",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/harrywang/tailpages.git",
-  "author": "Harry Wang <harryjwang@gmail.com>",
+  "repository": "",
+  "author": "",
   "license": "MIT",
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.0",

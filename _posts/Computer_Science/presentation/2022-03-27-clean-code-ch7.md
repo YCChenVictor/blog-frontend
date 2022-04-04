@@ -5,7 +5,7 @@ description: ''
 date: '2022-03-27'
 categories: presentation
 note:
-usemathjax:
+mathjax:
 mermaid:
 ---
 

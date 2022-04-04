@@ -4,7 +4,7 @@ title: object oriented programming
 date: '2021-11-21'
 categories: mindset
 note:
-usemathjax: true
+mathjax: true
 mermaid: true
 ---
 
