@@ -116,9 +116,9 @@ The UML:
 classDiagram
   Beverage <-- Espresso : is a
   Beverage <-- Decaf : is a
-  Beverage <-- AddonDecorator : is a & has a
-  AddonDecorator <-- SoyMilkDecorator : is a
-  AddonDecorator <-- CaramelDecorator : is a
+  Beverage <-- Decorator : is a & has a
+  Decorator <-- SoyMilkDecorator : is a
+  Decorator <-- CaramelDecorator : is a
 
   Beverage : getDesc()
   Beverage : cost()
@@ -126,7 +126,7 @@ classDiagram
   Espresso : cost()
   Decaf : cost()
 
-  AddonDecorator : getDesc()
+  Decorator : getDesc()
   SoyMilkDecorator : getDesc()
   SoyMilkDecorator : cost()
   CaramelDecorator : getDesc()
@@ -137,7 +137,64 @@ For example, the cost of Espresso is 2 dollar and the cost of SoyMilkDecorator i
 
 ## What?
 
-give an example
+```ruby
+class Beverage
+  def get_desc
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+
+  def cost
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+end
+
+class Espresso < Beverage
+  def get_desc
+    'Espresso'
+  end
+
+  def cost
+    2
+  end
+end
+
+class Decaf < Beverage
+  def get_desc
+    'Decaf'
+  end
+
+  def cost
+    1
+  end
+end
+
+class Decorator < Beverage
+  attr_accessor :beverage
+
+  def initialize(beverage)
+    @beverage = beverage
+  end
+
+  def get_desc
+    @beverage.get_desc
+  end
+end
+
+class SoyMilkDecorator < Decorator
+  def cost
+    @beverage.cost + 1
+  end
+end
+
+class CaramelDecorator < Decorator
+  def cost
+    @beverage.cost + 3
+  end
+end
+
+espresso_with_soy_milk = SoyMilkDecorator.new(Espresso.new)
+puts espresso_with_soy_milk.cost # 3
+```
 
 ## Reference
 
