@@ -20,7 +20,7 @@ To change the behavior of a class without rewriting the code of the class by wra
 </div>
 
 <script>
-  const imagePath = '../../../../../assets/img/decorator_concept.png'
+  const imagePath = '/assets/img/decorator_concept.png'
   const conceptDiv = document.getElementById('concept');
   const conceptWidth = conceptDiv.offsetWidth;
   let eraseEnable = false;

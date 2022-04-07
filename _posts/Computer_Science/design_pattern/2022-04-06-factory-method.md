@@ -7,19 +7,106 @@ categories: design-pattern
 note:
 mathjax:
 mermaid:
+p5: true
 ---
 
 ## Introduction
 
-我聽了第一次，沒懂，感覺就是不想要創造 class，而是定義一個 factory 用來專門創造這個 class?
+Image that you have a factory and the product lines would be as follow:
 
-如果以電玩遊戲為例，要創造各式各樣的怪，如果每一個怪都要一個 class，那會很麻煩，所以 factory 可以用同一個 class 創造出各式各樣有一點點不同的怪。
+<div id='concept' class='h-screen justify-center items-center'>
+  <div id='concept toggle' class=''></div>
+  <div id='concept canvas' class='border'></div>
+</div>
 
-這個要再去看一次。
+<script>
+  const imagePath = '/assets/img/factory_method_concept.png'
+  const conceptDiv = document.getElementById('concept');
+  const conceptWidth = conceptDiv.offsetWidth;
+  let eraseEnable = false;
+  let img;
+  let photoGraph;
+
+  function setup() {
+    setupImage ()
+    setupButton ()
+    setupCanvas ()
+    setupGraphics ()
+  }
+
+  function draw() {
+    image(img, 0, 0, conceptWidth, 400);
+    image(graphic, 0, 0)
+  }
+
+  function mouseDragged() {
+    if (!eraseEnable) {
+      graphic.fill('black');
+      graphic.noStroke();
+      graphic.ellipse(mouseX, mouseY, 5, 5);
+    } else {
+      graphic.fill('white');
+      graphic.noStroke();
+      graphic.ellipse(mouseX, mouseY, 10, 10);
+    }
+  }
+
+  function keyTyped() {
+    if (key === 's') {
+      saveCanvas('decorator_concept.png');
+    }
+  }
+
+  function setupImage () {
+    try {
+      img = loadImage(imagePath);
+    }
+    catch {
+      img = createImage(conceptWidth, 400)
+    }
+  }
+
+  function setupButton () {
+    toggleButton = createButton('erase');
+    toggleButton.parent('concept toggle');
+    toggleButton.addClass("border rounded px-4");
+    toggleButton.mouseClicked(ButtonClicked)
+  }
+
+  function setupCanvas () {
+    const concept = createCanvas(conceptWidth, 400);
+    concept.parent('concept canvas');
+  }
+
+  function setupGraphics () {
+    graphic = createGraphics(conceptWidth, 400);
+  }
+
+  function ButtonClicked () {
+    toggleStyle()
+    toggleErase()
+  }
+
+  function toggleErase() {
+    if (eraseEnable) {
+      noErase();
+      eraseEnable = false;
+    }
+    else {
+      erase();
+      eraseEnable = true;
+    }
+  }
+
+  function toggleStyle() {
+    toggleButton.toggleClass("bg-indigo-100");
+    toggleButton.toggleClass("border");
+  }
+</script>
 
 ## Why?
 
-focus on why we need it
+Factory manufactures lots of products with some common characteristics. The factory method pattern demonstrates the way to create various classes with some common characteristics, meaning we do not need lots of class to create lots of objects with some common features.
 
 ## How?
 
@@ -32,3 +119,5 @@ give an example
 ## Reference
 
 [Factory Method Pattern – Design Patterns (ep 4)](https://www.youtube.com/watch?v=EcFVTgRHJLM&list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc&index=4)
+
+[Factory Method in Ruby](https://refactoring.guru/design-patterns/factory-method/ruby/example#:~:text=Factory%20method%20is%20a%20creational,constructor%20call%20(%20new%20operator).)
