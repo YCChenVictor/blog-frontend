@@ -3,7 +3,7 @@ layout: post
 title: high frequency wording for N5
 description: ''
 date: '2022-02-28'
-categories: Japanese
+categories: language
 note: 我應該要用 anki 背單字，要過 N5
 mermaid:
 ---

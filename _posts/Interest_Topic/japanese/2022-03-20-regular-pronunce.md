@@ -1,6 +1,6 @@
 ---
 layout: post
-title: regular pronounce (Japanese)
+title: regular pronounce of noun (Japanese)
 description: ''
 date: '2022-03-20'
 categories: language
@@ -24,6 +24,8 @@ To memorize the nouns with regular pronunce.
 | second person   | あなた        | あなたたち      |
 | third person (male)   | かれ        | 彼たち      |
 | third person (female)   | かのじょ        | かのじょたち      |
+
+Use あなた when you do not know who he/she is but should not use it towards someone familiar. We can use their last name to show our familiarity.
 
 ### deixis
 
