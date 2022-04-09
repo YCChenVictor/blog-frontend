@@ -6,7 +6,7 @@ date: '2022-04-06'
 categories: design-pattern
 note:
 mathjax:
-mermaid:
+mermaid: true
 p5: true
 ---
 
@@ -104,17 +104,94 @@ Image that you have a factory and the product lines would be as follow:
   }
 </script>
 
+The key concept lays on that factory determines which products to be produced on the product line, which means factory method design pattern determines which kind of object to be produced on compile time.
+
 ## Why?
 
 Factory manufactures lots of products with some common characteristics. The factory method pattern demonstrates the way to create various classes with some common characteristics, meaning we do not need lots of class to create lots of objects with some common features.
 
 ## How?
 
-focus on the mechanim
+For example, you are creating a game and there are various maps in the world. You can use the factory method pattern to create the monsters in the world with creation logic you want. If I want the maps all fill with various monster randomly, then the UML would be as follow:
+
+<div class="mermaid">
+  classDiagram
+    Monster <-- MonsterHard : is a
+    Monster <-- MonsterEasy : is a
+
+    Monster : common_attributes
+    Monster : common_methods()
+
+    MonsterHard : some_hard_attributes
+    MonsterHard : some_hard_method()
+    MonsterEasy : some_easy_attributes
+    MonsterEasy : some_easy_method()
+
+    Creator <-- HardModeCreator : is a
+    Creator <-- EasyModeCreator : is a
+
+    Creator : factory_method()
+    Creator : create()
+    HardModeCreator : create_more_hard_monsters()
+    EasyModeCreator : create_more_easy_monsters()
+    HardModeCreator <-- MonsterHard : created_by
+    EasyModeCreator <-- MonsterEasy : created_by
+</div>
 
 ## What?
 
-give an example
+```ruby
+class Creator
+  def factory_method
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+
+  def create
+    product = factory_method
+
+    product.roar
+  end
+end
+
+class HardModeCreator < Creator
+  def factory_method
+    MonsterHard.new
+  end
+end
+
+class EasyModeCreator < Creator
+  def factory_method
+    MonsterEasy.new
+  end
+end
+
+class Monster
+  def roar
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+end
+
+class MonsterHard
+  def roar
+    puts 'hard monster come!'
+  end
+end
+
+class MonsterEasy
+  def roar
+    puts 'easy monster come!'
+  end
+end
+
+def create_monster(factory)
+  factory.create
+end
+
+create_monster(HardModeCreator.new)
+create_monster(EasyModeCreator.new)
+```
+
+As you can see, all the monster creation use the method, `create_monster` and call different type of factory.
 
 ## Reference
 

@@ -4,7 +4,7 @@ title: decorator
 description: ''
 date: '2022-04-02'
 categories: design-pattern
-note:
+note: 圖片存錯了，要再畫一次
 mathjax:
 mermaid: true
 p5: true
