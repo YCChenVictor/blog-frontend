@@ -2,7 +2,7 @@
 title: '(DB 1) Why, What, How'
 description: 'How (Architecture, Model, Operation)'
 date: '2021-03-12T04:57:20.565Z'
-categories: []
+categories: database
 keywords: []
 slug: /@t5204713910/dbms-1-why-what-how-142e772a651f
 ---

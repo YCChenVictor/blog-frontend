@@ -26,7 +26,10 @@ permalink: category
 
   <ul>
 	{% for categorie in categories %}
-	  <a href="#{{ categorie | slugify }}"> <i class="fa-fire"></i> {{ categorie }}  </a>
+	  <a href="#{{ categorie | slugify }}">
+	    <i class="fa-solid fa-check text-gray-900"></i>
+	    {{ categorie }}
+	  </a>
     {% endfor %}
   </ul>
   

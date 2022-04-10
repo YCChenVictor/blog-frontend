@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Javascript_2) localStorage
+title: localStorage
 date: '2021-06-02'
 state: done
 categories: javascript

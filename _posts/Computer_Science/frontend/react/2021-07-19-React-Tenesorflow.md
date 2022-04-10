@@ -3,7 +3,7 @@ layout: post
 title: (React) tensorFlowJS
 description:
 date: '2021-07-19'
-categories: react
+categories: tensorflow
 note:
 ---
 

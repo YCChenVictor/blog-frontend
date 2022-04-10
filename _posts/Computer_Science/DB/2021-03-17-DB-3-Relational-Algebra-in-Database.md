@@ -2,7 +2,7 @@
 layout: post
 title: (DB 3) Relational Algebra in Database
 date: '2021-03-17T07:54:46.016Z'
-categories: DB
+categories: database
 status: to be continued
 ---
 

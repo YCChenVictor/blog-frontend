@@ -1,21 +1,31 @@
 ---
 layout: post
-title: structure
+title: third party library
 description:
 date: '2021-06-14'
 categories: react
-note: to be continued
+note: 要把 how 以下的 code 整理一下，之前寫的模式沒什麼用
 ---
 
 ## Introduction
 
-I am going to build a basic layout with react.
+I am going to build a basic layout with react to show the basic structure I need to build a frontend app.
+
+1. add react for framework
+2. add third party library: fontawesome, mui
+3. add tailwind for CSS style
 
 ## Why
 
-Because I want to practice react.
+I need to know it to build an app.
 
 ## How
+
+### add react for framework
+
+### add third party library: fontawesome, mui
+
+### add tailwind for CSS style
 
 * [react](https://reactjs.org/docs/create-a-new-react-app.html) for SPA (Single Page Application)
 * [tailwind](https://tailwindcss.com/docs/guides/create-react-app) for style
@@ -204,3 +214,6 @@ export default App;
 As you can see, the basic concept of react is to decompose the website into lots of components.
 <img src="/assets/img/react_basic_layout_what.png" alt="react_basic_layout_what">
 
+## reference
+
+[React JS - React Tutorial for Beginners](https://www.youtube.com/watch?v=Ke90Tje7VS0)

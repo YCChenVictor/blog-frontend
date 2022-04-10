@@ -3,7 +3,7 @@ layout: post
 title: (DB 5) Indexing
 description:
 date: '2021-06-29'
-categories: DB
+categories: database
 note: 
 ---
 
