@@ -85,4 +85,8 @@ In order to make my sentences meaningful and effective.
 3. If B: X は B です。
 4. いいえ、C です。
 
+### noun は adjective でしょう？
+
+1. looking for agreements
+
 ## Reference
