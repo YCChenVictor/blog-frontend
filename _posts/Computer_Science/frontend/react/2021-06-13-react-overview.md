@@ -1,10 +1,10 @@
 ---
 layout: post
-title: overview
+title: overview (react)
 description: ''
 date: '2021-06-13'
 categories: react
-note:
+note: tutorial 的問題是 component 還是用 class form， CSS 還是用 bootstrap
 mathjax:
 mermaid: true
 p5:
@@ -16,12 +16,13 @@ I am going to follow the tutorial to build a website with react and use it as a 
 
 1. tree
 2. component
-3. Hello world
-4. basic commands
+3. hello world
+4. third party library
+5. basic commands
 
 ## Why?
 
-focus on why we need it
+I want to build a world based on JS frontend
 
 ## How?
 
@@ -77,6 +78,12 @@ ReactDOM.render(element, document.getElementById('root'));
 ```
 
 which will create a JS object and render it into the DOM with id = root in the `public/index.html`
+
+### third party library
+
+just install it with `npm install xxx` and follow the official guides.
+
+* [install tailwind](https://tailwindcss.com/docs/guides/create-react-app)
 
 ### basic commands
 
