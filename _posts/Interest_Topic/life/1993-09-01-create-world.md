@@ -49,6 +49,8 @@ Italy
 
 TAMIL
 
+The way to create a languge should start from time the concept of special concpet of time in their culture.
+
 ### history
 
 Machu Picchu
