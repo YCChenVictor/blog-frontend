@@ -1,26 +1,42 @@
 ---
 layout: post
-title: (React 2) Component & Prop
+title: component & prop
 description:
 date: '2021-06-15'
 categories: react
-note: to be continued
+note: 這篇文章要作為補充 overview 那篇文章的，等到 overview 完成後
 ---
 
-## Summary
+## Introduction
 
-1. I am going to render component: Clock, trying to explain the concept of component and props.
-2. The main concept: from functional form to class form.
+I am going to render component, Clock, trying to explain the concept of component and props and compare the characteristics between functional form and class form. Both functional form and class form can create components with same effects in different approach.
+
+1. class form, clock
+2. functional form, clock
+3. class or functional form?
 
 ## Why
 
-Why to use component? skip
+A typical class form component in react is composed by `state` and `render()`
+
+1. The data to be displayed while rendering is in state
+2. render method describe what the UI should look like when rendering
+
+```javascript
+class Card {
+  state = {};
+
+  render() {
+    
+  }
+}
+```
+
+The reason to use component: `render()` method returns **react elements**, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.
 
 ## How
 
-### Basic Concept
-
-A truly basic object can be created as follow, which is literally a function that returns an object with css and html and can be called somewhere else
+### functional form, clock
 
 ```
 function Clock() {
@@ -99,7 +115,13 @@ class Clock extends React.Component {
   }
 }
 ```
+
 Then the current time can be updated in the `Clock` component. To let the clock update the time regularly we need use lifecycle methods which is going to be explained in the next article.
+
+### class form, clock
 
 ### The difference between props & state
 
+## reference
+
+[Differences between Functional Components and Class Components in React](https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components-in-react/)

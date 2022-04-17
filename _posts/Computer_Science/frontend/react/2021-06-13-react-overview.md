@@ -4,7 +4,7 @@ title: overview (react)
 description: ''
 date: '2021-06-13'
 categories: react
-note: tutorial 的問題是 component 還是用 class form， CSS 還是用 bootstrap
+note: tutorial 的問題是 component 還是用 class form， CSS 還是用 bootstrap，等到寫完以後，tree 的部分要換成新的網頁
 mathjax:
 mermaid: true
 p5:
@@ -15,55 +15,36 @@ p5:
 I am going to follow the tutorial to build a website with react and use it as a benchmark for other deeper topics in react.
 
 1. tree
-2. component
-3. hello world
-4. third party library
+2. third party library
+3. component
+4. hello world
 5. basic commands
 
 ## Why?
 
-I want to build a world based on JS frontend
+I want to build a world based on JS frontend. The result would be as follow (just like the tutorial):
+
+<img src='/assets/img/react_simple_calculator.png' class='w-1/2' alt='react_simple_calculator'>
 
 ## How?
 
 ### tree
 
-For example, the website as follow:
-
-<img src="/assets/img/react_basic_layout_what.png" alt="react_basic_layout_what">
-
-Then the tree of this website:
+The tree of this app:
 
 <div class="mermaid">
 graph TB
   id1((App)) --> id2((navbar))
-  id1((App)) --> id3((sidebar))
-  id1((App)) --> id4((main))
-  id4((main)) --> id5((card))
-  id4((main)) --> id6((card))
-  id4((main)) --> id7((...))
+  id1((App)) --> id4((counter))
+  id4((counter)) --> id5((reset))
+  id4((counter)) --> id6((row))
+  id6((row)) --> id7((total))
+  id6((row)) --> id8((plus))
+  id6((row)) --> id9((minus))
+  id6((row)) --> id10((delete))
 </div>
 
 all the nodes represent a component
-
-### component
-
-A component is composed by `state` and `render()`
-
-1. The data to be displayed when rendering is in state
-2. render method describe what the UI should look like when rendering
-
-```javascript
-class Card {
-  state = {};
-
-  render() {
-    
-  }
-}
-```
-
-The `render()` method returns **react elements**, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.
 
 ### hello world
 
@@ -84,6 +65,84 @@ which will create a JS object and render it into the DOM with id = root in the `
 just install it with `npm install xxx` and follow the official guides.
 
 * [install tailwind](https://tailwindcss.com/docs/guides/create-react-app)
+
+for more detail please refer to: 2021-06-14-third-party-library
+
+### component (going to change it to functional form)
+
+Here I only show how to make a workable component for this app. For more concepts, please refer to 2021-06-15-component-and-prop.md
+
+Add a component file with file name: `components/counter.jsx` in the `src` path and the coding as follow:
+
+```jsx
+import React, { Component } from 'react';
+
+class Counter extends Component {
+  state = {
+    count: 0,
+    tags: ['tag1', 'tag2', 'tag3']
+  }
+
+  renderTags() {
+    if (this.state.tags.length === 0) return <p>There is no tags!</p>;
+    return <ul>{this.state.tags.map(tag => <li key={ tag }>{ tag }</li>)}</ul>
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <span className={this.getCountClasses()}>
+          {this.formatCount()}
+        </span>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Increment
+        </button>
+        <div>
+          { this.state.tags.length === 0 && 'Please create a new tag!' }
+          { this.renderTags() }
+        </div>
+      </React.Fragment>
+    );
+  }
+
+  getCountClasses() {
+    let classes = 'rounded-md m-2 p-1 ';
+    classes += this.state.count === 0 ? 'bg-yellow-300' : 'bg-blue-500';
+    return classes;
+  }
+
+  formatCount() {
+    const { count } = this.state;
+
+    return count === 0 ? 'Zero' : count;
+
+  }
+}
+ 
+export default Counter;
+```
+
+You can change the value of count and see the effect on the webpage.
+
+import this component in `./src/index.html` and render it as follow:
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Counter from `./components/counter`;
+
+ReactDOM.render(<Counter />, document.getElementById('root'));
+```
+
+notes:
+
+* `const { count } = this.state;` picks the count property of the object, this.state by object destucturing
+* use `{}` to render data dynamically
+* use className to change the style of the components
+* change the color of `count` accoring to the value, 0 to yellow and other number to blue
+* when using the `map` method, add `key` for react to know the relationship of virtual DOM and real DOM
+* conditional rendering: can render a result based on the logic, just like `renderTags`
+* the logic of `true && 'string'` in JS will return 'string'
 
 ### basic commands
 

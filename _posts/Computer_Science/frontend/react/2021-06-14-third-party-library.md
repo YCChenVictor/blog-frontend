@@ -9,17 +9,77 @@ note: 要把 how 以下的 code 整理一下，之前寫的模式沒什麼用
 
 ## Introduction
 
-I am going to build a basic layout with react to show the basic structure I need to build a frontend app.
-
-1. add react for framework
-2. add third party library: fontawesome, mui
-3. add tailwind for CSS style
+1. tailwind
+2. fontawesome
+3. mui
 
 ## Why
 
 I need to know it to build an app.
 
 ## How
+
+### tailwind
+
+Follow the official guidance: [tailwind](https://tailwindcss.com/docs/guides/create-react-app) and then use [How to Setup Tailwind CSS in React](https://www.youtube.com/watch?v=aseGmc3jldM)
+
+install tailwind
+
+```bash
+npm install tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+npx tailwindcss init -p
+```
+
+install craco
+
+```bash
+npm install @craco/craco
+```
+
+take a look at `package.json` and replace the following:
+
+```json
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+```
+
+to
+
+```json
+"scripts": {
+  "start": "craco start",
+  "build": "craco build",
+  "test": "craco test",
+  "eject": "craco eject"
+}
+```
+
+add a new file `craco.config.js` in the root and input the following:
+
+```js
+module.exports = {
+  style: {
+    postcss: {
+      plugins: [
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    },
+  },
+}
+```
+
+input the following to `index.css`
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
 ### add react for framework
 
@@ -28,7 +88,6 @@ I need to know it to build an app.
 ### add tailwind for CSS style
 
 * [react](https://reactjs.org/docs/create-a-new-react-app.html) for SPA (Single Page Application)
-* [tailwind](https://tailwindcss.com/docs/guides/create-react-app) for style
 * [fontawesome](https://codesandbox.io/s/b6vxt?file=/src/components/AnimatingIcons.js:384-390) for icon
 * [mui](https://mui.com/getting-started/installation/) for react components
 
