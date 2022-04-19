@@ -63,6 +63,8 @@ note:
 
 However, the clock above cannot update datetime regularly, we need to use `componentDidMount`.
 
+這邊請特別解釋一下如果用 function 的話就不需要特別寫 constructor (看 overview)
+
 ### componentDidMount
 The concept of componentDidMount: it will be called as soon as this component mounted.
 ```
