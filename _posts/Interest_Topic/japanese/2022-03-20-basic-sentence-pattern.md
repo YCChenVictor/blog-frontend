@@ -17,6 +17,7 @@ mermaid:
 5. yes no question: Affirmative + ですか？
 6. Wh- question
 7. X は A ですか？ (それとも、) B ですか？
+8. A は B から C までです
 
 ## Why?
 
@@ -93,5 +94,10 @@ In order to make my sentences meaningful and effective.
 ### noun は adjective でしょう？
 
 1. looking for agreements
+
+### A(noun) は B(noun) から C(noun) までです
+
+1. the meaning: There is C from A to B.
+2. example: 朝食は六時から十までです。
 
 ## Reference
