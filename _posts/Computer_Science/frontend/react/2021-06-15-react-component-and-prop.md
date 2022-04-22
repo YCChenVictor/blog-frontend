@@ -1,21 +1,27 @@
 ---
 layout: post
-title: component & prop
+title: (react) component and prop
 description:
 date: '2021-06-15'
 categories: react
-note: 這篇文章要作為補充 overview 那篇文章的，等到 overview 完成後
+note:
 ---
 
 ## Introduction
 
-I am going to render component, Clock, trying to explain the concept of component and props and compare the characteristics between functional form and class form. Both functional form and class form can create components with same effects in different approach.
-
-1. class form, clock
-2. functional form, clock
-3. class or functional form?
+Given 2021-06-13-react-overview.md, let us start to research component with topics as follow:
+  
+* from class form to function form
+* reuse single component in the parent component
+* 
 
 ## Why
+
+The reason to use component: `render()` method returns **react elements**, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.
+
+## How
+
+### from class form to function form
 
 A typical class form component in react is composed by `state` and `render()`
 
@@ -32,9 +38,38 @@ class Card {
 }
 ```
 
-The reason to use component: `render()` method returns **react elements**, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.
+### reuse single component in the parent component
 
-## How
+Given the counter component in 2021-06-13-react-overview.md, we can render this component by creating a file, `counters.jsx` in folder, `src/components` and create parent component, `Counters` as follow:
+
+```jsx
+import React, { Component } from 'react';
+import Counter from './counter';
+
+class Counters extends Component {
+  state = {}
+  render() {
+    return (
+      <div>
+        <Counter />
+        <Counter />
+        <Counter />
+        <Counter />
+      </div>
+    );
+  }
+}
+```
+
+and the following render in `index.js`
+
+```javascript
+ReactDOM.render(<Counters />, document.getElementById('root'));
+```
+
+Then it looks like
+
+<img src="/assets/img/multiple_single_component.png">
 
 ### functional form, clock
 

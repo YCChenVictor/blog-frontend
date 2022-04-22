@@ -1,6 +1,6 @@
 ---
 layout: post
-title: overview (react)
+title: (react) overview
 description: ''
 date: '2021-06-13'
 categories: react
@@ -69,7 +69,7 @@ just install it with `npm install xxx` and follow the official guides.
 
 for more detail please refer to: 2021-06-14-third-party-library
 
-### component (going to change it to functional form)
+### component
 
 Here I only show how to make a workable component for this app. For more concepts, please refer to 2021-06-15-component-and-prop.md
 
@@ -196,6 +196,8 @@ handleIncrement = () => {
 ```
 
 Once user click the button and trigger the `handleIncrement`, react will change the state in virtual DOM -> compare the new virtual DOM and the old virtual DOM to know the key difference -> update the place with different values compared by virtual DOMs in real DOM. See 2021-06-15-component-and-prop.md for further discussion about how virtual DOM and real DOM work in react.
+
+#### passing arguments
 
 If we want to pass arguments to the event handler function, we can do the following:
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: third party library
+title: (react) third party library
 description:
 date: '2021-06-14'
 categories: react
