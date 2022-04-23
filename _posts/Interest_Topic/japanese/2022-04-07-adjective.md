@@ -1,6 +1,6 @@
 ---
 layout: post
-title: adjective (japanese)
+title: adjective (Japanese)
 description:
 date: '2022-04-07'
 categories: language

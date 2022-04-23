@@ -17,7 +17,8 @@ mermaid:
 5. yes no question: Affirmative + ですか？
 6. Wh- question
 7. X は A ですか？ (それとも、) B ですか？
-8. A は B から C までです
+8. noun は adjective でしょう？
+9. A は B から C までです
 
 ## Why?
 

@@ -11,32 +11,15 @@ note:
 
 Given 2021-06-13-react-overview.md, let us start to research component with topics as follow:
   
-* from class form to function form
 * reuse single component in the parent component
-* 
+* the concept of props
+* from class form to function form
 
 ## Why
 
 The reason to use component: `render()` method returns **react elements**, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.
 
 ## How
-
-### from class form to function form
-
-A typical class form component in react is composed by `state` and `render()`
-
-1. The data to be displayed while rendering is in state
-2. render method describe what the UI should look like when rendering
-
-```javascript
-class Card {
-  state = {};
-
-  render() {
-    
-  }
-}
-```
 
 ### reuse single component in the parent component
 
@@ -70,6 +53,144 @@ ReactDOM.render(<Counters />, document.getElementById('root'));
 Then it looks like
 
 <img src="/assets/img/multiple_single_component.png">
+
+We can use map to reduce the duplicate codings and input state data as follow:
+
+```jsx
+import React, { Component } from 'react';
+import Counter from './counter';
+
+class Counters extends Component {
+  state = {
+    counters: [
+      { id: 1, value: 0 },
+      { id: 2, value: 0 },
+      { id: 3, value: 0 },
+      { id: 4, value: 0 },
+    ]
+  }
+  render() {
+    return (
+      <div>
+        {this.state.counters.map(counter => <Counter key={counter.id}/>)}
+      </div>
+    );
+  }
+}
+```
+
+### the concept of props
+
+* through attribute
+* through children
+* prop vs state
+
+#### through attribute
+
+In the above section, you can see the attribute, `value`, in the state, we can pass it to the counter with
+
+```javascript
+<div>
+  {this.state.counters.map(counter => <Counter key={counter.id} value={counter.value}/>)}
+</div>
+```
+
+Note that the special attribute, `key` is for unique identify elements and not a prop. Now the props are passed to `<Counter />` then we can use props as follow:
+
+```jsx
+import React, { Component } from 'react';
+
+class Counter extends Component {
+  state = {
+    value: this.props.value,
+  }
+
+  render() {
+    console.log(this.state.value);
+    return (
+      <div>
+        <span className={this.getCountClasses()}>
+          {this.formatCount()}
+        </span>
+        ...
+      </div>
+    );
+  }
+  
+  formatCount() {
+    const { count } = this.state;
+    return count === 0 ? 'Zero' : value;
+  }
+}
+
+export default Counter;
+```
+
+so everytime it render this virtual DOM, the state will be updated
+
+#### through children
+
+In `counters`,
+
+```javascript
+<div>
+  {this.state.counters.map(counter =>
+    <Counter key={counter.id} value={counter.value}>
+      <h4>Counter #{counter.id}</h4>
+    </Counter>
+  )}
+</div>
+```
+
+and in `counter`,
+
+```javascript
+render() {
+  return (
+    <div>
+      {this.props.children}
+      ...
+    </div>
+  );
+}
+```
+
+Then it looks like
+
+<img src="/assets/img/counters_with_title.png">
+
+#### prop vs state
+
+`state` can only be used in the component itself and `prop` is passed to the component from outside. We cannot modify the prop directly in the component class; instead we need to pass the `prop` to `state` and then modify the `state` within the component.
+
+Because `state` can only be used in the component itself, we can only add the modify method in the component using the state; for example, in `counters`, add
+
+```javascript
+class Counters extends Component {
+  ...
+  handleDelete = () => {
+    console.log('Delete the counter')
+  }
+  ...
+}
+```
+
+### from class form to function form
+
+A typical class form component in react is composed by `state` and `render()`
+
+1. The data to be displayed while rendering is in state
+2. render method describe what the UI should look like when rendering
+
+```javascript
+class Card {
+  state = {};
+
+  render() {
+    
+  }
+}
+```
 
 ### functional form, clock
 
@@ -160,3 +281,5 @@ Then the current time can be updated in the `Clock` component. To let the clock 
 ## reference
 
 [Differences between Functional Components and Class Components in React](https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components-in-react/)
+
+[React JS - React Tutorial for Beginners](https://www.youtube.com/watch?v=Ke90Tje7VS0)
