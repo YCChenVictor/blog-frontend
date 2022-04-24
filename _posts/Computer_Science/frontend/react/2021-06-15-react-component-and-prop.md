@@ -163,7 +163,7 @@ Then it looks like
 
 `state` can only be used in the component itself and `prop` is passed to the component from outside. We cannot modify the prop directly in the component class; instead we need to pass the `prop` to `state` and then modify the `state` within the component.
 
-Because `state` can only be used in the component itself, we can only add the modify method in the component using the state; for example, in `counters`, add
+Because `state` can only be used in the component itself, we can only add the modify method in the component using the state; for example, in `counters`, add `handleDelete` as follow
 
 ```javascript
 class Counters extends Component {
@@ -171,9 +171,47 @@ class Counters extends Component {
   handleDelete = () => {
     console.log('Delete the counter')
   }
+
+  render() {
+    return (
+      <div>
+        {this.state.counters.map(counter =>
+          <Counter
+            ...
+            onDelete={this.handleDelete} 
+            ...
+          >
+            ...
+          </Counter>
+        )}
+      </div>
+    );
   ...
 }
 ```
+
+and add a button for deletion in class `Counter` as follow
+
+```jsx
+class Counter extends Component {
+  ...
+  render() {
+    return (
+      <div>
+        <button
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => this.props.onDelete()}
+        >
+          Delete
+        </button>
+      </div>
+    );
+  }
+  ...
+}
+```
+
+When we click delete button in `<Counter>`, it will trigger `handleDelete` in `Counters`
 
 ### from class form to function form
 
@@ -192,42 +230,7 @@ class Card {
 }
 ```
 
-### functional form, clock
-
-```
-function Clock() {
-  return (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is 2021-06-21.</h2>
-    </div>
-  );
-}
-```
-
-and we can call this `Clock` with two method:
-
-First method: virtual dom
-```
-const clock = <Clock />;
-ReactDOM.render(
-  clock,
-  document.getElementById('root')
-);
-```
-
-Second method: render it with `date` input
-```
-function App() {
-  return (
-    <div>
-      <Clock date="2021-06-21"/>
-    </div>
-  );
-}
-```
-However, if we want to truly have a component customizable, then we need to modify these two functions as follow so that there are props for customization:
-```
+```jsx
 function Clock(props) {
   return (
     <div>
@@ -237,23 +240,10 @@ function Clock(props) {
   );
 }
 ```
-As you can see, there is a way to change the date, `props.date`.
-```
-function App() {
-  return (
-    <div>
-      <Clock date="2021-06-21"/>
-      <Clock date="2021-06-22"/>
-    </div>
-  );
-}
-```
-The following output:
 
-<img src="/assets/img/component_date.png" alt="component_date"  width="400" height="300">
+to
 
-As you can see, the `<Clock />` can be customized; however, the clock can only show what inputted in `props`. We need to use `state` for clock to update the time regularly per second or at least update the current time. To use state, we need to turn this functional form into class form. The clock class could be
-```
+```jsx
 class Clock extends React.Component {
 
   constructor(props) {
@@ -271,12 +261,6 @@ class Clock extends React.Component {
   }
 }
 ```
-
-Then the current time can be updated in the `Clock` component. To let the clock update the time regularly we need use lifecycle methods which is going to be explained in the next article.
-
-### class form, clock
-
-### The difference between props & state
 
 ## reference
 

@@ -145,6 +145,7 @@ ReactDOM.render(<Counter />, document.getElementById('root'));
 notes:
 
 * `const { count } = this.state;` picks the count property of the object, this.state by object destucturing
+* `render()` 
 * use `{}` to render data dynamically
 * use className to change the style of the components
 * change the color of `count` accoring to the value, 0 to yellow and other number to blue
