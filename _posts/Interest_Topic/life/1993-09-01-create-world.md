@@ -1,10 +1,10 @@
 ---
 layout: post
-title:
+title: create world
 description: ''
 date: '1993-09-01'
 categories:
-note:
+note: 列在 how 裡面的只是一種參考，重點還是要從參考後創造出自己的東西。
 mathjax:
 mermaid:
 p5:
@@ -23,11 +23,37 @@ I want to create a world
 
 ## Why?
 
-
-
 ## How?
 
-focus on the mechanim
+### rules and laws
+
+Time heals everything, so give it time
+
+Don't Believe Everything You Hear
+
+chasing your dreams
+
+### genre
+
+pop music
+
+### environment
+
+Sweden
+
+### culture
+
+Italy
+
+### language
+
+TAMIL
+
+The way to create a languge should start from time the concept of special concpet of time in their culture.
+
+### history
+
+Machu Picchu
 
 ## What?
 

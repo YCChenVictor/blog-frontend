@@ -17,6 +17,8 @@ mermaid:
 5. yes no question: Affirmative + ですか？
 6. Wh- question
 7. X は A ですか？ (それとも、) B ですか？
+8. noun は adjective でしょう？
+9. A は B から C までです
 
 ## Why?
 
@@ -61,10 +63,15 @@ In order to make my sentences meaningful and effective.
 
 ### yes no question: Affirmative + ですか？
 
-1. interrogative sentence
-2. yes: はい、そうです。
-3. no: いいえ、違いまです。
-4. example: あそこはうもですか？
+* interrogative sentence
+* for sentence: A(noun) は B(noun) ですか？ The example and answers as follow:
+  * example: あそこはうもですか？
+  * yes: はい、そうです。
+  * no: いいえ、違いまです。
+* for sentence: A(noun) は B(adjective) ですか？ The example and answers as follow:
+  * example: おばさんの病気は大丈夫ですか？
+  * yes: はい、大丈夫ですか。(It's truly odd to use そうです because the question itself is neutral)
+  * no: いいえ、大丈夫ではありません。
 
 ### Wh- question
 
@@ -84,5 +91,14 @@ In order to make my sentences meaningful and effective.
 2. If A: X は A です。
 3. If B: X は B です。
 4. いいえ、C です。
+
+### noun は adjective でしょう？
+
+1. looking for agreements
+
+### A(noun) は B(noun) から C(noun) までです
+
+1. the meaning: There is C from A to B.
+2. example: 朝食は六時から十までです。
 
 ## Reference

@@ -55,15 +55,16 @@ demo with JSON structure as the items in a object are somehow related
 3. { ヴァ(va): '', ヴィ(vi): '', ヴ(vu): '', ヴェ(ve): '',　ヴォ(vo): '' }
 4. { シェ(she): '', チェ(che): '', ジェ(je) :ジェっトき(jet 機) }
 
-### special pronounce in numbers, age, dollar, time
+### special pronounce in numbers, age, dollar, time, people
 
 #### numbers
 
-1. 百 pronounced as ひゃく but びゃく in 三百 and ぴゃく in 六百 and 八百
-2. 千 pronounced as せん but ぜん in 三千
-3. ハ pronounced as はち but はっ in 八百 and 六百
-4. 一 proununced as いち but いっ in 一千万
-5. omit いち when pronouncing numbers, 1,xxx; 1,xxx,xxx; 1xx,xxx,xxx
+1. 一(ひ)、二(ふ)、三(み)、四(よ)、五(いつ)、六(む)、七(なな)、八(や)、九(ここの)、十(とお)
+2. 百 pronounced as ひゃく but びゃく in 三百 and ぴゃく in 六百 and 八百
+3. 千 pronounced as せん but ぜん in 三千
+4. ハ pronounced as はち but はっ in 八百 and 六百
+5. 一 proununced as いち but いっ in 一千万
+6. omit いち when pronouncing numbers, 1,xxx; 1,xxx,xxx; 1xx,xxx,xxx
 
 #### age
 
@@ -84,6 +85,10 @@ demo with JSON structure as the items in a object are somehow related
 4. 時: 四時 (よじ), 七時 (しちじ), 九時 (くじ)
 5. 分 (ぷん): 1, 3, 4, 6, 8, 10, 13, 20, 24, 28, 30, 31, 40, 50, 何 + 分 (ぷん)
 6. 一分 (いっぷん), 六分 (ろっぷん), 八分 (はっぷん), 十分 (じゅっぷん), 20分 (にじゅっぷん), 28分 (にじゅうはっぷん), 30分 (さんじゅっぷん), 31分 (さんじゅういっぷん), 40分 (よんじゅっぷん), 50分 (ごじゅっぷん)
+
+#### people
+
+一人(ひとり)、二人(ふたり)、三人(さんにん)、四人(よにん)、五人(ごにん)、六人(ろくにん)、七人(ななにん/しちにん)、八人(はちにん)、九人(きゅうにん)、十人(じゅうにん)
 
 ### tone
 

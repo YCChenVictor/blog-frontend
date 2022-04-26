@@ -1,13 +1,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0/mermaid.min.js"></script>
 <script>
-  var config = {
+  const config = {
+    theme: 'neutral',
     startOnLoad:true,
-    theme: 'forest',
-    flowchart:{
-        useMaxWidth:false,
-        htmlLabels:true
-      }
+    htmlLabels:true,
   };
   mermaid.initialize(config);
-  window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
 </script>
