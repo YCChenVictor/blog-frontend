@@ -2,7 +2,12 @@
 <html lang="{{ site.lang | default: " en-US" }}">
 
 <head>
-  <!-- drawing -->
+  <!-- 3D drawing -->
+  {% if page.threeJS %}
+    {%- include threeJS.html -%}
+  {% endif %}
+
+  <!-- 2D drawing -->
   {% if page.p5 %}
     {%- include p5.html -%}
   {% endif %}

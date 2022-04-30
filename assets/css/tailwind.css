@@ -394,6 +394,7 @@ audio,
 iframe,
 embed,
 object {
+  max-width: 100%;
   display: block;
   /* 1 */
   vertical-align: middle;
@@ -602,6 +603,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-36 {
   width: 9rem;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .max-w-max {

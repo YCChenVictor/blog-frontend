@@ -3,11 +3,6 @@ layout: post
 title: Action Cable
 date: '2022-03-06'
 categories: presentation
-<<<<<<< HEAD
-note: 即時通訊系統 -> 解釋 action cable 的原理 -> websocket
-=======
-note:
->>>>>>> 0dfc7a69dee49f458c33cef59cda70b572683e5d
 ---
 
 ## Introduction
@@ -26,15 +21,9 @@ With WebSocket protocol, multiple clients(browsers) can maintain constant connec
 
 <img src="/assets/img/websocket-protocol.png" alt="">
 
-<<<<<<< HEAD
-image resource: [Real-Time Rails: Implementing WebSockets in Rails 5 with Action Cable]((https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable))
-
-[websocket official](http://websocketd.com/)
-=======
 image resource: [Real-Time Rails: Implementing WebSockets in Rails 5 with Action Cable](https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable)
 
 [websocket wiki](https://en.wikipedia.org/wiki/WebSocket)
->>>>>>> 0dfc7a69dee49f458c33cef59cda70b572683e5d
 
 ## What
 
@@ -132,11 +121,7 @@ Above code means input text and press `send` -> trigger the method `speak` in `c
 ```javascript
 speak(message) {
   let name = sessionStorage.getItem('chat_room_name')
-<<<<<<< HEAD
   this.perform('speak', { message: message, name: name })
-=======
-  this.perform('speak', { message: message })
->>>>>>> 0dfc7a69dee49f458c33cef59cda70b572683e5d
 },
 ```
 
@@ -144,11 +129,7 @@ Then it will trigger backend method `speak` in `chat_room_channel.rb`
 
 ```ruby
 def speak(data)
-<<<<<<< HEAD
   ActionCable.server.broadcast "chat_room_channel", { message: data["message"], sent_by: data["name"] }
-=======
-  ActionCable.server.broadcast "chat_room_channel", { message: data["message"] }
->>>>>>> 0dfc7a69dee49f458c33cef59cda70b572683e5d
 end
 ```
 
@@ -183,17 +164,10 @@ In `./rooms/show`
 ```javascript
 <div id="main">  
   <h2>Chat room</h2>  
-<<<<<<< HEAD
-  <div id="chat\_body">  
-    <div id="messages">  
-    </div>  
-    <form id="send\_message">  
-=======
   <div id="chat_body">  
     <div id="messages">  
     </div>  
     <form id="send_message">  
->>>>>>> 0dfc7a69dee49f458c33cef59cda70b572683e5d
       <input type="text" id="message" name="message">  
       <button>Send</button>  
     </form>  
@@ -202,13 +176,8 @@ In `./rooms/show`
   <div id="modal">  
     <div>  
       <h4>Add a name</h4>  
-<<<<<<< HEAD
-      <form id="set\_name">  
-        <input type="text" id="add\_name" name="add\_name">        
-=======
       <form id="set_name">  
         <input type="text" id="add_name" name="add_name">        
->>>>>>> 0dfc7a69dee49f458c33cef59cda70b572683e5d
         <button>Submit</button>  
       </form>  
     </div>  
@@ -233,9 +202,6 @@ The view is as follow and going to set up the chat room name with `Add a name`
 
 <img class="w-1/2" src="/assets/img/1__ypCOBj7jzb5SqlnLoJbSiA.png">
 
-<<<<<<< HEAD
-Let's modify the received function to identify the receiver and sender.
-=======
 add `sent_by` in `speak`
 
 ```ruby
@@ -245,7 +211,6 @@ end
 ```
 
 modify the received function to identify the receiver and sender.
->>>>>>> 0dfc7a69dee49f458c33cef59cda70b572683e5d
 
 ```javascript
 received(data) {  
