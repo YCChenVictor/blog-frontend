@@ -2,7 +2,7 @@
 layout: post
 title:
 description: ''
-date: ''
+date: '1993-09-01'
 categories:
 note:
 mathjax:
@@ -28,3 +28,5 @@ focus on the mechanim
 give an example
 
 ## Reference
+
+[How to Develop Fictional Characters: 8 Tips for Character Development](https://www.masterclass.com/articles/how-to-develop-fictional-characters#what-is-character-development-and-why-is-it-important)

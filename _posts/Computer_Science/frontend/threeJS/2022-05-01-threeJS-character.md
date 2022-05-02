@@ -2,7 +2,7 @@
 layout: post
 title:
 description: ''
-date: ''
+date: '2022-05-01'
 categories:
 note:
 mathjax:
@@ -28,3 +28,7 @@ focus on the mechanim
 give an example
 
 ## Reference
+
+[mixamo](https://www.mixamo.com/#/)
+
+[Import FREE Rigged and Animated Characters into Blender with the Adobe Mixamo Add-On](https://www.youtube.com/watch?v=yDc-E-o_I-c)

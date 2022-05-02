@@ -127,11 +127,11 @@ The private methods are example of encapsulation in ruby. You cannot use the met
 
 ### Interfaces
 
-An interface implements Abstraction and Encapsulation throughly, making we only can see the appearance of this function and really easy to use; for example, we know the light can be on by switching the button but we do not the logics behind it.
+An interface implements abstraction and encapsulation throughly, making we only see the appearance of this function and use it easily; for example, we know the light can be on by switching the button but we do not know the logics behind it.
 
 ### Inheritance
 
-For example, For example, I want to create Animals: Dog, Cat, Bird.
+For example, I want to create Animals: Dog, Cat, Bird.
 
 ```ruby
 class Animal
@@ -198,7 +198,7 @@ end
 
 ### polymorphism vs inheritance
 
-It depends on the business logic to determine what programming concept to be used. Think about your database. If we use inheritance, then there will be a new model produced which you can create a table associate with it and you will not need runtime to calculate the logics, of which you cost more space but save more time and vice versa.
+It depends on the business logic to determine which one to be used. Think about your database. If we use inheritance, then there will be a new model produced which you can create a table associate with it and you will not need runtime to calculate the logics, of which you cost more space but save more time and vice versa.
 
 For example, the same `Dog` class. If you are running a zoo, you will not need a table for `Dog` and you just need a polymorphism table, `Animal`, to list all the animals with type in that table. But if you are running, a store professionally takes good care about dogs, then you need a `Dog` model inherited from `Animal`.
 
