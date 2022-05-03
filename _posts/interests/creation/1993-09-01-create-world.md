@@ -4,7 +4,7 @@ title: create world
 description: ''
 date: '1993-09-01'
 categories:
-note: 列在 how 裡面的只是一種參考，重點還是要從參考後創造出自己的東西。
+note:
 mathjax:
 mermaid:
 p5:
@@ -27,11 +27,9 @@ I want to create a world
 
 ### rules and laws
 
-Time heals everything, so give it time
-
-Don't Believe Everything You Hear
-
-chasing your dreams
+* time heals everything, so give it time
+* Don't Believe Everything You Hear
+* chasing your dreams
 
 ### genre
 
@@ -55,9 +53,10 @@ The way to create a languge should start from time the concept of special concpe
 
 Machu Picchu
 
-## What?
+### character
 
-give an example
+The character has the born ability to empathize and knows how to use music and paint to heal himself and heal the world accidently.
+
 
 ## Reference
 
