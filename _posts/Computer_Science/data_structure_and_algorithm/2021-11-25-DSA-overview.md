@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (DSA) Overview
+title: (DSA) overview
 date: '2021-11-25'
 categories: DSA
 note:

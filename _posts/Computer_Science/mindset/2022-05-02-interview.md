@@ -14,15 +14,18 @@ p5:
 
 This article describes my conclusion about how to pass google interview. The key elements is as follow:
 
-* data structure and algorithm
-* design pattern
-* micro-service
-* API
-* schema design
-* backend framework
-* frontend framework
-* NFT framework
-* ML framework
+* basic knowledge
+  * data structure and algorithm
+  * design pattern
+  * micro-service, API, schema design
+  * frameworks: backend, frontend, NFT, ML
+* behavior question
+  * skip
+* prior experience
+  * key improvements on current company
+  * self-built project just for fun
+
+Note that there is a preparation map which I can follow.
 
 ## Why?
 
@@ -32,7 +35,9 @@ I want pass google software engineer interview. No matter what
 
 ### data structure and algorithm
 
-The steps: have a basic understanding -> start to read cracking the coding interview.
+Please read the section of DSA.
+
+### design pattern
 
 ## Reference
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: complexity
+title: basic concept related to DSA
 description: ''
 date: '2022-05-02'
 categories: 'mindset'
@@ -21,7 +21,7 @@ This article describes the basic concepts related to data structure and algorith
 
 ## Why?
 
-skip
+Basic data structure and algorithm knowledge is useful for problem solving.
 
 ## How?
 
