@@ -2,6 +2,11 @@
 <html lang="{{ site.lang | default: 'en-US' }}">
 
 <head>
+  <!-- function drawing -->
+  {% if page.function_plot %}
+    {%- include function_plot.html -%}
+  {% endif %}
+
   <!-- 3D drawing -->
   {% if page.threeJS %}
     {%- include threeJS.html -%}

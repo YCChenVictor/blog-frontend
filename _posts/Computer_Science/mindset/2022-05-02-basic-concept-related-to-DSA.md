@@ -9,6 +9,7 @@ mathjax: true
 mermaid:
 p5:
 threeJS:
+function_plot: true
 ---
 
 ## Introduction
@@ -37,7 +38,31 @@ However, in real world problems, it is really hard to get this precise function 
 
 #### asymptotic notations
 
-draw a graph to demostrate the concepts.
+draw a graph to demostrate the concepts with functionPlot
+
+<div id="root" class=''></div>
+
+<script type='module'>
+let width = 800;
+let height = 500;
+
+functionPlot({
+  target: "#root",
+  width,
+  height,
+  yAxis: { domain: [-1, 9] },
+  grid: true,
+  data: [
+    {
+      fn: "x^2",
+      derivative: {
+        fn: "2 * x",
+        updateOnMouseMove: true
+      }
+    }
+  ]
+});
+</script>
 
 #### time complexity
 

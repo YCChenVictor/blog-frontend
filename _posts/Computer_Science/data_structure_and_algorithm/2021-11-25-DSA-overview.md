@@ -8,7 +8,7 @@ note:
 
 ## Introduction
 
-Before we dive into the world, please understand the basic concepts in the mindset, 2022-05-02-complexity.md
+Before we dive into the world, please understand the basic concepts in the mindset, 2022-05-02-basic-concept-related-to-DSA.md
 
 * Data Structure: store data in a specific logic
 * Algorithm: methods to achieve most important goal given specific data structure
