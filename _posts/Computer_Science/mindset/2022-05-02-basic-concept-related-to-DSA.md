@@ -50,15 +50,15 @@ functionPlot({
   target: "#root",
   width,
   height,
-  yAxis: { domain: [-1, 9] },
+  yAxis: { domain: [0, 100] },
+  xAxis: { domain: [0, 100] },
   grid: true,
   data: [
     {
-      fn: "x^2",
-      derivative: {
-        fn: "2 * x",
-        updateOnMouseMove: true
-      }
+      fn: "x^3 + 4x^2 + 3",
+    },
+    {
+      fn: "x^3",
     }
   ]
 });
