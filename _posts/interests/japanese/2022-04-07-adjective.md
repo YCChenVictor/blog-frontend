@@ -14,6 +14,9 @@ p5:
 
 1. ends with な
 2. ends with い
+3. adjective + の
+4. Wh- question (どんな + noun)
+5. X は A が adjective です
 
 ## Why?
 
@@ -36,6 +39,8 @@ For example, 綺麗な
    * お皿は綺麗でしょう？
 3. negative sentence (present):
    * noun は adjective (remove な) + (では/じゃ) + (ありません/ないです): お皿は綺麗ではありません。
+4. remove な and plus に before verb:
+   * 私はカップを綺麗に洗いました。
 
 ### ends with い
 
@@ -52,6 +57,8 @@ For example, 薄い
      * よい = いい。 There is only よく + (ありません/ないです), no いく + (ありません/ないです)
    * (past for ありませんでした) noun は adjective (remove い) + く + ありませんでした: 鉛筆は薄くありませんでした。
    * (past for ないです) treat 薄くない as a new adjective and use the logic of affirmative sentence: 鉛筆は薄くないです -> 鉛筆は薄くなかったです。
+5. remove い and plus く before verb:
+   * 単語を正しくおぼえましょう
 
 ### adjective + の
 
@@ -63,4 +70,7 @@ For example, 薄い
 1. 日本はどんな国ですか？ (objective: 日本は綺麗です。)
 2. 日本はどんですか？ (subjective: 日本は寒いです。)
 
-## Reference
+### X は A が adjective です
+
+1. 彼女は髪の毛が綺麗です。 (when X != A but A is related to X)
+2. 私は新しい時計が欲しいです。 (when use adjective to express verb)
