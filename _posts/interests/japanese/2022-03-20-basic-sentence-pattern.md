@@ -18,7 +18,7 @@ mermaid:
 6. Wh- question
 7. X は A ですか？ (それとも、) B ですか？
 8. noun は adjective でしょう？
-9. A は B から C までです
+9. A(noun) は B(noun) から C(noun) までです
 
 ## Why?
 
@@ -101,4 +101,9 @@ In order to make my sentences meaningful and effective.
 1. the meaning: There is C from A to B.
 2. example: 朝食は六時から十までです。
 
-## Reference
+### もう (already) vs まだ (not yet, still, going to)
+
+1. あなたはもう食事しましたか？ (はい、もう食事しました/いいえ、まだです)
+2. アナだはまだこの雑誌を目ますか？ (はい、まだ見ます/いいえ、もう見ません)
+3. 私はまだ帰りません
+4. It can be also used with noun and adjective; ex: 彼はまだ中学生です、彼女はまだわかいです。
