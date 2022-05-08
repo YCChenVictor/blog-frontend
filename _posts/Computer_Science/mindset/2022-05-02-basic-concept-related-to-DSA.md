@@ -4,12 +4,11 @@ title: basic concept related to DSA
 description: ''
 date: '2022-05-02'
 categories: 'mindset'
-note: 改用其他畫 function plot 的方法，例如 chart.js
+note: 要把 function plot 那邊包成自己的 JS module，再 import 進來重複使用，然後要盡量在修好一點
 mathjax: true
 mermaid:
 p5:
 threeJS:
-function_plot: true
 ---
 
 ## Introduction
@@ -42,34 +41,59 @@ There are big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$) and you 
 
 $$\Omega(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
 
-given we have some knowledege with set theory. Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $$4n^3 + 4n^2 + 3$$ is an element of $$\Theta(n^3)$$; then we can use $$n^3$$ to describe the complexity of $$4n^3 + 4n^2 + 3$$.
+given we have some knowledege with set theory. Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $$2x + 2$$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 2$$. The following plot demostrates that $$2x + 2$$ is wrapped by $$3x$$ and $$x$$ after $$x > 2$$
 
-<div id="root" class=''></div>
+<canvas id="canvas" width="400" height="200"></canvas>
 
-<script type='module'>
-let width = 400;
-let height = 400;
+<script>
+function fun1(x) {return (2*x + 2);}
+function fun2(x) {return 6*x;}
+function fun3(x) {return 2*x;}
 
-functionPlot({
-  target: "#root",
-  width,
-  height,
-  yAxis: { domain: [0, 50] },
-  xAxis: { domain: [0, 10] },
-  grid: true,
-  data: [
-    {
-      fn: "4x^3 + 4x^2 + 3",
-      title: 'xxx'
-    },
-    {
-      fn: "4x^3",
-    },
-    {
-      fn: "5x^3",
-    }
-  ]
-});
+function draw() {
+ var canvas = document.getElementById("canvas");
+ if (null==canvas || !canvas.getContext) return;
+
+ var axes={}, ctx=canvas.getContext("2d");
+ axes.x0 = 0;  // x0 pixels from left to x=0
+ axes.y0 = canvas.height; // y0 pixels from top to y=0
+ axes.scale = 20;                 // 40 pixels from x=0 to x=1
+ axes.doNegativeX = true;
+
+ showAxes(ctx,axes);
+ funGraph(ctx,axes,fun1,"rgb(11,153,11)",1);
+ funGraph(ctx,axes,fun2,"rgb(66,44,255)",2);
+ funGraph(ctx,axes,fun3,"rgb(33,22,140)",3);
+}
+
+function funGraph (ctx,axes,func,color,thick) {
+ var xx, yy, dx=4, x0=axes.x0, y0=axes.y0, scale=axes.scale;
+ var iMax = 10;
+ var iMin = 0;
+ ctx.beginPath();
+ ctx.lineWidth = thick;
+ ctx.strokeStyle = color;
+
+ for (var i=iMin;i<=iMax;i++) {
+  xx = dx*i; yy = scale*func(xx/scale);
+  if (i==iMin) ctx.moveTo(x0+xx,y0-yy);
+  else         ctx.lineTo(x0+xx,y0-yy);
+ }
+ ctx.stroke();
+}
+
+function showAxes(ctx,axes) {
+ var x0=axes.x0, w=ctx.canvas.width;
+ var y0=axes.y0, h=ctx.canvas.height;
+ var xmin = 0;
+ ctx.beginPath();
+ ctx.strokeStyle = "rgb(128,128,128)";
+ ctx.moveTo(xmin,y0); ctx.lineTo(w,y0);  // X axis
+ ctx.moveTo(x0,0);    ctx.lineTo(x0,h);  // Y axis
+ ctx.stroke();
+}
+
+draw()
 </script>
 
 #### time complexity
