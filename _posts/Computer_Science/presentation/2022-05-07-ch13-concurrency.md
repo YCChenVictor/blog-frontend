@@ -17,15 +17,27 @@ function_plot:
 Concurrency is a **decoupling** strategy. It helps us decouple what gets done **from when** it gets done, so we need it if there are too many tasks should be done in a given time; however it causes problems that **same method** return **different results** at the same time and the way to solve the problems is as follow:
 
 * Concurrency Defense Principle
-  * Single Responsibility Principle: only responsible for a **signle client**
-  * Corollary, Limit the Scope of Data: only **one service** for updating one scope of data
-  * Corollary, Use Copies of Data: mulitple services but only **one way** to insert data
+  * <a id="single_responsiblitiy_principle" href="#single_responsiblitiy_principle_example">Single Responsibility Principle</a>: only responsible for a **signle client**
+  * Corollary, <a id="limit_the_scope_of_data" href="#limit_the_scope_of_data_example">Limit the Scope of Data</a>: only **one service** for updating one scope of data
+  * Corollary, <a id="use_copies_of_data" href="#use_copies_of_data_example">Use Copies of Data</a>: mulitple services but only **one way** to insert data
   * Corollary, Threads Should Be as Independent as Possible: combined with the above strategies, it should be only **one client** changes only **one scope of data** at the same time
 
 Given the above design principle, we may still facing the following problems:
 
-* Thread-Safe Collections: use the thread-safe collections to avoid updaing data based on the wrong old data
-* Producer-Consumer: use this design pattern to solve multiple calculation of threads in a given memory
+* <a id="thread_safe_collections" href="#thread_safe_collections_example">Thread-Safe Collections</a>: use the thread-safe collections to avoid updaing data based on the wrong old data
+* <a id="producer_consumer" href="#producer_consumer_example">Producer-Consumer</a>: use this design pattern to solve multiple calculation of threads in a given resources such as memory
+<div class="mermaid">
+graph LR
+  id1((parent_1)) -- push: calculations --> id2[jobs_queue]
+  id3((student_1)) -- push: calculations --> id2[jobs_queue]
+  id4((...)) -- push: any_other_calculations --> id2[jobs_queue]
+
+  id2[jobs_queue] --> id5((machine1))
+  id2[jobs_queue] --> id8((machine1))
+  id2[jobs_queue] --> id6((machine2))
+  id2[jobs_queue] --> id7((...))
+</div>
+
 * Reader-Writer: use semaphore to ensure only **one writer** to a data at the same time
 
 We will use lots of `synchronized` method to solve the problems above, causing following problems:
@@ -48,7 +60,7 @@ Then finally, we have following issue:
 
 ```ruby
 def update
-  @counter += 1
+  @score += 1
 end
 ```
 
@@ -57,7 +69,7 @@ end
 ```ruby
 def update(params)
   ...
-  params[:class].find(params[:id]).counter += 1
+  params[:class].find(params[:id]).score += 1
   ...
 end
 ```
@@ -86,7 +98,7 @@ def CheckService
 end
 ```
 
-過了一陣子，老闆覺得小朋友的分數老是超過家長，要工程師研究一下為什麼，這時候我們遇到第一個 issue，解決原則是 Single Responsibility Principle，因為方法都是寫同一個，要 debug，要做實驗要改動 code，都會影響到另外一方，所以最好就是一個 service for 一個 client，如下：
+過了一陣子，老闆覺得小朋友的分數老是超過家長，要工程師研究一下為什麼，這時候我們遇到第一個 issue，解決原則是 <a id="single_responsiblitiy_principle_example" href="#single_responsiblitiy_principle">Single Responsibility Principle</a>，因為方法都是寫同一個，要 debug，要做實驗要改動 code，都會影響到另外一方，所以最好就是一個 service for 一個 client，如下：
 
 ```ruby
 def update_parent
@@ -103,9 +115,9 @@ end
 ...
 ```
 
-那在持續追查的情況下，發現家長回答的速度太快，結果 service 在 update counter 的時候，都拿到比較舊的 counter，在 service 運算完後 insert 進一大堆分數都一樣的值。這就是我們遇到的第二個 issue，解決原則有兩個，Limit the Scope of Data 與 Use Copies of Data。
+那在持續追查的情況下，發現家長回答的速度太快，結果 service 在 update score 的時候，都拿到比較舊的 score，在 service 運算完後 insert 進一大堆分數都一樣的值。這就是我們遇到的第二個 issue，解決原則有兩個，Limit the Scope of Data 與 Use Copies of Data。
 
-Limit the Scope of Data 是在 Service 裡進行同步，我們要在 update 值之前，先同步一次 counter 的數據，在 ruby 裡我們是使用 `Mutex`，如下：
+<a id="limit_the_scope_of_data_example" href="#limit_the_scope_of_data">Limit the Scope of Data</a> 是在 Service 裡進行同步，我們要在 update 值之前，先同步一次 counter 的數據，在 ruby 裡我們是使用 `Mutex`，如下：
 
 ```ruby
 class CheckParentService
@@ -121,7 +133,7 @@ class CheckParentService
   end
 
   def perform
-    if correct? # 複雜的計算都在這邊
+    if correct?
       synchronize do # 要存進去的時候同步一次
         @counter += 1
       end
@@ -130,11 +142,12 @@ class CheckParentService
 
   private
   def correct?
+    ... # 5 ~ 10 seconds
   end
 end
 ```
 
-Use Copies of Data 則是一開始我們就不要共享資料，然後搜集好所有 correct 後再一次用個 single thread update，方法如下：
+<a id="use_copies_of_data_example" href="#use_copies_of_data">Use Copies of Data</a> 則是一開始我們就不要共享資料，然後搜集好所有 correct 後再一次用個 single thread update，方法如下：
 
 ```ruby
 class Parent
@@ -167,9 +180,9 @@ every :day, at: 12
 end
 ```
 
-就算我們如此設計了，還是可能遇到問題，第一個問題是我們沒有使用 Thread-Safe Collections。除了 Queue 之外，所有資料結構都可能有 race condition，在 ruby 的解決方法是使用 `concurrent-ruby` gem 來創建資料結構，或是使用如上介紹的 `Mutex` 來 synchronize 資料。
+就算我們如此設計了，還是可能遇到問題，第一個問題是我們沒有使用 <a id="thread_safe_collections_example" href="#thread_safe_collections">Thread-Safe Collections</a>。除了 Queue 之外，所有資料結構都可能有 race condition，在 ruby 的解決方法是使用 `concurrent-ruby` gem 來創建資料結構，或是使用如上介紹的 `Mutex` 來 synchronize 資料。
 
-後來工程師都排除這些問題了，但過了一陣子家長的分數還是又低於學生，但有時候又會突然變回來，工程師們經過嚴密的研究，發現有很多家長的 Job 在每天凌晨 12 點的時候根本沒計算完，所以分數時高時低，這帶來下一個 issue，Producer-Consumer。我們可以設計一個 queue，機器可以計算的時候才將 calculation insert 進去，這樣就不會有 Job 丟失的狀況了。所以如果老闆很希望每天凌晨 12 點計算好，那他就要投資更多機器的錢，讓 Consumer 變多，這樣就不會有問題了，我們通常用 `sidekiq` 來達成。
+後來工程師都排除這些問題了，但過了一陣子家長的分數還是又低於學生，但有時候又會突然變回來，工程師們經過嚴密的研究，發現有很多家長的 Job 在每天凌晨 12 點的時候根本沒計算完，所以分數時高時低，這帶來下一個 issue，<a id="producer_consumer_example" href="#producer_consumer">Producer-Consumer</a>。我們可以設計一個 queue，機器有剩餘的 resource 時才將 calculations insert 進去，這樣就不會有 Job 丟失的狀況了。所以如果老闆很希望每天凌晨 12 點計算好，那他就要投資更多機器的錢，讓 Consumer 變多，這樣就不會有問題了，我們通常用 `sidekiq` 來達成。
 
 在解決以上問題後，老闆希望看到分數的即時播報，所以一定要在 Service 裡進行同步，這時候我們會遇到下一個 issue，Reader-Writer problem。因為同時間可能會有兩個 writer 會寫入同一格資料的 race condition，我們的解決方法是加入 `semaphore` 告知說先在這格沒有 writer 在寫喔，如下：
 
