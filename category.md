@@ -13,31 +13,31 @@ permalink: category
   {% endfor %}
   {% assign rawcategories = rawcategories | split:'|' | sort %}
   {% assign categories = "" %}
-  {% for categorie in rawcategories %}
-    {% if categorie != "" %}
+  {% for category in rawcategories %}
+    {% if category != "" %}
       {% if categories == "" %}
-        {% assign categories = categorie | split:'|' %}
+        {% assign categories = category | split:'|' %}
       {% endif %}
-      {% unless categories contains categorie %}
-        {% assign categories = categories | join:'|' | append:'|' | append:categorie | split:'|' %}
+      {% unless categories contains category %}
+        {% assign categories = categories | join:'|' | append:'|' | append:category | split:'|' %}
       {% endunless %}
     {% endif %}
   {% endfor %}
 
   <ul>
-    {% for categorie in categories %}
-      <a href="#{{ categorie | slugify }}">
+    {% for category in categories %}
+      <a href="#{{ category | slugify }}">
         <i class="fa-solid fa-check text-gray-900"></i>
-        {{ categorie }}
+        {{ category }}
       </a>
     {% endfor %}
   </ul>
   
-  {% for categorie in categories %}
-    <h2 id="{{ categorie | slugify }}">{{ categorie }}</h2>
+  {% for category in categories %}
+    <h2 id="{{ category | slugify }}">{{ category }}</h2>
     <ul>
       {% for post in site.posts %}
-        {% if post.categories contains categorie %}
+        {% if post.categories contains category %}
         <li>
           <h3>
             <a href="{{site.baseurl}}{{ post.url }}">
