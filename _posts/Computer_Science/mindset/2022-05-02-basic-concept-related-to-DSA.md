@@ -25,7 +25,7 @@ This article describes the basic concepts related to data structure and algorith
 
 Basic data structure and algorithm knowledge is useful for problem solving. We need concepts such as complexity for evaluations,
 
-## How?
+## How? & What?
 
 ### complexity
 
@@ -37,9 +37,9 @@ However, in real world problems, it is really hard to get this precise function 
 
 #### asymptotic notations
 
-There are big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$) and you can check the defination of academia online. Here we focus on the defination of industry. The defination of $$O$$ in industry in the save as the defination of $$\Theta$$ in academia; that is
+There are big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$) and you can check the defination of academia online. Here we focus on the defination of industry. The defination of $$O$$ in industry is the same as the defination of $$\Theta$$ in academia; that is
 
-$$\Omega(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
+$$\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
 
 given we have some knowledege with set theory. Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $$2x + 2$$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 2$$. The following plot demostrates that $$2x + 2$$ is wrapped by $$3x$$ and $$x$$ after $$x > 2$$
 
@@ -96,9 +96,37 @@ function showAxes(ctx,axes) {
 draw()
 </script>
 
+Based on the defination, we know that the big O of
+
+* $$2x + 2$$ is $$2x$$ and also $$x$$
+* $$2x^2 + x$$ is $$x^2$$ because of $$ \exists \ a, b > 0 \ s.t \ ax^2 < 2x^2 + x < bx^2 \forall \ x>0$$
+
 #### time complexity
 
-We ignore the math definition of big o and use the definition of big o in industry. `Time complexity = O(n)` means it needs to traverse **at most** n elements to get things done; for example, given a singly linked list, if we want to read the last element of this list, we need to traverse all the nodes; as a result, the time complexity is O(n).
+* Again, we use the definition of industry
+* `Time complexity = O(n)` means it needs to traverse **at most** n elements to get things done
+* example: O(A + B)
+
+```javascript
+for (let i = 0; i < arrayA.length; i++) {
+  console.log(arrayA[i])
+}
+for (let i = 0; i < arrayB.length; i++) {
+  console.log(arrayB[i])
+}
+```
+
+* example: O(A * B)
+
+```javascript
+for (let i = 0; i < arrayA.length; i++) {
+  for (let j = 0; j < arrayB.length; j++) {
+    console.log(arrayA[i] + arrayB[j])
+  }
+}
+```
+
+
 
 #### space complexity
 
