@@ -16,9 +16,13 @@ threeJS:
 This article describes the basic concepts related to data structure and algorithm.
 
 * complexity
-  * time complexity
-  * space complexity
+  * concept
   * asymptotic notations
+  * simpilify notations
+* time complexity
+  * concept
+  * amortized time
+* space complexity
 * pointer
 
 ## Why?
@@ -28,6 +32,8 @@ Basic data structure and algorithm knowledge is useful for problem solving. We n
 ## How? & What?
 
 ### complexity
+
+#### concept
 
 Complexity describes the relationship between the cost we care and the size of input; for example, if we care about the time to produce a product, then the total time to create x books may be
 
@@ -96,16 +102,20 @@ function showAxes(ctx,axes) {
 draw()
 </script>
 
+#### simpilify notations
+
 Based on the defination, we know that the big O of
 
 * $$2x + 2$$ is $$2x$$ and also $$x$$
 * $$2x^2 + x$$ is $$x^2$$ because of $$ \exists \ a, b > 0 \ s.t \ ax^2 < 2x^2 + x < bx^2 \forall \ x>0$$
 
-#### time complexity
+### time complexity
+
+#### concept of time complexity
 
 * Again, we use the definition of industry
 * `Time complexity = O(n)` means it needs to traverse **at most** n elements to get things done
-* example: O(A + B)
+* example: iteration O(A + B)
 
 ```javascript
 for (let i = 0; i < arrayA.length; i++) {
@@ -116,7 +126,7 @@ for (let i = 0; i < arrayB.length; i++) {
 }
 ```
 
-* example: O(A * B)
+* example: iteration O(A * B)
 
 ```javascript
 for (let i = 0; i < arrayA.length; i++) {
@@ -126,7 +136,63 @@ for (let i = 0; i < arrayA.length; i++) {
 }
 ```
 
+* example: recursive O(log N) (binary search)
 
+Given a sorted array, the binary search algorithm as follow:
+
+```javascript
+function binarySearch (array, target) {
+  let middleIndex = Math.floor(array.length / 2)
+
+  if (array[middleIndex] === target) {
+    return true
+  }
+
+  if(array.length === 1) {
+    return false
+  }
+
+  if (target > array[middleIndex]) {
+    return binarySearch (array.slice(middleIndex, array.length), target)
+  } else if (target < array[middleIndex]) {
+    return binarySearch (array.slice(0, middleIndex), target)
+  }
+}
+```
+
+For example, if the number of the elements in an array is 16, then it at most need to work through 5 elements to find the target with steps:
+
+step 1: the middle element of 16 elements
+step 2: the middle element of 8 elements
+step 3: the middle element of 4 elements
+step 4: the middle element of 2 elements
+step 5: the middle element of 1 element
+
+As a result, we can describe the number of traverse (k) with the number of elements (N) as follow:
+
+$$N = 2^k$$, which means
+
+$$k = log_2N = logN$$, which means
+
+$$O(logN)$$
+
+* example: recursive $$O(2^N)$$
+
+```javascript
+function f(n) {
+  if(n<=1) {
+    return 1;
+  } else {
+    return f(n-1) + f(n-1);
+  }
+}
+```
+
+If n = 16, then the number of 
+
+#### amortized time
+
+skip
 
 #### space complexity
 
