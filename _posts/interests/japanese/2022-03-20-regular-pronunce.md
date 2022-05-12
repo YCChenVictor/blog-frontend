@@ -10,6 +10,14 @@ mermaid: true
 
 ## Introduction
 
+* personal pronoun
+* deixis
+* numbers
+* age
+* time
+* when
+* location
+
 ## Why?
 
 To memorize the nouns with regular pronunce.
@@ -36,6 +44,8 @@ Use あなた when you do not know who he/she is but should not use it towards s
 ### numbers
 
 1(いち), 2(に), 3(さん), 4(よん), 5(ご), 6(ろく), 7(なな), 8(はち), 9(きゅう), 10(じゅう)
+
+* 番(ばん)
 
 ### age
 

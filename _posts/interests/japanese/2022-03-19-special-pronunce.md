@@ -55,7 +55,7 @@ demo with JSON structure as the items in a object are somehow related
 3. { ヴァ(va): '', ヴィ(vi): '', ヴ(vu): '', ヴェ(ve): '',　ヴォ(vo): '' }
 4. { シェ(she): '', チェ(che): '', ジェ(je) :ジェっトき(jet 機) }
 
-### special pronounce in numbers, age, dollar, time, people
+### special pronounce in numbers, age, dollar, time, people, rank, floor
 
 #### numbers
 
@@ -89,6 +89,10 @@ demo with JSON structure as the items in a object are somehow related
 #### people
 
 一人(ひとり)、二人(ふたり)、三人(さんにん)、四人(よにん)、五人(ごにん)、六人(ろくにん)、七人(ななにん/しちにん)、八人(はちにん)、九人(きゅうにん)、十人(じゅうにん)
+
+#### floor
+
+一階(いっかい)、三階(さんがい)、六階(ろっかい)、8階(はっかい)、十階(じゅっかい)、何階(なんがい)
 
 ### tone
 

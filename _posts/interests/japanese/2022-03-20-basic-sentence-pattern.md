@@ -17,8 +17,11 @@ mermaid:
 5. yes no question: Affirmative + ですか？
 6. Wh- question
 7. X は A ですか？ (それとも、) B ですか？
-8. noun は adjective でしょう？
-9. A(noun) は B(noun) から C(noun) までです
+8. A が X ですか？
+9. noun は adjective でしょう？
+10. A(noun) は B(noun) から C(noun) までです
+11. もう (already) vs まだ (not yet, still, going to)
+12. だから, から (because) vs でも, けど/が (but)
 
 ## Why?
 
@@ -92,6 +95,10 @@ In order to make my sentences meaningful and effective.
 3. If B: X は B です。
 4. いいえ、C です。
 
+### A が X ですか？
+
+1. どちらがあなたの先生ですか？ こちらが私の先生です。
+
 ### noun は adjective でしょう？
 
 1. looking for agreements
@@ -107,3 +114,8 @@ In order to make my sentences meaningful and effective.
 2. アナだはまだこの雑誌を目ますか？ (はい、まだ見ます/いいえ、もう見ません)
 3. 私はまだ帰りません
 4. It can be also used with noun and adjective; ex: 彼はまだ中学生です、彼女はまだわかいです。
+
+### だから, から (because) vs でも, けど/が (but)
+
+1. 明日は土曜日です。だから、私は会社へ行きません = 明日は土曜日ですから、私は会社へ行きません
+2. 明後日はお休みです。でも、私は学校へ行きます。 = 明後日はお休みですけど、私は学校へ行きます。
