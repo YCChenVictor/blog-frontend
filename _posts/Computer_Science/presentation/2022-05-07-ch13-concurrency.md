@@ -7,7 +7,7 @@ categories: presentation
 note:
 mathjax:
 mermaid: true
-p5:
+p5: true
 threeJS:
 function_plot:
 ---
@@ -38,21 +38,124 @@ graph LR
   id2[jobs_queue] --> id7((...))
 </div>
 
-* Reader-Writer: use semaphore to ensure only **one writer** to a data at the same time
+* <a id="reader_writer" href="#reader_writer_example">Reader-Writer</a>: use semaphore to ensure only **one writer** to a data at the same time
 
-We will use lots of `synchronized` method to solve the problems above, causing following problems:
+We will use <a id="lots_of_synchronized" href="#lots_of_synchronized_example">lots of `synchronized`</a> method to solve the problems above, causing following problems:
 
 * client-side: synchronized on the client side but we may forgot to do so
 * server-side: synchronized on the server side but subtle problems occur when there are multiple **dependent** variables needs synchronization
 * **Dining Philosophers**:
-  * Starvation: Some threads is **prohibited from** proceeding for an excessively long time or forever
-  * Deadlock: Threads **waiting** for **each other** to finish
-  * Livelock: Threads trying to do work but finding another “in the way.”
+  * <a id="starvation" href="#starvation_example">Starvation</a>: Some threads is **prohibited from** proceeding for an excessively long time or forever
+  * <a id="deadlock" href="#deadlock_example">Deadlock</a>: Threads **waiting** for **each other** to finish
+  * <a id="livelock" href="#livelock_example">Livelock</a>: Threads trying to do work but finding another “in the way.”
 
-Then finally, we have following issue:
+#### Dining Philosophers concepts (摸乳巷)
 
-* Writing Correct Shut-Down Code Is Hard
+* 三角形代表瘦子 (兩個三角形相遇都側身的話兩個都能通過)
+* 圓形代表胖子 (胖子就是側身也過不了，大家都要讓他)
+
+<div id='concept' class='h-screen justify-center items-center'>
+  <div id='concept toggle' class=''></div>
+  <div id='concept canvas' class='border'></div>
+</div>
+
+<script>
+  const filename = 'dining_philosophers.png'
+  const imagePath = '/assets/img/' + filename
+  const conceptDiv = document.getElementById('concept');
+  const conceptWidth = conceptDiv.offsetWidth;
+  let eraseEnable = false;
+  let img;
+  let photoGraph;
+
+  function setup() {
+    setupImage ()
+    setupButton ()
+    setupCanvas ()
+    setupGraphics ()
+  }
+
+  function draw() {
+    image(img, 0, 0, conceptWidth, 400);
+    image(graphic, 0, 0)
+  }
+
+  function mouseDragged() {
+    if (!eraseEnable) {
+      graphic.fill('black');
+      graphic.noStroke();
+      graphic.ellipse(mouseX, mouseY, 5, 5);
+    } else {
+      graphic.fill('white');
+      graphic.noStroke();
+      graphic.ellipse(mouseX, mouseY, 10, 10);
+    }
+  }
+
+  function keyTyped() {
+    if (key === 's') {
+      saveCanvas(filename);
+    }
+  }
+
+  function setupImage () {
+    try {
+      img = loadImage(imagePath);
+    }
+    catch {
+      img = createImage(conceptWidth, 400)
+    }
+  }
+
+  function setupButton () {
+    toggleButton = createButton('erase');
+    toggleButton.parent('concept toggle');
+    toggleButton.addClass("border rounded px-4");
+    toggleButton.mouseClicked(ButtonClicked)
+  }
+
+  function setupCanvas () {
+    const concept = createCanvas(conceptWidth, 400);
+    concept.parent('concept canvas');
+  }
+
+  function setupGraphics () {
+    graphic = createGraphics(conceptWidth, 400);
+  }
+
+  function ButtonClicked () {
+    toggleStyle()
+    toggleErase()
+  }
+
+  function toggleErase() {
+    if (eraseEnable) {
+      noErase();
+      eraseEnable = false;
+    }
+    else {
+      erase();
+      eraseEnable = true;
+    }
+  }
+
+  function toggleStyle() {
+    toggleButton.toggleClass("bg-indigo-100");
+    toggleButton.toggleClass("border");
+  }
+</script>
+
+Then finally, we have <a id="other_issue">following issue</a>:
+
+* Writing Correct Shut-Down Code Is Hard: review the jobs regularly and find out which job often have dining philosophers problem and solve it on the early stage
 * Testing Threaded Code
+  * Treat Spurious Failures as Candidate Threading Issues: 一發生小小的系統障礙 -> 一定跟 thread 有關
+  * Get Your Nonthreaded Code Working First: 但我們還是先把跟 thread 無關的 code 做好
+  * Make Your Threaded Code Pluggable: 讓 thread 的 code 很好拔插，這樣就可以做出各種可能來檢測
+  * Make Your Threaded Code Tunable: 你要讓你的 threaded code 做了改動，系統還是跑得很順
+  * Run with More Threads Than Processors: 讓 threads 的數量多於 processors，這樣你就有機會提前遇到 dining philosophers 問題，並解決
+  * Run on Different Platforms: 提早讓你的 threads 在不同平台上跑動，這樣可以提早發現 bug
+  * Instrument Your Code to Try and Force Failures: 有些 bug 的發生來自一個特定的排列組合，你可以刻意設定等待時間或是交換 thread 的先後順序，嘗試reproduce 這個特定的排列組合，以解決問題。
 
 ## How? & What?
 
@@ -184,7 +287,7 @@ end
 
 後來工程師都排除這些問題了，但過了一陣子家長的分數還是又低於學生，但有時候又會突然變回來，工程師們經過嚴密的研究，發現有很多家長的 Job 在每天凌晨 12 點的時候根本沒計算完，所以分數時高時低，這帶來下一個 issue，<a id="producer_consumer_example" href="#producer_consumer">Producer-Consumer</a>。我們可以設計一個 queue，機器有剩餘的 resource 時才將 calculations insert 進去，這樣就不會有 Job 丟失的狀況了。所以如果老闆很希望每天凌晨 12 點計算好，那他就要投資更多機器的錢，讓 Consumer 變多，這樣就不會有問題了，我們通常用 `sidekiq` 來達成。
 
-在解決以上問題後，老闆希望看到分數的即時播報，所以一定要在 Service 裡進行同步，這時候我們會遇到下一個 issue，Reader-Writer problem。因為同時間可能會有兩個 writer 會寫入同一格資料的 race condition，我們的解決方法是加入 `semaphore` 告知說先在這格沒有 writer 在寫喔，如下：
+在解決以上問題後，老闆希望看到分數的即時播報，所以一定要在 Service 裡進行同步，這時候我們會遇到下一個 issue，<a id="reader_writer_example" href="#reader_writer">Reader-Writer problem</a>。因為同時間可能會有兩個 writer 會寫入同一格資料的 race condition，我們的解決方法是加入 `semaphore` 告知說先在這格沒有 writer 在寫喔，如下：
 
 ```ruby
 class CheckParentService
@@ -207,7 +310,7 @@ class CheckParentService
 end
 ```
 
-上面的狀況都排除後，其實還是有可能遇到問題。假設老闆覺得這場比賽要刺激一點，就改成比誰先答對 100 題，事後有個家長很生氣，說自己做了 101 題，老闆請工程師了解一下狀況，後來發現是這個 service 的 `synchronize` 出了問題。工程師原先的邏輯是，答對 100 題後，就不再加分了，如下：
+上面的狀況都排除後，就會開始發生<a id="lots_of_synchronized_example" href="#lots_of_synchronized">因為 `synchronize` 產生的小問題</a>。假設老闆覺得這場比賽要刺激一點，就改成比誰先答對 100 題，事後有個家長很生氣，說自己做了 101 題，老闆請工程師了解一下狀況，後來發現是這個 service 的 `synchronize` 出了問題。工程師原先的邏輯是，答對 100 題後，就不再加分了，如下：
 
 ```ruby
 class CheckParentService
@@ -217,7 +320,7 @@ class CheckParentService
   end
 
   def perform
-    @accomplished = true if @counter >= 100
+    @accomplished = true if @counter >= 100 # key logic
     if correct? && !@accomplished
       synchronize do
         @accomplished # get @accomplished from other threads
@@ -260,9 +363,9 @@ class CheckParentService
 end
 ```
 
-大家應該會發現引發上面問題的原因是，有兩個 variables 要被同步，而且這兩個變數還相互有關聯。作者說最好的方式就是設計好的邏輯，限縮越少有關連的變數同步越好。
+大家應該會發現引發上面問題的原因是，有兩個 variables 要被同步，而且這兩個變數還相互有關聯。作者說最好的方式就是設計好的邏輯，**限縮越少有關連的變數同步越好**。
 
-後來老闆覺得家長分數太高，所以就調整了題目難度，需要更多暫存做計算。工程師們發現這一類比較難的 Job 總是不會被計算機計算，因為計算時它需要至少 5MB 的暫存，但總是釋放還不到 5MB 的暫存時，就被其他 Job 佔走了，這就是 Dining Philosophers 中的 Starvation 問題，解決方法是使用 `semaphore`。當此 job 出現時，用 `Mutex` 發出訊號給其他 Job，讓他們先不要再 `perform`
+後來老闆覺得家長分數太高，所以就調整了題目難度，需要更多暫存做計算。工程師們發現這一類比較難的 Job 總是不會被計算機計算，因為計算時它需要至少 5MB 的暫存，但總是釋放還不到 5MB 的暫存時，就被其他 Job 佔走了，這就是 Dining Philosophers 中的 <a id="starvation_example" href="#starvation">Starvation</a> 問題，解決方法是使用 `semaphore`。當此 job 出現時，用 `Mutex` 發出訊號給其他 Job，讓他們先不要再 `perform`
 
 ```ruby
 class CheckParentService
@@ -288,7 +391,7 @@ class CheckStudentService
   end
 
   def perform
-    if !@stop
+    if !@stop # 如果沒有來自 ParentService 叫停的信號再做下去
       ...
     end
   end
@@ -296,7 +399,7 @@ class CheckStudentService
 end
 ```
 
-後來老闆又覺得可以來一個家長跟學生共同答題的機制，兩個問題都需要一定的計算時間，結果沒設計好，產生 deadlock，如下：
+後來老闆又覺得可以來一個家長跟學生共同答題的機制，兩個問題都需要一定的計算時間，結果沒設計好，產生 <a id="deadlock_example" href="#deadlock">deadlock</a>，如下：
 
 ```ruby
 class CheckParentService
@@ -359,7 +462,7 @@ end
 ...
 ```
 
-我們可能會想說用另外一個方法解決以上問題，就是你如果在計算，那我就先等你算，啊然後我自己先不算，但實際上會產生 livelock，雙方一直在讓對方，如下：
+我們可能會想說用另外一個方法解決以上問題，就是你如果在計算，那我就先等你算，啊然後我自己先不算，但實際上會產生 <a id="livelock_example" href="#livelock">livelock</a>，雙方一直在讓對方，如下：
 
 ```ruby
 class CheckParentService
@@ -408,7 +511,7 @@ class CheckStudentService
 end
 ```
 
-(to be continue)
+<a href="#other_issue">其他議題</a>
 
 ## Reference
 

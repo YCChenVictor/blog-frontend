@@ -16,18 +16,24 @@ threeJS:
 This article describes the basic concepts related to data structure and algorithm.
 
 * complexity
-  * time complexity
-  * space complexity
+  * concept
   * asymptotic notations
+  * simpilify notations
+* time complexity
+  * concept
+  * amortized time
+* space complexity
 * pointer
 
 ## Why?
 
 Basic data structure and algorithm knowledge is useful for problem solving. We need concepts such as complexity for evaluations,
 
-## How?
+## How? & What?
 
 ### complexity
+
+#### concept
 
 Complexity describes the relationship between the cost we care and the size of input; for example, if we care about the time to produce a product, then the total time to create x books may be
 
@@ -37,9 +43,9 @@ However, in real world problems, it is really hard to get this precise function 
 
 #### asymptotic notations
 
-There are big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$) and you can check the defination of academia online. Here we focus on the defination of industry. The defination of $$O$$ in industry in the save as the defination of $$\Theta$$ in academia; that is
+There are big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$) and you can check the defination of academia online. Here we focus on the defination of industry. The defination of $$O$$ in industry is the same as the defination of $$\Theta$$ in academia; that is
 
-$$\Omega(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
+$$\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
 
 given we have some knowledege with set theory. Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $$2x + 2$$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 2$$. The following plot demostrates that $$2x + 2$$ is wrapped by $$3x$$ and $$x$$ after $$x > 2$$
 
@@ -96,9 +102,97 @@ function showAxes(ctx,axes) {
 draw()
 </script>
 
-#### time complexity
+#### simpilify notations
 
-We ignore the math definition of big o and use the definition of big o in industry. `Time complexity = O(n)` means it needs to traverse **at most** n elements to get things done; for example, given a singly linked list, if we want to read the last element of this list, we need to traverse all the nodes; as a result, the time complexity is O(n).
+Based on the defination, we know that the big O of
+
+* $$2x + 2$$ is $$2x$$ and also $$x$$
+* $$2x^2 + x$$ is $$x^2$$ because of $$ \exists \ a, b > 0 \ s.t \ ax^2 < 2x^2 + x < bx^2 \forall \ x>0$$
+
+### time complexity
+
+#### concept of time complexity
+
+* Again, we use the definition of industry
+* `Time complexity = O(n)` means it needs to traverse **at most** n elements to get things done
+* example: iteration O(A + B)
+
+```javascript
+for (let i = 0; i < arrayA.length; i++) {
+  console.log(arrayA[i])
+}
+for (let i = 0; i < arrayB.length; i++) {
+  console.log(arrayB[i])
+}
+```
+
+* example: iteration O(A * B)
+
+```javascript
+for (let i = 0; i < arrayA.length; i++) {
+  for (let j = 0; j < arrayB.length; j++) {
+    console.log(arrayA[i] + arrayB[j])
+  }
+}
+```
+
+* example: recursive O(log N) (binary search)
+
+Given a sorted array, the binary search algorithm as follow:
+
+```javascript
+function binarySearch (array, target) {
+  let middleIndex = Math.floor(array.length / 2)
+
+  if (array[middleIndex] === target) {
+    return true
+  }
+
+  if(array.length === 1) {
+    return false
+  }
+
+  if (target > array[middleIndex]) {
+    return binarySearch (array.slice(middleIndex, array.length), target)
+  } else if (target < array[middleIndex]) {
+    return binarySearch (array.slice(0, middleIndex), target)
+  }
+}
+```
+
+For example, if the number of the elements in an array is 16, then it at most need to work through 5 elements to find the target with steps:
+
+step 1: the middle element of 16 elements
+step 2: the middle element of 8 elements
+step 3: the middle element of 4 elements
+step 4: the middle element of 2 elements
+step 5: the middle element of 1 element
+
+As a result, we can describe the number of traverse (k) with the number of elements (N) as follow:
+
+$$N = 2^k$$, which means
+
+$$k = log_2N = logN$$, which means
+
+$$O(logN)$$
+
+* example: recursive $$O(2^N)$$
+
+```javascript
+function f(n) {
+  if(n<=1) {
+    return 1;
+  } else {
+    return f(n-1) + f(n-1);
+  }
+}
+```
+
+If n = 16, then the number of 
+
+#### amortized time
+
+skip
 
 #### space complexity
 
