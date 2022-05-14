@@ -236,7 +236,7 @@ The key tools are `useContext` and `useReducer`.
 
 A. `useContext`: letting the nested components to use variable defined in the components outside. For example, the nested structure: `ThemedButton()` in `Toolbar()` in `App()`. With `ThemeContext` created by `React.createContext()` outside these components, we can access ThemeContext
 
-```
+```javascript
 const themes = {
   light: {
     foreground: "#000000",

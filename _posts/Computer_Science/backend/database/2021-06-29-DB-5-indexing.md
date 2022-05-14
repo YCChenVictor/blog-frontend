@@ -4,7 +4,7 @@ title: (DB 5) Indexing
 description:
 date: '2021-06-29'
 categories: database
-note: 
+note: 之後要整合到後來的文章中 
 ---
 
 ## Summary

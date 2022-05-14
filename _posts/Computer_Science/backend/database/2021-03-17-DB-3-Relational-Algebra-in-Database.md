@@ -4,6 +4,7 @@ title: (DB 3) Relational Algebra in Database
 date: '2021-03-17T07:54:46.016Z'
 categories: database
 status: to be continued
+note: 之後要整合到後來的文章中
 ---
 
 ## Introduction

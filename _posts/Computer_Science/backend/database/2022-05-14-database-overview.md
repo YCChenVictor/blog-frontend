@@ -1,32 +1,48 @@
 ---
-title: '(DB 1) Why, What, How'
-description: 'How (Architecture, Model, Operation)'
-date: '2021-03-12T04:57:20.565Z'
+layout: post
+title: (database) overview
+date: '2021-05-14'
 categories: database
-keywords: []
-slug: /@t5204713910/dbms-1-why-what-how-142e772a651f
 ---
 
-### Why Database System?
+## Introduction
 
-DBMS has many advantages over tradition Flat File management system
+This article describes the problems that database solved and how did they solve it with some followed example.
 
-1.  [Data Redundancy](https://en.wikipedia.org/wiki/Data_redundancy): storing of the same **data** in multiple locations
-2.  [Data isolation](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29): determines when and how changes made by one operation become **visible** to other concurrent users and systems.
-3.  [Integrity problems](https://en.wikipedia.org/wiki/Data_integrity): Any unintended changes
-4.  Security problems
-5.  [Concurrency access](https://en.wikipedia.org/wiki/Concurrency_control): The ability to gain admittance to a system or component by more than one user or process
-6.  Consistency
+## Why?
 
-### What is Database?
+The easiest way one human can find to store data is through tradition flat file management system. DBMS has many advantages over tradition flat file management system as follow:
 
-A collection of **related data** which represents some aspect of the real world.
+* Data redundancy and inconsistency:
+* Data sharing:
+* Data concurrency:
+* Data searching:
+* Data integrity:
+* System crashing:
+* Data security:
+* Backup:
+* Interfaces:
+* Easy Maintenance:
 
-### What is DBMS?
+For more information about ACID, please refer to 2022-05-15-database-ACID.md
 
-A **software** for storing and retrieving users’ data while considering appropriate security measures.
+## How?
 
-#### Types:
+### [Data Redundancy](https://en.wikipedia.org/wiki/Data_redundancy): storing of the same **data** in multiple locations
+
+### [Data isolation](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29): determines when and how changes made by one operation become **visible** to other concurrent users and systems
+
+### [Integrity problems](https://en.wikipedia.org/wiki/Data_integrity): Any unintended changes
+
+### Security problems
+
+### [Concurrency access](https://en.wikipedia.org/wiki/Concurrency_control): The ability to gain admittance to a system or component by more than one user or process
+
+### Consistency
+
+## What?
+
+### types of database
 
 1.  [relational model](https://en.wikipedia.org/wiki/Relational_model): represents data as relations or tables
 2.  [network model](https://en.wikipedia.org/wiki/Network_model): viewed as a graph in which object types are **nodes** and relationship types are **arcs**, is **not restricted** to being a hierarchy or [lattice](https://en.wikipedia.org/wiki/Lattice_graph "Lattice graph").
@@ -125,5 +141,7 @@ matches read in website
 
 ### Reference
 
-[**DBMS Tutorial: Database Management System Notes**  
-_Database Management System (DBMS) is a collection of programs which enables its users to access a database, manipulate…_www.guru99.com](https://www.guru99.com/dbms-tutorial.html "https://www.guru99.com/dbms-tutorial.html")[](https://www.guru99.com/dbms-tutorial.html)
+[Advantages of DBMS over File system](https://www.geeksforgeeks.org/advantages-of-dbms-over-file-system/)
+
+[DBMS Tutorial: Database Management System Notes
+_Database Management System (DBMS) is a collection of programs which enables its users to access a database, manipulate…_www.guru99.com](https://www.guru99.com/dbms-tutorial.html)
