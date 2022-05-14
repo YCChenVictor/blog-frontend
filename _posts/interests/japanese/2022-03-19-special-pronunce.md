@@ -55,7 +55,9 @@ demo with JSON structure as the items in a object are somehow related
 3. { ヴァ(va): '', ヴィ(vi): '', ヴ(vu): '', ヴェ(ve): '',　ヴォ(vo): '' }
 4. { シェ(she): '', チェ(che): '', ジェ(je) :ジェっトき(jet 機) }
 
-### special pronounce in numbers, age, dollar, time, people, rank, floor
+### special pronouncation of unit numbers in numbers, age, dollar, time, people, rank, floor
+
+regular number pronouncation: 1(いち), 2(に), 3(さん), 4(よん), 5(ご), 6(ろく), 7(なな), 8(はち), 9(きゅう), 10(じゅう)
 
 #### numbers
 
