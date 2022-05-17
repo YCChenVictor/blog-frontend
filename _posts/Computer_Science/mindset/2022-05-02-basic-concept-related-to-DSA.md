@@ -6,7 +6,7 @@ date: '2022-05-02'
 categories: 'mindset'
 note: 要把 function plot 那邊包成自己的 JS module，再 import 進來重複使用，然後要盡量在修好一點
 mathjax: true
-mermaid:
+mermaid: true
 p5:
 threeJS:
 ---
@@ -16,13 +16,15 @@ threeJS:
 This article describes the basic concepts related to data structure and algorithm.
 
 * complexity
-  * concept
+  * concept of complexity
   * asymptotic notations
   * simpilify notations
 * time complexity
-  * concept
+  * concept of time complexity
   * amortized time
 * space complexity
+  * concept of space complexity
+* examples
 * pointer
 
 ## Why?
@@ -115,7 +117,27 @@ Based on the defination, we know that the big O of
 
 * Again, we use the definition of industry
 * `Time complexity = O(n)` means it needs to traverse **at most** n elements to get things done
-* example: iteration O(A + B)
+
+#### amortized time
+
+skip
+
+### space complexity
+
+#### concept of space complexity
+
+* we use the definition of industry
+* space complexity = O(n) means it needs to at most n elements of space to get things done
+* example: recursive $$O(N)$$
+
+We also ignore the math definition of big o and use the definition of big o in industry. Space complexity means how many elements needed for this problem to be done at most; for example, given a singly linked list with n elements, if we want to remove an element of this list, given we have the address of this element, we need to find this element first and then change the pointer of the previous node to the next node. On the storage, we do not need more space to find the next node but need one more space to save the address of the next node and change the pointer of previous node to this address, meaning the space complexity = O(1).
+
+### examples
+
+#### example 1 (two liner iteration)
+
+* time complexity = O(A + B)
+* space complexity = 
 
 ```javascript
 for (let i = 0; i < arrayA.length; i++) {
@@ -126,7 +148,10 @@ for (let i = 0; i < arrayB.length; i++) {
 }
 ```
 
-* example: iteration O(A * B)
+#### example 2 (iteration in a iteration)
+
+* time complexity = O(A * B)
+* space complexity = 
 
 ```javascript
 for (let i = 0; i < arrayA.length; i++) {
@@ -136,7 +161,10 @@ for (let i = 0; i < arrayA.length; i++) {
 }
 ```
 
-* example: recursive O(log N) (binary search)
+#### example 3 (recursive binary search)
+
+* time complexity = O(log N)
+* space complexity = 
 
 Given a sorted array, the binary search algorithm as follow:
 
@@ -162,11 +190,7 @@ function binarySearch (array, target) {
 
 For example, if the number of the elements in an array is 16, then it at most need to work through 5 elements to find the target with steps:
 
-step 1: the middle element of 16 elements
-step 2: the middle element of 8 elements
-step 3: the middle element of 4 elements
-step 4: the middle element of 2 elements
-step 5: the middle element of 1 element
+the middle element of 16 elements (step 1) -> the middle element of 8 elements (step 2) -> the middle element of 4 elements (step 3) -> the middle element of 2 elements (step 4) -> the middle element of 1 element (step 5)
 
 As a result, we can describe the number of traverse (k) with the number of elements (N) as follow:
 
@@ -176,11 +200,14 @@ $$k = log_2N = logN$$, which means
 
 $$O(logN)$$
 
-* example: recursive $$O(2^N)$$
+#### example 4 (recursive, like fibonacci series)
+
+* time complexity = $$O(2^N)$$
+* space complexity = $$O(N)$$
 
 ```javascript
 function f(n) {
-  if(n<=1) {
+  if(n <= 1) {
     return 1;
   } else {
     return f(n-1) + f(n-1);
@@ -188,23 +215,46 @@ function f(n) {
 }
 ```
 
-If n = 16, then the number of 
+If n = 3, then the total nodes is 7 (1 + 2 + 4) as follow:
 
-#### amortized time
+<div class="mermaid">
+graph TD
+  id1((f_3)) --> id2((f_2))
+  id1((f_3)) --> id3((f_2))
 
-skip
+  id2((f_2)) --> id4((f_1))
+  id2((f_2)) --> id5((f_1))
 
-#### space complexity
+  id3((f_2)) --> id6((f_1))
+  id3((f_2)) --> id7((f_1))
+</div>
 
-We also ignore the math definition of big o and use the definition of big o in industry. Space complexity means how many elements needed for this problem to be done at most; for example, given a singly linked list with n elements, if we want to remove an element of this list, given we have the address of this element, we need to find this element first and then change the pointer of the previous node to the next node. On the storage, we do not need more space to find the next node but need one more space to save the address of the next node and change the pointer of previous node to this address, meaning the space complexity = O(1).
+Then the time complexity = O(1 + 2 + 4 + ... + 2^(n-1)) = O(2^n - 1) = O(2^n)
 
-#### exams
+The data we need to store is f(1), f(2), ... f(n), meaning the space complexity = O(n)
 
-for example, (一個 iterate 一個 loop)
+example 5 (two loop with same length (n) of array)
 
-```ruby
+* time complexity = $$O(N)$$
+* space complexity = 
 
+```javascript
+function (array) => {
+  let sum = 0;
+  let product = 1;
+
+  for (let i = 0; i < array.length; i++) {
+    sum += array[i]
+  }
+  for (let i = 0; i < array.length; i++) {
+    product*= array[i];
+  }
+}
 ```
+
+The time complexity = O(2N) = O(N)
+
+example 6 ()
 
 ### pointer
 
