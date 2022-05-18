@@ -4,7 +4,7 @@ title: basic concept related to DSA
 description: ''
 date: '2022-05-02'
 categories: 'mindset'
-note: 要把 function plot 那邊包成自己的 JS module，再 import 進來重複使用，然後要盡量在修好一點
+note: 要把 function plot 那邊包成自己的 JS module，再 import 進來重複使用，然後要盡量在修好一點。到 74 頁」
 mathjax: true
 mermaid: true
 p5:
@@ -24,14 +24,14 @@ This article describes the basic concepts related to data structure and algorith
   * amortized time
 * space complexity
   * concept of space complexity
-* examples
+* solve the problems correctly
 * pointer
 
 ## Why?
 
 Basic data structure and algorithm knowledge is useful for problem solving. We need concepts such as complexity for evaluations,
 
-## How? & What?
+## How?
 
 ### complexity
 
@@ -128,9 +128,21 @@ skip
 
 * we use the definition of industry
 * space complexity = O(n) means it needs to at most n elements of space to get things done
-* example: recursive $$O(N)$$
 
-We also ignore the math definition of big o and use the definition of big o in industry. Space complexity means how many elements needed for this problem to be done at most; for example, given a singly linked list with n elements, if we want to remove an element of this list, given we have the address of this element, we need to find this element first and then change the pointer of the previous node to the next node. On the storage, we do not need more space to find the next node but need one more space to save the address of the next node and change the pointer of previous node to this address, meaning the space complexity = O(1).
+### solve the problems correctly
+
+1. read or listen to the question and ask all the necessary informations, use as little hint as possible
+2. brainstorm to think about all the cases, including edge case
+3. come up with a brute force solution and write it on paper
+4. start to think how to optimize the brute force (on paper)
+   * remove any unnecessary information
+   * find the bottle neck
+   * make time and space complexity trade off
+5. walk through the idea again (on paper)
+6. start to write code as clean as possible (on computer)
+7. write test with general, base, error cases
+
+## What?
 
 ### examples
 
@@ -254,7 +266,26 @@ function (array) => {
 
 The time complexity = O(2N) = O(N)
 
-example 6 ()
+example 6 (related iteration in a iteration)
+
+* time complexity = $$O(N^2)$$
+* space complexity = 
+
+```javascript
+function (array) => {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; i++) {
+      console.log(array[i] + array[j])
+    }
+  }
+}
+```
+
+Given there are N elements in this array, the total steps is
+
+$$ N + (N-1) + (N-2) + ... + 1 = (1+N)*N/2$$, meaning the time complexity = O((1+N)*N/2) = O(N^2)
+
+(to be continued with more example in the future)
 
 ### pointer
 

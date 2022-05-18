@@ -10,9 +10,25 @@ note:
 
 Before we dive into the world, please understand the basic concepts in the mindset, 2022-05-02-basic-concept-related-to-DSA.md
 
-* Data Structure: store data in a specific logic
+* data Structure: store data in a specific logic
+  * linked list
+  * tree, tries, graph
+  * stack, queue
+  * heap
+  * vector, arraylist
+  * hash table
 * Algorithm: methods to achieve most important goal given specific data structure
-* Key structures: array, stack, queue, linked list, tree, graph, tries, hash table
+  * breath-first search
+  * depth-first search
+  * binary search
+  * merge sort
+  * quick sort
+* key concepts:
+  * bit Manipulation
+  * memory (stack vs. heap)
+  * recursion
+  * dynamic programming
+  * big O about time and space complexity
 
 ## Why
 
