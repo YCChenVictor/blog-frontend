@@ -101,8 +101,8 @@ or **unwanted result**:
 Without isolation, inconsistent results on users. Three issues as follow:
 
 * dirty read: read data from a row that has been modified by another **running** transaction and not yet committed
-* non-repeatable read: returns two different result in single transaction because of other updates
-* phamton:
+* non-repeatable read: returns two different result in **single transaction** because of other updates
+* phamton: different **number of rows** created by other transaction during single transaction
 
 #### dirty read
 
