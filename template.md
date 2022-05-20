@@ -9,6 +9,7 @@ mathjax:
 mermaid:
 p5:
 threeJS:
+anchor:
 ---
 
 ## Introduction
