@@ -1,14 +1,17 @@
 ---
 layout: post
-title: regular pronounce of noun (Japanese)
+title: noun (Japanese)
 description: ''
 date: '2022-03-20'
 categories: language
 note: 一樣要記得從頭到尾看過一次
 mermaid: true
+anchor:
 ---
 
 ## Introduction
+
+Ths article describes the common nouns:
 
 * personal pronoun
 * deixis
@@ -83,5 +86,14 @@ graph TB
 1. 明日の飛行機: when + の + noun
 2. 明後日 の 10時 -> 明後日10時: when + の + when and can be when + when
 3. 店は今月暇です or 今月店は暇です
+
+### location (+に)
+
+* 上(うえ)、下(した)、左(ひだり)、右(みぎ)、前(まえ)、後ろ(うしろ)、外(そと)、中(なか)、東(ひがし)、西(にし)、南(みなみ)、北(きた)
+* 隣(となり), it means next to
+* 横(よこ), it means the objects on the row
+* 側(そば), it means side
+* 近く(ちかく), it means near
+* 向こう(むこう), it means the direction
 
 ## Reference

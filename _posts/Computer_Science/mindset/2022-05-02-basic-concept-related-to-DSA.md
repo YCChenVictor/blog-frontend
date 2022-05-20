@@ -25,7 +25,6 @@ This article describes the basic concepts related to data structure and algorith
 * space complexity
   * concept of space complexity
 * solve the problems correctly
-* pointer
 
 ## Why?
 
@@ -287,7 +286,49 @@ $$ N + (N-1) + (N-2) + ... + 1 = (1+N)*N/2$$, meaning the time complexity = O((1
 
 (to be continued with more example in the future)
 
-### pointer
+### example of solving problems correctly
+
+#### BUD (Bottlenecks, Unnecessary work, Duplicated work)
+
+* example: Given an array of distinct integer values, count the number of pairs of integers that have difference k. For example, given the array {1, 7, 5, 9, 2, 12, 3} and the difference k = 2,there are four pairs with difference 2: (1, 3), (3, 5), (5, 7), (7, 9).
+* brute force:
+
+```javascript
+array = [1, 7, 5, 9, 2, 12, 3]
+k = 2
+result = []
+for (i in array) {
+  for (j = i + 1 in array) {
+    if abs(i - j) = k {
+      result << [i, j]
+    }
+  }
+}
+```
+
+note that here I just write down the quick idea and did not care the bugs and the total of elements walked through is
+
+$$N + (N-1) + ... + 1 = (1 + N)*N/2 = O(N^2)$$
+
+* Bottleneck:
+
+The bottleneck here is the double loops. We can try to implement binary search on the inner loop; however, this operation needs to sort the array first. As a result, we can use hash table as follow:
+
+```javascript
+array = [1, 7, 5, 9, 2, 12, 3]
+k = 2
+result = []
+hash_table = {}
+for (i in array) {
+  hash_table[i] = i
+}
+for (i in array) {
+  result << [i, hash_table[i+k]] if i+k in array
+  result << [i, hash_table[i-k]] if i-k in array
+}
+```
+
+The total run time will be 2N, meaning $$O(N)$$
 
 ## Reference
 
