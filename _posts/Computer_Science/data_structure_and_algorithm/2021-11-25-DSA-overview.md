@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (DSA) overview
+title: overview (DSA)
 date: '2021-11-25'
 categories: DSA
 note:
@@ -11,12 +11,11 @@ note:
 Before we dive into the world, please understand the basic concepts in the mindset, 2022-05-02-basic-concept-related-to-DSA.md
 
 * data Structure: store data in a specific logic
+  * hash table, arraylist, string_builder, vector
   * linked list
   * tree, tries, graph
   * stack, queue
   * heap
-  * vector, arraylist
-  * hash table
 * Algorithm: methods to achieve most important goal given specific data structure
   * breath-first search
   * depth-first search
@@ -117,5 +116,7 @@ The rule of stack is LIFO (last in first out). Given a stack,
 ### hash table
 
 ## reference
+
+cracking the coding interview
 
 [**The top data structures you should know for your next coding interview**](https://www.freecodecamp.org/news/the-top-data-structures-you-should-know-for-your-next-coding-interview-36af0831f5e3/)
