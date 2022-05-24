@@ -3,7 +3,7 @@ layout: post
 title: overview (DSA)
 date: '2021-11-25'
 categories: DSA
-note:
+note: 這邊要依照各種資料結構的 CRUD 計算複雜度，還有演算法也是
 ---
 
 ## Introduction
