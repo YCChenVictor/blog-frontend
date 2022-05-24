@@ -128,7 +128,7 @@ Based on the defination, we know that the big O of
 
 #### amortized time
 
-skip
+
 
 ### space complexity
 
