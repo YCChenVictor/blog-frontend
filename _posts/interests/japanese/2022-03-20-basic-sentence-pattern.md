@@ -22,6 +22,7 @@ mermaid:
 10. A(noun) は B(noun) から C(noun) までです
 11. もう (already) vs まだ (not yet, still, going to)
 12. だから, から (because) vs でも, けど/が (but)
+13. A(noun) を + くたさい
 
 ## Why?
 
@@ -119,3 +120,9 @@ In order to make my sentences meaningful and effective.
 
 1. 明日は土曜日です。だから、私は会社へ行きません = 明日は土曜日ですから、私は会社へ行きません
 2. 明後日はお休みです。でも、私は学校へ行きます。 = 明後日はお休みですけど、私は学校へ行きます。
+
+### A(noun) を + くたさい
+
+* It means **please** give me A
+* If we want to express the number of A: A(noun) を + (measure word) + くたさい
+  * example: ろくじゅうごえんのきってを**にまい**くたさい
