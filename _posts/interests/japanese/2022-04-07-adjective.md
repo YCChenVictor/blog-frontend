@@ -42,6 +42,10 @@ For example, 綺麗な
 4. remove な and plus に before verb:
    * 私はカップを綺麗に洗いました。
 
+#### examples
+
+
+
 ### ends with い
 
 For example, 薄い
@@ -60,6 +64,10 @@ For example, 薄い
 5. remove い and plus く before verb:
    * 単語を正しくおぼえましょう
 
+#### examples of い
+
+高い(expensive)、楽しい(happy)、つまらない(boring)
+
 ### adjective + の
 
 1. use this pattern when you do not know what the thing is
@@ -74,3 +82,7 @@ For example, 薄い
 
 1. 彼女は髪の毛が綺麗です。 (when X != A but A is related to X)
 2. 私は新しい時計が欲しいです。 (when use adjective to express verb)
+
+### Other notes
+
+妹は可愛くなりました (sister becomes a cute girl)

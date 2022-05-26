@@ -105,7 +105,7 @@ In order to make my sentences meaningful and effective.
 
 ### A(noun) は B(noun) から C(noun) までです
 
-1. the meaning: There is C from A to B.
+1. the meaning: There is A from B to C.
 2. example: 朝食は六時から十までです。
 
 ### もう (already) vs まだ (not yet, still, going to)

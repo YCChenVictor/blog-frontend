@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (DSA x) singly_linked_list
-date: '2021-11-24'
+date: '2022-05-23'
 categories: DSA
 note: 這邊要記得用 structure 的角度來了解為什麼 module 是這樣寫
 ---
