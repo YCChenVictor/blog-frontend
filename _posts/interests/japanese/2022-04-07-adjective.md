@@ -12,11 +12,13 @@ p5:
 
 ## Introduction
 
-1. ends with な
-2. ends with い
-3. adjective + の
-4. Wh- question (どんな + noun)
-5. X は A が adjective です
+* ends with な
+* ends with い
+* adjective + の
+* Wh- question (どんな + noun)
+* X は A が adjective です
+  * when X != A but A is related to X
+  * when use adjective to express verb
 
 ## Why?
 
@@ -44,7 +46,7 @@ For example, 綺麗な
 
 #### examples
 
-
+(to be continued)
 
 ### ends with い
 
@@ -75,14 +77,32 @@ For example, 薄い
 
 ### Wh- question (どんな + noun)
 
-1. 日本はどんな国ですか？ (objective: 日本は綺麗です。)
-2. 日本はどんですか？ (subjective: 日本は寒いです。)
+#### To ask for objective perspective
+
+* Q: 日本はどんな国ですか？
+* A: 日本は綺麗です。
+
+#### To ask for subjective perspective
+
+* Q: 日本はどんですか？
+* A: 日本は寒いです。
 
 ### X は A が adjective です
 
-1. 彼女は髪の毛が綺麗です。 (when X != A but A is related to X)
-2. 私は新しい時計が欲しいです。 (when use adjective to express verb)
+#### when X != A but A is related to X
+
+* example: 彼女は髪の毛が綺麗です
+
+#### when use adjective to express verb
+
+* the concept is like the word, pregnant
+* example: 私は新しい時計が欲しいです
+* other adjective verb: 欲しい、嫌い、好きな(すきな)、とくい
 
 ### Other notes
 
 妹は可愛くなりました (sister becomes a cute girl)
+
+#### more adjectives
+
+寒い(さむい, cold)、古い(ふるい, old)、新しい(あたらしい, new)
