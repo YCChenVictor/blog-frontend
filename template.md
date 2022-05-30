@@ -10,6 +10,7 @@ mermaid:
 p5:
 threeJS:
 anchor:
+publish:
 ---
 
 ## Introduction

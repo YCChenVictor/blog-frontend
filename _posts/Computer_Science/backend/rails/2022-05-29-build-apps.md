@@ -25,6 +25,8 @@ This articles describes how to build an app (users can post articles) in rails w
 * routes without scaffold (for posts)
 * controller without scaffold (for posts)
 * view without scaffold (for posts)
+* try to create a post with a user
+* style
 
 ## Why?
 
@@ -275,9 +277,34 @@ Then we start to add `Post` model for users to add articles without scaffold.
 
 ### relational model without scaffold
 
-Suppose this is an blog hosting app. We need a table to store users' blog. But in this section I am going to build it without scaffold to have deeper understandings.
+Suppose this is an blog hosting app, so we need a table to store users' blog. Create migration file with
 
-(to be continued)
+```bash
+rails g migration create_posts
+```
+
+Then it will create a file to create `Post` model and table as follow:
+
+```ruby
+class CreatePosts < ActiveRecord::Migration[6.1]
+  def change
+    create_table :posts do |t|
+      t.string :title
+      t.text :article
+      
+      t.references :user, index: true, foreign_key: true # add this line because each post belongs to a user
+
+      t.timestamps
+    end
+  end
+end
+```
+
+After `rails db:migrate`, it will create a `posts` table. Add `Post` model in `app/models` directory and then call it in rails console, which is going to return
+
+```bash
+Post(id: integer, article: text, user_id: integer, created_at: datetime, updated_at: datetime)
+```
 
 ### routes without scaffold
 
@@ -376,7 +403,70 @@ Then the following error pops up and we need to add view for post
 In `views/`, add `views/posts/index.html` with following code
 
 ```html
-to be continued after the model creation
+<h1>Posts</h1>
 ```
+
+### try to create a post with a user
+
+I know there should be a mechanism to determine current user; for convenience, I will just assign user with `id = 1` as the current_user.
+
+In `views/posts/index.html.erb`,
+
+```html
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Article</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post', new_post_path %>
+```
+
+Then errors pops up to ask us add method for post listing, new post adding, and post creation, so as follow:
+
+```ruby
+class PostsController < ApplicationController
+  def index
+    @posts = Post.all
+  end
+
+  def create
+    
+  end
+end
+
+####
+
+Rails.application.routes.draw do
+  resources :users
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get '/posts', to: 'posts#index'
+  get '/posts/new', to: 'posts#new', as: :new_post
+  # post '/posts', to: 'posts#create'
+end
+```
+
+(to be continued)
+
+### style
 
 ## Reference
