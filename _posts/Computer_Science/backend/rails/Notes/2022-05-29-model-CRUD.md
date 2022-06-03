@@ -1,16 +1,15 @@
 ---
 layout: post
-title:
+title: model CRUD
 description: ''
-date: ''
-categories:
+date: '2022-05-29'
+categories: presentation rails
 note:
 mathjax:
 mermaid:
 p5:
 threeJS:
 anchor:
-publish:
 ---
 
 ## Introduction

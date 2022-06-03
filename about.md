@@ -4,6 +4,4 @@ title: About
 permalink: about
 ---
 
-> Hello
-
-## Profile Image
+Hello there~ I am victor. Have a good day!
