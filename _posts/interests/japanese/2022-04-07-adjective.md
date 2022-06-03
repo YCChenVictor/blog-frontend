@@ -87,18 +87,6 @@ For example, 薄い
 * Q: 日本はどんですか？
 * A: 日本は寒いです。
 
-### X は A が adjective です
-
-#### when X != A but A is related to X
-
-* example: 彼女は髪の毛が綺麗です
-
-#### when use adjective to express verb
-
-* the concept is like the word, pregnant
-* example: 私は新しい時計が欲しいです
-* other adjective verb: 欲しい、嫌い、好きな(すきな)、とくい
-
 ### Other notes
 
 妹は可愛くなりました (sister becomes a cute girl)

@@ -10,31 +10,40 @@ mermaid:
 
 ## Introduction
 
-* pure noun:
-  * A の B
-  * A は(wa) B です
+Categorized sentence patterns listed below and only show the necessary part of speech.
+
+* pure noun
+  * A(noun) の B(noun)
+  * A(noun) は B(noun) です
   * A も B です
   * A は(wa) B では(wa) ありません
   * yes no question: Affirmative + ですか？
-  * Wh- question
   * X は A ですか？ (それとも、) B ですか？
   * A が X ですか？
   * A(noun) は B(noun) から C(noun) までです
+  * option/range(nouns) (のなか) **で** A(noun) **か** いちばん ...
 * noun + adjective
   * noun は adjective でしょう？
   * A(noun) は B(noun) より C(adjective)
   * A(noun) と B(noun) (と)、とっちが C(adjective) か？
+  * X は A が adjective です
 * noun + verb
   * A(noun) を + くたさい
+  * A(noun) は verb
   * A(noun) は B(noun) + を C(verb)
   * A は B に C(verb)
     * A は B(timing) に C(verb)
     * A は B(third-party) に C(verb)
     * A は B(person) に C(verb)
+    * A は B(goal) に C(verb)
   * A は B(time) から C(time) まで D(verb)
   * A は B(destination) へ(え) C(verb)
   * A は B で C(verb)
   * A(noun) は B(noun) + と C(verb)
+* noun + 2 verbs
+  * A(noun) は B (noun) を C(verb, remove ます) に D(destination) へ E(verb)
+  * A(noun) は B (verb, remove ます) なから、C(verb)
+* Wh- question
 
 ## Why?
 
@@ -89,18 +98,6 @@ In order to make my sentences meaningful and effective.
   * yes: はい、大丈夫ですか。(It's truly odd to use そうです because the question itself is neutral)
   * no: いいえ、大丈夫ではありません。
 
-### Wh- question
-
-1. 誰 (だれ): あの人は**誰**ですか？ あの人は(田中さん)です。
-2. 何 (なん): これは**なん**ですか？ それは(電話)です。
-3. どこ: 大和さんは**どこ**ですか？ 大和さんは(東京)です。
-4. いくら:
-5. いくつ: あなたはおいくつですか？ わたしはさんじゅうごさいです。
-6. 何歳 (なんさい):
-7. 何曜日 (なんようび):
-8. 何時何分 (なんじなんふん):
-9. 何月何日 (なんがつなんにち):
-
 ### X は A ですか？ (それとも、) B ですか？
 
 1. multiple choice question
@@ -127,16 +124,64 @@ In order to make my sentences meaningful and effective.
 * ask: 天ぷらとお寿司と、とっちがおいしいですか？
 * answer: お寿司の方が美味しいです。
 
+### X は A が adjective です
+
+#### when X != A but A is related to X
+
+* example: 彼女は髪の毛が綺麗です
+* we can also use this sentence pattern if A is the family of X
+
+#### when use adjective to express verb
+
+* the concept is like the word, pregnant
+* example: 私は新しい時計が欲しいです
+* other adjective verb: 欲しい、嫌い、好きな(すきな)、とくい
+
 ### A(noun) は B(noun) から C(noun) までです
 
 1. the meaning: There is A from B to C.
 2. example: 朝食は六時から十までです。
+
+### option/range(nouns) (のなか) **で** A(noun) **か** いちばん
+
+* question: タクシーと電車とバスで、**どれが**一番便利ですか？
+  * answer: 電車が一番便利です。
+* question: 乗り物で、**何が**一番便利ですか？
+  * answer: 電車が一番便利です。
 
 ### A(noun) を + くたさい
 
 * It means **please** give me A
 * If we want to express the number of A: A(noun) を + (measure word) + くたさい
   * example: ろくじゅうごえんのきってを**にまい**くたさい
+
+### A(noun) は B(verb)
+
+* noun は verb (~ます)
+  * affirmative sentence
+  * example: 私は勉強します。
+  * past tense
+    * ます -> ました
+    * 昨日りんさんは十時まで勉強しました
+
+* noun は verb (~ません)
+  * negative sentence
+  * example: 私は寝ません。
+  * past tense
+    * ません -> ませんでした
+    * 去年両親は旅行しませんでした
+
+* interrogative sentence
+  * affirmative sentence + か？
+  * use verbs to reply (because the xxx ます means 'can xxx')
+  * example:
+    * ペンギンはとびますか？
+    * はい、飛びます
+    * いいえ、飛びません
+
+* express the invitation
+  * ませんか？ (50% to accept)：一緒にお昼を食べませんか？
+  * ましょう？ (90% to accept)：映画をみましょう？
 
 ### A(noun) は B(noun) + を C(verb)
 
@@ -159,6 +204,8 @@ In order to make my sentences meaningful and effective.
 
 ### A は B に C(verb)
 
+The B is always the point in the whole sentence
+
 #### A は B(timing) に C(verb)
 
 * express the concept of A will C at the **moment** of B
@@ -172,7 +219,7 @@ In order to make my sentences meaningful and effective.
 
 #### A は B(third-party) に C(verb)
 
-* express the concept of A C **to** B
+* express the concept of A do C **to** B
 * example: 私は山田さん**に**このことを話しました。
 
 #### A は B(person) に C(verb)
@@ -219,3 +266,34 @@ In order to make my sentences meaningful and effective.
 
 * It means A and B do C together
 * example: 私は昨日高橋さんと勉強しました
+
+### A(noun) は B (noun) を C(verb, remove ます) に D(destination) へ E(verb)
+
+* example: 私は野球を**練習し**に公園へ行きます。
+
+### A(noun) は B (verb, remove ます) なから、C(verb)
+
+It express A do B and C at the same time. The C is the point
+
+* example: 昨夜私はドラマをみながら、晩御飯を食べました。
+
+### Wh- question
+
+* 誰 (だれ)
+  * noun: あの人は**誰**ですか？ あの人は(田中さん)です。
+* 何 (なん)
+  * noun: これは**なん**ですか？ それは(電話)です。
+  * verb: あなたはまいにちだれといしょに帰りですか？ 田中さんです
+* どこ
+  * noun: 大和さんは**どこ**ですか？ 大和さんは(東京)です。
+* いくら:
+* いくつ
+  * noun: あなたはおいくつですか？ わたしはさんじゅうごさいです。
+* 何歳 (なんさい):
+* 何曜日 (なんようび):
+* 何 + time
+  * example: 何時(なんじ)、何分(なんふん)、何月(なんがつ)、何日(なんにち)
+  * verb: あなたはきのう何時に寝ましたか？ 六日から九日まで休みます
+* 何 time から何 time まで
+  * noun:
+  * verb: 山田さんは何日から何日まで休みますか？ 六日から九日まで休みます
