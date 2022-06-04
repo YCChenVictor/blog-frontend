@@ -8,6 +8,7 @@ mathjax:
 mermaid:
 p5:
 threeJS:
+publish: true
 ---
 
 ## Introduction

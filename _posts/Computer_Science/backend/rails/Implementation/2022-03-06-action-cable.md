@@ -3,6 +3,7 @@ layout: post
 title: Action Cable
 date: '2022-03-06'
 categories: presentation rails
+publish:true
 ---
 
 ## Introduction

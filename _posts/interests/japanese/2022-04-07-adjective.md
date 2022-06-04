@@ -8,6 +8,7 @@ note: 記得有事沒事要打開來看，多看幾次就會發現規律
 mathjax:
 mermaid:
 p5:
+publish: true
 ---
 
 ## Introduction

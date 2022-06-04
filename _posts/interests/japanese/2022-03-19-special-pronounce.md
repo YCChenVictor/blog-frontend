@@ -6,6 +6,7 @@ date: '2022-03-19'
 categories: language
 note: I need to give examples for the how after every review
 mermaid:
+publish: true
 ---
 
 ## Introduction

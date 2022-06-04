@@ -3,12 +3,12 @@ layout: post
 title: overview (DSA)
 date: '2021-11-25'
 categories: DSA
-note: 這邊要依照各種資料結構的 CRUD 計算複雜度，還有演算法也是
+note: 這邊要依照各種資料結構的 CRUD 計算複雜度，還有演算法也是，等到所有文章寫完再來寫 overview
 ---
 
 ## Introduction
 
-Before we dive into the world, please understand the basic concepts in the mindset, 2022-05-02-basic-concept-related-to-DSA.md
+Before we dive into the world, please understand the basic concepts in the mindset, basic-concept-related-to-DSA.md. The structure of this article is as follow:
 
 * data Structure: store data in a specific logic
   * hash table, arraylist, string_builder, vector
@@ -43,10 +43,6 @@ We can decompose all the programming logics into four actions:
 * delete
 
 and the method to evaluate these actions' performance are time complexity and space complexity.
-
-### pointer (skip)
-
-We should understand pointer first.
 
 ## What
 

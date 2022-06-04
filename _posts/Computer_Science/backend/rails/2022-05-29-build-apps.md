@@ -4,7 +4,7 @@ title: build apps
 description: ''
 date: '2022-05-29'
 categories: rails
-note: 我的眼睛有點不舒服，先到 add controller，之後要持續整理
+note: 我的眼睛有點不舒服，先到 add controller，之後要持續整理，就是慢慢把之前的文章摘掉
 mathjax:
 mermaid:
 p5:

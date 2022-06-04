@@ -7,6 +7,7 @@ categories: presentation
 note:
 mathjax:
 mermaid:
+publish: true
 ---
 
 ## Introduction

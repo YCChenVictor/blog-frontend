@@ -4,21 +4,22 @@ title: basic concept related to DSA
 description: ''
 date: '2022-05-02'
 categories: 'mindset'
-note: 我想我可能要用個 anchor
+note: 'to be continued'
 mathjax: true
 mermaid: true
 p5:
 threeJS:
+publish: true
 ---
 
 ## Introduction
 
 This article describes the basic concepts related to data structure and algorithm as follow:
 
-* complexity
-  * concept of complexity
+* <a id="complexity" href="#complexity_example">complexity</a>
+  * <a id="concept_of_complexity" href="#concept_of_complexity_example">concept of complexity</a>
   * asymptotic notations
-  * simpilify notations
+  * notations simplification
 * time complexity
   * concept of time complexity
   * amortized time
@@ -41,11 +42,11 @@ Basic data structure and algorithm knowledge is useful for problem solving. We n
 
 ## How?
 
-### complexity
+### <span id="complexity_example">complexity</span>
 
-#### concept of complexity
+#### <span id= 'concept_of_complexity_example'>concept of complexity</span>
 
-Complexity describes the relationship between the cost we care and the size of input; for example, if we care about the time to produce a product, then the total time to create x books may be
+Complexity describes the relationship between the cost we care and the size of input; for example, the total time to create x books may be as follow:
 
 $$Time(n) = 4n^3 + 4n^2 + 3$$
 
@@ -53,70 +54,74 @@ However, in real world problems, it is really hard to get this precise function 
 
 #### asymptotic notations
 
-There are big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$) and you can check the defination of academia online. Here we focus on the defination of industry. The defination of $$O$$ in industry is the same as the defination of $$\Theta$$ in academia; that is
+There are notations such as big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$) and you can check the defination in academia online. Here we focus on the defination of industry. The defination of $$O$$ in industry is the same as the defination of $$\Theta$$ in academia; that is
 
 $$\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
 
-given we have some knowledege with set theory. Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $$2x + 2$$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 2$$. The following plot demostrates that $$2x + 2$$ is wrapped by $$3x$$ and $$x$$ after $$x > 2$$
+given we have some knowledege with set theory. Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $$2x + 100$$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 100$$. The following plot demostrates that $$2x + 100$$ is wrapped by $$3x$$ and $$x$$ after $$x > 100$$
 
 <canvas id="canvas" width="400" height="200"></canvas>
 
 <script>
-function fun1(x) {return (2*x + 2);}
-function fun2(x) {return 6*x;}
-function fun3(x) {return 2*x;}
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const width = ctx.canvas.width;
+const height = ctx.canvas.height;
+const xFrom = 0
+const yFrom = canvas.height
+const range = [0, 10]
+const xSlope = 100
+const ySlope = 1/4
+
+function fun1(x) {return (2*x + 100);}
+function fun2(x) {return 3*x;}
+function fun3(x) {return x;}
 
 function draw() {
- var canvas = document.getElementById("canvas");
- if (null==canvas || !canvas.getContext) return;
+  if (canvas==null || !canvas.getContext) return;
 
- var axes={}, ctx=canvas.getContext("2d");
- axes.x0 = 0;  // x0 pixels from left to x=0
- axes.y0 = canvas.height; // y0 pixels from top to y=0
- axes.scale = 20;                 // 40 pixels from x=0 to x=1
- axes.doNegativeX = true;
-
- showAxes(ctx,axes);
- funGraph(ctx,axes,fun1,"rgb(11,153,11)",1);
- funGraph(ctx,axes,fun2,"rgb(66,44,255)",2);
- funGraph(ctx,axes,fun3,"rgb(33,22,140)",3);
+  showXAxes(ctx);
+  // showYAxes(ctx);
+  funGraph(ctx, fun1, "rgb(11,153,11)", 1);
+  funGraph(ctx, fun2, "rgb(66,44,255)", 2);
+  funGraph(ctx, fun3, "rgb(33,22,140)", 3);
 }
 
-function funGraph (ctx,axes,func,color,thick) {
- var xx, yy, dx=4, x0=axes.x0, y0=axes.y0, scale=axes.scale;
- var iMax = 10;
- var iMin = 0;
- ctx.beginPath();
- ctx.lineWidth = thick;
- ctx.strokeStyle = color;
+function funGraph (ctx, polynomialFunction, color, thick) {
+  ctx.beginPath();
+  ctx.lineWidth = thick;
+  ctx.strokeStyle = color;
 
- for (var i=iMin;i<=iMax;i++) {
-  xx = dx*i; yy = scale*func(xx/scale);
-  if (i==iMin) ctx.moveTo(x0+xx,y0-yy);
-  else         ctx.lineTo(x0+xx,y0-yy);
- }
- ctx.stroke();
+  for (let i = range[0]; i <= range[1]; i++) {
+    x = xSlope*i;
+    y = ySlope*polynomialFunction(x);
+    if (i==range[0]) {
+      ctx.moveTo(xFrom+x,yFrom-y);
+    }
+    else {
+      ctx.lineTo(xFrom+x,yFrom-y);
+      console.log(xFrom+x)
+      console.log(yFrom-y)
+    }
+  }
+  ctx.stroke();
 }
 
-function showAxes(ctx,axes) {
- var x0=axes.x0, w=ctx.canvas.width;
- var y0=axes.y0, h=ctx.canvas.height;
- var xmin = 0;
- ctx.beginPath();
- ctx.strokeStyle = "rgb(128,128,128)";
- ctx.moveTo(xmin,y0); ctx.lineTo(w,y0);  // X axis
- ctx.moveTo(x0,0);    ctx.lineTo(x0,h);  // Y axis
- ctx.stroke();
+function showXAxes(ctx) {
+  ctx.strokeStyle = "rgb(128,128,128)";
+  ctx.beginPath();
+  ctx.moveTo(xFrom, height); ctx.lineTo(width, height); // X axis
+  ctx.stroke();
 }
 
 draw()
 </script>
 
-#### simpilify notations
+#### notation simplification
 
 Based on the defination, we know that the big O of
 
-* $$2x + 2$$ is $$2x$$ and also $$x$$
+* $$2x + 100$$ is $$2x$$ and also $$x$$
 * $$2x^2 + x$$ is $$x^2$$ because of $$ \exists \ a, b > 0 \ s.t \ ax^2 < 2x^2 + x < bx^2 \forall \ x>0$$
 
 ### time complexity
@@ -128,7 +133,7 @@ Based on the defination, we know that the big O of
 
 #### amortized time
 
-
+(to be continued)
 
 ### space complexity
 

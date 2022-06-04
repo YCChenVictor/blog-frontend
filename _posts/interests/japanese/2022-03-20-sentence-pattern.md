@@ -6,6 +6,7 @@ date: '2022-03-20'
 categories: language
 note:
 mermaid:
+publish: true
 ---
 
 ## Introduction
@@ -28,7 +29,7 @@ Categorized sentence patterns listed below and only show the necessary part of s
   * A(noun) と B(noun) (と)、とっちが C(adjective) か？
   * X は A が adjective です
 * noun + verb
-  * A(noun) を + くたさい
+  * A(noun) を + ください
   * A(noun) は verb
   * A(noun) は B(noun) + を C(verb)
   * A は B に C(verb)
@@ -149,11 +150,11 @@ In order to make my sentences meaningful and effective.
 * question: 乗り物で、**何が**一番便利ですか？
   * answer: 電車が一番便利です。
 
-### A(noun) を + くたさい
+### A(noun) を + ください
 
 * It means **please** give me A
-* If we want to express the number of A: A(noun) を + (measure word) + くたさい
-  * example: ろくじゅうごえんのきってを**にまい**くたさい
+* If we want to express the number of A: A(noun) を + (measure word) + ください
+  * example: ろくじゅうごえんのきってを**にまい**ください
 
 ### A(noun) は B(verb)
 

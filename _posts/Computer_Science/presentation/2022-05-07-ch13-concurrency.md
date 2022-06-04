@@ -10,6 +10,7 @@ mermaid: true
 p5: true
 threeJS:
 function_plot:
+publish: true
 ---
 
 ## Introduction & why?

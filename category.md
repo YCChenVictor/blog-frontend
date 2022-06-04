@@ -37,15 +37,17 @@ permalink: category
     <h2 id="{{ category | slugify }}">{{ category }}</h2>
     <ul>
       {% for post in site.posts %}
-        {% if post.categories contains category %}
-        <li>
-          <h3>
-            <a href="{{site.baseurl}}{{ post.url }}">
-              {{ post.title }}
-              <small>{{ post.date | date_to_string }}</small>
-            </a>
-          </h3>
-        </li>
+        {% if post.publish %}
+          {% if post.categories contains category %}
+          <li>
+            <h3>
+              <a href="{{site.baseurl}}{{ post.url }}">
+                {{ post.title }}
+                <small>{{ post.date | date_to_string }}</small>
+              </a>
+            </h3>
+          </li>
+          {% endif %}
         {% endif %}
       {% endfor %}
     </ul>
