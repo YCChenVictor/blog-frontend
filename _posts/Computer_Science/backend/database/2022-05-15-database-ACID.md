@@ -3,9 +3,9 @@ layout: post
 title: (database) ACID
 date: '2022-05-14'
 categories: database presentation
-note: 關於 How database 達成 ACID 的技術比較複雜，這裡就講基本概念跟效果即可
+note: How 跟 What 要完全拆開，可以先寫 What，用 MySQL 舉例，然後再來講 How
 mathjax:
-mermaid:
+mermaid: true
 p5:
 threeJS:
 publish: true
@@ -13,35 +13,27 @@ publish: true
 
 ## Introduction
 
-A database transaction means an indivisible unit of work. **ACID** is the **abbreviation** of four words: **atomicity, consistency, isolation, durability**. With ACID, the database performs transactions reliably.
+**ACID** is the abbreviation of four words: **atomicity (不可分割性), consistency (一致性), isolation (獨立性), durability (持久性)**. With ACID, the database performs transactions reliably. (A transaction means an indivisible unit of work in database)
 
-* atomicity: atomicity ensures one transaction is treated as a **single** unit
-* consistency: consistency ensures transaction can only bring the database from one **valid state** to another
-* isolation: isolation ensures **concurrent** transactions leaves the database in the **same state**
-* durability: durability ensures the changes from transaction will remain committed even in the case of a **system failure**
+* Atomicity ensures one transaction is treated as a **single** unit. Rollback **all** commits if transaction fails.
+* Consistency ensures transaction can only bring the database from one **valid state** to another. Transactions must pass all predefined rules in schema.
+* Isolation ensures **concurrent** transactions leaves the database with **same result**. There are four level: **Read uncommitted(未提交讀), read committed(提交讀), repeatable read(可重複讀), Serializable(串行化)**
+* Durability ensures the changes from transaction will remain committed even in the case of a **system failure**
 
 ## Why?
 
-If database did not follow this propreties,
+If database did not follow this properties,
 
-* no atomicity: transaction fails -> some SQL command processed and **some did not**, making database changed uncompletely
-* no consistency: transaction did not follow all **pre-defined rules** such as callbacks, default values, ...etc -> database corrupted, making it to be unstable in the future
-* no isolation: **concurrent** transactions reading and writing to a table at the same time -> no rules to determine when to **share the same state** to other users -> inconsistent results
-* no durability: some transactions occur at system crash -> transactions **disappear**
+* no atomicity: transaction fails but **no rollback** -> some SQL command processed and **some did not**
+* no consistency: transaction did not follow all **pre-defined rules** such as callbacks, default values, ...etc -> database **corrupted**, making it to be unstable in the future
+* no isolation: **concurrent** transactions reading and writing to a table at the same time -> no rules to determine when to share the changes to the concurrent transactions -> **inconsistent results** with same concurrent transactions
+* no durability: system crash -> transactions processed but did not change the result
 
-## How? & What?
-
-We all care about money, so let's use database in bank as example; for example,
-
-| BalanceAccount |
-| id | user | balance
-| :--- | :----: | :---: |
-| 1 | A | $5,000 |
-| 2 | B | $5,000 |
+## How? (Concept)
 
 ### Atomicity
 
-User A want to transfer $1,000 dollar to user B. Then the database must execute these two SQL commnads
+User A wants to transfer $1,000 dollar to user B. Then the database must execute these two SQL commnads
 
 ```SQL
 UPDATE BalanceAccount SET Balance = Balance - 1000 WHERE id = 1
@@ -50,18 +42,17 @@ UPDATE BalanceAccount SET Balance = Balance + 1000 WHERE id = 2
 
 If system did not follow the design of atomicity, then it may execute command 1 but not command 2 and $1,000 dollars disappear.
 
-To solve this issue, given we know what procedure is, atomicity can be achieved with `try catch blocks` as follow:
+To solve this issue, atomicity can be achieved with `try catch blocks` as follow:
 
 ```SQL
-CREATE PROCEDURE TransferMoney(@from_id, @to_id, @amount)
 BEGIN TRY
   BEGIN TRANSACTION
     UPDATE BalanceAccount SET Balance = Balance - @amount WHERE id = @from_id
     UPDATE BalanceAccount SET Balance = Balance + @amount WHERE id = @to_id
-  COMMIT TRANSACTION
+  COMMIT TRANSACTION -- detect by DBMS
 END TRY
 BEGIN CATCH
-  ROLLBACK TRANSACTION
+  ROLLBACK TRANSACTION -- rollback with the mechanism of DBMS
 END CATCH
 ```
 
@@ -73,19 +64,20 @@ or **unwanted result**:
 | 1 | A | $5,000 |
 | 2 | B | $4,000 |
 
+* The mechanism of commit and rollback is in the what section
+
 ### Consistency
 
 Given that the default data type of balance is `INTEGER`, suppose user A is a hacker and use SQL injection to insert **string** to his account, trying to mess up his balance. With consistency, the value should not be changed as follow:
 
 ```SQL
-CREATE PROCEDURE UpdateBalance(@user_id, @amount)
 BEGIN TRY
   BEGIN TRANSACTION
     UPDATE BalanceAccount SET Balance = @amount WHERE id = @from_id
-  COMMIT TRANSACTION -- here the database perfroms a bunch of callbacks, which the wrong datatype should be detected
+  COMMIT TRANSACTION -- DBMS checks whether it follows shcema
 END TRY
 BEGIN CATCH
-  ROLLBACK TRANSACTION
+  ROLLBACK TRANSACTION -- rollback with the mechanism of DBMS
 END CATCH
 ```
 
@@ -94,12 +86,31 @@ or **unwanted result**:
 | BalanceAccount |
 | id | user | balance
 | :--- | :----: | :---: |
-| 1 | A | mother fucker |
+| 1 | A | hahahaha |
 | 2 | B | $4,000 |
+
+* The mechanism of commit and rollback is in the what section
+
+### Durability
+
+Database achieve durability by
+
+* non-volatile storage: can retain stored information even after power is removed
+* coordinate before commit: if there are concurrent commits, it will coordinate first then commit
+* transaction log: recreate the system state with these log
 
 ### Isolation
 
-Without isolation, inconsistent results on users. Three issues as follow:
+| level\problem | dirty read | non-repeatable read | phamton |
+| :--- | ----: | ---: | ---: |
+| read uncommitted | true |　true | true |
+| read committed | false | true | true |
+| repeatable read | false | false | true |
+| serializable | false | false | false |
+
+As you can see, serializable > repeatable read > read committed > read uncommitted
+
+Problems:
 
 * dirty read: read data from a row that has been modified by another **running** transaction and not yet committed
 * non-repeatable read: returns two different result in **single transaction** because of other updates
@@ -109,17 +120,17 @@ Without isolation, inconsistent results on users. Three issues as follow:
 
 User A transfer $1,000 dollar to user B but input string value, `"$1,000"` rather than `1000`. Then given above mechanism, this transaction will be rollback. Dirty read may occur if database read the value before database finish the `COMMIT`.
 
+If we set the transaction level to read uncommited as follow:
+
 ```SQL
+SET TRANSACTION LEVEL READ UNCOMMITED
 SELECT balance FROM BalanceAccount WHERE id = 1 -- balance = 5000
 -- the updates that going to be rollback
-SET TRANSACTION LEVEL READ uncommited -- letting database to read data from uncommited data
 SELECT balance FROM BalanceAccount WHERE id = 1 -- balance = 4000 -> wrong
 -- rollback occurs
 ```
 
-The only solution is to read it if database `COMMIT` all related transaction. By default, the reading procedure will **wait** until all `COMMIT`s finish.
-
-or **unwanted result** in one transaction:
+then the unwanted result in one transaction:
 
 ```SQL
 5000 -- first SELECT
@@ -129,10 +140,12 @@ or **unwanted result** in one transaction:
 
 #### non-repeatable read
 
-Again, user A transfer $1,000 dollar to user B and there is a mechanism to sum up the debit and credit values cash flows and compare the value wth balance. Non-repeatable read occurs when some value updates during the transaction as follow: (The transfer commands occur during the following comands)
+Again, user A transfer $1,000 dollar to user B and there is a mechanism to sum up the debit and credit values cash flows and compare the value with balance. Non-repeatable read occurs when some value updates during multiple SELECT in one transaction
+
+If we set the level to READ COMMITTED read as follow:
 
 ```SQL
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- set the system to have only repeatable read, so that no non-repeatable read occurs
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 
 BEGIN TRANSACTION
 SELECT balance FROM BalanceAccount WHERE id = 1 -- balance = 5000
@@ -142,7 +155,7 @@ SELECT balance FROM BalanceAccount WHERE id = 1 -- balance = 5000 (still!!!!!!!!
 COMMIT TRANSACTION
 ```
 
-or **unwanted result** in one transaction:
+then the unwanted result in one transaction
 
 ```SQL
 5000 -- first SELECT
@@ -154,8 +167,10 @@ or **unwanted result** in one transaction:
 
 Suppose there is a transaction needs the total number of BalanceAccount at the beginning and the end and there is a new user created. The `TRANSACTION` would be as follow:
 
+If we set the level to REPEATABLE READ read as follow:
+
 ```SQL
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE -- prevent phamton
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
 BEGIN TRANSACTION
 SELECT COUNT(*) FROM BalanceAccount -- return 100
 -- some complex calcualtions take time
@@ -171,13 +186,103 @@ or **unwanted result**:
 101 -- second select
 ```
 
-### Durability
+## What?
 
-Database achieve durability by
+Take MySQL as example, the dataflow as follow: (two-phase commit)
 
-* non-volatile storage: can retain stored information even after power is removed
-* coordinate before commit: if there concurrent commits, it will coordinate first then commit
-* transaction log: recreate the system state with these log
+<div class="mermaid">
+graph TD
+  id1((transaction))
+  id2(DBMS)
+  id3[log]
+</div>
+
+<div class="mermaid">
+graph TD
+  data((transaction)) --flow into--> InnoDB(InnoDB)
+  InnoDB(InnoDB) --insert into cache memory--> redo_log_prepare[redo log .prepare]
+  redo_log_prepare[redo log .prepare] --InnoDB inform MySQL Server--> mysql_server(MySQL Server)
+  mysql_server(MySQL Server) --insert into cache memory--> binlog[binlog]
+  binlog[binlog] --MySQL Server inform InnoDB--> InnoDB2(InnoDB)
+  InnoDB2(InnoDB) --change log--> redo_log_commit[redo log .commit]
+  redo_log_commit[redo log .commit] --batch writing--> database
+</div>
+
+* Note: binlog is for MySQL and redo log is form InnoDB.
+
+### Atomicity (MySQL)
+
+If failed in any steps, MySQL will rollback the database by recovering records with **redo log and binlog**, ensuring Atomicity.
+
+### Consistency (MySQL)
+
+It will check whether the log follows schema to make sure consistency. If not, rollback with log.
+
+### Durability (MySQL)
+
+If system crash, recover data with binlog. (redo log only records fix amount of transactions)
+
+### Isolation (MySQL)
+
+#### dirty read in mysql
+
+Transaction B can read uncommit changes from transaction A.
+
+* Transaction A:
+
+```SQL
+START TRANSACTION;
+UPDATE users SET email = 'hahaha@lalala.com' WHERE id = 8;
+DO SLEEP(15);
+ROLLBACK;
+```
+
+* Transaction B:
+
+```SQL
+SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; -- the default level in mysql is REPEATABLE READ
+SELECT * FROM users
+```
+
+#### non-repeatable read in mysql
+
+Transaction B can read the changes from transaction A during the transaction B.
+
+* Transaction A:
+
+```SQL
+UPDATE users SET email = 'hahaha@lalala.com' WHERE id = 8;
+```
+
+* Transaction B:
+
+```SQL
+SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ; -- the default level in mysql is REPEATABLE READ
+START TRANSACTION;
+SELECT * FROM users WHERE id = 8;
+DO SLEEP(10);
+SELECT * FROM users WHERE id = 8;
+COMMIT;
+```
+
+#### phamton in mysql
+
+* Transaction A:
+
+```SQL
+INSERT INTO admin_roles (`name`, `created_at`, `updated_at`) VALUES ('testing', '2022-01-01', '2022-01-01')
+```
+
+* Transaction B:
+
+```SQL
+SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE; -- the default level in mysql is REPEATABLE READ
+START TRANSACTION;
+SELECT COUNT(*) FROM admin_roles; -- return 100
+DO SLEEP(10);
+SELECT COUNT(*) FROM admin_roles; -- return 100
+COMMIT;
+```
 
 ## Reference
 
@@ -190,3 +295,5 @@ Database achieve durability by
 [Non repeatable read example in sql server](https://www.youtube.com/watch?v=d5QNpsezNTs)
 
 [Durability (database systems)](https://en.wikipedia.org/wiki/Durability_(database_systems))
+
+[MySQL 基本運作介紹，從資料庫交易與 ACID 特性開始](https://tw.alphacamp.co/blog/mysql-intro-acid-in-databases)
