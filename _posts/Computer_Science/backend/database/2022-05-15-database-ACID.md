@@ -3,7 +3,7 @@ layout: post
 title: (database) ACID
 date: '2022-05-14'
 categories: database presentation
-note: 關於 How database 達成 ACID 的技術比較複雜，這裡就講基本概念跟效果即可
+note: How 跟 What 要完全拆開，可以先寫 What，用 MySQL 舉例，然後再來講 How
 mathjax:
 mermaid:
 p5:
@@ -13,35 +13,27 @@ publish: true
 
 ## Introduction
 
-A database transaction means an indivisible unit of work. **ACID** is the **abbreviation** of four words: **atomicity, consistency, isolation, durability**. With ACID, the database performs transactions reliably.
+**ACID** is the **abbreviation** of four words: **atomicity (不可分割性), consistency (一致性), isolation (獨立性), durability (持久性)**. With ACID, the database performs transactions reliably. (A transaction means an indivisible unit of work in database)
 
-* atomicity: atomicity ensures one transaction is treated as a **single** unit
-* consistency: consistency ensures transaction can only bring the database from one **valid state** to another
-* isolation: isolation ensures **concurrent** transactions leaves the database in the **same state**
-* durability: durability ensures the changes from transaction will remain committed even in the case of a **system failure**
+* Atomicity ensures one transaction is treated as a **single** unit. Rollback **all** commits if transaction fail.
+* Consistency ensures transaction can only bring the database from one **valid state** to another. Transactions must pass all predefined rules such as callbacks.
+* Isolation ensures **concurrent** transactions leaves the database in the **same result**. There are four level: **Read uncommitted(未提交讀), read committed(提交讀), repeatable read(可重複讀), Serializable(串行化)**
+* Durability ensures the changes from transaction will remain committed even in the case of a **system failure**
 
 ## Why?
 
-If database did not follow this propreties,
+If database did not follow this properties,
 
-* no atomicity: transaction fails -> some SQL command processed and **some did not**, making database changed uncompletely
+* no atomicity: transaction fails but **no rollback** -> some SQL command processed and some did not
 * no consistency: transaction did not follow all **pre-defined rules** such as callbacks, default values, ...etc -> database corrupted, making it to be unstable in the future
 * no isolation: **concurrent** transactions reading and writing to a table at the same time -> no rules to determine when to **share the same state** to other users -> inconsistent results
-* no durability: some transactions occur at system crash -> transactions **disappear**
+* no durability: system crash -> transactions processed but did not change the result
 
 ## How? & What?
 
-We all care about money, so let's use database in bank as example; for example,
-
-| BalanceAccount |
-| id | user | balance
-| :--- | :----: | :---: |
-| 1 | A | $5,000 |
-| 2 | B | $5,000 |
-
 ### Atomicity
 
-User A want to transfer $1,000 dollar to user B. Then the database must execute these two SQL commnads
+User A wants to transfer $1,000 dollar to user B. Then the database must execute these two SQL commnads
 
 ```SQL
 UPDATE BalanceAccount SET Balance = Balance - 1000 WHERE id = 1
@@ -190,3 +182,5 @@ Database achieve durability by
 [Non repeatable read example in sql server](https://www.youtube.com/watch?v=d5QNpsezNTs)
 
 [Durability (database systems)](https://en.wikipedia.org/wiki/Durability_(database_systems))
+
+[MySQL 基本運作介紹，從資料庫交易與 ACID 特性開始](https://tw.alphacamp.co/blog/mysql-intro-acid-in-databases)

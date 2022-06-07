@@ -11,17 +11,17 @@ theme-color: indigo # indigo|yellow|pink|green|stone|
 
 # homepage information
 author: YCChen
-author-bio: Software Engineer  # change to false to hide
-author-image: head.jpeg  # file must be in the /assets/img/ folder
+author-bio: Software Engineer # change to false to hide
+author-image: head.jpeg # file must be in the /assets/img/ folder
 
 # navigation menu
 show-nav-menu: true
 
 nav-menu:
-- text: About
-  permalink: about
-- text: Category
-  permalink: category
+  - text: About
+    permalink: about
+  - text: Category
+    permalink: category
 
 # use false to turn off any social media links
 twitter: https://twitter.com/
@@ -42,7 +42,7 @@ google-analytics: G-WCRC1TC2V5
 
 # jekyll plugins - no need to change
 plugins:
-    - jekyll-seo-tag
+  - jekyll-seo-tag
 
 # Build settings
 markdown: kramdown
