@@ -35,15 +35,12 @@ Given a memory disk with multiple data preserved and we cannot insert a serial d
 
 | time complexity of | linkedlist | arraylist |
 | :---        |    :----:   |          ---: |
-| search | O(n) | O(1) |
-| insertion | あなた        | あなたたち      |
-| xxx | かれ        | 彼たち      |
-| xxx | かのじょ        | かのじょたち      |
+| create (insert) | O(n) | O(1) |
+| read (access with id) | あなた        | あなたたち      |
+| search (access with attributes) | かのじょ        | かのじょたち      |
+| destroy (delete) | かのじょ        | かのじょたち      |
 
-* Search
-* Insertion
-* 
-* xxx
+
 
 ## How
 
