@@ -5,6 +5,7 @@ date: '2022-05-23'
 categories: DSA
 note: 這邊要記得用 structure 的角度來了解為什麼 module 是這樣寫
 mermaid: true
+publish:
 ---
 
 ## Introduction
@@ -31,16 +32,23 @@ graph LR
 
 ## why
 
-Given a memory disk with multiple data preserved and we cannot insert a serial data in it, we may use linked list to achieve it because the nodes can be unserial; it saves memory but costs more time to search and also linklist sometimes is faster than arraylist. Compared with arraylist, the time complexity:
+Given a memory disk with multiple data preserved and we cannot insert a serial data in it, we may use linked list to achieve it because the nodes can be unserial; it saves memory but costs more time to search and also linklist sometimes is faster than arraylist.
 
-| time complexity of | linkedlist | arraylist |
-| :---        |    :----:   |          ---: |
-| create (insert) | O(n) | O(1) |
-| read (access with id) | あなた        | あなたたち      |
-| search (access with attributes) | かのじょ        | かのじょたち      |
-| destroy (delete) | かのじょ        | かのじょたち      |
+### Time complexity of linkedlist
 
+| :--- | :---- |
+| create (insert) | O(n) |
+| read (access with id) | あなた |
+| search (access with attributes) | かのじょ |
+| destroy (delete) | かのじょ |
 
+* create: O(1) to O(N)
+  * inserting an element at the end of an array has $$O(1)$$
+  * inserting an element at the beginning of an array has $$O(N)$$ because we need to shift all the elements
+  * inserting at given index is at most $$O(N)$$ because it needs to shift all the elements behind it
+* linear search has $$O(N)$$ because it needs to search the value from beginning
+* search by index has $$O(1)$$ because we can return the value with index such that list[id]
+* update is not an issue because it just changes the value of an found data
 
 ## How
 

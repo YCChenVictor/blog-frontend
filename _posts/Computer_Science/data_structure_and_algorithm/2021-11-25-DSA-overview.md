@@ -44,6 +44,21 @@ We can decompose all the programming logics into four actions:
 
 and the method to evaluate these actions' performance are time complexity and space complexity.
 
+| time complexity of | arraylist | ...|
+| :---        |    :----:   |          ---: |
+| create (insert) | O(n) | O(1) |
+| read (access with id) | あなた        | あなたたち      |
+| search (access with attributes) | かのじょ        | かのじょたち      |
+| destroy (delete) | かのじょ        | かのじょたち      |
+
+* create: O(1) to O(N)
+  * inserting an element at the end of an array has $$O(1)$$
+  * inserting an element at the beginning of an array has $$O(N)$$ because we need to shift all the elements
+  * inserting at given index is at most $$O(N)$$ because it needs to shift all the elements behind it
+* linear search has $$O(N)$$ because it needs to search the value from beginning
+* search by index has $$O(1)$$ because we can return the value with index such that list[id]
+* update is not an issue because it just changes the value of an found data
+
 ## What
 
 ### arrays

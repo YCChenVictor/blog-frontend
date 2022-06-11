@@ -116,7 +116,7 @@ In order to make my sentences meaningful and effective.
 
 ### A(noun) は B(noun) より C(adjective)
 
-* To compare which one (A or B) is more C
+* To compare which one (A or B) is more C. B is worse than A on the aspect of C.
 * 電車はバズより便利です (train is more convenient than bus)
 
 ### A(noun) と B(noun) (と)、とっちが C(adjective) か？
@@ -270,6 +270,7 @@ The B is always the point in the whole sentence
 
 ### A(noun) は B (noun) を C(verb, remove ます) に D(destination) へ E(verb)
 
+* It means A wants to do C B so E D
 * example: 私は野球を**練習し**に公園へ行きます。
 
 ### A(noun) は B (verb, remove ます) なから、C(verb)

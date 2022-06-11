@@ -15,7 +15,7 @@ publish: true
 * long vowels
 * 促音
 * loanwords
-* special pronounce regularity in numbers
+* special pronounce of unit numbers
 * tone
 
 ## Why?
@@ -73,6 +73,7 @@ The common relationship between numbering and measure words:
 * start with t and s
   * use 促音 in number of 1, 8, 10
   * example: **一頭(いっとう)**、二頭(にとう)、三頭(さんとう)、四頭(よんとう)、五頭(ごとう)、六頭(ろくとう)、七頭(ななとう)、**八頭(はっとう)**、九頭(きゅうとう)、**十頭(じゅっとう)**、何頭(なんとう)
+* add も to express emphasis; example: にとうも
 
 #### example
 
