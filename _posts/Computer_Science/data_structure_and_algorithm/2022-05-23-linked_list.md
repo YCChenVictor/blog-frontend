@@ -4,6 +4,7 @@ title: linked list
 date: '2022-05-23'
 categories: DSA
 note: 這邊要記得用 structure 的角度來了解為什麼 module 是這樣寫
+mathjax: true
 mermaid: true
 publish:
 ---
@@ -37,27 +38,104 @@ Given a memory disk with multiple data preserved and we cannot insert a serial d
 ### Time complexity of linkedlist
 
 | :--- | :---- |
-| create (insert) | O(n) |
-| read (access with id) | あなた |
-| search (access with attributes) | かのじょ |
-| destroy (delete) | かのじょ |
+| create (insert) | O(1) |
+| read (access with id) | O(N) |
+| search (access with attributes) | O(N) |
+| destroy (delete) | O(1) |
 
-* create: O(1) to O(N)
-  * inserting an element at the end of an array has $$O(1)$$
-  * inserting an element at the beginning of an array has $$O(N)$$ because we need to shift all the elements
-  * inserting at given index is at most $$O(N)$$ because it needs to shift all the elements behind it
-* linear search has $$O(N)$$ because it needs to search the value from beginning
-* search by index has $$O(1)$$ because we can return the value with index such that list[id]
-* update is not an issue because it just changes the value of an found data
+* create: given we finish the search, we just need to change the pointer values to point to the new element, so inserting an element takes $$O(1)$$
+* read: even though we have the id for specific element, we still need to traverse all the nodes so the complexity of read is at most $$O(N)$$
+* search: the complexity of search is at most $$O(N)$$ because we need to start from the begining everytime for one element
+* destroy: after we found the element we want to delete, we just need to change the pointers before it to point to the next element, so it takes $$O(1)$$
+* update:
 
 ## How
 
 ### create a singly linked list
 
-The example in dynamic language
+#### The example in dynamic language
 
-```ruby
+A node:
 
+```javascript
+class Node {
+  constructor(value, next = null) {
+    this.value = value,
+    this.next = next
+  }
+}
+```
+
+A linkedlist:
+
+```javascript
+class LinkedList{
+  constructor(){
+    this.head = null;
+  }
+
+  insertAtBegin(value) {
+    let newNode = new Node(value);
+    newNode.next = this.head;
+    this.head = newNode;
+    return this.head;
+  }
+
+  insertAtEnd(value) {
+    let newNode = Node(value);
+    let nextNode = this.head.next;
+    if(!this.head){
+      insertAtBegin(value)
+    }
+    tail = findTail()
+    tail.next = newNode;
+    return this.head
+  }
+
+  find() {
+
+  }
+
+  findTail() {
+    let node = this.head;
+    while(node.next !== null) {
+      node = node.next
+    }
+    return node
+  }
+
+  findBefore() {
+
+  }
+
+  findAfter() {
+    
+  }
+
+  print() {
+    let node = this.head;
+    while(node !== null) {
+      console.log(node.value);
+      node = node.next
+    }
+  }
+}
+```
+
+* A nodes has the stored value and a pointer to next node
+* 
+
+```javascript
+// input class, Node
+// input class, LinkedList
+testLinkedList = new LinkedList();
+values = [1, 74, 888, 62, 33];
+// 33 -> 62 -> 888 -> 74 -> 1 -> null (insertAtBegin)
+// 1 -> 74 -> 888 -> 62 -> 33 -> null (insertAtEnd)
+for(let i = 0; i < values.length; i++){
+  testLinkedList.insertAtBegin(values[i]);
+}
+testLinkedList.print()
 ```
 
 ### create a doubly linked list
