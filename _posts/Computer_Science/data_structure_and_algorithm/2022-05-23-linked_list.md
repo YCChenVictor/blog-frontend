@@ -3,7 +3,7 @@ layout: post
 title: linked list
 date: '2022-05-23'
 categories: DSA
-note: 這邊要記得用 structure 的角度來了解為什麼 module 是這樣寫
+note: 接下來要測試 delete，各種 delete
 mathjax: true
 mermaid: true
 publish:
@@ -69,73 +69,137 @@ class Node {
 A linkedlist:
 
 ```javascript
-class LinkedList{
-  constructor(){
+class LinkedList {
+  constructor() {
     this.head = null;
   }
-
+  
   insertAtBegin(value) {
     let newNode = new Node(value);
     newNode.next = this.head;
     this.head = newNode;
     return this.head;
   }
-
+  
   insertAtEnd(value) {
-    let newNode = Node(value);
-    let nextNode = this.head.next;
-    if(!this.head){
-      insertAtBegin(value)
+    let newNode = new Node(value);
+    let tail;
+    if (!this.head) {
+      this.insertAtBegin(value)
+    } else {
+      tail = this.findTail();
+      tail.next = newNode;
     }
-    tail = findTail()
-    tail.next = newNode;
     return this.head
   }
-
-  find() {
-
+  
+  insertAt(value, index) {
+    const preNode = this.find(index - 1);
+    const newNode = new Node(value);
+    if (!this.head || index === 0) {
+      this.insertAtBegin(value)
+    } else {
+      newNode.next = preNode.next;
+      preNode.next = newNode;
+    }
   }
-
+  
+  deleteAtBegin() {
+    if (!this.head) {
+      return
+    }
+    this.head = this.head.next;
+    return this.head;
+  }
+  
+  deleteAtEnd() {
+    let beforeTail = this.head;
+    let tail = this.head.next;
+    if (!this.head || !this.head.next) {
+      this.head = null;
+      return this.head;
+    }
+    while(tail.next !== null) {
+      beforeTail = tail;
+      tail = tail.next;
+    }
+    beforeTail.next = null;
+    return this.head;
+  }
+  
+  deleteAt(index) {
+    const preNode = this.find(index - 1);
+    if (!this.head) {
+      return this.head;
+    } else if (index === 0) {
+      this.head = this.head.next;
+      return this.head;
+    } else {
+      if (!preNode || !preNode.next) {
+        return;
+      }
+      preNode.next = preNode.next.next;     
+      return this.head
+    }
+  }
+  
+  find(index) {
+    let counter = 0;
+    let node = this.head;
+    while (node) {
+      if (counter === index) {
+        return node;
+      }
+      counter++;
+      node = node.next;
+    }
+    return null;
+  }
+  
   findTail() {
     let node = this.head;
-    while(node.next !== null) {
+    while (node.next !== null) {
       node = node.next
     }
     return node
   }
-
-  findBefore() {
-
-  }
-
-  findAfter() {
-    
+  
+  values() {
+    let node = this.head;
+    let result = [];
+    while (node !== null) {
+      result.push(node.value);
+      node = node.next;
+    }
+    return result;
   }
 
   print() {
     let node = this.head;
-    while(node !== null) {
+    while (node !== null) {
       console.log(node.value);
-      node = node.next
+      node = node.next;
     }
   }
 }
 ```
 
 * A nodes has the stored value and a pointer to next node
-* 
+* index starts from 0
+
+With Jest, we can write unit tests:
 
 ```javascript
-// input class, Node
-// input class, LinkedList
 testLinkedList = new LinkedList();
 values = [1, 74, 888, 62, 33];
-// 33 -> 62 -> 888 -> 74 -> 1 -> null (insertAtBegin)
-// 1 -> 74 -> 888 -> 62 -> 33 -> null (insertAtEnd)
 for(let i = 0; i < values.length; i++){
   testLinkedList.insertAtBegin(values[i]);
 }
-testLinkedList.print()
+
+test('LinkedList', () => {
+  // create
+  expect(testLinkedList.values).toEqual([ 1, 74, 888, 62, 33 ]);
+});
 ```
 
 ### create a doubly linked list
@@ -170,3 +234,5 @@ type LinkedList struct {
 cracking the coding interview
 
 [Practical Linked List in Ruby](https://www.rubyguides.com/2017/08/ruby-linked-list/)
+[Linked Lists in JavaScript (ES6 code)](https://codeburst.io/linked-lists-in-javascript-es6-code-part-1-6dd349c3dcc3)
+[The Jest Object](https://jestjs.io/docs/getting-started)
