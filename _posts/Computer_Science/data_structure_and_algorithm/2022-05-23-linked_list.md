@@ -53,7 +53,7 @@ Given a memory disk with multiple data preserved and we cannot insert a serial d
 
 ### create a singly linked list
 
-#### The example in dynamic language
+#### The example in dynamic (singly linked list)
 
 A node:
 
@@ -190,44 +190,36 @@ class LinkedList {
 With Jest, we can write unit tests:
 
 ```javascript
-testLinkedList = new LinkedList();
-values = [1, 74, 888, 62, 33];
-for(let i = 0; i < values.length; i++){
-  testLinkedList.insertAtBegin(values[i]);
-}
+import {LinkedList} from '../singly_linked_list.js';
 
 test('LinkedList', () => {
-  // create
-  expect(testLinkedList.values).toEqual([ 1, 74, 888, 62, 33 ]);
-});
+  let testLinkedList = new LinkedList();
+  const values = [1, 74, 888, 62, 33];
+  for(let i = 0; i < values.length; i++){
+    testLinkedList.insertAtBegin(values[i]);
+  }
+  // initialize
+  expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1 ]);
+  // create at end
+  // create at begin
+  // insert at given index
+  // read
+  // update at given index
+  // delete at end
+  // delete at begin
+  // delete at given index
+}); 
 ```
+
+#### The example in static (singly linked list)
+
+to be continued
 
 ### create a doubly linked list
 
 ## What
 
-Given the concept above, I am going to construct it with golang.
-
-```go
-// a node in linked list
-type Node struct {
-    value int
-    next  *Node
-}
-
-// linked list
-type LinkedList struct {
-    head *Node
-    len  int
-}
-
-// add a node
-
-
-// remove a node
-
-// display the linked list
-```
+the questions
 
 ## reference
 
