@@ -44,6 +44,8 @@ For example, 綺麗な
    * noun は adjective (remove な) + (では/じゃ) + (ありません/ないです): お皿は綺麗ではありません。
 4. remove な and plus に before verb:
    * 私はカップを綺麗に洗いました。
+5. two adjective to a noun (remove い + くて)
+   * このトイレは**広くて**、綺麗です。
 
 #### examples
 
@@ -66,6 +68,9 @@ For example, 薄い
    * (past for ないです) treat 薄くない as a new adjective and use the logic of affirmative sentence: 鉛筆は薄くないです -> 鉛筆は薄くなかったです。
 5. remove い and plus く before verb:
    * 単語を正しくおぼえましょう
+6. two adjective to a noun (- な + で)
+   * 電車は**便利で**、速いです。
+   * it is the same as two noun: かれは二十歳で、大学生です。
 
 #### examples of い
 
