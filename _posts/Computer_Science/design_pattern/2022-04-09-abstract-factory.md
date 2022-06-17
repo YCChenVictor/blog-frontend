@@ -8,6 +8,7 @@ note:
 mathjax:
 mermaid: true
 p5:
+publish: true
 ---
 
 ## Introduction & Why

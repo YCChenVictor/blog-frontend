@@ -3,7 +3,7 @@ layout: post
 title: design overview
 description: ''
 date: '2022-01-11'
-categories: design
+categories: mindset
 note: Actually, this design progress fits to any form of product, not just software
 mermaid: true
 ---
