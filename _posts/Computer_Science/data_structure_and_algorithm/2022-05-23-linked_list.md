@@ -3,10 +3,10 @@ layout: post
 title: linked list
 date: '2022-05-23'
 categories: DSA
-note: 接下來要測試 delete，各種 delete
+note: 接下來要測試 delete，各種 delete，寫完測試，要實際做題目，至少課本裡的前幾題要做
 mathjax: true
 mermaid: true
-publish:
+publish: 
 ---
 
 ## Introduction
