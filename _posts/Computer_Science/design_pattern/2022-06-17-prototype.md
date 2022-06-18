@@ -7,7 +7,7 @@ categories: design-pattern presentation
 note: 文章要強調這個 pattern 可以減少很多 IO，因為這是要 present 的，我看還是用 ruby 好了
 mathjax:
 mermaid: true
-publish:
+publish: true
 ---
 
 ## Introduction
@@ -38,11 +38,12 @@ If we build the class intuitively, we may just create a class as follow:
 
 ```ruby
 class DocumentWorker
-  attr_accessor :title, :host, :document # 要寫 getter, writer
+  attr_accessor :title, :host, :document
   
   def initialize
     @title = nil
     @host = nil
+    @confidential_info = nil
     @document = nil
   end
   
@@ -51,7 +52,7 @@ class DocumentWorker
     search_on_internet
     request_private_data
     build_story_line
-    compose_presentations(title, host)
+    @document = compose_presentations(title, host)
   end
   
   def setup_working_environment
@@ -72,9 +73,12 @@ class DocumentWorker
   def compose_presentations(title, host)
     puts 'composing_presentations'
     sleep 1
-    @title = title
-    @host = host
-    @document = "document_#{title}_for_#{host}"
+    {
+      'title': @title,
+      'host': @host,
+      'some_private_shit': @confidential_info
+      'document': "document_#{title}_for_#{host}"
+    }
   end
 
   def document
@@ -83,11 +87,12 @@ class DocumentWorker
   
   private
   def request_private_data
-    sleep 1
     puts 'request_private_data'
+    @confidential_info = 'confidential_info'
+    sleep 1
   end
 end
-  
+
 presentation_for_boss = DocumentWorker.new.perform('monthly', 'boss')
 puts '==========='
 puts presentation_for_boss.document
