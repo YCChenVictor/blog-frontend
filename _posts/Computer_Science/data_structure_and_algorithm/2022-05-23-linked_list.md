@@ -6,7 +6,7 @@ categories: DSA
 note: 接下來要測試 delete，各種 delete，寫完測試，要實際做題目，至少課本裡的前幾題要做
 mathjax: true
 mermaid: true
-publish: 
+publish: true
 ---
 
 ## Introduction
@@ -69,18 +69,36 @@ class Node {
 A linkedlist:
 
 ```javascript
+class Node {
+  constructor(value, next = null) {
+    this.value = value,
+    this.next = next
+  }
+}
+
 class LinkedList {
   constructor() {
     this.head = null;
   }
-  
+
+
+  values() {
+    let node = this.head;
+    let result = [];
+    while (node !== null) {
+      result.push(node.value);
+      node = node.next;
+    }
+    return result;
+  }
+
   insertAtBegin(value) {
     let newNode = new Node(value);
     newNode.next = this.head;
     this.head = newNode;
     return this.head;
   }
-  
+    
   insertAtEnd(value) {
     let newNode = new Node(value);
     let tail;
@@ -92,7 +110,7 @@ class LinkedList {
     }
     return this.head
   }
-  
+    
   insertAt(value, index) {
     const preNode = this.find(index - 1);
     const newNode = new Node(value);
@@ -103,7 +121,7 @@ class LinkedList {
       preNode.next = newNode;
     }
   }
-  
+    
   deleteAtBegin() {
     if (!this.head) {
       return
@@ -111,7 +129,7 @@ class LinkedList {
     this.head = this.head.next;
     return this.head;
   }
-  
+    
   deleteAtEnd() {
     let beforeTail = this.head;
     let tail = this.head.next;
@@ -126,7 +144,7 @@ class LinkedList {
     beforeTail.next = null;
     return this.head;
   }
-  
+    
   deleteAt(index) {
     const preNode = this.find(index - 1);
     if (!this.head) {
@@ -142,7 +160,7 @@ class LinkedList {
       return this.head
     }
   }
-  
+    
   find(index) {
     let counter = 0;
     let node = this.head;
@@ -155,7 +173,7 @@ class LinkedList {
     }
     return null;
   }
-  
+    
   findTail() {
     let node = this.head;
     while (node.next !== null) {
@@ -164,16 +182,6 @@ class LinkedList {
     return node
   }
   
-  values() {
-    let node = this.head;
-    let result = [];
-    while (node !== null) {
-      result.push(node.value);
-      node = node.next;
-    }
-    return result;
-  }
-
   print() {
     let node = this.head;
     while (node !== null) {
@@ -182,6 +190,8 @@ class LinkedList {
     }
   }
 }
+
+export {LinkedList};
 ```
 
 * A nodes has the stored value and a pointer to next node
@@ -192,23 +202,33 @@ With Jest, we can write unit tests:
 ```javascript
 import {LinkedList} from '../singly_linked_list.js';
 
-test('LinkedList', () => {
-  let testLinkedList = new LinkedList();
-  const values = [1, 74, 888, 62, 33];
-  for(let i = 0; i < values.length; i++){
-    testLinkedList.insertAtBegin(values[i]);
-  }
-  // initialize
-  expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1 ]);
-  // create at end
-  // create at begin
-  // insert at given index
-  // read
-  // update at given index
-  // delete at end
-  // delete at begin
-  // delete at given index
-}); 
+describe('LinkedList', () => {
+  let testLinkedList;
+  beforeEach(() => {
+    testLinkedList = new LinkedList();
+    const values = [1, 74, 888, 62, 33];
+    for(let i = 0; i < values.length; i++){
+      testLinkedList.insertAtBegin(values[i]);
+    }
+  });
+
+  test('insert at begin', () => {
+    testLinkedList.insertAtBegin(0);
+    expect(testLinkedList.values()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
+  });
+
+  test('insert at end', () => {
+    testLinkedList.insertAtEnd(0);
+    expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
+  });
+
+  test('insert at given index', () => {
+    testLinkedList.insertAt(1000, 2);
+    expect(testLinkedList.values()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
+  });
+
+  // more test to be continued
+});
 ```
 
 #### The example in static (singly linked list)
@@ -217,9 +237,11 @@ to be continued
 
 ### create a doubly linked list
 
+to be continued
+
 ## What
 
-the questions
+With the singly linkedlist in javascript, we can start to solve the questions
 
 ## reference
 
