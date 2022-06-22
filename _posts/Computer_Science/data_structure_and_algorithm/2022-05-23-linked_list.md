@@ -1,9 +1,9 @@
 ---
 layout: post
-title: linked list
+title: linkedlist
 date: '2022-05-23'
 categories: DSA
-note: 接下來要測試 delete，各種 delete，寫完測試，要實際做題目，至少課本裡的前幾題要做
+note: space complexity 也要寫一下。先寫過一輪，再去看答案
 mathjax: true
 mermaid: true
 publish: true
@@ -11,7 +11,7 @@ publish: true
 
 ## Introduction
 
-This article describes the concepts related to linked list which represents a sequence of nodes. Not like array, the nodes are not serial, so we need to store pointers pointing the neighbor of each node in this linked list and use these pointers to traverse the nodes to find targeted node. There are two types: singly linked list and doubly linked list.
+This article describes the concepts related to linkedlist. Not like arraylist, the nodes in linkedlist are not serial, so we need to store pointers pointing the neighbor of each node in this linkedlist and use these pointers to traverse the nodes to find targeted node. There are two types: singly linked list and doubly linked list.
 
 * singly linked list: pointer points the next node in each node
 <div class="mermaid">
@@ -33,21 +33,22 @@ graph LR
 
 ## why
 
-Given a memory disk with multiple data preserved and we cannot insert a serial data in it, we may use linked list to achieve it because the nodes can be unserial; it saves memory but costs more time to search and also linklist sometimes is faster than arraylist.
+Given a memory disk with multiple data preserved and we cannot insert a serial data in it, we may use linked list to achieve it because the nodes can be unserial.
 
 ### Time complexity of linkedlist
 
 | :--- | :---- |
 | create (insert) | O(1) |
 | read (access with id) | O(N) |
+| update | O(1) |
 | search (access with attributes) | O(N) |
 | destroy (delete) | O(1) |
 
 * create: given we finish the search, we just need to change the pointer values to point to the new element, so inserting an element takes $$O(1)$$
 * read: even though we have the id for specific element, we still need to traverse all the nodes so the complexity of read is at most $$O(N)$$
 * search: the complexity of search is at most $$O(N)$$ because we need to start from the begining everytime for one element
+* update: after we found the element, we just need to change the value of that node, so it takes $$O(1)$$
 * destroy: after we found the element we want to delete, we just need to change the pointers before it to point to the next element, so it takes $$O(1)$$
-* update:
 
 ## How
 
@@ -194,8 +195,7 @@ class LinkedList {
 export {LinkedList};
 ```
 
-* A nodes has the stored value and a pointer to next node
-* index starts from 0
+* index of linkedlist starts from 0
 
 With Jest, we can write unit tests:
 
@@ -241,7 +241,49 @@ to be continued
 
 ## What
 
-With the singly linkedlist in javascript, we can start to solve the questions
+When solving linklist porblems, always think of recursive.
+
+### runner technique
+
+To be continued
+
+### Remove Dups
+
+Implementation:
+
+```javascript
+function removeDups (linkedList) {
+  let node = linkedList.head;
+  let preNode = null;
+  let dups = [];
+  while (node !== null) {
+    if (dups.includes(node.value)) {
+      preNode.next = node.next
+    } else {
+      dups.push(node.value)
+      preNode = node // only when dups not include the value of current node, we redefine preNode
+    }
+    node = node.next;
+  }
+  linkedList.print()
+}
+```
+
+Test:
+
+```javascript
+let linkedList = new LinkedList();
+const values = [1, 1, 1, 1, 449, 12];
+for(let i = 0; i < values.length; i++){
+  linkedList.insertAtBegin(values[i]);
+}
+
+removeDups(linkedList) // 12, 449, 1
+```
+
+#### temporary buffer not allowed
+
+to be continued
 
 ## reference
 
