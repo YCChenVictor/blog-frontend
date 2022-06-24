@@ -3,7 +3,7 @@ layout: post
 title: linkedlist
 date: '2022-05-23'
 categories: DSA
-note: space complexity 也要寫一下。先寫過一輪，再去看答案
+note:
 mathjax: true
 mermaid: true
 publish: true
@@ -82,7 +82,6 @@ class LinkedList {
     this.head = null;
   }
 
-
   values() {
     let node = this.head;
     let result = [];
@@ -99,7 +98,7 @@ class LinkedList {
     this.head = newNode;
     return this.head;
   }
-    
+
   insertAtEnd(value) {
     let newNode = new Node(value);
     let tail;
@@ -245,7 +244,7 @@ When solving linklist porblems, always think of recursive.
 
 ### runner technique
 
-To be continued
+two pointers iterates through a linkedlist at the same time.
 
 ### Remove Dups
 
@@ -284,6 +283,84 @@ removeDups(linkedList) // 12, 449, 1
 #### temporary buffer not allowed
 
 to be continued
+
+### Return Kth to Last
+
+Implementation:
+
+```javascript
+function returnKthToLast (linkedList, k) {
+  let counter = 0;
+  let node = this.head;
+  while (node) {
+    if (counter === k) {
+      return node;
+    }
+    counter++;
+    node = node.next;
+  }
+  return null;
+}
+```
+
+Test:
+
+```javascript
+let linkedList = new LinkedList();
+const values = [1, 2, 3, 4, 449, 12];
+for(let i = 0; i < values.length; i++){
+  linkedList.insertAtBegin(values[i]);
+}
+
+let node = returnKthToLast(linkedList, 0); // 12, 449, 4, 3, 2, 1
+let node = returnKthToLast(linkedList, 1); // 449, 4, 3, 2, 1
+let node = returnKthToLast(linkedList, 2); // 4, 3, 2, 1
+while (node !== null) {
+  console.log(node.value);
+  node = node.next;
+}
+```
+
+### Delete Middle Node
+
+Implementation:
+
+```javascript
+function deleteMiddleNode (linkedList) {
+  let nodeFaster = linkedList.head;
+  let nodeSlower = linkedList.head;
+  let preNode = null;
+  while (nodeFaster) {
+    if (!nodeFaster.next?.next || !nodeFaster.next) {
+      preNode.next = preNode.next.next;
+      return linkedList.head
+    }
+    preNode = nodeSlower;
+    nodeSlower = nodeSlower.next;
+    nodeFaster = nodeFaster.next.next;
+  }
+  return null;
+}
+```
+
+Test:
+
+```javascript
+let linkedList = new LinkedList();
+// const values = [1, 2, 3, 4, 449, 12]; // return 12, 449, 3, 2, 1
+const values = [1, 2, 3, 5, 4, 449, 12]; // return 12, 449, 4, 3, 2, 1
+for(let i = 0; i < values.length; i++){
+  linkedList.insertAtBegin(values[i]);
+}
+
+let node = deleteMiddleNode(linkedList);
+while (node !== null) {
+  console.log(node.value);
+  node = node.next;
+}
+```
+
+To be continued (more questions)
 
 ## reference
 
