@@ -38,7 +38,7 @@ In the how section, it describes the general idea of these points and it the wha
 
 ## Why?
 
-Basic data structure and algorithm knowledge is useful for problem solving. We need concepts such as complexity for evaluations,
+Basic data structure and algorithm knowledge is useful for problem solving. With this concept, we can evalute solutions to a problem before diving in.
 
 ## How?
 
@@ -50,11 +50,11 @@ Complexity describes the relationship between the cost we care and the size of i
 
 $$Time(n) = 4n^3 + 4n^2 + 3$$
 
-However, in real world problems, it is really hard to get this precise function to describe the total time to produce n amount of books, so we use **asymptotic notations**.
+However, in real world problems, precise function to describe the total time of producinf n amount of books does not exist at all, so we use **asymptotic notations**.
 
 #### asymptotic notations
 
-There are notations such as big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$) and you can check the defination in academia online. Here we focus on the defination of industry. The defination of $$O$$ in industry is the same as the defination of $$\Theta$$ in academia; that is
+There are notations such as big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$\Omega$$); please check the defination in academia online by yourself. Here we focus on the defination of industry. The defination of $$O$$ in industry is the same as the defination of $$\Theta$$ in academia; that is
 
 $$\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
 
@@ -129,7 +129,7 @@ Based on the defination, we know that the big O of
 #### concept of time complexity
 
 * Again, we use the definition of industry
-* `Time complexity = O(n)` means it needs to traverse **at most** n elements to get things done
+* `Time complexity = O(n)` means **at most** n elements **involved** to get things done
 
 #### amortized time
 
