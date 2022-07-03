@@ -2,18 +2,6 @@ let eraseEnable = false;
 let img;
 let photoGraph;
 
-function setup() {
-  setupImage()
-  setupButton()
-  setupCanvas()
-  setupGraphics()
-}
-
-function draw() {
-  image(img, 0, 0, conceptWidth, 400);
-  image(graphic, 0, 0)
-}
-
 function mouseDragged() {
   if (!eraseEnable) {
     graphic.fill('black');
@@ -32,27 +20,29 @@ function keyTyped() {
   }
 }
 
-function setupImage() {
+function setupImage(imagePath) {
+  console.log('testing!!!!!!!!!')
   const request = new XMLHttpRequest();
-  request.open("GET", this.imagePath, false);
+  request.open("GET", imagePath, false);
   request.send();
   if(request.status == 404) {
     img = createImage(this.conceptWidth, 400)
   } else {
-    loadImage(this.imagePath)
+    img = loadImage(imagePath)
   }
 }
 
-function setupButton () {
+function setupButton (id) {
+  console.log(id)
   toggleButton = createButton('erase');
-  toggleButton.parent('concept toggle');
+  toggleButton.parent(id + ' toggle_erase');
   toggleButton.addClass("border rounded px-4");
   toggleButton.mouseClicked(ButtonClicked)
 }
 
-function setupCanvas () {
+function setupCanvas (id) {
   const concept = createCanvas(conceptWidth, 400);
-  concept.parent('concept canvas');
+  concept.parent(id + ' canvas');
 }
 
 function setupGraphics () {
