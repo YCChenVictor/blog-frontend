@@ -1,34 +1,16 @@
 function p5Draw(id) {
+  let buttons = [];
+  let buttonClicks = [];
   let eraseEnable = false;
   const conceptDiv = document.getElementById('general_tree');
   const conceptWidth = conceptDiv.offsetWidth;
   return function(sketch) {
     sketch.setup = function() {
       setupImage('/assets/img/' + id + '.png', sketch, conceptWidth)
-      setupButton(id, sketch)
+      setupButton(['erase', 'save'], id, sketch)
       setupCanvas(id, sketch)
       setupGraphics(sketch)
     };
-    function setupButton (id, sketch) {
-      toggleButton = sketch.createButton('erase');
-      toggleButton.parent(id + ' toggle_erase');
-      toggleButton.addClass("border rounded px-4");
-      toggleButton.mouseClicked(ButtonClicked)
-    };
-    function ButtonClicked() {
-      toggleStyle()
-      toggleErase()
-    };
-    function toggleErase() {
-      if (eraseEnable) {
-        noErase();
-        eraseEnable = false;
-      }
-      else {
-        sketch.erase();
-        eraseEnable = true;
-      }
-    }
     sketch.draw = function() {
       sketch.image(sketch.img, 0, 0, conceptWidth, 400);
       sketch.image(sketch.graphic, 0, 0)
@@ -54,36 +36,36 @@ function p5Draw(id) {
         sketch.img = sketch.loadImage(imagePath)
       }
     }
-    
+    function setupGraphics (sketch) {
+      sketch.graphic = sketch.createGraphics(conceptWidth, 400);
+    }
+    function setupButton(buttonNames, id, sketch) {
+      let eraseButtonClicked = new Function(
+        "return function " + buttonNames[0] + 'ButtonClicked' + `(eraseEnable, sketch){
+          console.log(eraseEnable)
+          if (eraseEnable) {
+            sketch.noErase();
+            eraseEnable = false;
+          }
+          else {
+            sketch.erase();
+            eraseEnable = true;
+          }
+        }`
+      )()
+      for (var i = 0; i < buttonNames.length; i++) {
+        buttons[i] = sketch.createButton(buttonNames[i]);
+        buttons[i].parent(id + ' toggle_erase');
+        buttons[i].addClass("border rounded px-4");
+        buttons[0].mouseClicked(eraseButtonClicked)
+      }
+    };
     function setupCanvas (id, sketch) {
       const concept = sketch.createCanvas(conceptWidth, 400);
       concept.parent(id + ' canvas');
     }
-    
-    function setupGraphics (sketch) {
-      sketch.graphic = sketch.createGraphics(conceptWidth, 400);
-    }
-    
-    function toggleErase() {
-      if (eraseEnable) {
-        sketch.noErase();
-        eraseEnable = false;
-      }
-      else {
-        sketch.erase();
-        eraseEnable = true;
-      }
-    }
-    
-    function toggleStyle() {
-      toggleButton.toggleClass("bg-indigo-100");
-      toggleButton.toggleClass("border");
-    }
-    
-    function keyTyped() {
-      if (key === 's') {
-        saveCanvas(this.filename);
-      }
+    function saveButtonClicked() {
+      saveCanvas(this.filename);
     }
   };
 }
