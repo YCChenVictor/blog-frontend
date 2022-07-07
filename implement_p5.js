@@ -1,13 +1,13 @@
 function p5Draw(id) {
-  let buttons = [];
-  let buttonClicks = [];
   let eraseEnable = false;
+  let buttons = {};
   const conceptDiv = document.getElementById('general_tree');
   const conceptWidth = conceptDiv.offsetWidth;
   return function(sketch) {
     sketch.setup = function() {
       setupImage('/assets/img/' + id + '.png', sketch, conceptWidth)
-      setupButton(['erase', 'save'], id, sketch)
+      setupEraseButton(id, sketch)
+      setupSaveButton(id, sketch)
       setupCanvas(id, sketch)
       setupGraphics(sketch)
     };
@@ -39,33 +39,36 @@ function p5Draw(id) {
     function setupGraphics (sketch) {
       sketch.graphic = sketch.createGraphics(conceptWidth, 400);
     }
-    function setupButton(buttonNames, id, sketch) {
-      let eraseButtonClicked = new Function(
-        "return function " + buttonNames[0] + 'ButtonClicked' + `(eraseEnable, sketch){
-          console.log(eraseEnable)
-          if (eraseEnable) {
-            sketch.noErase();
-            eraseEnable = false;
-          }
-          else {
-            sketch.erase();
-            eraseEnable = true;
-          }
-        }`
-      )()
-      for (var i = 0; i < buttonNames.length; i++) {
-        buttons[i] = sketch.createButton(buttonNames[i]);
-        buttons[i].parent(id + ' toggle_erase');
-        buttons[i].addClass("border rounded px-4");
-        buttons[0].mouseClicked(eraseButtonClicked)
+    function setupEraseButton(id, sketch) {
+      buttons[id] = sketch.createButton(id);
+      buttons[id].parent(id + ' toggle_erase');
+      buttons[id].addClass("border rounded px-4");
+      buttons[id].mouseClicked(eraseButtonClicked)
+    };
+    function eraseButtonClicked() {
+      buttons[id].toggleClass("bg-indigo-100");
+      buttons[id].toggleClass("border");
+      if (eraseEnable) {
+        sketch.noErase();
+        eraseEnable = false;
       }
+      else {
+        sketch.erase();
+        eraseEnable = true;
+      }
+    }
+    function setupSaveButton(id, sketch) {
+      buttons[id] = sketch.createButton('save');
+      buttons[id].parent(id + ' toggle_erase');
+      buttons[id].addClass("border rounded px-4");
+      buttons[id].mouseClicked(saveButtonClicked)
     };
     function setupCanvas (id, sketch) {
       const concept = sketch.createCanvas(conceptWidth, 400);
       concept.parent(id + ' canvas');
     }
     function saveButtonClicked() {
-      saveCanvas(this.filename);
+      sketch.saveCanvas(id + '.png');
     }
   };
 }
