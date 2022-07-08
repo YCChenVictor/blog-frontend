@@ -3,8 +3,8 @@ layout: post
 title: 'design pattern ORM rails'
 description: ''
 date: '2022-01-13'
-categories: presentation
-note: 
+categories: presentation rails
+note:
 publish: true
 ---
 
