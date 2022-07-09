@@ -51,6 +51,20 @@ For example, 綺麗な
 
 (to be continued)
 
+#### regular form
+
+* informal
+* between a formal sentence
+
+* affirmative + non-past tense: remove です
+  * example: TBC
+* affirmative + past tense: remove です
+  * example: TBC
+* negative + non-past tense: remove です
+  * example: TBC
+* negative + past tense: remove です
+  * example: TBC
+
 ### ends with い
 
 For example, 薄い
@@ -75,6 +89,20 @@ For example, 薄い
 #### examples of い
 
 高い(expensive)、楽しい(happy)、つまらない(boring)
+
+#### regular form of い
+
+* informal
+* between a formal sentence
+
+* affirmative + non-past tense: - です + だ
+  * example: TBC
+* affirmative + past tense: - です + だった
+  * (express thinking) あのお婆さんは若いとき、**綺麗だったと思います**。
+* negative + non-past tense: - です
+  * example: TBC
+* negative + past tense: - です
+  * example: TBC
 
 ### adjective + の
 
