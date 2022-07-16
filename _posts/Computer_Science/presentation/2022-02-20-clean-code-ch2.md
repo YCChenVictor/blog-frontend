@@ -3,7 +3,7 @@ layout: post
 title: clean code ch2
 description: ''
 date: '2022-02-20'
-categories: presentation
+categories: presentation clean-code
 note:
 mermaid: true
 publish: true
