@@ -1,7 +1,7 @@
 function p5Draw(id) {
   let eraseEnable = false;
   let buttons = {};
-  const conceptDiv = document.getElementById('general_tree');
+  const conceptDiv = document.getElementById(id);
   const conceptWidth = conceptDiv.offsetWidth;
   return function(sketch) {
     sketch.setup = function() {
@@ -40,8 +40,8 @@ function p5Draw(id) {
       sketch.graphic = sketch.createGraphics(conceptWidth, 400);
     }
     function setupEraseButton(id, sketch) {
-      buttons[id] = sketch.createButton(id);
-      buttons[id].parent(id + ' toggle_erase');
+      buttons[id] = sketch.createButton('erase');
+      buttons[id].parent(id + '_toggle_erase');
       buttons[id].addClass("border rounded px-4");
       buttons[id].mouseClicked(eraseButtonClicked)
     };
@@ -59,13 +59,13 @@ function p5Draw(id) {
     }
     function setupSaveButton(id, sketch) {
       buttons[id] = sketch.createButton('save');
-      buttons[id].parent(id + ' toggle_erase');
+      buttons[id].parent(id + '_image_save');
       buttons[id].addClass("border rounded px-4");
       buttons[id].mouseClicked(saveButtonClicked)
     };
     function setupCanvas (id, sketch) {
       const concept = sketch.createCanvas(conceptWidth, 400);
-      concept.parent(id + ' canvas');
+      concept.parent(id + '_canvas');
     }
     function saveButtonClicked() {
       sketch.saveCanvas(id + '.png');
