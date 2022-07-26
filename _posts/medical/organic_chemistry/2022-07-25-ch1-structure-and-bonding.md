@@ -4,7 +4,7 @@ title: structure and bonding
 description: ''
 date: '2022-07-25'
 categories: organic_chemistry
-note:
+note: 之後有空把 p5 多個顏色
 mathjax:
 mermaid: true
 p5: true
@@ -26,7 +26,9 @@ Anyone with a curiosity about life and living things must first understand organ
 
 ## How?
 
-### Atom
+(add a tree diagram here to decompose components of atom)
+
+### Nucleus
 
 * a dense, positively charged nucleus
   * subatomic particles called protons, which are positively charged
@@ -46,7 +48,18 @@ Anyone with a curiosity about life and living things must first understand organ
   let atomP5 = new p5(atom, atom_id);
 </script>
 
-### Atomic Structure: the Nucleus
+* the number of protons = Z
+* the mass number = A = total number of protons plus neutrons
+* atomic number: 1 for hydrogen, 6 for carbon, 15 for phosphorus, and so on but different mass numbers depending on neutrons
+  * Atoms with the same atomic number but different mass numbers are called isotopes
+
+### Orbitals
+
+* four different kinds: s, p, d, and f, each with a different shape
+* stastically, electron spends 90% to 95% of its time in an orbitals, derived from quantum mechanical model
+* hybridiztion: the orbitals will not overlap
+* the real shape of orbitals is too hard to draw, refer to [Orbitals: Crash Course Chemistry #25](https://www.youtube.com/watch?v=cPDptc0wUYI) for further information
+* electron shell simplifies the shape of orbitals to concentric circles as follow
 
 ## What?
 
@@ -60,3 +73,5 @@ give an example
 ## Reference
 
 McMurry Organic Chemistry
+
+[Orbitals: Crash Course Chemistry #25](https://www.youtube.com/watch?v=cPDptc0wUYI)

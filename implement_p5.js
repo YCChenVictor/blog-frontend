@@ -6,8 +6,8 @@ function p5Draw(id) {
   return function(sketch) {
     sketch.setup = function() {
       setupImage('/assets/img/' + id + '.png', sketch, conceptWidth)
-      setupEraseButton(id, sketch)
       setupSaveButton(id, sketch)
+      setupEraseButton(id, sketch)
       setupCanvas(id, sketch)
       setupGraphics(sketch)
     };
@@ -40,14 +40,16 @@ function p5Draw(id) {
       sketch.graphic = sketch.createGraphics(conceptWidth, 400);
     }
     function setupEraseButton(id, sketch) {
-      buttons[id] = sketch.createButton('erase');
-      buttons[id].parent(id + '_toggle_erase');
-      buttons[id].addClass("border rounded px-4");
-      buttons[id].mouseClicked(eraseButtonClicked)
+      button_id = id + '_toggle_erase_button'
+      buttons[button_id] = sketch.createButton('erase');
+      buttons[button_id].parent(id + '_toggle_erase');
+      buttons[button_id].addClass("border rounded px-4");
+      buttons[button_id].mouseClicked(eraseButtonClicked)
     };
     function eraseButtonClicked() {
-      buttons[id].toggleClass("bg-indigo-100");
-      buttons[id].toggleClass("border");
+      button_id = id + '_toggle_erase_button'
+      buttons[button_id].toggleClass("bg-indigo-100");
+      buttons[button_id].toggleClass("border");
       if (eraseEnable) {
         sketch.noErase();
         eraseEnable = false;
@@ -58,10 +60,11 @@ function p5Draw(id) {
       }
     }
     function setupSaveButton(id, sketch) {
-      buttons[id] = sketch.createButton('save');
-      buttons[id].parent(id + '_image_save');
-      buttons[id].addClass("border rounded px-4");
-      buttons[id].mouseClicked(saveButtonClicked)
+      button_id = id + '_image_save_button'
+      buttons[button_id] = sketch.createButton('save');
+      buttons[button_id].parent(id + '_image_save');
+      buttons[button_id].addClass("border rounded px-4");
+      buttons[button_id].mouseClicked(saveButtonClicked)
     };
     function setupCanvas (id, sketch) {
       const concept = sketch.createCanvas(conceptWidth, 400);
