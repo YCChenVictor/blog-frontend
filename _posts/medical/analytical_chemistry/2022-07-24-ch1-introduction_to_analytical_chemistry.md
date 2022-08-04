@@ -4,13 +4,13 @@ title: (ch1) introduction to analytical chemistry
 description: ''
 date: '2022-07-24'
 categories: analytical_chemistry
-note:
+note: 結果讀錯 XD
 mathjax:
 mermaid: true
 p5:
 threeJS:
 anchor:
-publish: true
+publish:
 ---
 
 ## Introduction

@@ -4,7 +4,7 @@ title: terminal usage
 description: ''
 date: '2021-12-04'
 categories: OS
-note: 讀到 The curl guide to HTTP requests
+note:
 publish:
 ---
 
@@ -30,25 +30,37 @@ learning by doing and read articles online
   * `mv test coding` will move `test` to directory, `coding`
 * `rm`, remove file
   * `rm test` will remove `test` in current directory
-* `grep`, search specific text
-  * 
+* `grep`, search specific text in specific text file
+  * `grep word example.txt` will search text, `word` in `example.txt` file
+* `less`, view the content of a file in one page
+  * (to be continued)
+* `cat`, view multiple files at the same time
+  * (to be continued)
+* `awk` (to be continued)
+* `tr` (to be continued)
+* `sed` (to be continued)
+* `tail`, show the last lines of a file
+  * (to be continued)
+* `head`, show the first lines of a file
+  * (to be continued)
+* `find`, find a files in computer
+  * (to be continued)
 
-### internet involved
+pwd, ls, cd (try to get the list in what section)
 
-curl: data transferring between servers
+### internet
 
+#### curl: data transferring between servers
 
+* HTTP GET: `curl https://any_existed_url.com/`
+* HTTP GET HEADER: `curl -I https://any_existed_url.com/`
+* HTTP POST JSON: `curl -d '{"key": "item"}' -H "Content-Type: application/json" -X POST https://any_existed_url.com/`
+* HTTP PUT JSON: `curl -d '{"key": "item"}' -H "Content-Type: application/json" -X PUT https://any_existed_url.com/`
+...
 
-wget: for file downlaoding from internet
-ssh: for opening an encrypted secure shell connection
+#### wget: for file downlaoding from internet
 
-### read
-
-grep: grep searches plain-text data sets with regular expression
-awk: a tool for printing data (see reference for further information)
-tail: show the last lines of a file
-head: show the first lines of a file
-find: to find a file in computer
+#### ssh: for opening an encrypted secure shell connection
 
 ### update
 
@@ -57,6 +69,15 @@ find: to find a file in computer
 kill: for terminating a process
 
 ## What?
+
+### get texts
+
+To get all wordings in `<h1>` tag of [this](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line),
+
+```bash
+# get the texts from the website (curl)
+# parse the texts besides <h1> (awk)
+```
 
 ## Reference
 
@@ -69,3 +90,5 @@ kill: for terminating a process
 [Command line crash course](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line)
 
 [The curl guide to HTTP requests](https://flaviocopes.com/http-curl/)
+
+[Basic Linux Commands for Beginners](https://maker.pro/linux/tutorial/basic-linux-commands-for-beginners)
