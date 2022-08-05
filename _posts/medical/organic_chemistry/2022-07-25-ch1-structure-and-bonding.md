@@ -10,15 +10,17 @@ mermaid: true
 p5: true
 threeJS:
 anchor:
-publish: true
+publish:
 ---
 
 ## Introduction
 
 Reviewing atoms, bonds, and molecular geometry.
 
-* Atomic Structure: the Nucleus
-* 
+* nucleus
+* orbitals
+* electron
+* bonding
 
 ## Why?
 
@@ -27,7 +29,17 @@ Reviewing atoms, bonds, and molecular geometry.
 
 ## How?
 
-(add a tree diagram here to decompose components of atom)
+<div class="mermaid">
+graph LR
+  id1((atom)) --> id2((nucleus))
+  id1((atom)) --> id3((electrons))
+
+  id2((nucleus)) --> id4((protons))
+  id2((nucleus)) --> id5((neutrons))
+
+  id3((electrons)) --> id6[orbitals]
+  id3((electrons)) --> id7[bonding]
+</div>
 
 ### Nucleus
 
@@ -128,7 +140,32 @@ and the detail arrangement of 1s 2s 2p 3s:
   let ch4P5 = new p5(p5Draw(ch4Id), ch4Id);
 </script>
 
-* valence bond theory
+* **valence bond theory** explains covalent bond: two atoms approach -> orbital with single electoron overlaps the other atom's orbital with single electron
+  * example: ($$2H.$$ -> $$H_2$$) -> release energy, 436 kJ/mol and the best distance between atoms is 74pm
+  * Given both H. is $$1s^1$$, it has no doubt that both H share their electrons the other 1s, making them both $$1s^2$$ and the shapes looks like
+
+(add the egg shapes of H_2 here)
+
+* **hybrid orbitals** explains the concept of mixed orbitals ready to bond
+  * $$sp^3$$ = s + p + p + p
+    * example ($$CH_4$$): C is $$2s^22p^2$$ and desired to share these four electrons. Although there are 2 electrons in 2s and 2 electrons in 2 p orbitals out of $$2p$$, when C shares the electrons with the other 4 H, the shape of the bonding orbitals will be $$sp^3$$ which looks like
+
+(draw CH_4)
+(draw NH_3)
+(draw H_2O)
+
+also explain pi and sigma bond
+
+  * $$sp^2$$ = s + p + p
+    * example ($$C_2H_4$$): (to be continued)
+
+(draw C_2H_4)
+
+  * $$sp$$ = s + p
+    * example ($$C_2H_2$$): (to be continued)
+
+(draw C_2H_2)
+
 ## What?
 
 ### ground-state electron configuration of Oxygen
@@ -164,3 +201,5 @@ McMurry Organic Chemistry
 [Electron configuration](https://en.wikipedia.org/wiki/Electron_configuration)
 
 [罕德定則（Hund’s rule](https://highscope.ch.ntu.edu.tw/wordpress/?p=3485)
+
+[Hybrid Orbitals explained - Valence Bond Theory | Orbital Hybridization sp3 sp2 sp](https://www.youtube.com/watch?v=vHXViZTxLXo&t=11s)
