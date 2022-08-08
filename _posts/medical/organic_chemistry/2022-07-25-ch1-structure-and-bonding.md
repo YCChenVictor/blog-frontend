@@ -3,22 +3,24 @@ layout: post
 title: structure and bonding
 description: ''
 date: '2022-07-25'
-categories: organic_chemistry
+categories: organic-chemistry
 note: 之後有空把 p5 多個顏色，p5 的 structure 應該用 class 來抓 component，不應該是用 id，不過應該先了解 class 在前端 component 的意義是什麼，平常日的 computer day 可以來做；還要修 mathjax
 mathjax: true
 mermaid: true
 p5: true
 threeJS:
 anchor:
-publish: true
+publish:
 ---
 
 ## Introduction
 
 Reviewing atoms, bonds, and molecular geometry.
 
-* Atomic Structure: the Nucleus
-* 
+* nucleus
+* orbitals
+* electron
+* bonding
 
 ## Why?
 
@@ -27,7 +29,17 @@ Reviewing atoms, bonds, and molecular geometry.
 
 ## How?
 
-(add a tree diagram here to decompose components of atom)
+<div class="mermaid">
+graph LR
+  id1((atom)) --> id2((nucleus))
+  id1((atom)) --> id3((electrons))
+
+  id2((nucleus)) --> id4((protons))
+  id2((nucleus)) --> id5((neutrons))
+
+  id3((electrons)) --> id6[orbitals]
+  id3((electrons)) --> id7[bonding]
+</div>
 
 ### Nucleus
 
@@ -128,7 +140,81 @@ and the detail arrangement of 1s 2s 2p 3s:
   let ch4P5 = new p5(p5Draw(ch4Id), ch4Id);
 </script>
 
-* valence bond theory
+Atoms achive ionic bond by transfering electrons and achive covalent bond by sharing electrons.
+
+* **valence bond theory** explains covalent bond: two atoms approach -> orbital with single electoron overlaps the other atom's orbital with single electron
+  * example: ($$2H.$$ -> $$H_2$$) -> release energy, 436 kJ/mol and the best distance between atoms is 74pm
+  * Given both H. is $$1s^1$$, it has no doubt that both H share their electrons the other 1s, making them both $$1s^2$$ and the shapes looks like
+
+(add the egg shapes of H_2 here)
+
+#### **hybrid orbitals**
+
+explains the concept of mixed orbitals ready to bond (refer to [this](https://www.youtube.com/watch?v=vHXViZTxLXo&t=11s))
+  
+* $$sp^3$$ = s + p + p + p
+
+<div id='sp3' class='h-screen justify-center items-center'>
+  <div id='sp3_toggle_erase' class=''></div>
+  <div id='sp3_image_save' class=''></div>
+  <div id='sp3_canvas' class='border'></div>
+</div>
+
+<script>
+  const sp3Id = 'sp3'
+  let sp3P5 = new p5(p5Draw(sp3Id), sp3Id);
+</script>
+
+* $$sp^2$$ = s + p + p
+
+<div id='sp2' class='h-screen justify-center items-center'>
+  <div id='sp2_toggle_erase' class=''></div>
+  <div id='sp2_image_save' class=''></div>
+  <div id='sp2_canvas' class='border'></div>
+</div>
+
+<script>
+  const sp2Id = 'sp2'
+  let sp2P5 = new p5(p5Draw(sp2Id), sp2Id);
+</script>
+
+* $$sp$$ = s + p
+
+<div id='sp' class='h-screen justify-center items-center'>
+  <div id='sp_toggle_erase' class=''></div>
+  <div id='sp_image_save' class=''></div>
+  <div id='sp_canvas' class='border'></div>
+</div>
+
+<script>
+  const spId = 'sp'
+  let spP5 = new p5(p5Draw(spId), spId);
+</script>
+
+  * example ($$CH_4$$): C is $$2s^22p^2$$, desired to share these four electrons. Although there are 2 electrons in 2s and 2 electrons in 2 p orbitals out of $$2p$$, when C shares the electrons with the other 4 H, the shape of the bonding orbitals will be $$sp^3$$ which looks like
+
+(draw CH_4)
+
+    * example ($$NH_3$$):
+
+(draw NH_3)
+
+    * example ($$H_2O$$):
+
+(draw H_2O)
+
+also explain pi and sigma bond
+
+  * $$sp^2$$ = s + p + p
+    * example ($$C_2H_4$$): (to be continued)
+
+(draw C_2H_4)
+
+  * $$sp$$ = s + p
+    * example ($$C_2H_2$$): (to be continued)
+
+(draw C_2H_2)
+
 ## What?
 
 ### ground-state electron configuration of Oxygen
@@ -153,6 +239,34 @@ In period table,
 
 -> $$PH_3$$
 
+### draw CH3CH2CH3 and predict the value of each bond angle and the shape of each molecule
+
+<div id='CH3CH2CH3' class='h-screen justify-center items-center'>
+  <div id='CH3CH2CH3_toggle_erase' class=''></div>
+  <div id='CH3CH2CH3_image_save' class=''></div>
+  <div id='CH3CH2CH3_canvas' class='border'></div>
+</div>
+
+<script>
+  const CH3CH2CH3Id = 'CH3CH2CH3'
+  let CH3CH2CH3P5 = new p5(p5Draw(CH3CH2CH3Id), CH3CH2CH3Id);
+</script>
+
+### the number of H in carvone
+
+<div id='carvone' class='h-screen justify-center items-center'>
+  <div id='carvone_toggle_erase' class=''></div>
+  <div id='carvone_image_save' class=''></div>
+  <div id='carvone_canvas' class='border'></div>
+</div>
+
+<script>
+  const carvoneId = 'carvone'
+  let carvoneP5 = new p5(p5Draw(carvoneId), carvoneId);
+</script>
+
+[answer](https://study.com/academy/answer/draw-a-line-bond-structure-for-propane-ch3ch2ch3-predict-the-value-of-each-bond-angle-and-indicate-the-overall-shape-of-the-molecule.html#:~:text=Hence%2C%20the%20overall%20shape%20of,combination%20of%20three%20tetrahedral%20structures.)
+
 ## Reference
 
 McMurry Organic Chemistry
@@ -164,3 +278,5 @@ McMurry Organic Chemistry
 [Electron configuration](https://en.wikipedia.org/wiki/Electron_configuration)
 
 [罕德定則（Hund’s rule](https://highscope.ch.ntu.edu.tw/wordpress/?p=3485)
+
+[Hybrid Orbitals explained - Valence Bond Theory | Orbital Hybridization sp3 sp2 sp](https://www.youtube.com/watch?v=vHXViZTxLXo&t=11s)

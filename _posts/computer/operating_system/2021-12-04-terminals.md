@@ -4,7 +4,7 @@ title: terminal usage
 description: ''
 date: '2021-12-04'
 categories: OS
-note:
+note: 可以的話盡量就想實例來做
 publish:
 ---
 
