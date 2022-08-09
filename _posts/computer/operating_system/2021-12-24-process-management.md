@@ -5,7 +5,7 @@ description: ''
 date: '2021-12-24'
 categories: OS
 note:
-publish: true
+publish:
 mermaid: true
 ---
 

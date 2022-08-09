@@ -1,15 +1,16 @@
 ---
 layout: post
-title: (OS 5) Memory Management
+title: memory management
 description: ''
 date: '2021-12-24'
 categories: OS
-note: 
+note: 還是乖乖地看完 https://dev.to/deepu105/demystifying-memory-management-in-modern-programming-languages-ddd 跟 JS 的部分
+publish:
 ---
 
 ## Introduction
 
-Given processes in a computer, memory management checks how much memory to be allocated, what time to allocate the memory, and update the status of memory once some memory gets freed or unallocated.
+Memeory management allocates memory efficiently to processes. Process comes -> allocates portions of memory -> free that portion once process finished
 
 ## Why?
 
@@ -17,10 +18,7 @@ why memory management important?
 
 ## How?
 
-Six famous methods: Fixed Partitioning, Dynamic Partitioning, Simple Paging, Simple
-Segmentation, Virtual-Memory Paging and VirtualMemory Segmentation
-
-(please explain the concepts)
+Six famous methods: Fixed Partitioning, Dynamic Partitioning, Simple Paging, Simple Segmentation, Virtual-Memory Paging and VirtualMemory Segmentation
 
 ### Fixed Partitioning
 
@@ -36,7 +34,7 @@ Segmentation, Virtual-Memory Paging and VirtualMemory Segmentation
 
 ## What?
 
-please show it with example
+
 
 ## Reference
 
@@ -44,5 +42,8 @@ please show it with example
 
 [Memory management](https://en.wikipedia.org/wiki/Memory_management)
 
-[MemoryManagement techniques and Processes Scheduling] (https://www.ijser.org/researchpaper/Memory-Management-techniques-and-Processes-Scheduling.pdf) 
+[MemoryManagement techniques and Processes Scheduling](https://www.ijser.org/researchpaper/Memory-Management-techniques-and-Processes-Scheduling.pdf)
 
+[Demystifying memory management in modern programming languages](https://dev.to/deepu105/demystifying-memory-management-in-modern-programming-languages-ddd)
+
+[Visualizing memory management in V8 Engine (JavaScript, NodeJS, Deno, WebAssembly)](https://deepu.tech/memory-management-in-v8/)

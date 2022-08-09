@@ -4,9 +4,9 @@ title: thread and concurrency
 description: ''
 date: '2021-12-24'
 categories: OS
-note: 繼續看 https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/ 的 Threads vs. Processes，把 data flow 畫出來。
+note: Introduction 應該越剪短越好
 mermaid: true
-publish: true
+publish:
 ---
 
 ## Introduction
@@ -23,18 +23,22 @@ The flow:
 
 <div class="mermaid">
 graph TD
-  id1(program <br> programming code) --compiled--> id2(binary form)
+  id1(program) --compiled--> id2(binary form)
   id2(binary form) --loaded--> id3(memory)
 
   id3(memory) --decompose--> id4(process 1)
   id3(memory) --decompose--> id5(process 2)
-  id3(memory) --decompose--> id6(other processes)
+  id3(memory) --...decompose--> id6(...other processes)
   
-
+  id4(process 1) --decompose--> id7(thread 1)
+  id4(process 1) --decompose--> id8(thread 2)
+  id4(process 1) --...decompose--> id9(...other threads)
 
 </div>
 
-(to be continued)
+* threads share memory in the same process
+* processes take their own part of memory and cannot share memory with other process
+* communication between threads is faster than processes
 
 ## Why?
 
