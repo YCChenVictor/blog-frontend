@@ -5,7 +5,7 @@ description: ''
 date: '2021-12-24'
 categories: OS
 note:
-publish:
+publish: true
 mermaid: true
 ---
 
@@ -21,7 +21,7 @@ Add a PCB drawing here with list of elements such as process state, process numb
 The flow of PCB:
 
 <div class="mermaid">
-graph LR
+graph TB
   id1(new) --admitted--> id2(ready)
   
   subgraph processing

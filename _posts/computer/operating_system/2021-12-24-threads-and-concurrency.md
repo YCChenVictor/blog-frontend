@@ -6,7 +6,7 @@ date: '2021-12-24'
 categories: OS
 note: Introduction 應該越剪短越好
 mermaid: true
-publish:
+publish: true
 ---
 
 ## Introduction
