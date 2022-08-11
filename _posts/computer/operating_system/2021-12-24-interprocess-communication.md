@@ -4,7 +4,7 @@ title: (OS 6) Interprocess Communication
 description:
 date: '2021/12/27'
 categories: OS
-note: I really do not get how it works ( I should watch youtube)
+note: to be continued
 ---
 
 ## Introduction

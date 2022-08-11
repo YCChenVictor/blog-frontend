@@ -4,71 +4,8 @@ title: (Git) Getting Started
 date: '2021-02-22T08:21:40.819Z'
 categories: git
 note:
+publish:
 ---
-
-## Introduction
-
-The most popular version control system.
-
-1. Installation
-2. Version
-3. Setting
-4. ...
-
-## Why
-
-Version control system helps us to track changes and why key decision were made along the way.
-
-## How
-
-### Installation
-
-On mac, open terminal
-
-```bash
-$ brew install git
-```
-
-### Version
-
-```bash
-$ which git
-```
-
-or
-
-```bash
-$ git --version
-```
-
-### Setting
-
-#### check current setting
-```
-$ git config --list
-```
-
-#### add global setting
-
-To change the setting that fit into **all** project, for example, change the username of git
-```
-$ git config --global user.name "the name you want"
-```
-or for changing user's email
-```
-$ git config --global user.email "xxx@yyy.com"
-```
-
-#### add specific setting
-
-To change the setting only being used in specific project
-```
-$ git config --local user.name "the name you want"
-```
-or
-```
-$ git config --local user.email "xxx@yyy.com"
-```
 
 ### initializing git
 
