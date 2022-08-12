@@ -3,44 +3,8 @@ layout: post
 title: "(Git_3)\_.gitignore, Specific, Blame, Rescue, Reset"
 date: '2021-02-23T06:01:00.590Z'
 categories: git
-note: none
+note: 之後要整理到 basic usage
 ---
-
-### .gitignore
-
-If there is a file that we do not want to be tracked in git, create a file called .gitignore and type in the file names in .gitignore as follow:
-
-secrect.html
-
-Then after creating this file, the git still cannot track this file
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__KcFwWfNzLynVIX108Eq__7g.png)
-
-As you can see, after creating secrect.html, there is still such file after we called the status command
-
-Notice! If the file we want to ignore is already in the directory, even though we add the file name into .gitignore, this file cannot be ignore by git. The only way is to use — cached to remove the file from git. Then, it won’t be tracked by git; for example, after we change the content of test1.html
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__ouncG9b__4ZQdyVCYBjjyKg.png)
-
-Git still detect the changes in test1.html, so we use — cached
-
-$ git rm --cached test1.html
-
-and commit this move
-
-$ git commit -m "to test gitignore"
-
-Then git won’t track it anymore
-
-#### delete all the file that are untracked by git
-
-$ git clean -fX
-
-### Blame
-
-If we want to know who edited xxx.html file, we can type in following
-
-$ git blame xxx.html
 
 ### Ckeckout
 

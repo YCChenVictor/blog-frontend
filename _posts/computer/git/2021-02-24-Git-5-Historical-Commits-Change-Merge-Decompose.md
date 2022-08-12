@@ -3,7 +3,7 @@ layout: post
 title: '(Git_5) Historical Commits — Change, Merge, Decompose'
 date: '2021-02-24T08:11:44.849Z'
 categories: git
-note: Change Historical Commit
+note: 之後要整理到 basic usage
 ---
 
 ### Change Historical Commits

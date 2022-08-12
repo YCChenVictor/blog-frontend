@@ -1,40 +1,35 @@
 ---
 layout: post
-title: (database) overview
+title: database overview
 date: '2021-05-14'
 categories: database
+note: 把文章整理進來這篇
+publish:
 ---
 
 ## Introduction
 
-This article describes the problems that database solved and how did they solve it with some followed example.
+This article describes the problems that database solved.
 
 ## Why?
 
-The easiest way one human can find to store data is through tradition flat file management system. DBMS has many advantages over tradition flat file management system as follow:
+We need a way to store resuable data. Flat file management system is the easiest way a person can find; that is, the computer desktop of a brainless person. DBMS (database management system) has advantages over it as follow:
 
-* Data redundancy and inconsistency:
-* Data sharing:
-* Data concurrency:
-* Data searching:
-* Data integrity:
-* System crashing:
-* Data security:
-* Backup:
-* Interfaces:
-* Easy Maintenance:
-
-For more information about ACID, please refer to 2022-05-15-database-ACID.md
+* [no redundancy](https://en.wikipedia.org/wiki/Data_redundancy): storing of the same **data** in multiple locations
+* no inconsistency
+* data sharing
+* data concurrency
+* data searching
+* [data integrity]()
+* prevent system crashing
+* data security
+* backup mechanism
+* interfaces
+* easier maintenance
 
 ## How?
 
-### [Data Redundancy](https://en.wikipedia.org/wiki/Data_redundancy): storing of the same **data** in multiple locations
-
 ### [Data isolation](https://en.wikipedia.org/wiki/Isolation_%28database_systems%29): determines when and how changes made by one operation become **visible** to other concurrent users and systems
-
-### [Integrity problems](https://en.wikipedia.org/wiki/Data_integrity): Any unintended changes
-
-### Security problems
 
 ### [Concurrency access](https://en.wikipedia.org/wiki/Concurrency_control): The ability to gain admittance to a system or component by more than one user or process
 
@@ -111,6 +106,16 @@ A valid relation will have three constraints:
 
 After we know the regularity of relation model, we should know the operation in relation model.
 
+### Data Type
+There are five categories of data type: numeric, date, string, unicode, binary, miscellaneous
+1. numeric: int, tinyint, bigint, float, real
+2. date: Date, Time, Datetime
+3. string: char, varchar, text
+4. unicode: nchar, nvarchar, ntext
+5. binary: binary, varbinary
+6. miscellaneous: clob, blob, xml, cursor, table
+#### numeric
+
 ### Operations in Relational Model
 
 The basic: insert, delete, modify, select (maps the CRUD of website design)
@@ -145,3 +150,5 @@ matches read in website
 
 [DBMS Tutorial: Database Management System Notes
 _Database Management System (DBMS) is a collection of programs which enables its users to access a database, manipulate…_www.guru99.com](https://www.guru99.com/dbms-tutorial.html)
+
+[**SQL Data Types**]https://www.journaldev.com/16774/sql-data-types

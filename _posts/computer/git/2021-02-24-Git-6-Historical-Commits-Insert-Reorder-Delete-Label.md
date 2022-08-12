@@ -4,7 +4,7 @@ title: '(Git_6) Historical Commits — Insert, Reorder, Delete; Label'
 description: Insert commit
 date: '2021-02-24T09:55:43.708Z'
 categories: git
-note: Insert commit
+note: 之後要整理到 basic usage
 ---
 
 ### Insert commits

@@ -1,11 +1,11 @@
 ---
-title: (DB 2) ER Model
+layout: post
+title: entity-Relationship model
 description: ''
-date: '2021-03-12T09:37:08.433Z'
-categories: database
-keywords: []
-slug: /@t5204713910/dbms-2-er-model-47257696c42e
-note: 之後要整合到後來的文章中
+date: '2021-03-12'
+categories: mindset
+note: 這其實應該要歸類在 design，之後再來整理
+publish:
 ---
 
 ### Why?

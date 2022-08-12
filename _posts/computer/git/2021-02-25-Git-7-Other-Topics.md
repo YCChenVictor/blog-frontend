@@ -3,7 +3,7 @@ layout: post
 title: (Git_7) Private Information, Remove a File in Git, Commit in other branch, Github
 date: '2021-02-25T07:06:05.067Z'
 categories: git
-note: to be continued
+note: 這個要特別寫一篇
 ---
 
 ## Remove Private Information
