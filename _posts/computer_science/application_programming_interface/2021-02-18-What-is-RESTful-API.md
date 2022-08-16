@@ -2,7 +2,7 @@
 title: What is RESTful API
 description: ''
 date: '2021-02-18T08:15:19.463Z'
-categories: internet
+categories: api
 ---
 
 ## Summary
