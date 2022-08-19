@@ -4,13 +4,13 @@ title:
 description: ''
 date: '2022-08-17'
 categories: api
-note:
+note: 這邊期望是能在 what 實作，還有用 reply attack 攻擊看看
 mathjax:
 mermaid:
 p5:
 threeJS:
 anchor:
-publish: true
+publish:
 ---
 
 ## Introduction

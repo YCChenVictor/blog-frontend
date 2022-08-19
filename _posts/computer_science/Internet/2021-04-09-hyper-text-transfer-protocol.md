@@ -5,7 +5,7 @@ description: ''
 date: '2021-04-09T03:37:42.357Z'
 categories: internet
 note: 那個圖要改掉，自己畫，把 request 跟 response 的 header 先補齊即可
-publish: true
+publish:
 ---
 
 ## Introduction
@@ -27,15 +27,13 @@ An HTTP request from client side contains:
 * version type
 * URL
 * method
-* request headers: key informations
-  * 
+* request headers: key informations (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields))
 * body (optional)
 
 An HTTP response from server side contains:
 
 * status code
-* response headers: key informations
-  * TBC
+* response headers: key informations (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields))
 * body (optional)
 
 ## What?

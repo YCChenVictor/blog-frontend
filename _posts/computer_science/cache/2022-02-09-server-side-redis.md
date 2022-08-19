@@ -1,6 +1,6 @@
 ---
 layout: post
-title: redis
+title:
 description: ''
 date: '2022-02-09'
 categories: cache
