@@ -1,26 +1,46 @@
 ---
 layout: post
-title: (Internet 2) HyperText Transfer Protocol (HTTP)
+title:
 description: ''
 date: '2021-04-09T03:37:42.357Z'
 categories: internet
-
+note: 那個圖要改掉，自己畫，把 request 跟 response 的 header 先補齊即可
+publish: true
 ---
 
 ## Introduction
 
-HTTP is on the application layer, dealing with any information on the internet. With this layer, people can use easily understandable logic to operate and attain their desires. For example, users can use mouse to click a link on webpage, and then the browser will send request to HTTP and follow the bottom layers to acquire data from other computers.
+HTTP is on application layer; With this layer, people use understandable logics to operate and achieve their goals; for example, users can use mouse to click a link on webpage in browsers, and then the client side will send requests which follows HTTP and walk through the layers below application layer to server. Given the informations sent from client, server side will parse these informations to decide the next move.
 
-HTTP is the orange area in the following data flow
-<img src="/assets/img/1__RwTbhJGkPNdHriCUy6vDww.png" alt="" width=500>
+The layers as follow:
+
+<img src="/assets/img/1__RwTbhJGkPNdHriCUy6vDww.png" alt="" width=300>
 
 ## Why?
 
-The full name of HTTP is HyperText Transfer Protocol. **Protocol** means an official way to communicate with each other. There are different devices such as Mac, PC, iPhone, and Android and also a lot of servers on the internet, so we need a uniform way to transfer data.
+HTTP (HyperText Transfer Protocol) defines the official way for machines to communicate with each other. It normalizes the communications between client side (browsers in Mac, Pc, iPhone, ...etc) and server side on internet.
 
 ## How?
 
-A user is using a browser and want to see news on news website. Then the following steps occuring:
+An HTTP request from client side contains:
+
+* version type
+* URL
+* method
+* request headers: key informations
+  * 
+* body (optional)
+
+An HTTP response from server side contains:
+
+* status code
+* response headers: key informations
+  * TBC
+* body (optional)
+
+## What?
+
+For example, a user is using a browser and want to see news on news website. Then the following steps occuring:
 
 1. Input URL (Uniform Resource Locator)
 2. Browsers Identify The Specific Server
@@ -69,8 +89,6 @@ HTTP/1.1 404 NOT FOUND
 
 meaning it cannot found `www.example.com` and return HTTP status, `404`
 
-## What
-
 All the status:
 
 ```bash
@@ -100,3 +118,7 @@ Server error responses (500–599)
 [什麼是 URL 網址 IP ？網域 Domain 中文 意思是什麼？｜鵠崙設計](https://www.design-hu.com/web-news/domain.html)
 
 [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+[What is HTTP?](https://www.cloudflare.com/en-gb/learning/ddos/glossary/hypertext-transfer-protocol-http/)
+
+[List of HTTP header fields](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields)

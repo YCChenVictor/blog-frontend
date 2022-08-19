@@ -4,13 +4,13 @@ title:
 description: ''
 date: '2022-08-17'
 categories: api
-note:
+note: 先去把 http header 看懂
 mathjax:
 mermaid:
 p5:
 threeJS:
 anchor:
-publish: true
+publish:
 ---
 
 ## Introduction
@@ -23,7 +23,9 @@ try to answer why we need Authentication
 
 ## How?
 
-give general idea of Authentication
+### Basic Structure
+
+Client tell 
 
 ## What?
 
