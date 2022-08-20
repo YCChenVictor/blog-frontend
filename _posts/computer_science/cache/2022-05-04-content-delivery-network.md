@@ -6,7 +6,7 @@ date: '2022-02-09'
 categories: cache
 note:
 mermaid:
-publish:
+publish: true
 ---
 
 ## Introduction
