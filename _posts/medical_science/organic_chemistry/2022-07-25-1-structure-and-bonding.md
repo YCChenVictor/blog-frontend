@@ -10,7 +10,7 @@ mermaid: true
 p5: true
 threeJS:
 anchor:
-publish:
+publish: true
 ---
 
 ## Introduction
@@ -126,8 +126,47 @@ and the detail arrangement of 1s 2s 2p 3s:
   * Ne ($$1s^2 2s^2 2p^6$$)
   * Ar ($$1s^2 2s^2 2p^6 3s^2 3p^6$$)
   * Kr (1s²2s²2p⁶2s²3p⁶3d¹⁰4s²4p⁶) (abbreviated as 3d¹⁰4s²4p⁶)
-* **ionic bond** example ($$NaCl$$): $$Na$$ ($$1s^2 2s^2 2p^6 3s^1$$) can achieve more stable status by losing one electron ($$1s^2 2s^2 2p^6$$ just like Ne) to $$Na^+$$ and $$Cl$$ ($$1s^2 2s^2 2p^5$$) can achieve more stable status by gaining one electron ($$1s^2 2s^2 2p^6$$ just like Ne) to $$Cl^-$$
-* **covalent bond** example ($$CH_4$$): it takes too much energy for C ($$1s^2 2s^2 2p^2$$) to lose 4 electrons or gain 4 electrons, so to be more stable, C will share the electrons with other atoms such as four $$H$$ and we called this stable substance as **molecule** and we can draw it as follow:
+* spectrum of bonding
+
+<div id='spectrum_of_bonding' class='h-screen justify-center items-center'>
+  <div id='spectrum_of_bonding_toggle_erase' class=''></div>
+  <div id='spectrum_of_bonding_image_save' class=''></div>
+  <div id='spectrum_of_bonding_canvas' class='border'></div>
+</div>
+
+<script>
+  const spectrum_of_bondingId = 'spectrum_of_bonding'
+  let spectrum_of_bondingP5 = new p5(p5Draw(spectrum_of_bondingId), spectrum_of_bondingId);
+</script>
+
+Atoms achive ionic bond by transfering electrons and achive covalent bond by sharing electrons. With **electronegativity**, we can determine whether this bond is ionic, covalent, or polar covalent.
+
+#### electronegativity
+
+electronegativity (EN) is the ability of an element to attract shared electons and the values as follow:
+
+<figure>
+  <img src="/assets/img/electronegativity.png" alt="">
+  <figcaption>image source: McMurry Organic Chemistry</figcaption>
+</figure>
+
+Roughly,
+
+* nonpolar covalent: electronegativities differ by less than 0.5
+* polar covalent: electronegativities differ by 0.5–2
+* ionic: electronegativities differ by more than 2
+
+#### ionic bond
+
+example ($$NaCl$$): $$Na$$ ($$1s^2 2s^2 2p^6 3s^1$$) can achieve more stable status by losing one electron ($$1s^2 2s^2 2p^6$$ just like Ne) to $$Na^+$$ and $$Cl$$ ($$1s^2 2s^2 2p^5$$) can achieve more stable status by gaining one electron ($$1s^2 2s^2 2p^6$$ just like Ne) to $$Cl^-$$
+
+#### polar covalent bond
+
+example ($$HCl$$): TBC
+
+#### nonpolar covalent bond
+
+example ($$CH_4$$): it takes too much energy for C ($$1s^2 2s^2 2p^2$$) to lose 4 electrons or gain 4 electrons, so to be more stable, C will share the electrons with other atoms such as four $$H$$ and we called this stable substance as **molecule** and we can draw it as follow:
 
 <div id='ch4' class='h-screen justify-center items-center'>
   <div id='ch4_toggle_erase' class=''></div>
@@ -140,15 +179,13 @@ and the detail arrangement of 1s 2s 2p 3s:
   let ch4P5 = new p5(p5Draw(ch4Id), ch4Id);
 </script>
 
-Atoms achive ionic bond by transfering electrons and achive covalent bond by sharing electrons.
-
 * **valence bond theory** explains covalent bond: two atoms approach -> orbital with single electoron overlaps the other atom's orbital with single electron
   * example: ($$2H.$$ -> $$H_2$$) -> release energy, 436 kJ/mol and the best distance between atoms is 74pm
   * Given both H. is $$1s^1$$, it has no doubt that both H share their electrons the other 1s, making them both $$1s^2$$ and the shapes looks like
 
 (add the egg shapes of H_2 here)
 
-#### **hybrid orbitals**
+#### **hybrid orbitals for bonding**
 
 explains the concept of mixed orbitals ready to bond (refer to [this](https://www.youtube.com/watch?v=vHXViZTxLXo&t=11s))
   
@@ -214,6 +251,8 @@ also explain pi and sigma bond
     * example ($$C_2H_2$$): (to be continued)
 
 (draw C_2H_2)
+
+#### 
 
 ## What?
 
