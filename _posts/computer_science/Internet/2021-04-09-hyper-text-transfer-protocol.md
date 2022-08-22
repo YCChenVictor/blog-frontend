@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2021-04-09T03:37:42.357Z'
 categories: internet
-note: 那個圖要改掉，自己畫，把 request 跟 response 的 header 先補齊即可
+note: 那個圖要改掉，自己畫。what 的部分要跟 how 的內容 match。intention 可以進 RFC 裡看。what section 之前的寫太菜了，現在可以在改好一點
 publish:
 ---
 
@@ -25,9 +25,12 @@ HTTP (HyperText Transfer Protocol) defines the official way for machines to comm
 An HTTP request from client side contains:
 
 * version type
+  * example: HTTP/1.0
+  * intention: let sender to tell receiver the format of this http message and the expected format of further http communication
 * URL
+  * 
 * method
-* request headers: key informations (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields))
+* request headers: key informations (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields))
 * body (optional)
 
 An HTTP response from server side contains:
@@ -38,12 +41,47 @@ An HTTP response from server side contains:
 
 ## What?
 
-For example, a user is using a browser and want to see news on news website. Then the following steps occuring:
+### client
 
-1. Input URL (Uniform Resource Locator)
-2. Browsers Identify The Specific Server
-3. Browsers Send Reuqest to The Specific Server
-4. The Specific Server Response data
+```bash
+GET / HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-GB,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+```
+
+### server
+
+```bash
+HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 155
+Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+ETag: "3f80f-1b6-3e1cb03b"
+Accept-Ranges: bytes
+Connection: close
+
+<html>
+  <head>
+    <title>An Example Page</title>
+  </head>
+  <body>
+    <p>Hello World, this is a very simple HTML document.</p>
+  </body>
+</html>
+```
+
+For example, a user uses browser and want to see news on website. Then the following steps occur:
+
+1. input URL (uniform resource locator)
+2. browsers identify the specific server
+3. browsers send request to the specific server
+4. The specific server response data
 
 ### 1. Input URL
 
@@ -120,3 +158,5 @@ Server error responses (500–599)
 [What is HTTP?](https://www.cloudflare.com/en-gb/learning/ddos/glossary/hypertext-transfer-protocol-http/)
 
 [List of HTTP header fields](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields)
+
+[RFC 1945, Hypertext Transfer Protocol - HTTP/1.0](https://www.rfc-editor.org/rfc/rfc1945)
