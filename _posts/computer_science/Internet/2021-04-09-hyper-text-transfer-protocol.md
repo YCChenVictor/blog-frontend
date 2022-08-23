@@ -5,7 +5,7 @@ description: ''
 date: '2021-04-09T03:37:42.357Z'
 categories: internet
 note: 那個圖要改掉，自己畫。what 的部分要跟 how 的內容 match。intention 可以進 RFC 裡看。what section 之前的寫太菜了，現在可以在改好一點
-publish:
+publish: true
 ---
 
 ## Introduction
@@ -28,14 +28,16 @@ An HTTP request from client side contains:
   * example: HTTP/1.0
   * intention: let sender to tell receiver the format of this http message and the expected format of further http communication
 * URL
-  * 
+  * TBC
 * method
+  * TBC
 * request headers: key informations (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields))
 * body (optional)
 
 An HTTP response from server side contains:
 
 * status code
+  * TBC
 * response headers: key informations (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields))
 * body (optional)
 
