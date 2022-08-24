@@ -4,6 +4,7 @@ title: (Rails Elementary 4) View-Layout
 date: '2021-03-02'
 categories: rails
 note: CSRF (Cross-site request forgery)
+publish:
 ---
 
 ### CSRF (Cross-Site Request Forgery)
