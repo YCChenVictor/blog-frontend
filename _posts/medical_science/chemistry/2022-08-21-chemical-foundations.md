@@ -35,9 +35,29 @@ graph LR
   id3((setup hypothesis)) --> id4((experiment))
   id4((experiment)) -- not found, refine --> id3((setup hypothesis))
   id4((experiment)) -- found --> id5((conclusion))
+  id5((conclusion)) --> id6((law))
+  id5((conclusion)) --> id7((theory<br>model))
+  id7((theory<br>model)) --> id8((prediction))
+  id8((prediction)) --compare with--> id1((observation))
 </div>
 
-refer to [The scientific method](https://www.youtube.com/watch?v=N6IAzlugWw0)
+* law summarizes what happens; for example, law of conservation of mass: chemical change does not affect total mass of materials
+* theory explains why it happens
+
+### unit of measurements
+
+SI means Système International
+
+#### SI units
+
+| Physical Quantity | singular | plural     |
+| :---        |    :----:   |          ---: |
+| Mass | 私 (わたし)       |　私達 (わたしたち)   |
+| second person   | あなた        | あなたたち      |
+| third person (male)   | かれ        | 彼たち      |
+| third person (female)   | かのじょ        | かのじょたち      |
+
+#### prefixes in SI system
 
 ## What?
 
@@ -45,11 +65,6 @@ give an example
 
 ## Note
 
-Section 1.2
-scientific method measurement hypothesis theory
-model
-natural law
-law of conservation of mass
 Section 1.3
 SI system mass weight
 Section 1.4
