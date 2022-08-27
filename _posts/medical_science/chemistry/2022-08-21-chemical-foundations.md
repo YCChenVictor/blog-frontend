@@ -5,7 +5,7 @@ description: ''
 date: '2022-08-21'
 categories: chemistry
 note:
-mathjax:
+mathjax: true
 mermaid: true
 p5:
 threeJS:
@@ -50,30 +50,46 @@ SI means Système International
 
 #### SI units
 
-| Physical Quantity | singular | plural     |
-| :---        |    :----:   |          ---: |
-| Mass | 私 (わたし)       |　私達 (わたしたち)   |
-| second person   | あなた        | あなたたち      |
-| third person (male)   | かれ        | 彼たち      |
-| third person (female)   | かのじょ        | かのじょたち      |
+| physical quantity | name of unit | abbreviation |
+| :--- | :----: | ---: |
+| mass | kilogram | kg |
+| length | meter | m |
+| time | second | s |
+| temperature | kelvin | K |
+| electric current | ampere | A |
+| amount of substance | mole | mol |
+| luminous intensity | candela | cd |
 
 #### prefixes in SI system
 
+TBC
+
+### measurement
+
+* uncertainty: occuring because of the precision of the measuring device
+* significant figures: recording the certain digits and the first un- certain digit
+* accuracy and precision
+  * accuracy: how close a given set of measurements are to their **true value**
+  * precision: how close the measurements are to **each other**
+* random and system error
+  * random: unpredictable and cannot be replicated by repeating experiments
+  * system: consistent errors in experiments
+* exponential notation: 6234000 -> $$6.234 * 10^6$$
+
+### dimensional analysis
+
+Dimensional analysis make sure the result is reasonable. For example, a men's speed is $$10 m/s$$, then after 10 seconds, he will walk
+
+$$10 m/s * 10s = 100m$$
+
+we ensure the result by dimensional analysis as $$m/s * s = m$$, making the result 10 m is truly distance of walking.
+
 ## What?
 
-give an example
+TBC (should practice some examples)
 
 ## Note
 
-Section 1.3
-SI system mass weight
-Section 1.4
-uncertainty significant figures accuracy precision
-random error systematic error
-Section 1.5
-exponential notation
-Section 1.6
-unit factor method dimensional analysis
 Section 1.8
 density
 Section 1.9
