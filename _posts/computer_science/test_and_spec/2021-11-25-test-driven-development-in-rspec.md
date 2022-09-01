@@ -1,21 +1,28 @@
 ---
 layout: post
-title: (Rails) Test Driven Development
+title:
 description: ''
 date: '2021-04-06T12:13:45.562Z'
 note: 整理 2021-04-06 Test-Driven-Development 這個檔案
-categories: rails
+categories: test
+publish: true
 ---
 
-## Introduction & Why
+## Introduction
 
-Based on the specifications of businesss logics, we can write test to make sure the input and output of software as our expectation in any circumstances.
+TDD is a kind of software development process by writing test first and then keeping testing the software until all required function developed. The steps:
 
-There are TDD, BDD ...etc.
+* turn business logic into specifications
+* decompose specifications into functions (MVC)
+* define all desired input and output of each function
+* write test first for every function
+* given the tests, compose codebase to realize business logic
+
+## Why
+
+TDD reduces bugs and increase the quality of code, making software to be more maintainable and understandable. With no test, there would be more manual test in the future and it would be hard to update the version.
 
 ## How?
-
-I am going to use RSpec and some rules in testing to demonstrate it.
 
 ### The Different Types of Specification And The Frequency of Testing
 
