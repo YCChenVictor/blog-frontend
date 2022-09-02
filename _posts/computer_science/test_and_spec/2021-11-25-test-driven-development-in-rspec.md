@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2021-04-06T12:13:45.562Z'
-note: 整理 2021-04-06 Test-Driven-Development 這個檔案
+note:
 categories: test
 publish: true
 ---
