@@ -35,7 +35,7 @@ Given the reasons, if
 1. there are going to be lots of states
 2. rewrite the data without reload the webpage
 3. there are going to be lots of components
-4. this app is going to change backend
+4. this app is going to change backend framework
 5. You like the features
 
 Then you should use react.

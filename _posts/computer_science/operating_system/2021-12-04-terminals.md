@@ -30,6 +30,7 @@ learning by doing and read articles online
   * `mv test coding` will move `test` to directory, `coding`
 * `rm`, remove file
   * `rm test` will remove `test` in current directory
+  * `rm -r test` will remove directory, `test`
 * `grep`, search specific text in specific text file
   * `grep word example.txt` will search text, `word` in `example.txt` file
 * `less`, view the content of a file in one page

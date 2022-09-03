@@ -2,25 +2,15 @@
 layout: post
 title:
 description: ''
-<<<<<<< HEAD
-date: ''
-categories:
-note:
-=======
 date: '2022-09-02'
 categories: test
 note: 我覺得 testing 這邊太亂了，應該從例子出發
->>>>>>> ff80312f2d6720c01d41ef3e288880f2a0937b72
 mathjax:
 mermaid:
 p5:
 threeJS:
 anchor:
-<<<<<<< HEAD
-publish:
-=======
 publish: true
->>>>>>> ff80312f2d6720c01d41ef3e288880f2a0937b72
 ---
 
 ## Introduction
@@ -28,13 +18,8 @@ publish: true
 This article tries to clarify
 
 * concept of testing
-<<<<<<< HEAD
-* unit testing
-* integration testing
-=======
 * integration testing
 * unit testing
->>>>>>> ff80312f2d6720c01d41ef3e288880f2a0937b72
 * functional testing
 * test driven development
 * behavior driven development
@@ -47,20 +32,16 @@ Tests can prevent bugs earlier.
 
 ### concept of testing
 
-<<<<<<< HEAD
-end to end -> integration testing -> unit testing
-
-### unit testing
-
-
-
-## What?
-
-give an example
-=======
 Add pyramid to demo the decomposition of tests end-to-end -> integration -> unit (TBC)
 
 The end goal of testing is to make sure users have good experience, so before users use our app, we should let testers do what users will do in all scenarios and check whether the experience is acceptable. We call this kind of tests end-to-end test or quality assurance.
+
+### AAA principle (Arrange -> Act -> Assert)
+
+> The basic principle to build spec is AAA principle.
+> **arrange:** describe the environment before action begin
+> **act:** execute the unit function that we want to test
+> **assert:** check whether the result is what we want
 
 ### integration testing
 
@@ -91,7 +72,6 @@ TDD maps unit test maps Rspec. Refer to 2021-11-25-TDD.md.
 ### BDD
 
 BDD maps integration test maps capybara + Rspec. Refer to 2022-08-31-behavior-driven-development-in-rspec-and-capybara.md.
->>>>>>> ff80312f2d6720c01d41ef3e288880f2a0937b72
 
 ## Reference
 

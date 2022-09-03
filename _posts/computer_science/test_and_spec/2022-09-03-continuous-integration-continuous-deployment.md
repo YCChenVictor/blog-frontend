@@ -2,20 +2,20 @@
 layout: post
 title:
 description: ''
-date: ''
-categories:
+date: '2022-09-03'
+categories: test
 note:
 mathjax:
 mermaid:
 p5:
 threeJS:
 anchor:
-publish:
+publish: true
 ---
 
 ## Introduction
 
-
+quick explanation
 
 ## Why?
 
@@ -30,5 +30,3 @@ focus on the mechanim
 give an example
 
 ## Reference
-
-[Unit Testing vs Test-Driven Development](https://www.baeldung.com/cs/unit-testing-vs-tdd)
