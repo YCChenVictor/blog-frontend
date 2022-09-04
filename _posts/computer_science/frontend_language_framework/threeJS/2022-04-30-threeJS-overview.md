@@ -9,6 +9,7 @@ mathjax:
 mermaid:
 p5:
 threeJS: false
+publish: true
 ---
 
 ## Introduction
@@ -224,7 +225,7 @@ scene.add(moon)
 </script>
 
 <script type="module">
-  import * as THREE from 'three';
+  import * as THREE from './three';
   import {OrbitControls} from 'orbit_controls';
 
   const scene = new THREE.Scene();
