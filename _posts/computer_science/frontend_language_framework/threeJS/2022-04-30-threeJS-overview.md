@@ -8,35 +8,44 @@ note: tailwind 要怎麼自動調整 width according to browser 要想辦法
 mathjax:
 mermaid:
 p5:
-threeJS: false
+threeJS: true
 publish: true
 ---
 
 ## Introduction
 
-1. camera, lighting, geometry
-2. it's not for modeling sophistic model
+ThreeJS is for 3D modeling on frontend.
+
+Structure of article:
+
+* install threeJS
+* environment: scene, camera, render
+* create object in scene
+  * mesh
+  * lighting
+* helper for
+* interaction with users
 
 ## Why?
 
-I want to make my own fantasy.
+TBC
 
 ## How?
 
-### installation
+### install threeJS
 
 Follow the instruction in [Installation](https://threejs.org/docs/#manual/en/introduction/Installation)
 
-I use the CDN method in github pages and remember to find the version you want in [three.js](https://www.npmjs.com/package/three)
+I use CDN method on github pages and remember to find the version you want in [three.js](https://www.npmjs.com/package/three). After installation, we can import it with `<script>` as follow
 
-```
+```javascript
 <script type="module">
   import * as THREE from 'three';
   const scene = new THREE.Scene();
 </script>
 ```
 
-### basic script
+### environment: scene, camera, render
 
 To start threeJS, we always need scene, camera, render.
 
@@ -44,7 +53,7 @@ To start threeJS, we always need scene, camera, render.
 
 Scene is container
 
-```
+```javascript
 const scene = new THREE.Scene();
 ```
 
@@ -52,7 +61,7 @@ const scene = new THREE.Scene();
 
 Camera defines the way to capture the scene. The basic script to define camera:
 
-```
+```javascript
 const fieldOfView = 75
 const aspectRatio = window.innerWidth / window.innerHeight
 const nearestDistance = 0.1
@@ -64,9 +73,9 @@ camera.position.setZ(moveOnZaxis);
 
 #### renderer
 
-Just the way to render the everything in the canvas
+Just the way to render everything in canvas
 
-```
+```javascript
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector(#threeExample),
 })
@@ -76,7 +85,7 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.render(scene, camera)
 ```
 
-### create an object
+### create object
 
 After setting up the environment, we can now create an object in the `scene`.
 
@@ -87,7 +96,7 @@ After setting up the environment, we can now create an object in the `scene`.
 
 We use `Mesh` to combine the elements, [geometry](https://threejs.org/docs/?q=geometry#api/en) and [material](https://threejs.org/docs/?q=material#api/en) and re-render it with movement we define in a loop.
 
-```
+```javascript
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100)
 const material = new THREE.MeshBasicMaterial({color: 0xFF6347, wireframe: true})
 const torus = new THREE.Mesh(geometry, material);
@@ -110,26 +119,26 @@ animate()
 
 change `material` from
 
-```
+```javascript
 const material = new THREE.MeshBasicMaterial({color: 0xFF6347, wireframe: true})
 ```
 
 to
 
-```
+```javascript
 const material = new THREE.MeshStandardMaterial({color: 0xFF6347})
 ```
 
 and add light at the x, y, z position we what as follow
 
-```
+```javascript
 const pointLight = new THREE.PointLight(0xffffff)
 pointLight.position.set(5, 5, 5)
 ```
 
 If we want all the object to be illuminated, add
 
-```
+```javascript
 const ambientLight = new THREE.AmbientLight(0xffffff)
 scene.add(pointLight, ambientLight)
 ```
@@ -142,7 +151,7 @@ You may start to find it hard to track. We can use some helper as follow:
 
 It helps us to know the position of the light
 
-```
+```javascript
 const lightHelper = new THREE.PointLightHelper(pointLight)
 scene.add(lightHelper)
 ```
@@ -151,16 +160,16 @@ scene.add(lightHelper)
 
 It will draw grids
 
-```
+```javascript
 const gridHelper = new THREE.GridHelper(200, 50)
 scene.add(gridHelper)
 ```
 
-### interaction
+### interaction with users
 
 We can add an orbit_control listening to the mouse of the domElement and modify the camera according to the mouse movement.
 
-```
+```javascript
 <script type="importmap">
   {
     "imports": {
@@ -186,7 +195,7 @@ We can load texture with `TextureLoader()`
 
 #### background
 
-```
+```javascript
 const backgroundImagePath = "{{site.baseurl}}/assets/img/space.jpeg"
 const spaceTexture = new THREE.TextureLoader().load(backgroundImagePath);
 scene.background = spaceTexture;
@@ -196,7 +205,7 @@ scene.background = spaceTexture;
 
 For example, we want to create a moon. Go find the moon_texture and then
 
-```
+```javascript
 const moonTexture = new THREE.TextureLoader().load('{{site.baseurl}}/assets/img/moon_texture.jpeg');
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
@@ -209,23 +218,16 @@ scene.add(moon)
 
 ## What?
 
+Render it into `<canvas>`
+
 <div id='' class='h-screen justify-center items-center'>
   <canvas id='threeExample' class='object-scale-down'>
     Hello World
   </canvas>
 </div>
 
-<script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.140.0/build/three.module.js",
-      "orbit_controls": "https://unpkg.com/three@0.140.0/examples/jsm/controls/OrbitControls.js"
-    }
-  }
-</script>
-
 <script type="module">
-  import * as THREE from './three';
+  import * as THREE from 'three';
   import {OrbitControls} from 'orbit_controls';
 
   const scene = new THREE.Scene();

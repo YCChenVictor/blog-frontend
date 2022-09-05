@@ -15,7 +15,17 @@ publish: true
 
 ## Introduction
 
-This article explains the concept of Stoichiometry as follow:
+This article explains the concept of Stoichiometry. After we balance chemical reaction, there are actually 9 ways of examples; for example, we know $$SO_2$$ + $$O_2$$ = $$SO_3$$.
+
+step 1: balance
+
+$$2SO_2 + O_2 \rightarrow 2SO_3$$
+
+step 2: proportion
+
+$$SO_2 : O_2 : SO_3 = 2 : 1 : 2$$
+
+step 3: convert from A to B
 
 <div class="mermaid">
 graph LR
@@ -30,21 +40,6 @@ graph LR
   id5(mode B) --22.4_L_B / 1_mole_B--> id8(volume B)
 </div>
 
-where A and B are the substances in a reaction.
-
-After we balance chemical reaction, there are actually 9 ways of examples; for example, we know $$SO_2$$ + $$O_2$$ = $$SO_3$$.
-
-* step 1: balance
-
-$$2SO_2 + O_2 \rightarrow 2SO_3$$
-
-* step 2: proportion
-
-$$SO_2 : O_2 : SO_3 = 2 : 1 : 2$$
-
-* particle A -> particle B
-* 列九條出來
-
 ## Why?
 
 focus on why we need it
@@ -53,9 +48,45 @@ focus on why we need it
 
 ### particle A -> particle B
 
+TBC
+
+### particle A -> mass B
+
+TBC
+
+### particle A -> volumn B
+
+TBC
+
+### mass A -> particle B
+
+TNC
+
+### mass A -> mass B
+
+How many grams of $$SO_3$$ is produced if react 32 grams of $$O_2$$?
+
+Moles of 32 grams of $$O_2$$ = 32/16 = 2 -> 4 moles of $$SO_3$$ -> 4 * (32 + 16 * 3) = 320 g
+
+### mass A -> volumn B
+
+TBC
+
+### volumn A -> particle B
+
+TBC
+
+### volumn A -> mass B
+
+TBC
+
+### volumn A -> volumn B
+
+TBC
+
 ## What?
 
-give an example
+give exercises
 
 ## Reference
 
