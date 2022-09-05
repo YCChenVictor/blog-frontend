@@ -1,15 +1,21 @@
 ---
 layout: post
-title: (HTML 1) Basic
+title:
 description: 'HTML, CSS, The Concept of Area Size in Layout'
 date: '2021-12-17T02:44:33.376Z'
-categories: Frontend-HTML
-note:
+categories: html
+note: html
+publish: true
 ---
 
 ## Introduction
 
-HTML = hypertext markup language, a kind of text file with **markup** for data, layout and arrangement.
+HTML = hypertext markup language, a kind of text file with **markup** for data, layout and arrangements.
+
+Structure of this article:
+
+* markups in a html
+* CSS concepts
 
 ## Why
 
@@ -17,62 +23,58 @@ With markup, search engine and blind people can read the content of website corr
 
 ## How
 
-### Markups
+### markups in a html
 
-An example as follow:
-
-```bash
+```HTML
 <!DOCTYPE html>  
 <html lang="en">  
-<head>  
- <meta charset="UTF-8">  
- <meta name="viewport" content="width=device-width, initial-scale=1.0">  
- <title>Document</title>  
-</head>  
-<body>  
- <h1>主標題</h1>  
- <h2>副標題</h2>  
- <h3>小標題</h3>  
- <p>內文內文內文<strong>粗體內文</strong><em>斜體內文</em>內文內文內文內文內文內文內文內文內文內文內文</p>  
- <ul>  
-  <li>無序清單</li>  
-  <li>無序清單</li>  
-  <li>無序清單</li>  
-  <li>無序清單</li>  
-  <li>無序清單</li>  
- </ul>  
- <ol>  
-  <li>有序清單</li>  
-  <li>有序清單</li>  
-  <li>有序清單</li>  
-  <li>有序清單</li>  
-  <li>有序清單</li>  
- </ol>  
- <nav>這是導覽列</nav>  
- <a href="[https://www.google.com.tw/](https://www.google.com.tw/)">這是超連結</a>  
- <figure>  
-  <img src="./example.png" alt="要是圖片失效會出現的一段文字">  
-  <figcaption>這是這個圖片的註解</figcaption>  
- </figure>  
- <table border="2"> <!-- border 代表邊框的寬度 -->  
-  <!-- table 會先從橫列開始寫，在開始寫直欄 -->  
-  <tr>  
-   <td>data</td>  
-      <td>data</td>  
-      <td>data</td>  
-     </tr>  
-  <tr>  
-   <td>data</td>  
-      <td>data</td>  
-      <td>data</td>  
-     </tr>  
-  <tr>  
-   <td>data</td>  
-      <td>data</td>  
-      <td>data</td>  
-     </tr>  
- </table>  
-</body>  
+  <head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Document</title>  
+  </head>  
+  <body>  
+    <h1>threeJS Blender</h1>  
+    <p>text<strong>bold text</strong><em>italic text</em>text</p>
+    <ul>  
+      <li>無序清單</li>  
+      <li>無序清單</li>  
+      <li>無序清單</li>  
+      <li>無序清單</li>  
+      <li>無序清單</li>  
+    </ul>  
+    <ol>  
+      <li>有序清單</li>  
+      <li>有序清單</li>  
+      <li>有序清單</li>  
+      <li>有序清單</li>  
+      <li>有序清單</li>  
+    </ol>  
+    <nav>這是導覽列</nav>  
+    <a href="[https://www.google.com.tw/](https://www.google.com.tw/)">這是超連結</a>  
+    <figure>  
+      <img src="./example.png" alt="要是圖片失效會出現的一段文字">  
+      <figcaption>這是這個圖片的註解</figcaption>  
+    </figure>  
+    <table border="2"> <!-- border 代表邊框的寬度 -->  
+      <!-- table 會先從橫列開始寫，在開始寫直欄 -->  
+      <tr>  
+        <td>data</td>  
+        <td>data</td>  
+        <td>data</td>  
+      </tr>  
+      <tr>  
+        <td>data</td>  
+        <td>data</td>  
+        <td>data</td>  
+      </tr>  
+      <tr>  
+        <td>data</td>  
+        <td>data</td>  
+        <td>data</td>  
+      </tr>  
+    </table>  
+  </body>  
 </html>
 ```
 
