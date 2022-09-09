@@ -30,9 +30,59 @@ TBC
 
 I just use some free 3D model because I have no idea on building own characters. Remember to export it as glTF.
 
-### import it into threeJS
+### create scene
 
-Please refer to 2022-04-30-threeJS-overview.md for basic concepts. TBC
+```javascript
+import * as THREE from 'three';
+...
+
+const scene = new THREE.Scene();
+...
+```
+
+### import it into threeJS and add it into scene
+
+Please refer to 2022-04-30-threeJS-overview.md for basic concepts. Because I am now using CDN, remember to add it in importmap
+
+```javascript
+{
+  "imports": {
+    ...,
+    "GLTF_loader": "https://unpkg.com/three@0.140.0/examples/jsm/loaders/GLTFLoader.js"
+  }
+}
+```
+
+and then use it with
+
+```javascript
+import { GLTFLoader } from 'GLTF_loader';
+
+const loader = new GLTFLoader();
+loader.load('path/to/model.glb', // load the image
+  function(gltf) {
+    scene.add(gltf.scene); // add it to scene
+  },
+  undefined,
+  function(error) {
+    console.error( error );
+  }
+);
+```
+
+### render it
+
+```javascript
+const renderer = new THREE.WebGLRenderer({
+  canvas: document.querySelector('#threeExample'),
+})
+
+...
+
+renderer.render(scene)
+```
+
+You also need to specify correct position of camera, light and use animation to render it correctly.
 
 ## What?
 
@@ -43,83 +93,51 @@ Please refer to 2022-04-30-threeJS-overview.md for basic concepts. TBC
 
 <script type="module">
   import * as THREE from 'three';
-  import {OrbitControls} from 'orbit_controls';
+  import { GLTFLoader } from 'GLTF_loader';
 
   const scene = new THREE.Scene();
-
+  
   const fieldOfView = 75
   const aspectRatio = window.innerWidth / window.innerHeight
   const nearestDistance = 0.1
   const farthestDistance = 1000
-  const moveOnZaxis = 30
   const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearestDistance, farthestDistance)
+  camera.position.set(0,1,2);
+
+  const light = new THREE.DirectionalLight(0xffffff, 1)
+  light.position.set(2,2,5);
+  scene.add(light)
+
+  const loader = new GLTFLoader();
 
   const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#threeExample'),
   })
-
-  camera.position.setZ(moveOnZaxis);
-
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.render(scene, camera)
-
-  ////////////////////////////////////
-
-  const geometry = new THREE.TorusGeometry(10, 3, 16, 100)
-  const material = new THREE.MeshStandardMaterial({color: 0xFF6347})
-  const torus = new THREE.Mesh(geometry, material);
-  scene.add(torus)
-
-  ////////////////////////////////////
-
-  const pointLight = new THREE.PointLight(0xffffff)
-  pointLight.position.set(5, 5, 5)
-
-  const ambientLight = new THREE.AmbientLight(0xffffff)
-  scene.add(pointLight, ambientLight)
-
-  /////////////////////////////////////
-
-  const lightHelper = new THREE.PointLightHelper(pointLight)
-  scene.add(lightHelper)
-
-  const gridHelper = new THREE.GridHelper(200, 50)
-  scene.add(gridHelper)
-
-  /////////////////////////////////////
-
-  const controls = new OrbitControls(camera, renderer.domElement);
-
-  /////////////////////////////////////
-
-  const backgroundImagePath = "{{site.baseurl}}/assets/img/space.jpeg"
-  const spaceTexture = new THREE.TextureLoader().load(backgroundImagePath);
-  scene.background = spaceTexture;
-
-  const moonTexture = new THREE.TextureLoader().load('{{site.baseurl}}/assets/img/moon_texture.jpeg');
-  const moon = new THREE.Mesh(
-    new THREE.SphereGeometry(3, 32, 32),
-    new THREE.MeshStandardMaterial({
-      map: moonTexture,
-    })
+  loader.load(
+    '{{site.baseurl}}/assets/3d/cat.glb',
+    function(glb) {
+      console.log('load successfully')
+      const root = glb.scene
+      root.scale.set(0.5,0.5,0.5)
+      scene.add(glb.scene);
+    },
+    undefined,
+    function(error) {
+      console.error(error);
+    }
   );
-  scene.add(moon)
 
-  /////////////////////////////////////
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.shadowMap.enable = true
+  renderer.gammaOutput = true
 
   function animate() {
-    requestAnimationFrame(animate);
-
-    torus.rotation.x += 0.01;
-    torus.rotation.y += 0.005;
-    torus.rotation.z += 0.01;
-
-    controls.update();
-
-    renderer.render(scene, camera);
+    requestAnimationFrame(animate)
+    renderer.render(scene, camera)
   }
-  
-  animate()
+
+animate()
 </script>
 
 ## Reference
@@ -133,3 +151,5 @@ Please refer to 2022-04-30-threeJS-overview.md for basic concepts. TBC
 [Wolf Rigged And Game Ready](https://free3d.com/3d-model/wolf-rigged-and-game-ready-42808.html)
 
 [Loading 3D models](https://threejs.org/docs/#manual/en/introduction/Loading-3D-models)
+
+[How to Load a 3D model in Three.js | GLTF/GLB Model | GLTFLoader](https://www.youtube.com/watch?v=yPA2z7fl4J8)

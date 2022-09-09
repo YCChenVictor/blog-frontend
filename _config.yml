@@ -24,8 +24,8 @@ nav-menu:
     permalink: category
 
 # use false to turn off any social media links
-twitter: https://twitter.com/
-facebook: https://facebook.com/
+twitter: false
+facebook: false
 instagram: https://instagram.com/
 github: https://github.com/
 linkedin: https://linkedin.com/
