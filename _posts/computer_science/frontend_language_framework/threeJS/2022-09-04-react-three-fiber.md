@@ -3,14 +3,14 @@ layout: post
 title:
 description: ''
 date: '2022-09-04'
-categories:
+categories: threeJS
 note:
 mathjax:
 mermaid:
 p5:
 threeJS:
 anchor:
-publish:
+publish: true
 ---
 
 ## Introduction
@@ -64,28 +64,116 @@ export default Box;
 ```
 
 * `useFrame`: it will execute codes on every rerendered frame
+* size: TBC
+
+### background
+
+```jsx
+const Background = props => {
+
+  const {gl} = useThree();
+
+  const texture = useTexture('/autoshop.jpg')
+  const formatted = new THREE.WebGLCubeRenderTarget(texture.image.height).fromEquirectangularTexture(gl, texture)
+  return(
+    <primitive attach="background" object={formatted.texture} />
+  )
+}
+
+<Suspense fallback={null}>
+  <Background />
+</Suspense>
+```
 
 ### import 3D model
 
-```javascript
-import { useLoader } from '@react-three/fiber'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+turn gltf into jsx component
 
-function Scene() {
-  const gltf = useLoader(GLTFLoader, '/Poimandres.gltf')
+```bash
+npx gltfjsx xxx.glb
+```
+
+it will produce something as follow:
+
+```javascript
+import React, { useRef } from 'react'
+import { useGLTF } from '@react-three/drei'
+
+export function Model(props) {
+  const { nodes, materials } = useGLTF('/cat.glb')
   return (
-    <Suspense fallback={null}>
-      <primitive object={gltf.scene} />
-    </Suspense>
+    <group {...props} dispose={null}>
+      <mesh geometry={nodes.Cube.geometry} material={materials.Material} />
+      <mesh geometry={nodes['12221_Cat_v1_l3'].geometry} material={materials.Cat} />
+    </group>
   )
 }
+
+useGLTF.preload('/cat.glb')
 ```
+
+### perspective
+
+Add an orbit_control listening to the mouse of the domElement and modify the camera according to the mouse movement
+
+```jsx
+const CameraController = () => {
+  const { camera, gl } = useThree();
+  useEffect(
+    () => {
+      const controls = new OrbitControls(camera, gl.domElement);
+
+      controls.minDistance = 3;
+      controls.maxDistance = 20;
+      return () => {
+        controls.dispose();
+      };
+    },
+    [camera, gl]
+  );
+  return null;
+};
+```
+
+and put it in `<Canvas>`
 
 ### animate
 
+### interaction
+
+
+
+### routes
+
+Before we dive in, please see concept of routes in react in react/2021-06-13-overview
+
+```jsx
+function App() {
+  <div>
+    <Canvas>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Box position={[-1.2, 0, 0]} />} />
+        </Routes>
+      </Router>
+    </Canvas>
+  </div>
+}
+
+export default App
+```
+
+and import it
+
+```jsx
+<Router>
+  <App />
+</Router>
+```
+
 ## What?
 
-give an example
+Ok, I am trying to create a world based on 2022-08-13-best-system.
 
 ## Reference
 

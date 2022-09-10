@@ -30,6 +30,8 @@ TBC
 
 I just use some free 3D model because I have no idea on building own characters. Remember to export it as glTF.
 
+create one -> add armatures -> edit poses -> animate
+
 ### create scene
 
 ```javascript
@@ -153,3 +155,5 @@ animate()
 [Loading 3D models](https://threejs.org/docs/#manual/en/introduction/Loading-3D-models)
 
 [How to Load a 3D model in Three.js | GLTF/GLB Model | GLTFLoader](https://www.youtube.com/watch?v=yPA2z7fl4J8)
+
+[Intro to Rigging an Armature to a character in Blender 3.0](https://www.youtube.com/watch?v=9dZjcFW3BRY)
