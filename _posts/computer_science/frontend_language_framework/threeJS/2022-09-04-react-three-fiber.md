@@ -139,9 +139,35 @@ and put it in `<Canvas>`
 
 ### animate
 
+You can find how to build animation in 2022-05-01-threeJS-character.md and we can use it with
+
+```jsx
+useEffect(() => {
+  actions.ArmatureAction.play()
+})
+```
+
+to keep rerender it
+
 ### interaction
 
+We can add some interaction with users; for example, we can
 
+```jsx
+import { useFrame, useThree } from '@react-three/fiber'
+
+const group = useRef()
+const { viewport } = useThree()
+
+useFrame(({ mouse }) => {
+  const x = (mouse.x * viewport.width) / 2
+  const y = (mouse.y * viewport.height) / 2
+  group.current.position.set(x, y, 0)
+  group.current.rotation.set(-y, x, 0)
+})
+```
+
+to let mouse move the current object
 
 ### routes
 
@@ -171,6 +197,10 @@ and import it
 </Router>
 ```
 
+### deploy
+
+To deploy it remember to wrap components with `<Suspense>`
+
 ## What?
 
 Ok, I am trying to create a world based on 2022-08-13-best-system.
@@ -184,3 +214,5 @@ Ok, I am trying to create a world based on 2022-08-13-best-system.
 [Working with GLB models in React.js: Import 3d Text from Vectary using React-three-fiber](https://www.youtube.com/watch?v=8UB78yGtEJA)
 
 https://github.com/pmndrs/gltfjsx
+
+[Part 5: Looking at our Cursor](https://tympanus.net/codrops/2019/10/14/how-to-create-an-interactive-3d-character-with-three-js/)

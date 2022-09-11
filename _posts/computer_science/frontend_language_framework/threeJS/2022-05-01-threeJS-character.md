@@ -157,3 +157,7 @@ animate()
 [How to Load a 3D model in Three.js | GLTF/GLB Model | GLTFLoader](https://www.youtube.com/watch?v=yPA2z7fl4J8)
 
 [Intro to Rigging an Armature to a character in Blender 3.0](https://www.youtube.com/watch?v=9dZjcFW3BRY)
+
+[Learn Blender Rigging and Animation in 1 Minute!](https://www.youtube.com/watch?v=LNchKgHDgVU)
+
+[Loading Animated Characters in React Three Fiber](https://www.youtube.com/watch?v=q7yH_ajINpA&t=596s)

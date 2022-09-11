@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-09-03'
 categories: test
-note:
+note: React 在 gh pages 後，加一個 test -> 嘗試讓 CICD 在 push 之後
 mathjax:
 mermaid:
 p5:
