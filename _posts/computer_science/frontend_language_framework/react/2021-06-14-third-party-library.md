@@ -1,10 +1,11 @@
 ---
 layout: post
-title: (react) third party library
+title:
 description:
 date: '2021-06-14'
 categories: react
 note: 要把 how 以下的 code 整理一下，之前寫的模式沒什麼用，整理 fontawesome 跟 mui 怎麼安裝即可
+publish:
 ---
 
 ## Introduction
