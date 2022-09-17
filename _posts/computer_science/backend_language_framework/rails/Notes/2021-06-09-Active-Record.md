@@ -175,9 +175,11 @@ PostgreSQLAdapter < AbstractAdapter
 #### destroy
 
 ### Validation
+
 For data to be consistent in a model, we should validate it **before** inserting into a database. The methods for validation in [Active Record Validation - Ruby on Rails](https://guides.rubyonrails.org/active_record_validations.html)
 
 ### Callbacks
+
 Callback is the function that are going to be call after a function executed.
 
 The life cycle of an object in a framework always plays key role. The process:

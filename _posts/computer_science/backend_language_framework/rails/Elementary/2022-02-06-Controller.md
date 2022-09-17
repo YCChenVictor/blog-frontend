@@ -4,7 +4,7 @@ title: (Rails Elementary) Controller
 date: '2022-02-06'
 categories: rails
 note: to be continued
-publish: true
+publish:
 ---
 
 ## Introduction

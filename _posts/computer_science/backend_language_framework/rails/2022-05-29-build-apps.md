@@ -1,6 +1,6 @@
 ---
 layout: post
-title: build apps
+title:
 description: ''
 date: '2022-05-29'
 categories: rails
