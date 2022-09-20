@@ -67,6 +67,8 @@ WWW-Authenticate: Basic realm="Access to staging site"
 
 ### JWT
 
+TBC
+
 ## Reference
 
 [開發者必備知識 - HTTP認證（HTTP Authentication）](https://carsonwah.github.io/http-authentication.html)
