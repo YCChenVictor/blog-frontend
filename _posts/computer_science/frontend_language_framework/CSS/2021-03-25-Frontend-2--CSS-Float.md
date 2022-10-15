@@ -4,76 +4,10 @@ description: >-
   To conceptualize, with float, the object can float on other objects, meaning
   it is on other layer and it looks like it cover other object…
 date: '2021-03-25T04:15:15.384Z'
-categories: []
-keywords: []
+note: 還有一些內容沒整理
 slug: /@t5204713910/frontend-2-css-float-c11095b28ae8
+publish:
 ---
-
-To conceptualize, with float, the object can float on other objects, meaning it is on other layer and it looks like it cover other object in web browsers.
-
-#### how to specify it and what does it looks like
-
-With a image and paragraph setup as follow:
-
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
- <meta charset="UTF-8">  
- <meta name="viewport" content="width=device-width, initial-scale=1.0">  
- <title>Document</title>  
-</head>  
-<style>
-
-</style>  
-<body>  
-   
-    <img src="[http://fakeimg.pl/350x200](http://fakeimg.pl/350x200)" alt="">
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing, elit. Ullam quae magni, iste nam ratione doloribus corporis accusamus reiciendis neque dolore qui pariatur atque tenetur facere soluta adipisci, porro odit, aut.</p>
-
-</body>  
-</html>
-
-Then the layout would be
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1____vfHmCeSRiv6amMXFPgDgQ.png)
-
-Add a class `class:img-float`into `<img>` and create style markup with CSS
-
-img-float{  
-    float:left  
-}
-
-as following
-
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
- <meta charset="UTF-8">  
- <meta name="viewport" content="width=device-width, initial-scale=1.0">  
- <title>Document</title>  
-</head>  
-<style>  
-   
- .img-float{  
-        float:left  
-    }
-
-</style>  
-<body>  
-   
-    <img src="[http://fakeimg.pl/350x200](http://fakeimg.pl/350x200)" alt="" class="img-float">
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing, elit. Ullam quae magni, iste nam ratione doloribus corporis accusamus reiciendis neque dolore qui pariatur atque tenetur facere soluta adipisci, porro odit, aut.Lorem ipsum dolor sit amet, consectetur adipisicing, elit. Ullam quae magni, iste nam ratione doloribus corporis accusamus reiciendis neque dolore qui pariatur atque tenetur facere soluta adipisci, porro odit, aut.Lorem ipsum dolor sit amet, consectetur adipisicing, elit. Ullam quae magni, iste nam ratione doloribus corporis accusamus reiciendis neque dolore qui pariatur atque tenetur facere soluta adipisci, porro odit, aut.Lorem ipsum dolor sit amet, consectetur adipisicing, elit. Ullam quae magni, iste nam ratione doloribus corporis accusamus reiciendis neque dolore qui pariatur atque tenetur facere soluta adipisci, porro odit, aut.Lorem ipsum dolor sit amet, consectetur adipisicing, elit. Ullam quae magni, iste nam ratione doloribus corporis accusamus reiciendis neque dolore qui pariatur atque tenetur facere soluta adipisci, porro odit, aut.</p>
-
-</body>  
-</html>
-
-Then the layout would be
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__TIHPDzlbzFNk1fUA3ls37A.png)
-
-As you can see, the image float on the paragraph, looking like it cover the paragraph.
 
 #### Only Left and Right
 

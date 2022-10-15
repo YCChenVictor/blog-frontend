@@ -2,75 +2,13 @@
 title: (Frontend_5) CSS Flex & Fixed
 description: ''
 date: '2021-03-26T12:44:53.275Z'
-categories: []
+categories: css
 keywords: []
 slug: /@t5204713910/frontend-5-flex-fixed-d2c9bb772699
+publish: true
 ---
 
 ### Flex
-
-Suppose we have the following objects
-
-<div class="warp">  
-     <div class="item">  
-         lorem   
-     </div>  
-     <div class="item">  
-         lorem   
-     </div>  
-     <div class="item">  
-         lorem   
-     </div>  
-</div>
-
-with CSS:
-
-.warp {  
-    width: 960px;  
-    margin: auto;  
-    background: #ccc;  
-    display: flex;  
- }  
-.item {  
-    width: 300px;  
-    margin: 0 10px 10px;  
-    background-color: #ffa;  
- }
-
-Then the layout:
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__xlJ9o__43sRsfldS3fNAqLA.png)
-
-if we add`display:flex` , then the layout:
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__2kaGIS65qPkadcuQtGLrtQ.png)
-
-You may think that the width of each item equals to 320px, which is width + margin\*2 so the 3 items perfectly fit into the wrap. However, if we add two more items into the wrap as follow:
-
-<div class="warp">  
-     <div class="item">  
-         lorem   
-     </div>  
-     <div class="item">  
-         lorem   
-     </div>  
-     <div class="item">  
-         lorem   
-     </div>  
-     <div class="item">  
-         lorem   
-     </div>  
-     <div class="item">  
-         lorem   
-     </div>
-
-</div>
-
-Then the layout would be
-
-![](/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__C4uMfYkqo8KYLn2QOPhlpA.png)
-
-meaning it does not matter how you setup the width of the item in the wrap once you have flex in the CSS.
 
 Then what if we want to have two lines of the items? We should add `flex-wrap: wrap` into the CSS of .wrap. Then the layout would be
 
