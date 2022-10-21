@@ -10,14 +10,12 @@ mermaid:
 p5:
 threeJS:
 anchor:
-publish: true
+publish:
 ---
 
 ## Introduction
 
 This article describes the basic concepts related to blockchain as follow:
-
-
 
 ## Why?
 
@@ -33,7 +31,7 @@ give an example
 
 ## Note
 
-blockchain (amount fixed like gold, only decentralized transaction) -> ethereum (+ decentralized agreements, decentralized organization, )
+bitcoin (amount fixed like gold, only decentralized transaction) -> ethereum (+ decentralized agreements, decentralized organization, )
 
 ## Reference
 
