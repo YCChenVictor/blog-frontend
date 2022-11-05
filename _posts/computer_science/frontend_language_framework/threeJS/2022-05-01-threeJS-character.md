@@ -16,13 +16,13 @@ publish: true
 
 This article describes how to create a character in ThreeJS with steps:
 
-* create character in blender
+* create static character in blender
 * import it into threeJS
 * define movement states
 
 ## Why?
 
-TBC
+To create 3D characters in my project
 
 ## How?
 
@@ -30,7 +30,7 @@ TBC
 
 I just use some free 3D model because I have no idea on building own characters. Remember to export it as glTF.
 
-create one -> add armatures -> edit poses -> animate
+create one or load one -> design appearance -> add armatures -> edit poses -> animate
 
 ### create scene
 

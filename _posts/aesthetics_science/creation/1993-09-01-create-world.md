@@ -23,6 +23,8 @@ I want to create a world
 
 ## Why?
 
+For now, I can build a side project for it
+
 ## How?
 
 ### rules and laws
@@ -38,6 +40,10 @@ pop music
 ### environment
 
 Sweden
+
+* polar
+* terrain
+* low poly
 
 ### culture
 
@@ -61,3 +67,5 @@ The character has the born ability to empathize and knows how to use music and p
 ## Reference
 
 [How to Write a Believable World: A Guide to Worldbuilding](https://www.masterclass.com/articles/how-to-write-a-believable-world#8-tips-to-guide-your-worldbuilding-process)
+
+[Polygon Terrain (Mini Map) 3D Model](https://free3d.com/3d-model/polygon-terrain-mini-map-90578.html)
