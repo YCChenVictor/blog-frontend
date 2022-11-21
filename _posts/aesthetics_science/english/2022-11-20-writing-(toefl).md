@@ -52,10 +52,14 @@ People often possess different perspective on (yyy). As for me, I strongly argue
 
 First of all, xxx cares about (1) and yyy can help (1). For example, when xxx decides to do (1-1), xxx only needs to (1-2). As a result, (1-3). On the other hand, if xxx decides to (1-4), xxx will cost (1-5). Apparently, 
 
-(TBC) 這邊應該要去看別人怎麼寫 6 點的
+Secondly,...
+
+Last but not least,...
+
+In conclusion, the government obviously should preserve ancient buildings. After all, it seeks to controller the budget, preserve history, and gain higher reputation.
 
 ## What?
 
-give an example
+Should record the practices
 
 ## Reference
