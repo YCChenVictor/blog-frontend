@@ -78,7 +78,7 @@ When pronoun
 
 * Find keyword in question
 * Scan article to find the keyword
-* drop the key point of that sentence containing the keyword. If no keyword in passage, drop the inference why author write this passage.
+* drop the key point of that sentence containing the keyword. If no keyword in passage, drop the inference why author write this passage. (should drop v.o)
 * choose the answer
 
 For example,
@@ -88,6 +88,14 @@ TBC
 ### Rhetorical Purpose
 
 ### Paraphrase
+
+Steps:
+
+* use sentence structure to find out the most important information
+  * the information is in v.o
+  * and also get the attitude
+* write down own idea
+* choose the answer
 
 ### Sentence Insertion
 
@@ -210,3 +218,5 @@ TBC
 Going to add practices
 
 ## Reference
+
+[details](https://toeflv3.kmf.com/read/order)
