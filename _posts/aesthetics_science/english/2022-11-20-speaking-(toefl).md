@@ -21,7 +21,9 @@ This article describes how to practice speaking
 * Task 2: campus situation
   * reading + listening
   * draw 6 grids
-* Task 3
+* Task 3: lecture
+  * reading + listening
+  * draw T
 * Task 4
 
 ## Why?
@@ -60,6 +62,25 @@ Steps
 
 We can prepare the same test multiple times before we move on to other TPO questions.
 
+### Task 3
+
+Steps
+
+* before reading
+  * draw T
+  * write down `the term, xxx, means, yyy. The professor gave several examples.`
+  * write down `that's how the professor explained the term, xxx`
+* when reading
+  * write down topic, xxx
+  * write down summary, yyy
+    * scan keyword
+    * write down the sentence explaining the keyword
+* when listening
+  * make sure how to spell the topic
+  * write down as many S.V.O as possible to explain the term
+* when preparing
+  * read through the dropdown sentences and draw intonation to make sure we know where to emphasize
+
 ## What?
 
 ### Task 2 practice
@@ -69,6 +90,11 @@ We can prepare the same test multiple times before we move on to other TPO quest
 * Make sure to restructure **all** sentences on note in 30 seconds preparation
 * When we draw intonation, make sure to draw rising tone for key information and **each** sentence should have one
 * university should use announcement
+
+### Task 3 practice
+
+* the speaking speed can be slower. take it easy
+* make sure to drop intonation mark because it make sure we know the notes we are taking and where to emphasize for restructuring the thoughts
 
 ## Reference
 

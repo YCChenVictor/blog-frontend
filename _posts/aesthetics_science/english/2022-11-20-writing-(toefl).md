@@ -15,11 +15,14 @@ publish: true
 
 ## Introduction
 
-quick explanation
+This article describes how to prepare writing
+
+* [Independent Writing](#independent-writing)
+* [Integration Writing](#integration-writing)
 
 ## Why?
 
-focus on why we need it
+toefl
 
 ## How?
 
@@ -61,6 +64,33 @@ Secondly,...
 Last but not least,...
 
 In conclusion, the government obviously should preserve ancient buildings. After all, it seeks to controller the budget, preserve history, and gain higher reputation.
+
+### Integration Writing
+
+Steps
+
+* before reading
+  * draw 6 grids
+* while reading
+  * write down topic (first paragraph)
+  * write down the three reasons (second to fourth paragraph) in the article
+* while listening
+  * write down what professor says sentence by sentence in each reason section
+  * make sure each section has main, detail, conclusion
+* while writing
+  * TBC
+
+#### template of integration writing
+
+Both the reading and the lecture discuss xxx. The reading implies that yyy. However, the professor strongly disagrees with the reading passage.
+
+First of all, the reading passage mentions that (1). Yet, the lecturer severely challenges the theory by arguing that (1-opposite-main). Furthermore, he states that (1-opposite-detail). Therefore, (1-opposite-conclusion).
+
+Secondly, the passage suggests that (2). Nevertheless, the scholar seriously contradicts the hypothesis because (2-opposite-main). To elaborate, he contends that (2-opposite-detail). As a result, (2-opposite-conclusion).
+
+Last but not least, the reading indicates that (3). Once again, the speaker opposes the evidence revealed in the passage. To elaborate, (3-opposite-detail). Apparently, (3-opposite-conclusion). `(=> when skip the main while listening)`
+
+Inclusion, the professor argues against each theory in the reading. That is to say, he maintains that yyy-opposite.
 
 ## What?
 
