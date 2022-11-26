@@ -40,11 +40,17 @@ Toefl
 * rise and down tone
   * to emphasize a word
 
+### Task 1
+
+TBC
+
 ### Task 2
 
 Steps
 
-* draw six grids and write down transition words
+* before reading
+  * draw six grids and write down transition words
+  * write template as follow: TBC
 * When reading
   * decide university announces or student proposes
   * write down announcement or proposal (S.V.O)
@@ -70,6 +76,7 @@ Steps
   * draw T
   * write down `the term, xxx, means, yyy. The professor gave several examples.`
   * write down `that's how the professor explained the term, xxx`
+  * write template as follow: TBC
 * when reading
   * write down topic, xxx
   * write down summary, yyy
@@ -80,6 +87,37 @@ Steps
   * write down as many S.V.O as possible to explain the term
 * when preparing
   * read through the dropdown sentences and draw intonation to make sure we know where to emphasize
+  * write down transition words
+
+### Task 4
+
+Steps: listening -> 20 seconds preparation -> 60 seconds answering
+
+* before listening
+  * draw T
+  * write down the template
+
+```HTML
+Well, the professor illustrated the two reasons.
+
+Okay. The first reason is (First Topic); for example, xxxxxxxx (lots of transition words, S.V.O). So, yyyyy (first conclusion)
+
+The second reason is (Second Topic); for example, xxxxxxx (lots of transition words, S.V.O). So, yyyyyy (second conclusion)
+
+And that's how the professor explained the two reasons.
+```
+
+* while listening
+  * write down two topics
+  * write down the examples: main idea -> detail -> conclusion
+  * if there is weird word, make sure write down the spelling
+* while preparing
+  * write down transition words
+  * read through the sentences and draw intonations
+  * if not enough sentences, try to create more sentences by paraphrasing
+* while speaking
+  * slow down
+  * intonations
 
 ## What?
 

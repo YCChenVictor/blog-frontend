@@ -73,12 +73,12 @@ Steps
   * draw 6 grids
 * while reading
   * write down topic (first paragraph)
-  * write down the three reasons (second to fourth paragraph) in the article
+  * write down the three reasons (second to fourth paragraph) in the article (all with S.V.O format)
 * while listening
-  * write down what professor says sentence by sentence in each reason section
+  * write down what professor says sentence by sentences in each reason section in order
   * make sure each section has main, detail, conclusion
 * while writing
-  * TBC
+  * We can still read the article while writing
 
 #### template of integration writing
 
@@ -94,6 +94,14 @@ Inclusion, the professor argues against each theory in the reading. That is to s
 
 ## What?
 
-Should record the practices
+### Integration Writing Review
+
+* while reading
+  * no need to write down all the details because we can compose with reading passage
+  * make sure truly get the main point
+* while listening
+  * should write down the gender of the lecturer
+  * should write down the reason in order so that we know which reason is the main reason
+  * we should write down the main, detail, conclusion, so there should be three S.V.O
 
 ## Reference
