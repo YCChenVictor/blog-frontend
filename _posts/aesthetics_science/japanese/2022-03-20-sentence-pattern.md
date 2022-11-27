@@ -3,7 +3,7 @@ layout: post
 title: sentence pattern (Japanese)
 description:
 date: '2022-03-20'
-categories: language
+categories: japanese
 note:
 mermaid:
 publish: true

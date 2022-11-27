@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2022-11-20'
-categories: language
+categories: english
 note:
 mathjax:
 mermaid:
@@ -105,3 +105,5 @@ Inclusion, the professor argues against each theory in the reading. That is to s
   * we should write down the main, detail, conclusion, so there should be three S.V.O
 
 ## Reference
+
+[details](https://toeflv3.kmf.com/writing/tpolist)

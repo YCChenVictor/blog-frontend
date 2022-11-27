@@ -3,7 +3,7 @@ layout: post
 title: adverb interjection conjunction (Japanese)
 description: ''
 date: '2022-04-13'
-categories: language
+categories: japanese
 note:
 mathjax:
 mermaid:

@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2022-11-19'
-categories: language
+categories: english
 note:
 mathjax:
 mermaid:
@@ -17,15 +17,15 @@ publish: true
 
 This article describes the concept and techniques of Toefl reading as follow:
 
-* Vocabulary
-* Reference
-* Lead Word/ Detail
-* Rhetorical Purpose
-* Paraphrase
-* Sentence Insertion
-* EXCEPT/NOT/LEAST
-* Inference: author's purpose
-* Summary
+* [Vocabulary](#vocabulary)
+* [Reference](#reference)
+* [Lead Word/ Detail](#lead-word-detail)
+* [Rhetorical Purpose](#rhetorical-purpose)
+* [Paraphrase](#paraphrase)
+* [Sentence Insertion](#sentence-insertion)
+* [EXCEPT/NOT/LEAST](#exceptnotleast)
+* [Inference: author's purpose](#inference)
+* [Summary](#summary)
 
 ## Why?
 
@@ -78,12 +78,13 @@ When pronoun
 
 * Find keyword in question
 * Scan article to find the keyword
-* drop the key point of that sentence containing the keyword. If no keyword in passage, drop the inference why author write this passage. (should drop v.o)
+* If find the keyword, write down the key point of that sentence containing the keyword
+* If no keyword in passage, drop the inference why author write this passage (usually on the first and last sentences)
 * choose the answer
 
 For example,
 
-TBC
+Question
 
 ### Rhetorical Purpose
 
@@ -112,9 +113,9 @@ TBC
 
 ### Paraphrase
 
-#### type of paraphrase
+#### Category of paraphrase
 
-TBC
+It will highlight the sentences and want us to paraphrase them.
 
 #### steps of paraphrase
 
@@ -157,9 +158,9 @@ later information: overgrazing
 
 Choose B
 
-### EXCEPT/NOT question
+### EXCEPT/NOT/LEAST
 
-#### Steps for EXCEPT/NOT
+#### Steps for EXCEPT/NOT/LEAST
 
 Steps
 
@@ -190,7 +191,7 @@ Draw rectangle and input the key point
 
 Walk through the question and check T/F based on the passage
 
-### Inference Question
+### Inference
 
 #### Category of Inference
 
@@ -203,7 +204,7 @@ Steps
 * Skim the passage and drop key point
 * Think why author wrote this passage and write down self inference
 * Scan the options and eliminate the extreme answer
-x
+
 For example,
 
 The extreme seriousness of desertification results from the vast areas of land and the tremendous numbers of people affected, as well as from the great difficulty of reversing or even slowing the process. Once the soil has been removed by erosion, only the passage of centuries or millennia will enable new soil to form. In areas where considerable soil still remains, though, a rigorously enforced program of land protection and over-crop planting may make it possible to reverse the present deterioration of the surface.
@@ -225,7 +226,7 @@ To appeal for actions to prevent deterioration
 (C) Desertification will continue to increase (o, to appeal)
 (D) Desertification will soon occur in all areas of the world (x, extreme)
 
-### Summary Question
+### Summary
 
 We need to select three summaries for this question
 
@@ -236,9 +237,31 @@ Steps
 * remove options that are too detailed
 * remove wrong inference options
 
-For example,
+For example, TPO 17 R2 and there are five paragraphs
 
-TBC
+1. light varies => quite conspicuous
+2. send signals => change color
+3. take account in changes of light => compete for best light
+4. Y/G color predominate => O/Y color visible
+5. rely other form => sound
+
+Main: animal signal
+Purpose: examples
+Structure: environment -> change color -> with light -> contrast with light -> sound
+
+A. Animals that have different predators at different times of day change color to avoid being detected
+B. To be noticed, an animal may draw attention to the contrast between its colors and the colors of its environment
+C. Yellow and green are the most common colors found in the rain forest
+D. To escape notice, an animal may move or change color so that its color pattern is not visible
+E. Animals must have signals for aggression as well as to indicate readiness to mate
+F. An animal may use sound rather than color to attract attention, because sound signals are not hindered by light conditions
+
+A => maybe topic
+B => topic of 4
+C => not topic
+D => topic of 2
+E => must (x)
+F => topic of 5
 
 ## What?
 

@@ -3,7 +3,7 @@ layout: post
 title: pronounce (Japanese)
 description: ''
 date: '2022-03-19'
-categories: language
+categories: japanese
 note: I need to give examples for the how after every review
 mermaid:
 publish: true

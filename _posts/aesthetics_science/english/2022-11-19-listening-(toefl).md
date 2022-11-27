@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2022-11-19'
-categories: language
+categories: english
 note:
 mathjax:
 mermaid:
@@ -15,7 +15,7 @@ publish: true
 
 ## Introduction
 
-This article describes how to answer listening question in Toefl.
+This article describes how to answer listening questions.
 
 ## Why?
 
@@ -52,16 +52,25 @@ Steps for practice
 
 ### key hints
 
-Listening is to find main idea, purpose, conclusion, attitude
-
-* main idea
-* purpose: inference, comparison, cause
-* conclusion: definition
-* attitude: emphasis
+Listening is to find main idea, conclusion, attitude, detail
 
 ## What?
 
-give an example
+### conversation
+
+* main idea
+  * the speaker will tell us and we should write it down
+* conclusion
+  * In the end of conversation, make sure to write down the conclusion
+* attitudes
+  * must, surprising, interesting ...
+  * emphasis: repetition, transition, heavy tone, pause, slow
+* details
+  * definition
+  * comparison
+  * cause
+
+### lecture
 
 ## Reference
 
