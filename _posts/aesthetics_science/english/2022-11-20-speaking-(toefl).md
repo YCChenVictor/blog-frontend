@@ -18,6 +18,7 @@ publish: true
 This article describes how to practice speaking
 
 * Task 1
+  * 
 * Task 2: campus situation
   * reading + listening
   * draw 6 grids
@@ -42,7 +43,16 @@ Toefl
 
 ### Task 1
 
-TBC
+* during preparation
+  * Please memorize the template because I do not think we have time to write down template
+  * read the question and write down the why; for example, lazy and then write down the example and then write down conclusion (effect)
+* during speaking
+  * In A/D questions, just need to speak out that `I agree or disagree the statement`
+  * speak slowly
+  * remember to speak the opposite example
+  * try to paraphrase
+  * think that you are talking to a person
+  * conclusion should just use `That's way I think...`
 
 ### Task 2
 

@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-11-19'
 categories: language
-note:
+note: 另一台電腦沒有推
 mathjax:
 mermaid:
 p5:
@@ -15,7 +15,7 @@ publish: true
 
 ## Introduction
 
-This article describes how to answer listening question in Toefl.
+This article describes how to answer listening question.
 
 ## Why?
 
@@ -61,7 +61,7 @@ Listening is to find main idea, purpose, conclusion, attitude
 
 ## What?
 
-give an example
+
 
 ## Reference
 
