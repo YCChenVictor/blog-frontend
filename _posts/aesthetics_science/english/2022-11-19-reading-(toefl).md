@@ -114,7 +114,7 @@ TBC
 
 #### type of paraphrase
 
-TBC
+It will highlight the sentences and ask us to paraphrase it
 
 #### steps of paraphrase
 
@@ -203,7 +203,7 @@ Steps
 * Skim the passage and drop key point
 * Think why author wrote this passage and write down self inference
 * Scan the options and eliminate the extreme answer
-x
+
 For example,
 
 The extreme seriousness of desertification results from the vast areas of land and the tremendous numbers of people affected, as well as from the great difficulty of reversing or even slowing the process. Once the soil has been removed by erosion, only the passage of centuries or millennia will enable new soil to form. In areas where considerable soil still remains, though, a rigorously enforced program of land protection and over-crop planting may make it possible to reverse the present deterioration of the surface.
