@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2022-11-26'
-categories: language
+categories: english
 note:
 mathjax:
 mermaid:
@@ -13,7 +13,7 @@ anchor:
 publish: true
 ---
 
-Should the government support artist or should the artists support themselves?
+Summarize the reading and lecture about the vessel
 
 ---
 

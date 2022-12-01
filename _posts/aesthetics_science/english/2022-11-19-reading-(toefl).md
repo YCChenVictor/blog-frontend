@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2022-11-19'
-categories: language
+categories: english
 note:
 mathjax:
 mermaid:
@@ -131,7 +131,7 @@ It will highlight the sentences and ask us to paraphrase it
 Steps:
 
 * Decompose the sentence into prior information and later information
-* Skim through the whole paragraph and find key words of each sentence
+* Skim through the whole paragraph and find the only keyword of each sentence
 * Pair prior and later information to these key words. If these information matches the key words, then it is where to insert
 
 For example, try to insert
@@ -236,9 +236,25 @@ Steps
 * remove options that are too detailed
 * remove wrong inference options
 
-For example,
+For example, for TPO 17 R3, the notes is as follow:
 
-TBC
+1. symbiotic relationship: parasitism, commensalism, and mutualism
+2. parasitism, one better, one worse
+3. natural selection of parasitism
+4. commensalism, only one better, few
+5. mutualism, both better
+6. depends on connections among organisms
+
+main: 3 types
+purpose: explain them
+structure:  parasitism -> commensalism -> mutualism
+
+(A) true according to 2
+(B) false according to 5
+(C) true according to 5
+(D) 
+(E) true according to 4
+(F) 
 
 ## What?
 
@@ -260,6 +276,25 @@ TBC
   * summary the paragraph -> political
   * retrospect
     * problem of overgeneralization in C -> costly
+
+### Inference Review
+
+* TPO 17 R3 (5)
+  * the keyword in Q is rabbit population
+  * the keyword in the sentence containing wording, rabbit population, is deliberately introduced
+  * think why author wrote this paragraph -> to show the effect of deliberately introducing
+
+### Insertion Review
+
+* TPO 17 R3 (13)
+  * Q's information: massive pop. -> problem
+  * overrun by huge rabbits -> (A) -> destroy expanses -> (B) -> deliberately introduced -> (C) -> devastated pop. -> (D) -> less deadly to offspring
+  * massive population maps to huge rabbits and problem maps to destroy expanses
+
+### Summary Review
+
+* TPO 17 R3 (14)
+  * 
 
 ## Reference articles
 
