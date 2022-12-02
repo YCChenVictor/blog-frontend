@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-11-19'
 categories: english
-note:
+note: 另一台電腦沒有推
 mathjax:
 mermaid:
 p5:

@@ -13,7 +13,7 @@ anchor:
 publish: true
 ---
 
-Should the government support artist or should the artists support themselves?
+Summarize the reading and lecture about the vessel
 
 ---
 

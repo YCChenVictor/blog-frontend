@@ -115,7 +115,11 @@ TBC
 
 #### Category of paraphrase
 
+<<<<<<< HEAD
 It will highlight the sentences and want us to paraphrase them.
+=======
+It will highlight the sentences and ask us to paraphrase it
+>>>>>>> 2f5c42827b910b4ea3dee8ff84a1f864cd3ad252
 
 #### steps of paraphrase
 
@@ -132,7 +136,7 @@ It will highlight the sentences and want us to paraphrase them.
 Steps:
 
 * Decompose the sentence into prior information and later information
-* Skim through the whole paragraph and find key words of each sentence
+* Skim through the whole paragraph and find the only keyword of each sentence
 * Pair prior and later information to these key words. If these information matches the key words, then it is where to insert
 
 For example, try to insert
@@ -237,7 +241,64 @@ Steps
 * remove options that are too detailed
 * remove wrong inference options
 
-For example, TPO 17 R2 and there are five paragraphs
+For example, for TPO 17 R3, the notes is as follow:
+
+1. symbiotic relationship: parasitism, commensalism, and mutualism
+2. parasitism, one better, one worse
+3. natural selection of parasitism
+4. commensalism, only one better, few
+5. mutualism, both better
+6. depends on connections among organisms
+
+main: 3 types
+purpose: explain them
+structure:  parasitism -> commensalism -> mutualism
+
+(A) true according to 2
+(B) false according to 5
+(C) true according to 5
+(D) 
+(E) true according to 4
+(F) 
+
+## What?
+
+### Vocabulary Review
+
+* TPO 17 R1 (1):
+  * impetus is in O: read the after sentence
+  * summary after sentence: made the idea irresistible
+  * so we should choose the one, promoting something
+  * retrospect
+    * not enough vocabulary size
+    * but I get the right key point
+
+### Lead Word/ Detail Review
+
+* TPO 17 R1 (2):
+  * keyword: new way -> last sentence
+  * key point: maintain the traditional routes -> C or D
+  * summary the paragraph -> political
+  * retrospect
+    * problem of overgeneralization in C -> costly
+
+### Inference Review
+
+* TPO 17 R3 (5)
+  * the keyword in Q is rabbit population
+  * the keyword in the sentence containing wording, rabbit population, is deliberately introduced
+  * think why author wrote this paragraph -> to show the effect of deliberately introducing
+
+### Insertion Review
+
+* TPO 17 R3 (13)
+  * Q's information: massive pop. -> problem
+  * overrun by huge rabbits -> (A) -> destroy expanses -> (B) -> deliberately introduced -> (C) -> devastated pop. -> (D) -> less deadly to offspring
+  * massive population maps to huge rabbits and problem maps to destroy expanses
+
+### Summary Review
+
+* TPO 17 R2 and there are five paragraphs
 
 1. light varies => quite conspicuous
 2. send signals => change color
@@ -263,26 +324,6 @@ D => topic of 2
 E => must (x)
 F => topic of 5
 
-## What?
-
-### Vocabulary Review
-
-* TPO 17 R1 (1):
-  * impetus is in O: read the after sentence
-  * summary after sentence: made the idea irresistible
-  * so we should choose the one, promoting something
-  * retrospect
-    * not enough vocabulary size
-    * but I get the right key point
-
-### Lead Word/ Detail Review
-
-* TPO 17 R1 (2):
-  * keyword: new way -> last sentence
-  * key point: maintain the traditional routes -> C or D
-  * summary the paragraph -> political
-  * retrospect
-    * problem of overgeneralization in C -> costly
 
 ## Reference articles
 
