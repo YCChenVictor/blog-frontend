@@ -23,7 +23,7 @@ focus on why we need it
 
 ## How?
 
-focus on the mechanim
+focus on the mechanism
 
 ## What?
 

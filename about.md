@@ -5,3 +5,5 @@ permalink: about
 ---
 
 Hello there~ I am victor. Have a good day!
+
+<div id="root"></div>

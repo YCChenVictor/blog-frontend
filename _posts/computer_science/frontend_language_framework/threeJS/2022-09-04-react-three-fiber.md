@@ -17,6 +17,23 @@ publish: true
 
 Given we have basic concepts of react, threeJS and 3D model, we can start to build a 3D frontend.
 
+- [Introduction](#introduction)
+- [Why?](#why)
+- [How?](#how)
+  - [create a react app](#create-a-react-app)
+  - [install](#install)
+  - [first threejs component](#first-threejs-component)
+  - [background](#background)
+  - [import 3D model](#import-3d-model)
+  - [perspective](#perspective)
+  - [animate](#animate)
+  - [interaction](#interaction)
+  - [light and color](#light-and-color)
+  - [routes](#routes)
+  - [deploy](#deploy)
+- [What?](#what)
+- [Reference](#reference)
+
 ## Why?
 
 focus on why we need it
@@ -169,6 +186,17 @@ useFrame(({ mouse }) => {
 
 to let mouse move the current object
 
+### light and color
+
+We may found the render is all black. To avoid it, add some light in `<Canvas>`
+
+```jsx
+<Canvas>
+  <directionalLight position={[10, 10, 5]} intensity={2} />
+  <directionalLight position={[-10, -10, -5]} intensity={1} />
+</Canvas>
+```
+
 ### routes
 
 Before we dive in, please see concept of routes in react in react/2021-06-13-overview
@@ -203,7 +231,7 @@ To deploy it remember to wrap components with `<Suspense>`
 
 ## What?
 
-Ok, I am trying to create a world based on 2022-08-13-best-system.
+Ok, I am trying to create a world based on 2022-08-13-best-system
 
 ## Reference
 
