@@ -104,6 +104,10 @@ Inclusion, the professor argues against each theory in the reading. That is to s
   * should write down the reason in order so that we know which reason is the main reason
   * we should write down the main, detail, conclusion, so there should be three S.V.O
 
+### general
+
+* just give positive examples in each point first. Should insufficient number of wordings, add the anti examples.
+
 ## Reference
 
 [details](https://toeflv3.kmf.com/writing/tpolist)

@@ -49,4 +49,3 @@ markdown: kramdown
 
 exclude:
   - node_modules
-  - react-components

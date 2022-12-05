@@ -17,6 +17,15 @@ publish: true
 
 This article describes how to answer listening questions.
 
+- [Introduction](#introduction)
+- [Why?](#why)
+- [How?](#how)
+  - [key hints](#key-hints)
+- [What?](#what)
+  - [conversation](#conversation)
+  - [lecture](#lecture)
+- [Reference](#reference)
+
 ## Why?
 
 Toefl
@@ -71,7 +80,6 @@ Listening is to find main idea, conclusion, attitude, detail
   * cause
 
 ### lecture
-
 
 ## Reference
 
