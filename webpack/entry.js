@@ -1,10 +1,9 @@
 import { createRoot } from 'react-dom/client'
-import Hello from './components/Hello.jsx';
+import Sidebar from './components/Sidebar.jsx';
 
 const App = () => {
-  console.log('aaaaaaaa')
   return (
-    <Hello />
+    <Sidebar />
   )
 }
 
