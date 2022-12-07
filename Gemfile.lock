@@ -74,7 +74,6 @@ PLATFORMS
 DEPENDENCIES
   jekyll (~> 4.2.1)
   jekyll-postcss-v2
-  jekyll-seo-tag
   minima (~> 2.5)
   tzinfo (~> 1.2)
   tzinfo-data
@@ -82,4 +81,4 @@ DEPENDENCIES
   webrick (~> 1.7)
 
 BUNDLED WITH
-   2.3.4
+   2.3.25

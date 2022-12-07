@@ -1,12 +1,6 @@
 import { createRoot } from 'react-dom/client'
-import Sidebar from './components/Sidebar.jsx';
+import SidebarLayout from './components/Sidebar.jsx';
 
-const App = () => {
-  return (
-    <Sidebar />
-  )
-}
-
-createRoot(document.getElementById('root')).render(
-  <App />
+createRoot(document.getElementById('sidebar')).render(
+  <SidebarLayout />
 )

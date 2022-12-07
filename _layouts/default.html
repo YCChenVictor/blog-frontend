@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
   <head>
-    <!-- function drawing -->
-    {% if page.function_plot %}
-      {%- include function_plot.html -%}
-    {% endif %}
     <!-- 3D drawing -->
     {% if page.threeJS %}
       {%- include threeJS.html -%}
@@ -21,12 +17,6 @@
     {%- if page.mermaid -%}
       {%- include mermaid.html -%}
     {%- endif -%}
-    <!-- google analytics -->
-    {% if site.google-analytics %}
-      {% include google-analytics.html %}
-    {% endif %}
-    <!-- Jekyll SEO plugin -->
-    {% seo %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>{{ site.title }}</title>
@@ -45,6 +35,9 @@
 
   <body class="font-sans mx-auto max-w-prose">
     <div class="pt-12 pb-4">
+      {% if site.show-nav-menu %}
+        <div id="sidebar" class=".sidebar"></div>
+      {% endif %}
       {{ content }}
     </div>
   </body>

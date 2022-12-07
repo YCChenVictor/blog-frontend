@@ -51,14 +51,17 @@ When the question asks the meaning of particular vocabulary
 #### Steps to solve Vocabulary
 
 * If this vocabulary is in subject of a sentence, check the prior sentence. If this vocabulary is in object of a sentence, check the laster sentence.
+* If this vocabulary is verb, check the effect in near sentences
 * Drop down key points of that checked sentence
 * Choose answer based on key points
 
 #### Example of Vocabulary Question
 
-For example,
+For example, what's the closest meaning to the word, `abolished` in the following sentences
 
-TBC
+In 1857, in return for a payment of 63 million kronor from other commercial nations, Denmark **abolished** the Sound toll dues the fees it had collected since 1497 for the use of the Sound. This, along with other policy shifts toward free trade, resulted in a significant increase in traffic through the Sound and in the port of Copenhagen.
+
+Because this is the verb, we check the effect: increase the traffic -> the fees must be lower -> A or D -> the meaning of abolish is end
 
 ### Reference
 
@@ -115,11 +118,7 @@ TBC
 
 #### Category of paraphrase
 
-<<<<<<< HEAD
 It will highlight the sentences and want us to paraphrase them.
-=======
-It will highlight the sentences and ask us to paraphrase it
->>>>>>> 2f5c42827b910b4ea3dee8ff84a1f864cd3ad252
 
 #### steps of paraphrase
 
@@ -272,6 +271,8 @@ structure:  parasitism -> commensalism -> mutualism
   * retrospect
     * not enough vocabulary size
     * but I get the right key point
+* TPO 18 R1 (6):
+  * 
 
 ### Lead Word/ Detail Review
 
@@ -281,6 +282,12 @@ structure:  parasitism -> commensalism -> mutualism
   * summary the paragraph -> political
   * retrospect
     * problem of overgeneralization in C -> costly
+* TPO 18 R1 (1):
+  * keyword: England/Germany
+  * key point: four country developed later -> strange (England/Germany -><- four country)
+  * summary the paragraph -> coal
+
+It seems that we still need to summarize this paragraph for this kind of question
 
 ### Inference Review
 
@@ -288,6 +295,10 @@ structure:  parasitism -> commensalism -> mutualism
   * the keyword in Q is rabbit population
   * the keyword in the sentence containing wording, rabbit population, is deliberately introduced
   * think why author wrote this paragraph -> to show the effect of deliberately introducing
+* TPO 18 R1 (9)
+  * the summary is no significant barriers
+  * but the question asks protectionist, which is paradox
+  * so to infer why, we should choose B (exception)
 
 ### Insertion Review
 
