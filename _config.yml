@@ -42,3 +42,15 @@ markdown: kramdown
 
 exclude:
   - node_modules
+
+plugins:
+  - jekyll-postcss
+
+postcss:
+  cache: false
+
+exclude:
+  - package.json
+  - postcss.config.js
+  - tailwind.config.js
+  - yarn.lock
