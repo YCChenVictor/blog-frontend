@@ -19,6 +19,7 @@ Functional Programming does everything with functions (input -> output). In this
 
 * pros
   * avoid side effect: only expected input and output will be created, so it won't affect other components
+  * TBC
 * cons
 
 ## Why?
