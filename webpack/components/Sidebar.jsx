@@ -17,8 +17,6 @@ function SidebarLayout() {
         </Sidebar>
       </ProSidebarProvider>
     </div>
-
-    // 一個一個來，不要急著全家進去
   );
 }
 

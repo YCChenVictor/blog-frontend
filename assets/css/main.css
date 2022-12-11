@@ -6,14 +6,17 @@
 @layer base { /* customize own style across whole website */
   h1 {
     @apply text-6xl;
+    @apply font-bold;
   }
   h2 {
     @apply text-5xl;
     @apply pb-4;
+    @apply font-bold;
   }
   h3 {
     @apply text-4xl;
     @apply pb-3;
+    @apply font-bold;
   }
   h4 {
     @apply text-3xl;
