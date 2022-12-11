@@ -34,7 +34,8 @@
   <body class="">
     <div class="pt-12 pb-4">
       {% if site.show-nav-menu %}
-        <div id="sidebar" class=".sidebar"></div>
+        {% include nav.html%}
+        <div id="sidebar" class="fixed"></div>
       {% endif %}
       {{ content }}
     </div>
