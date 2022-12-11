@@ -85,15 +85,14 @@ Inside the **Plan list of emails**, we need to do step 3 and 4 as follow:
 Based on above information, our composition should be as follow:
 
 ```javascript
-function sendIssue() {
-  const coupons = fetchCouponsFromDB();
-  const subscribers = fetchSubscribersFromDB();
-  const emails = emailsForSubscribers(subscribers, coupons);
+function sendIssue() { // action
+  const coupons = fetchCouponsFromDB(); // action
+  const subscribers = fetchSubscribersFromDB(); //action
+  const emails = emailsForSubscribers(subscribers, coupons); // calculation
   console.log(emails)
-//   for(let e = 0; e < emails.length; e++) {
+//   for(let e = 0; e < emails.length; e++) { // action
 //     const email = emails[e];
-//     console.log(email)
-//     // emailSystem.send(email);
+//     emailSystem.send(email);
 //   }
 }
 
@@ -129,14 +128,14 @@ function fetchSubscribersFromDB() {
   ]
 }
 
-function emailsForSubscribers(subscribers, coupons) {
-  const goodCoupons = selectCouponsByRank(coupons, 'good');
-  const bestCoupons = selectCouponsByRank(coupons, 'best');
-  const emails = subscribers.map(subscriber => emailsForSubscriber(subscriber, goodCoupons, bestCoupons))
+function emailsForSubscribers(subscribers, coupons) { // calculation
+  const goodCoupons = selectCouponsByRank(coupons, 'good'); // calculation
+  const bestCoupons = selectCouponsByRank(coupons, 'best'); // calculation
+  const emails = subscribers.map(subscriber => emailsForSubscriber(subscriber, goodCoupons, bestCoupons)) // calculation
   return emails;
 }
 
-function emailsForSubscriber(subscriber, goodCoupons, bestCoupons) {
+function emailsForSubscriber(subscriber, goodCoupons, bestCoupons) { // calculation
   const rank = subCouponRank(subscriber);
   if (rank === 'best') {
     return message(subscriber.email, bestCoupons)
@@ -147,7 +146,7 @@ function emailsForSubscriber(subscriber, goodCoupons, bestCoupons) {
   }
 }
 
-function message(email, coupons) {
+function message(email, coupons) { // data
   return {
     from: "newsletter@coupondog.co",
     to: email,
@@ -156,7 +155,7 @@ function message(email, coupons) {
   }
 }
 
-function subCouponRank(subscriber) {
+function subCouponRank(subscriber) { // calculation
   if(subscriber.rec_count >= 10) {
     return 'best';
   } else {
@@ -164,13 +163,62 @@ function subCouponRank(subscriber) {
   }
 }
 
-function selectCouponsByRank(coupons, rank) {
+function selectCouponsByRank(coupons, rank) { // calculation
   const couponsRanked = coupons.filter(coupon => coupon.rank === rank);
   return couponsRanked
 }
 ```
 
 ### existing code
+
+Suppose we have
+
+```javascript
+function main(affiliates) {
+  affiliatePayout(affiliates);
+}
+
+function affiliatePayout(affiliates) {
+  for(var a = 0; a < affiliates.length; a++) {
+    figurePayout(affiliates[a]);
+  }
+}
+
+function figurePayout(affiliate) {
+  var owed = affiliate.sales * affiliate.commission;
+  if(owed > 100) {
+    sendPayout(affiliate.bank_code, owed);
+  }
+}
+```
+
+As you can see, this main program will pay salaries to affiliates and it seems only one action in main. This is a terrible design because actually we can break process into steps:
+
+1. get affiliates list
+2. calculate the owed fees
+3. send payout to them
+
+as
+
+```javascript
+function main() {
+  const affiliates = getAffiliates() // action
+  const owedFees = affiliates.map(affiliate => affiliate.sales * affiliate.commission) // calculation
+  for(let i = 0; i < affiliates.length; i++) { // action
+    sendPayout(affiliate.bank_code, owedFees[i]);
+  }
+}
+
+function sendPayout() {
+  ...
+}
+
+function getAffiliates() {
+  ...
+}
+```
+
+which is actually not just one action
 
 ## Reference
 
