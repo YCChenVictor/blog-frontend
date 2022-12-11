@@ -1,5 +1,5 @@
 import { Sidebar, Menu, SubMenu, MenuItem, ProSidebarProvider, useProSidebar } from 'react-pro-sidebar';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
 function SidebarLayout() {
   console.log('testing')

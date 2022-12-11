@@ -31,7 +31,18 @@
   a {
     @apply text-blue-600 underline;
   }
+  img {
+    @apply p-8;
+  }
 }
 
 @tailwind utilities;
 @tailwind components;
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-1\/3 {
+  width: 33.333333%;
+}
