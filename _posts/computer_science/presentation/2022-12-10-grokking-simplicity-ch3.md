@@ -60,21 +60,114 @@ between actions, `check fridge` and `drive to store`, the desired input of `driv
 
 ### new code
 
-Example: CouponDog, a company sending coupons via email, want to have a new feature to send better coupon to customers recommending more other customers. Let's walk through this problem without any concept of programming and we will
+Example: CouponDog, a company sending coupons via email, wants to have a new feature to send better coupon to customers recommending more other customers. Let's walk through this problem without any concept of programming and we will
 
-1. get list of customers and coupons and the location of this data will change
-2. mark customers with > 10 recommendations
-3. mark coupons with better
-4. send email and the status of these customers will change
+1. get list of customers (action)
+2. get list of coupons (action)
+3. distinguish customers with > 10 recommendations (calculation)
+4. distinguish coupons with better (calculation)
+5. compose emails (calculation)
+6. send emails (action)
 
-Actually, the marking processes may be calculations rather than actions if we did not add attributes (marks) to these data, causing no side effect. Accordingly, we have
+Accordingly, we have
 
 <img src="/assets/img/CouponDog_ACD.png" alt="">
 <em>source: [grokking simplicity](https://grokkingsimplicity.com/)</em>
 
-Now, based on above information, we can start to program it
+Inside the **Plan list of emails**, we need to do step 3 and 4 as follow:
+
+<img src="/assets/img/distinguish_coupons.png" alt="">
+<em>source: [grokking simplicity](https://grokkingsimplicity.com/)</em>
+
+<img src="/assets/img/distinguish_subscribers.png" alt="">
+<em>source: [grokking simplicity](https://grokkingsimplicity.com/)</em>
+
+Based on above information, our composition should be as follow:
 
 ```javascript
+function sendIssue() {
+  const coupons = fetchCouponsFromDB();
+  const subscribers = fetchSubscribersFromDB();
+  const emails = emailsForSubscribers(subscribers, coupons);
+  console.log(emails)
+//   for(let e = 0; e < emails.length; e++) {
+//     const email = emails[e];
+//     console.log(email)
+//     // emailSystem.send(email);
+//   }
+}
+
+function fetchCouponsFromDB() {
+  // here return fake coupons
+  return [ // data
+    {
+      code: 'MAYDISCOUNT',
+      rank: 'good',
+    },
+    {
+      code: '10PERCENT',
+      rank: 'bad',
+    },
+    {
+      code: 'PROMOTION45',
+      rank: 'best',
+    },
+  ]
+}
+
+function fetchSubscribersFromDB() {
+  // here return fake coupons
+  return [ // data
+    {
+      email: 'john@coldmail.com',
+      rec_count: 2,
+    },
+    {
+      email: 'sam@pmail.co',
+      rec_count: 16,
+    },
+  ]
+}
+
+function emailsForSubscribers(subscribers, coupons) {
+  const goodCoupons = selectCouponsByRank(coupons, 'good');
+  const bestCoupons = selectCouponsByRank(coupons, 'best');
+  const emails = subscribers.map(subscriber => emailsForSubscriber(subscriber, goodCoupons, bestCoupons))
+  return emails;
+}
+
+function emailsForSubscriber(subscriber, goodCoupons, bestCoupons) {
+  const rank = subCouponRank(subscriber);
+  if (rank === 'best') {
+    return message(subscriber.email, bestCoupons)
+  } else if (rank === 'good') {
+    return message(subscriber.email, goodCoupons)
+  } else {
+    'no email'
+  }
+}
+
+function message(email, coupons) {
+  return {
+    from: "newsletter@coupondog.co",
+    to: email,
+    subject: "Your weekly coupons inside",
+    body: "Here are the coupons: " + coupons.map(coupon => coupon['code']).join(", ")
+  }
+}
+
+function subCouponRank(subscriber) {
+  if(subscriber.rec_count >= 10) {
+    return 'best';
+  } else {
+    return 'good';
+  }
+}
+
+function selectCouponsByRank(coupons, rank) {
+  const couponsRanked = coupons.filter(coupon => coupon.rank === rank);
+  return couponsRanked
+}
 ```
 
 ### existing code
