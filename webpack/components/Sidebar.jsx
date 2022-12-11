@@ -2,6 +2,7 @@ import { Sidebar, Menu, SubMenu, MenuItem, ProSidebarProvider, useProSidebar } f
 import { Link } from 'react-router-dom';
 
 function SidebarLayout() {
+  console.log('testing')
   return (
     <div style={{ display: 'flex', height: '100%' }}>
       <ProSidebarProvider>
