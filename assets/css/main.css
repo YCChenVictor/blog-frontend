@@ -9,18 +9,21 @@
   }
   h2 {
     @apply text-5xl;
+    @apply pb-4;
   }
   h3 {
     @apply text-4xl;
+    @apply pb-3;
   }
   h4 {
     @apply text-3xl;
+    @apply pb-2;
   }
   h5 {
     @apply text-2xl;
+    @apply pb-1;
   }
   h6 {
-    @apply text-1xl;
   }
   a {
     @apply text-blue-600 underline;
