@@ -1,8 +1,10 @@
-import { Sidebar, Menu, SubMenu, MenuItem, ProSidebarProvider, useProSidebar } from 'react-pro-sidebar';
-import { HashLink as Link } from 'react-router-hash-link';
+import {useEffect} from 'react';
+import { Sidebar, Menu, SubMenu, MenuItem, ProSidebarProvider } from 'react-pro-sidebar';
 
 function SidebarLayout() {
-  console.log('testing')
+  useEffect(() => {
+    const el = document.querySelector('h1, h2, h3, h4, h5, h6');
+  }, []);
   return (
     <div style={{ display: 'flex', height: '100%' }}>
       <ProSidebarProvider>

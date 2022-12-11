@@ -4,7 +4,8 @@ title: overview
 description:
 date: '2021-04-26T09:55:52.243Z'
 categories: javascript
-note:
+note: javascript
+publish:
 ---
 
 ## Introduction
