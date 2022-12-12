@@ -71,10 +71,10 @@ Steps
 
 * before reading
   * draw 6 grids
-* while reading
+* while reading (3 mins)
   * write down topic (first paragraph)
   * write down the three reasons (second to fourth paragraph) in the article (all with S.V.O format)
-* while listening
+* while listening (1.5 mins)
   * write down what professor says sentence by sentences in each reason section in order
   * make sure each section has main, detail, conclusion
 * while writing
