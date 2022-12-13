@@ -11,19 +11,43 @@ function SidebarLayout() {
       )
     )
   }, []);
+  console.log(titles)
+  const restructuredTitles = (titles) => {
+    result = {'H1': []} // TBC
+    for (let i = 0; i < titles.length; i++) {
+      if(titles[i].tagName > titles[i-1].tagName) {
+        result.
+      }
+    }
+    titles.forEach({
+      if 
+    })
+    while (titles.length > 0) {
+      titles.forEach({
+      
+      })
+    }
+  }
+  // const menu = restructuredTitles.map((title) => {
+  //   return(<div label={title}></div>) // 這邊在用 node 的演算法
+  // })
+  // console.log(menu)
   return (
     <div style={{ display: 'flex', height: '100%' }}>
       <ProSidebarProvider>
         <BrowserRouter>
-          <Sidebar>
+          {/* <Sidebar>
             <Menu>
               <SubMenu label="Charts">
                 <SubMenu label="AAa">
                   <MenuItem routerLink={<Link to="#why" />}> Documentation</MenuItem>
+                  <SubMenu label="AAa">
+                    <MenuItem routerLink={<Link to="#why" />}> Documentation</MenuItem>
+                  </SubMenu>
                 </SubMenu>
               </SubMenu>
             </Menu>
-          </Sidebar>
+          </Sidebar> */}
         </BrowserRouter>
       </ProSidebarProvider>
     </div>

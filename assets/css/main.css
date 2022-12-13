@@ -43,6 +43,9 @@
     @apply list-inside;
     @apply p-4;
   }
+  code {
+    @apply bg-stone-500;
+  }
 }
 
 @tailwind utilities;
