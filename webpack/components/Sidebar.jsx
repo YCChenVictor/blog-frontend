@@ -3,51 +3,29 @@ import { Sidebar, Menu, MenuItem, ProSidebarProvider, SubMenu } from 'react-pro-
 import { BrowserRouter, Link } from 'react-router-dom';
 
 function SidebarLayout() {
-  const [titles, setTitles] = useState([]);
+  const [menuItems, setMenuItems] = useState('testing')
   useEffect(() => {
-    setTitles(
-      [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')].map(
-        item => ({id: item.id, tag: item.tagName})
-      )
+    const queriedTitles = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')];
+    const titles = queriedTitles.map(
+      item => ({id: item.id, tag: item.tagName.match(/\d+/)[0], position: queriedTitles.indexOf(item)})
     )
+    const menuItemsDesired = titles.map((title) => (<MenuItem>{title.id}</MenuItem>))
+    setMenuItems(menuItemsDesired)
   }, []);
-  console.log(titles)
-  const restructuredTitles = (titles) => {
-    result = {'H1': []} // TBC
-    for (let i = 0; i < titles.length; i++) {
-      if(titles[i].tagName > titles[i-1].tagName) {
-        result.
-      }
-    }
-    titles.forEach({
-      if 
-    })
-    while (titles.length > 0) {
-      titles.forEach({
-      
-      })
-    }
-  }
-  // const menu = restructuredTitles.map((title) => {
-  //   return(<div label={title}></div>) // 這邊在用 node 的演算法
-  // })
-  // console.log(menu)
+  // console.log(titles)
+  // const menuItems = titles.map(title => <MenuItem label={title.id}>testing</MenuItem>)
+  // console.log(menuItems)
+  // const subMenu = menuItems.foreach(menuItem => menu.pushObject(menuItem))
+  // console.log(subMenu)
   return (
-    <div style={{ display: 'flex', height: '100%' }}>
+    <div style={{ display: 'flex', height: '100%' }} >
       <ProSidebarProvider>
         <BrowserRouter>
-          {/* <Sidebar>
+          <Sidebar>
             <Menu>
-              <SubMenu label="Charts">
-                <SubMenu label="AAa">
-                  <MenuItem routerLink={<Link to="#why" />}> Documentation</MenuItem>
-                  <SubMenu label="AAa">
-                    <MenuItem routerLink={<Link to="#why" />}> Documentation</MenuItem>
-                  </SubMenu>
-                </SubMenu>
-              </SubMenu>
+              {menuItems}
             </Menu>
-          </Sidebar> */}
+          </Sidebar>
         </BrowserRouter>
       </ProSidebarProvider>
     </div>
