@@ -55,4 +55,9 @@ exclude:
   - tailwind.config.js
   - yarn.lock
 
+css:
+  load_paths:
+    - _css
+    - node_modules
+
 include: ["node_modules/tailwindcss"]
