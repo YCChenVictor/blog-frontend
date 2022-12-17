@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Build Apps</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This articles describes how to build an app (users can post articles) in rails with following steps:</p>
+
+<ul>
+  <li>install rails</li>
+  <li>start a project</li>
+  <li>the concept of scaffold (for users)</li>
+  <li>migration</li>
+  <li>CRUD</li>
+  <li>relational model without scaffold (for posts)</li>
+  <li>routes without scaffold (for posts)</li>
+  <li>controller without scaffold (for posts)</li>
+  <li>view without scaffold (for posts)</li>
+  <li>try to create a post with a user</li>
+  <li>style</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>Rails is really good for minimum viable product.</p>
+
+<h2 id="how--what">How? &amp; What?</h2>
+
+<h3 id="install-rails">Install rails</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>rails <span class="nt">-v</span> 5.1.1
+</code></pre></div></div>
+
+<ul>
+  <li>check rails version</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails <span class="nt">-v</span>
+</code></pre></div></div>
+
+<h3 id="start-a-project">Start a project</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails new app_name
+</code></pre></div></div>
+
+<p>If you want to create rails project with particular version, then</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails 3.2.14 new app_name
+</code></pre></div></div>
+
+<p>after the creation, please <code class="language-plaintext highlighter-rouge">cd</code> into the project directory and start the server with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails s
+</code></pre></div></div>
+
+<p><img src="/assets/img/rails_server_start.png" alt="rails_server_start" /></p>
+
+<p>open browsers and input <code class="language-plaintext highlighter-rouge">http://localhost:3000</code></p>
+
+<p><img src="/assets/img/rails_start_page.png" alt="rails_start_page" /></p>
+
+<h3 id="the-concept-of-scaffold">the concept of scaffold</h3>
+
+<p>Scaffold in rails is a quick way to create MVC structure; for example, if you want to create a MVC structure with database, user (name:string, email:string, tel:string), in the directory of the project,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g scaffold User name:string email:string tel:string
+</code></pre></div></div>
+<p><img src="/assets/img/1__p5eI09hN9pyvsxCo102__nw.png" alt="" /></p>
+
+<p>As you can see, there are files for <code class="language-plaintext highlighter-rouge">active_record</code>, <code class="language-plaintext highlighter-rouge">resource_route</code>, <code class="language-plaintext highlighter-rouge">scaffold_controller</code>, <code class="language-plaintext highlighter-rouge">test_unit</code>, <code class="language-plaintext highlighter-rouge">assets</code>, <code class="language-plaintext highlighter-rouge">scss</code>.</p>
+
+<h4 id="route">route</h4>
+
+<p>The routes are in <code class="language-plaintext highlighter-rouge">app_name/config/routes.rb</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">resources</span> <span class="ss">:users</span>
+  <span class="c1"># For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>RESTful API (interlude): REST means Representational State Transfer. The benefit of RESTful API is unity. All coders have the consensus to write it in the same form; for example, given <code class="language-plaintext highlighter-rouge">resources :users</code> and input <code class="language-plaintext highlighter-rouge">rails routes</code>, the routes:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Prefix</th>
+      <th style="text-align: center">Verb</th>
+      <th style="text-align: center">URI Pattern</th>
+      <th>Controller#Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">users</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">/users(.:format)</td>
+      <td>users#index</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">POST</td>
+      <td style="text-align: center">/users(.:format)</td>
+      <td>users#create</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">new_user</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">/users/new(.:format)</td>
+      <td>users#new</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">edit_user</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">/users/:id/edit(.:format)</td>
+      <td>users#edit</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">user</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">/users/:id(.:format)</td>
+      <td>users#show</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">PATCH</td>
+      <td style="text-align: center">/users/:id(.:format)</td>
+      <td>users#update</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">PUT</td>
+      <td style="text-align: center">/users/:id(.:format)</td>
+      <td>users#update</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">DELETE</td>
+      <td style="text-align: center">/users/:id(.:format)</td>
+      <td>users#destroy</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As you can see, there are four verbs following RESTful, <code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PATCH</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>, directed to the CRUD methods of controller and the controller call the corresponding CRUD methods to database. Actually, <code class="language-plaintext highlighter-rouge">GET</code> maps READ, <code class="language-plaintext highlighter-rouge">POST</code> maps CREATE, <code class="language-plaintext highlighter-rouge">PATCH</code> maps UPDATE, <code class="language-plaintext highlighter-rouge">DELETE</code> maps DESTROY.</p>
+
+<h4 id="controller">controller</h4>
+
+<p>Controllers are in <code class="language-plaintext highlighter-rouge">app/controllers</code>. The file names and the controller names are linked; for example, file name: <code class="language-plaintext highlighter-rouge">users_controller.rb</code> maps class, <code class="language-plaintext highlighter-rouge">UserController</code> as follow:</p>
+
+<p><img src="/assets/img/1____v2B8qf7cE6o6c3Da52RZQ.png" alt="" /></p>
+
+<h4 id="model">model</h4>
+
+<p>Models are in <code class="language-plaintext highlighter-rouge">app/models</code>. file name: <code class="language-plaintext highlighter-rouge">user.rb</code> maps class <code class="language-plaintext highlighter-rouge">User</code> and maps table <code class="language-plaintext highlighter-rouge">users</code>.</p>
+
+<h4 id="view">view</h4>
+
+<p>Views are in <code class="language-plaintext highlighter-rouge">app/views</code>. For example, the view file related to controller, <code class="language-plaintext highlighter-rouge">UserController</code> will be in <code class="language-plaintext highlighter-rouge">app/views/users</code> as follow:</p>
+
+<p><img src="/assets/img/1__cpsdh5x__A7PKg27wlCnOFQ.png" alt="" /></p>
+
+<h3 id="migration">Migration</h3>
+
+<p>Migration is going to modify database for this project according to the files in <code class="language-plaintext highlighter-rouge">db/migrate</code>. In the directory of this project</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/rails db:migrate <span class="nv">RAILS_ENV</span><span class="o">=</span>development
+</code></pre></div></div>
+
+<p>It will run the code as follow in <code class="language-plaintext highlighter-rouge">db/migrate/xxxx_create_users.rb</code> as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">5.1</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:name</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:email</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:tel</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then start the server again and input <code class="language-plaintext highlighter-rouge">http://localhost:3000/users</code> in browser.</p>
+
+<p><img src="/assets/img/1____Yp2j7kic__5QHtdcRC2X8g.png" alt="" /></p>
+
+<p>This is the page to list all the users. The dataflow is as follow:</p>
+
+<ul>
+  <li>the browser GET the url from server</li>
+  <li>with route, backend knows which controller method it is calling</li>
+  <li>the method operates SQL command for read to database</li>
+  <li>the method render the page with data read from database</li>
+  <li>browser render the view page</li>
+</ul>
+
+<h3 id="crud">CRUD</h3>
+
+<p>In above section, we know the method maps to <code class="language-plaintext highlighter-rouge">Read</code>; actually, there are four methods in database: <code class="language-plaintext highlighter-rouge">Create</code>, <code class="language-plaintext highlighter-rouge">Read</code>, <code class="language-plaintext highlighter-rouge">Update</code>, <code class="language-plaintext highlighter-rouge">Delete</code>.</p>
+
+<h4 id="create">Create</h4>
+
+<p>Click the New User in main page. Then the following webpage pops up
+<img src="/assets/img/1__D9wMcZ5NloIWuuY16__z34g.png" alt="" /></p>
+
+<p>and the SQL command as follow:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Started POST <span class="s2">"/users"</span> <span class="k">for</span> ::1 at 2022-05-29 15:58:06 +0800
+Processing by UsersController#create as HTML
+  Parameters: <span class="o">{</span><span class="s2">"authenticity_token"</span><span class="o">=&gt;</span><span class="s2">"[FILTERED]"</span>, <span class="s2">"user"</span><span class="o">=&gt;{</span><span class="s2">"name"</span><span class="o">=&gt;</span><span class="s2">"test"</span>, <span class="s2">"email"</span><span class="o">=&gt;</span><span class="s2">"test@example.com"</span>, <span class="s2">"tel"</span><span class="o">=&gt;</span><span class="s2">"123123123"</span><span class="o">}</span>, <span class="s2">"commit"</span><span class="o">=&gt;</span><span class="s2">"Create User"</span><span class="o">}</span>
+  TRANSACTION <span class="o">(</span>0.3ms<span class="o">)</span>  begin transaction
+  ↳ app/controllers/users_controller.rb:27:in <span class="sb">`</span>block <span class="k">in </span>create<span class="s1">'
+  User Create (4.1ms)  INSERT INTO "users" ("name", "email", "tel", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "test"], ["email", "test@example.com"], ["tel", "123123123"], ["created_at", "2022-05-29 07:58:06.395967"], ["updated_at", "2022-05-29 07:58:06.395967"]]
+  ↳ app/controllers/users_controller.rb:27:in `block in create'</span>
+  TRANSACTION <span class="o">(</span>0.5ms<span class="o">)</span>  commit transaction
+  ↳ app/controllers/users_controller.rb:27:in <span class="sb">`</span>block <span class="k">in </span>create<span class="s1">'
+Redirected to http://localhost:3000/users/1
+</span></code></pre></div></div>
+
+<p>It will start to <code class="language-plaintext highlighter-rouge">POST</code> the routes <code class="language-plaintext highlighter-rouge">users</code> and then start the <code class="language-plaintext highlighter-rouge">TRANSACTION</code> to create user with command</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INSERT INTO <span class="s2">"users"</span> <span class="o">(</span><span class="s2">"name"</span>, <span class="s2">"email"</span>, <span class="s2">"tel"</span>, <span class="s2">"created_at"</span>, <span class="s2">"updated_at"</span><span class="o">)</span> VALUES <span class="o">(</span>?, ?, ?, ?, ?<span class="o">)</span>  <span class="o">[[</span><span class="s2">"name"</span>, <span class="s2">"test"</span><span class="o">]</span>, <span class="o">[</span><span class="s2">"email"</span>, <span class="s2">"test@example.com"</span><span class="o">]</span>, <span class="o">[</span><span class="s2">"tel"</span>, <span class="s2">"123123123"</span><span class="o">]</span>, <span class="o">[</span><span class="s2">"created_at"</span>, <span class="s2">"2022-05-29 07:58:06.395967"</span><span class="o">]</span>, <span class="o">[</span><span class="s2">"updated_at"</span>, <span class="s2">"2022-05-29 07:58:06.395967"</span><span class="o">]]</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">create</code> method in model maps to <code class="language-plaintext highlighter-rouge">INSERT</code> in SQL.</p>
+
+<h4 id="read">Read</h4>
+
+<p>After creating a user, go back to the main page
+<img src="/assets/img/1__OmOa73k4TY64SO5f__nAITA.png" alt="" /></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Started GET <span class="s2">"/users"</span> <span class="k">for</span> ::1 at 2022-05-29 16:02:02 +0800
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering <span class="nb">users</span>/index.html.erb within layouts/application
+  User Load <span class="o">(</span>0.5ms<span class="o">)</span>  SELECT <span class="s2">"users"</span>.<span class="k">*</span> FROM <span class="s2">"users"</span>
+  ↳ app/views/users/index.html.erb:16
+  Rendered <span class="nb">users</span>/index.html.erb within layouts/application <span class="o">(</span>Duration: 13.1ms | Allocations: 809<span class="o">)</span>
+</code></pre></div></div>
+
+<p>After we input the url in browser, it will trigger <code class="language-plaintext highlighter-rouge">GET</code> and then maps to the <code class="language-plaintext highlighter-rouge">index</code> method in <code class="language-plaintext highlighter-rouge">UsersController</code> and then trigger the SQL command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT <span class="s2">"users"</span>.<span class="k">*</span> FROM <span class="s2">"users"</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">read</code> method maps to <code class="language-plaintext highlighter-rouge">SELECT</code> in SQL.</p>
+
+<h4 id="update">Update</h4>
+
+<p>Click the button, <code class="language-plaintext highlighter-rouge">Edit</code> and make some changes. In the server,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Started PATCH <span class="s2">"/users/1"</span> <span class="k">for</span> ::1 at 2022-05-29 16:06:20 +0800
+Processing by UsersController#update as HTML
+  Parameters: <span class="o">{</span><span class="s2">"authenticity_token"</span><span class="o">=&gt;</span><span class="s2">"[FILTERED]"</span>, <span class="s2">"user"</span><span class="o">=&gt;{</span><span class="s2">"name"</span><span class="o">=&gt;</span><span class="s2">"testsssss"</span>, <span class="s2">"email"</span><span class="o">=&gt;</span><span class="s2">"test@example.com"</span>, <span class="s2">"tel"</span><span class="o">=&gt;</span><span class="s2">"123123123"</span><span class="o">}</span>, <span class="s2">"commit"</span><span class="o">=&gt;</span><span class="s2">"Update User"</span>, <span class="s2">"id"</span><span class="o">=&gt;</span><span class="s2">"1"</span><span class="o">}</span>
+  User Load <span class="o">(</span>0.7ms<span class="o">)</span>  SELECT <span class="s2">"users"</span>.<span class="k">*</span> FROM <span class="s2">"users"</span> WHERE <span class="s2">"users"</span>.<span class="s2">"id"</span> <span class="o">=</span> ? LIMIT ?  <span class="o">[[</span><span class="s2">"id"</span>, 1], <span class="o">[</span><span class="s2">"LIMIT"</span>, 1]]
+  ↳ app/controllers/users_controller.rb:62:in <span class="sb">`</span>set_user<span class="s1">'
+  TRANSACTION (0.1ms)  begin transaction
+  ↳ app/controllers/users_controller.rb:40:in `block in update'</span>
+  User Update <span class="o">(</span>0.4ms<span class="o">)</span>  UPDATE <span class="s2">"users"</span> SET <span class="s2">"name"</span> <span class="o">=</span> ?, <span class="s2">"updated_at"</span> <span class="o">=</span> ? WHERE <span class="s2">"users"</span>.<span class="s2">"id"</span> <span class="o">=</span> ?  <span class="o">[[</span><span class="s2">"name"</span>, <span class="s2">"testsssss"</span><span class="o">]</span>, <span class="o">[</span><span class="s2">"updated_at"</span>, <span class="s2">"2022-05-29 08:06:20.593978"</span><span class="o">]</span>, <span class="o">[</span><span class="s2">"id"</span>, 1]]
+  ↳ app/controllers/users_controller.rb:40:in <span class="sb">`</span>block <span class="k">in </span>update<span class="s1">'
+  TRANSACTION (1.0ms)  commit transaction
+  ↳ app/controllers/users_controller.rb:40:in `block in update'</span>
+Redirected to http://localhost:3000/users/1
+Completed 302 Found <span class="k">in </span>23ms <span class="o">(</span>ActiveRecord: 2.2ms | Allocations: 3043<span class="o">)</span>
+</code></pre></div></div>
+
+<p>The client side will trigger <code class="language-plaintext highlighter-rouge">PATCH</code> and then maps to the <code class="language-plaintext highlighter-rouge">update</code> method in <code class="language-plaintext highlighter-rouge">UsersController</code> and then trigger the SQL command, <code class="language-plaintext highlighter-rouge">UPDATE</code>, to update the information of the user</p>
+
+<p>The SQL command as follow:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UPDATE <span class="s2">"users"</span> SET <span class="s2">"name"</span> <span class="o">=</span> ?, <span class="s2">"updated_at"</span> <span class="o">=</span> ? WHERE <span class="s2">"users"</span>.<span class="s2">"id"</span> <span class="o">=</span> ?  <span class="o">[[</span><span class="s2">"name"</span>, <span class="s2">"testsssss"</span><span class="o">]</span>, <span class="o">[</span><span class="s2">"updated_at"</span>, <span class="s2">"2022-05-29 08:06:20.593978"</span><span class="o">]</span>, <span class="o">[</span><span class="s2">"id"</span>, 1]]
+</code></pre></div></div>
+
+<h4 id="delete">Delete</h4>
+
+<p>Click the button, <code class="language-plaintext highlighter-rouge">Destroy</code>. Then the information in server is as follow:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Started DELETE <span class="s2">"/users/1"</span> <span class="k">for</span> ::1 at 2022-05-29 16:11:10 +0800
+Processing by UsersController#destroy as HTML
+  Parameters: <span class="o">{</span><span class="s2">"authenticity_token"</span><span class="o">=&gt;</span><span class="s2">"[FILTERED]"</span>, <span class="s2">"id"</span><span class="o">=&gt;</span><span class="s2">"1"</span><span class="o">}</span>
+  User Load <span class="o">(</span>0.8ms<span class="o">)</span>  SELECT <span class="s2">"users"</span>.<span class="k">*</span> FROM <span class="s2">"users"</span> WHERE <span class="s2">"users"</span>.<span class="s2">"id"</span> <span class="o">=</span> ? LIMIT ?  <span class="o">[[</span><span class="s2">"id"</span>, 1], <span class="o">[</span><span class="s2">"LIMIT"</span>, 1]]
+  ↳ app/controllers/users_controller.rb:62:in <span class="sb">`</span>set_user<span class="s1">'
+  TRANSACTION (4.2ms)  begin transaction
+  ↳ app/controllers/users_controller.rb:52:in `destroy'</span>
+  User Destroy <span class="o">(</span>2.3ms<span class="o">)</span>  DELETE FROM <span class="s2">"users"</span> WHERE <span class="s2">"users"</span>.<span class="s2">"id"</span> <span class="o">=</span> ?  <span class="o">[[</span><span class="s2">"id"</span>, 1]]
+  ↳ app/controllers/users_controller.rb:52:in <span class="sb">`</span>destroy<span class="s1">'
+  TRANSACTION (0.8ms)  commit transaction
+  ↳ app/controllers/users_controller.rb:52:in `destroy'</span>
+Redirected to http://localhost:3000/users
+Completed 302 Found <span class="k">in </span>35ms <span class="o">(</span>ActiveRecord: 8.1ms | Allocations: 2603<span class="o">)</span>
+</code></pre></div></div>
+
+<p>After we click the destroy button, client side will trigger <code class="language-plaintext highlighter-rouge">DELETE</code> in the restful API and it maps to the <code class="language-plaintext highlighter-rouge">destroy</code> method in controller, <code class="language-plaintext highlighter-rouge">UsersController</code>, which is going to trigger the SQL command</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> TRANSACTION <span class="o">(</span>4.2ms<span class="o">)</span>  begin transaction
+  ↳ app/controllers/users_controller.rb:52:in <span class="sb">`</span>destroy<span class="s1">'
+  User Destroy (2.3ms)  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 1]]
+  ↳ app/controllers/users_controller.rb:52:in `destroy'</span>
+  TRANSACTION <span class="o">(</span>0.8ms<span class="o">)</span>  commit transaction
+  ↳ app/controllers/users_controller.rb:52:in <span class="sb">`</span>destroy<span class="s1">'
+</span></code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">DELETE</code> maps the <code class="language-plaintext highlighter-rouge">DELETE</code> command in SQL.</p>
+
+<p>Then we start to add <code class="language-plaintext highlighter-rouge">Post</code> model for users to add articles without scaffold.</p>
+
+<h3 id="relational-model-without-scaffold">relational model without scaffold</h3>
+
+<p>Suppose this is an blog hosting app, so we need a table to store users’ blog. Create migration file with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g migration create_posts
+</code></pre></div></div>
+
+<p>Then it will create a file to create <code class="language-plaintext highlighter-rouge">Post</code> model and table as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CreatePosts</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.1</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:posts</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:article</span>
+      
+      <span class="n">t</span><span class="p">.</span><span class="nf">references</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">index: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">foreign_key: </span><span class="kp">true</span> <span class="c1"># add this line because each post belongs to a user</span>
+
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>After <code class="language-plaintext highlighter-rouge">rails db:migrate</code>, it will create a <code class="language-plaintext highlighter-rouge">posts</code> table. Add <code class="language-plaintext highlighter-rouge">Post</code> model in <code class="language-plaintext highlighter-rouge">app/models</code> directory and then call it in rails console, which is going to return</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Post<span class="o">(</span><span class="nb">id</span>: integer, article: text, user_id: integer, created_at: datetime, updated_at: datetime<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="routes-without-scaffold">routes without scaffold</h3>
+
+<p>Given the section above, we know that the client will give inforamtion such as <code class="language-plaintext highlighter-rouge">UPDATE</code>, <code class="language-plaintext highlighter-rouge">GET</code>, …etc to server. The way how server knows what controller method the client want is through routes. We add the routes as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="o">...</span>
+  <span class="n">get</span> <span class="s1">'/posts'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'posts#index'</span> <span class="c1"># it will maps `GET /posts` to the `index` in `PostController`</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Input <code class="language-plaintext highlighter-rouge">rails routes</code> and we will see</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /posts<span class="o">(</span>.:format<span class="o">)</span>    posts#index
+</code></pre></div></div>
+
+<p>Then we should can start to input <code class="language-plaintext highlighter-rouge">http://localhost:3000/posts</code> and the following error pops up, meaning we need to add <code class="language-plaintext highlighter-rouge">PostsController</code></p>
+
+<p><img src="/assets/img/1_tw6HHhMzyY7L7rRzvWIDPQ.png" alt="" /></p>
+
+<p>Actually, we can have more customized routes settings</p>
+
+<ul>
+  <li>use <code class="language-plaintext highlighter-rouge">only</code> or <code class="language-plaintext highlighter-rouge">except</code> to set the only routes we need</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>  
+  <span class="n">resources</span> <span class="ss">:products</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:show</span><span class="p">]</span>
+  <span class="c1"># or the following codes</span>
+  <span class="c1"># resources :products, except: [:new, :create, :edit, :update, :destroy]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>use use <code class="language-plaintext highlighter-rouge">collection</code> and <code class="language-plaintext highlighter-rouge">member</code> to add sub layer for more manipulation; for example,</p>
+
+    <ul>
+      <li>collection</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>  
+  <span class="n">resources</span> <span class="ss">:orders</span> <span class="k">do</span>  
+    <span class="n">collection</span> <span class="k">do</span>  
+      <span class="n">get</span> <span class="ss">:cancelled</span>  
+    <span class="k">end</span>  
+  <span class="k">end</span>  
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then the routes: (should use code block instead of image)</p>
+
+<p><img src="/assets/img/1_YTaNYTwb6aA41Ukylqj-og.png" alt="" /></p>
+
+<p>There is one more route: <code class="language-plaintext highlighter-rouge">cancelled_orders</code></p>
+
+<ul>
+  <li>use <code class="language-plaintext highlighter-rouge">member</code> if the method will be case by case</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>member: xxx/id/xxx
+collection: xxx/xxx
+</code></pre></div></div>
+
+<ul>
+  <li>we can use namespace to clearify the usage of this method and specifiy the path for this namespace</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>  
+  <span class="n">namespace</span> <span class="ss">:admin</span><span class="p">,</span> <span class="ss">path: </span><span class="s2">"asdfadfaew"</span> <span class="k">do</span> <span class="c1"># input it randomly so show it can really be anything</span>
+    <span class="n">resources</span> <span class="ss">:products</span>  
+  <span class="k">end</span>  
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then the route path would be as follow:
+<img src="/assets/img/1_a0_F4MMPrazMJ8PGeD7CGg.png" alt="" /></p>
+
+<ul>
+  <li>
+    <p>the best way to arrange routes
+skip</p>
+  </li>
+  <li>
+    <p>routes &amp; Domain Specific Language (DSL)
+skip</p>
+  </li>
+</ul>
+
+<h3 id="controller-without-scaffold">controller without scaffold</h3>
+
+<p>With controller, we can move all the logics to model and only show necessary information on view. Add <code class="language-plaintext highlighter-rouge">controllers/posts_controller.rb</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then the following error pops up and we need to add view for post</p>
+
+<p><img src="/assets/img/posts_index_missing_view.png" alt="" /></p>
+
+<h3 id="view-without-scaffold">view without scaffold</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">views/</code>, add <code class="language-plaintext highlighter-rouge">views/posts/index.html</code> with following code</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Posts<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<h3 id="try-to-create-a-post-with-a-user">try to create a post with a user</h3>
+
+<p>I know there should be a mechanism to determine current user; for convenience, I will just assign user with <code class="language-plaintext highlighter-rouge">id = 1</code> as the current_user.</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">views/posts/index.html.erb</code>,</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Posts<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;table&gt;</span>
+  <span class="nt">&lt;thead&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;th&gt;</span>Title<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>Article<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/thead&gt;</span>
+
+  <span class="nt">&lt;tbody&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%</span> <span class="err">@</span><span class="na">posts.each</span> <span class="na">do</span> <span class="err">|</span><span class="na">post</span><span class="err">|</span> <span class="err">%</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">post.title</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">link_to</span> <span class="err">'</span><span class="na">Show</span><span class="err">',</span> <span class="na">user</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">link_to</span> <span class="err">'</span><span class="na">Edit</span><span class="err">',</span> <span class="na">edit_post_path</span><span class="err">(</span><span class="na">post</span><span class="err">)</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">link_to</span> <span class="err">'</span><span class="na">Destroy</span><span class="err">',</span> <span class="na">post</span><span class="err">,</span> <span class="na">method:</span> <span class="na">:delete</span><span class="err">,</span> <span class="na">data:</span> <span class="err">{</span> <span class="na">confirm:</span> <span class="err">'</span><span class="na">Are</span> <span class="na">you</span> <span class="na">sure</span><span class="err">?'</span> <span class="err">}</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%</span> <span class="na">end</span> <span class="err">%</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+
+<span class="nt">&lt;br&gt;</span>
+
+<span class="nt">&lt;</span><span class="err">%=</span> <span class="na">link_to</span> <span class="err">'</span><span class="na">New</span> <span class="na">Post</span><span class="err">',</span> <span class="na">new_post_path</span> <span class="err">%</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Then errors pops up to ask us add method for post listing, new post adding, and post creation, so as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">all</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1">####</span>
+
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">resources</span> <span class="ss">:users</span>
+  <span class="c1"># For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html</span>
+
+  <span class="n">get</span> <span class="s1">'/posts'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'posts#index'</span>
+  <span class="n">get</span> <span class="s1">'/posts/new'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'posts#new'</span><span class="p">,</span> <span class="ss">as: :new_post</span>
+  <span class="c1"># post '/posts', to: 'posts#create'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>(to be continued)</p>
+
+<h3 id="style">style</h3>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

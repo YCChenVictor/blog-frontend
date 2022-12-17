@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(Git_5) Historical Commits — Change, Merge, Decompose</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h3 id="change-historical-commits">Change Historical Commits</h3>
+
+<p>Given the commits’ message</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__YqxuL__M3708qP86rTYouWQ.png" alt="" /></p>
+
+<p>Go into git rebase interaction</p>
+
+<p>$ git rebase -i 44e1d7b</p>
+
+<p>Then the vim editor opens with following</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__GFCj5ebMaxWiKFQI3Reolw.png" alt="" /></p>
+
+<p>Notice, the message in it is upside down compared to git log — oneline</p>
+
+<p>if we want to change <code class="language-plaintext highlighter-rouge">b7ff364,</code>then change pick into r</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__ywGXTGhKcMloGBlMFuuF7Q.png" alt="" /></p>
+
+<p>Then there is going to be one vim editors pop up for editing b7ff364</p>
+
+<p>Then we can check the log again</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__VnM9UW71J4vKOthX1UoxjA.png" alt="" /></p>
+
+<p>The sha1 encoding after the changed commit are all changed; for example,</p>
+
+<p><code class="language-plaintext highlighter-rouge">b7ff364 -&gt; e2ee5fe</code> and <code class="language-plaintext highlighter-rouge">59384f6 -&gt; 2b32b62</code></p>
+
+<h4 id="how-to-recover-from-thechanges">How to recover from the changes</h4>
+
+<p>Use reset</p>
+
+<p>$ git reset ORIG_HEAD –hard</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__me3KDv4xCavxsT1gilK5__w.png" alt="" /></p>
+
+<p>Then the status goes back</p>
+
+<h3 id="merge-historical-commits">Merge Historical Commits</h3>
+
+<p>Use rebase</p>
+
+<p>$ git rebase -i 44e1d7b</p>
+
+<p>And change the state into s if we want to squeeze it with the last commit</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__gDSo4NH7Q5C9rVB65kHbUA.png" alt="" /></p>
+
+<p>The following vim pops up</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__nHKxMiQoMFP0U__FLU1qnvA.png" alt="" /></p>
+
+<p>Then I change the message as follow</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__n__UY__jj8esq4D3NeKYa__Tw.png" alt="" /></p>
+
+<p>Then the commits</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__bfatvKKSxNawTVMqKsn3Cg.png" alt="" /></p>
+
+<p>The same, if we want to recover from this changes</p>
+
+<p>$ git reset ORIG_HEAD –hard</p>
+
+<h3 id="decompose-historical-commits這邊有問題">Decompose historical commits (這邊有問題)</h3>
+
+<p>Given the sha1</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__e2pd6qEgZIxPFxcibVWlpQ.png" alt="" /></p>
+
+<p>Use rebase</p>
+
+<p>$ git rebase -i 44e1d7b</p>
+
+<p>and change the state to e and exit. Then the following</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__Ih3fn__fImy3n__QPD07vQXA.png" alt="" /></p>
+
+<p>Now we are in the rebase mode. If we want to change current commits:</p>
+
+<p>$ git reset HEAD^</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__rq52XnRs3JRXPiIvRgWFbA.png" alt="" /></p>
+
+<p>Then the status</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__OACMlLO1jHTreSR5nX7PaA.png" alt="" /></p>
+
+<p>And then we can use add and commit the first commit we want and then the second commit we want. Then use</p>
+
+<p>$ git rebase –continue</p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

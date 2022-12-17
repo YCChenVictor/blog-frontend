@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+
+<script src='/implement_p5.js'></script>
+
+    <!-- for mathjax support -->
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">structure and bonding</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>Reviewing atoms, bonds, and molecular geometry.</p>
+
+<ul>
+  <li>nucleus</li>
+  <li>orbitals</li>
+  <li>electron</li>
+  <li>bonding</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<ul>
+  <li>Anyone with a curiosity about life and living things must first understand organic chemistry</li>
+  <li>Organic chemistry is the study of carbon compounds</li>
+</ul>
+
+<h2 id="how">How?</h2>
+
+<div class="mermaid">
+graph LR
+  id1((atom)) --&gt; id2((nucleus))
+  id1((atom)) --&gt; id3((electrons))
+
+  id2((nucleus)) --&gt; id4((protons))
+  id2((nucleus)) --&gt; id5((neutrons))
+
+  id3((electrons)) --&gt; id6[orbitals]
+  id3((electrons)) --&gt; id7[bonding]
+</div>
+
+<h3 id="nucleus">Nucleus</h3>
+
+<ul>
+  <li>a dense, positively charged nucleus
+    <ul>
+      <li>subatomic particles called protons, which are positively charged</li>
+      <li>neutrons, which are electrically neutral</li>
+    </ul>
+  </li>
+  <li>surrounded at a relatively large distance by negaively charged electrons</li>
+  <li>number of positive protons in the nucleus = number of negative electrons</li>
+</ul>
+
+<div id="atom" class="h-screen justify-center items-center">
+  <div id="atom_toggle_erase" class=""></div>
+  <div id="atom_image_save" class=""></div>
+  <div id="atom_canvas" class="border"></div>
+</div>
+
+<script>
+  const atom_id = 'atom'
+  let atom = p5Draw('atom')
+  let atomP5 = new p5(atom, atom_id);
+</script>
+
+<ul>
+  <li>the number of protons = Z</li>
+  <li>the mass number = A = total number of protons plus neutrons</li>
+  <li>atomic number: 1 for hydrogen, 6 for carbon, 15 for phosphorus, and so on but different mass numbers depending on neutrons
+    <ul>
+      <li>Atoms with the same atomic number but different mass numbers are called isotopes</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="orbitals">Orbitals</h3>
+
+<ul>
+  <li>four different kinds: s, p, d, and f, each with a different shape. s looks like a ball; p looks like a dumbbell; d looks like flower (the real shape of orbitals is too hard to draw, refer to <a href="https://www.youtube.com/watch?v=cPDptc0wUYI">Orbitals: Crash Course Chemistry #25</a> for further information)</li>
+  <li>stastically, electron spends 90% to 95% of its time in an orbitals, derived from quantum mechanical model</li>
+  <li>hybridiztion: the orbitals will not overlap</li>
+  <li>multiple orbitals forms electron shells; for example, first shell has one s, denoted as 1s; second shell has one s and three p, denoted as 2s + 2p; third shell has one s, three p, and five d, denoted as 3s + 3p + 5d and so on</li>
+  <li>each orbital can hold 2 electrons, so first shell can hold 2 electrons, second shell can hold 8 electrons, and third shell can hold 18 electrons</li>
+  <li>we can simplify electron shell to concentric circles as follow</li>
+</ul>
+
+<div id="electron_shell" class="h-screen justify-center items-center">
+  <div id="electron_shell_toggle_erase" class=""></div>
+  <div id="electron_shell_image_save" class=""></div>
+  <div id="electron_shell_canvas" class="border"></div>
+</div>
+
+<script>
+  const electron_shell_id = 'electron_shell'
+  let electron_shell = p5Draw('electron_shell')
+  let electronShellP5 = new p5(electron_shell, electron_shell_id);
+</script>
+
+<h3 id="electron">Electron</h3>
+
+<p>Electrons follow ground-state electron configuration, a lowest-energy arrangement, which is most stable arrangement; when an electron comes, it goes to the place with lowest energy.</p>
+
+<p>Three rules:</p>
+
+<ul>
+  <li><strong>Aufbau principle</strong>: the lowest-energy orbitals fill up first, so the order: 1s -&gt; 2s -&gt; 2p -&gt; 3s -&gt; 3p -&gt; 4s -&gt; 3d, … Noted that it does not follow the order of electron shells but rather the energy level</li>
+  <li><strong>Pauli exclusion principle</strong>: one orbital can only contain 2 electrons at most and these 2 electrons must have opposite spins (math result)</li>
+  <li><strong>Hund’s rule</strong>: for most stable structure, when two or more orbitals with equal energy available such that 2p has three orbitals with equal energy, electrons occupy each orbital with spins parallel until all orbitals are half-full and then start to full these orbitals</li>
+</ul>
+
+<p>Given the rules, the order of filling electrons in each orbitals:</p>
+
+<figure>
+  <img src="/assets/img/electron_configuration.png" alt="" />
+  <figcaption>image source: https://terpconnect.umd.edu</figcaption>
+</figure>
+
+<p>and the detail arrangement of 1s 2s 2p 3s:</p>
+
+<div id="electron_detail_arrangement" class="h-screen justify-center items-center">
+  <div id="electron_detail_arrangement_toggle_erase" class=""></div>
+  <div id="electron_detail_arrangement_image_save" class=""></div>
+  <div id="electron_detail_arrangement_canvas" class="border"></div>
+</div>
+
+<script>
+  const electronDetailArrangementId = 'electron_detail_arrangement'
+  let electronDetailArrangementP5 = new p5(p5Draw(electronDetailArrangementId), electronDetailArrangementId);
+</script>
+
+<h3 id="bonding">bonding</h3>
+
+<ul>
+  <li>Atoms bond together because of more stable state compared to separation</li>
+  <li>Energy flows out when a bond forms</li>
+  <li>All atoms tried to be more stable; noble gas has most stable status by nature
+    <ul>
+      <li>He (\(1s^2\))</li>
+      <li>Ne (\(1s^2 2s^2 2p^6\))</li>
+      <li>Ar (\(1s^2 2s^2 2p^6 3s^2 3p^6\))</li>
+      <li>Kr (1s²2s²2p⁶2s²3p⁶3d¹⁰4s²4p⁶) (abbreviated as 3d¹⁰4s²4p⁶)</li>
+    </ul>
+  </li>
+  <li>spectrum of bonding</li>
+</ul>
+
+<div id="spectrum_of_bonding" class="h-screen justify-center items-center">
+  <div id="spectrum_of_bonding_toggle_erase" class=""></div>
+  <div id="spectrum_of_bonding_image_save" class=""></div>
+  <div id="spectrum_of_bonding_canvas" class="border"></div>
+</div>
+
+<script>
+  const spectrum_of_bondingId = 'spectrum_of_bonding'
+  let spectrum_of_bondingP5 = new p5(p5Draw(spectrum_of_bondingId), spectrum_of_bondingId);
+</script>
+
+<p>Atoms achive ionic bond by transfering electrons and achive covalent bond by sharing electrons. With <strong>electronegativity</strong>, we can determine whether this bond is ionic, covalent, or polar covalent.</p>
+
+<h4 id="electronegativity">electronegativity</h4>
+
+<p>electronegativity (EN) is the ability of an element to attract shared electons and the values as follow:</p>
+
+<figure>
+  <img src="/assets/img/electronegativity.png" alt="" />
+  <figcaption>image source: McMurry Organic Chemistry</figcaption>
+</figure>
+
+<p>Roughly,</p>
+
+<ul>
+  <li>nonpolar covalent: electronegativities differ by less than 0.5</li>
+  <li>polar covalent: electronegativities differ by 0.5–2</li>
+  <li>ionic: electronegativities differ by more than 2</li>
+</ul>
+
+<h4 id="ionic-bond">ionic bond</h4>
+
+<p>example (\(NaCl\)): \(Na\) (\(1s^2 2s^2 2p^6 3s^1\)) can achieve more stable status by losing one electron (\(1s^2 2s^2 2p^6\) just like Ne) to \(Na^+\) and \(Cl\) (\(1s^2 2s^2 2p^5\)) can achieve more stable status by gaining one electron (\(1s^2 2s^2 2p^6\) just like Ne) to \(Cl^-\)</p>
+
+<h4 id="polar-covalent-bond">polar covalent bond</h4>
+
+<p>example (\(HCl\)): TBC</p>
+
+<h4 id="nonpolar-covalent-bond">nonpolar covalent bond</h4>
+
+<p>example (\(CH_4\)): it takes too much energy for C (\(1s^2 2s^2 2p^2\)) to lose 4 electrons or gain 4 electrons, so to be more stable, C will share the electrons with other atoms such as four \(H\) and we called this stable substance as <strong>molecule</strong> and we can draw it as follow:</p>
+
+<div id="ch4" class="h-screen justify-center items-center">
+  <div id="ch4_toggle_erase" class=""></div>
+  <div id="ch4_image_save" class=""></div>
+  <div id="ch4_canvas" class="border"></div>
+</div>
+
+<script>
+  const ch4Id = 'ch4'
+  let ch4P5 = new p5(p5Draw(ch4Id), ch4Id);
+</script>
+
+<ul>
+  <li><strong>valence bond theory</strong> explains covalent bond: two atoms approach -&gt; orbital with single electoron overlaps the other atom’s orbital with single electron
+    <ul>
+      <li>example: (\(2H.\) -&gt; \(H_2\)) -&gt; release energy, 436 kJ/mol and the best distance between atoms is 74pm</li>
+      <li>Given both H. is \(1s^1\), it has no doubt that both H share their electrons the other 1s, making them both \(1s^2\) and the shapes looks like</li>
+    </ul>
+  </li>
+</ul>
+
+<p>(add the egg shapes of H_2 here)</p>
+
+<h4 id="hybrid-orbitals-for-bonding"><strong>hybrid orbitals for bonding</strong></h4>
+
+<p>explains the concept of mixed orbitals ready to bond (refer to <a href="https://www.youtube.com/watch?v=vHXViZTxLXo&amp;t=11s">this</a>)</p>
+
+<ul>
+  <li>\(sp^3\) = s + p + p + p</li>
+</ul>
+
+<div id="sp3" class="h-screen justify-center items-center">
+  <div id="sp3_toggle_erase" class=""></div>
+  <div id="sp3_image_save" class=""></div>
+  <div id="sp3_canvas" class="border"></div>
+</div>
+
+<script>
+  const sp3Id = 'sp3'
+  let sp3P5 = new p5(p5Draw(sp3Id), sp3Id);
+</script>
+
+<ul>
+  <li>\(sp^2\) = s + p + p</li>
+</ul>
+
+<div id="sp2" class="h-screen justify-center items-center">
+  <div id="sp2_toggle_erase" class=""></div>
+  <div id="sp2_image_save" class=""></div>
+  <div id="sp2_canvas" class="border"></div>
+</div>
+
+<script>
+  const sp2Id = 'sp2'
+  let sp2P5 = new p5(p5Draw(sp2Id), sp2Id);
+</script>
+
+<ul>
+  <li>\(sp\) = s + p</li>
+</ul>
+
+<div id="sp" class="h-screen justify-center items-center">
+  <div id="sp_toggle_erase" class=""></div>
+  <div id="sp_image_save" class=""></div>
+  <div id="sp_canvas" class="border"></div>
+</div>
+
+<script>
+  const spId = 'sp'
+  let spP5 = new p5(p5Draw(spId), spId);
+</script>
+
+<ul>
+  <li>example (\(CH_4\)): C is \(2s^22p^2\), desired to share these four electrons. Although there are 2 electrons in 2s and 2 electrons in 2 p orbitals out of \(2p\), when C shares the electrons with the other 4 H, the shape of the bonding orbitals will be \(sp^3\) which looks like</li>
+</ul>
+
+<p>(draw CH_4)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* example ($$NH_3$$):
+</code></pre></div></div>
+
+<p>(draw NH_3)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* example ($$H_2O$$):
+</code></pre></div></div>
+
+<p>(draw H_2O)</p>
+
+<p>also explain pi and sigma bond</p>
+
+<ul>
+  <li>\(sp^2\) = s + p + p
+    <ul>
+      <li>example (\(C_2H_4\)): (to be continued)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>(draw C_2H_4)</p>
+
+<ul>
+  <li>\(sp\) = s + p
+    <ul>
+      <li>example (\(C_2H_2\)): (to be continued)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>(draw C_2H_2)</p>
+
+<p>####</p>
+
+<h2 id="what">What?</h2>
+
+<h3 id="ground-state-electron-configuration-of-oxygen">ground-state electron configuration of Oxygen</h3>
+
+<div id="electron_configuration_of_oxygen" class="h-screen justify-center items-center">
+  <div id="electron_configuration_of_oxygen_toggle_erase" class=""></div>
+  <div id="electron_configuration_of_oxygen_image_save" class=""></div>
+  <div id="electron_configuration_of_oxygen_canvas" class="border"></div>
+</div>
+
+<script>
+  const ElectronConfigurationOfOxygenId = 'electron_configuration_of_oxygen'
+  let ElectronConfigurationOfOxygenP5 = new p5(p5Draw(ElectronConfigurationOfOxygenId), ElectronConfigurationOfOxygenId);
+</script>
+
+<h3 id="predicting-the-number-of-bonds-ph_">Predicting the Number of Bonds (\(PH_?\))</h3>
+
+<p>In period table,</p>
+
+<ul>
+  <li>P is the 15th element -&gt; \(1s^2 2s^2 2p^6 3s^2 3p^3\) -&gt; P needs three more electrons to achieve noble gas</li>
+  <li>H is the 1th element -&gt; \(1s^2\) -&gt; H needs one more electron to achieve noble gas</li>
+</ul>
+
+<p>-&gt; \(PH_3\)</p>
+
+<h3 id="draw-ch3ch2ch3-and-predict-the-value-of-each-bond-angle-and-the-shape-of-each-molecule">draw CH3CH2CH3 and predict the value of each bond angle and the shape of each molecule</h3>
+
+<div id="CH3CH2CH3" class="h-screen justify-center items-center">
+  <div id="CH3CH2CH3_toggle_erase" class=""></div>
+  <div id="CH3CH2CH3_image_save" class=""></div>
+  <div id="CH3CH2CH3_canvas" class="border"></div>
+</div>
+
+<script>
+  const CH3CH2CH3Id = 'CH3CH2CH3'
+  let CH3CH2CH3P5 = new p5(p5Draw(CH3CH2CH3Id), CH3CH2CH3Id);
+</script>
+
+<h3 id="the-number-of-h-in-carvone">the number of H in carvone</h3>
+
+<div id="carvone" class="h-screen justify-center items-center">
+  <div id="carvone_toggle_erase" class=""></div>
+  <div id="carvone_image_save" class=""></div>
+  <div id="carvone_canvas" class="border"></div>
+</div>
+
+<script>
+  const carvoneId = 'carvone'
+  let carvoneP5 = new p5(p5Draw(carvoneId), carvoneId);
+</script>
+
+<p><a href="https://study.com/academy/answer/draw-a-line-bond-structure-for-propane-ch3ch2ch3-predict-the-value-of-each-bond-angle-and-indicate-the-overall-shape-of-the-molecule.html#:~:text=Hence%2C%20the%20overall%20shape%20of,combination%20of%20three%20tetrahedral%20structures.">answer</a></p>
+
+<h2 id="reference">Reference</h2>
+
+<p>McMurry Organic Chemistry</p>
+
+<p><a href="https://www.youtube.com/watch?v=cPDptc0wUYI">Orbitals: Crash Course Chemistry #25</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Electron_shell">Electron shell</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Electron_configuration">Electron configuration</a></p>
+
+<p><a href="https://highscope.ch.ntu.edu.tw/wordpress/?p=3485">罕德定則（Hund’s rule</a></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>[Hybrid Orbitals explained - Valence Bond Theory</td>
+      <td>Orbital Hybridization sp3 sp2 sp](https://www.youtube.com/watch?v=vHXViZTxLXo&amp;t=11s)</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

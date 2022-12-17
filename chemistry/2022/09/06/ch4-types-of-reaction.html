@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Ch4 Types Of Reaction</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article explains the types of chemical reactions:</p>
+
+<ul>
+  <li>Precipitation reactions: dissolved substances react to form one (or more) solid products</li>
+  <li>Acid–base reactions: chemical reaction that occurs between an acid and a base</li>
+  <li>Oxidation–reduction reactions: reaction causes the oxidation number of a molecule, atom, or ion changes by gaining or losing an electron</li>
+</ul>
+
+<p>We will start from solubility and then explain these three types of reactions.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>focus on why we need it</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="solubility-rules">Solubility rules</h3>
+
+<p>A soluble compound can be dissolved in water.</p>
+
+<ul>
+  <li>Always soluble: \(Na^+, K^+, Li^+, NH_4^+, NO_3^-, C_2H_3O_2^-\)</li>
+  <li>Generally Soluble:
+    <ul>
+      <li>\(Cl^-, Br^-, I^-\) (exception: \(Ag^+, Pb^{2+}, Hg_2^{2+}\))</li>
+      <li>\(SO_4^{2-}\) (exception: \(Ca^{2+}, Ba^{2+}, Sr^{2+}, Pb^{2+}\))</li>
+    </ul>
+  </li>
+  <li>Generally Insoluble:
+    <ul>
+      <li>\(OH^-\) (exception: \(Na^+, NH_4^-, Ca^{2+}, Sr^{2+}, Ba^{2+}\))</li>
+      <li>\(S^{2-}, CO_3^{2-}, PO_4^{3-}, CrO_4^{2-}\) (exception: \(Na^+, K^+, Li^+, NH_4^+\))</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="dissolve">dissolve</h4>
+
+<ul>
+  <li>Water is a polar solvent that dissolves many ionic and polar substances</li>
+  <li>Electrolytes: a substance that produces ions in solution when dissolved in water
+    <ul>
+      <li>Strong electrolyte: 100% dissociated to produce separate ions; strongly conducts an electric current; example: \(HClO_4\)</li>
+      <li>Weak electrolyte: Only a small percentage of dissolved molecules produce ions; weakly conducts an electric current; example: \(NH_3\)</li>
+      <li>Nonelectrolyte: Dissolved substance produces no ions; does not conduct an electric current; example: \(C_6H_{12}O_6\)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="molarity">molarity</h4>
+
+\[Molarity (M) = \frac{moles of solute(mole)}{volumn of solution(L)}\]
+
+<p>example: 0.25 moles of \(NaCl\) in 300 ml of solution -&gt; M = 0.25/0.3 = 0.83</p>
+
+<h4 id="dilution">Dilution</h4>
+
+<p>Moles of solute after dilution = moles of solute before dilution:</p>
+
+\[M_1V_1 = M_2V_2\]
+
+<h4 id="equations">equations</h4>
+
+<p>For example, when mixing \(K_2CrO_4\) and \(Ba(NO_3)_2\), a reaction to form \(BaCrO_4\) and dissolve \(KNO_3\) occurs</p>
+
+<ul>
+  <li>formula equation: \(K_2CrO_4(aq) + Ba(NO_3)_2(aq) -&gt; BaCrO_4(s) + 2KNO_3(aq)\)</li>
+  <li>complete ionic equation: \(2K^+(aq) + CrO_4^{2-}(aq) + Ba^{2+}(aq) + 2(NO_3)^-(aq) -&gt; BaCrO_4(s) + 2K^+(aq) + 2NO_3^-(aq)\)</li>
+  <li>net ionic equation: \(Ba^{2+}(aq) + CrO_4^{2-}(aq) -&gt; BaCrO_4(s)\)</li>
+</ul>
+
+<p>aq means
+s means</p>
+
+<h3 id="precipitation-reactions">Precipitation reactions</h3>
+
+<p>formation of a solid occurs</p>
+
+<p>example: \(AgNO_3(aqueous) + KCl(aqueous) — AgCl(precipitate) + KNO_3(aqueous)\)</p>
+
+<h3 id="acidbase-reactions">Acid–base reactions</h3>
+
+<p>It involves a transfer of \(H^+\) ions</p>
+
+<p>Three model: Arrhenius ⊆ Brønsted–Lowry ⊆ Lewis</p>
+
+<ul>
+  <li>Arrhenius
+    <ul>
+      <li>Acid: produces \(H^+\)</li>
+      <li>Base: produces \(OH^-\)</li>
+    </ul>
+  </li>
+  <li>Brønsted–Lowry
+    <ul>
+      <li>Acid: proton donor</li>
+      <li>Base: proton acceptor</li>
+      <li>proton = \(H^+\)</li>
+    </ul>
+  </li>
+  <li>Lewis
+    <ul>
+      <li>TBC</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Please refer to organic_chemistry/2022-08-07-2-acid-and-base.md</p>
+
+<h4 id="titrations">Titrations</h4>
+
+<ul>
+  <li>To calculate the concentration of the solution</li>
+  <li>For example, given 20 ml of \(HCl\) in a bottle, we gradually add \(NaOH\) and after 48.6 ml of \(NaOH\) added, the indicator changed color
+    <ul>
+      <li>equation: \(HCl + NaOH - H_2O + NaCl\)</li>
+      <li>[\(NaOH\)] = 0.100 M -&gt; we need 0.00486 mol of \(NaOH\)</li>
+      <li>By the equation, mol of \(HCl\) : mol of \(NaOH\) = 1 : 1 -&gt; there is also 0.00486 mole of \(Hcl\) in the 20 ml bottle</li>
+      <li>[$$$HCl$] = 0.00486 / 0.02 = 0.243 M</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="oxidationreduction-reactions">Oxidation–reduction reactions</h3>
+
+<p>It involves electron transfer</p>
+
+<ul>
+  <li>Oxidation: loss electrons</li>
+  <li>Reduction: gain electrons</li>
+  <li>oxidation states method (TBC)</li>
+</ul>
+
+<h2 id="what">What?</h2>
+
+<p>Please give test examples according to the topics in How section.</p>
+
+<h2 id="note">Note</h2>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Electrolyte">Electrolyte</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=a6Dw9vtnwns">What Are Electrolytes?</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=o_iETsDSvkg">Molarity Practice Problems</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=LnGIKtx_udE&amp;t=92s">Solubility Rules</a></p>
+
+<p><a href="https://www.khanacademy.org/science/ap-chemistry-beta/x2eef969c74e0d802:chemical-reactions/x2eef969c74e0d802:introduction-to-titration/v/titration-introduction">Acid–base titrations</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

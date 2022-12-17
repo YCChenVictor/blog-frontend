@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(react) state</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>Based on the concepts of component and props in previous articles, you may find that there are issues related to state as follow:</p>
+
+<ul>
+  <li>unchangeable state variables in component</li>
+  <li>single source of truth</li>
+  <li>lift states</li>
+</ul>
+
+<h2 id="why">Why</h2>
+
+<p>to be continue</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="unchangeable-state-variables-in-component">unchangeable state variables in component</h3>
+
+<p>To solve it, the core concept is to copy the structure of the state in a <code class="language-plaintext highlighter-rouge">const</code> variable and re-render it with that state; for example,</p>
+
+<p>turn the onClick method in button of delete in <code class="language-plaintext highlighter-rouge">&lt;Counter&gt;</code> into</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">button</span>
+  <span class="err">...</span>
+  <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">onDelete</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span>
+<span class="p">&gt;</span>
+  Delete
+<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>once clicked, it will pass <code class="language-plaintext highlighter-rouge">this.props.id</code> to the <code class="language-plaintext highlighter-rouge">onDelete</code> method in <code class="language-plaintext highlighter-rouge">&lt;Counter&gt;</code> of <code class="language-plaintext highlighter-rouge">&lt;Counters&gt;</code> and trigger <code class="language-plaintext highlighter-rouge">handleDelete</code> method, which is going to filter all the <code class="language-plaintext highlighter-rouge">id</code> in the <code class="language-plaintext highlighter-rouge">state</code>, which is not equal to the <code class="language-plaintext highlighter-rouge">id</code> passed by <code class="language-plaintext highlighter-rouge">this.props.id</code> and return the filtered state, <code class="language-plaintext highlighter-rouge">counters</code> and re-render</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleDelete</span> <span class="o">=</span> <span class="nx">counterId</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">counters</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">counters</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">c</span> <span class="o">=&gt;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="nx">counterId</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="nx">counters</span> <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">counters</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">counter</span> <span class="o">=&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Counter</span>
+          <span class="err">...</span>
+          <span class="na">id</span><span class="p">=</span><span class="si">{</span><span class="nx">counter</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">Counter</span><span class="p">&gt;</span>
+      <span class="p">)</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then once you click the delete button, the row of counter will disappear.</p>
+
+<p>Note that you can modify the <code class="language-plaintext highlighter-rouge">value={counter.value}</code> and <code class="language-plaintext highlighter-rouge">id={counter.id}</code> to <code class="language-plaintext highlighter-rouge">counter={counter}</code> and use these states in children component with <code class="language-plaintext highlighter-rouge">this.props.counter.id</code> and <code class="language-plaintext highlighter-rouge">this.props.counter.id</code></p>
+
+<h3 id="single-source-of-truth">single source of truth</h3>
+
+<p>In 2021-06-15-react-component-and-prop.md, we know when a state changes, react change the virtual DOM first and then change the state of real DOM. Now we want to create a reset button to reset all the calculation in all the counters.</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">counters</code>,</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Counters</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">handleReset</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">counters</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">counters</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+      <span class="nx">c</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">c</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="nx">counters</span> <span class="p">});</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">counters</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span>
+          <span class="na">className</span><span class="p">=</span><span class="s">"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"</span>
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleReset</span><span class="p">()</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          Reset
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        ...
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Once we click the reset button and trigger <code class="language-plaintext highlighter-rouge">handleReset</code> method, the <code class="language-plaintext highlighter-rouge">state</code> in <code class="language-plaintext highlighter-rouge">counters</code> changed and trigger the <code class="language-plaintext highlighter-rouge">render</code> method, then it will pass the new value as props to <code class="language-plaintext highlighter-rouge">counter</code>; however, because state can only be modified inner the component, the state in <code class="language-plaintext highlighter-rouge">counter</code> did not changed, which means the <code class="language-plaintext highlighter-rouge">counter</code> will not be re-rendered. What we need to do is to remove all the local state in <code class="language-plaintext highlighter-rouge">counter</code> and make the children <code class="language-plaintext highlighter-rouge">counter</code> to be controlled by the props passed by <code class="language-plaintext highlighter-rouge">counters</code> as follow:</p>
+
+<p>from</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Counter</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">value</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+  <span class="p">}</span>
+
+  <span class="nx">handleIncrement</span> <span class="o">=</span> <span class="p">(</span><span class="nx">product</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">value</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        ...
+        <span class="p">&lt;</span><span class="nt">button</span>
+          <span class="na">className</span><span class="p">=</span><span class="s">"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"</span>
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span><span class="p">({</span><span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          Increment
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        ...
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Counter</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        ...
+        <span class="p">&lt;</span><span class="nt">button</span>
+          <span class="na">className</span><span class="p">=</span><span class="s">"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"</span>
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">onIncrement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">counter</span><span class="p">)</span><span class="si">}</span>
+        <span class="p">&gt;</span>
+          Increment
+        <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        ...
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>and add <code class="language-plaintext highlighter-rouge">handleIncrement</code> in <code class="language-plaintext highlighter-rouge">Counters</code></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Counters</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">handleIncrement</span> <span class="o">=</span> <span class="nx">counter</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">counters</span> <span class="o">=</span> <span class="p">[...</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">counters</span><span class="p">];</span>
+    <span class="kd">const</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">counters</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">counter</span><span class="p">);</span>
+    <span class="nx">counters</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">counter</span> <span class="p">};</span>
+    <span class="nx">counters</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="nx">counters</span> <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        ...
+        <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">counters</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">counter</span> <span class="o">=&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Counter</span>
+            <span class="err">...</span>
+            <span class="na">onIncrement</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span><span class="si">}</span>
+            <span class="err">...</span>
+          <span class="p">&gt;</span>
+            ...
+          <span class="p">&lt;/</span><span class="nc">Counter</span><span class="p">&gt;</span>
+        <span class="p">)</span><span class="si">}</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="lift-states">lift states</h3>
+
+<p>For example, we want to have a NavBar to show to total counts of the counters just like the tree in 2021-06-13-react-overview.md showed. Then we need to lift the state of counters to <code class="language-plaintext highlighter-rouge">App</code> and then pass state to <code class="language-plaintext highlighter-rouge">NavBar</code></p>
+
+<p>create <code class="language-plaintext highlighter-rouge">App</code> component as follow</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">NavBar</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/navbar</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Counters</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/counters</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">App</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nc">Navbar</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">main</span> <span class="na">className</span><span class="p">=</span><span class="s">'container'</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Counter</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>and add <code class="language-plaintext highlighter-rouge">&lt;Navbar /&gt;</code> as follow</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">NavBar</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">state</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">nav</span> <span class="na">className</span><span class="p">=</span><span class="s">''</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">className</span><span class="p">=</span><span class="s">''</span> <span class="na">href</span><span class="p">=</span><span class="s">'#'</span><span class="p">&gt;</span>Navbar<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">NavBar</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>remember to add the tailwind structure</p>
+
+<hr />
+
+<p>The key tools are <code class="language-plaintext highlighter-rouge">useContext</code> and <code class="language-plaintext highlighter-rouge">useReducer</code>.</p>
+
+<p>A. <code class="language-plaintext highlighter-rouge">useContext</code>: letting the nested components to use variable defined in the components outside. For example, the nested structure: <code class="language-plaintext highlighter-rouge">ThemedButton()</code> in <code class="language-plaintext highlighter-rouge">Toolbar()</code> in <code class="language-plaintext highlighter-rouge">App()</code>. With <code class="language-plaintext highlighter-rouge">ThemeContext</code> created by <code class="language-plaintext highlighter-rouge">React.createContext()</code> outside these components, we can access ThemeContext</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">themes</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">light</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">foreground</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#000000</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">background</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#eeeeee</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="na">dark</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">foreground</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#ffffff</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">background</span><span class="p">:</span> <span class="dl">"</span><span class="s2">#222222</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">ThemeContext</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createContext</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">ThemeContext</span><span class="p">.</span><span class="nx">Provider</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">themes</span><span class="p">.</span><span class="nx">dark</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Toolbar</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/ThemeContext.Provider</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Toolbar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">ThemedButton</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">ThemedButton</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">theme</span> <span class="o">=</span> <span class="nx">useContext</span><span class="p">(</span><span class="nx">ThemeContext</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">style</span><span class="o">=&gt;</span>
+      <span class="nx">I</span> <span class="nx">am</span> <span class="nx">styled</span> <span class="nx">by</span> <span class="nx">theme</span> <span class="nx">context</span><span class="o">!</span>
+    <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>B. <code class="language-plaintext highlighter-rouge">useReducer</code>:</p>
+
+<h2 id="what">What</h2>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-share-state-across-react-components-with-context">how to share state across react components with context</a></p>
+
+<p><a href="https://reactjs.org/docs/hooks-reference.html#usecontext">useContext</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=Ke90Tje7VS0">React JS - React Tutorial for Beginners</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

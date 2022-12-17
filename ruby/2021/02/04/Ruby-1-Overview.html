@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(Ruby 1) Overview</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="install-1">Install (1)</h2>
+
+<h3 id="install-rvm-ruby-versionmanager">Install RVM (Ruby Version Manager)</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -sSL https://get.rvm.io | bash -s stable
+</code></pre></div></div>
+<h3 id="open-rvm">Open RVM</h3>
+
+<p>You should know your own path of ruby. Take Mac as example, the path should be <code class="language-plaintext highlighter-rouge">/Users/user_name/.rvm/scripts/rvm</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source 'your own path'
+</code></pre></div></div>
+<h2 id="version-control">Version Control</h2>
+
+<h3 id="all-versions-of-ruby-that-can-be-installed">All Versions of Ruby that can be installed</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list known
+</code></pre></div></div>
+<h3 id="install-ruby26">Install Ruby 2.6</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm install 2.6
+</code></pre></div></div>
+<h3 id="errors-fixing">Errors Fixing</h3>
+<h4 id="check-the-log">Check the log</h4>
+<p>You may have the following path to access it (please replace your_user_name with your user name)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/your_user_name/.rvm/log/1625795250_ruby-2.7.1/make.log
+</code></pre></div></div>
+<p><a href="https://github.com/ffi/ffi/issues/869"><strong>solve the ruby old version cannot install on M1 problem</strong></a></p>
+
+<h3 id="check-installed-versions">Check Installed Versions</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list
+</code></pre></div></div>
+<h3 id="check-currentversion">Check Current Version</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby -v
+</code></pre></div></div>
+<h3 id="use-other-rubyversion">Use Other Ruby Version</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm use 3.0.0
+</code></pre></div></div>
+<h3 id="change-default-rubyversion">Change Default Ruby Version</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm --default use 2.4.1
+</code></pre></div></div>
+<h2 id="variable">Variable</h2>
+
+<h3 id="types">Types</h3>
+<p><img src="/assets/img/1__ywZBLRlHrf____K66pKUAsiA.png" alt="" />
+explanation (skip)</p>
+
+<h3 id="scope">Scope</h3>
+
+<p>Scope means the range that the variable can be use. If we define a variable, <strong>name</strong>, in a function then this variable can only be called in the function, not anywhere else; for example,
+<img src="/assets/img/1__MXgPL__Bv9Bnc4Uvdib2sfA.png" alt="" />
+(上面這個例子不對：say_hello 要印出來的東西沒寫出來)</p>
+
+<h2 id="constant">Constant</h2>
+
+<p>The only rule of constant is the first letter must be uppercase; for example,
+<img src="/assets/img/1__1bSiA4EZngxjQ1Aaa__EexA.png" alt="" /></p>
+
+<p>Actually, all the class and module name must be constant</p>
+
+<h2 id="flow-controller">Flow Controller</h2>
+
+<h3 id="true-orfalse">True or False</h3>
+
+<p>Only nil and false are considered as false</p>
+
+<h3 id="ifelsifelse">if…elsif…else…</h3>
+
+<h4 id="inversion-we-can-put-if-statement-to-the-back-as-inversion-that-is-from">inversion: we can put if statement to the back as inversion. That is, from</h4>
+<p><img src="/assets/img/1__ozwwOZDNfqIiun8OHm__jbA.png" alt="" /></p>
+
+<p>to</p>
+
+<p><img src="/assets/img/1____YrEzmpfvZQwtxKoNb1nBA.png" alt="" /></p>
+
+<h3 id="unless--ifnot">Unless = if not</h3>
+
+<h3 id="ternary">Ternary</h3>
+
+<p>It is constructed from ? and : For example, from</p>
+
+<p><img src="/assets/img/1__YOKCxvUI__CRILIoVI8PGvg.png" alt="" /></p>
+
+<p>to</p>
+
+<p><img src="/assets/img/1__qQyOxf0g4uJw__LuwemEOfA.png" alt="" /></p>
+
+<h3 id="casewhen">Case…When</h3>
+
+<p>Can make the if…else… to be more concise; for example, from
+<img src="/assets/img/1____juWAAE2TWNktquJMC7whA.png" alt="" /></p>
+
+<p>to</p>
+
+<p><img src="/assets/img/1__KrrerIAP2FlTa428FEJeMg.png" alt="" /></p>
+
+<h2 id="loop-and-iteration">Loop and Iteration</h2>
+
+<h3 id="while">while</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>counter = 0
+while counter &lt; 5
+  puts "hi, #{counter}"
+  counter += 1
+end
+</code></pre></div></div>
+
+<p>The output</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hi, 0
+hi, 1
+hi, 2
+hi, 3
+hi, 4
+</code></pre></div></div>
+
+<h3 id="forin">for..in</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aaa = ['bbb', 'ccc', 'ddd']
+
+for a in aaa
+  puts a
+end
+</code></pre></div></div>
+
+<p>The output</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bbb
+ccc
+ddd
+</code></pre></div></div>
+
+<h3 id="times">times</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5.times do
+  puts "test"
+end
+</code></pre></div></div>
+
+<p>The output</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test
+test
+test
+test
+test
+</code></pre></div></div>
+
+<h3 id="upto">upto</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.upto(5) do |i|
+  puts "hi, ruby #{i}"
+end
+</code></pre></div></div>
+
+<p>The output</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hi, ruby 1
+hi, ruby 2
+hi, ruby 3
+hi, ruby 4
+hi, ruby 5
+</code></pre></div></div>
+
+<h3 id="downto">downto</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5.downto(1) do |i|
+  puts "hi, ruby #{i}"
+end
+</code></pre></div></div>
+
+<p>The output</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hi, ruby 5
+hi, ruby 4
+hi, ruby 3
+hi, ruby 2
+hi, ruby 1
+</code></pre></div></div>
+
+<h3 id="each">each</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>strings = ["aaa", "bbb", "ccc", "ddd"]
+
+strings.each do |string|
+  puts string
+end
+</code></pre></div></div>
+
+<p>The output</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aaa
+bbb
+ccc
+ddd
+</code></pre></div></div>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

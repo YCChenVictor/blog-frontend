@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">React Three Fiber</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>Given we have basic concepts of react, threeJS and 3D model, we can start to build a 3D frontend.</p>
+
+<ul>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#why">Why?</a></li>
+  <li><a href="#how">How?</a>
+    <ul>
+      <li><a href="#create-a-react-app">create a react app</a></li>
+      <li><a href="#install">install</a></li>
+      <li><a href="#first-threejs-component">first threejs component</a></li>
+      <li><a href="#background">background</a></li>
+      <li><a href="#import-3d-model">import 3D model</a></li>
+      <li><a href="#perspective">perspective</a></li>
+      <li><a href="#animate">animate</a></li>
+      <li><a href="#interaction">interaction</a></li>
+      <li><a href="#light-and-color">light and color</a></li>
+      <li><a href="#routes">routes</a></li>
+      <li><a href="#deploy">deploy</a></li>
+    </ul>
+  </li>
+  <li><a href="#what">What?</a></li>
+  <li><a href="#reference">Reference</a></li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>focus on why we need it</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="create-a-react-app">create a react app</h3>
+
+<p>Refer to react/2021-06-13-overview</p>
+
+<h3 id="install">install</h3>
+
+<p>Refer to <a href="https://github.com/pmndrs/react-three-fiber">react-three-fiber</a></p>
+
+<h3 id="first-threejs-component">first threejs component</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useRef</span><span class="p">,</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Canvas</span><span class="p">,</span> <span class="nx">useFrame</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@react-three/fiber</span><span class="dl">'</span>
+
+<span class="kd">function</span> <span class="nx">Box</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// This reference gives us direct access to the THREE.Mesh object</span>
+  <span class="kd">const</span> <span class="nx">ref</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">()</span>
+  <span class="c1">// Hold state for hovered and clicked events</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">hovered</span><span class="p">,</span> <span class="nx">hover</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">clicked</span><span class="p">,</span> <span class="nx">click</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+  <span class="c1">// Subscribe this component to the render-loop, rotate the mesh every frame</span>
+  <span class="nx">useFrame</span><span class="p">((</span><span class="nx">state</span><span class="p">,</span> <span class="nx">delta</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">ref</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">rotation</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="mf">0.01</span><span class="p">))</span>
+  <span class="c1">// Return the view, these are regular Threejs elements expressed in JSX</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">mesh</span>
+      <span class="p">{...</span><span class="nx">props</span><span class="p">}</span>
+      <span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">ref</span><span class="p">}</span>
+      <span class="nx">scale</span><span class="o">=</span><span class="p">{</span><span class="nx">clicked</span> <span class="p">?</span> <span class="mf">1.5</span> <span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+      <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">click</span><span class="p">(</span><span class="o">!</span><span class="nx">clicked</span><span class="p">)}</span>
+      <span class="nx">onPointerOver</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">hover</span><span class="p">(</span><span class="kc">true</span><span class="p">)}</span>
+      <span class="nx">onPointerOut</span><span class="o">=</span><span class="p">{(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">hover</span><span class="p">(</span><span class="kc">false</span><span class="p">)}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">boxGeometry</span> <span class="nx">args</span><span class="o">=</span><span class="p">{[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">meshStandardMaterial</span> <span class="nx">color</span><span class="o">=</span><span class="p">{</span><span class="nx">hovered</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">hotpink</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">orange</span><span class="dl">'</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/mesh</span><span class="err">&gt;
+</span>  <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Box</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">useFrame</code>: it will execute codes on every rerendered frame</li>
+  <li>size: TBC</li>
+</ul>
+
+<h3 id="background">background</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Background</span> <span class="o">=</span> <span class="nx">props</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="p">{</span><span class="nx">gl</span><span class="p">}</span> <span class="o">=</span> <span class="nx">useThree</span><span class="p">();</span>
+
+  <span class="kd">const</span> <span class="nx">texture</span> <span class="o">=</span> <span class="nx">useTexture</span><span class="p">(</span><span class="dl">'</span><span class="s1">/autoshop.jpg</span><span class="dl">'</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">formatted</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">WebGLCubeRenderTarget</span><span class="p">(</span><span class="nx">texture</span><span class="p">.</span><span class="nx">image</span><span class="p">.</span><span class="nx">height</span><span class="p">).</span><span class="nx">fromEquirectangularTexture</span><span class="p">(</span><span class="nx">gl</span><span class="p">,</span> <span class="nx">texture</span><span class="p">)</span>
+  <span class="k">return</span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">primitive</span> <span class="na">attach</span><span class="p">=</span><span class="s">"background"</span> <span class="na">object</span><span class="p">=</span><span class="si">{</span><span class="nx">formatted</span><span class="p">.</span><span class="nx">texture</span><span class="si">}</span> <span class="p">/&gt;</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="p">&lt;</span><span class="nc">Suspense</span> <span class="na">fallback</span><span class="p">=</span><span class="si">{</span><span class="kc">null</span><span class="si">}</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nc">Background</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nc">Suspense</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="import-3d-model">import 3D model</h3>
+
+<p>turn gltf into jsx component</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx gltfjsx xxx.glb
+</code></pre></div></div>
+
+<p>it will produce something as follow:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useRef</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useGLTF</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@react-three/drei</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">Model</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">nodes</span><span class="p">,</span> <span class="nx">materials</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useGLTF</span><span class="p">(</span><span class="dl">'</span><span class="s1">/cat.glb</span><span class="dl">'</span><span class="p">)</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">group</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="nx">dispose</span><span class="o">=</span><span class="p">{</span><span class="kc">null</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">mesh</span> <span class="nx">geometry</span><span class="o">=</span><span class="p">{</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">Cube</span><span class="p">.</span><span class="nx">geometry</span><span class="p">}</span> <span class="nx">material</span><span class="o">=</span><span class="p">{</span><span class="nx">materials</span><span class="p">.</span><span class="nx">Material</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">mesh</span> <span class="nx">geometry</span><span class="o">=</span><span class="p">{</span><span class="nx">nodes</span><span class="p">[</span><span class="dl">'</span><span class="s1">12221_Cat_v1_l3</span><span class="dl">'</span><span class="p">].</span><span class="nx">geometry</span><span class="p">}</span> <span class="nx">material</span><span class="o">=</span><span class="p">{</span><span class="nx">materials</span><span class="p">.</span><span class="nx">Cat</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/group</span><span class="err">&gt;
+</span>  <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">useGLTF</span><span class="p">.</span><span class="nx">preload</span><span class="p">(</span><span class="dl">'</span><span class="s1">/cat.glb</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="perspective">perspective</h3>
+
+<p>Add an orbit_control listening to the mouse of the domElement and modify the camera according to the mouse movement</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">CameraController</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">camera</span><span class="p">,</span> <span class="nx">gl</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useThree</span><span class="p">();</span>
+  <span class="nx">useEffect</span><span class="p">(</span>
+    <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">controls</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OrbitControls</span><span class="p">(</span><span class="nx">camera</span><span class="p">,</span> <span class="nx">gl</span><span class="p">.</span><span class="nx">domElement</span><span class="p">);</span>
+
+      <span class="nx">controls</span><span class="p">.</span><span class="nx">minDistance</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+      <span class="nx">controls</span><span class="p">.</span><span class="nx">maxDistance</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+      <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">controls</span><span class="p">.</span><span class="nx">dispose</span><span class="p">();</span>
+      <span class="p">};</span>
+    <span class="p">},</span>
+    <span class="p">[</span><span class="nx">camera</span><span class="p">,</span> <span class="nx">gl</span><span class="p">]</span>
+  <span class="p">);</span>
+  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>and put it in <code class="language-plaintext highlighter-rouge">&lt;Canvas&gt;</code></p>
+
+<h3 id="animate">animate</h3>
+
+<p>You can find how to build animation in 2022-05-01-threeJS-character.md and we can use it with</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">actions</span><span class="p">.</span><span class="nx">ArmatureAction</span><span class="p">.</span><span class="nx">play</span><span class="p">()</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>to keep rerender it</p>
+
+<h3 id="interaction">interaction</h3>
+
+<p>We can add some interaction with users; for example, we can</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useFrame</span><span class="p">,</span> <span class="nx">useThree</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@react-three/fiber</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">group</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">()</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">viewport</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useThree</span><span class="p">()</span>
+
+<span class="nx">useFrame</span><span class="p">(({</span> <span class="nx">mouse</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mouse</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+  <span class="kd">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">mouse</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+  <span class="nx">group</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="nx">group</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">rotation</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="o">-</span><span class="nx">y</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>to let mouse move the current object</p>
+
+<h3 id="light-and-color">light and color</h3>
+
+<p>We may found the render is all black. To avoid it, add some light in <code class="language-plaintext highlighter-rouge">&lt;Canvas&gt;</code></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nc">Canvas</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">directionalLight</span> <span class="na">position</span><span class="p">=</span><span class="si">{</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span><span class="si">}</span> <span class="na">intensity</span><span class="p">=</span><span class="si">{</span><span class="mi">2</span><span class="si">}</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">directionalLight</span> <span class="na">position</span><span class="p">=</span><span class="si">{</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span> <span class="na">intensity</span><span class="p">=</span><span class="si">{</span><span class="mi">1</span><span class="si">}</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nc">Canvas</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="routes">routes</h3>
+
+<p>Before we dive in, please see concept of routes in react in react/2021-06-13-overview</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Canvas</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Router</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Routes</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/"</span> <span class="na">element</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nc">Box</span> <span class="na">position</span><span class="p">=</span><span class="si">{</span><span class="p">[</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="si">}</span> <span class="p">/&gt;</span><span class="si">}</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">Routes</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Router</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">Canvas</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
+</code></pre></div></div>
+
+<p>and import it</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nc">Router</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nc">App</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nc">Router</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="deploy">deploy</h3>
+
+<p>To deploy it remember to wrap components with <code class="language-plaintext highlighter-rouge">&lt;Suspense&gt;</code></p>
+
+<h2 id="what">What?</h2>
+
+<p>Ok, I am trying to create a world based on 2022-08-13-best-system</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://github.com/pmndrs/react-three-fiber">react-three-fiber</a></p>
+
+<p><a href="https://docs.pmnd.rs/react-three-fiber/tutorials/loading-models">Loading Models</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=8UB78yGtEJA">Working with GLB models in React.js: Import 3d Text from Vectary using React-three-fiber</a></p>
+
+<p>https://github.com/pmndrs/gltfjsx</p>
+
+<p><a href="https://tympanus.net/codrops/2019/10/14/how-to-create-an-interactive-3d-character-with-three-js/">Part 5: Looking at our Cursor</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

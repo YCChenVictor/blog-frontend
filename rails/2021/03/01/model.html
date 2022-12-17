@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Model</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes the concept of model and what’s the feature in it.</p>
+
+<p>The statement in documentation: a model is a Ruby class that is used to represent data. Additionally, models can interact with the application’s database through a feature of Rails called Active Record.</p>
+
+<ul>
+  <li>Conventions</li>
+  <li>Represent data (object)</li>
+  <li>Interact with database</li>
+</ul>
+
+<h2 id="why">Why</h2>
+
+<p>With model, we can use consistent commands to communicate with all type of databases such as MySQL, Postgresql, …etc.</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="conventions">Conventions</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">model name</th>
+      <th style="text-align: left">table name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">User</td>
+      <td style="text-align: left">users</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="represent-data-object">Represent data (object)</h3>
+
+<p>Any business logic and features of an object should be put in this section.</p>
+
+<ul>
+  <li>relation</li>
+  <li>validation</li>
+  <li>callback</li>
+  <li>scope, …</li>
+</ul>
+
+<h4 id="relation">relation</h4>
+
+<p>TBC</p>
+
+<h4 id="validation">validation</h4>
+
+<p>please refer to 2021-03-04-validation.md</p>
+
+<h4 id="callback">callback</h4>
+
+<p>TBC</p>
+
+<h4 id="scope-">scope, …</h4>
+
+<p>How rails design it?</p>
+
+<ul>
+  <li>scope</li>
+  <li>TBC</li>
+</ul>
+
+<h3 id="interact-with-database">Interact with database</h3>
+
+<ul>
+  <li>ORM</li>
+  <li>migration</li>
+</ul>
+
+<h4 id="orm-object-relational-mapping">ORM (Object Relational Mapping)</h4>
+
+<p>Rails use active record to design ORM. Please refer to xxx for further information.</p>
+
+<h4 id="migration">migration</h4>
+
+<p>Migration is like version control of database. Any changes related to database schema will be recorded in migrations with Ruby DSL. And the summary of the changes of migration is in <code class="language-plaintext highlighter-rouge">schema.rb</code>.</p>
+
+<p>Typically, a migration file includes the format as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MigrationName</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:table_name</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">datatype</span> <span class="ss">:cloumn_name</span>
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+    <span class="k">end</span>
+
+    <span class="n">add_column</span> <span class="c1"># TBC</span>
+    <span class="n">add_index</span> <span class="c1"># TBC</span>
+    <span class="n">remove_column</span> <span class="c1"># TBC</span>
+    <span class="n">add_reference</span> <span class="c1"># TBC</span>
+    <span class="n">create_join_table</span> <span class="c1"># TBC</span>
+    <span class="n">revert</span> <span class="c1"># TBC</span>
+
+    <span class="n">suppress_messages</span> <span class="c1"># TBC</span>
+    <span class="n">reversible</span> <span class="c1"># TBC</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>datatype: refer to <a href="https://guides.rubyonrails.org/v3.2/migrations.html#supported-types">here</a>. These types map to the type of database. If no specifying types, rails will choose <code class="language-plaintext highlighter-rouge">string</code> as default datatype.</li>
+</ul>
+
+<h2 id="what">What</h2>
+
+<h3 id="example-of-represent-data">Example of Represent data</h3>
+
+<ul>
+  <li>relation</li>
+  <li>validation</li>
+  <li>callback</li>
+</ul>
+
+<h4 id="example-of-relation">example of relation</h4>
+
+<p>Please refer to 2021-03-03-relation.md</p>
+
+<h4 id="example-of-validation">example of validation</h4>
+
+<p>Please refer to 2021-03-04-validation</p>
+
+<h4 id="example-of-scope">example of scope</h4>
+
+<p>To get all candidates with <code class="language-plaintext highlighter-rouge">age &gt; 18</code>, in controller,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CandidatesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>  
+  <span class="k">def</span> <span class="nf">index</span>  
+    <span class="vi">@candidate_18</span> <span class="o">=</span> <span class="no">Candidate</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"age &gt; 18"</span><span class="p">)</span>  
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>;however, if there is going to have more conditions, the code will be hard to maintain. As a result, we can use scope in model to organize the business logic as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Candidate</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>  
+  <span class="n">scope</span> <span class="ss">:above_18</span><span class="p">,</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="n">age</span> <span class="o">&gt;</span> <span class="mi">18</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then the code in controller can be rewritten as</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CandidatesController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>  
+    <span class="vi">@candidate_18</span> <span class="o">=</span> <span class="no">Candidate</span><span class="p">.</span><span class="nf">above_18</span>  
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>self-defined method: TBC</li>
+</ul>
+
+<p>The key difference: if the condition of scope cannot find data, it returns all; but if the condition of self-defined method cannot find data, it returns nil. As a result, we can use Model.scope(a).scope(b)…. with no worries.</p>
+
+<p>default_scope is the default scope that all queries runs first.</p>
+
+<h3 id="example-of-interact-with-database">Example of Interact with database</h3>
+
+<ul>
+  <li>ORM</li>
+</ul>
+
+<h4 id="orm">ORM</h4>
+
+<p>ORM helps user to communicate with database with the concept of object.</p>
+
+<ul>
+  <li>Create</li>
+  <li>Read</li>
+  <li>Update</li>
+  <li>Delete</li>
+</ul>
+
+<p>To create a candidate</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="no">Candidate</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"aaa"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">19</span><span class="p">)</span>  
+<span class="n">user</span><span class="p">.</span><span class="nf">save</span>
+</code></pre></div></div>
+
+<p>means in SQL,</p>
+
+<pre><code class="language-SQL">TBC
+</code></pre>
+
+<p>To read all users,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">User</span><span class="p">.</span><span class="nf">all</span>
+</code></pre></div></div>
+
+<p>means in SQL,</p>
+
+<pre><code class="language-SQL">SELECT * FROM users;
+</code></pre>
+
+<p>To find all table names</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">tables</span>
+</code></pre></div></div>
+
+<p>means in SQL,</p>
+
+<pre><code class="language-SQL">TBC
+</code></pre>
+
+<p>To update the candidate’s name with id = 1,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">candidate</span> <span class="o">=</span> <span class="no">Candidate</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="mi">1</span><span class="p">)</span>  
+<span class="n">candidate</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="s2">"hahaha"</span>  
+<span class="n">candidate</span><span class="p">.</span><span class="nf">save</span>
+
+<span class="c1"># SQL</span>
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">candidate</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"hahahaha"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># SQL</span>
+</code></pre></div></div>
+
+<p>To delete candidate with id = 1,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Candidate</span><span class="p">.</span><span class="nf">destroy</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>means in SQL</p>
+
+<pre><code class="language-SQL">TBC
+</code></pre>
+
+<p>Notice! <code class="language-plaintext highlighter-rouge">delete</code> will call the SQL delete directly, so no callbacks during deleting process. By ignoring callback and relation, <code class="language-plaintext highlighter-rouge">delete</code> is faster than <code class="language-plaintext highlighter-rouge">destroy</code>.</p>
+
+<h4 id="migration-1">Migration</h4>
+
+<p>TBC</p>
+
+<ul>
+  <li>add</li>
+  <li>delete</li>
+  <li>migrate</li>
+  <li>rollback</li>
+</ul>
+
+<p>To add model, <code class="language-plaintext highlighter-rouge">Article</code> with columns: title, content, is_online</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g model Article title content:text is_online:boolean
+</code></pre></div></div>
+
+<ul>
+  <li>To remove invoke while generating, <code class="language-plaintext highlighter-rouge">--no-helper --no-assets --no-controller-specs --no-view-specs</code> or</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># application.rb</span>
+config.generators.assets <span class="o">=</span> <span class="nb">false
+</span>config.generators.helper <span class="o">=</span> <span class="nb">false</span>
+</code></pre></div></div>
+
+<p>Then in db/migrate, timestamp_create_articles.rb:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CreateArticles</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.1</span><span class="p">]</span>  
+  <span class="k">def</span> <span class="nf">change</span>  
+    <span class="n">create_table</span> <span class="ss">:articles</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>  
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span>  
+      <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:content</span>  
+      <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:is_online</span>  
+        
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>  
+    <span class="k">end</span>  
+  <span class="k">end</span>  
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>timestamp for recording <code class="language-plaintext highlighter-rouge">:created_at, :updated_at</code></li>
+</ul>
+
+<p>To delete migration files,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails d migration MigrationName
+</code></pre></div></div>
+
+<p>Notice! please do it only before <code class="language-plaintext highlighter-rouge">db:migrate</code></p>
+
+<p>To migrate,</p>
+
+<p>Execute the migration</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:migrate
+</code></pre></div></div>
+
+<p>To rollback,</p>
+
+<p>If we want to cancel migrations; for example, we know that we want to rollback 3 steps of migrations</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails db:rollback STEP=3
+</code></pre></div></div>
+<p>However, the Rollback method is not recommended. We should use another migration to modify database to what we want; for example, if we want to <strong>add a column</strong> to an existed table, we can add another generate migration</p>
+
+<h4 id="schema">Schema</h4>
+
+<p>If we want to know which migration ever be executed</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">rails</span> <span class="n">db</span><span class="ss">:migrate:status</span>
+</code></pre></div></div>
+
+<h4 id="what-migration-can-achieve">What migration can achieve?</h4>
+
+<p>create_table
+change_table
+drop_table
+add_column
+change_column
+rename_column
+remove_column
+add_index
+remove_index</p>
+
+<p>(1) rename a table</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g migration change_[old_table_name]_to_[new_table_name]
+</code></pre></div></div>
+<p>and migration file:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def change
+  rename_table :[old_table_name], :[new_table_name]
+end
+</code></pre></div></div>
+<p>(2) add a column</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails generate migration add_email_to_users
+</code></pre></div></div>
+<p>and migration file:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class AddEmailToUsers &lt; ActiveRecord::Migration[5.0]
+  def change
+    add_column :users, :email, :string
+  end
+end
+</code></pre></div></div>
+<p>(3) changing column</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+<p>(4) dropping table</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails generate migration drop_tablename
+</code></pre></div></div>
+<p>and the migration file:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def change
+  drop_table :table_name
+end
+</code></pre></div></div>
+<p>(5) removing column</p>
+
+<h4 id="change-vs-up--down">Change vs Up &amp; Down</h4>
+
+<p>####</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="&quot;https://railsbook.tw/&quot;">為你自己學 Ruby on Rails 高見龍</a></p>
+
+<p><a href="https://rubyinrails.com/2014/05/14/rails-migration-change-vs-up-down-methods/">change vs up &amp; down</a></p>
+
+<p><a href="https://guides.rubyonrails.org/getting_started.html">Getting Started with Rails</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

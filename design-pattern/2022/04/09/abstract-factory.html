@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">absctact factory</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction--why">Introduction &amp; Why</h2>
+
+<p>Given that we know the factory method, which can create same kind of monster with different level. That is, we call the factory to use its product line to create <strong>same</strong> kind of product but choose <strong>different</strong> feature during the process of production. What if we want the factory to create various product? We need the factroy to have various product lines.</p>
+
+<p>The result would be as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_monsters</span><span class="p">(</span><span class="n">factory</span><span class="p">)</span>
+  <span class="n">monster_a</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">create_monster_a</span>
+  <span class="n">monster_b</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">create_monster_b</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Note that here only two monster using one factory, meaning each factory has its own  two product lines for these two monsters. We can do more complex design such as two factory using same product line for monster_a. But I am going to just demo it with two product line in each factory.</p>
+
+<h2 id="how">How?</h2>
+
+<p>Let’s say we want two methods for three environments:</p>
+
+<ol>
+  <li>ocean</li>
+  <li>plain</li>
+</ol>
+
+<p>and there are two types of monsters: horse &amp; fish. The horse monster is strong in plain but weak in ocean; the fish monster is strong in ocean but weak in plain. We need two factories for two environments. Each has two product lines.</p>
+
+<p>so the methods to create the monsters accroding to the envrionmnets would be as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_monsters</span><span class="p">(</span><span class="no">FactoryOcean</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">create_monsters</span><span class="p">(</span><span class="no">FactoryPlain</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>and the UML would be as follow:</p>
+
+<div class="mermaid">
+  classDiagram
+    Fish &lt;-- StrongFish : is a
+    Fish &lt;-- WeakFish : is a
+
+    Horse &lt;-- StrongHorse : is a
+    Horse &lt;-- WeakHorse : is a
+
+    AbstractFactory &lt;-- FactoryOcean : is a
+    AbstractFactory &lt;-- FactoryPlain : is a
+
+    FactoryOcean : create_strong_fish()
+    FactoryOcean : create_weak_horse()
+    FactoryPlain : create_weak_fish()
+    FactoryPlain : create_strong_horse()
+
+    StrongFish &lt;-- FactoryOcean : create
+    WeakFish &lt;-- FactoryPlain : create
+
+    WeakHorse &lt;-- FactoryOcean : create
+    StrongHorse &lt;-- FactoryPlain : create
+</div>
+
+<h2 id="what">What?</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AbstractFactory</span>
+  <span class="k">def</span> <span class="nf">create_fish</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create_horse</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">FactoryOcean</span> <span class="o">&lt;</span> <span class="no">AbstractFactory</span>
+  <span class="k">def</span> <span class="nf">create_fish</span>
+    <span class="no">StrongFish</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create_horse</span>
+    <span class="no">WeakFish</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">FactoryPlain</span> <span class="o">&lt;</span> <span class="no">AbstractFactory</span>
+  <span class="k">def</span> <span class="nf">create_fish</span>
+    <span class="no">WeakFish</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create_horse</span>
+    <span class="no">StrongHorse</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Fish</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">StrongFish</span> <span class="o">&lt;</span> <span class="no">Fish</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="s1">'strong fish'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">WeakFish</span> <span class="o">&lt;</span> <span class="no">Fish</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="s1">'weak fish'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Horse</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">StrongHorse</span> <span class="o">&lt;</span> <span class="no">Horse</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="s1">'strong horse'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">WeakHorse</span> <span class="o">&lt;</span> <span class="no">Horse</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="s1">'weak horse'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">create_monsters</span><span class="p">(</span><span class="n">factory</span><span class="p">)</span>
+  <span class="n">fish</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">create_fish</span>
+  <span class="n">horse</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">create_horse</span>
+
+  <span class="nb">puts</span> <span class="n">fish</span><span class="p">.</span><span class="nf">power</span>
+  <span class="nb">puts</span> <span class="n">horse</span><span class="p">.</span><span class="nf">power</span>
+<span class="k">end</span>
+
+<span class="n">create_monsters</span><span class="p">(</span><span class="no">FactoryOcean</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+<span class="n">create_monsters</span><span class="p">(</span><span class="no">FactoryPlain</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=v-GiuMmsXj4&amp;list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc&amp;index=5">Abstract Factory Pattern – Design Patterns (ep 5)</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

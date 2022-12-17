@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes basic concepts with a demo result</p>
+
+<p><img src="/assets/img/react_simple_calculator.png" alt="react_simple_calculator" class="w-1/2" /></p>
+
+<h2 id="why">Why?</h2>
+
+<p>React:</p>
+
+<ul>
+  <li>is a component framework, managing states and keep track of when the component should be updated</li>
+  <li>has no idea what a browser is</li>
+</ul>
+
+<h2 id="how">How?</h2>
+
+<h3 id="start-a-project">start a project</h3>
+
+<p>Create react app with following command</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx create-react-app@latest your-project-name <span class="nt">--use-npm</span>
+<span class="nb">cd </span>your-project-name
+npm start
+</code></pre></div></div>
+
+<p>remove all the files in <code class="language-plaintext highlighter-rouge">/src</code> and add <code class="language-plaintext highlighter-rouge">index.js</code> in it with following code:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createRoot</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-dom/client</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span><span class="err">;
+</span><span class="nx">createRoot</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">root</span><span class="dl">'</span><span class="p">)).</span><span class="nx">render</span><span class="p">(</span>
+  <span class="nx">element</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>which will create a JS object and render it into the DOM with id = root in the <code class="language-plaintext highlighter-rouge">public/index.html</code></p>
+
+<h3 id="third-party-library">third party library</h3>
+
+<p>just install it with <code class="language-plaintext highlighter-rouge">npm install xxx</code> and follow the official guides</p>
+
+<ul>
+  <li><a href="https://tailwindcss.com/docs/guides/create-react-app">tailwind</a> for style</li>
+  <li><a href="https://www.npmjs.com/package/@fortawesome/react-fontawesome">react-fontawesome</a> for icon</li>
+  <li><a href="https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons">fortawesome/free-solid-svg-icons</a> for icon</li>
+  <li><a href="https://mui.com/getting-started/installation/">mui</a> for react components</li>
+</ul>
+
+<h4 id="tailwind">tailwind</h4>
+
+<p>In <code class="language-plaintext highlighter-rouge">index.js</code>,</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">./index.css</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="concept-of-component">concept of component</h3>
+
+<p>A really basic component: in <code class="language-plaintext highlighter-rouge">src</code>, create <code class="language-plaintext highlighter-rouge">components/counter.jsx</code> with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useRef</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">Counter</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="c1">// should add two example of useRef</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">React</span><span class="p">.</span><span class="nx">Fragment</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">xxx</span><span class="dl">'</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">count</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span>
+        <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span>
+      <span class="o">&gt;</span>
+        <span class="nx">Increment</span>
+      <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/React.Fragment</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Counter</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>It includes</p>
+
+<ul>
+  <li>HTML &amp; CSS: the styles
+    <ul>
+      <li>CSS: through <code class="language-plaintext highlighter-rouge">className</code></li>
+    </ul>
+  </li>
+  <li>relationship between states and events
+    <ul>
+      <li>useState
+        <ul>
+          <li>define how state changes and store the value when an event occur and <strong>rerender</strong> component to show the effect</li>
+          <li>example: <code class="language-plaintext highlighter-rouge">&lt;button onClick={() =&gt; setCount((prev) =&gt; prev + 1)}&gt; increment &lt;/button&gt;</code></li>
+        </ul>
+      </li>
+      <li>useEffect
+        <ul>
+          <li>define customized effects and trigger it <strong>when rerender</strong> component</li>
+        </ul>
+      </li>
+      <li>useRef: two usages
+        <ul>
+          <li>store value of reference and it will not rerender component when value changed</li>
+          <li>serve as reference of current component</li>
+        </ul>
+      </li>
+      <li>useContext: TBC</li>
+    </ul>
+  </li>
+  <li>class &amp; lifecycle vs hooks: TBC</li>
+</ul>
+
+<p>For more detailed discussion, please refer to 2021-06-15-react-component-and-prop.md</p>
+
+<h4 id="insert-components">insert components</h4>
+
+<p>React accept pass array of components into a component and render them; for example,</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">menuItems</span><span class="p">,</span> <span class="nx">setMenuItems</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">'</span><span class="s1">testing</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">queriedTitles</span> <span class="o">=</span> <span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">h1, h2, h3, h4, h5, h6</span><span class="dl">'</span><span class="p">)];</span>
+    <span class="kd">const</span> <span class="nx">titles</span> <span class="o">=</span> <span class="nx">queriedTitles</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">H1</span><span class="dl">'</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span>
+      <span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="na">tag</span><span class="p">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/</span><span class="se">\d</span><span class="sr">+/</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="na">position</span><span class="p">:</span> <span class="nx">queriedTitles</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">item</span><span class="p">)})</span>
+    <span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">menuItemsDesired</span> <span class="o">=</span> <span class="nx">titles</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">title</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nc">MenuItem</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">title</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&lt;/</span><span class="nc">MenuItem</span><span class="p">&gt;))</span>
+    <span class="nx">setMenuItems</span><span class="p">(</span><span class="nx">menuItemsDesired</span><span class="p">)</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="p">=</span> <span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Menu</span><span class="p">&gt;</span>
+              <span class="si">{</span><span class="nx">menuItems</span><span class="si">}</span>
+            <span class="p">&lt;/</span><span class="nc">Menu</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="concept-of-routes">concept of routes</h3>
+
+<p>Add required library</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>react-router-dom
+</code></pre></div></div>
+
+<p>import it with</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+  <span class="nx">BrowserRouter</span> <span class="k">as</span> <span class="nx">Router</span><span class="p">,</span>
+  <span class="nx">Routes</span><span class="p">,</span>
+  <span class="nx">Route</span><span class="p">,</span>
+  <span class="nx">Link</span>
+<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-router-dom</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>and use it</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserRouter</span> <span class="k">as</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Routes</span><span class="p">,</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Link</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-router-dom</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Navbar</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">Router</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"/home"</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nc">Link</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"/twitter_api"</span><span class="p">&gt;</span>Twitter Api<span class="p">&lt;/</span><span class="nc">Link</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Routes</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/home"</span> <span class="na">element</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nc">Home</span> <span class="p">/&gt;</span><span class="si">}</span><span class="p">/&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/twitter_api"</span> <span class="na">element</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nc">TwitterApi</span> <span class="p">/&gt;</span><span class="si">}</span><span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">Routes</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">Router</span><span class="p">&gt;</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If you want to use anchor tag</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">HashLink</span> <span class="k">as</span> <span class="nx">Link</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-router-hash-link</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"/pathLink#yourAnchorTag"</span><span class="p">&gt;</span>Your link text<span class="p">&lt;/</span><span class="nc">Link</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="concept-of-api">concept of api</h3>
+
+<p>Given the routes above, we can write method to get data once component rendered as follow:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<h3 id="layout">layout</h3>
+
+<p>Because this section is too long, please refer to 2021-06-14-layout.md</p>
+
+<h3 id="sign-in-mechanism">sign in mechanism</h3>
+
+<p>Please refer to 2021-10-15-sign-in.md</p>
+
+<h3 id="decompose-app-into-tree">decompose app into tree</h3>
+
+<p>The tree of this app:</p>
+
+<div class="mermaid">
+graph TB
+  id1((App)) --&gt; id2((navbar))
+  id1((App)) --&gt; id4((counter))
+  id4((counter)) --&gt; id5((reset))
+  id4((counter)) --&gt; id6((row))
+  id6((row)) --&gt; id7((total))
+  id6((row)) --&gt; id8((plus))
+  id6((row)) --&gt; id9((minus))
+  id6((row)) --&gt; id10((delete))
+</div>
+
+<p>all the nodes represent a component</p>
+
+<h2 id="what">What?</h2>
+
+<h3 id="sidebar">sidebar</h3>
+
+<p>install</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-pro-sidebar
+</code></pre></div></div>
+
+<p>basic structure with <code class="language-plaintext highlighter-rouge">react-router-dom</code></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Menu</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nc">MenuItem</span> <span class="na">routerLink</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"#why"</span> <span class="p">/&gt;</span><span class="si">}</span><span class="p">&gt;</span> Documentation<span class="p">&lt;/</span><span class="nc">MenuItem</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nc">Menu</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="routing">routing</h4>
+
+<p>You also need to add switch and route</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nc">Switch</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/components"</span> <span class="na">component</span><span class="p">=</span><span class="si">{</span><span class="nx">Components</span><span class="si">}</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/profile"</span> <span class="na">component</span><span class="p">=</span><span class="si">{</span><span class="nx">Profile</span><span class="si">}</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/not-found"</span> <span class="na">component</span><span class="p">=</span><span class="si">{</span><span class="nx">NotFound</span><span class="si">}</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/"</span> <span class="na">exact</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nc">Home</span> <span class="na">image</span><span class="p">=</span><span class="si">{</span><span class="nx">image</span><span class="si">}</span> <span class="na">handleImageChange</span><span class="p">=</span><span class="si">{</span><span class="nx">handleImageChange</span><span class="si">}</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nc">Route</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nc">Redirect</span> <span class="na">to</span><span class="p">=</span><span class="s">"/not-found"</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nc">Switch</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>refer to: https://codesandbox.io/s/react-sidebar-routing-boj4c?file=/src/App.js:1232-1242</p>
+
+<h2 id="other">Other</h2>
+
+<h3 id="component">component</h3>
+
+<p>TBC, should write correct component codes, not just the code in how section</p>
+
+<p>Here I only show how to make a workable component for this app. For more concepts, please refer to 2021-06-15-component-and-prop.md</p>
+
+<p>Add a component file with file name: <code class="language-plaintext highlighter-rouge">components/counter.jsx</code> in the <code class="language-plaintext highlighter-rouge">src</code> path and the coding as follow:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">Counter</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">React</span><span class="p">.</span><span class="nc">Fragment</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>
+        <span class="si">{</span><span class="nx">count</span><span class="si">}</span>
+      <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span>
+        <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span>
+      <span class="p">&gt;</span>
+        Increment
+      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">React</span><span class="p">.</span><span class="nc">Fragment</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Counter</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>You can change the value of count and see the effect on the webpage.</p>
+
+<p>import this component in <code class="language-plaintext highlighter-rouge">./src/index.html</code> and render it as follow:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-dom</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Counter</span> <span class="k">from</span> <span class="s2">`./components/counter`</span><span class="p">;</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nc">Counter</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">root</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="events">events</h3>
+
+<p>TBC, should change it to functional form</p>
+
+<p>In the component section, you can see button for increments, the <code class="language-plaintext highlighter-rouge">onClick</code> defines what method to be executed once users click the button; for example, we can have a following button</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleIncrement</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Increment Clicked</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">&lt;</span><span class="nt">button</span>
+  <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span><span class="si">}</span>
+<span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>Then it will log the string, Increment Clicked, in console once user clicks the button; however, if we want to change the state with this function, we need to change the method into</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleIncrement</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Increment Clicked</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>so that this method can get the <code class="language-plaintext highlighter-rouge">this</code> in javascript or use <code class="language-plaintext highlighter-rouge">constructor</code> in the class, <code class="language-plaintext highlighter-rouge">Component</code> as follow</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">super</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">handleIncrement</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Increment Clicked</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>See 2021-06-16-life-cycle.md for further discussion. So the following function can change the <code class="language-plaintext highlighter-rouge">count</code> state when button been clicked</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleIncrement</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">count</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Once user click the button and trigger the <code class="language-plaintext highlighter-rouge">handleIncrement</code>, react will change the state in virtual DOM -&gt; compare the new virtual DOM and the old virtual DOM to know the key difference -&gt; update the place with different values compared by virtual DOMs in real DOM. See 2021-06-15-component-and-prop.md for further discussion about how virtual DOM and real DOM work in react.</p>
+
+<h4 id="passing-arguments">passing arguments</h4>
+
+<p>If we want to pass arguments to the event handler function, we can do the following:</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleIncrement</span> <span class="o">=</span> <span class="p">(</span><span class="nx">product</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">product</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">count</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">})</span>
+<span class="p">}</span>
+<span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span><span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span> <span class="p">})}</span>
+</code></pre></div></div>
+
+<p>Actually, I do not know why we need to write it as showing above. I will dive into it.</p>
+
+<h3 id="basic-commands">basic commands</h3>
+
+<ol>
+  <li>run project: <code class="language-plaintext highlighter-rouge">npm start</code></li>
+</ol>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=Ke90Tje7VS0">React JS - React Tutorial for Beginners</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=9ZEjSxDRIik">Build a 3D World in React with ThreeJS and React Three Fiber</a></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>[【React教學】一個範例讓你搞懂useState, useRef, useEffect</td>
+      <td>5分鐘快速教學](https://www.youtube.com/watch?v=q0C5g4WIrKU&amp;t=132s)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="https://reactjs.org/docs/hooks-overview.html">Hooks at a Glance</a></p>
+
+<p><a href="https://www.w3schools.com/react/react_useref.asp">React useRef Hook</a></p>
+
+<p><a href="https://codesandbox.io/s/78ize">react-sidebar-menu-medium</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

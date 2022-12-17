@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(React 3) Life Cycle & State</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+<p>Please refer to this <a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">website</a> for the diagram of the life cycle. React life cycle:
+<img src="/assets/img/react_lifecycle.png" alt="react_lifecycle" />
+As you can see, there are three main steps: Mounting (Birth), Updating (Growth), Unmounting (Death) of the components.</p>
+
+<h2 id="why">Why</h2>
+<p>The essence of a framework is the life cycle of the components, the series of events from birth to death.</p>
+
+<h2 id="how">How</h2>
+<p>I am going to go through all the methods in life cycle. Take the <code class="language-plaintext highlighter-rouge">Clock</code> as example, the following clock class can only show the fixed date and the life cyle method I use is only <code class="language-plaintext highlighter-rouge">render</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Clock extends React.Component {
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Hello, world!&lt;/h1&gt;
+        &lt;h2&gt;It is 2021-06-25.&lt;/h2&gt;
+      &lt;/div&gt;
+    );
+  }
+
+}
+</code></pre></div></div>
+<p>If I want to update current datetime on page refreshing at least, I need constructor for state changing.</p>
+
+<h3 id="constructor">constructor</h3>
+<p>constructor is the method to initialize the object’s state in a class, triggered when the creation of an object in a class occurs.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Clock extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Hello, world!&lt;/h1&gt;
+        &lt;h2&gt;It is {this.state.date.toLocaleTimeString()}.&lt;/h2&gt;
+      &lt;/div&gt;
+    );
+  }
+
+}
+
+export default Clock;
+</code></pre></div></div>
+<p>note:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">selectElementById</code> in Vanilla JS = In constructor, <code class="language-plaintext highlighter-rouge">this.inputField = React.createRef()</code> and in html: <code class="language-plaintext highlighter-rouge">&lt;input type="text" ref={this.inputField} /&gt;</code></li>
+</ol>
+
+<p>However, the clock above cannot update datetime regularly, we need to use <code class="language-plaintext highlighter-rouge">componentDidMount</code>.</p>
+
+<p>這邊請特別解釋一下如果用 function 的話就不需要特別寫 constructor (看 overview)</p>
+
+<h3 id="componentdidmount">componentDidMount</h3>
+<p>The concept of componentDidMount: it will be called as soon as this component mounted.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Clock extends React.Component {
+
+  ...
+
+  componentDidMount() {
+    setInterval(
+      () =&gt; this.setState({
+          date: new Date()
+        }),
+      1000
+    );
+  }
+
+  ...
+
+}
+</code></pre></div></div>
+<p>As you can see, there is a <code class="language-plaintext highlighter-rouge">setState</code> which can modify the state, <code class="language-plaintext highlighter-rouge">date</code> and the <code class="language-plaintext highlighter-rouge">setInterval</code> function tells this component to update state, <code class="language-plaintext highlighter-rouge">date</code> per second.</p>
+
+<p>However, the setInterval will alaways work after the website initialize the <code class="language-plaintext highlighter-rouge">Clock</code>. As a result, we need a method to tell react remove this <code class="language-plaintext highlighter-rouge">setInterval</code> after this component disappear as follow:</p>
+
+<h3 id="componentwillunmount">componentWillUnmount</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Clock extends React.Component {
+
+  ...
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () =&gt; this.setState({
+          date: new Date()
+        }),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  ...
+
+}
+</code></pre></div></div>
+<p>As you can see, in the <code class="language-plaintext highlighter-rouge">componentWillUnmount</code> step, the process to update date regularly can be cleared.</p>
+
+<h3 id="componentdidupdate">componentDidupdate</h3>
+<p>According to the official introduction, this step serves as a verification for component has been updated. For example, we can check whether one second passed on this clock and if not refresh the webpage (or fetch API again to update newest information)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>componentDidUpdate(prevState) {
+  if (this.state.date.toLocaleTimeString() !== prevState.date.toLocaleTimeString() + 1000) {
+    window.location.reload();
+  }
+}
+</code></pre></div></div>
+
+<h2 id="the-following-methods-are-uncommon-react-lifecycle-methods">The following methods are Uncommon React Lifecycle Methods</h2>
+<h3 id="shouldcomponentupdate">shouldComponentUpdate()</h3>
+<h3 id="static-getderivedstatefromprops">static getDerivedStateFromProps()</h3>
+<h3 id="getsnapshotbeforeupdate">getSnapshotBeforeUpdate()</h3>
+
+<h2 id="what">What</h2>
+
+<h2 id="reference">Reference</h2>
+<p><a href="https://reactjs.org/docs/state-and-lifecycle.html"><strong>State and Lifecycle</strong></a></p>
+
+<p><a href="https://programmingwithmosh.com/javascript/react-lifecycle-methods/"><strong>React Lifecycle Methods – A Deep Dive by Mosh Hamedani</strong></a></p>
+
+<p><a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/"><strong>Life Cycle Diagram</strong></a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

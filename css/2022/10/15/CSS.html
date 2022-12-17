@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">CSS</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes the concept of CSS, Cascading Style Sheets. It is a style sheet language to describe the presentation of a document written in a markup language. All visual control in website can be achieved with CSS.</p>
+
+<ul>
+  <li>concept of style</li>
+  <li>concept of size</li>
+  <li>concept of border</li>
+  <li>concept of padding</li>
+</ul>
+
+<p>The total width of an object is width + border + padding. If we want to insert three 200px width box with 10px padding and 10px border into a 600px width box, we need to specify the CSS width of the inner box into 160px, not 200px.</p>
+
+<ul>
+  <li>concept of float</li>
+  <li>concept of display</li>
+  <li>concept of position</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>The evolution: Directly write the style we want into HTML markups -&gt; Use markup, <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code> and there are three grammars: selector, property, value -&gt; Write a CSS file independently</p>
+
+<h2 id="how--what">How? &amp; What?</h2>
+
+<h3 id="concept-of-style">concept of style</h3>
+
+<p>For example, if we want the color of a <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> to be green, then</p>
+
+<pre><code class="language-CSS">&lt;p style="color:green;"&gt;  &lt;/p&gt;
+</code></pre>
+
+<p>However, if we want multiple <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> to be green, then we have to specify style in every <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code>. We can use markup, <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code> to collect all the style settings such as</p>
+
+<pre><code class="language-CSS">&lt;style&gt;  
+  p {  
+     color: green;  
+    }  
+&lt;/style&gt;
+</code></pre>
+
+<p>The effect:</p>
+
+<p><img class="" src="/assets/img/1__SB4JACbhrb4pomSht3pCwg.png" alt="" /></p>
+
+<h3 id="concept-of-size">concept of size</h3>
+
+<h4 id="width">width</h4>
+
+<pre><code class="language-CSS">...
+&lt;style&gt;
+  div {  
+    background-color: #aaa;  
+    width: 300px;
+  }
+&lt;/style&gt;
+...
+
+&lt;div&gt;情節網路制度首頁辛苦歡迎您還沒，豪華投訴才會兩個台北新聞高級足球實施業績成就為你老婆好像，轉帖先進。&lt;/div&gt;
+</code></pre>
+
+<p>The effect: (the width is 300px)</p>
+
+<p><img class="" src="/assets/img/1__mS__5GQ__fI480KJRwl0EhYA.png" alt="" /></p>
+
+<h4 id="font-size">font size</h4>
+
+<pre><code class="language-CSS">&lt;style&gt;
+  div {  
+    font-size: 40px;
+  }
+&lt;/style&gt;
+</code></pre>
+
+<h3 id="concept-ofborder">concept of border</h3>
+
+<p>Adding <code class="language-plaintext highlighter-rouge">border: 10px solid #666;</code> into the code above</p>
+
+<pre><code class="language-CSS">...
+&lt;style&gt;
+  div {
+    background-color: #aaa;  
+    width: 300px;  
+    border: 10px solid #666;
+  }
+&lt;/style&gt;
+...
+
+&lt;div&gt;情節網路制度首頁辛苦歡迎您還沒，豪華投訴才會兩個台北新聞高級足球實施業績成就為你老婆好像，轉帖先進。&lt;/div&gt;
+</code></pre>
+
+<p>The effect: (the width of the layout is 320px (width + border))</p>
+
+<p><img class="" src="/assets/img/concept_of_border.png" alt="" /></p>
+
+<h4 id="radius">radius</h4>
+
+<p>The rounded border</p>
+
+<h3 id="concept-ofpadding">concept of padding</h3>
+
+<p>Adding <code class="language-plaintext highlighter-rouge">padding: 10px;</code>into the code above as follow</p>
+
+<pre><code class="language-CSS">...  
+&lt;style&gt; 
+  div {  
+    background-color: #aaa;  
+    width: 300px;  
+    border: 10px solid #666;  
+    padding: 10px;
+  }
+&lt;/style&gt;  
+...
+
+&lt;div&gt;情節網路制度首頁辛苦歡迎您還沒，豪華投訴才會兩個台北新聞高級足球實施業績成就為你老婆好像，轉帖先進。&lt;/div&gt;
+</code></pre>
+
+<p>The layout: (the width of the layout is 340px (width + border + padding))</p>
+
+<p><img class="" src="/assets/img/concept_of_padding.png" alt="" /></p>
+
+<h3 id="concept-of-float">concept of float</h3>
+
+<p>With float style, an object can float on other objects, looks like it cover other object in web browsers; for example,</p>
+
+<pre><code class="language-HTML">&lt;style&gt;  
+ .img-float{  
+    float:left  
+  }
+&lt;/style&gt;  
+...
+&lt;img src="[http://fakeimg.pl/350x200](http://fakeimg.pl/350x200)" alt=""&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing, elit. Ullam quae magni, iste nam ratione doloribus corporis accusamus reiciendis neque dolore qui pariatur atque tenetur facere soluta adipisci, porro odit, aut.&lt;/p&gt;
+</code></pre>
+
+<p>The layout:</p>
+
+<p><img class="" src="/assets/img/concept_of_float.png" alt="" /></p>
+
+<h3 id="concept-of-display">concept of display</h3>
+
+<p>We can categorize the objects in html into inline and block. The easiest way to distinguish the difference is that one block will fill all the horizontal area while inline would not.</p>
+
+<p><img class="" src="/assets/img/1__FvXF0wJqVIuoRSZibCARTw.png" alt="" /></p>
+
+<ul>
+  <li>block markups: <code class="language-plaintext highlighter-rouge">div、p、ul、li</code></li>
+  <li>inline markups: <code class="language-plaintext highlighter-rouge">span、a、input、img、em</code></li>
+</ul>
+
+<p>We can use <code class="language-plaintext highlighter-rouge">display</code> style to specify the display</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">display:inline</code> can force objects to be displayed inline</li>
+</ul>
+
+<pre><code class="language-CSS">...   
+  &lt;h1&gt;block with h1&lt;/h1&gt;  
+  &lt;p&gt;block with p&lt;/p&gt;
+...
+</code></pre>
+
+<p><img class="" src="/assets/img/1__D2OzqBeBPksgxvggUjVqvQ.png" alt="" /></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">display:block</code>: TBC</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">display:inline-block</code>: TBC</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">display:flex</code> can let the objects in this object to be displayed flexibly</p>
+  </li>
+</ul>
+
+<p>For example,</p>
+
+<pre><code class="language-CSS">&lt;div class="warp"&gt;
+  &lt;div class="item"&gt;
+      lorem
+  &lt;/div&gt;
+  &lt;div class="item"&gt;
+      lorem
+  &lt;/div&gt;
+  &lt;div class="item"&gt;
+      lorem
+  &lt;/div&gt;
+&lt;/div&gt;
+...
+.warp {  
+  width: 960px;  
+  margin: auto;  
+  background: #ccc;  
+  display: flex;  
+}  
+.item {  
+  width: 300px;  
+  margin: 0 10px 10px;  
+  background-color: #ffa;  
+}
+</code></pre>
+
+<p>Then the layout:</p>
+
+<p><img class="" src="/assets/img/1__xlJ9o__43sRsfldS3fNAqLA.png" alt="" /></p>
+
+<p>After adding <code class="language-plaintext highlighter-rouge">display:flex</code>, the layout:</p>
+
+<p><img class="" src="/assets/img/1__2kaGIS65qPkadcuQtGLrtQ.png" alt="" /></p>
+
+<p>You may think that the width of each item equals to 320px, which is width + margin*2 so the 3 items perfectly fit into the wrap. However, if we add two more items into the wrap as follow:</p>
+
+<pre><code class="language-HTML">&lt;div class="warp"&gt;  
+  &lt;div class="item"&gt;lorem&lt;/div&gt;
+  &lt;div class="item"&gt;lorem&lt;/div&gt;
+  &lt;div class="item"&gt;lorem&lt;/div&gt;
+  &lt;div class="item"&gt;lorem&lt;/div&gt;
+  &lt;div class="item"&gt;lorem&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>The layout:</p>
+
+<p><img class="" src="/assets/img/1__C4uMfYkqo8KYLn2QOPhlpA.png" alt="" /></p>
+
+<p>meaning it does not matter how you setup the width of the item in the wrap once you have flex in the CSS.</p>
+
+<h4 id="flex-vs-inline">flex vs inline</h4>
+
+<p>TBC</p>
+
+<h3 id="concept-of-position">concept of position</h3>
+
+<p>Suppose we add a block with<code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> with following CSS setting:</p>
+
+<pre><code class="language-CSS">.whatever{
+  width: 200px;
+  height: 100px;
+  background-color: #aaa;
+}
+</code></pre>
+
+<p>The layout:</p>
+
+<p><img class="" src="/assets/img/1__7lDcRB2qLIMJuW74CaINjg.png" alt="" /></p>
+
+<p>if we add <code class="language-plaintext highlighter-rouge">position: fix</code> to the CSS setting, then the layout would be</p>
+
+<p><img class="" src="/assets/img/position_fix.png" alt="" /></p>
+
+<p>With <code class="language-plaintext highlighter-rouge">position: fix</code>, the object will be rendered on upper layer.</p>
+
+<p>Difference between fix and float: <code class="language-plaintext highlighter-rouge">fix</code> fix on the exact position in the screen even you scroll the website.</p>
+
+<p>We can specify the position with <code class="language-plaintext highlighter-rouge">top, left, right, bottom</code>:</p>
+
+<pre><code class="language-CSS">.whatever {
+  width: 200px;
+  height: 100px;
+  background-color: #aaa;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+</code></pre>
+
+<p><img class="" src="/assets/img/specify_position.png" alt="" /></p>
+
+<p>If we want it to be in the center, the CSS would be</p>
+
+<pre><code class="language-CSS">.whatever{
+  width: 200px;
+  height: 100px;
+  background-color: #aaa;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+</code></pre>
+
+<p><img class="" src="/assets/img/position_center.png" alt="" /></p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://ithelp.ithome.com.tw/users/20112550/ironman/2072">金魚都能懂的網頁設計入門 - 金魚都能懂了你還怕學不會嗎 :: 2019 iT 邦幫忙鐵人賽</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/CSS">CSS - Wikipedia</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

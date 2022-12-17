@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(Ruby_3) Method and Block</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="method">Method</h2>
+
+<p>For example, the following method will print out ‘hello, xxx’</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def say_hello_to(name)  
+  puts "hello, #{name}"  
+end
+</code></pre></div></div>
+<h3 id="parameters-defaultvalue">parameters default value</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def say_something(message = "something")  
+  "message: #{message}"  
+end
+
+p say_something "hi" # =&gt; message: hi  
+p say_something      # =&gt; message: something
+</code></pre></div></div>
+<h3 id="the-value-to-be-returned-bymethod">the value to be returned by method</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def bmi_calculator(height, weight)  
+  return weight / height ** 2  
+end
+
+puts bmi_calculator(1.70, 80)
+</code></pre></div></div>
+<p>The code, <code class="language-plaintext highlighter-rouge">return</code>, will return the value once there are values being input to the method.</p>
+
+<h3 id="-and-in-amethod">? and ! in a method</h3>
+
+<p>? is to return whether it is true or not. That is, it will return true or false. For example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>puts "".empty? # =&gt; true
+</code></pre></div></div>
+<p>! is to replace the original value. That is, it will replace the original value after we call the method. For example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>original_list = [1, 2, 3, 4, 5]  
+reversed_list = original_list.reverse!
+
+p reversed_list # =&gt; [5, 4, 3, 2, 1]
+</code></pre></div></div>
+<h3 id="variable-ormethod">variable or method</h3>
+<p>Ruby will print out local variable rather than the variable in a method if the <code class="language-plaintext highlighter-rouge">puts</code> is outside of the method.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>age = 18
+
+def age  
+  20  
+end
+
+puts age # =&gt; 18  
+puts age() # =&gt; 20
+</code></pre></div></div>
+<h3 id="the-number-of-parameters-in-amethod">the number of parameters in a method</h3>
+
+<p>In Ruby, the brackets are usually being left out; for example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= link_to('刪除', user, {method: :delete, data: {confirm: 'sure?'}, class: 'btn'}) %&gt;
+</code></pre></div></div>
+<p>would be written as</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= link_to '刪除', user, method: :delete, data: {confirm: 'sure?'}, class: 'btn' %&gt;
+</code></pre></div></div>
+<p>In this example, the number of parameters in this method is 3</p>
+
+<h2 id="block">Block</h2>
+
+<h3 id="example">example</h3>
+
+<p><strong>{…}</strong> and <strong>do … end</strong></p>
+
+<h3 id="first-example">first example</h3>
+<p>5.times { puts “Hello, Ruby” }</p>
+
+<h3 id="second-example">second example</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>friends = ['aaa', 'bbb', 'ccc', 'ddd', 'eee']  
+friends.each do |friend|  
+  puts friend  
+end
+</code></pre></div></div>
+<h3 id="yield">yield</h3>
+
+<p>It can transfer the control right from method to block; for example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def say_hello  
+  puts "start"  
+  yield # the place to transfer the control right from method to block outside the method  
+  puts "end"  
+end
+
+say_hello {  
+  puts "this is a block"  
+}
+</code></pre></div></div>
+<p>the result of the code above:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>start  
+this is a block  
+end 
+</code></pre></div></div>
+<h3 id="pass-parameters-toblock">Pass parameters to block</h3>
+
+<p>For example, the following code</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5.times do |i|  
+  puts i # =&gt; print out 0 to 4  
+end
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>puts i # =&gt; error
+</code></pre></div></div>
+<p>|i| means gradually passing value 0 to 4 to the block. If we print i outside the block, it returns error. What is i ? It actually passing value to a block with yield and the block is actually built in the function.</p>
+
+<h3 id="block-cant-usereturn">Block can’t use return</h3>
+<p>(這邊少了一個例子)</p>
+
+<p>Block is not a method, so no place to return to.</p>
+
+<h3 id="the-difference-between--and-doend">The difference between <strong>{…}</strong> and <strong>do…end</strong></h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p [*1..10].map { |i| i * 2 } # =&gt; 得到 [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+p [*1..10].map do |i| i * 2 end # =&gt; 得到 &lt;Enumerator: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:map&gt;
+</code></pre></div></div>
+<p>The reason why the results are different: doing {} first. If we recover the parentheses, the code will be as following</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>p([*1..10].map { |i| i * 2 })
+p ([*1..10].map) do |i| i * 2 end
+</code></pre></div></div>
+<p>The first line will run {} first, which means *2 firstly and the second line will run from left firstly, which means mapping firstly.</p>
+
+<h3 id="block-asobject">Block as object</h3>
+
+<p>Using Proc as following to convert block into object</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>greeting = Proc.new { puts "Hello" }
+</code></pre></div></div>
+<p>The parameters can also be called in a block</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say_hello_to = Proc.new { |name| puts "Hello,#{name}"}  
+say_hello_to.call("aaa") # =&gt; Hello,aaa
+</code></pre></div></div>
+<p>and the methods to call a Proc: (They all return same result)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>say_hello_to.call("aaa")  
+say_hello_to.("aaa")   
+say_hello_to["aaa"]  
+say_hello_to === "aaa"  
+say_hello_to.yield "aaa"
+</code></pre></div></div>
+
+<h3 id="each-vs-map-vs-select-vs-collect">each vs map vs select vs collect</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arr = [1,2,3]
+
+# each
+result = arr.each {|element| element ** 2 }
+puts result # =&gt; 1, 2, 3
+
+# map
+result = arr.map {|element| element ** 2 }
+puts result # =&gt; 2, 4, 6
+
+# collect
+result = arr.collect {|element| element ** 2 }
+puts result # =&gt; 2, 4, 6
+
+result = arr.select  { |element|  element.even?  } 
+puts result # =&gt; 2
+</code></pre></div></div>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

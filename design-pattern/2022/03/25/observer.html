@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">observer</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>Apple fans (果粉) really want new iphone, so they keep visiting store everyday to check whether new iphone released. The company feels disturbed, so they decided to send the release information through advertisements and broadcasts. But in this time, people not interested complain that they do not want to see this information.</p>
+
+<div class="mermaid">
+graph TD
+  id2(fan 1) --visit--&gt; id1(apple store)
+  id3(fan 2) --visit--&gt; id1(apple store)
+  id4(fan 3) --visit--&gt; id1(apple store)
+  id5(fan 4) --visit--&gt; id1(apple store)
+</div>
+
+<p>Bad solution: (broadcast randomly), which will notify someone not interested or skip some fans</p>
+
+<div class="mermaid">
+graph TD
+  id1(apple store) --broadcast--&gt; id2(fan 1)
+  id1(apple store) --broadcast--&gt; id3(fan 2)
+  id1(apple store) --broadcast--&gt; id4(bystander 1)
+  id1(apple store) --broadcast--&gt; id5(fan 4)
+  id1(apple store) --broadcast--&gt; id6(...)
+</div>
+
+<p>To solve this problem, Apple lets people visiting store for new iphone information to leave email so that the company can send notifications to these people when new iphone released. The notification is just like observer pattern.</p>
+
+<p>Better solution:</p>
+
+<div class="mermaid">
+graph TD
+  subgraph Observer Pattern
+    id1(observer) -- observes --&gt; id2(apple store)
+  end
+  subgraph Broadcast
+    id1(observer) --broadcast--&gt; id3(fan 1)
+    id1(observer) --broadcast--&gt; id4(fan 2)
+    id1(observer) --broadcast--&gt; id5(fan 3)
+    id1(observer) --broadcast--&gt; id6(...other fans)
+  end
+</div>
+
+<h2 id="why">Why?</h2>
+
+<p>pros:</p>
+
+<ul>
+  <li>Open/Closed Principle. You can introduce new observers classes without having to change the observable’s code (and vice versa).</li>
+</ul>
+
+<p>cons:</p>
+
+<ul>
+  <li>Subscribers are notified in random order.</li>
+</ul>
+
+<h2 id="how">How?</h2>
+
+<ol>
+  <li>One to many relationship (one observable (apple store) to many observers (fans))</li>
+  <li>The state of observable changed and all observers are notified</li>
+</ol>
+
+<div class="mermaid">
+graph LR
+  id1((Observable)) -- push: I changed status --&gt; id2((observers))
+  id1((Observable)) -- push: I changed status --&gt; id3((observers))
+  id1((Observable)) -- push: I changed status --&gt; ...
+</div>
+
+<p>and the UML (suppose fans can receive release information through phone and computer)</p>
+
+<div class="mermaid">
+classDiagram
+  direction RL
+  InterfaceObservable --&gt; InterfaceObserver : has many
+
+  InterfaceObservable : add(observer)
+  InterfaceObservable : remove(observer)
+  InterfaceObservable : notify()
+
+  InterfaceObserver : update()
+
+  InterfaceObservable &lt;-- StoreObservable : is a
+  InterfaceObserver &lt;-- StoreObserverA : is a
+  InterfaceObserver &lt;-- StoreObserverB : is a
+
+  StoreObservable : add(InterfaceObserver)
+  StoreObservable : remove(InterfaceObserver)
+  StoreObservable : notify()
+  StoreObservable : business_logic()
+
+  StoreObserverA : update()
+
+  StoreObserverB : update()
+</div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">update</code>: How observer reacts to observable events</li>
+  <li><code class="language-plaintext highlighter-rouge">add</code>: Let observers to observe</li>
+  <li><code class="language-plaintext highlighter-rouge">remove</code>: disable observers to observe</li>
+  <li><code class="language-plaintext highlighter-rouge">notify</code>: how observable object want observers to react</li>
+  <li><code class="language-plaintext highlighter-rouge">business_logic</code>: the business logic of observable and observers can react accordingly</li>
+</ul>
+
+<h2 id="what">What?</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">InterfaceObservable</span>
+  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">notify</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">InterfaceObserver</span>
+  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">_subject</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">StoreObservable</span> <span class="o">&lt;</span> <span class="no">InterfaceObservable</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:state</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@observers</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+    <span class="vi">@observers</span> <span class="o">&lt;&lt;</span> <span class="n">observer</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+    <span class="vi">@observers</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">observer</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">notify</span>
+    <span class="vi">@observers</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">observer</span><span class="o">|</span> <span class="n">observer</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">business_logic</span>
+    <span class="vi">@state</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'new iphone released'</span><span class="p">,</span> <span class="s1">'no new iphone released'</span><span class="p">].</span><span class="nf">sample</span> <span class="c1"># simulate the business logic going to change the state of the observable</span>
+
+    <span class="nb">puts</span> <span class="s2">"Subject: My state has just changed to: </span><span class="si">#{</span><span class="vi">@state</span><span class="si">}</span><span class="s2">"</span>
+    <span class="n">notify</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">StoreObserverA</span> <span class="o">&lt;</span> <span class="no">InterfaceObserver</span>
+  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"Inform A: </span><span class="si">#{</span><span class="n">subject</span><span class="p">.</span><span class="nf">state</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">StoreObserverB</span> <span class="o">&lt;</span> <span class="no">InterfaceObserver</span>
+  <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">subject</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"Inform B: </span><span class="si">#{</span><span class="n">subject</span><span class="p">.</span><span class="nf">state</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># the implementation</span>
+<span class="n">store_observable</span> <span class="o">=</span> <span class="no">StoreObservable</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">store_observer_a</span> <span class="o">=</span> <span class="no">StoreObserverA</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">store_observer_b</span> <span class="o">=</span> <span class="no">StoreObserverB</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="c1"># let observer to observes the observable</span>
+<span class="n">store_observable</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">store_observer_a</span><span class="p">)</span>
+<span class="n">store_observable</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">store_observer_b</span><span class="p">)</span>
+
+<span class="c1"># the states of the observers will change according to the state of store observable</span>
+<span class="n">store_observable</span><span class="p">.</span><span class="nf">business_logic</span>
+<span class="n">store_observable</span><span class="p">.</span><span class="nf">business_logic</span>
+
+<span class="n">store_observable</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">store_observer_a</span><span class="p">)</span>
+
+<span class="c1"># the observer a will not be notified</span>
+<span class="n">store_observable</span><span class="p">.</span><span class="nf">business_logic</span>
+</code></pre></div></div>
+
+<p>What we can do more:</p>
+
+<ul>
+  <li>add methods to specify informing methods in <code class="language-plaintext highlighter-rouge">StoreObserver</code>; for example, use phone for <code class="language-plaintext highlighter-rouge">StoreObserverA</code> and use computer for <code class="language-plaintext highlighter-rouge">StoreObserverB</code></li>
+  <li>add methods to specify when to inform <code class="language-plaintext highlighter-rouge">StoreObserver</code>; for example, only particular events or particular timing</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=_BpmfnqjgzQ&amp;list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc&amp;index=2">Observer Pattern – Design Patterns (ep 2)</a></p>
+
+<p><a href="https://refactoring.guru/design-patterns/observer/ruby/example">Observer in Ruby</a></p>
+
+<p><a href="https://refactoring.guru/design-patterns/observer">Observer</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

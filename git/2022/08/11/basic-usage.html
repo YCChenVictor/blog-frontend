@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">basic usage</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes the basic usage of git:</p>
+
+<ul>
+  <li>install git</li>
+  <li>settings of git</li>
+  <li>initialize git</li>
+  <li>remove git</li>
+  <li>status mechanism in git</li>
+  <li>find key words in commits</li>
+  <li>remove specific file in git</li>
+  <li>modify message in commit</li>
+  <li>add files in git</li>
+  <li>ignore files in git</li>
+  <li>check author of commits</li>
+  <li>checkout mechanism in git</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>Version control system helps us to track changes and why key decision were made along the way. Git is the most popular version control system.</p>
+
+<h2 id="how--what">How? &amp; What?</h2>
+
+<ul>
+  <li>install: <code class="language-plaintext highlighter-rouge">brew install git</code>
+    <ul>
+      <li>where it is: <code class="language-plaintext highlighter-rouge">which git</code></li>
+      <li>version: <code class="language-plaintext highlighter-rouge">git --version</code></li>
+    </ul>
+  </li>
+  <li>setting: <code class="language-plaintext highlighter-rouge">git config --list</code>
+    <ul>
+      <li>change local setting: <code class="language-plaintext highlighter-rouge">git config --local user.email "xxx@yyy.com"</code></li>
+      <li>change global setting: <code class="language-plaintext highlighter-rouge">git config --global user.email "xxx@yyy.com"</code></li>
+    </ul>
+  </li>
+  <li>initialize: <code class="language-plaintext highlighter-rouge">git init</code></li>
+  <li>remove
+    <ul>
+      <li>git: <code class="language-plaintext highlighter-rouge">rm -rf .git</code></li>
+      <li>untracked file: <code class="language-plaintext highlighter-rouge">git clean -fX</code></li>
+    </ul>
+  </li>
+  <li>status (details below): working -&gt; <code class="language-plaintext highlighter-rouge">git add</code> -&gt; staged -&gt; <code class="language-plaintext highlighter-rouge">git commit</code> -&gt; history -&gt; view</li>
+  <li>find
+    <ul>
+      <li>keyword in commits: <code class="language-plaintext highlighter-rouge">git log --oneline --grep='the_message_you_want_to_find'</code></li>
+      <li>commits in a time frame: <code class="language-plaintext highlighter-rouge">git log --online --since="9am" --until="12am"</code></li>
+      <li>commits of specific file: <code class="language-plaintext highlighter-rouge">git log the_specific_file.html</code></li>
+      <li>historical changes of a specific file: <code class="language-plaintext highlighter-rouge">git log -p the_specific_file.html</code></li>
+    </ul>
+  </li>
+  <li>remove a file: <code class="language-plaintext highlighter-rouge">git rm --cached the_file_you_want_to_remove.html</code></li>
+  <li>modify message: checkout to the commit (<code class="language-plaintext highlighter-rouge">gco commit_sha</code>) -&gt; amend the message of this commit (<code class="language-plaintext highlighter-rouge">git commit --amend</code>)</li>
+  <li>add files
+    <ul>
+      <li>to last commit (<code class="language-plaintext highlighter-rouge">git add</code> -&gt; <code class="language-plaintext highlighter-rouge">git commit --amend --no-edit</code>)</li>
+      <li>add empty directory (<code class="language-plaintext highlighter-rouge">touch .gitkeep</code>)</li>
+    </ul>
+  </li>
+  <li>ignore files (details below): (.gitignore)</li>
+  <li>check author: <code class="language-plaintext highlighter-rouge">git blame</code></li>
+  <li>checkout: (to be continued)</li>
+</ul>
+
+<h3 id="status">status</h3>
+
+<p>check status (<code class="language-plaintext highlighter-rouge">git status</code>) and the message</p>
+
+<p><img class="w-3/4" src="/assets/img/1__Pv1briXOtMvI7tU6__knn3g.png" /></p>
+
+<p>create a file (<code class="language-plaintext highlighter-rouge">echo "hello.git" &gt; welcome.html</code>) and check status again (<code class="language-plaintext highlighter-rouge">git status</code>)</p>
+
+<p><img class="w-3/4" src="/assets/img/1__7JZv6zcN9KPNz6Y3XdQM6w.png" /></p>
+
+<p>There is a untracked file now, <code class="language-plaintext highlighter-rouge">welcome.html</code>, in git status</p>
+
+<p>Add file to temp (<code class="language-plaintext highlighter-rouge">git add welcome.html</code>) then check status (<code class="language-plaintext highlighter-rouge">git status</code>)</p>
+
+<p><img class="w-3/4" src="/assets/img/1__5fKmVmoT6k30KoRtrfd69w.png" /></p>
+
+<p>store it directly without vim (<code class="language-plaintext highlighter-rouge">git commit -m "the message to note to this commit"</code>)</p>
+
+<p>or open vim to type in message we want (<code class="language-plaintext highlighter-rouge">git commit</code>)</p>
+
+<p>After all the works above, view the historical commits with (<code class="language-plaintext highlighter-rouge">git log</code>):</p>
+
+<p><img class="w-3/4" src="/assets/img/1__xM9A96o__hrRKduVcs1vPCA.png" /></p>
+
+<p>or <code class="language-plaintext highlighter-rouge">git log --oneline --graph</code> for oneline messages</p>
+
+<p><img class="w-3/4" src="/assets/img/1__HP4y4QxFD2OVofPPrZgcAA.png" /></p>
+
+<h3 id="ignore">ignore</h3>
+
+<p>Create a file called <code class="language-plaintext highlighter-rouge">.gitignore</code> on the same level of <code class="language-plaintext highlighter-rouge">.git</code> created by initialization of git and input the file name in it</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># in .gitignore</span>
+filename_to_ignore.xxx
+
+<span class="c"># or ignore all the file with format .xxx with</span>
+<span class="k">*</span>.xxx
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://gitbook.tw/chapters/introduction/what-is-git.html">什麼是 Git？為什麼要學習它？ - 為你自己學 Git</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

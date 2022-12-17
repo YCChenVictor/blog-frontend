@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(Rails 29) Tailwind</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="之後再來整理">之後再來整理</h2>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>Tailwind &gt; bootstrap</p>
+
+<h3 id="why">Why</h3>
+
+<p>Customizable inline style coding</p>
+
+<h3 id="how">How</h3>
+
+<h4 id="create-a-newproject">Create a new project</h4>
+
+<p>$ rails new tailwind</p>
+
+<h4 id="install">Install </h4>
+
+<p>In the rails project, install it</p>
+
+<p>$ yarn add tailwindcss@npm:@tailwindcss/postcss7-compat postcss@\^7 autoprefixer@\^9</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__eUx____cnroz__us__kG96WH6w.png" alt="" /></p>
+
+<h4 id="configuration-file">configuration file</h4>
+
+<p>Create it</p>
+
+<p>npx tailwindcss init</p>
+
+<p>It will create a file <code class="language-plaintext highlighter-rouge">tailwind.config.js</code></p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__W2lQk58DFJAubB0NPk8AeA.png" alt="" /></p>
+
+<p>For convenience, let’s move <code class="language-plaintext highlighter-rouge">tailwind.config.js</code> under javascript folder: <code class="language-plaintext highlighter-rouge">app/javascript/stylesheets</code></p>
+
+<h4 id="include-tailwind-toproject">Include tailwind to project</h4>
+
+<ol>
+  <li>To import tailwind style, create <code class="language-plaintext highlighter-rouge">application.scss</code> in <code class="language-plaintext highlighter-rouge">app/javascript/stylesheets</code> and input following code</li>
+</ol>
+
+<p>/* app/javascript/stylesheets/application.scss */ <br />
+@import “tailwindcss/base”; <br />
+@import “tailwindcss/components”;</p>
+
+<p>/* Add any custom CSS here */ <br />
+@import “tailwindcss/utilities”;</p>
+
+<p>2. Import the stylesheet in <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code> </p>
+
+<p>…<br />
+import “stylesheets”<br />
+…</p>
+
+<p>3. add <code class="language-plaintext highlighter-rouge">&lt;%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;</code> to <code class="language-plaintext highlighter-rouge">application.html.erb</code> as follow:</p>
+
+<p>…<br />
+&lt;%= stylesheet_link_tag ‘application’, media: ‘all’, ‘data-turbolinks-track’: ‘reload’ %&gt;</p>
+
+<p>&lt;%= stylesheet_pack_tag ‘application’, media: ‘all’, ‘data-turbolinks-track’: ‘reload’ %&gt;</p>
+
+<p>&lt;%= javascript_pack_tag ‘application’, ‘data-turbolinks-track’: ‘reload’ %&gt;<br />
+…</p>
+
+<p>4. add <code class="language-plaintext highlighter-rouge">require("tailwindcss")("./app/javascript/stylesheets/tailwind.config.js")</code> in <code class="language-plaintext highlighter-rouge">postcss.config.js</code> as follow</p>
+
+<p>module.exports = {<br />
+  plugins: [<br />
+    require(“tailwindcss”)(“./app/javascript/stylesheets/tailwind.config.js”),<br />
+  …</p>
+
+<h4 id="purge">purge</h4>
+
+<p>skip</p>
+
+<h3 id="what">What</h3>
+
+<p>這邊要寫常用的 syntax</p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://web-crunch.com/posts/how-to-install-tailwind-css-2-using-ruby-on-rails" title="https://web-crunch.com/posts/how-to-install-tailwind-css-2-using-ruby-on-rails"><strong>How to install Tailwind CSS v2.0 using Ruby on Rails</strong><br />
+_This is an updated guide for installing Tailwind CSS v2.0. Tailwind CSS just launched a new design and big update that…_web-crunch.com</a><a href="https://web-crunch.com/posts/how-to-install-tailwind-css-2-using-ruby-on-rails"></a></p>
+
+<p><a href="https://tailwindcss.com/docs/configuration" title="https://tailwindcss.com/docs/configuration"><strong>Configuration - Tailwind CSS</strong><br />
+_Because Tailwind is a framework for building bespoke user interfaces, it has been designed from the ground up with…_tailwindcss.com</a><a href="https://tailwindcss.com/docs/configuration"></a></p>
+
+<p><a href="https://tailwindcss.com/docs/installation" title="https://tailwindcss.com/docs/installation"><strong>Installation - Tailwind CSS</strong><br />
+_Learn how to get Tailwind CSS up and running in your project._tailwindcss.com</a><a href="https://tailwindcss.com/docs/installation"></a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

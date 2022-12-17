@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.140.0/build/three.module.js",
+      "orbit_controls": "https://unpkg.com/three@0.140.0/examples/jsm/controls/OrbitControls.js",
+      "GLTF_loader": "https://unpkg.com/three@0.140.0/examples/jsm/loaders/GLTFLoader.js"
+    }
+  }
+</script>
+
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(threeJS) overview</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>ThreeJS is for 3D modeling on frontend.</p>
+
+<p>Structure of article:</p>
+
+<ul>
+  <li>install threeJS</li>
+  <li>environment: scene, camera, render</li>
+  <li>create object in scene
+    <ul>
+      <li>mesh</li>
+      <li>lighting</li>
+    </ul>
+  </li>
+  <li>helper for</li>
+  <li>interaction with users</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>TBC</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="install-threejs">install threeJS</h3>
+
+<p>Follow the instruction in <a href="https://threejs.org/docs/#manual/en/introduction/Installation">Installation</a></p>
+
+<p>I use CDN method on github pages and remember to find the version you want in <a href="https://www.npmjs.com/package/three">three.js</a>. After installation, we can import it with <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> as follow</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">module</span><span class="dl">"</span><span class="o">&gt;</span>
+  <span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">THREE</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">three</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Scene</span><span class="p">();</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h3 id="environment-scene-camera-render">environment: scene, camera, render</h3>
+
+<p>To start threeJS, we always need scene, camera, render.</p>
+
+<h4 id="scene">scene</h4>
+
+<p>Scene is container</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Scene</span><span class="p">();</span>
+</code></pre></div></div>
+
+<h4 id="camera">camera</h4>
+
+<p>Camera defines the way to capture the scene. The basic script to define camera:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">fieldOfView</span> <span class="o">=</span> <span class="mi">75</span>
+<span class="kd">const</span> <span class="nx">aspectRatio</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span> <span class="o">/</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span>
+<span class="kd">const</span> <span class="nx">nearestDistance</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="kd">const</span> <span class="nx">farthestDistance</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="kd">const</span> <span class="nx">moveOnZaxis</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="kd">const</span> <span class="nx">camera</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">PerspectiveCamera</span><span class="p">(</span><span class="nx">fieldOfView</span><span class="p">,</span> <span class="nx">aspectRatio</span><span class="p">,</span> <span class="nx">nearestDistance</span><span class="p">,</span> <span class="nx">farthestDistance</span><span class="p">)</span>
+<span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">setZ</span><span class="p">(</span><span class="nx">moveOnZaxis</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h4 id="renderer">renderer</h4>
+
+<p>Just the way to render everything in canvas</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">renderer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">WebGLRenderer</span><span class="p">({</span>
+  <span class="na">canvas</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="err">#</span><span class="nx">threeExample</span><span class="p">),</span>
+<span class="p">})</span>
+
+<span class="nx">renderer</span><span class="p">.</span><span class="nx">setPixelRatio</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">devicePixelRatio</span><span class="p">);</span>
+<span class="nx">renderer</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">)</span>
+<span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="create-object">create object</h3>
+
+<p>After setting up the environment, we can now create an object in the <code class="language-plaintext highlighter-rouge">scene</code>.</p>
+
+<ul>
+  <li>mesh with geometry and material</li>
+  <li>lighting</li>
+</ul>
+
+<h4 id="mesh-with-geometry-and-material">mesh with geometry and material</h4>
+
+<p>We use <code class="language-plaintext highlighter-rouge">Mesh</code> to combine the elements, <a href="https://threejs.org/docs/?q=geometry#api/en">geometry</a> and <a href="https://threejs.org/docs/?q=material#api/en">material</a> and re-render it with movement we define in a loop.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">TorusGeometry</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span><span class="na">color</span><span class="p">:</span> <span class="mh">0xFF6347</span><span class="p">,</span> <span class="na">wireframe</span><span class="p">:</span> <span class="kc">true</span><span class="p">})</span>
+<span class="kd">const</span> <span class="nx">torus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Mesh</span><span class="p">(</span><span class="nx">geometry</span><span class="p">,</span> <span class="nx">material</span><span class="p">);</span>
+<span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">torus</span><span class="p">)</span>
+
+<span class="kd">function</span> <span class="nx">animate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">animate</span><span class="p">);</span>
+
+  <span class="nx">torus</span><span class="p">.</span><span class="nx">rotation</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="mf">0.01</span><span class="p">;</span>
+  <span class="nx">torus</span><span class="p">.</span><span class="nx">rotation</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="mf">0.005</span><span class="p">;</span>
+  <span class="nx">torus</span><span class="p">.</span><span class="nx">rotation</span><span class="p">.</span><span class="nx">z</span> <span class="o">+=</span> <span class="mf">0.01</span><span class="p">;</span>
+
+  <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">);</span>
+<span class="p">}</span>
+  
+<span class="nx">animate</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="lighting">lighting</h4>
+
+<p>change <code class="language-plaintext highlighter-rouge">material</code> from</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span><span class="na">color</span><span class="p">:</span> <span class="mh">0xFF6347</span><span class="p">,</span> <span class="na">wireframe</span><span class="p">:</span> <span class="kc">true</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshStandardMaterial</span><span class="p">({</span><span class="na">color</span><span class="p">:</span> <span class="mh">0xFF6347</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p>and add light at the x, y, z position we what as follow</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">pointLight</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">PointLight</span><span class="p">(</span><span class="mh">0xffffff</span><span class="p">)</span>
+<span class="nx">pointLight</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>If we want all the object to be illuminated, add</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ambientLight</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">AmbientLight</span><span class="p">(</span><span class="mh">0xffffff</span><span class="p">)</span>
+<span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">pointLight</span><span class="p">,</span> <span class="nx">ambientLight</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="helper">helper</h3>
+
+<p>You may start to find it hard to track. We can use some helper as follow:</p>
+
+<h4 id="light-helper">light helper</h4>
+
+<p>It helps us to know the position of the light</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">lightHelper</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">PointLightHelper</span><span class="p">(</span><span class="nx">pointLight</span><span class="p">)</span>
+<span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">lightHelper</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="grid-helper">grid helper</h4>
+
+<p>It will draw grids</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">gridHelper</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">GridHelper</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">gridHelper</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="interaction-with-users">interaction with users</h3>
+
+<p>We can add an orbit_control listening to the mouse of the domElement and modify the camera according to the mouse movement.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">importmap</span><span class="dl">"</span><span class="o">&gt;</span>
+  <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">imports</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="p">...,</span>
+      <span class="dl">"</span><span class="s2">orbit_controls</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://unpkg.com/three@0.140.0/examples/jsm/controls/OrbitControls.js</span><span class="dl">"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>
+<span class="p">...</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">OrbitControls</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">orbit_controls</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">controls</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OrbitControls</span><span class="p">(</span><span class="nx">camera</span><span class="p">,</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nx">animate</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="nx">controls</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="texture">texture</h3>
+
+<p>We can load texture with <code class="language-plaintext highlighter-rouge">TextureLoader()</code></p>
+
+<h4 id="background">background</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">backgroundImagePath</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">/blog/assets/img/space.jpeg</span><span class="dl">"</span>
+<span class="kd">const</span> <span class="nx">spaceTexture</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">TextureLoader</span><span class="p">().</span><span class="nx">load</span><span class="p">(</span><span class="nx">backgroundImagePath</span><span class="p">);</span>
+<span class="nx">scene</span><span class="p">.</span><span class="nx">background</span> <span class="o">=</span> <span class="nx">spaceTexture</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="texture-mapping">texture mapping</h4>
+
+<p>For example, we want to create a moon. Go find the moon_texture and then</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">moonTexture</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">TextureLoader</span><span class="p">().</span><span class="nx">load</span><span class="p">(</span><span class="dl">'</span><span class="s1">/blog/assets/img/moon_texture.jpeg</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">moon</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Mesh</span><span class="p">(</span>
+  <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">SphereGeometry</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>
+  <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshStandardMaterial</span><span class="p">({</span>
+    <span class="na">map</span><span class="p">:</span> <span class="nx">moonTexture</span><span class="p">,</span>
+  <span class="p">})</span>
+<span class="p">)</span>
+<span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">moon</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>Render it into <code class="language-plaintext highlighter-rouge">&lt;canvas&gt;</code></p>
+
+<div class="h-screen justify-center items-center">
+  <canvas id="threeExample" class="object-scale-down">
+    Hello World
+  </canvas>
+</div>
+
+<script type="module">
+  import * as THREE from 'three';
+  import {OrbitControls} from 'orbit_controls';
+
+  const scene = new THREE.Scene();
+
+  const fieldOfView = 75
+  const aspectRatio = window.innerWidth / window.innerHeight
+  const nearestDistance = 0.1
+  const farthestDistance = 1000
+  const moveOnZaxis = 30
+  const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearestDistance, farthestDistance)
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#threeExample'),
+  })
+
+  camera.position.setZ(moveOnZaxis);
+
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.render(scene, camera)
+
+  ////////////////////////////////////
+
+  const geometry = new THREE.TorusGeometry(10, 3, 16, 100)
+  const material = new THREE.MeshStandardMaterial({color: 0xFF6347})
+  const torus = new THREE.Mesh(geometry, material);
+  scene.add(torus)
+
+  ////////////////////////////////////
+
+  const pointLight = new THREE.PointLight(0xffffff)
+  pointLight.position.set(5, 5, 5)
+
+  const ambientLight = new THREE.AmbientLight(0xffffff)
+  scene.add(pointLight, ambientLight)
+
+  /////////////////////////////////////
+
+  const lightHelper = new THREE.PointLightHelper(pointLight)
+  scene.add(lightHelper)
+
+  const gridHelper = new THREE.GridHelper(200, 50)
+  scene.add(gridHelper)
+
+  /////////////////////////////////////
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+
+  /////////////////////////////////////
+
+  const backgroundImagePath = "/blog/assets/img/space.jpeg"
+  const spaceTexture = new THREE.TextureLoader().load(backgroundImagePath);
+  scene.background = spaceTexture;
+
+  const moonTexture = new THREE.TextureLoader().load('/blog/assets/img/moon_texture.jpeg');
+  const moon = new THREE.Mesh(
+    new THREE.SphereGeometry(3, 32, 32),
+    new THREE.MeshStandardMaterial({
+      map: moonTexture,
+    })
+  );
+  scene.add(moon)
+
+  /////////////////////////////////////
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    torus.rotation.x += 0.01;
+    torus.rotation.y += 0.005;
+    torus.rotation.z += 0.01;
+
+    controls.update();
+
+    renderer.render(scene, camera);
+  }
+  
+  animate()
+</script>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://threejs.org/docs/#manual/en/introduction/Installation">Installation</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=Q7AOvWpIVHU&amp;t=198s">Build a Mindblowing 3D Portfolio Website // Three.js Beginner’s Tutorial</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

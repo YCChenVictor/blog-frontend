@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.140.0/build/three.module.js",
+      "orbit_controls": "https://unpkg.com/three@0.140.0/examples/jsm/controls/OrbitControls.js",
+      "GLTF_loader": "https://unpkg.com/three@0.140.0/examples/jsm/loaders/GLTFLoader.js"
+    }
+  }
+</script>
+
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Threejs Character</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes how to create a character in ThreeJS with steps:</p>
+
+<ul>
+  <li>create static character in blender</li>
+  <li>import it into threeJS</li>
+  <li>define movement states</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>To create 3D characters in my project</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="create-character-in-blender">create character in blender</h3>
+
+<p>I just use some free 3D model because I have no idea on building own characters. Remember to export it as glTF.</p>
+
+<p>create one or load one -&gt; design appearance -&gt; add armatures -&gt; edit poses -&gt; animate</p>
+
+<h3 id="create-scene">create scene</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">THREE</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">three</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">...</span>
+
+<span class="kd">const</span> <span class="nx">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Scene</span><span class="p">();</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<h3 id="import-it-into-threejs-and-add-it-into-scene">import it into threeJS and add it into scene</h3>
+
+<p>Please refer to 2022-04-30-threeJS-overview.md for basic concepts. Because I am now using CDN, remember to add it in importmap</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">imports</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="p">...,</span>
+    <span class="dl">"</span><span class="s2">GLTF_loader</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://unpkg.com/three@0.140.0/examples/jsm/loaders/GLTFLoader.js</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>and then use it with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">GLTFLoader</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">GLTF_loader</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GLTFLoader</span><span class="p">();</span>
+<span class="nx">loader</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="dl">'</span><span class="s1">path/to/model.glb</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// load the image</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">gltf</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">gltf</span><span class="p">.</span><span class="nx">scene</span><span class="p">);</span> <span class="c1">// add it to scene</span>
+  <span class="p">},</span>
+  <span class="kc">undefined</span><span class="p">,</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span> <span class="nx">error</span> <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="render-it">render it</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">renderer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">WebGLRenderer</span><span class="p">({</span>
+  <span class="na">canvas</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#threeExample</span><span class="dl">'</span><span class="p">),</span>
+<span class="p">})</span>
+
+<span class="p">...</span>
+
+<span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>You also need to specify correct position of camera, light and use animation to render it correctly.</p>
+
+<h2 id="what">What?</h2>
+
+<div class="h-screen justify-center items-center">
+  <canvas id="threeExample" class="object-scale-down">
+  </canvas>
+</div>
+
+<script type="module">
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'GLTF_loader';
+
+  const scene = new THREE.Scene();
+  
+  const fieldOfView = 75
+  const aspectRatio = window.innerWidth / window.innerHeight
+  const nearestDistance = 0.1
+  const farthestDistance = 1000
+  const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearestDistance, farthestDistance)
+  camera.position.set(0,1,2);
+
+  const light = new THREE.DirectionalLight(0xffffff, 1)
+  light.position.set(2,2,5);
+  scene.add(light)
+
+  const loader = new GLTFLoader();
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#threeExample'),
+  })
+  loader.load(
+    '/blog/assets/3d/cat.glb',
+    function(glb) {
+      console.log('load successfully')
+      const root = glb.scene
+      root.scale.set(0.5,0.5,0.5)
+      scene.add(glb.scene);
+    },
+    undefined,
+    function(error) {
+      console.error(error);
+    }
+  );
+
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.shadowMap.enable = true
+  renderer.gammaOutput = true
+
+  function animate() {
+    requestAnimationFrame(animate)
+    renderer.render(scene, camera)
+  }
+
+animate()
+</script>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.mixamo.com/#/">mixamo</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=yDc-E-o_I-c">Import FREE Rigged and Animated Characters into Blender with the Adobe Mixamo Add-On</a></p>
+
+<p><a href="https://blog.farazshaikh.com/stories/character-creation-in-three-js/">Character creation in ThreeJS</a></p>
+
+<p><a href="https://free3d.com/3d-model/wolf-rigged-and-game-ready-42808.html">Wolf Rigged And Game Ready</a></p>
+
+<p><a href="https://threejs.org/docs/#manual/en/introduction/Loading-3D-models">Loading 3D models</a></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>[How to Load a 3D model in Three.js</td>
+      <td>GLTF/GLB Model</td>
+      <td>GLTFLoader](https://www.youtube.com/watch?v=yPA2z7fl4J8)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="https://www.youtube.com/watch?v=9dZjcFW3BRY">Intro to Rigging an Armature to a character in Blender 3.0</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=LNchKgHDgVU">Learn Blender Rigging and Animation in 1 Minute!</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=q7yH_ajINpA&amp;t=596s">Loading Animated Characters in React Three Fiber</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

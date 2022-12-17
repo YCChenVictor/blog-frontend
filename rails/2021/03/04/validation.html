@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Validation</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes the concept of validation in model of rails.</p>
+
+<p>Types of validation:</p>
+
+<ul>
+  <li>frontend: validate with javascript when user input data</li>
+  <li>backend: after data sending to server, before inserting to database, validate it</li>
+  <li>database: validation in database</li>
+</ul>
+
+<h2 id="why">Why</h2>
+
+<p>To prevent any malfunction in database, we do validation while data inserting.</p>
+
+<h2 id="how">How</h2>
+
+<p>Actually the code is pretty straight forward. It will slice the attributes and loop through them to validate with validators.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># File activemodel/lib/active_model/validations/validates.rb, line 105</span>
+<span class="k">def</span> <span class="nf">validates</span><span class="p">(</span><span class="o">*</span><span class="n">attributes</span><span class="p">)</span>
+  <span class="n">defaults</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">.</span><span class="nf">extract_options!</span><span class="p">.</span><span class="nf">dup</span>
+  <span class="n">validations</span> <span class="o">=</span> <span class="n">defaults</span><span class="p">.</span><span class="nf">slice!</span><span class="p">(</span><span class="o">*</span><span class="n">_validates_default_keys</span><span class="p">)</span>
+
+  <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">"You need to supply at least one attribute"</span> <span class="k">if</span> <span class="n">attributes</span><span class="p">.</span><span class="nf">empty?</span>
+  <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">"You need to supply at least one validation"</span> <span class="k">if</span> <span class="n">validations</span><span class="p">.</span><span class="nf">empty?</span>
+
+  <span class="n">defaults</span><span class="p">[</span><span class="ss">:attributes</span><span class="p">]</span> <span class="o">=</span> <span class="n">attributes</span>
+
+  <span class="n">validations</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">options</span><span class="o">|</span>
+    <span class="k">next</span> <span class="k">unless</span> <span class="n">options</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="n">key</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">camelize</span><span class="si">}</span><span class="s2">Validator"</span>
+
+    <span class="k">begin</span>
+      <span class="n">validator</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="s2">"::"</span><span class="p">.</span><span class="nf">freeze</span><span class="p">)</span> <span class="p">?</span> <span class="n">key</span><span class="p">.</span><span class="nf">constantize</span> <span class="p">:</span> <span class="nb">const_get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">rescue</span> <span class="no">NameError</span>
+      <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">,</span> <span class="s2">"Unknown validator: '</span><span class="si">#{</span><span class="n">key</span><span class="si">}</span><span class="s2">'"</span>
+    <span class="k">end</span>
+
+    <span class="n">validates_with</span><span class="p">(</span><span class="n">validator</span><span class="p">,</span> <span class="n">defaults</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="n">_parse_validates_options</span><span class="p">(</span><span class="n">options</span><span class="p">)))</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="skip-validation">skip validation</h3>
+
+<p>How rails design skip validations? TBC</p>
+
+<h3 id="not-all-method-will-be-validated-inmodel">Not all method will be validated in model</h3>
+
+<p>for example, the methods: create, create!, save, save!, update, update!</p>
+
+<h3 id="customized-validator">customized validator</h3>
+
+<p>TBC</p>
+
+<h2 id="what">What</h2>
+
+<h3 id="example">example</h3>
+
+<p>For example, title is required in articles:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>  
+  <span class="n">validates</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>  
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>After migration, in rails console,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span> <span class="o">=</span> <span class="no">Article</span><span class="p">.</span><span class="nf">new</span>  
+<span class="n">a1</span><span class="p">.</span><span class="nf">save</span>
+</code></pre></div></div>
+
+<p>Then</p>
+
+<p><img class="w-1/3" src="/assets/img//1__zKw5dFtttxNPnjIC22Y6TQ.png" alt="" /></p>
+
+<p>Then we can check the error message with</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a1</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">full_messages</span>
+</code></pre></div></div>
+
+<p>It means we must assign title while creating article.</p>
+
+<p><img class="w-1/2" src="/assets/img//1__nI1t__NAXWIweoRiZM8jWRA.png" alt="" /></p>
+
+<h3 id="example-customized-validator">example: customized validator</h3>
+
+<p>TBC</p>
+
+<p>For example, if we want the article title to start with <code class="language-plaintext highlighter-rouge">ruby</code>,</p>
+
+<p>In model, <code class="language-plaintext highlighter-rouge">Article</code>, add a method after validates such as</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>  
+  <span class="n">validates</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">begin_with_ruby: </span><span class="kp">true</span>  
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then define the method, <code class="language-plaintext highlighter-rouge">begin_with_ruby</code>, in the save file of class, Article</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BeginWithRubyValidator</span> <span class="o">&lt;</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">EachValidator</span>  
+  <span class="k">def</span> <span class="nf">validate_each</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>  
+    <span class="k">unless</span> <span class="n">value</span><span class="p">.</span><span class="nf">start_with?</span> <span class="s1">'Ruby'</span>  
+      <span class="n">record</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">add</span> <span class="n">attribute</span><span class="p">,</span> <span class="p">(</span><span class="n">options</span><span class="p">[</span><span class="ss">:message</span><span class="p">]</span> <span class="o">||</span> <span class="s2">"Should Start with Ruby"</span><span class="p">)</span>  
+    <span class="k">end</span>  
+  <span class="k">end</span>  
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="&quot;https://railsbook.tw/&quot;">為你自己學 Ruby on Rails 高見龍</a></p>
+
+<p><a href="&quot;https://guides.rubyonrails.org/active_record_validations.html&quot;">Active Record Validations - Ruby on Rails Guides</a></p>
+
+<p><a href="&quot;https://guides.rubyonrails.org/active_record_callbacks.html&quot;">Active Record Callbacks - Ruby on Rails Guides</a></p>
+
+<p><a href="https://apidock.com/rails/ActiveModel/Validations/ClassMethods/validates">validates</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

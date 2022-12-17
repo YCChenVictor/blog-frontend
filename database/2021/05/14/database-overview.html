@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">database overview</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes the problems that database solved.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>We need a way to store resuable data. Flat file management system is the easiest way a person can find; that is, the computer desktop of a brainless person. DBMS (database management system) has advantages over it as follow:</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Data_redundancy">no redundancy</a>: storing of the same <strong>data</strong> in multiple locations</li>
+  <li>no inconsistency</li>
+  <li>data sharing</li>
+  <li>data concurrency</li>
+  <li>data searching</li>
+  <li><a href="">data integrity</a></li>
+  <li>prevent system crashing</li>
+  <li>data security</li>
+  <li>backup mechanism</li>
+  <li>interfaces</li>
+  <li>easier maintenance</li>
+</ul>
+
+<h2 id="how">How?</h2>
+
+<h3 id="data-isolation-determines-when-and-how-changes-made-by-one-operation-become-visible-to-other-concurrent-users-and-systems"><a href="https://en.wikipedia.org/wiki/Isolation_%28database_systems%29">Data isolation</a>: determines when and how changes made by one operation become <strong>visible</strong> to other concurrent users and systems</h3>
+
+<h3 id="concurrency-access-the-ability-to-gain-admittance-to-a-system-or-component-by-more-than-one-user-or-process"><a href="https://en.wikipedia.org/wiki/Concurrency_control">Concurrency access</a>: The ability to gain admittance to a system or component by more than one user or process</h3>
+
+<h3 id="consistency">Consistency</h3>
+
+<h2 id="what">What?</h2>
+
+<h3 id="types-of-database">types of database</h3>
+
+<ol>
+  <li><a href="https://en.wikipedia.org/wiki/Relational_model">relational model</a>: represents data as relations or tables</li>
+  <li><a href="https://en.wikipedia.org/wiki/Network_model">network model</a>: viewed as a graph in which object types are <strong>nodes</strong> and relationship types are <strong>arcs</strong>, is <strong>not restricted</strong> to being a hierarchy or <a href="https://en.wikipedia.org/wiki/Lattice_graph" title="Lattice graph">lattice</a>.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Hierarchical_database_model">hierarchical model</a>: represents data as a hierarchical tree structure</li>
+  <li><a href="https://en.wikipedia.org/wiki/Object_database">Object-Oriented Model</a>: A <a href="https://en.wikipedia.org/wiki/Database_management_system" title="Database management system">database management system</a> in which information is represented in the form of <a href="https://en.wikipedia.org/wiki/Object_%28computer_science%29" title="Object (computer science)"><strong>objects</strong></a> as used in <a href="https://en.wikipedia.org/wiki/Object-oriented_programming" title="Object-oriented programming">object-oriented programming</a>.</li>
+</ol>
+
+<h3 id="database-architecture">Database Architecture</h3>
+
+<p>Architecture divides database system into individual components that can be <strong>independently</strong> modified, changed, replaced, and altered.</p>
+
+<p>There are three types:</p>
+
+<ol>
+  <li>One Tier Architecture (Single Tier Architecture): the client, server, and Database all reside on the <strong>same</strong> machine.</li>
+  <li>Two Tier Architecture: two machines, one for client, another for server and database.</li>
+  <li>Three Tier Architecture: three machines, one for client, one for server, one for database. The most popular and safety architecture.</li>
+</ol>
+
+<p>Based on the three tier architecture, the schema as follow:</p>
+
+<h3 id="database-schema">Database Schema</h3>
+
+<p>There are three levels:</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__5BPi61Rq__wIzkcpVfEG9LQ.png" alt="" /></p>
+
+<ol>
+  <li>Internal schema: the physical storage of database</li>
+  <li>conceptual schema: translation from database to user end</li>
+  <li>external schema: presentation level</li>
+</ol>
+
+<h3 id="relational-data-model-indbms">Relational Data Model in DBMS</h3>
+
+<h4 id="what-is-relational-model">what is relational model?</h4>
+
+<p>Represents the database as a collection of relations; examples:</p>
+
+<ul>
+  <li>DB2 and Informix Dynamic Server — IBM</li>
+  <li>Oracle and RDB — Oracle</li>
+  <li>SQL Server and Access — Microsoft</li>
+</ul>
+
+<h4 id="concepts">Concepts</h4>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__FDfTQCOyqDdn8ATt5ciyrw.png" alt="" /></p>
+
+<p><strong>Attribute, Tables, Tuple, Degree, Cardinality, Column, Relation key (Primary Key), Relation instance (finite set of tuples), Relation Schema (represents the name of the relation with its attributes</strong>), <strong>Attribute domain (some pre-defined value and scope to attribute)</strong></p>
+
+<p>To build a valid relation model in DBMS, there will be constraints as follow:</p>
+
+<h4 id="relational-integrity-constraints">Relational Integrity Constraints</h4>
+
+<p>A valid relation will have three constraints:</p>
+
+<p>&gt; Domain Constraints:</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__1q6M1DAkvZedeWs6eM__qhA.png" alt="" /></p>
+
+<p>&gt; Key Constraints:</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__6KynFl2VCk60ZCpKMsf1iw.png" alt="" /></p>
+
+<p>&gt; Domain constraints:</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__YFp5E6gM8atkP1M6nOb3Tg.png" alt="" /></p>
+
+<p>&gt; Referential Integrity Constraints:</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__AujUNdlU3j5xT66CU__VeOQ.png" alt="" /></p>
+
+<p>After we know the regularity of relation model, we should know the operation in relation model.</p>
+
+<h3 id="data-type">Data Type</h3>
+<p>There are five categories of data type: numeric, date, string, unicode, binary, miscellaneous</p>
+<ol>
+  <li>numeric: int, tinyint, bigint, float, real</li>
+  <li>date: Date, Time, Datetime</li>
+  <li>string: char, varchar, text</li>
+  <li>unicode: nchar, nvarchar, ntext</li>
+  <li>binary: binary, varbinary</li>
+  <li>miscellaneous: clob, blob, xml, cursor, table
+    <h4 id="numeric">numeric</h4>
+  </li>
+</ol>
+
+<h3 id="operations-in-relational-model">Operations in Relational Model</h3>
+
+<p>The basic: insert, delete, modify, select (maps the CRUD of website design)</p>
+
+<h4 id="insert">Insert</h4>
+
+<p>matches create in website</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__jsdV71wNj9hZWuKQHqAq__g.png" alt="" /></p>
+
+<h4 id="delete">Delete</h4>
+
+<p>matches delete in website</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__QbMwvso62vuMkPTHtNMRtQ.png" alt="" /></p>
+
+<h4 id="modify">Modify</h4>
+
+<p>matches update in website</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__i5npysNgLSKNtEue8ub5ow.png" alt="" /></p>
+
+<h4 id="select">Select</h4>
+
+<p>matches read in website</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__LSSZ0hKIaScNB__UsPdiY2A.png" alt="" /></p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://www.geeksforgeeks.org/advantages-of-dbms-over-file-system/">Advantages of DBMS over File system</a></p>
+
+<p><a href="https://www.guru99.com/dbms-tutorial.html">DBMS Tutorial: Database Management System Notes
+_Database Management System (DBMS) is a collection of programs which enables its users to access a database, manipulate…_www.guru99.com</a></p>
+
+<p>[<strong>SQL Data Types</strong>]https://www.journaldev.com/16774/sql-data-types</p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>
