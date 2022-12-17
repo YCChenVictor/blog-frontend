@@ -35,46 +35,7 @@ As my blog getting bigger, I need it
 
 #### tailwind
 
-If we use tailwind, we need to tell github page to include it with CI
-
-In `_config.yml`,
-
-```yaml
-include: ["node_modules/tailwindcss"]
-```
-
-and create `.github/workflows/deployment-workflow.yml` and input
-
-```yaml
-name: deployment-workflow
-on:
-  push: [push]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest # tell github what environment to build
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Build the site in the jekyll/builder container
-        run: |
-         docker run \
-         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
-
-      - name: GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2.5.0
-        with:
-          build_dir: _site/
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
-* `GITHUB_TOKEN`: TBC
-* [remember to change the deploy branch to github page](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+follow [How to use Tailwind CSS with Jekyll on GitHub Pages](https://jekyll.ohsostatic.com/devops/how-to-use-tailwind-css-with-jekyll-on-github-pages)
 
 ### workflow (TBC)
 
@@ -82,8 +43,6 @@ jobs:
 * The template as follow
 
 ## What
-
-
 
 ## Reference
 
