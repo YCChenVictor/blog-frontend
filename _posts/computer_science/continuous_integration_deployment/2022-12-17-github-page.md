@@ -96,3 +96,5 @@ jobs:
 [CI/CD with Github Actions to deploy on Github Pages](https://medium.com/front-end-weekly/ci-cd-with-github-actions-to-deploy-on-github-pages-73e225f8f131#:~:text=At%20the%20root%20of%20your,to%20store%20your%20workflow%20files.)
 
 [Everything you need to know about getting started with GitHub Actions](https://resources.github.com/whitepapers/github-actions-cheat/)
+
+[How to use Tailwind CSS with Jekyll on GitHub Pages](https://jekyll.ohsostatic.com/devops/how-to-use-tailwind-css-with-jekyll-on-github-pages)
