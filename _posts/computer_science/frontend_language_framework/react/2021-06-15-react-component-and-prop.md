@@ -262,6 +262,71 @@ class Clock extends React.Component {
 }
 ```
 
+### from class to functional
+
+Form example, from
+
+```jsx
+class Clock extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.setState({
+          date: new Date()
+        }),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+
+}
+```
+
+to
+
+A. basic functional form
+
+```jsx
+function Clock() {
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setDate(new Date()), 1000
+    );
+    return () => clearInterval(interval);
+  });
+
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+
+export default Clock;
+```
+
+The hook, `useState` to setup the date and `setDate` function to change the date. If I want `setInterval` to be disabled after this component closed, just like `componentWillUnmount`, adding `return () => clearInterval(interval);`
+
 ## reference
 
 [Differences between Functional Components and Class Components in React](https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components-in-react/)

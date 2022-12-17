@@ -20,23 +20,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>{{ site.title }}</title>
-    <!-- TailwindCSS and Inter Font-->
     <link rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css">
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/tailwind.css">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
-    <!-- highlight.js -->
     <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
   </head>
 
-  <body class="font-sans mx-auto max-w-prose">
+  <body class="font-mono list-disc">
     <div class="pt-12 pb-4">
       {% if site.show-nav-menu %}
-        <div id="sidebar" class=".sidebar"></div>
+        {% include nav.html%}
+        <div id="sidebar" class="p-4 fixed"></div>
       {% endif %}
       {{ content }}
     </div>
