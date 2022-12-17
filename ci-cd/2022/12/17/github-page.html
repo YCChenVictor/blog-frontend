@@ -95,46 +95,7 @@
 
 <h4 id="tailwind">tailwind</h4>
 
-<p>If we use tailwind, we need to tell github page to include it with CI</p>
-
-<p>In <code class="language-plaintext highlighter-rouge">_config.yml</code>,</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">include</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">node_modules/tailwindcss"</span><span class="pi">]</span>
-</code></pre></div></div>
-
-<p>and create <code class="language-plaintext highlighter-rouge">.github/workflows/deployment-workflow.yml</code> and input</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">deployment-workflow</span>
-<span class="na">on</span><span class="pi">:</span>
-  <span class="na">push</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">]</span>
-
-<span class="na">jobs</span><span class="pi">:</span>
-  <span class="na">build</span><span class="pi">:</span>
-    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span> <span class="c1"># tell github what environment to build</span>
-    
-    <span class="na">steps</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
-      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install Dependencies</span>
-        <span class="na">run</span><span class="pi">:</span> <span class="s">npm install</span>
-
-      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build the site in the jekyll/builder container</span>
-        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
-         <span class="s">docker run \</span>
-         <span class="s">-v $:/srv/jekyll -v $/_site:/srv/jekyll/_site \</span>
-         <span class="s">jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll &amp;&amp; jekyll build --future"</span>
-
-      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">GitHub Pages</span>
-        <span class="na">uses</span><span class="pi">:</span> <span class="s">crazy-max/ghaction-github-pages@v2.5.0</span>
-        <span class="na">with</span><span class="pi">:</span>
-          <span class="na">build_dir</span><span class="pi">:</span> <span class="s">_site/</span>
-        <span class="na">env</span><span class="pi">:</span>
-          <span class="na">GITHUB_TOKEN</span><span class="pi">:</span> <span class="s">$</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">GITHUB_TOKEN</code>: TBC</li>
-  <li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">remember to change the deploy branch to github page</a></li>
-</ul>
+<p>follow <a href="https://jekyll.ohsostatic.com/devops/how-to-use-tailwind-css-with-jekyll-on-github-pages">How to use Tailwind CSS with Jekyll on GitHub Pages</a></p>
 
 <h3 id="workflow-tbc">workflow (TBC)</h3>
 
@@ -190,7 +151,7 @@
   </div>
 </footer>
 
-<script type="text/javascript" src="/assets/javascripts/bundle.js" charset="utf-8"></script>
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
 
     </div>
   </body>
