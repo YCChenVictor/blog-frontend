@@ -54,3 +54,5 @@ exclude:
   - postcss.config.js
   - tailwind.config.js
   - yarn.lock
+
+include: ["node_modules/tailwindcss"]
