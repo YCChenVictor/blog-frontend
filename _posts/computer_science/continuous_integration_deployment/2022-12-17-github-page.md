@@ -74,6 +74,7 @@ jobs:
 ```
 
 * `GITHUB_TOKEN`: TBC
+* [remember to change the deploy branch to github page](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
 ### workflow (TBC)
 
