@@ -1,63 +1,13 @@
-# change the followings to match your Github username and repo name
-baseurl: "/blog" # the name of your github repo
-url: "" # the url of your github pages
-
-# site information used in page title, meta data etc.
-title: ""
-description:
-
-# color theme for links
-theme-color: indigo # indigo|yellow|pink|green|stone|
-
-# homepage information
-author: YCChen
-author-bio: Software Engineer # change to false to hide
-author-image: head.jpeg # file must be in the /assets/img/ folder
-
-# navigation menu
-show-nav-menu: true
-
-nav-menu:
-  - text: About
-    permalink: about
-  - text: Category
-    permalink: category
-
-# use false to turn off any social media links
-twitter: false
-facebook: false
-instagram: false
-github: https://github.com/
-linkedin: https://linkedin.com/
-medium: false
-google-scholar: false
-email: false
-
-# footer information
-footer-msg: ""
-footer-msg-link:
-
-# Build settings
-markdown: kramdown
-
-exclude:
-  - node_modules
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/jekyll-tailwind-ghpages" # the subpath of your site, e.g. /blog
+title: "" # the name of your site, e.g. ACME Corp.
 
 plugins:
   - jekyll-postcss
 
-postcss:
-  cache: false
-
-exclude:
-  - package.json
-  - postcss.config.js
-  - tailwind.config.js
-  - yarn.lock
-
-css:
+sass:
   load_paths:
-    - _css
+    - _sass
     - node_modules
 
 include: ["node_modules/tailwindcss"]
