@@ -39,7 +39,6 @@ footer-msg-link:
 
 # Build settings
 markdown: kramdown
-source: src
 
 exclude:
   - node_modules
