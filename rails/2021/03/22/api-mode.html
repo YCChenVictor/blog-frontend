@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Api Mode</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes how to build api with rails. Please refer to xxx for the concept of api. The steps:</p>
+
+<ul>
+  <li>start project</li>
+  <li>API for internal data</li>
+  <li>API for external data</li>
+  <li>CORS (TBC)</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>With API mode, we can seperate backend and frontend.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="start-project">start project</h3>
+
+<p>Create project with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails new Project_Name <span class="nt">--api</span>
+</code></pre></div></div>
+
+<h3 id="api-for-internal-data">API for internal data</h3>
+
+<p>With two model, <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Post</code>, use API post to authenticate user and then GET the list of posts from server and POST to create post.</p>
+
+<ul>
+  <li>User, Post</li>
+  <li>authentication</li>
+  <li>encrypt</li>
+  <li>Postman</li>
+</ul>
+
+<h4 id="user-post">User, Post</h4>
+
+<p>Generate models with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g model User name email password_digest
+rails g model Post title body:text
+rails db:migrate
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">app_name/config/routes.rb</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">resources</span> <span class="ss">:users</span>
+  <span class="n">resources</span> <span class="ss">:posts</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Add <code class="language-plaintext highlighter-rouge">controllers/posts_controller.rb</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">render</span> <span class="ss">json: </span><span class="no">Post</span><span class="p">.</span><span class="nf">all</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="authentication">authentication</h4>
+
+<p>You now can get the list of posts, which is wrong because we should let only authenticated users to CRUD the posts. (Refer to 2022-08-17-(prerequisite)-authentication.md for concepts) The desired flow:</p>
+
+<ul>
+  <li>Visitor can post <code class="language-plaintext highlighter-rouge">email</code> and <code class="language-plaintext highlighter-rouge">password</code> to signup and generate token</li>
+  <li>User can post <code class="language-plaintext highlighter-rouge">email</code> and <code class="language-plaintext highlighter-rouge">password</code> to login</li>
+  <li>User can get list of data with token</li>
+</ul>
+
+<p>We can actually store token in DB and once user logged in, we return this token for user authentication.</p>
+
+<p>Add routes,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">post</span> <span class="s2">"/login"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"sessions#login"</span>
+  <span class="n">post</span> <span class="s2">"/signup"</span><span class="p">,</span> <span class="ss">to: </span><span class="s2">"sessions#signup"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Add <code class="language-plaintext highlighter-rouge">controllers/sessions_controller.rb</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SessionsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">signup</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">email: </span><span class="n">params</span><span class="p">[</span><span class="ss">:email</span><span class="p">],</span> <span class="ss">password_digest: </span><span class="n">password</span><span class="p">[</span><span class="ss">:password</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">user</span><span class="p">.</span><span class="nf">save</span>
+      <span class="n">token</span> <span class="o">=</span> <span class="n">encode_user_data</span><span class="p">({</span> <span class="ss">user_data: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span> <span class="p">})</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">token: </span><span class="n">token</span> <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">message: </span><span class="s2">"invalid credentials"</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">login</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">email: </span><span class="n">params</span><span class="p">[</span><span class="ss">:email</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="p">.</span><span class="nf">password_digest</span> <span class="o">==</span> <span class="n">params</span><span class="p">[</span><span class="ss">:password</span><span class="p">]</span>
+      <span class="n">token</span> <span class="o">=</span> <span class="n">encode_user_data</span><span class="p">({</span> <span class="ss">user_data: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span> <span class="p">})</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">token: </span><span class="n">token</span> <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">message: </span><span class="s2">"invalid credentials"</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">ApplicationController</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
+  <span class="no">SECRET</span> <span class="o">=</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'JWT_SECRET'</span><span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">encode_user_data</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+    <span class="no">JWT</span><span class="p">.</span><span class="nf">encode</span> <span class="n">payload</span><span class="p">,</span> <span class="no">SECRET</span><span class="p">,</span> <span class="s1">'HS256'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">authenticate</span>
+    <span class="n">decode_data</span> <span class="o">=</span> <span class="n">decode_user_data</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s2">"token"</span><span class="p">])</span>
+    <span class="n">user_data</span> <span class="o">=</span> <span class="n">decode_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">"user_id"</span><span class="p">]</span> <span class="k">unless</span> <span class="o">!</span><span class="n">decode_data</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">user_data</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span>
+      <span class="k">return</span> <span class="kp">true</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">message: </span><span class="s2">"invalid credentials"</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">decode_user_data</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+    <span class="no">JWT</span><span class="p">.</span><span class="nf">decode</span> <span class="n">token</span><span class="p">,</span> <span class="no">SECRET</span><span class="p">,</span> <span class="kp">true</span><span class="p">,</span> <span class="p">{</span> <span class="ss">algorithm: </span><span class="s2">"HS256"</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>To use <code class="language-plaintext highlighter-rouge">JWT</code>, add gem</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'jwt'</span>
+</code></pre></div></div>
+
+<p>In gitignored file, <code class="language-plaintext highlighter-rouge">config/environment.env</code> and add</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JWT_SECRET <span class="o">=</span> <span class="s1">'yourfavoritesecret'</span>
+</code></pre></div></div>
+
+<p>To use <code class="language-plaintext highlighter-rouge">ENV['JWT_SECRET']</code>, add gem</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'dotenv-rails'</span><span class="p">,</span> <span class="ss">require: </span><span class="s1">'dotenv/rails-now'</span>
+</code></pre></div></div>
+
+<p>Add <code class="language-plaintext highlighter-rouge">controllers/posts_controller.rb</code>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authenticate</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>and add token in header of GET api.</p>
+
+<h4 id="encrypt">encrypt</h4>
+
+<p>In the authentication section, the user can login with password. We can use bcrypt to enforce safer mechanism. (Refer to 2022-08-30-hashing-algorithms.md)</p>
+
+<p>(TBC)</p>
+
+<p>in gemfile, add</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'bcrypt'</span><span class="p">,</span> <span class="s1">'~&gt; 3.1.7'</span>
+</code></pre></div></div>
+
+<p>and then run <code class="language-plaintext highlighter-rouge">bundle install</code> then add <code class="language-plaintext highlighter-rouge">has_secure_password</code> in</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_secure_password</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The meaning <a href="https://edgeapi.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html"><code class="language-plaintext highlighter-rouge">has_secure_password</code></a></p>
+
+<h4 id="postman">postman</h4>
+
+<ul>
+  <li>setup environment</li>
+  <li>setup APIs</li>
+</ul>
+
+<p>my localhost:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">variable</th>
+      <th style="text-align: left">value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">host</td>
+      <td style="text-align: left">http://localhost:3000</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>my requests:</p>
+
+<p>GET /posts</p>
+
+<h3 id="api-for-external-data">API for external data</h3>
+
+<p>Try to connect twitter api with gem, twitter</p>
+
+<ul>
+  <li>settings</li>
+  <li>omniauth</li>
+  <li>CORS</li>
+  <li>api</li>
+  <li>test get and post</li>
+</ul>
+
+<h4 id="settings">settings</h4>
+
+<p>Please get the credentials by following the step by step in <a href="https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api">Getting started</a> from twitter</p>
+
+<ul>
+  <li>We can regenerate them in developer portal.</li>
+</ul>
+
+<p>We also need to defind callback URLs in <a href="https://developer.twitter.com/en/portal/projects/1576728701168803843/apps/25623084/auth-settings">auth settings</a></p>
+
+<h4 id="omniauth">omniauth</h4>
+
+<p>Add gems</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'omniauth-twitter'</span> <span class="c1"># to connect twitter api</span>
+<span class="n">gem</span> <span class="s1">'omniauth-rails_csrf_protection'</span> <span class="c1"># fix authenticity error</span>
+</code></pre></div></div>
+
+<p>Create <code class="language-plaintext highlighter-rouge">initializers/omniauth.rb</code> with</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">OmniAuth</span><span class="o">::</span><span class="no">Builder</span> <span class="k">do</span>
+  <span class="n">provider</span> <span class="ss">:twitter</span><span class="p">,</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'TWITTER_KEY'</span><span class="p">],</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'TWITTER_SECRET'</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">config/application.rb</code>,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># For Omniauth</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">session_store</span> <span class="ss">:cookie_store</span><span class="p">,</span> <span class="ss">key: </span><span class="s1">'_world_session_#{Rails.env}'</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Cookies</span> <span class="c1"># Required for all session management</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="n">config</span><span class="p">.</span><span class="nf">session_store</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="nf">session_options</span>
+</code></pre></div></div>
+
+<p>By inspecting <code class="language-plaintext highlighter-rouge">gem 'omniauth-rails_csrf_protection'</code>, <code class="language-plaintext highlighter-rouge">InvalidAuthenticityToken</code> raised by <code class="language-plaintext highlighter-rouge">rails_csrf_protection</code> -&gt; <code class="language-plaintext highlighter-rouge">verified_request? = false</code> -&gt; <code class="language-plaintext highlighter-rouge">authenticity_token or session[:_csrf_token]</code> is not equal to X-CSRF-Token in HTTP header</p>
+
+<p>So when render landing page, we give csrf token as follow:</p>
+
+<p>In frontend, (take react as example)</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:3000</span><span class="dl">'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">})</span>
+<span class="p">});</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>In backend,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># controllers/application_controller.rb</span>
+<span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
+  <span class="kp">include</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">RequestForgeryProtection</span>
+  <span class="kp">include</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Cookies</span>
+
+  <span class="n">protect_from_forgery</span> <span class="ss">with: :exception</span>
+
+  <span class="n">before_action</span> <span class="ss">:set_csrf_cookie</span>
+
+  <span class="k">def</span> <span class="nf">cookie</span>
+    <span class="s2">"ok"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">set_csrf_cookie</span>
+    <span class="n">cookies</span><span class="p">[</span><span class="s1">'CSRF-Token'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="ss">value: </span><span class="n">form_authenticity_token</span><span class="p">,</span>
+      <span class="ss">domain: :all</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># application.rb</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Cookies</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">CookieStore</span>
+
+<span class="c1"># initializers/cors.rb</span>
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">action_controller</span><span class="p">.</span><span class="nf">forgery_protection_origin_check</span> <span class="o">=</span> <span class="kp">false</span>
+
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">hosts</span> <span class="o">&lt;&lt;</span> <span class="sr">/[a-z0-9]+\.c9users\.io/</span>
+
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">insert_before</span> <span class="mi">0</span><span class="p">,</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cors</span> <span class="k">do</span>
+  <span class="n">allow</span> <span class="k">do</span>
+    <span class="n">origins</span> <span class="s1">'*'</span>
+    <span class="n">resource</span> <span class="s1">'*'</span><span class="p">,</span>
+      <span class="ss">headers: :any</span><span class="p">,</span>
+      <span class="ss">methods: </span><span class="p">[</span><span class="ss">:get</span><span class="p">,</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:put</span><span class="p">,</span> <span class="ss">:patch</span><span class="p">,</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:options</span><span class="p">,</span> <span class="ss">:head</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># routes.rb</span>
+<span class="n">root</span> <span class="ss">to: </span><span class="s2">"application#cookie"</span>
+</code></pre></div></div>
+
+<p>The result,</p>
+
+<p><img src="/assets/img/csrf-token.png" alt="" /></p>
+
+<h4 id="cors">CORS</h4>
+
+<h5 id="what-is-cors">What is CORS?</h5>
+
+<p>TBC</p>
+
+<h5 id="solution">solution</h5>
+
+<p>In rails 6, we can solve CORS as follow:</p>
+
+<ol>
+  <li>uncomment <code class="language-plaintext highlighter-rouge">gem 'rack-cors'</code> in <code class="language-plaintext highlighter-rouge">Gemfile.rb</code> and then <code class="language-plaintext highlighter-rouge">bundle install</code></li>
+  <li>go to <code class="language-plaintext highlighter-rouge">config/initializers</code> and uncomment code in <code class="language-plaintext highlighter-rouge">cors.rb</code></li>
+  <li>set <code class="language-plaintext highlighter-rouge">origins 'example.com'</code> to <code class="language-plaintext highlighter-rouge">origins '*'</code></li>
+</ol>
+
+<p>Now, test it with postman, TBC</p>
+
+<h4 id="api">api</h4>
+
+<p>add gem <code class="language-plaintext highlighter-rouge">gem 'twitter'</code></p>
+
+<h2 id="what">What</h2>
+
+<p>There will be two examples:</p>
+
+<ul>
+  <li>API for internal data</li>
+  <li>API for external data</li>
+</ul>
+
+<h3 id="example-of-api-for-internal-data">Example of API for internal data</h3>
+
+<p>(TBC), should put deployed bcakend API for demo.</p>
+
+<p>Put how to post and get with postman settings</p>
+
+<h3 id="example-of-api-for-external-data">Example of API for external data</h3>
+
+<p>(TBC), should put deployed bcakend API for demo.</p>
+
+<h3 id="interlude-render-jbuilder">interlude (render, Jbuilder)</h3>
+
+<p>(TBC)</p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://stackoverflow.com/questions/9492362/rails-how-does-the-respond-to-block-work">Rails: How does the respond_to block work?</a></p>
+
+<p><a href="https://railsbook.tw/">https://railsbook.tw/</a></p>
+
+<p><a href="https://www.pluralsight.com/guides/token-based-authentication-with-ruby-on-rails-5-api">Token-based Authentication</a></p>
+
+<p><a href="https://guides.rubyonrails.org/api_app.html">Using Rails for API-only Applications</a></p>
+
+<p><a href="https://medium.com/codex/deploying-a-rails-api-react-app-with-sessions-and-csrf-tokens-d33d2924639">Deploying a Rails API/React App with Sessions and CSRF Tokens</a></p>
+
+<p><a href="https://dev.to/codesalley/ruby-on-rails-api-simple-authentication-with-jwt-1nfe">Ruby on Rails API Simple authentication with JWT</a></p>
+
+<p><a href="https://www.rubyguides.com/2019/01/ruby-environment-variables/">How To Use Environment Variables in Ruby</a></p>
+
+<p><a href="https://www.akshaykhot.com/managing-environment-variables-in-rails/">How to Manage Environment Variables in Rails</a></p>
+
+<p><a href="https://gorails.com/episodes/rails-for-beginners-part-33-twitter-api">Rails for Beginners Part 33: Twitter API</a></p>
+
+<p><a href="https://gorails.com/episodes/rails-for-beginners-part-23-rails-credentials">Rails for Beginners Part 23: Rails Credentials</a></p>
+
+<p><a href="https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api">Getting started</a></p>
+
+<p><a href="https://www.reddit.com/r/rails/comments/w9ramd/omniauth_using_a_rails_api_only_app/">Omniauth using a Rails API Only App?</a></p>
+
+<p><a href="https://medium.com/@zayneabraham/ruby-on-rails-csrf-protection-with-react-js-65dd84b8edad">Ruby on Rails CSRF Protection with React.js &amp; Webpacker</a></p>
+
+<p><a href="https://stackoverflow.com/questions/7600347/rails-api-design-without-disabling-csrf-protection">Rails API design without disabling CSRF protection</a></p>
+
+<p><a href="https://stackoverflow.com/questions/8545553/best-way-to-debug-third-party-gems-in-ruby">Best way to debug third-party gems in ruby</a></p>
+
+<p><a href="https://dwinniford.github.io/setting_up_session_cookies_in_a_rails_api_with_javascript_front_end">Setting up Session Cookies in a Rails API with Javascript front end</a></p>
+
+<p><a href="https://5xruby.tw/posts/hello-spa-rails-api-server">是誰在哈囉? 如何搞定 SPA 與 API Server 的登入驗證</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

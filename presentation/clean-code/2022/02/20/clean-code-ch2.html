@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">clean code ch2</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<div class="mermaid">
+classDiagram
+  maintainability &lt;|-- readability
+  maintainability &lt;|-- cowork
+
+  readability : 1. Intention Revealing
+  readability : 2. Avoid Disinformation
+  readability : 3. Make Meaningful Distinctions
+  readability : 4. Avoid Encodings
+  readability : 5. Class Name &amp; Method Name
+  readability : 6. Avoid Mental Mapping
+  readability : 7. Use Solution Domain Names
+  readability : 8. Use Problem Domain Names
+  readability : 9. Add Meaningful Context
+  readability : 10. Do not Add Gratuitous Context
+
+  cowork : 1. Use Pronounceable Names
+  cowork : 2. Use Searchable Names
+  cowork : 3. Do not Be Cute
+  cowork : 4. Pick One Word per Concept
+  cowork : 5. Do not Pun
+</div>
+
+<h2 id="why">Why?</h2>
+
+<p>Because we do so much of naming, we’d better do it well to improve the maintainability. It will pay off in the short term and continue to pay in the long run.</p>
+
+<h2 id="what">What?</h2>
+
+<h3 id="intention-revealing">Intention-Revealing</h3>
+
+<h4 id="variable">variable</h4>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">d</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># elapsed time in days</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">elapsed_time_in_days</span> <span class="o">=</span> <span class="mi">10</span>
+</code></pre></div></div>
+
+<h4 id="function">function</h4>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_them</span>
+  <span class="n">list1</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">theList</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+      <span class="n">list1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="n">list1</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_flagged_cells</span>
+  <span class="n">flagged_cells</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">game_board</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">cell</span><span class="o">|</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cell</span><span class="p">.</span><span class="nf">flagged?</span><span class="p">)</span> <span class="c1"># write a method to check the status</span>
+      <span class="n">flagged_cells</span> <span class="o">&lt;&lt;</span> <span class="n">cell</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="n">flagged_cells</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="avoid-disinformation">Avoid Disinformation</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">o, l, 0, 1</code> making it hard to find out this is an unnecessary logic.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">equal_one</span>
+  <span class="k">if</span> <span class="n">o</span> <span class="o">!=</span> <span class="mi">1</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="mo">01</span>
+  <span class="k">else</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">o</span> <span class="o">*</span> <span class="mi">1</span>
+  <span class="k">end</span>
+  <span class="n">l</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="make-meaningful-distinctions">Make Meaningful Distinctions</h3>
+
+<h4 id="class-name">Class name</h4>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Book1</span>
+<span class="no">Book2</span>
+<span class="no">Book3</span>
+<span class="no">Product</span>
+<span class="no">ProductInfo</span>
+<span class="no">ProductData</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">PictureBook</span>
+<span class="no">Encyclopedia</span>
+<span class="no">TextBook</span>
+<span class="no">Product</span>
+</code></pre></div></div>
+
+<h3 id="avoid-encodings-hungarian-notation-member-prefixes-interfaces-and-implementations">Avoid Encodings (Hungarian Notation, Member Prefixes, Interfaces and Implementations)</h3>
+
+<h4 id="variable-1">variable</h4>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">str_phone</span> <span class="o">=</span> <span class="s2">"0901xxxxxx"</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">phone</span> <span class="o">=</span> <span class="s2">"0901xxxxxx"</span> <span class="c1"># call class method to know the type</span>
+</code></pre></div></div>
+
+<h4 id="function-1">function</h4>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">set_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="n">m_dsc</span> <span class="o">=</span> <span class="nb">name</span> <span class="c1"># avoid m_</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">set_description</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">description</span> <span class="o">=</span> <span class="n">description</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="class-name--method-name">Class Name &amp; Method Name</h3>
+
+<p>Use <strong>noun</strong> in class name and use <strong>verb</strong> in method name.</p>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SetEmployeeData</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">salary</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Employee</span>
+  <span class="k">def</span> <span class="nf">set_salary</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="avoid-mental-mapping">Avoid Mental Mapping</h3>
+
+<p>Avoid reader mapping variables mentally; for example, <code class="language-plaintext highlighter-rouge">child</code> is better than <code class="language-plaintext highlighter-rouge">x</code> in following method</p>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">children</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">x</span><span class="p">.</span><span class="nf">age</span> <span class="o">&lt;</span> <span class="mi">18</span>
+    <span class="n">teenagers</span> <span class="o">&lt;&lt;</span> <span class="n">x</span>
+  <span class="k">return</span> <span class="n">teenagers</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">children</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">child</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">child</span><span class="p">.</span><span class="nf">age</span> <span class="o">&lt;</span> <span class="mi">18</span>
+    <span class="n">teenagers</span> <span class="o">&lt;&lt;</span> <span class="n">child</span>
+  <span class="k">return</span> <span class="n">teenagers</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="use-solution-domain-name--use-problem-domain-names">Use Solution Domain Name &amp; Use Problem Domain Names</h3>
+
+<h4 id="use-solution-domain-name">Use Solution Domain Name</h4>
+
+<p>Use <code class="language-plaintext highlighter-rouge">postgresql_adapter</code> instead of <code class="language-plaintext highlighter-rouge">postgresql_connection</code> because programmers have the concept of adapter in design pattern.</p>
+
+<h4 id="use-problem-domain-names">Use Problem Domain Names</h4>
+
+<p>But use problem descriptions when there is no good professional wordings.</p>
+
+<h3 id="add-meaningful-context">Add Meaningful Context</h3>
+
+<p>For example, adding context to explain the logic of following method</p>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">printGuessStatistics</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="s2">"no"</span>
+    <span class="n">verb</span> <span class="o">=</span> <span class="s2">"are"</span>
+    <span class="n">pluralModifier</span> <span class="o">=</span> <span class="s2">"s"</span>
+  <span class="k">elsif</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="s2">"1"</span>
+    <span class="n">verb</span> <span class="o">=</span> <span class="s2">"is"</span>
+    <span class="n">pluralModifier</span> <span class="o">=</span> <span class="s2">""</span>
+  <span class="k">else</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">count</span><span class="p">.</span><span class="nf">to_s</span>
+    <span class="n">verb</span> <span class="o">=</span> <span class="s2">"are"</span>
+    <span class="n">pluralModifier</span> <span class="o">=</span> <span class="s2">"s"</span><span class="p">;</span>
+  <span class="k">end</span>
+
+  <span class="n">guessMessage</span> <span class="o">=</span> <span class="s2">"There </span><span class="si">#{</span><span class="n">verb</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">number</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">candidate</span><span class="si">}#{</span><span class="n">pluralModifier</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">GuessStatisticsMessage</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+    <span class="n">create_plural_dependent_message_parts</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">guessMessage</span> <span class="o">=</span> <span class="s2">"There </span><span class="si">#{</span><span class="vi">@verb</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="vi">@number</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="vi">@candidate</span><span class="si">}#{</span><span class="vi">@pluralModifier</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+  <span class="k">def</span> <span class="nf">create_plural_dependent_message_parts</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span>
+      <span class="n">there_are_no_letters</span>
+    <span class="k">elsif</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">1</span>
+      <span class="n">there_is_one_letter</span>
+    <span class="k">else</span>
+      <span class="n">there_are_many_letters</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span> 
+
+  <span class="k">def</span> <span class="nf">there_are_many_letters</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="vi">@number</span> <span class="o">=</span> <span class="n">count</span><span class="p">.</span><span class="nf">to_s</span>
+    <span class="vi">@verb</span> <span class="o">=</span> <span class="s2">"are"</span>
+    <span class="vi">@pluralModifier</span> <span class="o">=</span> <span class="s2">"s"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">there_is_one_letter</span>
+    <span class="vi">@number</span> <span class="o">=</span> <span class="s2">"1"</span>
+    <span class="vi">@verb</span> <span class="o">=</span> <span class="s2">"is"</span>
+    <span class="vi">@pluralModifier</span> <span class="o">=</span> <span class="s2">""</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">there_are_no_letters</span>
+    <span class="vi">@number</span> <span class="o">=</span> <span class="s2">"no"</span>
+    <span class="vi">@verb</span> <span class="o">=</span> <span class="s2">"are"</span>
+    <span class="vi">@pluralModifier</span> <span class="o">=</span> <span class="s2">"s"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="do-not-add-gratuitous-context">Do not Add Gratuitous Context</h3>
+
+<p>For example, use <code class="language-plaintext highlighter-rouge">Student</code> instead of <code class="language-plaintext highlighter-rouge">OpenApplyStudent</code></p>
+
+<h3 id="use-pronounceable-names">Use Pronounceable Names</h3>
+
+<p>To communicate with other programmers,</p>
+
+<p>From</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">genymdhms</span>
+<span class="n">modymdhms</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">generationTimestamp</span>
+<span class="n">modificationTimestamp</span>
+</code></pre></div></div>
+
+<h3 id="use-searchable-names">Use Searchable Names</h3>
+
+<p>From</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&lt;</span><span class="mi">34</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">numberOfTasks</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">realDaysPerIdealDay</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">workDaysPerWeek</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">numberOfTasks</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">realTaskDays</span> <span class="o">=</span> <span class="nx">taskEstimate</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">*</span> <span class="nx">realDaysPerIdealDay</span><span class="p">;</span>
+  <span class="nx">realTaskWeeks</span> <span class="o">=</span> <span class="p">(</span><span class="nx">realdays</span> <span class="o">/</span> <span class="nx">workDaysPerWeek</span><span class="p">);</span>
+  <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">realTaskWeeks</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then you can search the terms, <code class="language-plaintext highlighter-rouge">sum</code>, <code class="language-plaintext highlighter-rouge">task</code>, <code class="language-plaintext highlighter-rouge">per</code>, …etc</p>
+
+<h3 id="do-not-be-cute">Do not Be Cute</h3>
+
+<p>Avoid using jokes such as <code class="language-plaintext highlighter-rouge">burnOutAll</code> to mean <code class="language-plaintext highlighter-rouge">destroy</code></p>
+
+<h3 id="pick-one-word-per-concept-and-dont-pun">Pick One Word per Concept and Don’t Pun</h3>
+
+<p>Build a team convention, do not use <code class="language-plaintext highlighter-rouge">fetch</code>, <code class="language-plaintext highlighter-rouge">retrieve</code>, <code class="language-plaintext highlighter-rouge">get</code> for the same purpose. But also do not use <code class="language-plaintext highlighter-rouge">get</code> to all environments. For example, we can use <code class="language-plaintext highlighter-rouge">get</code> in backend and <code class="language-plaintext highlighter-rouge">fetch</code> in frontend.</p>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

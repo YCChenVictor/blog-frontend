@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Command</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes the concept of command pattern. The basic UML:</p>
+
+<div class="mermaid">
+graph LR
+  id1(Invoker) --use<br />commands<br />through--&gt; id3(ConcreteCommand1)
+  id1(Invoker) --use<br />commands<br />through--&gt; id4(ConcreteCommand2)
+
+  subgraph commands
+    id4(ConcreteCommand2) --inherit<br />from--&gt; id2(InterfaceCommand)
+    id3(ConcreteCommand1) --inherit<br />from--&gt; id2(InterfaceCommand)
+  end
+
+  id3(ConcreteCommand1) --send<br />command<br />to--&gt; id5(Receiver)
+</div>
+
+<ul>
+  <li>Invoker can be anything. We can attach the ConcreteCommand to <strong>any button</strong>.</li>
+  <li>ConcreteCommands in a particular invoker can request commands to <strong>more than one receiver</strong> or no receiver</li>
+</ul>
+
+<div class="mermaid">
+classDiagram
+  class Invoker
+    Invoker : command
+    Invoker : +setCommand(command)
+    Invoker : +executeCommand()
+
+  class Receiver
+    Receiver : methods()
+
+  class ConcreteCommand
+    ConcreteCommand : receiver
+    ConcreteCommand : commands
+    ConcreteCommand : +execute(command)
+    ConcreteCommand : +unexecute(command)
+</div>
+
+<h3 id="pros">pros</h3>
+
+<ul>
+  <li>Single Responsibility Principle. Decouple invoking operations from performing operations</li>
+  <li>Open/Closed Principle. Introduce new commands without breaking existing client code</li>
+  <li>reversible commands</li>
+  <li>can store the commands as parameters -&gt; store them -&gt; execute them later or on particular time</li>
+  <li>decompose commands as meticulous as possible and reassemble them to other complex commands</li>
+</ul>
+
+<h3 id="cons">cons</h3>
+
+<ul>
+  <li>may creates too detailed and too many classes for commands</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>With command pattern, we can wrap operations into stand-alone objects in which we can</p>
+
+<ul>
+  <li>change remote control (invoker)</li>
+  <li>queue series commands (not every language supports metaprogramming)
+    <ul>
+      <li>we can also store them in database, not only RAM</li>
+    </ul>
+  </li>
+  <li>reverse commands (unexecute) (恢復上一動)</li>
+</ul>
+
+<h2 id="what">What?</h2>
+
+<h3 id="ruby-example">ruby example</h3>
+
+<p>A robot performs a serial movements to dance: right leg, left leg, head, butt and we can write a script as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Robot</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">move_right_leg</span>
+    <span class="nb">puts</span> <span class="s1">'move right leg'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">move_left_leg</span>
+    <span class="nb">puts</span> <span class="s1">'move left leg'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">move_head</span>
+    <span class="nb">puts</span> <span class="s1">'move head'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">move_butt</span>
+    <span class="nb">puts</span> <span class="s1">'move butt'</span>
+  <span class="k">end</span>
+
+  <span class="c1"># ... other movements</span>
+<span class="k">end</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="no">Robot</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="nf">move_right_leg</span>
+<span class="n">robot</span><span class="p">.</span><span class="nf">move_left_leg</span>
+<span class="n">robot</span><span class="p">.</span><span class="nf">move_head</span>
+<span class="n">robot</span><span class="p">.</span><span class="nf">move_butt</span>
+</code></pre></div></div>
+
+<p>With command pattern, we can achieve properties:</p>
+
+<ul>
+  <li>change remote control (invoker)</li>
+  <li>queue series commands (not every language supports metaprogramming)</li>
+  <li>can reverse command (unexecute) (恢復上一動)</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Robot</span> <span class="c1"># unchanged</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">move_right_leg</span>
+    <span class="nb">puts</span> <span class="s1">'move right leg'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">move_left_leg</span>
+    <span class="nb">puts</span> <span class="s1">'move left leg'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">move_head</span>
+    <span class="nb">puts</span> <span class="s1">'move head'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">undo_right_leg</span>
+    <span class="nb">puts</span> <span class="s1">'undo right leg'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">undo_left_leg</span>
+    <span class="nb">puts</span> <span class="s1">'undo left leg'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">undo_head</span>
+    <span class="nb">puts</span> <span class="s1">'undo head'</span>
+  <span class="k">end</span>
+
+  <span class="c1"># ... other movements</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Command</span>
+  <span class="k">def</span> <span class="nf">execute</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">unexecute</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">CustomCommand</span> <span class="o">&lt;</span> <span class="no">Command</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="n">commands</span><span class="p">)</span>
+    <span class="vi">@receiver</span> <span class="o">=</span> <span class="n">receiver</span>
+    <span class="vi">@commands</span> <span class="o">=</span> <span class="n">commands</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">execute</span>
+    <span class="vi">@commands</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">command</span><span class="o">|</span>
+      <span class="k">case</span> <span class="n">command</span>
+      <span class="k">when</span> <span class="s1">'move_right_leg'</span>
+        <span class="vi">@receiver</span><span class="p">.</span><span class="nf">move_right_leg</span>
+      <span class="k">when</span> <span class="s1">'move_left_leg'</span>
+        <span class="vi">@receiver</span><span class="p">.</span><span class="nf">move_left_leg</span>
+      <span class="k">when</span> <span class="s1">'move_head'</span>
+        <span class="vi">@receiver</span><span class="p">.</span><span class="nf">move_head</span>
+      <span class="k">when</span> <span class="s1">'move_butt'</span>
+        <span class="vi">@receiver</span><span class="p">.</span><span class="nf">move_butt</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">unexecute</span>
+    <span class="vi">@commands</span><span class="p">.</span><span class="nf">reverse_each</span> <span class="k">do</span> <span class="o">|</span><span class="n">command</span><span class="o">|</span>
+      <span class="k">case</span> <span class="n">command</span>
+      <span class="k">when</span> <span class="s1">'move_right_leg'</span>
+        <span class="vi">@receiver</span><span class="p">.</span><span class="nf">undo_right_leg</span>
+      <span class="k">when</span> <span class="s1">'move_left_leg'</span>
+        <span class="vi">@receiver</span><span class="p">.</span><span class="nf">undo_left_leg</span>
+      <span class="k">when</span> <span class="s1">'move_head'</span>
+        <span class="vi">@receiver</span><span class="p">.</span><span class="nf">undo_head</span>
+      <span class="k">when</span> <span class="s1">'move_butt'</span>
+        <span class="vi">@receiver</span><span class="p">.</span><span class="nf">undo_butt</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">HeadCommand</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+    <span class="vi">@receiver</span> <span class="o">=</span> <span class="n">receiver</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">execute</span>
+    <span class="vi">@receiver</span><span class="p">.</span><span class="nf">move_head</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">unexecute</span>
+    <span class="vi">@receiver</span><span class="p">.</span><span class="nf">undo_head</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Invoker</span> <span class="c1"># can be attached to any remote control</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@history</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">on_press_custom_button</span><span class="o">=</span><span class="p">(</span><span class="n">commands</span><span class="p">)</span> <span class="c1"># you can change custom button to any other button</span>
+    <span class="vi">@on_press_custom_button</span> <span class="o">=</span> <span class="n">commands</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">on_press_head_button</span><span class="o">=</span><span class="p">(</span><span class="n">command</span><span class="p">)</span> <span class="c1"># you can change custom button to any other button</span>
+    <span class="vi">@on_press_head_button</span> <span class="o">=</span> <span class="n">command</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">execute_custom_command</span>
+    <span class="vi">@on_press_custom_button</span><span class="p">.</span><span class="nf">execute</span> <span class="k">if</span> <span class="vi">@on_press_custom_button</span><span class="p">.</span><span class="nf">is_a?</span> <span class="no">Command</span>
+    <span class="vi">@history</span><span class="p">.</span><span class="nf">push</span> <span class="vi">@on_press_custom_button</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">execute_head_command</span>
+    <span class="vi">@on_press_head_button</span><span class="p">.</span><span class="nf">execute</span> <span class="k">if</span> <span class="vi">@on_press_head_button</span><span class="p">.</span><span class="nf">is_a?</span> <span class="no">Command</span>
+    <span class="vi">@history</span><span class="p">.</span><span class="nf">push</span> <span class="vi">@on_press_head_button</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">undo</span>
+    <span class="nb">puts</span> <span class="vi">@history</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="vi">@history</span><span class="p">.</span><span class="nf">pop</span>
+    <span class="k">if</span> <span class="o">!</span><span class="n">command</span><span class="p">.</span><span class="nf">nil?</span>
+      <span class="n">command</span><span class="p">.</span><span class="nf">unexecute</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Usage</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">invoker</span> <span class="o">=</span> <span class="no">Invoker</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">receiver</span> <span class="o">=</span> <span class="no">Robot</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">invoker</span><span class="p">.</span><span class="nf">on_press_custom_button</span> <span class="o">=</span> <span class="no">CustomCommand</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">receiver</span><span class="p">,</span> <span class="p">[</span><span class="s1">'move_right_leg'</span><span class="p">,</span> <span class="s1">'move_left_leg'</span><span class="p">])</span>
+<span class="n">invoker</span><span class="p">.</span><span class="nf">on_press_head_button</span> <span class="o">=</span> <span class="no">HeadCommand</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">receiver</span><span class="p">)</span>
+
+<span class="n">invoker</span><span class="p">.</span><span class="nf">execute_custom_command</span>
+<span class="c1"># results</span>
+<span class="c1"># move right leg</span>
+<span class="c1"># move left leg</span>
+<span class="n">invoker</span><span class="p">.</span><span class="nf">undo</span>
+<span class="c1"># results</span>
+<span class="c1"># undo left leg</span>
+<span class="c1"># undo right leg</span>
+
+<span class="n">invoker</span><span class="p">.</span><span class="nf">execute_custom_command</span>
+<span class="n">invoker</span><span class="p">.</span><span class="nf">execute_head_command</span>
+<span class="n">invoker</span><span class="p">.</span><span class="nf">undo</span>
+<span class="n">invoker</span><span class="p">.</span><span class="nf">undo</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=9qA5kw8dcSU&amp;list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc&amp;index=7">Command Pattern – Design Patterns (ep 7)</a></p>
+
+<p><a href="https://refactoring.guru/design-patterns/command">Command</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

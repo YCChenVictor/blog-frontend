@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Test Driven Development In Rspec</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>TDD is a kind of software development process by writing test first and then keeping testing the software until all required function developed. The steps:</p>
+
+<ul>
+  <li>turn business logic into specifications</li>
+  <li>decompose specifications into functions (MVC)</li>
+  <li>define all desired input and output of each function</li>
+  <li>write test first for every function</li>
+  <li>given the tests, compose codebase to realize business logic</li>
+</ul>
+
+<h2 id="why">Why</h2>
+
+<p>TDD reduces bugs and increase the quality of code, making software to be more maintainable and understandable. With no test, there would be more manual test in the future and it would be hard to update the version.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="the-different-types-of-specification-and-the-frequency-oftesting">The Different Types of Specification And The Frequency of Testing</h3>
+
+<ol>
+  <li>Model specs — <strong>always</strong></li>
+  <li>System specs/feature specs — <strong>always</strong></li>
+  <li>Request specs/controller specs — <strong>rarely</strong></li>
+  <li>Helper specs — <strong>rarely</strong></li>
+  <li>View specs — <strong>never</strong></li>
+  <li>Routing specs — <strong>never</strong></li>
+  <li>Mailer specs — <strong>never</strong></li>
+  <li>Job specs — <strong>never</strong></li>
+</ol>
+
+<h3 id="aaa-principle-arrange---act--assert">AAA principle (Arrange -&gt; Act -&gt; Assert)</h3>
+
+<blockquote>
+  <p>The basic principle to build spec is AAA principle.
+<strong>arrange:</strong> describe the environment before action begin
+<strong>act:</strong> execute the unit function that we want to test
+<strong>assert:</strong> check whether the result is what we want</p>
+</blockquote>
+
+<h4 id="aaa-principle-maps-rspec">AAA principle maps Rspec</h4>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"the_summary"</span><span class="p">,</span> <span class="ss">type: :feature</span> <span class="k">do</span>
+
+  <span class="n">context</span> <span class="s2">"arrange"</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"assertion"</span> <span class="k">do</span>
+      <span class="s2">"act"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<h3 id="practical-example">Practical example</h3>
+
+<p>For example, a woodcutter go into a forest (<strong>arrange</strong> the environment) -&gt; the woodcutter use the axe to cut the wood (<strong>act</strong> the function) -&gt; and the woodcutter should get the woods (<strong>assert</strong> the result). If the woodcutter does not like the result, woodcutter should modify the <strong>act</strong>.</p>
+
+<h3 id="generate-specification">Generate Specification</h3>
+
+<p>In terminal, create a directory, model, and test as follow</p>
+
+<h4 id="directory--rspec-installing">directory &amp; rspec installing</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>woodcutter
+<span class="nb">cd </span>woodcutter
+gem <span class="nb">install </span>rspec
+</code></pre></div></div>
+
+<h4 id="model--rspec">model &amp; rspec</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>woodcutter.rb
+<span class="nb">mkdir </span>spec
+<span class="nb">cd </span>spec
+<span class="nb">touch </span>woodcutter_spec.rb
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">woodcutter_spec.rb</code>,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require_relative</span> <span class="s1">'../woodcutter'</span>
+
+<span class="n">describe</span> <span class="no">Woodcutter</span> <span class="k">do</span>
+  <span class="n">context</span> <span class="s2">"after woodcutter enter the forest"</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"get a wood"</span> <span class="k">do</span>
+      <span class="n">woodcutter</span> <span class="o">=</span> <span class="no">Woodcutter</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="kp">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">woodcutter</span><span class="p">.</span><span class="nf">cut</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">woodcutter</span><span class="p">.</span><span class="nf">woods</span><span class="p">).</span><span class="nf">to</span> <span class="n">be</span> <span class="mi">1</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>In the params of <code class="language-plaintext highlighter-rouge">new</code>, true means the woodcutter now is in forest and 0 means the number of wood the cutter has.</p>
+
+<p>After the spec (or test) done, different steps trigger on different mindset. Given, the TDD or BDD mindset, we should run the <code class="language-plaintext highlighter-rouge">woodcutter_spec.rb</code> multiple times until the <code class="language-plaintext highlighter-rouge">woodcutter.rb</code> achieves the demand in <code class="language-plaintext highlighter-rouge">woodcutter_spec.rb</code></p>
+
+<h3 id="build-the-feature">Build the feature</h3>
+
+<h4 id="execute-rspec-iteratively">Execute RSpec iteratively</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rspec woodcutter_spec.rb
+</code></pre></div></div>
+
+<p>Given the errors from RSpec, I can gradully build the feature as follow.</p>
+
+<ol>
+  <li>
+    <p>NameError: uninitialized constant Woodcutter =&gt; create <code class="language-plaintext highlighter-rouge">Woodcutter</code> in <code class="language-plaintext highlighter-rouge">woodcutter.rb</code></p>
+  </li>
+  <li>
+    <p>ArgumentError: wrong number of arguments (given 1, expected 0) =&gt; create <code class="language-plaintext highlighter-rouge">initialize</code> method in <code class="language-plaintext highlighter-rouge">Woodcutter</code> with params, <code class="language-plaintext highlighter-rouge">in_forest</code> &amp; <code class="language-plaintext highlighter-rouge">init_count</code></p>
+  </li>
+  <li>
+    <p>NoMethodError: undefined method ‘cut’ =&gt; create <code class="language-plaintext highlighter-rouge">cut</code> method</p>
+  </li>
+  <li>
+    <p>NoMethodError: undefined method ‘woods’ =&gt; create <code class="language-plaintext highlighter-rouge">woods</code> method</p>
+  </li>
+  <li>
+    <p>expected #&lt;Integer:3&gt; =&gt; 1, got #&lt;NilClass:8&gt; =&gt; nil =&gt; add the <code class="language-plaintext highlighter-rouge">@quantity</code> in <code class="language-plaintext highlighter-rouge">initialize</code>, <code class="language-plaintext highlighter-rouge">cut</code>, and <code class="language-plaintext highlighter-rouge">woods</code> as follow</p>
+
+    <ol>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">@quantity = init_count</code> in <code class="language-plaintext highlighter-rouge">initialize</code></p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">@quantity += 1</code> in <code class="language-plaintext highlighter-rouge">cut</code></p>
+      </li>
+      <li>
+        <p><code class="language-plaintext highlighter-rouge">@quantity</code> in <code class="language-plaintext highlighter-rouge">woods</code></p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<p>Then the whole class:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Woodcutter</span>
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">in_forest</span><span class="p">,</span> <span class="n">init_count</span><span class="p">)</span>
+    <span class="vi">@quantity</span> <span class="o">=</span> <span class="n">init_count</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">cut</span>
+    <span class="vi">@quantity</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">woods</span>
+    <span class="vi">@quantity</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="environment">Environment</h4>
+
+<p>We should add another class for woodcutter to walk into the forest and add <code class="language-plaintext highlighter-rouge">before</code> block to setup the environment.</p>
+
+<p>skip</p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://learntdd.in/rails/"><strong>Learn TDD in Rails Learn TDD</strong></a></p>
+
+<p><a href="https://ihower.tw/rails/testing.html"><strong>Ruby on Rails 實戰聖經</strong></a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Test-driven_development">https://en.wikipedia.org/wiki/Test-driven_development</a></p>
+
+<p><a href="https://ithelp.ithome.com.tw/articles/10185338"><strong>Hello Testing - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天</strong></a></p>
+
+<p><a href="https://www.codewithjason.com/different-kinds-rails-tests-use/"><strong>What are the different kinds of Rails tests and when should I use each? - Code with Jason</strong></a></p>
+
+<p><a href="https://github.com/teamcapybara/capybara#using-capybara-with-rspec"><strong>teamcapybara/capybara</strong></a></p>
+
+<p><a href="https://github.com/rspec/rspec-rails"><strong>rspec/rspec-rails</strong></a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

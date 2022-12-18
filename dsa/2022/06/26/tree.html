@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+
+<script src='/implement_p5.js'></script>
+
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">tree</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<blockquote>
+  <ul>
+    <li>A tree is composed of nodes.</li>
+    <li>Each tree has a root node.</li>
+    <li>Each node has zero or more child nodes.</li>
+    <li>The data stored in each node has any datatype.</li>
+    <li>Three type of traversals: inorder, preorder, postorder</li>
+  </ul>
+</blockquote>
+
+<h3 id="essential-structure">essential structure</h3>
+
+<p>Node:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">TreeNode</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">key</span> <span class="o">=</span> <span class="nx">key</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">children</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+
+  <span class="kd">get</span> <span class="nx">isLeaf</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">children</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">get</span> <span class="nx">hasChildren</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Tree:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Tree</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TreeNode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">preOrderTraversal</span><span class="p">(</span><span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// I should understand the concept first</span>
+    
+  <span class="p">}</span>
+
+  <span class="nx">insert</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// we can only insert node as leaf</span>
+    
+  <span class="p">}</span>
+
+  <span class="nx">remove</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+
+  <span class="nx">find</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="types-of-tree">types of tree</h3>
+
+<p>please add description in each types of tree</p>
+
+<ul>
+  <li>general tree: each node has 0 to many child node</li>
+</ul>
+
+<div id="general_tree" class="h-screen justify-center items-center">
+  <div id="general_tree toggle_erase" class=""></div>
+  <div id="general_tree image_save" class=""></div>
+  <div id="general_tree canvas" class="border"></div>
+</div>
+
+<script>
+  const general_tree_id = 'general_tree'
+  let generalTree = p5Draw('general_tree')
+  let generalTreeP5 = new p5(generalTree, general_tree_id);
+</script>
+
+<ul>
+  <li>binary tree: each node has at most 2 child modes</li>
+</ul>
+
+<div id="binary_tree" class="h-screen justify-center items-center">
+  <div id="binary_tree toggle_erase" class=""></div>
+  <div id="binary_tree image_save" class=""></div>
+  <div id="binary_tree canvas" class="border"></div>
+</div>
+
+<script>
+  const binary_tree_id = 'binary_tree'
+  let binaryTree = p5Draw('binary_tree')
+  let binaryTreeP5 = new p5(binaryTree, binary_tree_id);
+</script>
+
+<ul>
+  <li>binary search tree
+    <ul>
+      <li>a kind of binary tree</li>
+      <li>the key values in the right node is greater than the key values in the left node</li>
+    </ul>
+  </li>
+</ul>
+
+<div id="binary_search_tree" class="h-screen justify-center items-center">
+  <div id="binary_search_tree toggle_erase" class=""></div>
+  <div id="binary_search_tree image_save" class=""></div>
+  <div id="binary_search_tree canvas" class="border"></div>
+</div>
+
+<script>
+  const binary_search_tree_id = 'binary_search_tree'
+  let binarySearchTree = p5Draw('binary_search_tree')
+  let binarySearchTreeP5 = new p5(binarySearchTree, binary_search_tree_id);
+</script>
+
+<ul>
+  <li>balanced tree</li>
+  <li>unbalanced tree</li>
+  <li>complete binary tee</li>
+  <li>full binary tree</li>
+  <li>perfect binary tree</li>
+</ul>
+
+<h3 id="types-of-traversal">types of traversal</h3>
+
+<p>Given a tree as follow:</p>
+
+<div id="types_of_traversal_tree" class="h-screen justify-center items-center">
+  <div id="types_of_traversal_tree toggle_erase" class=""></div>
+  <div id="types_of_traversal_tree image_save" class=""></div>
+  <div id="types_of_traversal_tree canvas" class="border"></div>
+</div>
+
+<script>
+  const types_of_traversal_tree_id = 'types_of_traversal_tree'
+  let typesOfTraversalTree = p5Draw('types_of_traversal_tree')
+  let typesOfTraversalTreeP5 = new p5(typesOfTraversalTree, types_of_traversal_tree_id);
+</script>
+
+<p>There are three actions we can do in current node: visit (return the value of current node), left (traverse to the left node), right (traverse to the right). After each traverse, redo it from begin; for example, if the stragegy is LVR, after we traverse to the left node redo visit and then left and then right.</p>
+
+<ul>
+  <li>inorder traversals (LVR): 42513</li>
+  <li>preorder traversals (VLR): 12453</li>
+  <li>postorder traversals (LRV): 45231</li>
+</ul>
+
+<h3 id="other-note">other note</h3>
+
+<ul>
+  <li>A tree is a type of graph</li>
+  <li>root is not necessary in graph theory</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>(to be continued)</p>
+
+<h2 id="how">How?</h2>
+
+<p>focus on the mechanim</p>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>cracking the coding interview</p>
+
+<p><a href="https://www.30secondsofcode.org/articles/s/js-data-structures-tree">JavaScript Data Structures - Tree</a></p>
+
+<p><a href="https://stackoverflow.com/questions/27778105/whats-the-purpose-of-an-asterisk-in-es6-generator-functions">What’s the purpose of an asterisk (*) in ES6 generator functions</a></p>
+
+<p><a href="https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/">Tree Traversals (Inorder, Preorder and Postorder)</a></p>
+
+<p><a href="http://alrightchiu.github.io/SecondRound/binary-tree-traversalxun-fang.html#pre">Binary Tree: Traversal(尋訪)</a></p>
+
+<p><a href="https://github.com/processing/p5.js/wiki/Global-and-instance-mode">Global and instance mode</a></p>
+
+<p><a href="https://www.geeksforgeeks.org/difference-between-binary-tree-and-binary-search-tree/">Difference between Binary Tree and Binary Search Tree</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

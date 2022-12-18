@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">relational algebra</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>A theory using algebraic structure with well-founded semantics for data modeling. DBMS defines the data queries on this theory.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>With relational algebra, we can define the query function completely. We need a systematic way for query language designing.</p>
+
+<h2 id="the-examples">The examples:</h2>
+
+<p>categories: unary relational, binary relational, relational algebra from set theory.</p>
+
+<h3 id="unary-relational-select-projectrename">Unary Relational (SELECT, PROJECT, RENAME)</h3>
+
+<p>The unary relational methods suit for <strong>A</strong> table; for example, selecting data from a table, selecting columns from a table, rename data in a table</p>
+
+<h4 id="select-symbol-σ">SELECT (symbol: σ)</h4>
+
+<p><code class="language-plaintext highlighter-rouge">SELECT</code> is used for selecting tuple from a table. The formula:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>σ_t^(T)
+</code></pre></div></div>
+<p>means</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>σ_(topic = "Database")^(Tutorials)
+</code></pre></div></div>
+<p>means</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT tuples from Tutorials where topic = Database
+</code></pre></div></div>
+<h4 id="project-symbol-π">PROJECT (symbol: π)</h4>
+
+<p><code class="language-plaintext highlighter-rouge">PROJECT</code> is used for defining a relation that contains a vertical <strong>subset</strong> of Relation. The formula:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Π_t1, t2^(T)
+</code></pre></div></div>
+<p>means</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Π_(CustomerName, Status)^(Customers)
+</code></pre></div></div>
+<p>means</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT the columns FROM Customers WHERE column_name = CustomerName, Status
+</code></pre></div></div>
+<h4 id="rename-symbol-ρ">RENAME (symbol: ρ)</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ρ (a/b)R
+</code></pre></div></div>
+<p>means</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rename attribute b of relation by a
+</code></pre></div></div>
+<h3 id="relational-algebra-from-set-theory-union-intersection-difference-cartesian-product">Relational Algebra from Set Theory (UNION, INTERSECTION, DIFFERENCE, CARTESIAN PRODUCT)</h3>
+
+<h4 id="union-υ-or">UNION (υ) (<strong>or</strong>)</h4>
+<p>With Following A and B tables
+<img src="/assets/img/1__n7MDZgQbFzOy3GpkT4Nqfg.png" alt="" /></p>
+
+<p>A υ B means
+<img src="/assets/img/1__2V4rsTtckQPSLHuMCKJMig.png" alt="" /></p>
+
+<h4 id="intersection">INTERSECTION</h4>
+
+<p>A ∩ B means
+<img src="/assets/img/1__Nz3RuX1h7Pd2rU4naGFcKw.png" alt="" /></p>
+
+<h4 id="difference">DIFFERENCE</h4>
+
+<p>A — B means
+<img src="/assets/img/1__9baB1y__0Haqm33FieJuyRQ.png" alt="" /></p>
+
+<h4 id="cartesian-product">CARTESIAN PRODUCT</h4>
+
+<p>for example,</p>
+
+<p>A = (x, y, z); B = (1, 2, 3), then A X B =
+<img src="/assets/img/1__ZFU47Skd1nOI2Zp2Hy3YGw.png" alt="" /></p>
+
+<p>for example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>σ_(column 2 = '1')^(A X B)
+</code></pre></div></div>
+<p>means</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT tuples from (A X B) where column 2 = '1'
+</code></pre></div></div>
+<p>;as a result, the result should be
+<img src="/assets/img/1__cHWfh7Qcy765CRhhRxTe2w.png" alt="" /></p>
+
+<h3 id="binary-relational-inner-join--otterjoin">Binary Relational (Inner Join &amp; Otter Join)</h3>
+
+<h4 id="inner-join-theta-equi-natural">Inner Join (Theta, EQUI, Natural)</h4>
+
+<ol>
+  <li>Theta Join: the general case of JOIN operation
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A ⋈θ B
+</code></pre></div>    </div>
+    <p>for example,</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A ⋈_(A.column 2 &gt;  B.column 2)^(B)
+</code></pre></div>    </div>
+    <p>means finding tuples from A where the value in column 2 of A is bigger than the value in column 2 of B.
+<img src="/assets/img/1__uz5XWoYAQmEZXy1CWCTjtA.png" alt="" /></p>
+  </li>
+  <li>EQUI Join: when theta join use equal sign
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A ⋈_(A.column 2 =  B.column 2)(B)
+</code></pre></div>    </div>
+    <p>means finding the tuples from A where the value in column 2 of A = the value in column 2 of B.</p>
+  </li>
+</ol>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__R__xEPO7HpukrcUJOH6ihdw.png" alt="" /></p>
+
+<ol>
+  <li>Natural Join: SELECT all the tuples where both table have same attribute; for example,
+<img src="/assets/img/1__zO5NTcl9igOHbeNVva__gUg.png" alt="" /></li>
+</ol>
+
+<h4 id="otter-join-left-right-full">Otter Join (Left, Right, Full)</h4>
+
+<p>otter join returns not only the intersection of both table, but also the other.</p>
+
+<ol>
+  <li>Left Join</li>
+</ol>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__Pmx__LY1VFf__id6eym38MiQ.png" alt="" /></p>
+
+<p>for example,</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__iAePBfyy9k88lTBU3SbymA.png" alt="" /></p>
+
+<p>Then left join will be</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__ljglGmgIkK__Kqw4jCjbxPA.png" alt="" /></p>
+
+<ol>
+  <li>Right Join</li>
+</ol>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__oScxW0M4fNNm3Wm2UDFwTg.png" alt="" /></p>
+
+<ol>
+  <li>Full Join</li>
+</ol>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__V____gnF8tut4nOTVu1fgWAg.png" alt="" /></p>
+
+<h3 id="reference">reference</h3>
+
+<p><a href="https://www.guru99.com/relational-algebra-dbms.html">https://www.guru99.com/relational-algebra-dbms.html</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Relational_algebra" title="https://en.wikipedia.org/wiki/Relational_algebra"><strong>Relational algebra</strong><br />
+_In database theory, relational algebra is a theory that uses algebraic structures with a well-founded semantics for…_en.wikipedia.org</a><a href="https://en.wikipedia.org/wiki/Relational_algebra"></a></p>
+
+<p><a href="https://www.w3resource.com/sql/joins/perform-an-inner-join.php" title="https://www.w3resource.com/sql/joins/perform-an-inner-join.php"><strong>SQL INNER JOIN - w3resource</strong><br />
+_The INNER JOIN selects all rows from both participating tables as long as there is a match between the columns. An SQL…_www.w3resource.com</a><a href="https://www.w3resource.com/sql/joins/perform-an-inner-join.php"></a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

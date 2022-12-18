@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(Rails Elementary 4) View-Layout</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h3 id="csrf-cross-site-requestforgery">CSRF (Cross-Site Request Forgery)</h3>
+
+<h4 id="what-is-csrf">What is CSRF?</h4>
+<p>wiki: Cross-site request forgery, also known as <strong>one-click attack</strong> or session riding and abbreviated as CSRF or XSRF, is a type of malicious exploit of a website where <strong>unauthorized commands</strong> are submitted from <strong>a user that the web application trusts</strong></p>
+
+<p>For example, after a user login a webpage, the information would be saved in cookie then we can induce users to click a website we built to send malicious command to the webpage through the cookie. (這個例子還不確定)</p>
+
+<h4 id="how-to-prevent-it-in-rails">How to prevent it in rails?</h4>
+<p>In <code class="language-plaintext highlighter-rouge">application_controller.rb</code>,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protect_from_forgery
+</code></pre></div></div>
+
+<h3 id="how-rails-find-layout-for-specificmethod">How rails find layout for specific method?</h3>
+
+<p>In rails, if the controller name is xxxController, then it will try to find xxx.html.erb in <code class="language-plaintext highlighter-rouge">app/views/layouts</code> first and then go to <code class="language-plaintext highlighter-rouge">application.html.erb</code>.</p>
+
+<h4 id="specific-html-in-controller">Specific html in Controller</h4>
+
+<p>If I want it to render specific html, xxx, in Controller, I can do the following code</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class CandidatesController &lt; ApplicationController  
+  layout "xxx"  
+  ...  
+end
+</code></pre></div></div>
+<h4 id="specific-html-inaction">Specific html in Action</h4>
+
+<p>If I want it to render specific html, xxx, in Action, I can do the following code</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class CandidatesController &lt; ApplicationController  
+    
+  def index  
+    @candidates = Candidate.all  
+    render layout: "xxx"  
+  end
+
+  ...
+
+end
+</code></pre></div></div>
+<h3 id="what-if-i-want-multipleyield-in-the-same-file">What if I want multiple yield in the same file?</h3>
+
+<p>To have multiple yield in one html, you need to have tag for rails identifying which yield to fill in. For example, when I call main page, by default, rails will go to layout to find <code class="language-plaintext highlighter-rouge">application.html.erb</code>. Then it detects yield, so it go to the views/xxx/yyy.html.erb to find what to be filled into yield if we call a method in webpage xxx/yyy. To help rails to identify which yield to choose, in <code class="language-plaintext highlighter-rouge">yyy.html.erb</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...  
+&lt;title&gt;&lt;%= yield :test %&gt;&lt;/title&gt;  
+...  
+&lt;%= yield %&gt;
+</code></pre></div></div>
+<p>and in <code class="language-plaintext highlighter-rouge">application.html.erb</code>, there are two method: provide and content_for</p>
+
+<h4 id="provide">provide</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;% provide :test, "Hello" %&gt;
+
+...
+</code></pre></div></div>
+<p>It will fill Hello into yield :test, and fill the rest of code into yield</p>
+
+<h4 id="content_for">content_for</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;% content_for :test do %&gt;  
+  Hello  
+&lt;% end %&gt;
+
+...
+</code></pre></div></div>
+<p>It will fill Hello to yield :test and fill the rest of code into yield</p>
+
+<h3 id="partial-render">Partial Render</h3>
+
+<p>In rails,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;% render "form" %&gt;
+</code></pre></div></div>
+<p>means it will find <code class="language-plaintext highlighter-rouge">_form.html.erb</code> file in the same directory and put the content into the place of render. Partial render fits the reusage of a html.</p>
+
+<p>For example, if the file,<code class="language-plaintext highlighter-rouge">_form.html.erb:</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= simple_form_for(candidate) do |f| %&gt;  
+  &lt;%= f.input :name, label: "name" %&gt;  
+  &lt;%= f.input :age, label: "age" %&gt;  
+  &lt;%= f.input :party, label: "party" %&gt;  
+  &lt;%= f.input :politics, label: "presentation" %&gt;  
+  &lt;%= f.submit %&gt;  
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>Then, in <code class="language-plaintext highlighter-rouge">edit.html.erb</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;h1&gt;Edit Candidate&lt;/h1&gt;  
+&lt;%= render "form", candidate: @candidate %&gt;  
+&lt;br /&gt;  
+&lt;%= link_to 'back to candidates list', candidates_path %&gt;
+</code></pre></div></div>
+<p>it will put the codes of <code class="language-plaintext highlighter-rouge">_form.html.erb</code> on the place of <code class="language-plaintext highlighter-rouge">render</code> in <code class="language-plaintext highlighter-rouge">edit.html.erb</code> and input the value of <code class="language-plaintext highlighter-rouge">@candidate</code> to <code class="language-plaintext highlighter-rouge">candidate</code> .</p>
+
+<h4 id="why-candidate-candidate">Why <code class="language-plaintext highlighter-rouge">candidate: @candidate</code> ?</h4>
+
+<p>Because <code class="language-plaintext highlighter-rouge">_form.html.erb</code> as reusable file, it should not take any responsible to find the variable @candidate rather being fed value to candidate with @candidate.</p>
+
+<h3 id="view-helper">View Helper</h3>
+
+<p>Take a look at following</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tr&gt;  
+  &lt;td&gt;  
+   &lt;% if gender == 1 %&gt;  
+     male  
+   &lt;% elsif gender == 0 %&gt;  
+     female  
+   &lt;% else %&gt;  
+     anything  
+   &lt;% end %&gt;    
+  &lt;/td&gt;  
+&lt;/tr&gt;
+</code></pre></div></div>
+<p>There is if else logic in it. However, because view should just render template, the logic should not in view, so in rails, there is helper to solve this problem.</p>
+
+<p>In helper, we can define a function</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def user_gender (gender)
+
+  if gender == 1  
+    return "male"  
+  elsif gender == 0  
+    return "female"  
+  else  
+    return "anything"
+
+  end
+
+end
+</code></pre></div></div>
+<p>Then the logic in html can be written as</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tr&gt;  
+  &lt;td&gt;  
+   &lt;%= user_gender(gender) %&gt;  
+  &lt;/td&gt;  
+&lt;/tr&gt;
+</code></pre></div></div>
+<h3 id="reference">Reference:</h3>
+
+<p><a href="https://railsbook.tw/"><strong>為你自己學 Ruby on Rails 高見龍</strong></a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery"><strong>CSRF-wiki</strong></a></p>
+
+<p><a href="https://guides.rubyonrails.org/security.html"><strong>rails-security</strong></a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

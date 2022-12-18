@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(Rails) Commenting System & Polymorphics</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="summary">Summary</h2>
+
+<h2 id="why">Why</h2>
+
+<h2 id="how">How</h2>
+<h3 id="polymorphic">polymorphic</h3>
+<p>I am going to use the concept of <code class="language-plaintext highlighter-rouge">polymorphic</code> to create a <code class="language-plaintext highlighter-rouge">Comment</code> model that the comments can be commented by other comments in the same <code class="language-plaintext highlighter-rouge">Comment</code> model. There will be one column for <code class="language-plaintext highlighter-rouge">commentable_id</code>, storing the <code class="language-plaintext highlighter-rouge">comment_id</code> of comment being commented. If not just comments can be commented, we can add a <code class="language-plaintext highlighter-rouge">commentable_type</code> column to distinguish the type of objects being commented.</p>
+
+<p>\1. generate the <code class="language-plaintext highlighter-rouge">Comment</code> model:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g model Comment commentable_type:string commentable_id:integer user:references body:text
+</code></pre></div></div>
+
+<p>\2. setting up <code class="language-plaintext highlighter-rouge">Comment</code> model:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Comment &lt; ApplicationRecord
+  belongs_to :user
+  belongs_to :commentable, polymorphic: true
+end
+</code></pre></div></div>
+
+<p>\3. With <code class="language-plaintext highlighter-rouge">polymorphic: true</code>, this <code class="language-plaintext highlighter-rouge">Comment</code> model can belong to many model; for example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class User &lt; ApplicationRecord
+  ...
+  has_many :comments, as: :commentable, dependent: :destroy
+  ...
+end
+
+class Product &lt; ApplicationRecord
+  ...
+  has_many :comments, as: :commentable, dependent: :destroy
+  ...
+end
+</code></pre></div></div>
+
+<p>\4. Let comment also has many comments</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Comment &lt; ApplicationRecord
+  ...
+  has_many: comments, as: :commentable
+end
+</code></pre></div></div>
+
+<h3 id="commenting-system">Commenting System</h3>
+<p>With the setup above, open <code class="language-plaintext highlighter-rouge">rails console</code> and try to create testing data as follow:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Product.first.comments.create(user_id: 1, body: "testing")
+Comment.first.comments.create(user_id: 1, body: "testing")
+</code></pre></div></div>
+<p>The code above will create comment to the first product in database and then create a comment to the first comment in database.</p>
+
+<h4 id="update-the-routes">update the routes</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rails.application.routes.draw do
+  ...
+
+  resources :products do
+    resources :comments
+    ...
+  end
+
+  resources :comments do
+    resources :comments # should use only to arrange the routes
+  end
+
+end
+</code></pre></div></div>
+<h4 id="update-the-views-i-use-tailwind">update the views (I use tailwind)</h4>
+<p>For example, I want to have a comment section in the show page of product. With the data created in <code class="language-plaintext highlighter-rouge">rails console</code>, use the following <code class="language-plaintext highlighter-rouge">view</code> to show the comments</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p class="font-bold text-lg"&gt;Comments&lt;/p&gt;
+&lt;% product.comments.each do |comment| %&gt;
+    &lt;div class="font-bold"&gt;
+      &lt;%= comment.body %&gt;
+    &lt;/div&gt;
+    &lt;% comment.comments.each do |comment| %&gt;
+      &lt;div class="px-4"&gt;
+        &lt;%= comment.body %&gt;
+      &lt;/div&gt;
+    &lt;% end %&gt;
+  &lt;/div&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>Then it looks like</p>
+
+<p><img src="/assets/img/self-comment.png" alt="" /></p>
+
+<h4 id="add-controller-for-comments-creation">add controller for comments creation</h4>
+<p>To create a comment, we need controller as follow:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class CommentsController &lt; ApplicationController
+
+  before_action :authenticate_user!
+
+  def create
+    find_commentable
+  	@comment = @commentable.comments.new comment_params
+    @comment.user = current_user
+    session[:return_to] ||= request.referer
+    if @comment.save
+      redirect_to session.delete(:return_to)
+    end
+  end
+
+  private
+    def comment_params
+      params.require(:comment).permit(:body)
+    end
+
+    def find_commentable
+      @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
+      @commentable = Product.find_by_id(params[:product_id]) if params[:product_id]
+    end
+
+end
+
+</code></pre></div></div>
+<p>Please take a look at <code class="language-plaintext highlighter-rouge">find_commentable</code>. <code class="language-plaintext highlighter-rouge">@commentable</code> uses <code class="language-plaintext highlighter-rouge">params</code>.</p>
+
+<h4 id="add-a-view-section-for-comment-creation">add a view section for comment creation</h4>
+<p>Next, I want to have a section for comments creation.</p>
+
+<p>For creation of product’s comments,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= form_for [product, Comment.new], :remote =&gt; true do |f| %&gt;
+  &lt;%= f.text_area :body, class: "input input-with-border", placeholder: "Add a comment", required: true %&gt;
+  &lt;%= f.submit class: "btn btn-default" %&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>and for creation of comments for comment,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= form_for [comment, Comment.new], :remote =&gt; true do |f| %&gt;
+  &lt;%= f.text_area :body, class: "input input-with-border", placeholder: "Add a comment", required: true %&gt;
+  &lt;%= f.submit class: "btn btn-default" %&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>We can create a partial render form <code class="language-plaintext highlighter-rouge">_form.html.erb</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= form_for [commentable, Comment.new], :remote =&gt; true do |f| %&gt;
+  &lt;div class=""&gt;
+    &lt;%= f.text_area :body, class: "input input-with-border", placeholder: "Add a comment", required: true %&gt;
+  &lt;/div&gt;
+  &lt;%= f.submit class: "btn btn-default" %&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>and use</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= render "comments/form", commentable: @product %&gt;
+</code></pre></div></div>
+<p>Then we should be able to create a comment:
+<img src="/assets/img/comment-creation-section.png" alt="" /></p>
+
+<h4 id="post-comment-to-comments-view">post comment to comments (view)</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="w-full lg:w-3/5 pb-6"&gt;
+    &lt;p class="font-bold text-lg"&gt;Comments&lt;/p&gt;
+    &lt;% product.comments.each do |comment| %&gt;
+      &lt;div class="font-bold"&gt;
+        &lt;%= comment.body %&gt;
+      &lt;/div&gt;
+      &lt;% comment.comments.each do |comment| %&gt;
+        &lt;div class="px-4"&gt;
+          &lt;%= comment.body %&gt;
+        &lt;/div&gt;
+      &lt;% end %&gt;
+      &lt;%= render "comments/form", commentable: comment, placeholder: "Add a reply" %&gt;
+    &lt;% end %&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;%= render "comments/form", commentable: product, placeholder: "Add a comment" %&gt;
+  &lt;/div&gt;
+</code></pre></div></div>
+<p>Then it looks like
+<img src="/assets/img/comment-of-comments.png" alt="" /></p>
+
+<h2 id="what">What</h2>
+<p>The implementation: <a href="https://github.com/henVictor/marketplace">example-marketplace</a></p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.codementor.io/ruby-on-rails/tutorial/threaded-comments-polymorphic-associations"><strong>Building a Reddit-like Commenting System with Rails</strong></a></p>
+
+<p><a href="https://web-crunch.com/posts/ruby-on-rails-marketplace-stripe-connect"><strong>marketplace</strong></a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

@@ -1,1063 +1,1193 @@
-<div>
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+    <h1 class="text-center mt-6 mb-6">Blog</h1>
+    <div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/ci-cd/2022/12/17/github-page.html">Github Page</a></h3>
+      <h3><a href="/blog/ci-cd/2022/12/17/github-page.html">Github Page</a></h3>
       <div class="text-sm text-gray-400">December 17, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2022/12/12/overview.html">Overview</a></h3>
+      <h3><a href="/blog/javascript/2022/12/12/overview.html">Overview</a></h3>
       <div class="text-sm text-gray-400">December 12, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/css/2022/12/11/tailwind.html">Tailwind</a></h3>
+      <h3><a href="/blog/css/2022/12/11/tailwind.html">Tailwind</a></h3>
       <div class="text-sm text-gray-400">December 11, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/presentation/2022/12/10/grokking-simplicity-ch3.html">Grokking Simplicity Ch3</a></h3>
+      <h3><a href="/blog/presentation/2022/12/10/grokking-simplicity-ch3.html">Grokking Simplicity Ch3</a></h3>
       <div class="text-sm text-gray-400">December 10, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mindset/2022/12/10/functional-programming.html">Functional Programming</a></h3>
+      <h3><a href="/blog/mindset/2022/12/10/functional-programming.html">Functional Programming</a></h3>
       <div class="text-sm text-gray-400">December 10, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/12/08/tailwind.html">Tailwind</a></h3>
+      <h3><a href="/blog/2022/12/08/tailwind.html">Tailwind</a></h3>
       <div class="text-sm text-gray-400">December 8, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2022/12/04/react.html">React</a></h3>
+      <h3><a href="/blog/react/2022/12/04/react.html">React</a></h3>
       <div class="text-sm text-gray-400">December 4, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/12/01/(independent)-travel.html">(independent) Travel</a></h3>
+      <h3><a href="/blog/english/2022/12/01/(independent)-travel.html">(independent) Travel</a></h3>
       <div class="text-sm text-gray-400">December 1, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/11/28/statement-of-purpose.html">Statement Of Purpose</a></h3>
+      <h3><a href="/blog/2022/11/28/statement-of-purpose.html">Statement Of Purpose</a></h3>
       <div class="text-sm text-gray-400">November 28, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/11/28/resume.html">Resume</a></h3>
+      <h3><a href="/blog/2022/11/28/resume.html">Resume</a></h3>
       <div class="text-sm text-gray-400">November 28, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/26/(integration)-rchaeologist-in-Britain.html">(integration) Rchaeologist In Britain</a></h3>
+      <h3><a href="/blog/english/2022/11/26/(integration)-rchaeologist-in-Britain.html">(integration) Rchaeologist In Britain</a></h3>
       <div class="text-sm text-gray-400">November 26, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/26/(integration)-is-vessels-the-same-as-batteries.html">(integration) Is Vessels The Same As Batteries</a></h3>
+      <h3><a href="/blog/english/2022/11/26/(integration)-is-vessels-the-same-as-batteries.html">(integration) Is Vessels The Same As Batteries</a></h3>
       <div class="text-sm text-gray-400">November 26, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/21/(integration)-birds-population.html">(integration) Birds Population</a></h3>
+      <h3><a href="/blog/english/2022/11/21/(integration)-birds-population.html">(integration) Birds Population</a></h3>
       <div class="text-sm text-gray-400">November 21, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/21/(independent)-advertisement.html">(independent) Advertisement</a></h3>
+      <h3><a href="/blog/english/2022/11/21/(independent)-advertisement.html">(independent) Advertisement</a></h3>
       <div class="text-sm text-gray-400">November 21, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/21/(independent)-support-artists.html">(independent) Support Artists</a></h3>
+      <h3><a href="/blog/english/2022/11/21/(independent)-support-artists.html">(independent) Support Artists</a></h3>
       <div class="text-sm text-gray-400">November 21, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/20/speaking-(toefl).html">Speaking (toefl)</a></h3>
+      <h3><a href="/blog/english/2022/11/20/speaking-(toefl).html">Speaking (toefl)</a></h3>
       <div class="text-sm text-gray-400">November 20, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/20/(toefl)-writing.html">(toefl) Writing</a></h3>
+      <h3><a href="/blog/english/2022/11/20/(toefl)-writing.html">(toefl) Writing</a></h3>
       <div class="text-sm text-gray-400">November 20, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/19/(toefl)-reading.html">(toefl) Reading</a></h3>
+      <h3><a href="/blog/english/2022/11/19/(toefl)-reading.html">(toefl) Reading</a></h3>
       <div class="text-sm text-gray-400">November 19, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/english/2022/11/19/(toefl)-listening.html">(toefl) Listening</a></h3>
+      <h3><a href="/blog/english/2022/11/19/(toefl)-listening.html">(toefl) Listening</a></h3>
       <div class="text-sm text-gray-400">November 19, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/2022/10/28/visitor.html">Visitor</a></h3>
+      <h3><a href="/blog/design-pattern/2022/10/28/visitor.html">Visitor</a></h3>
       <div class="text-sm text-gray-400">October 28, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/chemistry/2022/10/23/ch5-gas.html">Ch5 Gas</a></h3>
+      <h3><a href="/blog/chemistry/2022/10/23/ch5-gas.html">Ch5 Gas</a></h3>
       <div class="text-sm text-gray-400">October 23, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/10/21/solidity.html">Solidity</a></h3>
+      <h3><a href="/blog/2022/10/21/solidity.html">Solidity</a></h3>
       <div class="text-sm text-gray-400">October 21, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/blockchain/2022/10/21/ethereum.html">Ethereum</a></h3>
+      <h3><a href="/blog/blockchain/2022/10/21/ethereum.html">Ethereum</a></h3>
       <div class="text-sm text-gray-400">October 21, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/css/2022/10/15/CSS.html">CSS</a></h3>
+      <h3><a href="/blog/css/2022/10/15/CSS.html">CSS</a></h3>
       <div class="text-sm text-gray-400">October 15, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/09/17/callback.html">Callback</a></h3>
+      <h3><a href="/blog/2022/09/17/callback.html">Callback</a></h3>
       <div class="text-sm text-gray-400">September 17, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2022/09/14/api.html">Api</a></h3>
+      <h3><a href="/blog/react/2022/09/14/api.html">Api</a></h3>
       <div class="text-sm text-gray-400">September 14, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2022/09/13/twitter-api.html">Twitter Api</a></h3>
+      <h3><a href="/blog/rails/2022/09/13/twitter-api.html">Twitter Api</a></h3>
       <div class="text-sm text-gray-400">September 13, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/09/12/examples.html">Examples</a></h3>
+      <h3><a href="/blog/2022/09/12/examples.html">Examples</a></h3>
       <div class="text-sm text-gray-400">September 12, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/chemistry/2022/09/06/ch4-types-of-reaction.html">Ch4 Types Of Reaction</a></h3>
+      <h3><a href="/blog/chemistry/2022/09/06/ch4-types-of-reaction.html">Ch4 Types Of Reaction</a></h3>
       <div class="text-sm text-gray-400">September 6, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/threejs/2022/09/04/react-three-fiber.html">React Three Fiber</a></h3>
+      <h3><a href="/blog/threejs/2022/09/04/react-three-fiber.html">React Three Fiber</a></h3>
       <div class="text-sm text-gray-400">September 4, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/test/2022/09/03/continuous-integration-continuous-deployment.html">Continuous Integration Continuous Deployment</a></h3>
+      <h3><a href="/blog/test/2022/09/03/continuous-integration-continuous-deployment.html">Continuous Integration Continuous Deployment</a></h3>
       <div class="text-sm text-gray-400">September 3, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/test/2022/09/02/(prerequisite)-testing.html">(prerequisite) Testing</a></h3>
+      <h3><a href="/blog/test/2022/09/02/(prerequisite)-testing.html">(prerequisite) Testing</a></h3>
       <div class="text-sm text-gray-400">September 2, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/web-security/2022/08/31/cross-origin-resource-sharing.html">Cross Origin Resource Sharing</a></h3>
+      <h3><a href="/blog/web-security/2022/08/31/cross-origin-resource-sharing.html">Cross Origin Resource Sharing</a></h3>
       <div class="text-sm text-gray-400">August 31, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/web-security/2022/08/31/content-security-policy.html">Content Security Policy</a></h3>
+      <h3><a href="/blog/web-security/2022/08/31/content-security-policy.html">Content Security Policy</a></h3>
       <div class="text-sm text-gray-400">August 31, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/08/31/SSL-TLS.html">Ssl Tls</a></h3>
+      <h3><a href="/blog/2022/08/31/SSL-TLS.html">Ssl Tls</a></h3>
       <div class="text-sm text-gray-400">August 31, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/08/31/functional-testing.html">Functional Testing</a></h3>
+      <h3><a href="/blog/2022/08/31/functional-testing.html">Functional Testing</a></h3>
       <div class="text-sm text-gray-400">August 31, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/test/2022/08/31/behavior-driven-development-in-rspec-and-capybara.html">Behavior Driven Development In Rspec And Capybara</a></h3>
+      <h3><a href="/blog/test/2022/08/31/behavior-driven-development-in-rspec-and-capybara.html">Behavior Driven Development In Rspec And Capybara</a></h3>
       <div class="text-sm text-gray-400">August 31, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/web-security/2022/08/30/top-10-risks.html">Top 10 Risks</a></h3>
+      <h3><a href="/blog/web-security/2022/08/30/top-10-risks.html">Top 10 Risks</a></h3>
       <div class="text-sm text-gray-400">August 30, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/web-security/2022/08/30/hashing-algorithms.html">Hashing Algorithms</a></h3>
+      <h3><a href="/blog/web-security/2022/08/30/hashing-algorithms.html">Hashing Algorithms</a></h3>
       <div class="text-sm text-gray-400">August 30, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/chemistry/2022/08/28/ch3-stoichiometry.html">Ch3 Stoichiometry</a></h3>
+      <h3><a href="/blog/chemistry/2022/08/28/ch3-stoichiometry.html">Ch3 Stoichiometry</a></h3>
       <div class="text-sm text-gray-400">August 28, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/chemistry/2022/08/27/ch2-atoms-molecules-Ions.html">Ch2 Atoms Molecules Ions</a></h3>
+      <h3><a href="/blog/chemistry/2022/08/27/ch2-atoms-molecules-Ions.html">Ch2 Atoms Molecules Ions</a></h3>
       <div class="text-sm text-gray-400">August 27, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mindset/2022/08/26/code-review.html">Code Review</a></h3>
+      <h3><a href="/blog/mindset/2022/08/26/code-review.html">Code Review</a></h3>
       <div class="text-sm text-gray-400">August 26, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/blockchain/2022/08/26/blockchain-basics.html">Blockchain Basics</a></h3>
+      <h3><a href="/blog/blockchain/2022/08/26/blockchain-basics.html">Blockchain Basics</a></h3>
       <div class="text-sm text-gray-400">August 26, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/blockchain/2022/08/26/application.html">Application</a></h3>
+      <h3><a href="/blog/blockchain/2022/08/26/application.html">Application</a></h3>
       <div class="text-sm text-gray-400">August 26, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/2022/08/25/command.html">Command</a></h3>
+      <h3><a href="/blog/design-pattern/2022/08/25/command.html">Command</a></h3>
       <div class="text-sm text-gray-400">August 25, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/web-security/2022/08/22/hyper-text-transfer-protocol-secure.html">Hyper Text Transfer Protocol Secure</a></h3>
+      <h3><a href="/blog/web-security/2022/08/22/hyper-text-transfer-protocol-secure.html">Hyper Text Transfer Protocol Secure</a></h3>
       <div class="text-sm text-gray-400">August 22, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/chemistry/2022/08/21/ch1-chemical-foundations.html">Ch1 Chemical Foundations</a></h3>
+      <h3><a href="/blog/chemistry/2022/08/21/ch1-chemical-foundations.html">Ch1 Chemical Foundations</a></h3>
       <div class="text-sm text-gray-400">August 21, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/art/2022/08/21/sketch.html">Sketch</a></h3>
+      <h3><a href="/blog/art/2022/08/21/sketch.html">Sketch</a></h3>
       <div class="text-sm text-gray-400">August 21, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/cache/2022/08/20/prerequisite.html">Prerequisite</a></h3>
+      <h3><a href="/blog/cache/2022/08/20/prerequisite.html">Prerequisite</a></h3>
       <div class="text-sm text-gray-400">August 20, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/cache/2022/08/19/client-side.html">Client Side</a></h3>
+      <h3><a href="/blog/cache/2022/08/19/client-side.html">Client Side</a></h3>
       <div class="text-sm text-gray-400">August 19, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/api/2022/08/17/open-authorization.html">Open Authorization</a></h3>
+      <h3><a href="/blog/api/2022/08/17/open-authorization.html">Open Authorization</a></h3>
       <div class="text-sm text-gray-400">August 17, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/api/2022/08/17/basic-authentication.html">Basic Authentication</a></h3>
+      <h3><a href="/blog/api/2022/08/17/basic-authentication.html">Basic Authentication</a></h3>
       <div class="text-sm text-gray-400">August 17, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/api/2022/08/17/(prerequisite)-authentication.html">(prerequisite) Authentication</a></h3>
+      <h3><a href="/blog/api/2022/08/17/(prerequisite)-authentication.html">(prerequisite) Authentication</a></h3>
       <div class="text-sm text-gray-400">August 17, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/api/2022/08/16/json-api.html">Json Api</a></h3>
+      <h3><a href="/blog/api/2022/08/16/json-api.html">Json Api</a></h3>
       <div class="text-sm text-gray-400">August 16, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/08/14/normalization.html">Normalization</a></h3>
+      <h3><a href="/blog/2022/08/14/normalization.html">Normalization</a></h3>
       <div class="text-sm text-gray-400">August 14, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/economics/2022/08/13/best-system.html">Best System</a></h3>
+      <h3><a href="/blog/economics/2022/08/13/best-system.html">Best System</a></h3>
       <div class="text-sm text-gray-400">August 13, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/economics/2022/08/13/capitalism.html">Capitalism</a></h3>
+      <h3><a href="/blog/economics/2022/08/13/capitalism.html">Capitalism</a></h3>
       <div class="text-sm text-gray-400">August 13, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/08/13/systems.html">Systems</a></h3>
+      <h3><a href="/blog/2022/08/13/systems.html">Systems</a></h3>
       <div class="text-sm text-gray-400">August 13, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/08/13/concept.html">Concept</a></h3>
+      <h3><a href="/blog/2022/08/13/concept.html">Concept</a></h3>
       <div class="text-sm text-gray-400">August 13, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/database/2022/08/12/N+1.html">N+1</a></h3>
+      <h3><a href="/blog/database/2022/08/12/N+1.html">N+1</a></h3>
       <div class="text-sm text-gray-400">August 12, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mysql/2022/08/12/basic-usage.html">basic usage</a></h3>
+      <h3><a href="/blog/mysql/2022/08/12/basic-usage.html">basic usage</a></h3>
       <div class="text-sm text-gray-400">August 12, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/08/12/database.html">database</a></h3>
+      <h3><a href="/blog/2022/08/12/database.html">database</a></h3>
       <div class="text-sm text-gray-400">August 12, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/08/11/POSIX-basics.html">Posix Basics</a></h3>
+      <h3><a href="/blog/2022/08/11/POSIX-basics.html">Posix Basics</a></h3>
       <div class="text-sm text-gray-400">August 11, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/git/2022/08/11/basic-usage.html">basic usage</a></h3>
+      <h3><a href="/blog/git/2022/08/11/basic-usage.html">basic usage</a></h3>
       <div class="text-sm text-gray-400">August 11, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/organic-chemistry/2022/08/07/2-acid-and-base.html">acid and base</a></h3>
+      <h3><a href="/blog/organic-chemistry/2022/08/07/2-acid-and-base.html">acid and base</a></h3>
       <div class="text-sm text-gray-400">August 7, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/presentation/2022/07/28/facade.html">facade</a></h3>
+      <h3><a href="/blog/design-pattern/presentation/2022/07/28/facade.html">facade</a></h3>
       <div class="text-sm text-gray-400">July 28, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/organic-chemistry/2022/07/25/1-structure-and-bonding.html">structure and bonding</a></h3>
+      <h3><a href="/blog/organic-chemistry/2022/07/25/1-structure-and-bonding.html">structure and bonding</a></h3>
       <div class="text-sm text-gray-400">July 25, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/analytical_chemistry/2022/07/24/ch2-basic-tools.html">(ch2) basic tools</a></h3>
+      <h3><a href="/blog/analytical_chemistry/2022/07/24/ch2-basic-tools.html">(ch2) basic tools</a></h3>
       <div class="text-sm text-gray-400">July 24, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/analytical_chemistry/2022/07/24/ch1-introduction_to_analytical_chemistry.html">(ch1) introduction to analytical chemistry</a></h3>
+      <h3><a href="/blog/analytical_chemistry/2022/07/24/ch1-introduction_to_analytical_chemistry.html">(ch1) introduction to analytical chemistry</a></h3>
       <div class="text-sm text-gray-400">July 24, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/art/2022/07/10/art-portfolio.html">art portfolio</a></h3>
+      <h3><a href="/blog/art/2022/07/10/art-portfolio.html">art portfolio</a></h3>
       <div class="text-sm text-gray-400">July 10, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/presentation/mindset/2022/07/08/encoding.html">encoding</a></h3>
+      <h3><a href="/blog/presentation/mindset/2022/07/08/encoding.html">encoding</a></h3>
       <div class="text-sm text-gray-400">July 8, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/dsa/2022/06/26/tree.html">tree</a></h3>
+      <h3><a href="/blog/dsa/2022/06/26/tree.html">tree</a></h3>
       <div class="text-sm text-gray-400">June 26, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/dsa/2022/06/24/stack.html">stack</a></h3>
+      <h3><a href="/blog/dsa/2022/06/24/stack.html">stack</a></h3>
       <div class="text-sm text-gray-400">June 24, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/dsa/2022/06/24/queue.html">queue</a></h3>
+      <h3><a href="/blog/dsa/2022/06/24/queue.html">queue</a></h3>
       <div class="text-sm text-gray-400">June 24, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2022/05/29/build-apps.html">Build Apps</a></h3>
+      <h3><a href="/blog/rails/2022/05/29/build-apps.html">Build Apps</a></h3>
       <div class="text-sm text-gray-400">May 29, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/japanese/2022/05/26/noun.html">noun (Japanese)</a></h3>
+      <h3><a href="/blog/japanese/2022/05/26/noun.html">noun (Japanese)</a></h3>
       <div class="text-sm text-gray-400">May 26, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/dsa/2022/05/23/linked_list.html">linkedlist</a></h3>
+      <h3><a href="/blog/dsa/2022/05/23/linked_list.html">linkedlist</a></h3>
       <div class="text-sm text-gray-400">May 23, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mindset/2022/05/22/career.html">career</a></h3>
+      <h3><a href="/blog/mindset/2022/05/22/career.html">career</a></h3>
       <div class="text-sm text-gray-400">May 22, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/dsa/2022/05/22/array.html">array</a></h3>
+      <h3><a href="/blog/dsa/2022/05/22/array.html">array</a></h3>
       <div class="text-sm text-gray-400">May 22, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/database/presentation/2022/05/14/ACID.html">ACID</a></h3>
+      <h3><a href="/blog/database/presentation/2022/05/14/ACID.html">ACID</a></h3>
       <div class="text-sm text-gray-400">May 14, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/presentation/mindset/2022/05/07/ch13-concurrency.html">ch13 concurrency</a></h3>
+      <h3><a href="/blog/presentation/mindset/2022/05/07/ch13-concurrency.html">ch13 concurrency</a></h3>
       <div class="text-sm text-gray-400">May 7, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/05/05/include.html">Include</a></h3>
+      <h3><a href="/blog/2022/05/05/include.html">Include</a></h3>
       <div class="text-sm text-gray-400">May 5, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/05/02/interview.html">Interview</a></h3>
+      <h3><a href="/blog/2022/05/02/interview.html">Interview</a></h3>
       <div class="text-sm text-gray-400">May 2, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mindset/2022/05/02/basic-concept-related-to-DSA.html">basic concept related to DSA</a></h3>
+      <h3><a href="/blog/mindset/2022/05/02/basic-concept-related-to-DSA.html">basic concept related to DSA</a></h3>
       <div class="text-sm text-gray-400">May 2, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/threejs/2022/05/01/threeJS-character.html">Threejs Character</a></h3>
+      <h3><a href="/blog/threejs/2022/05/01/threeJS-character.html">Threejs Character</a></h3>
       <div class="text-sm text-gray-400">May 1, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/threejs/2022/04/30/threeJS-overview.html">(threeJS) overview</a></h3>
+      <h3><a href="/blog/threejs/2022/04/30/threeJS-overview.html">(threeJS) overview</a></h3>
       <div class="text-sm text-gray-400">April 30, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/japanese/2022/04/19/verb.html">verb (Japanese)</a></h3>
+      <h3><a href="/blog/japanese/2022/04/19/verb.html">verb (Japanese)</a></h3>
       <div class="text-sm text-gray-400">April 19, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/04/17/object-destructuring.html">object destructuring</a></h3>
+      <h3><a href="/blog/2022/04/17/object-destructuring.html">object destructuring</a></h3>
       <div class="text-sm text-gray-400">April 17, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/japanese/2022/04/13/adverb-interjection-conjunction.html">adverb interjection conjunction (Japanese)</a></h3>
+      <h3><a href="/blog/japanese/2022/04/13/adverb-interjection-conjunction.html">adverb interjection conjunction (Japanese)</a></h3>
       <div class="text-sm text-gray-400">April 13, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2022/04/10/framework.html">framework</a></h3>
+      <h3><a href="/blog/javascript/2022/04/10/framework.html">framework</a></h3>
       <div class="text-sm text-gray-400">April 10, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/2022/04/09/abstract-factory.html">absctact factory</a></h3>
+      <h3><a href="/blog/design-pattern/2022/04/09/abstract-factory.html">absctact factory</a></h3>
       <div class="text-sm text-gray-400">April 9, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/japanese/2022/04/07/adjective.html">adjective (Japanese)</a></h3>
+      <h3><a href="/blog/japanese/2022/04/07/adjective.html">adjective (Japanese)</a></h3>
       <div class="text-sm text-gray-400">April 7, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/2022/04/06/factory-method.html">factory method</a></h3>
+      <h3><a href="/blog/design-pattern/2022/04/06/factory-method.html">factory method</a></h3>
       <div class="text-sm text-gray-400">April 6, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/2022/04/02/decorator.html">decorator</a></h3>
+      <h3><a href="/blog/design-pattern/2022/04/02/decorator.html">decorator</a></h3>
       <div class="text-sm text-gray-400">April 2, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/presentation/clean-code/2022/03/27/clean-code-ch7.html">clean code ch7</a></h3>
+      <h3><a href="/blog/presentation/clean-code/2022/03/27/clean-code-ch7.html">clean code ch7</a></h3>
       <div class="text-sm text-gray-400">March 27, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/2022/03/25/observer.html">observer</a></h3>
+      <h3><a href="/blog/design-pattern/2022/03/25/observer.html">observer</a></h3>
       <div class="text-sm text-gray-400">March 25, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/presentation/2022/03/22/prototype.html">prototype</a></h3>
+      <h3><a href="/blog/design-pattern/presentation/2022/03/22/prototype.html">prototype</a></h3>
       <div class="text-sm text-gray-400">March 22, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/2022/03/22/strategy.html">strategy</a></h3>
+      <h3><a href="/blog/design-pattern/2022/03/22/strategy.html">strategy</a></h3>
       <div class="text-sm text-gray-400">March 22, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/japanese/2022/03/20/sentence-pattern.html">sentence pattern (Japanese)</a></h3>
+      <h3><a href="/blog/japanese/2022/03/20/sentence-pattern.html">sentence pattern (Japanese)</a></h3>
       <div class="text-sm text-gray-400">March 20, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/japanese/2022/03/19/special-pronounce.html">pronounce (Japanese)</a></h3>
+      <h3><a href="/blog/japanese/2022/03/19/special-pronounce.html">pronounce (Japanese)</a></h3>
       <div class="text-sm text-gray-400">March 19, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/03/13/face.html">Face</a></h3>
+      <h3><a href="/blog/2022/03/13/face.html">Face</a></h3>
       <div class="text-sm text-gray-400">March 13, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/japanese/2022/03/09/study-for-N5.html">study for N5</a></h3>
+      <h3><a href="/blog/japanese/2022/03/09/study-for-N5.html">study for N5</a></h3>
       <div class="text-sm text-gray-400">March 9, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/presentation/rails/2022/03/06/action-cable.html">Action Cable</a></h3>
+      <h3><a href="/blog/presentation/rails/2022/03/06/action-cable.html">Action Cable</a></h3>
       <div class="text-sm text-gray-400">March 6, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/03/05/10x-engineer.html">10x engineer</a></h3>
+      <h3><a href="/blog/2022/03/05/10x-engineer.html">10x engineer</a></h3>
       <div class="text-sm text-gray-400">March 5, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/presentation/clean-code/2022/02/20/clean-code-ch2.html">clean code ch2</a></h3>
+      <h3><a href="/blog/presentation/clean-code/2022/02/20/clean-code-ch2.html">clean code ch2</a></h3>
       <div class="text-sm text-gray-400">February 20, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/art/2022/02/12/Aesthetics.html">Aesthetics</a></h3>
+      <h3><a href="/blog/art/2022/02/12/Aesthetics.html">Aesthetics</a></h3>
       <div class="text-sm text-gray-400">February 12, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/cache/2022/02/09/content-delivery-network.html">Content Delivery Network</a></h3>
+      <h3><a href="/blog/cache/2022/02/09/content-delivery-network.html">Content Delivery Network</a></h3>
       <div class="text-sm text-gray-400">February 9, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/cache/2022/02/09/server-side.html">Server Side</a></h3>
+      <h3><a href="/blog/cache/2022/02/09/server-side.html">Server Side</a></h3>
       <div class="text-sm text-gray-400">February 9, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mindset/2022/02/07/clean-code.html">basic concept on clean code</a></h3>
+      <h3><a href="/blog/mindset/2022/02/07/clean-code.html">basic concept on clean code</a></h3>
       <div class="text-sm text-gray-400">February 7, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2022/02/06/Uploader.html">uploader</a></h3>
+      <h3><a href="/blog/2022/02/06/Uploader.html">uploader</a></h3>
       <div class="text-sm text-gray-400">February 6, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2022/02/06/Router.html">Router</a></h3>
+      <h3><a href="/blog/react/2022/02/06/Router.html">Router</a></h3>
       <div class="text-sm text-gray-400">February 6, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2022/02/06/Controller.html">(Rails Elementary) Controller</a></h3>
+      <h3><a href="/blog/rails/2022/02/06/Controller.html">(Rails Elementary) Controller</a></h3>
       <div class="text-sm text-gray-400">February 6, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2022/02/05/react-to-rails.html">(Rails) React</a></h3>
+      <h3><a href="/blog/rails/2022/02/05/react-to-rails.html">(Rails) React</a></h3>
       <div class="text-sm text-gray-400">February 5, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2022/02/05/Routes.html">(Rails Elementary) Routes</a></h3>
+      <h3><a href="/blog/rails/2022/02/05/Routes.html">(Rails Elementary) Routes</a></h3>
       <div class="text-sm text-gray-400">February 5, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/market/2022/01/30/research-market.html">research market</a></h3>
+      <h3><a href="/blog/market/2022/01/30/research-market.html">research market</a></h3>
       <div class="text-sm text-gray-400">January 30, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/market/2022/01/30/music-market.html">music market</a></h3>
+      <h3><a href="/blog/market/2022/01/30/music-market.html">music market</a></h3>
       <div class="text-sm text-gray-400">January 30, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/design-pattern/2022/01/30/overview.html">overview</a></h3>
+      <h3><a href="/blog/design-pattern/2022/01/30/overview.html">overview</a></h3>
       <div class="text-sm text-gray-400">January 30, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/ruby/2022/01/16/gem.html">Gem</a></h3>
+      <h3><a href="/blog/ruby/2022/01/16/gem.html">Gem</a></h3>
       <div class="text-sm text-gray-400">January 16, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/presentation/rails/2022/01/13/rails-ORM.html">rails ORM</a></h3>
+      <h3><a href="/blog/presentation/rails/2022/01/13/rails-ORM.html">rails ORM</a></h3>
       <div class="text-sm text-gray-400">January 13, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mindset/2022/01/11/design-overview.html">design overview</a></h3>
+      <h3><a href="/blog/mindset/2022/01/11/design-overview.html">design overview</a></h3>
       <div class="text-sm text-gray-400">January 11, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/database/2022/01/04/ORM.html">ORM</a></h3>
+      <h3><a href="/blog/database/2022/01/04/ORM.html">ORM</a></h3>
       <div class="text-sm text-gray-400">January 4, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/vue/2022/01/01/Vue-2-Components.html">(Vue 2) Components</a></h3>
+      <h3><a href="/blog/vue/2022/01/01/Vue-2-Components.html">(Vue 2) Components</a></h3>
       <div class="text-sm text-gray-400">January 1, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/vue/2022/01/01/Vue-1-Events-Methods.html">(Vue 1) Events &amp; Methods</a></h3>
+      <h3><a href="/blog/vue/2022/01/01/Vue-1-Events-Methods.html">(Vue 1) Events &amp; Methods</a></h3>
       <div class="text-sm text-gray-400">January 1, 2022</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/vue/2021/12/30/Vue-0-Overview.html">(Vue 0) Overview</a></h3>
+      <h3><a href="/blog/vue/2021/12/30/Vue-0-Overview.html">(Vue 0) Overview</a></h3>
       <div class="text-sm text-gray-400">December 30, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2021/12/27/IO-management.html">Io Management</a></h3>
+      <h3><a href="/blog/2021/12/27/IO-management.html">Io Management</a></h3>
       <div class="text-sm text-gray-400">December 27, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/os/2021/12/27/interprocess-communication.html">(OS 6) Interprocess Communication</a></h3>
+      <h3><a href="/blog/os/2021/12/27/interprocess-communication.html">(OS 6) Interprocess Communication</a></h3>
       <div class="text-sm text-gray-400">December 27, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/os/2021/12/24/threads-and-concurrency.html">thread and concurrency</a></h3>
+      <h3><a href="/blog/os/2021/12/24/threads-and-concurrency.html">thread and concurrency</a></h3>
       <div class="text-sm text-gray-400">December 24, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/os/2021/12/24/process-management.html">process management</a></h3>
+      <h3><a href="/blog/os/2021/12/24/process-management.html">process management</a></h3>
       <div class="text-sm text-gray-400">December 24, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/os/2021/12/24/memory-management.html">memory management</a></h3>
+      <h3><a href="/blog/os/2021/12/24/memory-management.html">memory management</a></h3>
       <div class="text-sm text-gray-400">December 24, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/html/2021/12/17/html-basic.html">Html Basic</a></h3>
+      <h3><a href="/blog/html/2021/12/17/html-basic.html">Html Basic</a></h3>
       <div class="text-sm text-gray-400">December 17, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/social/2021/12/17/MECE.html">market</a></h3>
+      <h3><a href="/blog/social/2021/12/17/MECE.html">market</a></h3>
       <div class="text-sm text-gray-400">December 17, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/social/2021/12/17/social-2-marketing.html">marketing</a></h3>
+      <h3><a href="/blog/social/2021/12/17/social-2-marketing.html">marketing</a></h3>
       <div class="text-sm text-gray-400">December 17, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/social/2021/12/17/social-1-business_development.html">() Business Development</a></h3>
+      <h3><a href="/blog/social/2021/12/17/social-1-business_development.html">() Business Development</a></h3>
       <div class="text-sm text-gray-400">December 17, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/economics/2021/12/13/efficiency.html">Economic Efficiency</a></h3>
+      <h3><a href="/blog/economics/2021/12/13/efficiency.html">Economic Efficiency</a></h3>
       <div class="text-sm text-gray-400">December 13, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/os/2021/12/04/terminals.html">terminal usage</a></h3>
+      <h3><a href="/blog/os/2021/12/04/terminals.html">terminal usage</a></h3>
       <div class="text-sm text-gray-400">December 4, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/os/2021/12/04/how-os-works.html">how operating system works</a></h3>
+      <h3><a href="/blog/os/2021/12/04/how-os-works.html">how operating system works</a></h3>
       <div class="text-sm text-gray-400">December 4, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/dsa/2021/11/25/DSA-overview.html">overview (DSA)</a></h3>
+      <h3><a href="/blog/dsa/2021/11/25/DSA-overview.html">overview (DSA)</a></h3>
       <div class="text-sm text-gray-400">November 25, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/test/2021/11/24/coverage.html">coverage</a></h3>
+      <h3><a href="/blog/test/2021/11/24/coverage.html">coverage</a></h3>
       <div class="text-sm text-gray-400">November 24, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mindset/2021/11/21/Object-Oriented-Programming.html">object oriented programming</a></h3>
+      <h3><a href="/blog/mindset/2021/11/21/Object-Oriented-Programming.html">object oriented programming</a></h3>
       <div class="text-sm text-gray-400">November 21, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2021/11/21/JQuery.html">(JavaScript ˙) JQuery</a></h3>
+      <h3><a href="/blog/javascript/2021/11/21/JQuery.html">(JavaScript ˙) JQuery</a></h3>
       <div class="text-sm text-gray-400">November 21, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2021/10/15/sign-in.html">Sign In</a></h3>
+      <h3><a href="/blog/2021/10/15/sign-in.html">Sign In</a></h3>
       <div class="text-sm text-gray-400">October 15, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/tensorflow/2021/07/19/React-Tenesorflow.html">(React) tensorFlowJS</a></h3>
+      <h3><a href="/blog/tensorflow/2021/07/19/React-Tenesorflow.html">(React) tensorFlowJS</a></h3>
       <div class="text-sm text-gray-400">July 19, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/07/13/Social-Media-Self-Referential.html">(Rails) Social Media Self Referential</a></h3>
+      <h3><a href="/blog/rails/2021/07/13/Social-Media-Self-Referential.html">(Rails) Social Media Self Referential</a></h3>
       <div class="text-sm text-gray-400">July 13, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2021/07/08/Ruby-6-Other-Topic.html">Ruby 6 Other Topic</a></h3>
+      <h3><a href="/blog/2021/07/08/Ruby-6-Other-Topic.html">Ruby 6 Other Topic</a></h3>
       <div class="text-sm text-gray-400">July 8, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2021/07/06/Ruby-5-Garbage-Collection.html">Ruby 5 Garbage Collection</a></h3>
+      <h3><a href="/blog/2021/07/06/Ruby-5-Garbage-Collection.html">Ruby 5 Garbage Collection</a></h3>
       <div class="text-sm text-gray-400">July 6, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/07/02/Commenting-System-Polymorphics.html">(Rails) Commenting System &amp; Polymorphics</a></h3>
+      <h3><a href="/blog/rails/2021/07/02/Commenting-System-Polymorphics.html">(Rails) Commenting System &amp; Polymorphics</a></h3>
       <div class="text-sm text-gray-400">July 2, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2021/06/29/ajax.html">(Javascript 6) Ajax</a></h3>
+      <h3><a href="/blog/javascript/2021/06/29/ajax.html">(Javascript 6) Ajax</a></h3>
       <div class="text-sm text-gray-400">June 29, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/database/2021/06/29/indexes.html">indexes</a></h3>
+      <h3><a href="/blog/database/2021/06/29/indexes.html">indexes</a></h3>
       <div class="text-sm text-gray-400">June 29, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/06/29/.html">(Rails 29) Tailwind</a></h3>
+      <h3><a href="/blog/rails/2021/06/29/.html">(Rails 29) Tailwind</a></h3>
       <div class="text-sm text-gray-400">June 29, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/other/2021/06/28/efficiency.html">(Web) Efficiency</a></h3>
+      <h3><a href="/blog/other/2021/06/28/efficiency.html">(Web) Efficiency</a></h3>
       <div class="text-sm text-gray-400">June 28, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2021/06/22/bind.html">(Javascript_5) Bind</a></h3>
+      <h3><a href="/blog/javascript/2021/06/22/bind.html">(Javascript_5) Bind</a></h3>
       <div class="text-sm text-gray-400">June 22, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2021/06/22/closure.html">(Javascript_4) Closure</a></h3>
+      <h3><a href="/blog/javascript/2021/06/22/closure.html">(Javascript_4) Closure</a></h3>
       <div class="text-sm text-gray-400">June 22, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2021/06/19/callback-hell.html">(JavaScript 3) Callback Hell, Promise, and Async/Await</a></h3>
+      <h3><a href="/blog/javascript/2021/06/19/callback-hell.html">(JavaScript 3) Callback Hell, Promise, and Async/Await</a></h3>
       <div class="text-sm text-gray-400">June 19, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2021/06/17/React-4-Hook.html">Hook</a></h3>
+      <h3><a href="/blog/react/2021/06/17/React-4-Hook.html">Hook</a></h3>
       <div class="text-sm text-gray-400">June 17, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2021/06/17/other.html">other</a></h3>
+      <h3><a href="/blog/react/2021/06/17/other.html">other</a></h3>
       <div class="text-sm text-gray-400">June 17, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2021/06/17/React-3-Life-Cycle.html">(React 3) Life Cycle &amp; State</a></h3>
+      <h3><a href="/blog/react/2021/06/17/React-3-Life-Cycle.html">(React 3) Life Cycle &amp; State</a></h3>
       <div class="text-sm text-gray-400">June 17, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2021/06/16/react-state.html">(react) state</a></h3>
+      <h3><a href="/blog/react/2021/06/16/react-state.html">(react) state</a></h3>
       <div class="text-sm text-gray-400">June 16, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2021/06/15/react-component-and-prop.html">(react) component and prop</a></h3>
+      <h3><a href="/blog/react/2021/06/15/react-component-and-prop.html">(react) component and prop</a></h3>
       <div class="text-sm text-gray-400">June 15, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2021/06/14/layout.html">Layout</a></h3>
+      <h3><a href="/blog/react/2021/06/14/layout.html">Layout</a></h3>
       <div class="text-sm text-gray-400">June 14, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/react/2021/06/13/overview.html">Overview</a></h3>
+      <h3><a href="/blog/react/2021/06/13/overview.html">Overview</a></h3>
       <div class="text-sm text-gray-400">June 13, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/06/10/Active-Record.html">(rails) Active Record</a></h3>
+      <h3><a href="/blog/rails/2021/06/10/Active-Record.html">(rails) Active Record</a></h3>
       <div class="text-sm text-gray-400">June 10, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/06/09/Active-Storage.html">(Rails 26) Active Storage</a></h3>
+      <h3><a href="/blog/rails/2021/06/09/Active-Storage.html">(Rails 26) Active Storage</a></h3>
       <div class="text-sm text-gray-400">June 9, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/06/09/Action-View.html">(Rails) Action View</a></h3>
+      <h3><a href="/blog/rails/2021/06/09/Action-View.html">(Rails) Action View</a></h3>
       <div class="text-sm text-gray-400">June 9, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/06/09/ActiveJob-&amp;-Sidekiq.html">(Rails) Activejob &amp; Sidekiq &amp; Redis &amp; Heroku</a></h3>
+      <h3><a href="/blog/rails/2021/06/09/ActiveJob-&amp;-Sidekiq.html">(Rails) Activejob &amp; Sidekiq &amp; Redis &amp; Heroku</a></h3>
       <div class="text-sm text-gray-400">June 9, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2021/06/02/localStorage.html">localStorage</a></h3>
+      <h3><a href="/blog/javascript/2021/06/02/localStorage.html">localStorage</a></h3>
       <div class="text-sm text-gray-400">June 2, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/database/2021/05/14/database-overview.html">database overview</a></h3>
+      <h3><a href="/blog/database/2021/05/14/database-overview.html">database overview</a></h3>
       <div class="text-sm text-gray-400">May 14, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/05/06/%E4%B8%B2%E6%8E%A5%E8%97%8D%E6%96%B0.html">(Rails) 串接藍新 (Taiwan cashflow)</a></h3>
+      <h3><a href="/blog/rails/2021/05/06/%E4%B8%B2%E6%8E%A5%E8%97%8D%E6%96%B0.html">(Rails) 串接藍新 (Taiwan cashflow)</a></h3>
       <div class="text-sm text-gray-400">May 6, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/git/2021/05/02/Github.html">Github</a></h3>
+      <h3><a href="/blog/git/2021/05/02/Github.html">Github</a></h3>
       <div class="text-sm text-gray-400">May 2, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/javascript/2021/04/26/snake-game.html">overview</a></h3>
+      <h3><a href="/blog/javascript/2021/04/26/snake-game.html">overview</a></h3>
       <div class="text-sm text-gray-400">April 26, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/04/23/Instant-Message.html">(Rails) Instant Message (Action Cable)</a></h3>
+      <h3><a href="/blog/rails/2021/04/23/Instant-Message.html">(Rails) Instant Message (Action Cable)</a></h3>
       <div class="text-sm text-gray-400">April 23, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/internet/2021/04/21/Internet-4-How-DNS-works.html">(Internet 4) How DNS works?</a></h3>
+      <h3><a href="/blog/internet/2021/04/21/Internet-4-How-DNS-works.html">(Internet 4) How DNS works?</a></h3>
       <div class="text-sm text-gray-400">April 21, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/04/18/google-map.html">(Rails) google map</a></h3>
+      <h3><a href="/blog/rails/2021/04/18/google-map.html">(Rails) google map</a></h3>
       <div class="text-sm text-gray-400">April 18, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/internet/2021/04/12/Internet-5-hosting.html">(Internet 5) Hosting</a></h3>
+      <h3><a href="/blog/internet/2021/04/12/Internet-5-hosting.html">(Internet 5) Hosting</a></h3>
       <div class="text-sm text-gray-400">April 12, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/internet/2021/04/12/Internet-3-Browsers.html">(Internet 3) Browsers</a></h3>
+      <h3><a href="/blog/internet/2021/04/12/Internet-3-Browsers.html">(Internet 3) Browsers</a></h3>
       <div class="text-sm text-gray-400">April 12, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/internet/2021/04/09/hyper-text-transfer-protocol.html">Hyper Text Transfer Protocol</a></h3>
+      <h3><a href="/blog/internet/2021/04/09/hyper-text-transfer-protocol.html">Hyper Text Transfer Protocol</a></h3>
       <div class="text-sm text-gray-400">April 9, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/test/2021/04/06/test-driven-development-in-rspec.html">Test Driven Development In Rspec</a></h3>
+      <h3><a href="/blog/test/2021/04/06/test-driven-development-in-rspec.html">Test Driven Development In Rspec</a></h3>
       <div class="text-sm text-gray-400">April 6, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/internet/2021/03/29/Internet-1-How-does-the-internet-work-Basic-Concepts.html">(Internet 1) How does the internet work? (Basic Concepts)</a></h3>
+      <h3><a href="/blog/internet/2021/03/29/Internet-1-How-does-the-internet-work-Basic-Concepts.html">(Internet 1) How does the internet work? (Basic Concepts)</a></h3>
       <div class="text-sm text-gray-400">March 29, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/css/2021/03/28/Frontend-7-CSS-Transition-Animation.html">(CSS_7) Transition &amp; Animation</a></h3>
+      <h3><a href="/blog/css/2021/03/28/Frontend-7-CSS-Transition-Animation.html">(CSS_7) Transition &amp; Animation</a></h3>
       <div class="text-sm text-gray-400">March 28, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2021/03/28/@t5204713910-frontend-6-css-relative-absolute-5b1833da1081.html">(Frontend_6) CSS Relative &amp; Absolute</a></h3>
+      <h3><a href="/blog/2021/03/28/@t5204713910-frontend-6-css-relative-absolute-5b1833da1081.html">(Frontend_6) CSS Relative &amp; Absolute</a></h3>
       <div class="text-sm text-gray-400">March 28, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/css/2021/03/26/@t5204713910-frontend-5-flex-fixed-d2c9bb772699.html">(Frontend_5) CSS Flex &amp; Fixed</a></h3>
+      <h3><a href="/blog/css/2021/03/26/@t5204713910-frontend-5-flex-fixed-d2c9bb772699.html">(Frontend_5) CSS Flex &amp; Fixed</a></h3>
       <div class="text-sm text-gray-400">March 26, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2021/03/25/@t5204713910-frontend-4-box-sizing-reset-d9c318b782ff.html">(Frontend_4) CSS Box-Sizing &amp; Reset</a></h3>
+      <h3><a href="/blog/2021/03/25/@t5204713910-frontend-4-box-sizing-reset-d9c318b782ff.html">(Frontend_4) CSS Box-Sizing &amp; Reset</a></h3>
       <div class="text-sm text-gray-400">March 25, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/css/2021/03/25/@t5204713910-frontend-3-inline-block-9e33b99da580.html">(Frontend_3) CSS inline &amp; block</a></h3>
+      <h3><a href="/blog/css/2021/03/25/@t5204713910-frontend-3-inline-block-9e33b99da580.html">(Frontend_3) CSS inline &amp; block</a></h3>
       <div class="text-sm text-gray-400">March 25, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2021/03/25/@t5204713910-frontend-2-css-float-c11095b28ae8.html">(Frontend_2) CSS Float</a></h3>
+      <h3><a href="/blog/2021/03/25/@t5204713910-frontend-2-css-float-c11095b28ae8.html">(Frontend_2) CSS Float</a></h3>
       <div class="text-sm text-gray-400">March 25, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/22/api-mode.html">Api Mode</a></h3>
+      <h3><a href="/blog/rails/2021/03/22/api-mode.html">Api Mode</a></h3>
       <div class="text-sm text-gray-400">March 22, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/2021/03/20/@t5204713910-python-1-before-python-coding-c9a1a7443ec.html">(Python_1) before Python Coding</a></h3>
+      <h3><a href="/blog/2021/03/20/@t5204713910-python-1-before-python-coding-c9a1a7443ec.html">(Python_1) before Python Coding</a></h3>
       <div class="text-sm text-gray-400">March 20, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/19/Template.html">(Rails) Template</a></h3>
+      <h3><a href="/blog/rails/2021/03/19/Template.html">(Rails) Template</a></h3>
       <div class="text-sm text-gray-400">March 19, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/19/Devise.html">(Rails) Devise (All tasks related to user signing in or logging in)</a></h3>
+      <h3><a href="/blog/rails/2021/03/19/Devise.html">(Rails) Devise (All tasks related to user signing in or logging in)</a></h3>
       <div class="text-sm text-gray-400">March 19, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/19/Action-Mailer-&amp;-Mail-Verification.html">(Rails) Action Mailer &amp; Mail Verification</a></h3>
+      <h3><a href="/blog/rails/2021/03/19/Action-Mailer-&amp;-Mail-Verification.html">(Rails) Action Mailer &amp; Mail Verification</a></h3>
       <div class="text-sm text-gray-400">March 19, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/database/2021/03/17/relational-algebra.html">relational algebra</a></h3>
+      <h3><a href="/blog/database/2021/03/17/relational-algebra.html">relational algebra</a></h3>
       <div class="text-sm text-gray-400">March 17, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/mindset/2021/03/12/entity-relationship-model.html">entity-Relationship model</a></h3>
+      <h3><a href="/blog/mindset/2021/03/12/entity-relationship-model.html">entity-Relationship model</a></h3>
       <div class="text-sm text-gray-400">March 12, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/11/User-Login-System.html">(Rails) User Login System</a></h3>
+      <h3><a href="/blog/rails/2021/03/11/User-Login-System.html">(Rails) User Login System</a></h3>
       <div class="text-sm text-gray-400">March 11, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/04/validation.html">Validation</a></h3>
+      <h3><a href="/blog/rails/2021/03/04/validation.html">Validation</a></h3>
       <div class="text-sm text-gray-400">March 4, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/03/relation.html">(Rails Elementary 6) Relation in Model</a></h3>
+      <h3><a href="/blog/rails/2021/03/03/relation.html">(Rails Elementary 6) Relation in Model</a></h3>
       <div class="text-sm text-gray-400">March 3, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/02/model.html">Model</a></h3>
+      <h3><a href="/blog/rails/2021/03/02/model.html">Model</a></h3>
       <div class="text-sm text-gray-400">March 2, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/rails/2021/03/02/View-Layout.html">(Rails Elementary 4) View-Layout</a></h3>
+      <h3><a href="/blog/rails/2021/03/02/View-Layout.html">(Rails Elementary 4) View-Layout</a></h3>
       <div class="text-sm text-gray-400">March 2, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/git/2021/02/25/Git-7-Other-Topics.html">(Git_7) Private Information, Remove a File in Git, Commit in other branch, Github</a></h3>
+      <h3><a href="/blog/git/2021/02/25/Git-7-Other-Topics.html">(Git_7) Private Information, Remove a File in Git, Commit in other branch, Github</a></h3>
       <div class="text-sm text-gray-400">February 25, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/git/2021/02/24/Git-6-Historical-Commits-Insert-Reorder-Delete-Label.html">(Git_6) Historical Commits — Insert, Reorder, Delete; Label</a></h3>
+      <h3><a href="/blog/git/2021/02/24/Git-6-Historical-Commits-Insert-Reorder-Delete-Label.html">(Git_6) Historical Commits — Insert, Reorder, Delete; Label</a></h3>
       <div class="text-sm text-gray-400">February 24, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/git/2021/02/24/Git-5-Historical-Commits-Change-Merge-Decompose.html">(Git_5) Historical Commits — Change, Merge, Decompose</a></h3>
+      <h3><a href="/blog/git/2021/02/24/Git-5-Historical-Commits-Change-Merge-Decompose.html">(Git_5) Historical Commits — Change, Merge, Decompose</a></h3>
       <div class="text-sm text-gray-400">February 24, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/git/2021/02/24/Git-4-Branch.html">(Git_4) Branch</a></h3>
+      <h3><a href="/blog/git/2021/02/24/Git-4-Branch.html">(Git_4) Branch</a></h3>
       <div class="text-sm text-gray-400">February 24, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/git/2021/02/23/Git-3-gitignore-Specific-Blame-Rescue-Reset.html">(Git_3) .gitignore, Specific, Blame, Rescue, Reset</a></h3>
+      <h3><a href="/blog/git/2021/02/23/Git-3-gitignore-Specific-Blame-Rescue-Reset.html">(Git_3) .gitignore, Specific, Blame, Rescue, Reset</a></h3>
       <div class="text-sm text-gray-400">February 23, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/tensorflow/2021/02/22/tensorflowJS.html">TensorFlowJS</a></h3>
+      <h3><a href="/blog/tensorflow/2021/02/22/tensorflowJS.html">TensorFlowJS</a></h3>
       <div class="text-sm text-gray-400">February 22, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/api/2021/02/18/What-is-RESTful-API.html">What is RESTful API</a></h3>
+      <h3><a href="/blog/api/2021/02/18/What-is-RESTful-API.html">What is RESTful API</a></h3>
       <div class="text-sm text-gray-400">February 18, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/ruby/2021/02/15/Ruby-4-Class-and-Module.html">(Ruby_4) Class and Module</a></h3>
+      <h3><a href="/blog/ruby/2021/02/15/Ruby-4-Class-and-Module.html">(Ruby_4) Class and Module</a></h3>
       <div class="text-sm text-gray-400">February 15, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/ruby/2021/02/15/Ruby-3-Method-and-Block.html">(Ruby_3) Method and Block</a></h3>
+      <h3><a href="/blog/ruby/2021/02/15/Ruby-3-Method-and-Block.html">(Ruby_3) Method and Block</a></h3>
       <div class="text-sm text-gray-400">February 15, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/ruby/2021/02/12/Ruby-2-Data-Type.html">(Ruby 2) Data Type</a></h3>
+      <h3><a href="/blog/ruby/2021/02/12/Ruby-2-Data-Type.html">(Ruby 2) Data Type</a></h3>
       <div class="text-sm text-gray-400">February 12, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/ruby/2021/02/04/Ruby-1-Overview.html">(Ruby 1) Overview</a></h3>
+      <h3><a href="/blog/ruby/2021/02/04/Ruby-1-Overview.html">(Ruby 1) Overview</a></h3>
       <div class="text-sm text-gray-400">February 4, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/python/2021/02/04/Python-Create-Virtualenv-in-folder.html">(Python_1) Create Virtualenv in folder</a></h3>
+      <h3><a href="/blog/python/2021/02/04/Python-Create-Virtualenv-in-folder.html">(Python_1) Create Virtualenv in folder</a></h3>
       <div class="text-sm text-gray-400">February 4, 2021</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/self/1993/09/01/startup.html">Startup</a></h3>
+      <h3><a href="/blog/self/1993/09/01/startup.html">Startup</a></h3>
       <div class="text-sm text-gray-400">September 1, 1993</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/self/1993/09/01/why.html">Why</a></h3>
+      <h3><a href="/blog/self/1993/09/01/why.html">Why</a></h3>
       <div class="text-sm text-gray-400">September 1, 1993</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/self/1993/09/01/project.html">Project</a></h3>
+      <h3><a href="/blog/self/1993/09/01/project.html">Project</a></h3>
       <div class="text-sm text-gray-400">September 1, 1993</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/1993/09/01/create-world.html">create world</a></h3>
+      <h3><a href="/blog/1993/09/01/create-world.html">create world</a></h3>
       <div class="text-sm text-gray-400">September 1, 1993</div>
     </div>
   
     <div class="py-1">
-      <h3><a href="/blog/src/1993/09/01/create-character.html">Create Character</a></h3>
+      <h3><a href="/blog/1993/09/01/create-character.html">Create Character</a></h3>
       <div class="text-sm text-gray-400">September 1, 1993</div>
     </div>
   
 </div>
+
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>

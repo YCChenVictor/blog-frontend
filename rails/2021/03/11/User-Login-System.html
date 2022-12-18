@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+    <div class="w-full relative flex justify-center">
+      <button type="button" onclick="toggleNavbar('navbar')"
+        class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+        aria-expanded="false">
+        <span class="sr-only">Open menu</span>
+        <!-- Heroicon name: outline/menu -->
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex hidden md:block" id="navbar">
+      <div class="flex flex-col md:flex-row mr-auto w-full">
+         <!-- don't show Home in menu for Homepage -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/">
+          Home
+        </a>
+        
+
+      <!-- dynamic menu based on navigation info in _config.yml -->
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/about">
+          About
+        </a>
+        
+      
+         <!-- don't show current page in menu -->
+        <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+          href="/blog/category">
+          Category
+        </a>
+        
+      
+    </div>
+    </div>
+  </div>
+</nav>
+        <div id="sidebar" class="p-4 fixed"></div>
+      
+      <div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">(Rails) User Login System</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h3 id="structure-explanation">Structure Explanation</h3>
+
+<p>The structure would be MVC. There are going to have Sign Up page, Login Page, Profile Page.</p>
+
+<h3 id="create-railsproject">Create Rails Project</h3>
+
+<p>In folder you want to create rails project</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails new user_login
+</code></pre></div></div>
+<h3 id="build-routes">Build Routes</h3>
+
+<p>Let’s build routes first. Routes can be a overview for the design of website.</p>
+
+<p>For routes <a href="之後要連動到 route 那一頁">explanation</a></p>
+
+<p>For user login webpage, we are going to have the method to <code class="language-plaintext highlighter-rouge">create, edit, update, show, destroy</code> of users and the method to login and logout website.</p>
+
+<p>As a result, in <code class="language-plaintext highlighter-rouge">config/routes.rb</code>,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rails.application.routes.draw do  
+    
+  root 'sessions#home'  
+    
+  # for users  
+  resources :users
+
+  # for session
+  get '/login', to: 'sessions#login'  
+  post '/login', to: 'sessions#create'  
+  post '/logout', to: 'sessions#destroy'  
+  get '/logout', to: 'sessions#destroy'
+
+end
+</code></pre></div></div>
+<h4 id="test">Test</h4>
+
+<p>With</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails routes
+</code></pre></div></div>
+<p>the available routes:
+<img src="/assets/img/1__mVsk6GlAi3V3uok7sDzVpg.png" alt="" /></p>
+
+<p>Notice! The GET represents the process to input url to website. We construct all the routes with GET first.</p>
+
+<p>With the Routes, if we input the url: http://127.0.0.1:3000/, the error pops up
+<img src="/assets/img/1__dtQd0JGd0sntqpBVTki4Sw.png" alt="" /></p>
+
+<p>meaning we need to build the controller for session and of course, controller for users. We build controller for session first.</p>
+
+<h3 id="create-session-controller">Create Session Controller</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g controller sessions
+</code></pre></div></div>
+<p>After both creation of controllers, the following error occurs
+<img src="/assets/img/1__gSZlgOZsaP7KSkPItoLX8A.png" alt="" /></p>
+
+<p>meaning there is no method, home in session controller. As a result, we can create following method in controller</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class SessionscController &lt; ApplicationController  
+    
+  def home  
+  end
+
+end
+</code></pre></div></div>
+<p>Then the following error occurs
+<img src="/assets/img/1__JkEXB2fTuTLAbOeBrW5Bsg.png" alt="" /></p>
+
+<h3 id="build-htmltemplate">Build HTML template</h3>
+
+<p>meaning we need to create html template for home. As a result, in <code class="language-plaintext highlighter-rouge">app/views/session</code>, add <code class="language-plaintext highlighter-rouge">home.html.erb</code> and input the following code</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;h1&gt;Hello World&lt;/h1&gt;
+</code></pre></div></div>
+<p>Then the homepage:
+<img src="/assets/img/1__nBQcytmThRoxVHJDBM__RUA.png" alt="" /></p>
+
+<h3 id="create-user-controller">Create User Controller</h3>
+
+<p>routes related to users:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>users     GET    /users(.:format)             users#index
+          POST   /users(.:format)             users#create
+new_user  GET    /users/new(.:format)         users#new
+edit_user GET    /users/:id/edit(.:format)    users#edit
+user      GET    /users/:id(.:format)         users#show
+          PATCH  /users/:id(.:format)         users#update
+          PUT    /users/:id(.:format)         users#update
+          DELETE /users/:id(.:format)         users#destroy
+</code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">GET</code> method represents input the websties</p>
+
+<p>If we input http://127.0.0.1:3000/users/new, the following error occurs
+<img src="/assets/img/1__ZgLjBavQqv__s7f__6kXKZOw.png" alt="" /></p>
+
+<p>meaning we need to create controller for user</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g controller users
+</code></pre></div></div>
+<p>Then the following error occurs
+<img src="/assets/img/1_8OA7oV4B3J7-JA-0q6uIdg.png" alt="" /></p>
+
+<p>meaning we need to create index method</p>
+
+<h3 id="create-usermethods">Create user methods</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">app/users_controller.rb</code>, add</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UsersController &lt; ApplicationController
+
+  def index
+  end
+
+  ...
+
+end
+</code></pre></div></div>
+<p>Then the following error occurs
+<img src="/assets/img/1_Vs-4mjpCewb1gaigyBk7nA.png" alt="" /></p>
+
+<p>,meaning there is no template for users.</p>
+
+<h3 id="create-view-forusers">Create View for Users</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">app/views/users/</code>, create <code class="language-plaintext highlighter-rouge">index.html.erb</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;h1&gt; Hello &lt;/h1&gt;
+</code></pre></div></div>
+<p>Then the following webpage:
+<img src="/assets/img/1__X7KXKEjLZ1RJJC____edQjPw.png" alt="" /></p>
+
+<p>Then we are done.</p>
+
+<h3 id="lets-create-all-the-routes-over-and-overagain">Let’s create all the routes over and over again</h3>
+
+<p>The next route with GET</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>new_user GET    /users/new(.:format)
+</code></pre></div></div>
+<p>,so we input http://127.0.0.1:3000/users/new</p>
+
+<p>Then the following error occurs
+<img src="/assets/img/1__7FbOR0Ilxz4C__g8nZ9a5GQ.png" alt="" /></p>
+
+<p>meaning we need to add methods in controller, so we add methods: <code class="language-plaintext highlighter-rouge">new, create, show</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UsersController &lt; ApplicationController
+
+  ...
+
+  def new
+    @user = User.new
+  end
+
+  ...
+
+end
+</code></pre></div></div>
+<p>Then the error:
+<img src="/assets/img/1__q2JGUB2x__6xhsekWALi3JQ.png" alt="" /></p>
+
+<p>meaning it cannot find user, which means there is no user model, so we create model</p>
+
+<h3 id="create-usermodel">Create User Model</h3>
+
+<p>In the project, generate model</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g model User username:string password_digest:string
+</code></pre></div></div>
+<h4 id="why-the-name-is-password_digest-rather-than-password">Why the name is password_digest rather than password?</h4>
+
+<p>To emphasize the method we create authentication. (Explanation of <a href="之後要連動好">Digest</a>)</p>
+
+<p>In ruby, the we can use gemfile, <code class="language-plaintext highlighter-rouge">bcrypt</code> to salt and hash the password. In Gemfile, add</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem 'bcrypt'
+</code></pre></div></div>
+<p>Then, in terminal,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bundle install
+</code></pre></div></div>
+<p>(remember to restart rails to use bcrypt)</p>
+
+<p>To use <code class="language-plaintext highlighter-rouge">bcrypt,</code> in <code class="language-plaintext highlighter-rouge">models/user.rb</code> add</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class User &lt; ApplicationRecord  
+  has_secure_password  
+end
+</code></pre></div></div>
+<p>Then following error occurs
+<img src="/assets/img/1__TQun8BVpSGJBEiFUpRZMpw.png" alt="" /></p>
+
+<h3 id="do-migration">Do migration</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails db:migrate
+</code></pre></div></div>
+<p>Then following error occurs
+<img src="/assets/img/1_AFSiKG0sCOeo_YZ1N5OIdA.png" alt="" /></p>
+
+<p>meaning there are no template for user creation</p>
+
+<h3 id="build-html-template-for-usercreation">Build HTML Template for User Creation</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">app/views/users/</code>, add <code class="language-plaintext highlighter-rouge">new.html.erb</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;h1&gt;New Users Page&lt;/h1&gt;
+
+&lt;%= form_for @user do |f| %&gt;  
+  &lt;%= f.label :username %&gt;  
+  &lt;%= f.text_field :username %&gt;&lt;br&gt;  
+  &lt;%= f.label :password %&gt;  
+  &lt;%= f.password_field :password %&gt;&lt;br&gt;  
+  &lt;%= f.submit "Create Account" %&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>Then the following pops up
+<img src="/assets/img/1_LXR0OciDI74t8osMeNmkTQ.png" alt="" /></p>
+
+<p>Then we can test the creation by inputting username and password. Then the following error occurs
+<img src="/assets/img/1__4zsaYfKGpZS1__P__wqjIgzA.png" alt="" />
+meaning we need to create create method</p>
+
+<h3 id="create-method-for-usercreation">Create Method for User Creation</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">app/controllers/users_controller.rb</code>, add</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UsersController &lt; ApplicationController
+
+...
+
+def create
+
+  @user = User.new(user_params)  
+    if @user.save  
+      session[:user_id] = @user.id  
+      redirect_to root_path  
+      
+    else  
+      render :new
+
+    end   
+  end
+
+  private  
+  def user_params  
+    params.require(:user).permit(:username, :password)
+  end
+...
+
+end
+</code></pre></div></div>
+<p>Then we can input username and password to test the user creation.</p>
+
+<p>Then in <code class="language-plaintext highlighter-rouge">rails console</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ User.all
+</code></pre></div></div>
+<p><img src="/assets/img/1__OeNTA__WqEkFDDGQ1FK6saA.png" alt="" /></p>
+
+<h3 id="create-edit">Create edit</h3>
+
+<p>Then go back to see routes, we</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>edit_user GET /users/:id/edit(.:format) users#edit
+</code></pre></div></div>
+<p>if we go to http://127.0.0.1:3000/users/1/edit, error pops up
+<img src="/assets/img/1__0hZqXrALt8B6SK__53Gu5pw.png" alt="" />
+so we need to create edit method. In users_controller.rb:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def edit  
+  @user = User.find_by(id: params[:id])  
+end
+</code></pre></div></div>
+<p>Then the following error pops up
+<img src="/assets/img/1__0R9a9YlJBYEdnfiHsSDK1w.png" alt="" />
+meaning there is no template for editing. Then we can add <code class="language-plaintext highlighter-rouge">edit.html.erb</code> in <code class="language-plaintext highlighter-rouge">app/views/edit.html.erb</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;h1&gt;Edit User Page&lt;/h1&gt;
+
+&lt;%= form_for @user do |f| %&gt;  
+  &lt;%= f.label :username %&gt;  
+  &lt;%= f.text_field :username %&gt;&lt;br&gt;  
+  &lt;%= f.label :password %&gt;  
+  &lt;%= f.password_field :password %&gt;&lt;br&gt;  
+  &lt;%= f.submit "Edit Account" %&gt;
+
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>Then the following error pops up
+<img src="/assets/img/1__xv9uVfkucxN8tBjO65zYcA.png" alt="" />
+meaning we need to add update method in <code class="language-plaintext highlighter-rouge">users_controller.rb</code></p>
+
+<h3 id="create-update-method-in-user-controller">Create Update Method in User Controller</h3>
+
+<p>Let’s add update method</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def update  
+  @user = User.find_by(id: params[:id])  
+  if @user.update(user_params)  
+    redirect_to root_path  
+  else  
+    render :edit  
+  end  
+end
+</code></pre></div></div>
+<h3 id="create-show-method-in-user-controller">Create <code class="language-plaintext highlighter-rouge">Show</code> Method in User Controller</h3>
+
+<p>Then the route:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user GET    /users/:id(.:format)
+</code></pre></div></div>
+<p>If we input http://127.0.0.1:3000/users/1, the following error occurs
+<img src="/assets/img/1__lPX2YjR6U7sAcyOUxrJIqg.png" alt="" />
+meaning we need to create show method in user controller. In <code class="language-plaintext highlighter-rouge">app/controllers/users_controller.rb</code>, add method:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def show  
+  @user = User.find_by(id: params[:id])
+end
+</code></pre></div></div>
+<h3 id="create-view-for-individual-usershow">Create View for Individual User (Show)</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">app/views/users/</code>, add <code class="language-plaintext highlighter-rouge">show.html.erb</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= @user %&gt;
+</code></pre></div></div>
+<p>Then, we can show something on individual webpage.</p>
+
+<h3 id="create-login-method-insession">Create login Method in Session</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">rails routes</code> , we can see</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>login GET    /login(.:format)     sessions#login
+</code></pre></div></div>
+<p>meaning there is a GET route; however, if we input http://127.0.0.1:3000/login, the following error occurs
+<img src="/assets/img/1__gWwzEOZcfJi99pd8otcx0A.png" alt="" /></p>
+
+<p>meaning we need to create login action in session controller; as a result, we can add in <code class="language-plaintext highlighter-rouge">app/controllers/sessions_controller.rb</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class SessionsController &lt; ApplicationController
+
+  ...
+
+  def login  
+  end
+
+  ...
+
+end
+</code></pre></div></div>
+<p>Then the following error occurs
+<img src="/assets/img/1__siP__UNwVDg__hGtXQYoY6pA.png" alt="" />
+meaning there is no view for login method</p>
+
+<h3 id="create-view-forlogin">Create View for Login</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">app/views/sessions/</code>, create <code class="language-plaintext highlighter-rouge">login.html.erb</code>, with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div&gt;  
+  &lt;h2&gt;Login&lt;/h2&gt;  
+  &lt;%= form_tag '/login' do %&gt;  
+    Username: &lt;%= text_field_tag :username %&gt;&lt;br&gt;  
+    Password: &lt;%= password_field_tag :password %&gt;&lt;br&gt;  
+    &lt;%= submit_tag 'login' %&gt;  
+  &lt;% end %&gt;
+&lt;/div&gt;
+</code></pre></div></div>
+<p>Then the following webpage
+<img src="/assets/img/1__rhEZpjxeYX3zPrZxvMe6UA.png" alt="" /></p>
+
+<p>After inputting some username, the following error occurs
+<img src="/assets/img/1__URHwPj0zcgWnJfZIuqjrgQ.png" alt="" /></p>
+
+<p>meaning we need to add create method for session controller</p>
+
+<h3 id="create-method-forlogin">Create Method for Login</h3>
+
+<p>For user creating, we need POST to send data to server and add the following method:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class SessionsController &lt; ApplicationController
+
+...
+
+  def create  
+    @user = User.find_by(username: params[:username])
+    if !!@user &amp;&amp; @user.authenticate(params[:password])   
+      session[:user_id] = @user.id  
+      redirect_to user_path(@user).id)
+    else  
+      message = "something went wrong"  
+      redirect_to login_path, notice: message  
+    end
+  end
+
+...
+
+end
+</code></pre></div></div>
+<p>This method:</p>
+
+<ol>
+  <li>find specific user with username</li>
+  <li>if the user exists and the password is correct, then pass and show the view of specific user webpage</li>
+  <li>or cannot pass</li>
+</ol>
+
+<p>Notice, the method name is <code class="language-plaintext highlighter-rouge">create</code> ; however, this method does not create anything at all.</p>
+
+<p>Then it will redirect to individual webpage.</p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://dev.to/kjdowns/creating-a-user-login-system-ruby-on-rails-2kl2"><strong>Creating a User Login System - Ruby on Rails</strong></a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+
+    </div>
+  </body>
+
+  <script>
+    /* Funtion for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+
+    /* Function for opning navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+      /* Function for dropdowns */
+      function openDropdown(event, dropdownID) {
+        let element = event.target;
+        while (element.nodeName !== "A") {
+          element = element.parentNode;
+        }
+        document.getElementById(dropdownID).classList.toggle("hidden");
+        document.getElementById(dropdownID).classList.toggle("block");
+      }
+  </script>
+</html>
