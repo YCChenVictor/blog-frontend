@@ -11,5 +11,5 @@ node_modules
 test.rb
 public
 
-bundle.js
+# bundle.js (should be ignore but I do not know how to build it on github page)
 bundle.js.LICENSE.txt
