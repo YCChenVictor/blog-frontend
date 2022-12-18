@@ -1,11 +1,12 @@
 module.exports = {
   content: [
-    './_drafts/**/*.html',
-    './_includes/**/*.html',
-    './_layouts/**/*.html',
-    './_posts/*.md',
-    './*.md',
-    './*.html',
+    './jekyll/_drafts/**/*.html',
+    './jekyll/_includes/**/*.html',
+    './jekyll/_layouts/**/*.html',
+    './jekyll/_posts/*.md',
+    './jekyll/*.md',
+    './jekyll/*.html',
+    './webpack'
   ],
   theme: {
     theme: {

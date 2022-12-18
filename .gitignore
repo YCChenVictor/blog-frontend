@@ -9,6 +9,7 @@ note.md
 node_modules
 .DS_Store
 test.rb
+public
 
 /assets/javascripts/bundle.js
 /assets/javascripts/bundle.js.LICENSE.txt
