@@ -40,7 +40,6 @@ footer-msg-link:
 # Build settings
 markdown: kramdown
 source: jekyll
-destination: public
 
 exclude:
   - node_modules
