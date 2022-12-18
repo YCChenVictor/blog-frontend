@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: "{{site.baseurl}}/src/_layouts/post.html"
 title:
 description: ''
 date: '1993-09-01'
