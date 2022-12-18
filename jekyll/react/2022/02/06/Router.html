@@ -1,0 +1,54 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>There are many ways to manage routes. The topics as follow:</p>
+
+<ol>
+  <li>base url</li>
+  <li>Route</li>
+  <li>get</li>
+  <li>post</li>
+</ol>
+
+<h2 id="why">Why?</h2>
+
+<p>focus on why we need it</p>
+
+<h2 id="how">How?</h2>
+
+<p>For routes to guide users on our webpage, I use <code class="language-plaintext highlighter-rouge">react-router-dom</code>; for api, I use built-in method, <code class="language-plaintext highlighter-rouge">fetch</code></p>
+
+<h3 id="base-url">base url</h3>
+
+<p>create <code class="language-plaintext highlighter-rouge">Root/.env</code> as follow:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="p">.</span><span class="nx">env</span> <span class="nx">file</span>
+<span class="nx">REACT_APP_SECRET_NAME</span><span class="o">=</span><span class="nx">secretvaluehere123</span>
+<span class="nx">backend_url</span> <span class="o">=</span> <span class="nx">xxx</span>
+</code></pre></div></div>
+
+<h3 id="route">Route</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i <span class="nt">-D</span> react-router-dom
+</code></pre></div></div>
+
+<h3 id="get">get</h3>
+
+<h3 id="post">post</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">data</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.w3schools.com/react/react_router.asp">React Router</a></p>
+
+<p><a href="https://stackoverflow.com/questions/49579028/adding-an-env-file-to-react-projects">Adding an .env file to React Project</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=K_Qc_c6GH0g">Quickly create a Vite + React + React Router + TailwindCss with JIT compiler project</a></p>

@@ -1,0 +1,83 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>Functional Programming does everything with functions (input -&gt; output). In this concept, we think more about steps than object interactions.</p>
+
+<ul>
+  <li>pros
+    <ul>
+      <li>avoid side effect: only expected input and output will be created, so it won’t affect other components</li>
+      <li>TBC</li>
+    </ul>
+  </li>
+  <li>cons</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>TBC</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="concept-of-higher-order-function">Concept of higher order function</h3>
+
+<p>higher order function will return a function; for example</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">baker</span><span class="p">(</span><span class="nx">degree</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">food</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">food</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> baked in </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">degree</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">baker_100</span> <span class="o">=</span> <span class="nx">baker</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="nx">baker_100</span><span class="p">(</span><span class="dl">'</span><span class="s1">banana</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="do-not-iterate">do not iterate</h3>
+
+<p>Use map, reduce, filter instead. For example, we want to make a sandwich with ingredients, bread, tomato, onion, lettuce and we need to process them before making sandwich. With iteration, we can do</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">bread</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">tomato</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">onion</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lettuce</span><span class="dl">'</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ingredients</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">ingredients</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">ingredients</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">_processed</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ingredients</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>which the <code class="language-plaintext highlighter-rouge">ingredients</code> changed, causing side effect. Or we can achieve it with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">bread</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">tomato</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">onion</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lettuce</span><span class="dl">'</span><span class="p">]</span>
+
+<span class="nx">ingredientsProcessed</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ingredients</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">ingredientsProcessed</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">ingredients</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">_processed</span><span class="dl">'</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ingredientsProcessed</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ingredients</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>tedious, and we can use map</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ingredients</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">bread</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">tomato</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">onion</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">lettuce</span><span class="dl">'</span><span class="p">]</span>
+<span class="nx">ingredientsProcessed</span> <span class="o">=</span> <span class="nx">ingredients</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">_processed</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="no-mutability">No mutability</h3>
+
+<p>Use immutable data, information in a database that cannot be deleted or modified, to avoid any side effect on other components. Actually, in section of <a href="#do-not-iterate">do not iterate</a>, we can see this philosophy.</p>
+
+<h3 id="persistent-data-structure">persistent data structure</h3>
+
+<p>As we can see, for immutability, as the project getting bigger, there must be lots of process to be redo for a tiny change. To avoid redundant process, we want to utilize the old data as much as possible and we can use tree structure or hash structure as follow:</p>
+
+<p>TBC</p>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=e-5obm1G_FY&amp;t=142s">Learning Functional Programming with JavaScript - Anjana Vakil - JSUnconf</a></p>

@@ -1,0 +1,142 @@
+<h2 id="introduction--why">Introduction &amp; Why</h2>
+
+<p>Given that we know the factory method, which can create same kind of monster with different level. That is, we call the factory to use its product line to create <strong>same</strong> kind of product but choose <strong>different</strong> feature during the process of production. What if we want the factory to create various product? We need the factroy to have various product lines.</p>
+
+<p>The result would be as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_monsters</span><span class="p">(</span><span class="n">factory</span><span class="p">)</span>
+  <span class="n">monster_a</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">create_monster_a</span>
+  <span class="n">monster_b</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">create_monster_b</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Note that here only two monster using one factory, meaning each factory has its own  two product lines for these two monsters. We can do more complex design such as two factory using same product line for monster_a. But I am going to just demo it with two product line in each factory.</p>
+
+<h2 id="how">How?</h2>
+
+<p>Let’s say we want two methods for three environments:</p>
+
+<ol>
+  <li>ocean</li>
+  <li>plain</li>
+</ol>
+
+<p>and there are two types of monsters: horse &amp; fish. The horse monster is strong in plain but weak in ocean; the fish monster is strong in ocean but weak in plain. We need two factories for two environments. Each has two product lines.</p>
+
+<p>so the methods to create the monsters accroding to the envrionmnets would be as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_monsters</span><span class="p">(</span><span class="no">FactoryOcean</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">create_monsters</span><span class="p">(</span><span class="no">FactoryPlain</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>and the UML would be as follow:</p>
+
+<div class="mermaid">
+  classDiagram
+    Fish &lt;-- StrongFish : is a
+    Fish &lt;-- WeakFish : is a
+
+    Horse &lt;-- StrongHorse : is a
+    Horse &lt;-- WeakHorse : is a
+
+    AbstractFactory &lt;-- FactoryOcean : is a
+    AbstractFactory &lt;-- FactoryPlain : is a
+
+    FactoryOcean : create_strong_fish()
+    FactoryOcean : create_weak_horse()
+    FactoryPlain : create_weak_fish()
+    FactoryPlain : create_strong_horse()
+
+    StrongFish &lt;-- FactoryOcean : create
+    WeakFish &lt;-- FactoryPlain : create
+
+    WeakHorse &lt;-- FactoryOcean : create
+    StrongHorse &lt;-- FactoryPlain : create
+</div>
+
+<h2 id="what">What?</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AbstractFactory</span>
+  <span class="k">def</span> <span class="nf">create_fish</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create_horse</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">FactoryOcean</span> <span class="o">&lt;</span> <span class="no">AbstractFactory</span>
+  <span class="k">def</span> <span class="nf">create_fish</span>
+    <span class="no">StrongFish</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create_horse</span>
+    <span class="no">WeakFish</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">FactoryPlain</span> <span class="o">&lt;</span> <span class="no">AbstractFactory</span>
+  <span class="k">def</span> <span class="nf">create_fish</span>
+    <span class="no">WeakFish</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create_horse</span>
+    <span class="no">StrongHorse</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Fish</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">StrongFish</span> <span class="o">&lt;</span> <span class="no">Fish</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="s1">'strong fish'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">WeakFish</span> <span class="o">&lt;</span> <span class="no">Fish</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="s1">'weak fish'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Horse</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">StrongHorse</span> <span class="o">&lt;</span> <span class="no">Horse</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="s1">'strong horse'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">WeakHorse</span> <span class="o">&lt;</span> <span class="no">Horse</span>
+  <span class="k">def</span> <span class="nf">power</span>
+    <span class="s1">'weak horse'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">create_monsters</span><span class="p">(</span><span class="n">factory</span><span class="p">)</span>
+  <span class="n">fish</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">create_fish</span>
+  <span class="n">horse</span> <span class="o">=</span> <span class="n">factory</span><span class="p">.</span><span class="nf">create_horse</span>
+
+  <span class="nb">puts</span> <span class="n">fish</span><span class="p">.</span><span class="nf">power</span>
+  <span class="nb">puts</span> <span class="n">horse</span><span class="p">.</span><span class="nf">power</span>
+<span class="k">end</span>
+
+<span class="n">create_monsters</span><span class="p">(</span><span class="no">FactoryOcean</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+<span class="n">create_monsters</span><span class="p">(</span><span class="no">FactoryPlain</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=v-GiuMmsXj4&amp;list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc&amp;index=5">Abstract Factory Pattern – Design Patterns (ep 5)</a></p>

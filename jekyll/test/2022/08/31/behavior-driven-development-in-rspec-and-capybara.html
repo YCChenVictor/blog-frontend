@@ -1,0 +1,116 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>quick explanation</p>
+
+<h2 id="why">Why?</h2>
+
+<p>focus on why we need it</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="aaa-principle-arrange---act--assert">AAA principle (Arrange -&gt; Act -&gt; Assert)</h3>
+
+<p>The basic principle to build spec is AAA principle.
+<strong>arrange:</strong> describe the environment before action begin
+<strong>act:</strong> execute the unit function that we want to test
+<strong>assert:</strong> check whether the result is what we want</p>
+
+<ul>
+  <li>AAA principle maps spec</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"the_summary"</span><span class="p">,</span> <span class="ss">type: :feature</span> <span class="k">do</span>
+
+  <span class="n">context</span> <span class="s2">"arrange"</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"assertion"</span> <span class="k">do</span>
+      <span class="s2">"act"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>I am going to demonstrate BDD with RSpec and Capybara to develop user login functions.</p>
+
+<p>Steps:</p>
+
+<ul>
+  <li>install required gems</li>
+  <li>describe user story</li>
+  <li>compose specification</li>
+  <li>build feature</li>
+</ul>
+
+<h3 id="install-required-gems">install required gems</h3>
+
+<p>Create rails app by</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails new app
+</code></pre></div></div>
+
+<p>In gemfile,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'rspec-rails'</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'capybara'</span>
+  <span class="n">gem</span> <span class="s1">'selenium-webdriver'</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<h3 id="describe-user-story">describe user story</h3>
+
+<p>Again we can use AAA principle to compose spec</p>
+
+<p>User goes to the login page (<strong>arrange</strong>) -&gt; Enter email and password and then click login button (<strong>act</strong>) -&gt; the webpage redirect to the webpage user clicked before (<strong>assert</strong>)</p>
+
+<h3 id="compose-specification">Compose Specification</h3>
+
+<p>Generate spec through</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g rspec:feature user_login
+</code></pre></div></div>
+
+<p>to produce <code class="language-plaintext highlighter-rouge">spec/feature/user_login_spec.rb</code> and input</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'spec_helper'</span>
+
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"user signin"</span><span class="p">,</span> <span class="ss">type: :feature</span> <span class="k">do</span>
+  <span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+    <span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">email: </span><span class="s1">'user@example.com'</span><span class="p">,</span> <span class="ss">password: </span><span class="s1">'password'</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">context</span> <span class="s2">"after user on sign in page"</span> <span class="k">do</span>
+    <span class="n">before</span> <span class="k">do</span>
+      <span class="n">visit</span> <span class="s1">'/users/sign_in'</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s2">"signs user in"</span> <span class="k">do</span>
+      <span class="n">fill_in</span> <span class="s2">"user_email"</span><span class="p">,</span> <span class="ss">with: </span><span class="s1">'user@example.com'</span>
+      <span class="n">fill_in</span> <span class="s2">"user_password"</span><span class="p">,</span> <span class="ss">with: </span><span class="s1">'password'</span>
+      <span class="n">click_button</span> <span class="s1">'Log in'</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span> <span class="s1">'Signed in successfully.'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h3 id="build-feature">build feature</h3>
+
+<p>run all spec with <code class="language-plaintext highlighter-rouge">bundle exec rspec</code> or specific spec with <code class="language-plaintext highlighter-rouge">bundle exec rspec spec/features/user_login_spec.rb</code> and keep building the features until no errors pop up.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=QYCaaNz8emY">What is Integration Testing? Software Testing Tutorial</a></p>
+
+<p><a href="https://semaphoreci.com/community/tutorials/integration-testing-ruby-on-rails-with-minitest-and-capybara">Integration Testing Ruby on Rails with Minitest and Capybara</a></p>
+
+<p><a href="https://relishapp.com/rspec/rspec-rails/docs/generators">Generators</a></p>

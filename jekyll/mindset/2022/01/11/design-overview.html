@@ -1,0 +1,62 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>How to turn real world idea into software? We need concepts of design. We need pattern for general, reusable solution to common problem, …etc</p>
+
+<h2 id="why">Why?</h2>
+
+<ol>
+  <li>Speed up the development process</li>
+  <li>Obtain skills to get into a senior role</li>
+  <li>create own Apps</li>
+</ol>
+
+<h2 id="how">How?</h2>
+
+<p>The basic steps would be as follow:</p>
+
+<ol>
+  <li>compose as many user stories about ‘only one’ scenario. You can add other scenarios after you complete the development and the template as follow: <code class="language-plaintext highlighter-rouge">As a &lt; type of user &gt;, I want &lt; some goal &gt; so that &lt; some reason &gt;.</code></li>
+  <li>write specifications based on the user stories by expanding it and should have lots of details, assuming reader knows nothing, lots of words</li>
+  <li>design UI based on the specifications</li>
+  <li>define the objects and the relationships between them in this system</li>
+  <li>compose the classes based on the relationships such <code class="language-plaintext highlighter-rouge">belongs_to</code> &amp; <code class="language-plaintext highlighter-rouge">has_one</code>, … and create needed classes for these relationships</li>
+  <li>define the attributes of an object in the classes so that we can define the columns</li>
+  <li>define the methods in the objects</li>
+  <li>draw the relationship of these classes and make sure theses relationships are super flexible</li>
+  <li>just do it in the fastest way. Don’t worry about the language. Based on the API structures, we really do not worry about it. We can always modify it later.</li>
+</ol>
+
+<h2 id="what">What?</h2>
+
+<p>User story: As a person who like to sing, I want key recognition through sounds so that I can compose it later.</p>
+
+<p>Specification: As a person like to sing, after I upload my recorded mp3, and click ‘recognition’ button, I want key recognition through sounds and convert into music sheet so that I can compose it later through editor.</p>
+
+<p>Based on the specification, on the webpage, we should have a component to upload and then it should start to convert and a component to show the music sheet. I am going to copy some free frontend design for it <a href="https://mui.com/">mui</a></p>
+
+<p>Based on the specification, we can start to define the classes. We need classes and relationships as follow:</p>
+
+<div class="mermaid w-1/3">
+  classDiagram
+    User --&gt; Record : has many
+
+    User : firstName:string
+    User : lastName:string
+    User : email:string
+    User : dateOfBirth:date
+    User : age()
+    
+    Record --&gt; Sheet : has many
+  
+    Record : name:string
+    Record : file:BLOB
+    Record : converted:boolean
+  
+    Sheet : file:TEXT
+</div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=FLtqAi7WNBY">Software Design Tutorial #1 - Software Engineering &amp; Software Architecture</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=MCXi4KtRTG0">How To Write A Project Specification</a></p>

@@ -1,0 +1,75 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>The internet is a system to connect all computers globally, mainly using internet protocol suite to communicate with all the objects in the network.</p>
+
+<h3 id="what-is-internet-protocolsuite">What Is Internet Protocol Suite?</h3>
+
+<p>It is a kind of <strong>conceptual model</strong> used in a network model. The foundation is “Transmission Control Protocol” (TCP) and “Internet Protocol” (IP)</p>
+
+<p>A simple structure of TCP/IP is as follow:
+<img src="/assets/img/1__RwTbhJGkPNdHriCUy6vDww.png" alt="" width="500" /></p>
+
+<h3 id="how-do-the-layerswork">How Do The Layers Work?</h3>
+
+<h4 id="link-layer">Link layer</h4>
+
+<p>For example, if a computer (sender) want to send data to another computer (receiver), the sender will send electromagnetic signals. These signals walk through wired or wireless connection from sender to receiver.</p>
+
+<h4 id="network-layerip">Network layer (IP)</h4>
+
+<p>Once the number of computers grow, we need to specify the address to identify which one is receiver. The address for identification is IP address. We called all the computer in this network <strong>nodes</strong>.</p>
+
+<p>Now the network looks like
+<img src="/assets/img/internet_network.png" alt="" /></p>
+
+<h4 id="transport-layertcp">Transport layer (TCP)</h4>
+
+<p>In the network plot above, if a sender wants to send signal to another computer, there are many path for signal to walk.</p>
+
+<p>(interlude) <strong>Packet Switching:</strong></p>
+
+<p>The concept of packet switching is that it <strong>breaks down the data</strong> into small pieces and transfer these pieces with any possible routes to the destination and reassemble these pieces to show the complete data to the users at the destination.</p>
+
+<p>I am going to explain the way to decompose the data and the way to transfer it with following example:</p>
+
+<p>At the moment when the data is going to be sent, the available routes may be as follow:
+<img src="/assets/img/1__kF7aAIKeqLdK7SH9b0vavw.png" alt="" width="500" /></p>
+
+<ol>
+  <li>If there is arrows between nodes, then there is connection between the two computers and we call it the <strong>path</strong>.</li>
+  <li>The number near the arrow is the cost to send a unit of data from sender to receiver.</li>
+</ol>
+
+<p>Based on these two concepts, we can define algorithms such as walk through minimum path and walk through minimum cost.</p>
+
+<p><strong>TCP is used to make sure the packets are truly transported:</strong></p>
+
+<ol>
+  <li>sender want to send data to receiver</li>
+  <li>the data being decomposed into packets</li>
+  <li>algorithm pops up to determine how packets being sent</li>
+  <li>the packets walk through the routes in networks and being reassembled at destination</li>
+  <li>if the receiver did not receive the data, then tell sender to send again.</li>
+</ol>
+
+<h3 id="application-layer">Application Layer</h3>
+
+<p>After the data arrives at destination, the receiver use Hypertext Transfer Protocol (HTTP) to translate the data from sender and then the page will show up on the receiver’s browsers.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Internet" title="https://en.wikipedia.org/wiki/Internet"><strong>Internet - Wikipedia</strong><br />
+_The Internet ( or internet ) is the global system of interconnected computer networks that uses the Internet protocol…_en.wikipedia.org</a><a href="https://en.wikipedia.org/wiki/Internet"></a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol" title="https://en.wikipedia.org/wiki/Transmission_Control_Protocol"><strong>Transmission Control Protocol - Wikipedia</strong><br />
+_The Transmission Control Protocol ( TCP) is one of the main protocols of the Internet protocol suite. It originated in…_en.wikipedia.org</a><a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol"></a></p>
+
+<p><a href="https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:the-internet-protocol-suite/a/the-internet-protocols" title="https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:the-internet-protocol-suite/a/the-internet-protocols"><strong>The Internet protocol suite (article) | Khan Academy</strong><br />
+_Review the protocols that make up the suite of Internet Protocols and consider the stack of protocols that are used in…_www.khanacademy.org</a><a href="https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:the-internet-protocol-suite/a/the-internet-protocols"></a></p>
+
+<p><a href="https://avinetworks.com/glossary/packet-switching/" title="https://avinetworks.com/glossary/packet-switching/"><strong>What is Packet Switching? Definition &amp; FAQs | Avi Networks</strong><br />
+_Back to Technical Glossary Packet Switching transmits data across digital networks by breaking it down into blocks or…_avinetworks.com</a><a href="https://avinetworks.com/glossary/packet-switching/"></a></p>
+
+<p><a href="http://www2.cs.uidaho.edu/~krings/CS420/Notes-F16/420-16-18-DCC10-Chap-19.pdf">http://www2.cs.uidaho.edu/~krings/CS420/Notes-F16/420-16-18-DCC10-Chap-19.pdf</a></p>
+
+<p><a href="https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:web-protocols/a/hypertext-transfer-protocol-http">https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:the-internet/xcae6f4a7ff015e7d:web-protocols/a/hypertext-transfer-protocol-http</a></p>

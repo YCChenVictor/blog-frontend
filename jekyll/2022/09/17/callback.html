@@ -1,0 +1,40 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>quick explanation</p>
+
+<h2 id="why">Why?</h2>
+
+<p>focus on why we need it</p>
+
+<h2 id="how">How?</h2>
+
+<p>focus on the mechanim</p>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<h2 id="note">Note</h2>
+
+<h3 id="model-callback">Model Callback</h3>
+
+<p>Callback means adding some methods (hooks) to the life cycle of data in database.</p>
+
+<p>For example, the process of save in rails:
+<img src="/assets/img/rails_model_callback.png" alt="" /></p>
+
+<p>If we want to have an encrypted email before email creation. Then,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require 'digest'
+
+class User &lt; ActiveRecord::Base  
+  before_create :encrypt_email  
+    
+  private  
+  def encrypt_email  
+    self.email = Digest::MD5.hexdigest(email)  
+  end  
+end
+</code></pre></div></div>
+<p>for more callback methods, please refer to <a href="&quot;https://guides.rubyonrails.org/active_record_callbacks.html&quot;"><strong>Active Record Callbacks - Ruby on Rails Guides</strong></a></p>
+
+<h2 id="reference">Reference</h2>

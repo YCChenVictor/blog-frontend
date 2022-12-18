@@ -1,0 +1,67 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>Increase efficiency by saving data in memory so that the computers do not need to load data again every time.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>focus on why we need it</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="stop-redis">stop redis</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>killall redis-server
+</code></pre></div></div>
+
+<h3 id="start-redis">start redis</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>redis-server
+</code></pre></div></div>
+
+<h3 id="connect-to-redis">connect to redis</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>redis-cli
+</code></pre></div></div>
+
+<h3 id="check-the-number-of-keys">check the number of keys</h3>
+
+<p>After connect to redis</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> DBSIZE
+</code></pre></div></div>
+
+<h3 id="check-whether-a-data-cached">Check whether a data cached</h3>
+
+<ol>
+  <li>remove all cache</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> redis-cli FLUSHALL
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>do some steps on your webpage for caching in redis</p>
+  </li>
+  <li>
+    <p>start to monitor</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> redis-cli MONITOR
+</code></pre></div></div>
+
+<ol>
+  <li>check the keys of cached data</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> keys <span class="k">*</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://stackoverflow.com/questions/7669508/how-can-i-test-if-my-redis-cache-is-working">How can I test if my redis cache is working?</a></p>

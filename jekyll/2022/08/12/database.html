@@ -1,0 +1,45 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>Given the problems, chose suitable type of database</p>
+
+<ul>
+  <li>relational database
+    <ul>
+      <li></li>
+    </ul>
+  </li>
+  <li>NoSQL database
+    <ul>
+      <li>timeseries data: TimescaleDB</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>Actually, two key factors in database, write and read. The specific structure is best fit for specific problem.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="timescaledb">TimescaleDB</h3>
+
+<p>In timeseries data, how to read and update data efficiently is more important than the relationship between each row in tables and the solution lays on how to define the unit to be CRUD in database.</p>
+
+<p>TimescaleDB has two key mechanisms:</p>
+
+<ul>
+  <li>the frequency of slicing a chunk increase when the data per time period increases</li>
+  <li>the data would be postponed to the future chunk when the data arrives earlier</li>
+</ul>
+
+<p>which solves problems in the following trivial approaches:</p>
+
+<ul>
+  <li>
+    <p>fixed-duration intervals: slice the data once in a fixed time period; data naturally getting larger as the time pass; as a result, the data stored in each fixed time period increases, which still cause too much data to read problem in the future.</p>
+  </li>
+  <li>
+    <p>fixed-sized chunks: slice the data once a fixed amount of data; there may be time lag while saving data into database; as a result, there may be larger data chunk because all the data saved at the same time.</p>
+  </li>
+</ul>
+

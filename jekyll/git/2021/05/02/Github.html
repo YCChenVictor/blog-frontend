@@ -1,0 +1,153 @@
+<h2 id="introduction">Introduction</h2>
+
+<p><strong>GitHub</strong> is a code hosting platform for version control and collaboration. This article includes topics:</p>
+
+<ul>
+  <li>start a project</li>
+  <li>delete a branch</li>
+  <li>fetch/pull/push</li>
+  <li>remove a project</li>
+  <li>management project</li>
+  <li>host frontend on github pages</li>
+</ul>
+
+<h2 id="why">Why</h2>
+
+<p>With it, we can organize distributed commits into a stream.</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="start-a-project">start a project</h3>
+
+<p>Steps:</p>
+
+<ol>
+  <li>create a project on local</li>
+  <li>follow official instructions: <a href="https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-an-existing-project-to-github-using-the-command-line">Adding a project to GitHub with GitHub CLI</a></li>
+</ol>
+
+<h3 id="delete-a-branch">delete a branch</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin :second
+</code></pre></div></div>
+
+<p>means to push an empty to origin, and create a branch named second. Because the branch is empty, the branch disappears accordingly.</p>
+
+<h3 id="fetchpullpush">fetch/pull/push</h3>
+
+<h4 id="fetch">fetch</h4>
+
+<p>Given</p>
+
+<ul>
+  <li>there is a repository on local machine and pushed on github</li>
+  <li>we do some commits on github so that the online progress is more forward than the local machine</li>
+  <li>then after we do <code class="language-plaintext highlighter-rouge">git fetch</code>, git will ‘fetch’ the online progress to local machine.</li>
+</ul>
+
+<p>(to be continued)</p>
+
+<p>Then the full commits look like</p>
+
+<p><img class="" src="/blog/assets/img/1__O1mKn3HJE8CLwy6iti1__qQ.png" alt="author profile image" /></p>
+
+<p>As you can see, there are commits from adc1a5 to 85e848 on local machine and 8c3a0a fetched from remote branch. And because these commits are on the same branch, they will be connected together with two different HEAD point on different commits.</p>
+
+<h4 id="pull">Pull</h4>
+
+<p>Pull = fetch + merge. Because there is merge in pull, after we do <code class="language-plaintext highlighter-rouge">git pull,</code> the branch looks like</p>
+
+<p><img class="" src="/blog/assets/img/1__Q1oyPGHGAvu07__OS9IRb9A.png" alt="author profile image" /></p>
+
+<p>meaning it merges the branches on local machine and the version on remote node.</p>
+
+<h4 id="pull-request">Pull Request</h4>
+
+<p>The meaning of pull request: request the owner of the code to pull my code, which means fetch it and merge it.</p>
+
+<p>If I want to contribute to a project, then I can pull request first. After the main developer accepts it, the two version can be combined into one</p>
+
+<p>First thing first, get the code so that we can modify it</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone <span class="s1">'url'</span>
+</code></pre></div></div>
+
+<p>however, after lots of modification, we want to push it and we may get rejection with no right; as a result, if we do not have the right to write into a branch of a project, we should ‘fork’ it to our github first and then do modification on it. As a result, the steps will be</p>
+
+<p>fork it first to copy the project to our reporsitory</p>
+
+<p><img class="" src="/blog/assets/img/1__lgHVlwAZmL0dvgF622BD4A.png" alt="author profile image" /></p>
+
+<p>and clone it</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone <span class="s1">'url'</span>
+</code></pre></div></div>
+
+<p>and do modification on that forked project. After lots of modifications, create pull request; for example,</p>
+
+<p><img class="" src="/blog/assets/img/1__VcZSbSXXzCImMp0GnE5GfA.png" alt="author profile image" /></p>
+
+<p>After we click ‘create pull request’, the modifications will be sent to the owner of this project and if the owner accepts it, the two different versions of code will be merged together.</p>
+
+<p>If you are in an organization in github and have the right to push modification directly, then you do not have to use fork first and can do pull request directly. We can still step up the review mechanism for pull request merges; for example, all members clicks accept and then pull it.</p>
+
+<h4 id="meaning-of-push">meaning of push</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin main:second
+</code></pre></div></div>
+
+<p>means to push main to the node, origin, and create a branch named second</p>
+
+<h3 id="remove-a-repo">remove a repo</h3>
+
+<p><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/deleting-a-repository">reference</a></p>
+
+<h3 id="management">Management</h3>
+
+<ol>
+  <li>Create an organization and all repo owned by that organization</li>
+  <li>To fork or not to fork? It depends, but feature branches a must</li>
+  <li>All commits must go through pull requests and squash commits before merging</li>
+  <li>Git pull -&gt; git branch feature/ticket -&gt; make changes -&gt; commit -&gt; git push to feature/ticket -&gt; send PR -&gt; Approved -&gt; Merge</li>
+</ol>
+
+<h3 id="host-frontend-on-github-pages">host frontend on github pages</h3>
+
+<p>install library</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>gh-pages
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">package.json</code>, add</p>
+
+<pre><code class="language-JSON">"homepage": "https://&lt;username&gt;.github.io/&lt;repository-name&gt;/",
+
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
+}
+</code></pre>
+
+<p>then run</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run deploy
+</code></pre></div></div>
+
+<p>add <code class="language-plaintext highlighter-rouge">.env</code> in <code class="language-plaintext highlighter-rouge">root</code> path with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PUBLIC_URL</span><span class="o">=</span>https://ycchenvictor.github.io/world/
+</code></pre></div></div>
+
+<p>remember to change all path into relative path so that <code class="language-plaintext highlighter-rouge">PUBLIC_URL</code> can be required.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://gitbook.tw/chapters/github/pull-request.html">與其它開發者的互動 — 使用 Pull Request（PR） — 為你自己學 Git 高見龍</a></p>
+
+<p><a href="https://gitbook.tw/chapters/github/push-to-github.html">Push 上傳到 GitHub — 為你自己學 Git 高見龍</a></p>
+
+<p><a href="https://gitbook.tw/chapters/github/pull-from-github.html">Pull 下載更新 — 為你自己學 Git 高見龍*</a></p>
+
+<p><a href="https://rexhung0302.github.io/2021/09/28/20210928/">[Git Note] — React 部署至 GitHub Page 超級淺入遷出</a></p>
+
+<p><a href="https://sbcode.net/threejs/github-pages/">Host using GitHub Pages</a></p>

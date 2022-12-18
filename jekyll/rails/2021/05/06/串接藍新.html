@@ -1,0 +1,221 @@
+<h3 id="introduction">Introduction</h3>
+
+<p>藍新是台灣主要的金流串接服務。他有兩個模式：代收模式、匣道模式。不論是哪個模式，反正商家提供服務後，就是要收到錢就對了。</p>
+
+<h4 id="代收模式"><strong>代收模式</strong></h4>
+
+<p>就是藍新代替商家跟消費者收款，所以會變成藍新先付款給商家，然後藍新再想辦法跟消費者收款。像是 ATM、WebATM、超商，這些消費者都可以稍後付款，所以要先由藍新先付款。</p>
+
+<h4 id="匣道模式"><strong>匣道模式</strong></h4>
+
+<p>就是藍新只是一個管道，收款的服務付款給商家。像是：各種第三方支付與信用卡。可以這樣是因為這些管道可以快速地一但支付就流到商家。</p>
+
+<p>從上面來看，可想而知代收模式，藍新要承受比較高的風險，所以手續費會比較高。</p>
+
+<h3 id="why">Why</h3>
+
+<p>串了這個服務，網站就可以<strong>快速</strong>的有金流，可以更<strong>安全</strong>地收款。</p>
+
+<h3 id="how">how</h3>
+
+<h4 id="先拿到-apikey">先拿到 API Key</h4>
+
+<p>請先去看手冊裡面的<strong>「測試環境串接與作業流程」，</strong>步驟如下</p>
+
+<ol>
+  <li><a href="https://cwww.newebpay.com/">https://cwww.newebpay.com/</a> -&gt; 註冊 (可以註冊個人的就好)</li>
+  <li>然後登入，在 API 串接測試區/會員中心/商店管理</li>
+  <li>沒開店，他會要你開一家店，你可以想個要開什麼店，寫一下</li>
+  <li>然後，API 串接測試區/會員中心/商店管理/商店資料設定/詳細資料，在這裡面查看「API串接金鑰」裡的 HashKey 與 HashIV</li>
+  <li>拿到 API Key 就可以先開始搞了，後續再設定即可</li>
+  <li>請注意，在測試環境裡面的串接測試網站：<a href="https://ccore.newebpay.com/MPG/mpg_gateway">https://ccore.newebpay.com/MPG/mpg_gateway</a> (跟正式版不一樣，要記得)</li>
+</ol>
+
+<h4 id="了解一下藍新的邏輯">了解一下藍新的邏輯</h4>
+
+<p>看完了手冊，可能還是不知道他在幹嘛，沒關係，這很正常。如果你登入好了，可以看一下：會員中心/商店管理/詳細資料，你就可以進入一個頁面，這個頁面的右邊：</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__gdNE7FgdMhiPzSauKCa__Og.png" alt="" /></p>
+
+<p>你可以看到 WebATM, ATM 轉帳，超商代碼繳費，條碼繳費已經是啟用的狀態，這是 by default。我們在要做的是了解一下這些 default method 的邏輯，以 WebATM 流程為例：</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__kiVM9iariZKF5ps5eLZ4NA.png" alt="" /></p>
+
+<p>依照上面的流程，我們只需要特別注意以下兩個步驟：</p>
+
+<ol>
+  <li>買方在賣方網頁點選購買後，應該要轉到藍新金流 MPG 頁面。藍新會在賣方給交易相關加密資料後，將買方頁面引導至該頁面。</li>
+  <li>賣方傳送交易參數給藍新，這邊要寫一個 post，post 方法在正式版環境介紹中（這真的蠻爛的，測試版沒寫，正式版才寫，不知道在寫什麼）</li>
+  <li>金融機構會回傳交易結果的資料給藍新，藍新將依照此結果傳付款完成的訊息傳給賣方，所以我們這邊要寫一個接受此訊息後要做的動作</li>
+</ol>
+
+<p>以上流程中，最困難的部分是 post 給藍新，因為藍新的加密方式寫得非常不清楚，但不用擔心，可以用以下的加密方式。再來就是 rails 跟 ruby 的部份。</p>
+
+<h4 id="rails">Rails</h4>
+
+<p>建立一個使用者可以點選付款的頁面</p>
+
+<p>$ rails g controller newebpay index</p>
+
+<p>這個指令會創造如下檔案（大家應該都很熟悉了）</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__T5EP0gvsnyyIhFjV5wRUNg.png" alt="" /></p>
+
+<p>預計在 index.html.erb 創造一個藍新付款的按鈕，按了按鈕後，使用者要轉去藍新的頁面。</p>
+
+<p>經過嚴密的搜尋後，我們在 index.html.erb 放入</p>
+
+<p>&lt;%= form_tag(‘https://ccore.newebpay.com/MPG/mpg_gateway’, method: “post”, id:”newebpay”) do %&gt;<br />
+  &lt;%= label_tag(“MerchantID”) %&gt;<br />
+  &lt;%= text_field_tag(“MerchantID”, ‘你的商店代碼’) %&gt;<br />
+  <br /><br />
+  &lt;%= label_tag(“TradeInfo”) %&gt;<br />
+  &lt;%= text_field_tag(“TradeInfo”, ‘你的 AES 加密’) %&gt;<br />
+  <br /><br />
+  &lt;%= label_tag(“TradeSha”) %&gt;<br />
+  &lt;%= text_field_tag(“TradeSha”, ‘你的 AES SHA256 加密’) %&gt;<br />
+  <br /><br />
+  &lt;%= label_tag(“Version”) %&gt;<br />
+  &lt;%= text_field_tag(“Version”, ‘你的版本’) %&gt;<br />
+  <br /><br />
+  &lt;%= submit_tag(“go”) %&gt;<br />
+&lt;% end %&gt;</p>
+
+<p>則頁面看起來如下：</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__zkMpmB7OJRf4AQ5kZRjl6A.png" alt="" /></p>
+
+<p>然後再依照藍新的手冊，我們預計要打出去的資訊：</p>
+
+<ol>
+  <li>MerchantID：藍新給我們的商店代號 (可以在模擬交易裡面找到)</li>
+  <li>TradeInfo：會將交易資料透過商店的 Key 與 IV 進行 AES 加密</li>
+  <li>TradeSha：將 AES 加密後的 TradeInfo，再用 SHA256 加密</li>
+  <li>Version：串接的程式版本，default 值為 1.5</li>
+</ol>
+
+<h4 id="aes-跟-sha256-它是怎麼算出來的">AES 跟 SHA256 它是怎麼算出來的？</h4>
+
+<p><strong>(記得到時候要打的時候還是要用自己的 MerchantID, Key, IV)</strong></p>
+
+<p>假設我們的範例資料如下（去<strong>API串接測試區/模擬交易，下面有測試資料跟預計換算出來的數值或是在手冊裡面最後面有測試資料</strong>），我就用手冊裡面的：</p>
+
+<p>[MerchantID] =&gt; 3430112<br />
+[RespondType] =&gt; JSON <br />
+[TimeStamp] =&gt; 1485232229 <br />
+[Version] =&gt; 1.4 <br />
+[MerchantOrderNo] =&gt; S_1485232229 <br />
+[Amt] =&gt; 40 <br />
+[ItemDesc] =&gt; UnitTest<br />
+Key = ‘12345678901234567890123456789012’;<br />
+IV = ‘1234567890123456’;</p>
+
+<p>請注意，你要放進來的 trade information 應該如下，要是 array 模式</p>
+
+<p>testing_data = [<br />
+  [‘MerchantID’, ‘MS119996394’],<br />
+  [‘RespondType’, ‘JSON’],<br />
+  [‘TimeStamp’, ‘1620215508’],<br />
+  [‘Version’, ‘1.5’],<br />
+  [‘MerchantOrderNo’, ‘1620215508’],<br />
+  [‘Amt’, ‘93’],<br />
+  [‘ItemDesc’, ‘TEST’],<br />
+  [‘Email’, ‘t5204713910@gmail.com’]<br />
+]</p>
+
+<p>整個模組如下：(放在 helper 裡)</p>
+
+<p>module NewebpayHelper</p>
+
+<p># encoding<br />
+  def encrypt_aes_sha256_uppercase(transaction_information, key, iv)<br />
+    result = encrypt_aes(transaction_information, key, iv)<br />
+    result = ‘HashKey=’ + key + ‘&amp;’ + result + ‘&amp;HashIV=’ + iv  <br />
+    result = Digest::SHA256.hexdigest(result)<br />
+    result = result.upcase<br />
+    return result<br />
+  end</p>
+
+<p>def encrypt_aes(transaction_information, key, iv)<br />
+    result = http_build_query(transaction_information)<br />
+    result = addpadding(result)<br />
+    result = openssl_encrypt(result, key, iv)<br />
+    result = bin2hex(result)<br />
+    result = trim(result)<br />
+    return result<br />
+  end</p>
+
+<p>def http_build_query(informations)<br />
+    result = []<br />
+    for information in informations<br />
+      result_part = CGI.escape(information[0]) + ‘=’ + CGI.escape(information[1])<br />
+      result.append(result_part)<br />
+    end<br />
+    return result.join(“&amp;”)<br />
+  end</p>
+
+<p>def addpadding(string, blocksize = 32)<br />
+    len = string.length<br />
+    pad = blocksize - (len % blocksize)<br />
+    string = string + pad.chr() * pad<br />
+    return string<br />
+  end</p>
+
+<p>def openssl_encrypt(string, key, iv, cipher_method = ‘aes-256-cbc’)<br />
+    cipher = OpenSSL::Cipher.new(cipher_method)<br />
+    cipher.encrypt<br />
+    cipher.iv = iv<br />
+    cipher.key = key<br />
+    result = cipher.update(string)<br />
+    return result<br />
+  end</p>
+
+<p>def bin2hex(bytes)<br />
+    hex_string = bytes.unpack(‘H*’)<br />
+    return hex_string<br />
+  end</p>
+
+<p>def trim(data)<br />
+    return data.first.strip<br />
+  end<br />
+end</p>
+
+<h4 id="然後就可以做出">然後就可以做出</h4>
+
+<p>&lt;%= form_tag(‘https://ccore.newebpay.com/MPG/mpg_gateway’, method: “post”, id:”newebpay”) do %&gt;<br />
+  &lt;%= label_tag(“MerchantID”) %&gt;<br />
+  &lt;%= text_field_tag(“MerchantID”, ‘你的商店代碼’) %&gt;<br />
+  <br /><br />
+  &lt;%= label_tag(“TradeInfo”) %&gt;<br />
+  &lt;%= text_field_tag(“TradeInfo”, encrypt_aes(testing_data, key, iv)) %&gt;<br />
+  <br /><br />
+  &lt;%= label_tag(“TradeSha”) %&gt;<br />
+  &lt;%= text_field_tag(“TradeSha”, encrypt_aes_sha256_uppercase(testing_data, key, iv)) %&gt;<br />
+  <br /><br />
+  &lt;%= label_tag(“Version”) %&gt;<br />
+  &lt;%= text_field_tag(“Version”, ‘你的版本’) %&gt;<br />
+  <br /><br />
+  &lt;%= submit_tag(“go”) %&gt;<br />
+&lt;% end %&gt;</p>
+
+<p>理論上，你在頁面中按 go，就會轉到以下頁面</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__jWWG7ditQRjnnpHQFDQDlQ.png" alt="" /></p>
+
+<h3 id="what">What</h3>
+
+<p>在上面的頁面裡，你可以看到有四種 default 的支付方式：WebATM、ATM 轉帳、超商代碼繳費、條碼繳費。如果要再新增，透過看手冊，要在你們的測試平台裡面先設定，然後要打出去的 array 也不一樣，要記得看清楚手冊。</p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://www.newebpay.com/website/Page/content/download_api#1" title="https://www.newebpay.com/website/Page/content/download_api#1"><strong>藍新金流服務平台</strong><br />
+_藍新金流 NewebPay 金流服務平台，提供整合式金流工具，協助個人用戶與企業用戶快速接入多種支付方式，無論是網站或行動裝置都能便捷付款_www.newebpay.com</a><a href="https://www.newebpay.com/website/Page/content/download_api#1"></a></p>
+
+<p><a href="https://github.com/maintainable/php-ruby-reference/blob/master/url/http_build_query.markdown" title="https://github.com/maintainable/php-ruby-reference/blob/master/url/http_build_query.markdown"><strong>maintainable/php-ruby-reference</strong><br />
+_PHP functions and their equivalents in Ruby (and Rails). - maintainable/php-ruby-reference_github.com</a><a href="https://github.com/maintainable/php-ruby-reference/blob/master/url/http_build_query.markdown"></a></p>
+
+<p><a href="https://github.com/maintainable/php-ruby-reference/blob/master/strings/bin2hex.markdown" title="https://github.com/maintainable/php-ruby-reference/blob/master/strings/bin2hex.markdown"><strong>maintainable/php-ruby-reference</strong><br />
+_The bin2hex function in PHP converts a string containing binary data into a human-readable string containing the…_github.com</a><a href="https://github.com/maintainable/php-ruby-reference/blob/master/strings/bin2hex.markdown"></a></p>
+
+<p><a href="https://www.minwt.com/webdesign-dev/html/21798.html" title="https://www.minwt.com/webdesign-dev/html/21798.html"><strong>[梅開發] 藍新金流API串接，免寫程式直接套用 (PHP)</strong><br />
+_當今天要在網路賣東西，無論是實體商品還是虛擬寶物，一定都會遇到金流的問題，而最簡單的金流就是透過ATM匯款方式，但最麻煩的地方就在於對帳，一來是不知道對方幾時匯款，二來是匯完款後也不知是誰匯入的，三來是無匯款結止日，因此這時就可透過目前三大…_www.minwt.com</a><a href="https://www.minwt.com/webdesign-dev/html/21798.html"></a></p>

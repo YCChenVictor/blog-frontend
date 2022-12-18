@@ -1,0 +1,403 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>A full-stack offering, providing client-side <strong>JavaScript</strong> framework and a server-side <strong>Ruby</strong> framework, integrates <strong>WebScokets</strong> for real-time features.</p>
+
+<h2 id="why">Why</h2>
+
+<p>With WebSocket protocol, multiple clients(browsers) can maintain constant connection with the server, meaning all the changes in database revealed on all the clients. You <strong>do not</strong> need to refreash(re GET) data from your server.</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="http-protocal-vs-websocket-protocal">http protocal vs websocket protocal</h3>
+
+<p><img src="/assets/img/http-protocol.png" alt="" /></p>
+
+<p><img src="/assets/img/websocket-protocol.png" alt="" /></p>
+
+<p>image resource: <a href="https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable">Real-Time Rails: Implementing WebSockets in Rails 5 with Action Cable</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/WebSocket">websocket wiki</a></p>
+
+<h2 id="what">What</h2>
+
+<p>I am going to demo an instant message with steps:</p>
+
+<ol>
+  <li>(connect) basic setup</li>
+  <li>(speak) a user inputs message -&gt; trigger <code class="language-plaintext highlighter-rouge">broadcast</code></li>
+  <li>(receive) <code class="language-plaintext highlighter-rouge">broadcast</code> -&gt; all client receive it</li>
+  <li>(multiplayer) identify receiver and sender -&gt; demo</li>
+  <li>(other) styles</li>
+  <li>(other) announce from newcomers</li>
+</ol>
+
+<h3 id="connect-basic-setup">(connect) basic setup</h3>
+
+<h4 id="new--controller--view">new &amp; controller &amp; view</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails new instant_message
+<span class="nv">$ </span>rails g controller chat_rooms show
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">./rooms/show</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">main</span><span class="dl">"</span><span class="o">&gt;</span>  
+  <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Chat</span> <span class="nx">room</span><span class="o">&lt;</span><span class="sr">/h2&gt; </span><span class="err"> 
+</span>  <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>  
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">messages</span><span class="dl">"</span><span class="o">&gt;</span>  
+      <span class="o">&lt;</span><span class="nx">p</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">received</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="sr">/p&gt; </span><span class="err"> 
+</span>      <span class="o">&lt;</span><span class="nx">p</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">sent</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Hi</span><span class="o">&lt;</span><span class="sr">/p&gt; </span><span class="err"> 
+</span>      <span class="o">&lt;</span><span class="nx">p</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">received</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">How</span> <span class="nx">are</span> <span class="nx">you</span> <span class="nx">doing</span><span class="p">?</span><span class="o">&lt;</span><span class="sr">/p&gt; </span><span class="err"> 
+</span>      <span class="o">&lt;</span><span class="nx">p</span> <span class="kd">class</span><span class="o">=</span><span class="dl">"</span><span class="s2">sent</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">I</span> <span class="nx">am</span> <span class="nx">doing</span> <span class="nx">alright</span><span class="o">&lt;</span><span class="sr">/p&gt; </span><span class="err"> 
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>
+    <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">send_message</span><span class="dl">"</span><span class="o">&gt;</span>  
+      <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="o">&gt;</span>  
+      <span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span><span class="nx">Send</span><span class="o">&lt;</span><span class="sr">/button&gt; </span><span class="err"> 
+</span>    <span class="o">&lt;</span><span class="sr">/form&gt; </span><span class="err"> 
+</span>  <span class="o">&lt;</span><span class="sr">/div&gt; </span><span class="err"> 
+</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h4 id="action-cable">action cable</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails g channel chat_room
+</code></pre></div></div>
+
+<p><img src="/assets/img/1__BZSEL__JAdfz4uK8eU8j1HQ.png" alt="" /></p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">channels/chat_room_channel.rb</code>:</li>
+</ol>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">subscribed</span>
+  <span class="n">stream_from</span> <span class="s2">"chat_room_channel"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">javascript/channels/chat_room_channel.js</code>: (define behaviors of client-side)</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">connected</span><span class="p">()</span> <span class="p">{</span>  
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Connected to the chat room!</span><span class="dl">"</span><span class="p">);</span>  
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In frontend,</p>
+
+<p><img src="/assets/img/1__vNOslrcaV8f0o52MpgUdgA.png" alt="" /></p>
+
+<p>In backend,</p>
+
+<p><img src="/assets/img/websocket_connect_and_chat_room_streaming.png" alt="" /></p>
+
+<h3 id="speak-a-user-inputs-message---trigger-broadcast">(speak) a user inputs message -&gt; trigger <code class="language-plaintext highlighter-rouge">broadcast</code></h3>
+
+<p><img src="/assets/img/1____Gmxo5FJnXQRluTq1ca5KQ.png" alt="" /></p>
+
+<p>In <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code>,</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">turbolinks:load</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>  
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">send_message</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">submit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>  
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>  
+    <span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>  
+    <span class="k">if</span> <span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  
+      <span class="nx">chatRoomChannel</span><span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>  
+    <span class="p">}</span>  
+  <span class="p">});</span>  
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>Above code means input text and press <code class="language-plaintext highlighter-rouge">send</code> -&gt; trigger the method <code class="language-plaintext highlighter-rouge">speak</code> in <code class="language-plaintext highlighter-rouge">chat_room_channel.js</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">speak</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat_room_name</span><span class="dl">'</span><span class="p">)</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">perform</span><span class="p">(</span><span class="dl">'</span><span class="s1">speak</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="nx">message</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="nx">name</span> <span class="p">})</span>
+<span class="p">},</span>
+</code></pre></div></div>
+
+<p>Then it will trigger backend method <code class="language-plaintext highlighter-rouge">speak</code> in <code class="language-plaintext highlighter-rouge">chat_room_channel.rb</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="no">ActionCable</span><span class="p">.</span><span class="nf">server</span><span class="p">.</span><span class="nf">broadcast</span> <span class="s2">"chat_room_channel"</span><span class="p">,</span> <span class="p">{</span> <span class="ss">message: </span><span class="n">data</span><span class="p">[</span><span class="s2">"message"</span><span class="p">],</span> <span class="ss">sent_by: </span><span class="n">data</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>, which will broadcast the message to the frontend and in backend log:</p>
+
+<p><img src="/assets/img/actioncable_broadcasting.png" alt="" /></p>
+
+<h3 id="receive-broadcast---all-client-receive-it">(receive) <code class="language-plaintext highlighter-rouge">broadcast</code> -&gt; all client receive it</h3>
+
+<p>In <code class="language-plaintext highlighter-rouge">chat_room_channel.js</code> add</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">received</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>  
+  <span class="kd">const</span> <span class="nx">messageTag</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="err">“</span><span class="nx">p</span><span class="err">”</span><span class="p">);</span>
+  <span class="nx">messageTag</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+  <span class="nx">messageTag</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">'</span><span class="s1">received</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">messages</span><span class="dl">'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">messageTag</span><span class="p">)</span>
+  <span class="p">},</span>
+<span class="p">},</span>
+</code></pre></div></div>
+
+<p>After trigger <code class="language-plaintext highlighter-rouge">broadcast</code> from backend, the <code class="language-plaintext highlighter-rouge">received</code> method will be triggered and the text will be appended as follow</p>
+
+<p><img class="w-1/2" src="/assets/img/chat_room_receive_message.png" /></p>
+
+<h3 id="multiplayer">(multiplayer)</h3>
+
+<p>After setting up mechanism, speak and receive, let us add more users to a chat room.</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">./rooms/show</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">main</span><span class="dl">"</span><span class="o">&gt;</span>  
+  <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Chat</span> <span class="nx">room</span><span class="o">&lt;</span><span class="sr">/h2&gt; </span><span class="err"> 
+</span>  <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">chat_body</span><span class="dl">"</span><span class="o">&gt;</span>  
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">messages</span><span class="dl">"</span><span class="o">&gt;</span>  
+    <span class="o">&lt;</span><span class="sr">/div&gt; </span><span class="err"> 
+</span>    <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">send_message</span><span class="dl">"</span><span class="o">&gt;</span>  
+      <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="o">&gt;</span>  
+      <span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span><span class="nx">Send</span><span class="o">&lt;</span><span class="sr">/button&gt; </span><span class="err"> 
+</span>    <span class="o">&lt;</span><span class="sr">/form&gt; </span><span class="err"> 
+</span>  <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">modal</span><span class="dl">"</span><span class="o">&gt;</span>  
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>  
+      <span class="o">&lt;</span><span class="nx">h4</span><span class="o">&gt;</span><span class="nx">Add</span> <span class="nx">a</span> <span class="nx">name</span><span class="o">&lt;</span><span class="sr">/h4&gt; </span><span class="err"> 
+</span>      <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">set_name</span><span class="dl">"</span><span class="o">&gt;</span>  
+        <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">add_name</span><span class="dl">"</span> <span class="nx">name</span><span class="o">=</span><span class="dl">"</span><span class="s2">add_name</span><span class="dl">"</span><span class="o">&gt;</span>        
+        <span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span><span class="nx">Submit</span><span class="o">&lt;</span><span class="sr">/button&gt; </span><span class="err"> 
+</span>      <span class="o">&lt;</span><span class="sr">/form&gt; </span><span class="err"> 
+</span>    <span class="o">&lt;</span><span class="sr">/div&gt; </span><span class="err"> 
+</span>  <span class="o">&lt;</span><span class="sr">/div&gt; </span><span class="err"> 
+</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>and in <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">turbolinks:load</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="p">...</span>  
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">set_name</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">submit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>  
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>  
+    <span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">add_name</span><span class="dl">'</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>  
+    <span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat_room_name</span><span class="dl">'</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>  
+  <span class="p">});</span>  
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>The view is as follow and going to set up the chat room name with <code class="language-plaintext highlighter-rouge">Add a name</code></p>
+
+<p><img class="w-1/2" src="/assets/img/1__ypCOBj7jzb5SqlnLoJbSiA.png" /></p>
+
+<p>add <code class="language-plaintext highlighter-rouge">sent_by</code> in <code class="language-plaintext highlighter-rouge">speak</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="no">ActionCable</span><span class="p">.</span><span class="nf">server</span><span class="p">.</span><span class="nf">broadcast</span> <span class="s2">"chat_room_channel"</span><span class="p">,</span> <span class="p">{</span> <span class="ss">message: </span><span class="n">data</span><span class="p">[</span><span class="s2">"message"</span><span class="p">],</span> <span class="ss">sent_by: </span><span class="n">data</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>modify the received function to identify the receiver and sender.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">received</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>  
+  <span class="kd">let</span> <span class="nx">currentName</span> <span class="o">=</span> <span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat_room_name</span><span class="dl">'</span><span class="p">)</span>  
+  <span class="kd">let</span> <span class="nx">msgClass</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">sent_by</span> <span class="o">===</span> <span class="nx">current_name</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">sent</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">received</span><span class="dl">"</span>  
+  <span class="kd">const</span> <span class="nx">messageTag</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>  
+  <span class="nx">messageTag</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>  
+  <span class="nx">messageTag</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">msgClass</span><span class="p">);</span>  
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">messages</span><span class="dl">'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">messageTag</span><span class="p">)</span>  
+<span class="p">},</span>
+</code></pre></div></div>
+
+<p>Then, to test the chat room, please open another webpage and input the same url, and submit other name and submit a message.</p>
+
+<h4 id="person-two"><strong>person two:</strong></h4>
+
+<p><img class="" src="/assets/img/1__M64R4lfUkgjY7QyKMi4IUA.png" /></p>
+
+<h4 id="person-one"><strong>person one:</strong></h4>
+
+<p><img class="" src="/assets/img/1__xiJV6qzCnZgmTYXCwp1Qyg.png" /></p>
+
+<p>we can have different <code class="language-plaintext highlighter-rouge">sent_by</code> and wrap up!</p>
+
+<h3 id="other-styles">(other) styles</h3>
+
+<p>Different style for receiver and sender</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">app/assets/stylesheets/rooms.scss</code>,</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="nx">main</span> <span class="p">{</span>  
+  <span class="nx">h2</span> <span class="p">{</span>  
+    <span class="nx">text</span><span class="o">-</span><span class="nx">align</span><span class="p">:</span> <span class="nx">center</span><span class="p">;</span> <span class="c1">// let the title, chat room on the middle position  </span>
+  <span class="p">}</span>  
+    
+  <span class="o">&gt;</span><span class="nx">div</span><span class="err">#</span><span class="nx">chat</span><span class="err">\</span><span class="nx">_body</span> <span class="p">{</span>  
+    <span class="nl">height</span><span class="p">:</span> <span class="mi">90</span><span class="nx">vh</span><span class="p">;</span> <span class="c1">// specify the height of chat room, so that the height is not propped by the filler  </span>
+    <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="p">:</span> <span class="nx">black</span><span class="p">;</span>  
+      
+    <span class="nx">div</span><span class="err">#</span><span class="nx">messages</span> <span class="p">{</span>  
+      <span class="nl">height</span><span class="p">:</span> <span class="mi">90</span><span class="o">%</span><span class="p">;</span> <span class="c1">// so that the division for messages should fill 90% of chat\_body  </span>
+      <span class="c1">// with display: flex and flex-direction: column, the &lt;p&gt; will flex on the direction of column  </span>
+      <span class="nl">display</span><span class="p">:</span> <span class="nx">flex</span><span class="p">;</span>  
+      <span class="nx">flex</span><span class="o">-</span><span class="nx">direction</span><span class="p">:</span> <span class="nx">column</span><span class="p">;</span>  
+    
+      <span class="nx">p</span> <span class="p">{</span>  
+        <span class="nl">width</span><span class="p">:</span> <span class="nx">max</span><span class="o">-</span><span class="nx">content</span><span class="p">;</span> <span class="c1">// the width of &lt;p&gt; will be the maximum width of text  </span>
+          
+        <span class="o">&amp;</span><span class="p">.</span><span class="nx">received</span> <span class="p">{</span>  
+          <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="p">:</span> <span class="nx">chocolate</span><span class="p">;</span>  
+        <span class="p">}</span>  
+        
+        <span class="o">&amp;</span><span class="p">.</span><span class="nx">sent</span> <span class="p">{</span>  
+          <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="p">:</span> <span class="nx">darkred</span><span class="p">;</span>  
+          <span class="nx">align</span><span class="o">-</span><span class="nb">self</span><span class="p">:</span> <span class="nx">flex</span><span class="o">-</span><span class="nx">end</span><span class="p">;</span> <span class="c1">// the message sent will be on the right  </span>
+        <span class="p">}</span>  
+      <span class="p">}</span>  
+    <span class="p">}</span>  
+      
+    <span class="nx">form</span><span class="err">#</span><span class="nx">send</span><span class="err">\</span><span class="nx">_message</span> <span class="p">{</span>  
+      <span class="nx">input</span> <span class="p">{</span>  
+      <span class="p">}</span>
+
+      <span class="nx">button</span> <span class="p">{</span>  
+      <span class="p">}</span>  
+    <span class="p">}</span>  
+  <span class="p">}</span>  
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="other-announce-from-newcomers">(other) announce from newcomers</h3>
+
+<ol>
+  <li>modal cover the chat room</li>
+  <li>modal disappears after name submitted</li>
+  <li>tell all users who joined the chat room</li>
+</ol>
+
+<h4 id="modal-cover">modal cover</h4>
+
+<p>In rooms.scss,</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">\</span><span class="o">&gt;</span><span class="nx">div</span><span class="err">#</span><span class="nx">modal</span> <span class="p">{</span>  
+  <span class="nl">height</span><span class="p">:</span> <span class="mi">100</span><span class="nx">vh</span><span class="p">;</span> <span class="c1">// so that it can cover the height of chat room  </span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nx">absolute</span><span class="p">;</span>  
+  <span class="nl">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>  
+  <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="p">:</span> <span class="err">#</span><span class="mi">000000</span><span class="nx">bf</span><span class="p">;</span>  
+  <span class="nl">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span><span class="p">;</span>  
+  <span class="p">...</span>  
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="modal-disappears">modal disappears</h4>
+
+<p>In <code class="language-plaintext highlighter-rouge">application.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">set_name</span><span class="dl">"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">submit</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>  
+  <span class="p">...</span>  
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">modal</span><span class="dl">"</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">;</span>  
+  <span class="p">...</span>  
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="tell-all-users">tell all users</h4>
+
+<p>In <code class="language-plaintext highlighter-rouge">chat_room_channel.js</code></p>
+
+<pre><code class="language-javscript">const chatRoomChannel = consumer.subscriptions.create("ChatRoomChannel", {  
+    
+  ...  
+  `announce(content) {  
+    this.perform('announce', { name: content.name, type: content.type })  
+  }`
+
+})
+</code></pre>
+
+<p>and in <code class="language-plaintext highlighter-rouge">application.js</code></p>
+
+<pre><code class="language-javscript">document.getElementById("set\_name").addEventListener('submit', function(e){  
+  chatRoomChannel.announce({ name, type: 'join' });  
+});
+</code></pre>
+
+<p>and to catch the <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">type</code> on the backend, in <code class="language-plaintext highlighter-rouge">chat_room_channel.rb</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">announce</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="no">ActionCable</span><span class="p">.</span><span class="nf">server</span><span class="p">.</span><span class="nf">broadcast</span> <span class="s2">"chat_room_channel"</span><span class="p">,</span> <span class="p">{</span> <span class="ss">chat_room_name: </span><span class="n">data</span><span class="p">[</span><span class="s2">"name"</span><span class="p">],</span> <span class="ss">type: </span><span class="n">data</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>and in <code class="language-plaintext highlighter-rouge">chat_room_channel.js</code>, <code class="language-plaintext highlighter-rouge">received</code> function, we need to check the source of data received; that is, the messages from users or the messages tell someone join or leave</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">received</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>  
+  <span class="kd">const</span> <span class="nx">message</span><span class="err">\</span><span class="nx">_tag</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">p</span><span class="dl">"</span><span class="p">);</span>  
+  <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="c1">// message from user  </span>
+    <span class="kd">let</span> <span class="nx">current</span><span class="err">\</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">sessionStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">chat</span><span class="se">\</span><span class="s1">_room</span><span class="se">\</span><span class="s1">_name</span><span class="dl">'</span><span class="p">)</span>  
+    <span class="kd">let</span> <span class="nx">msg</span><span class="err">\</span><span class="nx">_class</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">sent</span><span class="err">\</span><span class="nx">_by</span> <span class="o">===</span> <span class="nx">current</span><span class="err">\</span><span class="nx">_name</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">sent</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">received</span><span class="dl">"</span>  
+    <span class="nx">message</span><span class="err">\</span><span class="nx">_tag</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>  
+    <span class="nx">message</span><span class="err">\</span><span class="nx">_tag</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">msg</span><span class="err">\</span><span class="nx">_class</span><span class="p">);</span>  
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">messages</span><span class="dl">'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">message</span><span class="err">\</span><span class="nx">_tag</span><span class="p">)</span>  
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">chat</span><span class="err">\</span><span class="nx">_room</span><span class="err">\</span><span class="nx">_name</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="c1">// join or leave message  </span>
+    <span class="kd">let</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">chat</span><span class="err">\</span><span class="nx">_room</span><span class="err">\</span><span class="nx">_name</span><span class="p">;</span>  
+    <span class="kd">let</span> <span class="nx">announcement</span><span class="err">\</span><span class="nx">_type</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">join</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">joined</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">left</span><span class="dl">'</span><span class="p">;</span>  
+    <span class="nx">message</span><span class="err">\</span><span class="nx">_tag</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> </span><span class="dl">"</span> <span class="o">+</span><span class="nx">announcement</span><span class="err">\</span><span class="nx">_type</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> the chat room</span><span class="dl">"</span><span class="p">;</span>  
+    <span class="nx">message</span><span class="err">\</span><span class="nx">_tag</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">announce</span><span class="dl">"</span><span class="p">);</span>  
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">messages</span><span class="dl">'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">message</span><span class="err">\</span><span class="nx">_tag</span><span class="p">)</span>  
+  <span class="p">}</span>  
+<span class="p">},</span>
+</code></pre></div></div>
+
+<p>and in <code class="language-plaintext highlighter-rouge">rooms.scss</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">#</span><span class="nx">main</span> <span class="p">{</span>  
+  <span class="p">...</span>  
+    
+      <span class="nx">p</span> <span class="p">{</span>  
+        <span class="nl">width</span><span class="p">:</span> <span class="nx">max</span><span class="o">-</span><span class="nx">content</span><span class="p">;</span> <span class="c1">// the width of &lt;p&gt; will be the maximum width of text  </span>
+          
+        <span class="o">&amp;</span><span class="p">.</span><span class="nx">received</span> <span class="p">{</span>  
+          <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="p">:</span> <span class="nx">chocolate</span><span class="p">;</span>  
+        <span class="p">}</span>  
+        
+        <span class="o">&amp;</span><span class="p">.</span><span class="nx">sent</span> <span class="p">{</span>  
+          <span class="nx">background</span><span class="o">-</span><span class="nx">color</span><span class="p">:</span> <span class="nx">darkred</span><span class="p">;</span>  
+          <span class="nx">align</span><span class="o">-</span><span class="nb">self</span><span class="p">:</span> <span class="nx">flex</span><span class="o">-</span><span class="nx">end</span><span class="p">;</span> <span class="c1">// the message sent will be on the right  </span>
+        <span class="p">}</span>
+
+        <span class="o">&amp;</span><span class="p">.</span><span class="nx">announce</span> <span class="p">{</span>  
+          <span class="nx">align</span><span class="o">-</span><span class="nb">self</span><span class="p">:</span> <span class="nx">center</span><span class="p">;</span>  
+          <span class="nx">font</span><span class="o">-</span><span class="nx">style</span><span class="p">:</span> <span class="nx">italic</span><span class="p">;</span>  
+          <span class="nl">color</span><span class="p">:</span> <span class="nx">cyan</span><span class="p">;</span>
+
+        <span class="p">}</span>
+
+      <span class="p">}</span>  
+    <span class="p">}</span>  
+      
+    <span class="p">...</span>  
+  <span class="p">}</span>  
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then after user enter its name it will announce xxx join the room and put a message on the middle of chat room and we are done.</p>
+
+<h3 id="what-1">What</h3>
+
+<p><img class="" src="/assets/img/1__RdCwZ43JRMf2eAfvsKJ6rw.png" /></p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://dev.to/nkemjiks/simple-chatroom-with-rails-6-and-actioncable-3bc3">Simple chatroom with Rails 6 and ActionCable</a></p>
+
+<p><a href="https://dosmanthus.medium.com/rails-actioncable-%E5%8D%B3%E6%99%82%E9%80%9A%E8%A8%8A-eea02474ff33">Rails Actioncable 即時通訊</a></p>
+
+<p><a href="https://gorails.com/deploy/actioncable">Deploy ActionCable to Production GoRails</a></p>
+
+<p><a href="https://guides.rubyonrails.org/action_cable_overview.html">Action Cable Overview</a></p>
+
+<p><a href="https://ihower.tw/rails/actioncable.html">Action Cable 即時通訊</a></p>
+
+<p><a href="https://blog.heroku.com/real_time_rails_implementing_websockets_in_rails_5_with_action_cable">Real-Time Rails: Implementing WebSockets in Rails 5 with Action Cable</a></p>

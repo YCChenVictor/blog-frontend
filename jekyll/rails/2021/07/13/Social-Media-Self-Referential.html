@@ -1,0 +1,129 @@
+<h2 id="summary">Summary</h2>
+<p>The structure of this post:</p>
+<ol>
+  <li>xxx</li>
+  <li>xxx</li>
+  <li>xxx</li>
+</ol>
+
+<h2 id="why">Why</h2>
+<p>I want to learn the structure of social media with rails.</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="user-model">User model</h3>
+<p>You can create a model with columns you want</p>
+
+<h3 id="routes">routes</h3>
+<p>Add two routes to trigger the actions for user to follow other users</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>post '/users/:id/follow', to: "users#follow", :as =&gt; :follow_user
+post '/users/:id/unfollow', to: "users#unfollow", :as =&gt; :unfollow_user
+</code></pre></div></div>
+<h3 id="methods-in-controller">methods in controller</h3>
+<p>Generate user controller with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g controller users
+</code></pre></div></div>
+<p>Notice! If you are using devise, please make sure that the routes and actions created by devise would not have conflicts with the routes and actions created by user controller.</p>
+
+<p>And add the following actions in user controller</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UsersController &lt; ApplicationController
+
+  def follow
+  end
+  
+  def unfollow
+  end
+  
+end
+</code></pre></div></div>
+<p>The action, <code class="language-plaintext highlighter-rouge">follow</code> should create a POST to let server know that this current user want to follow a particular user, so the follow action should find this user with <code class="language-plaintext highlighter-rouge">user_id</code> posted from frontend and then becomes the followee of this current user and this current user becomes the follower of this user with this particular <code class="language-plaintext highlighter-rouge">user_id</code>.</p>
+
+<p>Then after the POST of follow/unfollow, there should be a place to record. As a result, we create a <code class="language-plaintext highlighter-rouge">Follow</code> model.</p>
+
+<h3 id="follow-model">Follow model</h3>
+<p>Before we create this model, to clarify, that I have many followers means that there are many people following me. As a result, <code class="language-plaintext highlighter-rouge">has_many</code> followers means this user has many followers and <code class="language-plaintext highlighter-rouge">has_many</code> followees means this user follows many users.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g model follow follower_id:integer followee_id:integer
+</code></pre></div></div>
+<p>The two columns <code class="language-plaintext highlighter-rouge">follower_id</code> and <code class="language-plaintext highlighter-rouge">followee_id</code> serve as matching mechanism. If a user with id: 123 follows another user with id: 234, then there will be a row (1, 123, 234), meaning user 123 now following user 234. Setup the model with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Follow &lt; ApplicationRecord
+  belongs_to :follower, class_name: 'User'
+  belongs_to :followee, class_name: 'User'
+end
+</code></pre></div></div>
+<p>It means one follow belongs_to two people, follower and followee with foreign key, follower_id and followee_id. And setup the <code class="language-plaintext highlighter-rouge">user</code> model with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class User &lt; ApplicationRecord
+  has_many :followed_users, foreign_key: :follower_id, class_name: 'Follow'
+  has_many :following_users, foreign_key: :followee_id, class_name: 'Follow'
+  has_many :followees, through: :followed_users
+  has_many :followers, through: :following_users
+end
+</code></pre></div></div>
+<p>The first and second <code class="language-plaintext highlighter-rouge">has_many</code> let user to have many follow and unfollow records and the third and forth <code class="language-plaintext highlighter-rouge">has_many</code> let user to have many followers and followees through <code class="language-plaintext highlighter-rouge">Follow</code> model.</p>
+
+<p>With the model set up, the actions in controller should be as follow:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class UsersController &lt; ApplicationController
+
+  def follow
+    @user = User.find(params[:id])
+    current_user.followees &lt;&lt; @user
+  end
+  
+  def unfollow
+    @user = User.find(params[:id])
+    current_user.followed_users.find_by(followee_id: @user.id).destroy
+  end
+  
+end
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">follow</code> will find the user with id posted from frontend and let this user to become current user’s followee.</p>
+
+<p><code class="language-plaintext highlighter-rouge">unfollow</code> will find the user with id posted from frontend and then destroy the row of followed information.</p>
+
+<h3 id="view">View</h3>
+<p>Because I did not seperate frontend and backend, creating a view for further testing is easier. Create a button to follow this user with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= link_to "follow", follow_user_path(@user), method: :post %&gt;
+&lt;%= link_to "unfollow", unfollow_user_path(@user), method: :post %&gt;
+</code></pre></div></div>
+<p>After we click follow/unfollow, it will POST params and activate the methods matching the routes.</p>
+
+<h3 id="more-setups">More setups</h3>
+
+<h4 id="avoid-one-user-following-self">avoid one user following self</h4>
+<p><strong>View</strong></p>
+
+<p>Add the logic in view as follow:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;% if current_user != @user %&gt;
+  &lt;%= link_to "follow", follow_user_path(@user), method: :post %&gt;
+  &lt;%= link_to "unfollow", unfollow_user_path(@user), method: :post %&gt;
+&lt;% end %&gt;
+</code></pre></div></div>
+<p>Then only other user has the issue to follow or unfollow this user.</p>
+
+<p><strong>Model</strong>
+The method as follow and validate it before data insertion.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Follow &lt; ApplicationRecord
+  validate
+  ...
+  private
+    def follow_self?
+      if follower_id == followee_id
+        errors.add(:follower_id, 'You cannot follow yourself')
+      end
+    end
+end
+</code></pre></div></div>
+
+<h3 id="self-referential-association">self-referential association</h3>
+
+<h4 id="list-the-followers">list the followers</h4>
+<p>skip</p>
+
+<h4 id="center-of-network">center of network</h4>
+<p>skip (As the rows in Follow model keep growing, there should have an algorithm to find the center of this network)</p>
+
+<h2 id="what">What</h2>
+<p>Please refer to this project: <a href="https://github.com/YCChenVictor/marketplace"><strong>marketplace</strong></a></p>
+
+<h2 id="reference">Reference</h2>
+<p><a href="https://levelup.gitconnected.com/how-to-create-a-follow-unfollow-button-in-your-rails-social-media-application-e4081c279bca"><strong>How to Create a Follow/Unfollow Feature in your Rails Social Media Application</strong></a></p>

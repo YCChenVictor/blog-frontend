@@ -1,0 +1,512 @@
+<h2 id="introduction">Introduction</h2>
+
+<ol>
+  <li>multi-paradigm: supporting imperative, procedural, OOP, and functional programming</li>
+  <li>dynamic language: add or change object while the program is running</li>
+  <li>types: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol">Symbol</a></li>
+  <li>operators: <code class="language-plaintext highlighter-rouge">+</code>, <code class="language-plaintext highlighter-rouge">-</code>, <code class="language-plaintext highlighter-rouge">*</code>, <code class="language-plaintext highlighter-rouge">/</code> ,<code class="language-plaintext highlighter-rouge">%</code> , <code class="language-plaintext highlighter-rouge">+=</code> ,<code class="language-plaintext highlighter-rouge">-=</code> , <code class="language-plaintext highlighter-rouge">&lt;</code>, <code class="language-plaintext highlighter-rouge">&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;=</code> ,<code class="language-plaintext highlighter-rouge">&gt;=</code> ,<code class="language-plaintext highlighter-rouge">===</code>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>123 == '123'; // true (type can be different)
+123 === '123'; // false (type must be the same)
+</code></pre></div>    </div>
+  </li>
+  <li>built-in objects: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">RegExp</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">Math</a></li>
+  <li>based on the Java and C languages</li>
+  <li>based on prototypal inheritance but also with class inheritance</li>
+</ol>
+
+<h2 id="why-to-learnit">Why to learn it</h2>
+
+<ol>
+  <li>Interactive Behavior to Web Pages</li>
+  <li>Creating Web and Mobile Apps</li>
+  <li>Build Web Server</li>
+  <li>Game Development</li>
+</ol>
+
+<h2 id="how">How</h2>
+
+<p>I am going to build a snake game. The steps as follow:</p>
+
+<ol>
+  <li>Initialize The Picture</li>
+  <li>Let Frame Appear</li>
+  <li>Add snake</li>
+  <li>Let The Snake Move</li>
+  <li>Let user control the snake</li>
+  <li>food appears and snake eats food one time</li>
+</ol>
+
+<h3 id="initialize-thepicture">Initialize The Picture</h3>
+
+<h4 id="initialize-canvas-and-javascript">Initialize <code class="language-plaintext highlighter-rouge">canvas</code> and javascript</h4>
+
+<p>create <code class="language-plaintext highlighter-rouge">snakegame.html</code> and input the tag in the <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">canvas</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">gameCanvas</span><span class="dl">"</span> <span class="nx">width</span><span class="o">=</span><span class="dl">"</span><span class="s2">400</span><span class="dl">"</span> <span class="nx">height</span><span class="o">=</span><span class="dl">"</span><span class="s2">400</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="nx">canvas</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>id lets us to identify this <code class="language-plaintext highlighter-rouge">&lt;canvas&gt;</code> object and <code class="language-plaintext highlighter-rouge">width</code> and <code class="language-plaintext highlighter-rouge">height</code> will be the props of this id and a function to start the game</p>
+
+<h4 id="the-full-htmlfile">The full html file</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!DOCTYPE html&gt;  
+&lt;html&gt;  
+  &lt;head&gt;  
+    &lt;title&gt;Snake Game&lt;/title&gt;  
+  &lt;/head&gt;  
+  &lt;body&gt;  
+    &lt;canvas id="snakeboard" width="400" height="400"&gt;&lt;/canvas&gt;
+  &lt;/body&gt;  
+  &lt;script&gt;  
+    function main() {  
+    }  
+  &lt;/script&gt;  
+&lt;/html&gt;
+</code></pre></div></div>
+<h3 id="let-frameappear">Let Frame Appear</h3>
+
+<p>add the <code class="language-plaintext highlighter-rouge">script</code> as follow</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script&gt;
+...  
+// Get the canvas element  
+const snakeboard = document.getElementById("snakeboard");
+
+// Return a two dimensional drawing context  
+const snakeboard_ctx = snakeboard.getContext("2d");  
+...
+&lt;/script&gt;
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">snakeboard</code> lets javascript to get the object with id, <code class="language-plaintext highlighter-rouge">"snakeboard"</code> and <code class="language-plaintext highlighter-rouge">getContext</code> tells javascript what the environment to be rendered, which is 2D in this example. And add function to let canvas appears:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function main() {
+  clearCanvas();
+}
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">clearCanvas()</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// draw canvas  
+function clearCanvas() {  
+  // Draw a "border" around the entire canvas  
+  snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
+}
+</code></pre></div></div>
+<p>The method of <a href="https://www.w3schools.com/tags/canvas_strokerect.asp">strokeRect</a></p>
+<h3 id="add-snake">Add snake</h3>
+
+<h4 id="initialize-position-of-snake">Initialize position of snake</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script&gt;
+  ...
+  let snake = [
+    {x: 200, y: 200},
+    {x: 190, y: 200},
+    {x: 180, y: 200},
+    {x: 170, y: 200},
+    {x: 160, y: 200},
+  ];
+  ...
+&lt;/script&gt;
+</code></pre></div></div>
+<p>The initial location of snake will be (200,200) ~ (160, 200) the length will be four 10 x 10</p>
+
+<h4 id="function-to-draw-snake">function to draw snake</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Draw the snake on the canvas  
+function drawSnake() {
+  // Draw each part
+  snake.forEach(drawSnakePart)
+}
+</code></pre></div></div>
+<h4 id="function-to-draw-snake-parts">function to draw snake parts</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Draw one snake part  
+function drawSnakePart(snakePart) {  
+  // Draw a border around the snake part  
+  snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);  
+}
+</code></pre></div></div>
+
+<h4 id="add-snake-function-into-main">Add snake function into main</h4>
+<p>The main function is going to run <code class="language-plaintext highlighter-rouge">clearCanvas</code> and then <code class="language-plaintext highlighter-rouge">drawSnake</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function main() {
+  clearCanvas();
+  drawSnake();
+}
+</code></pre></div></div>
+<h3 id="the-full-htmlfile-now">The full html file now</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Snake Game&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;canvas id="snakeboard" width="400" height="400"&gt;&lt;/canvas&gt;
+  &lt;/body&gt;
+  &lt;script&gt;
+    // Get the canvas element
+    const snakeboard = document.getElementById("snakeboard");
+    // Return a two dimensional drawing context
+    const snakeboard_ctx = snakeboard.getContext("2d");
+    // init snake
+    let snake = [
+      {x: 200, y: 200},
+      {x: 190, y: 200},
+      {x: 180, y: 200},
+      {x: 170, y: 200},
+      {x: 160, y: 200}
+    ]
+
+    // Start game  
+    main();
+      
+    // main function called repeatedly to keep the game running
+    function main() {
+      clearCanvas();
+      drawSnake();
+    }
+
+    // draw canvas
+    function clearCanvas() {
+      // Draw a "border" around the entire canvas
+      snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
+    }
+
+    // Draw the snake on the canvas  
+    function drawSnake() {  
+      // Draw each part  
+      snake.forEach(drawSnakePart)  
+    }
+
+    // Draw one snake part
+    function drawSnakePart(snakePart) {
+      // Draw a border around the snake part
+      snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+    }
+
+  &lt;/script&gt;  
+&lt;/html&gt;
+</code></pre></div></div>
+<h3 id="let-the-snakemove">Let The Snake Move</h3>
+
+<h4 id="add-themove-function">Add the move function</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function moveSnake() {
+  const head = {x: snake[0].x, y: snake[0].y};
+  snake.unshift(head);
+  snake.pop();
+}
+</code></pre></div></div>
+<p>This function adds head to the beginning of the the array and remove the last element of the array.</p>
+
+<p>And put the function into the <code class="language-plaintext highlighter-rouge">main()</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function main() {  
+  clearCanvas();  
+  moveSnake();  
+  drawSnake();  
+}
+</code></pre></div></div>
+
+<p>Then the plot will transform from
+<img src="/assets/img/1__nh__P3DD__DpINTv4ca2G0og.png" alt="" width="500" /></p>
+
+<p>to</p>
+
+<p><img src="/assets/img/1__ROMYx8TcO56Tw0VxpOknXA.png" alt="" width="500" /></p>
+
+<p>,meaning the functions in main has been run <strong>one time</strong>. However, we want it to move multiple times; as a result, we can add <code class="language-plaintext highlighter-rouge">setTimeout</code> which is going to run functions in it after a period of time, 0.1 second in this example and because there is <code class="language-plaintext highlighter-rouge">main()</code> in this <code class="language-plaintext highlighter-rouge">main()</code>, the whole process will be run iteratively.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function main() {  
+  setTimeout(function onTick() {  
+    moveSnake();
+    drawSnake();
+    main();  
+  }, 100)
+}
+</code></pre></div></div>
+<p>However, the plot is going to be</p>
+
+<p><img src="/assets/img/1__avPjt94uUgnQFi00cHvyug.png" alt="" width="500" /></p>
+
+<p>This is because the old picture did not be cleared, so we add to the function clearCanvas()</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function clearCanvas() {  
+  //  Select the colour to fill the drawing  
+  snakeboard_ctx.fillStyle = "white";  
+  // Draw a "filled" rectangle to cover the entire canvas  
+  // snakeboard_ctx.fillRect(0, 0, snakeboard.width, snakeboard.height);  
+  ...  
+}
+</code></pre></div></div>
+<p>and the <code class="language-plaintext highlighter-rouge">main()</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function main() {  
+  setTimeout(function onTick() {
+    clearCanvas();
+    moveSnake();
+    drawSnake();
+    main();
+  }, 100)
+}
+</code></pre></div></div>
+<h3 id="let-user-control-thesnake">Let user control the snake</h3>
+
+<h4 id="add-the-function-to-change-the-direction">Add the function to change the direction</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function changeDirection(event) {
+  const leftKEY = 37;
+  const rightKEY = 39;
+  const upKEY = 38;
+  const downKEY = 40; 
+  const keyPressed = event.keyCode;
+  const goingUp = dy === -10;
+  const goingDown = dy === 10;
+  const goingRight = dx === 10;
+  const goingLeft = dx === -10;
+  
+  if (keyPressed === LEFT_KEY &amp;&amp; !goingRight) {
+    dx = -10;
+    dy = 0;
+  }
+  
+  if (keyPressed === UP_KEY &amp;&amp; !goingDown) {
+    dx = 0;
+    dy = -10;  
+  }
+  
+  if (keyPressed === RIGHT_KEY &amp;&amp; !goingLeft) {
+    dx = 10;
+    dy = 0;
+  }   
+  
+  if (keyPressed === DOWN_KEY &amp;&amp; !goingUp) {
+    dx = 0;
+    dy = 10;
+  }
+}
+</code></pre></div></div>
+
+<p>This function means that if a user presses keyboard, the keyboard is left and it is not going right, add a square to the left and other direction works similarly.</p>
+
+<h4 id="let-user-change-the-direction-ofsnake">Let user change the direction of snake</h4>
+
+<p>Add the following</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// let program get the user's pressing key  
+document.addEventListener("keydown", change_direction);
+
+and modify the function `moveSnake` by adding `dx` and `dy`
+
+function moveSnake() {  
+  // Create the new Snake's head  
+  const head = {x: snake[0].x + dx, y: snake[0].y + dy};  
+  // Add the new head to the beginning of snake body  
+  snake.unshift(head);  
+  snake.pop();  
+}
+</code></pre></div></div>
+<p>Then if the user press key, it will change <code class="language-plaintext highlighter-rouge">dx</code> and <code class="language-plaintext highlighter-rouge">dy</code> accordingly. Specify the default dx and dy value outside the function with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...  
+dx = 0  
+dy = 0  
+...
+</code></pre></div></div>
+<h3 id="food-appears-and-snake-eats-food-onetime">Food Appears and Snake Eats Food one time</h3>
+
+<p>The following function returns random number between min and max values</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function randomFood(min, max) {
+  return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+}
+</code></pre></div></div>
+<p>, giving the x and y position of food randomly:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>foodX = 0
+foodY = 0
+function generateFood() {
+  foodX = randomFood(0, snakeboard.width - 10);  
+  foodY = randomFood(0, snakeboard.height - 10);  
+  ...
+}
+</code></pre></div></div>
+
+<p>and draw the food</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function drawFood(){
+  snakeboardCTX.fillStyle = 'lightgreen';
+  snakeboardCTX.fillRect(foodX, foodY, 10, 10);}
+</code></pre></div></div>
+
+<p>and put the drawFood() to main function</p>
+
+<p>function main() {<br />
+  setTimeout(function onTick() {<br />
+    clearCanvas();<br />
+    <strong>drawFood();</strong>
+    move_snake();<br />
+    drawSnake();<br />
+    main();<br />
+  }, 100)<br />
+}</p>
+
+<p>Then there would be food on the left and top corner
+<img src="/assets/img/1_umv4uGYYRZjw9lFWtrb7eg.png" alt="" width="500" /></p>
+
+<p>Then after snake touch the food, the snake should add length and food should disappear.</p>
+<h3 id="snake-addlength">snake add length</h3>
+
+<p>In the <code class="language-plaintext highlighter-rouge">move_snake()</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function move_snake() {
+  const head = {x: snake[0].x + dx, y: snake[0].y};
+  snake.unshift(head);
+</code></pre></div></div>
+
+<p>change <code class="language-plaintext highlighter-rouge">snake.pop()</code> into <code class="language-plaintext highlighter-rouge">hasEatenFood</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const hasEatenFood = (snake[0].x === food_x &amp;&amp; snake[0].y === food_y);
+  if (has_eaten_food) {
+    // Generate new food location    
+    gen_food();  
+  } else {
+    // Remove the last part of snake body
+    snake.pop();
+  }
+}
+</code></pre></div></div>
+
+<p>At the moment snake touching food, it will skip the <code class="language-plaintext highlighter-rouge">.pop()</code> and generate a new food.</p>
+
+<h2 id="what">What</h2>
+<p>The full code:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+  	&lt;title&gt;Snake Game&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;canvas id="snakeboard" width="400" height="400"&gt;&lt;/canvas&gt;
+  &lt;/body&gt;
+  &lt;script&gt;
+    // Get the canvas element
+    const snakeboard = document.getElementById("snakeboard");
+    // Return a two dimensional drawing context
+    const snakeboardCTX = snakeboard.getContext("2d");
+    // init snake
+    let snake = [
+      {x: 200, y: 200},
+      {x: 190, y: 200},
+      {x: 180, y: 200},
+      {x: 170, y: 200},
+      {x: 160, y: 200}
+    ]
+    // Start game
+    main();
+    
+    // let program get the user's pressing key
+    document.addEventListener("keydown", changeDirection);
+
+    // main function called repeatedly to keep the game running
+    function main() {
+      setTimeout(function onTick() {
+        clearCanvas();
+        drawFood();
+        moveSnake();
+        drawSnake();
+        main();
+      }, 100)
+    }
+
+    // draw canvas
+    function clearCanvas() {
+      //  Select the colour to fill the drawing
+      snakeboardCTX.fillStyle = "white";
+      // Draw a "filled" rectangle to cover the entire canvas
+      snakeboardCTX.fillRect(0, 0, snakeboard.width, snakeboard.height);
+      // Draw a "border" around the entire canvas
+      snakeboardCTX.strokeRect(0, 0, snakeboard.width, snakeboard.height);
+    }
+
+    // Draw the snake on the canvas
+    function drawSnake() {
+      // Draw each part
+      snake.forEach(drawSnakePart)
+      console.log(snake)
+    }
+
+    // Draw one snake part
+    function drawSnakePart(snakePart) {
+      // Draw a border around the snake part
+      snakeboardCTX.strokeRect(snakePart.x, snakePart.y, 10, 10);
+    }
+    
+    // let the snake move dx horizontally and dy vertically
+    dx = 0
+    dy = 0
+    function moveSnake() {
+      // Create the new Snake's head
+      const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+      // Add the new head to the beginning of snake body
+      snake.unshift(head);
+      const hasEatenFood = (snake[0].x === foodX &amp;&amp; snake[0].y === foodY);
+      if (hasEatenFood) {
+        // Generate new food location
+        generateFood();
+      } else {
+        // Remove the last part of snake body
+        snake.pop();
+      }
+    }
+  
+    function changeDirection(event) {  
+    
+      const leftKEY = 37;
+      const rightKEY = 39;
+      const upKEY = 38;
+      const downKEY = 40;
+     
+      const keyPressed = event.keyCode;
+      const goingUp = dy === -10;
+      const goingDown = dy === 10;
+      const goingRight = dx === 10;  
+      const goingLeft = dx === -10;
+   
+      if (keyPressed === leftKEY &amp;&amp; !goingRight) {    
+        dx = -10;
+        dy = 0;  
+      }
+     
+      if (keyPressed === upKEY &amp;&amp; !goingDown) {    
+        dx = 0;
+        dy = -10;
+      }
+     
+      if (keyPressed === rightKEY &amp;&amp; !goingLeft) {    
+        dx = 10;
+        dy = 0;
+      }
+     
+      if (keyPressed === downKEY &amp;&amp; !goingUp) {    
+        dx = 0;
+        dy = 10;
+      }
+    }
+
+    // function for mechanism for food
+    function randomFood(min, max) {  
+      return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+    }
+
+    foodX = 0
+    foodY = 0
+    function generateFood() {  
+      foodX = randomFood(0, snakeboard.width - 10);
+      foodY = randomFood(0, snakeboard.height - 10);
+    }
+
+    function drawFood() {
+      snakeboardCTX.fillStyle = 'lightgreen';
+      snakeboardCTX.fillRect(foodX, foodY, 10, 10);
+    }
+
+    function hasSnakeEatenFood(part) {
+      const hasEaten = part.x == foodX &amp;&amp; part.y == foodY;
+    }
+
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript"><strong>A re-introduction to JavaScript (JS tutorial)</strong></a></p>
+
+<p><a href="https://www.educative.io/blog/javascript-snake-game-tutorial"><strong>JavaScript Snake Game Tutorial: build a simple, interactive game</strong></a></p>

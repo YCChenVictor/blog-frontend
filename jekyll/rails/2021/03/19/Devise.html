@@ -1,0 +1,245 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>Devise is a customizable solution for authentication in Rails. It is based on Warden, the framework for authentication in ruby; it has following characteristics:</p>
+
+<ol>
+  <li>It is Rack based</li>
+  <li>It is a complete MVC solution in Rails</li>
+  <li>By adding <code class="language-plaintext highlighter-rouge">:authenticate_user!</code> in controller, user can do various things only when he/she signed in.</li>
+  <li>With modularity, we can choose the modules we want <strong>only</strong></li>
+</ol>
+
+<h2 id="why">Why?</h2>
+
+<p>The most popular authentication solution for Rails applications is <em>Devise.</em> The advantages:</p>
+
+<ol>
+  <li>time saving; authentication by hand requires multiple controllers and a mass time of setup</li>
+  <li>useful helpers</li>
+  <li>simple routes settings</li>
+</ol>
+
+<h2 id="how">How?</h2>
+
+<p>There are ten modules: <strong>Database Authenticatable, Omniauthable, Confirmable, Recoverable, Registerable, Rememberable, Trackablem Timeoutable, Validatable, Lockable</strong></p>
+
+<p>please refer to <a href="https://github.com/heartcombo/devise"><strong>devise-github</strong></a> for further information</p>
+
+<h3 id="add-devise-to-user-signin-and-login">Add Devise to user signin and login</h3>
+
+<p>In Gemfile, add the following</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem 'devise'
+</code></pre></div></div>
+<p>Then run <code class="language-plaintext highlighter-rouge">bundle install</code></p>
+
+<p>After installing, we need the following generator to describe all the setting related to <code class="language-plaintext highlighter-rouge">devise</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails generate devise:install
+</code></pre></div></div>
+<p>Then it will create <code class="language-plaintext highlighter-rouge">initializer</code> in app/config and the following message:
+<img src="/assets/img/1__MsUb__hbwzJSKDnXPvOED__A.png" alt="" /></p>
+
+<p>With the messages above, we need to do the following tasks:</p>
+
+<p>For message 1 (required)</p>
+
+<p>For message 2 (not required for API-only)</p>
+
+<p>For message 3 (not required for API-only)</p>
+
+<p>For message 4 (not required), <code class="language-plaintext highlighter-rouge">rails g devise:views</code> can generate HTML templates for registration, login, forget password, email, which are all in <em>app/views/devise.</em></p>
+
+<h4 id="generate-user-with-devise">Generate User with Devise</h4>
+
+<p>Input</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g devise user
+</code></pre></div></div>
+<p>to generate User model and Migration. (You can create any model with devise)</p>
+
+<p>Before we do migration, we should go to <code class="language-plaintext highlighter-rouge">db/migrate/_devise_create_users.rb</code> to change the setting. For example, if we want the trackable effect, we can uncomment the lines of code below ##trackable.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+# frozen_string_literal: true
+
+class DeviseCreateUsers &lt; ActiveRecord::Migration[6.1]  
+  def change  
+    create_table :users do |t|  
+      ## Database authenticatable  
+      t.string :email,              null: false, default: ""  
+      t.string :encrypted_password, null: false, default: ""
+
+      ## Recoverable  
+      t.string   :reset_password_token  
+      t.datetime :reset_password_sent_at
+
+      ## Rememberable  
+      t.datetime :remember_created_at
+
+      ## Trackable  
+      # t.integer  :sign_in_count, default: 0, null: false  
+      # t.datetime :current_sign_in_at  
+      # t.datetime :last_sign_in_at  
+      # t.string   :current_sign_in_ip  
+      # t.string   :last_sign_in_ip
+
+      ## Confirmable  
+      # t.string   :confirmation_token  
+      # t.datetime :confirmed_at  
+      # t.datetime :confirmation_sent_at  
+      # t.string   :unconfirmed_email # Only if using reconfirmable
+
+      ## Lockable  
+      # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts  
+      # t.string   :unlock_token # Only if unlock strategy is :email or :both  
+      # t.datetime :locked_at
+
+      t.timestamps null: false  
+    end
+
+  add_index :users, :email,                unique: true  
+    add_index :users, :reset_password_token, unique: true  
+    # add_index :users, :confirmation_token,   unique: true  
+    # add_index :users, :unlock_token,         unique: true  
+  end  
+end
+</code></pre></div></div>
+<p>Then we can do migration <code class="language-plaintext highlighter-rouge">rails db:migrate</code>.</p>
+
+<p>The routes related to devise:
+<img src="/assets/img/routes_related_to_devise.png" alt="" /></p>
+
+<p>In <a href="http://127.0.0.1:3000/users/sign_up">http://127.0.0.1:3000/users/sign_up</a>, we should see the following view
+<img src="/assets/img/1__ZiHmL8e8t0hh07BzD1VGbg.png" alt="" width="400" /></p>
+
+<h3 id="customization">Customization</h3>
+
+<h4 id="add-two-columns-in-user-model">Add two columns in user model</h4>
+
+<p>For the basic example of <code class="language-plaintext highlighter-rouge">User</code> model, we can add first and last name with <code class="language-plaintext highlighter-rouge">$ rails generate migration add_name_to_users name:string surname:string</code> and do migration again. (This step also means that we can do lots of modifications to customize the contents)</p>
+
+<p>Then the view for user signing up</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;&lt;h2&gt;Sign up&lt;/h2&gt;
+
+&lt;%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %&gt;
+  &lt;%= render "devise/shared/error_messages", resource: resource %&gt;
+
+  &lt;div class="field"&gt;
+    &lt;%= f.label :email %&gt;&lt;br /&gt;
+    &lt;%= f.email_field :email, autofocus: true, autocomplete: "email" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;%= f.label :name %&gt;&lt;br /&gt;
+    &lt;%= f.text_field :name %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;%= f.label :surname %&gt;&lt;br /&gt;
+    &lt;%= f.text_field :surname %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;%= f.label :password %&gt;
+    &lt;% if @minimum_password_length %&gt;
+    &lt;em&gt;(&lt;%= @minimum_password_length %&gt; characters minimum)&lt;/em&gt;
+    &lt;% end %&gt;&lt;br /&gt;
+    &lt;%= f.password_field :password, autocomplete: "new-password" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="field"&gt;
+    &lt;%= f.label :password_confirmation %&gt;&lt;br /&gt;
+    &lt;%= f.password_field :password_confirmation, autocomplete: "new-password" %&gt;
+  &lt;/div&gt;
+
+  &lt;div class="actions"&gt;
+    &lt;%= f.submit "Sign up" %&gt;
+  &lt;/div&gt;
+
+&lt;% end %&gt;
+
+&lt;%= render "devise/shared/links" %&gt;
+</code></pre></div></div>
+
+<p>Then we can do experiment, adding a user with the sign up webpage. In rails console, we should see the following
+<img src="/assets/img/1__yH__l67xnLP4ohEnftZ8Pug.png" alt="" /></p>
+
+<p>Notice! There is no name and surname in the database because we need to explicitly tell rails to accept these two fields in the form. As a result, in <code class="language-plaintext highlighter-rouge">app/controllers/application_controller.rb</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class ApplicationController &lt; ActionController::Base
+  protect_from_forgery with: :exception
+
+  before_action :update_allowed_parameters, if: :devise_controller?
+
+  protected
+
+  def update_allowed_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :surname, :email, :password)}
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :surname, :email, :password, :current_password)}
+  end
+end
+</code></pre></div></div>
+
+<p>With method <code class="language-plaintext highlighter-rouge">update_allowed_parameters</code>, it can add name and surname in the database.</p>
+
+<p>Let’s delete the user in rails console with <code class="language-plaintext highlighter-rouge">User.first.delete</code> and sign up again. Then the data we want is successfully input into database.
+<img src="/assets/img/1__uPJ4Cvv2NnvZS976d9opqg.png" alt="" /></p>
+
+<h2 id="what">What?</h2>
+
+<p>The above steps show how to install devise in rails. With devise, we can have authentication in rails. It also shows how to do customized settings to database and related them to devise, meaning we can do it to other model we want in the future.</p>
+
+<h3 id="add-authentication">Add authentication</h3>
+
+<p>For example, if I want user to login before any action to a model, we can put</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>before_action :authenticate_user!, except: [:index, :show]
+</code></pre></div></div>
+<p>in that controller.</p>
+
+<h3 id="the-methods-auto-created-bydevise">The methods auto-created by devise</h3>
+
+<p>If the model created by devise is User, then the following methods:</p>
+
+<p><strong>user_signed_in?</strong>: to check whether a user signed in and return true or false.</p>
+
+<p><strong>current_user</strong>: to get the current login user.</p>
+
+<p><strong>user_session</strong>: it returns <code class="language-plaintext highlighter-rouge">warden.session</code> for model User and <code class="language-plaintext highlighter-rouge">warden.session</code> returns <code class="language-plaintext highlighter-rouge">rack.session</code>, which has encoding method and devise used it for authentication.</p>
+
+<p>You can get the source code from <code class="language-plaintext highlighter-rouge">devise/lib/devise/controllers/helpers.rb</code></p>
+
+<h3 id="interlude">interlude</h3>
+<p>What if we want to have more actions not just the actions created by devise? (please refer to the routes for the actions) The only conflict lays on the routes because with <code class="language-plaintext highlighter-rouge">devise_for :users</code> and <code class="language-plaintext highlighter-rouge">resources :users</code> there would be same routes and action being used by devise and the method of user controller simultaneously. As a result, we should setup the routes and controller with the action name and path name different from the action name and path name created by devise. For example, the mechanism of follower and followee:</p>
+
+<h4 id="user-controller-elaborate-later">User controller (elaborate later)</h4>
+
+<p><strong>routes</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rails.application.routes.draw do
+  ...
+  devise_for :users
+
+  post '/users/:id/follow', to: "users#follow"
+  post '/users/:id/unfollow', to: "users#unfollow"
+  ...
+end
+</code></pre></div></div>
+
+<p><strong>controller</strong>
+這個等我寫完再來貼</p>
+
+<h4 id="view">View</h4>
+<p>這個會放一個 profile 的 view，很單純的先有 User model 的 columns 還有 follow 跟 unfollow 的 button</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://github.com/heartcombo/devise"><strong>heartcombo/devise</strong></a></p>
+
+<p><a href="https://ihower.tw/rails/auth.html"><strong>Ruby on Rails 實戰聖經</strong></a></p>
+
+<p><a href="https://hackernoon.com/using-devise-in-your-ruby-on-rails-application-a-step-by-step-guide-m92i3y5s"><strong>Using Devise In Your Ruby on Rails Application [A Step-by-Step Guide] Hacker Noon</strong></a></p>
+
+<p><a href="https://github.com/heartcombo/devise/blob/master/lib/devise/controllers/helpers.rb"><strong>heartcombo/devise</strong></a></p>
+
+<p><a href="https://ruby-china.org/topics/32842"><strong>Warden 的代码学习</strong></a></p>
+
+<p><a href="https://github.com/wardencommunity/warden/blob/master/lib/warden/mixins/common.rb"><strong>wardencommunity/warden</strong></a></p>
+
+<p><a href="https://levelup.gitconnected.com/devise-authentication-with-rails-5-815b5a9d6daf"><strong>Devise Authentication with Rails 5</strong></a></p>

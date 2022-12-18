@@ -1,0 +1,187 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>Image that you have a factory and the product lines would be as follow:</p>
+
+<div id="concept" class="h-screen justify-center items-center">
+  <div id="concept toggle" class=""></div>
+  <div id="concept canvas" class="border"></div>
+</div>
+
+<script>
+  const imagePath = '/assets/img/factory_method_concept.png'
+  const conceptDiv = document.getElementById('concept');
+  const conceptWidth = conceptDiv.offsetWidth;
+  let eraseEnable = false;
+  let img;
+  let photoGraph;
+
+  function setup() {
+    setupImage ()
+    setupButton ()
+    setupCanvas ()
+    setupGraphics ()
+  }
+
+  function draw() {
+    image(img, 0, 0, conceptWidth, 400);
+    image(graphic, 0, 0)
+  }
+
+  function mouseDragged() {
+    if (!eraseEnable) {
+      graphic.fill('black');
+      graphic.noStroke();
+      graphic.ellipse(mouseX, mouseY, 5, 5);
+    } else {
+      graphic.fill('white');
+      graphic.noStroke();
+      graphic.ellipse(mouseX, mouseY, 10, 10);
+    }
+  }
+
+  function keyTyped() {
+    if (key === 's') {
+      saveCanvas('decorator_concept.png');
+    }
+  }
+
+  function setupImage () {
+    try {
+      img = loadImage(imagePath);
+    }
+    catch {
+      img = createImage(conceptWidth, 400)
+    }
+  }
+
+  function setupButton () {
+    toggleButton = createButton('erase');
+    toggleButton.parent('concept toggle');
+    toggleButton.addClass("border rounded px-4");
+    toggleButton.mouseClicked(ButtonClicked)
+  }
+
+  function setupCanvas () {
+    const concept = createCanvas(conceptWidth, 400);
+    concept.parent('concept canvas');
+  }
+
+  function setupGraphics () {
+    graphic = createGraphics(conceptWidth, 400);
+  }
+
+  function ButtonClicked () {
+    toggleStyle()
+    toggleErase()
+  }
+
+  function toggleErase() {
+    if (eraseEnable) {
+      noErase();
+      eraseEnable = false;
+    }
+    else {
+      erase();
+      eraseEnable = true;
+    }
+  }
+
+  function toggleStyle() {
+    toggleButton.toggleClass("bg-indigo-100");
+    toggleButton.toggleClass("border");
+  }
+</script>
+
+<p>The key concept lays on that factory determines which products to be produced on the product line, which means factory method design pattern determines which kind of object to be produced on compile time.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>Factory manufactures lots of products with some common characteristics. The factory method pattern demonstrates the way to create various classes with some common characteristics, meaning we do not need lots of class to create lots of objects with some common features.</p>
+
+<h2 id="how">How?</h2>
+
+<p>For example, you are creating a game and there are various maps in the world. You can use the factory method pattern to create the monsters in the world with creation logic you want. If I want the maps all fill with various monster randomly, then the UML would be as follow:</p>
+
+<div class="mermaid">
+  classDiagram
+    Monster &lt;-- MonsterHard : is a
+    Monster &lt;-- MonsterEasy : is a
+
+    Monster : common_attributes
+    Monster : common_methods()
+
+    MonsterHard : some_hard_attributes
+    MonsterHard : some_hard_method()
+    MonsterEasy : some_easy_attributes
+    MonsterEasy : some_easy_method()
+
+    Creator &lt;-- HardModeCreator : is a
+    Creator &lt;-- EasyModeCreator : is a
+
+    Creator : factory_method()
+    Creator : create()
+    HardModeCreator : create_more_hard_monsters()
+    EasyModeCreator : create_more_easy_monsters()
+    HardModeCreator &lt;-- MonsterHard : created_by
+    EasyModeCreator &lt;-- MonsterEasy : created_by
+</div>
+
+<h2 id="what">What?</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Creator</span>
+  <span class="k">def</span> <span class="nf">factory_method</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="n">factory_method</span>
+
+    <span class="n">product</span><span class="p">.</span><span class="nf">roar</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">HardModeCreator</span> <span class="o">&lt;</span> <span class="no">Creator</span>
+  <span class="k">def</span> <span class="nf">factory_method</span>
+    <span class="no">MonsterHard</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">EasyModeCreator</span> <span class="o">&lt;</span> <span class="no">Creator</span>
+  <span class="k">def</span> <span class="nf">factory_method</span>
+    <span class="no">MonsterEasy</span><span class="p">.</span><span class="nf">new</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Monster</span>
+  <span class="k">def</span> <span class="nf">roar</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MonsterHard</span>
+  <span class="k">def</span> <span class="nf">roar</span>
+    <span class="nb">puts</span> <span class="s1">'hard monster come!'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">MonsterEasy</span>
+  <span class="k">def</span> <span class="nf">roar</span>
+    <span class="nb">puts</span> <span class="s1">'easy monster come!'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">create_monster</span><span class="p">(</span><span class="n">factory</span><span class="p">)</span>
+  <span class="n">factory</span><span class="p">.</span><span class="nf">create</span>
+<span class="k">end</span>
+
+<span class="n">create_monster</span><span class="p">(</span><span class="no">HardModeCreator</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+<span class="n">create_monster</span><span class="p">(</span><span class="no">EasyModeCreator</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>As you can see, all the monster creation use the method, <code class="language-plaintext highlighter-rouge">create_monster</code> and call different type of factory.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=EcFVTgRHJLM&amp;list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc&amp;index=4">Factory Method Pattern – Design Patterns (ep 4)</a></p>
+
+<p><a href="https://refactoring.guru/design-patterns/factory-method/ruby/example#:~:text=Factory%20method%20is%20a%20creational,constructor%20call%20(%20new%20operator).">Factory Method in Ruby</a></p>

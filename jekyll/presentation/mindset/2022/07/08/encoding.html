@@ -1,0 +1,329 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>This article describes the concept of encodings</p>
+
+<ul>
+  <li>7 bit ASCII (encoding): basic 128 characters</li>
+  <li>8 bit encodings: extensions of 7 bit ASCII</li>
+  <li><strong>Unicode</strong> (character set): put every characters in the world in a sets</li>
+  <li>UTF-8</li>
+  <li>UTF-16</li>
+  <li>UTF-32</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>Given character sets, we need a way to tell computers which character to be used, so we need a character encoding standard for electronic communication such as ASCII.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="7-bit-ascii">7 bit ASCII</h3>
+
+<ul>
+  <li>ASCII = American Standard Code for Information Interchange</li>
+  <li>Why 7 bits? Computers were using 8 bits when ASCII invented, so these encodings must can be stored and had a whole bit to spare</li>
+  <li>7 bits -&gt; 128 possible values (\(2^7\)) -&gt; use numbers, 0 ~ 127, to represent characters
+    <ul>
+      <li>control characters (0 ~ 31): not printable and start particular action such that 7 makes computer to beep.</li>
+      <li>printable characters (32 ~ 127): printable characters such as <code class="language-plaintext highlighter-rouge">a</code>, <code class="language-plaintext highlighter-rouge">1</code>, <code class="language-plaintext highlighter-rouge">!</code>, ` `, …etc</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Please refer to appendix for full list of 7 bit ASCII</p>
+
+<h3 id="8-bit-encodings">8 bit encodings</h3>
+
+<p>There are more languages other than English and we use following encodings to deal with them:</p>
+
+<ul>
+  <li>8 bit single byte (256)
+    <ul>
+      <li>Latin: EBCDIC</li>
+      <li>Western: ISO/IEC 8859, MS-Windows, MAC OS Roman</li>
+      <li>Russian related: KOI8, MIK</li>
+      <li>South Asian: ISCII, TSCII, VSCII</li>
+    </ul>
+  </li>
+  <li>8 bit double byte (65536)
+    <ul>
+      <li>Japanese: JIS</li>
+      <li>Simplified Chinese: Guobiao</li>
+      <li>Traditional Chinese: Big5</li>
+      <li>Korean: KS X 1001</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="problem-of-8-bit-encodings-above">problem of 8 bit encodings above</h4>
+
+<p>After <strong>switching languages</strong>, wrong strings may be showed on screen because every encodings has their own characters; for example, the same bytes: <code class="language-plaintext highlighter-rouge">11000000</code> represents different characters in ISO/IEC 8859-1 (<code class="language-plaintext highlighter-rouge">À</code>) and ISO/IEC 8859-2 (<code class="language-plaintext highlighter-rouge">Ŕ</code>). Here comes <strong>Unicode</strong> to deal with this problem.</p>
+
+<h3 id="unicode-character-set">Unicode (character set)</h3>
+
+<p>For example,</p>
+
+<div class="w-1/2 mx-auto">
+  <img src="/assets/img/unicode_examples.png" alt="" />
+</div>
+
+<p>As you can see, these characters map to a string with 4 numberings by hexadecimal system. <strong>Using hexadecimal system for character set does not mean it is 16 bit encoding.</strong> We can use 32 bit, 16 bit, 8 bit encoding to encode a character set; for example, UTF-8 (Unicode Transformation Format – 8-bit) uses <strong>8 bit and up to 6 bytes</strong> to encode characters and can encode 1,112,064 valid character code points.</p>
+
+<h3 id="utf-8-unicode-transformation-format-8-bits">UTF-8 (Unicode Transformation Format 8 bits)</h3>
+
+<p>The following 4 steps show how to find UTF-8 encoding according to unicode of particular character.</p>
+
+<h4 id="step-1-unicode">(step 1) Unicode</h4>
+
+<p>The unicode of <code class="language-plaintext highlighter-rouge">啊</code> is <code class="language-plaintext highlighter-rouge">u554a</code></p>
+
+<h4 id="step-2-transfer-to-binary">(step 2) Transfer to Binary</h4>
+
+<p>The binary of <code class="language-plaintext highlighter-rouge">554a</code> (Hexadecimal) is 101010101001010</p>
+
+<h4 id="step-3-insert-into-encoding-table">(step 3) Insert into Encoding Table</h4>
+
+<p>Given the <a id="utf-8_principle" href="#utf-8_principle_example">UTF-8 table</a> in appendix, we need to use the row three; that is,</p>
+
+<p>101010101001010 -&gt; 0101 &amp; 010101 &amp; 001010 -&gt; <strong>1110</strong>0101 <strong>10</strong>010101 <strong>10</strong>001010</p>
+
+<h4 id="step-4-transfer-back-to-hexadecimal-system">(step 4) transfer back to Hexadecimal System</h4>
+
+<p>11100101 10010101 10001010 (binary) = E5 95 8A (hexadecimal) and save it.</p>
+
+<h3 id="utf-16-unicode-transformation-format-16-bits">UTF-16 (Unicode Transformation Format 16 bits)</h3>
+
+<p>Again, UTF-16 follows following 4 steps</p>
+
+<h4 id="step-1-unicode-1">(step 1) Unicode</h4>
+
+<p>If unicode of character &lt; 10000 (in hexadecimal system), then this unicode will be stored in memory with the unicode itself; for example, unicode of <code class="language-plaintext highlighter-rouge">啊</code> (<code class="language-plaintext highlighter-rouge">u554a</code>) will be stored in memory with <code class="language-plaintext highlighter-rouge">55</code> and then <code class="language-plaintext highlighter-rouge">4a</code> in big-endian and <code class="language-plaintext highlighter-rouge">4a</code> and then <code class="language-plaintext highlighter-rouge">55</code> in little-endian.</p>
+
+<p>If unicode of character &gt; 10000 (in hexadecimal system), then go on the following steps:</p>
+
+<h4 id="step-2-unicode-minus-10000">(step 2) Unicode minus 10000</h4>
+
+<p><code class="language-plaintext highlighter-rouge">10A6F</code> (Hexadecimal) minus <code class="language-plaintext highlighter-rouge">10000</code> -&gt; <code class="language-plaintext highlighter-rouge">0A6F</code></p>
+
+<h4 id="step-3-transfer-to-binary">(step 3) Transfer to Binary</h4>
+
+<p><code class="language-plaintext highlighter-rouge">0A6F</code> -&gt; 000000101001101111</p>
+
+<h4 id="step-4-insert-into-encoding-table">(step 4) Insert into Encoding Table</h4>
+
+<p>Given the UTF-16 table in appendix</p>
+
+<p>00 00000010 10 01101111 -&gt; insert into 110110yy yyyyyyyy 110111xx xxxxxxxx -&gt; 11011000 00000010 11011110 01101111</p>
+
+<h4 id="step-5-transfer-back-to-hexadecimal-system">(step 5) transfer back to Hexadecimal System</h4>
+
+<p>11011000 00000010 11011110 01101111 (binary) -&gt; D802DE6F (hexadecimal) and save it.</p>
+
+<h3 id="utf-32-unicode-transformation-format-32-bits">UTF-32 (Unicode Transformation Format 32 bits)</h3>
+
+<p>Because encoding of 32 bit can save 2^32 (4294967296) characters, we can directly save the unicode in memory.</p>
+
+<h2 id="what">What?</h2>
+
+<h3 id="utf-8-dominates-the-web-page-world">UTF-8 dominates the web page world</h3>
+
+<figure>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Unicode_Web_growth.svg" alt="" />
+  <figcaption>image source: wiki/UTF-8</figcaption>
+</figure>
+
+<ul>
+  <li>Use Unicode -&gt; UTF-8, UTF-16, UTF-32</li>
+  <li>basic ASCII use 8 bits -&gt; UTF-8 wins</li>
+  <li>Endian issues -&gt; UTF-8 wins</li>
+</ul>
+
+<h4 id="endian-issues">Endian issues</h4>
+
+<p>Given <a href="https://en.wikipedia.org/wiki/Endianness">Endianness</a>, the same Unicode may have different results in UTF-16 and UTF-32 because computers need to deal with the order of multiple bytes in these encodings; for example,</p>
+
+<p>Unicode, <code class="language-plaintext highlighter-rouge">U+554a</code> comes and we need to tell computer to read it in order 55 and then 4a (big-endian) or 4a and then 55 (little-endian).</p>
+
+<p><strong>UTF-8 does not have this kind of issue.</strong></p>
+
+<h3 id="self-made-character-encoding">self-made character encoding</h3>
+
+<p>Steps: define a character set -&gt; replicate encoding -&gt; define mapping to Unicode</p>
+
+<ul>
+  <li>define character set</li>
+</ul>
+
+<figure>
+  <img src="/assets/img/IROHA_table.png" alt="" />
+  <figcaption>image source: https://www.youtube.com/watch?v=9PA6twS9Oq4</figcaption>
+</figure>
+
+<ul>
+  <li>replicate encoding</li>
+</ul>
+
+<figure>
+  <img src="/assets/img/IROHA_replicate.png" alt="" />
+  <figcaption>image source: https://www.youtube.com/watch?v=9PA6twS9Oq4</figcaption>
+</figure>
+
+<ul>
+  <li>define mapping to Unicode</li>
+</ul>
+
+<figure>
+  <img src="/assets/img/IROHA_mapping.png" alt="" />
+  <figcaption>image source: https://www.youtube.com/watch?v=9PA6twS9Oq4</figcaption>
+</figure>
+
+<h3 id="some-other-notes">some other notes</h3>
+
+<p><code class="language-plaintext highlighter-rouge">utf-8</code> in MySQL actually is not UTF-8 because it only support up to 3 bytes. <code class="language-plaintext highlighter-rouge">utf8mb4</code> in MySQL is UTF-8 because it support up to 4 bytes.</p>
+
+<h2 id="appendix">Appendix</h2>
+
+<h3 id="the-concept-of-bits">the concept of bits</h3>
+
+<ul>
+  <li>most basic unit of digital communications</li>
+  <li>possible value: 1 or 0</li>
+  <li>example of 8 bit: 01011011</li>
+  <li>in decimal system (10 進位): 01011011 = 91</li>
+  <li>in hexadecimal system (16 進位): 01011011 = 5B</li>
+</ul>
+
+<h3 id="encoding-rule-in-7-bit-ascii">encoding rule in 7-bit ASCII</h3>
+
+<p><a href="https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html">full list of 7-bit ASCII</a></p>
+
+<h3 id="list-of-8-bit-encodings">list of 8-bit encodings</h3>
+
+<p>The encoding rule are case by case in each 8-bit encoding and please refer to <a href="https://en.wikipedia.org/wiki/Character_encoding#Common_character_encodings">common character encodings</a> in wiki.</p>
+
+<h3 id="utf-8"><a id="utf-8_principle_example" href="#utf-8_principle">UTF-8</a></h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Number of bytes</td>
+      <td>First code point</td>
+      <td>Last code point</td>
+      <td>Byte 1</td>
+      <td>Byte 2</td>
+      <td>Byte 3</td>
+      <td>Byte 4</td>
+      <td>Byte 5</td>
+      <td>Byte 6</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>U+0000 (0)</td>
+      <td>U+007F (127)</td>
+      <td>0xxxxxxx (2^7)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>U+0080 (128)</td>
+      <td>U+07FF (2047)</td>
+      <td>110xxxxx (2^5)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>U+0800 (2048)</td>
+      <td>U+FFFF (65535)</td>
+      <td>1110xxxx (2^4)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>U+10000 (65536)</td>
+      <td>U+1FFFFF (2097151)</td>
+      <td>11110xxx (2^3)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>U+200000 (2097152)</td>
+      <td>U+3FFFFFF (67108863)</td>
+      <td>111110xx (2^2)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>U+4000000 (67108864)</td>
+      <td>U+7FFFFFFF (2147483647)</td>
+      <td>1111110x (2^1)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+      <td>10xxxxxx (2^6)</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>2^7 = 128</li>
+  <li>2^11 = 2048</li>
+  <li>2^16 = 65536</li>
+  <li>2^21 = 2097152</li>
+  <li>2^26 = 67108864</li>
+  <li>2^31 = 2147483648</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a></p>
+
+<p><a href="https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html">ASCII Table</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a></p>
+
+<p><a href="http://www.eion.com.tw/Blogger/?Pid=1128">ASCII 控制字符(美國標準資訊交換標準碼)</a></p>
+
+<p><a href="https://www.justinweiss.com/articles/3-steps-to-fix-encoding-problems-in-ruby/">3 Steps to Fix Encoding Problems in Ruby</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=9PA6twS9Oq4">[JA] Dive into Encoding / Mari Imaizumi @ima1zumi</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Character_encoding">Character encoding</a></p>
+
+<p><a href="https://www.ibm.com/docs/en/i/7.3?topic=support-double-byte-character-set-fundamentals">Double-byte character set fundamentals</a></p>
+
+<p><a href="https://www.ibm.com/docs/en/db2/11.5?topic=support-unicode-character-encoding">Unicode character encoding</a></p>
+
+<p><a href="https://home.unicode.org/">UNICODE</a></p>
+
+<p><a href="https://www.honeybadger.io/blog/the-rubyist-guide-to-unicode-utf8/">A Rubyist’s Introduction to Character Encoding, Unicode and UTF-8</a></p>
+
+<p><a href="http://info.lionbridge.com/rs/lionbridge/images/Lionbridge%20FAQ_encoding_2013.pdf">What are Double-Byte, Single-Byte, and Multi-Byte Encodings?</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Bit">Bit</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a></p>
+
+<p><a href="https://richer.tools/conversion/carry">進位換算</a></p>
+
+<p><a href="https://www.readfog.com/a/1638084002220969984">Unicode、UTF-8、UTF-16，終於懂了</a></p>

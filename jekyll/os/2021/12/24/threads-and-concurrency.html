@@ -1,0 +1,65 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>The structure of this article:</p>
+
+<ul>
+  <li><strong>Thread</strong>: the smallest unit of program for CPU to execute.</li>
+  <li><strong>Concurrency</strong>: lets CPU perform multiple threads at the same time.</li>
+  <li><strong>Process</strong>: the program that has been loaded into memory along with registers (how to execute this process) and a program counter (what’s the next process)
+    <ul>
+      <li>register may hold an instruction, a storage address, or other kind of data needed by the process (refer to <a href="https://www.youtube.com/watch?v=fpnE6UAfbtU">here</a>)</li>
+      <li>program counter (instruction pointer), a special type of register, storing the address of the instruction to be executed next</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The flow:</p>
+
+<div class="mermaid">
+graph TD
+  id1(program) --compiled--&gt; id2(binary form)
+  id2(binary form) --loaded--&gt; id3(memory)
+
+  id3(memory) --decompose--&gt; id4(process 1)
+  id3(memory) --decompose--&gt; id5(process 2)
+  id3(memory) --...decompose--&gt; id6(...other processes)
+  
+  id4(process 1) --decompose--&gt; id7(thread 1)
+  id4(process 1) --decompose--&gt; id8(thread 2)
+  id4(process 1) --...decompose--&gt; id9(...other threads)
+
+</div>
+
+<ul>
+  <li>threads share memory in the same process</li>
+  <li>processes take their own part of memory and cannot share memory with other process</li>
+  <li>communication between threads is faster than processes</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>Concurrency decreases waiting time and response time and increase resource utilization and efficiency.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="decrease-waiting-time">decrease waiting time</h3>
+
+<h3 id="decrease-response-time">decrease response time</h3>
+
+<h3 id="increase-resource-utilization">increase resource utilization</h3>
+
+<h3 id="increase-efficiency">increase efficiency</h3>
+
+<h2 id="what">What?</h2>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.computerhope.com/jargon/t/thread.htm">Thread</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Thread_(computing)">Thread (computing)</a></p>
+
+<p><a href="https://www.educative.io/blog/multithreading-and-concurrency-fundamentals">Multithreading and concurrency fundamentals</a></p>
+
+<p><a href="https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/">What’s the Diff: Programs, Processes, and Threads</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=fpnE6UAfbtU">Registers and RAM: Crash Course Computer Science #6</a></p>

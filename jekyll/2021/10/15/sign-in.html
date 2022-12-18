@@ -1,0 +1,68 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>This article describes how to build sign-in page with react and rails.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>focus on why we need it</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="frontend">Frontend</h3>
+
+<p>User can input password and email and POST it to <code class="language-plaintext highlighter-rouge">SessionsController#signup</code></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span>  <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">Link</span><span class="p">,</span> <span class="nx">useNavigate</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-router-dom</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="dl">'</span><span class="s1">./style/login.css</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Login</span><span class="p">({</span><span class="nx">setUser</span><span class="p">})</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">username</span><span class="p">,</span> <span class="nx">setUsername</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">password</span><span class="p">,</span> <span class="nx">setPassword</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">useNavigate</span><span class="p">();</span>
+
+  <span class="kd">function</span> <span class="nx">handleSubmit</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000/sign_up</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span><span class="nx">username</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span><span class="nx">password</span> <span class="p">}),</span>
+    <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setUser</span><span class="p">(</span><span class="nx">user</span><span class="p">));</span>
+      <span class="nx">navigate</span><span class="p">(</span><span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="p">)</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">'login_wrapper'</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Login<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span> 
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">className</span><span class="p">=</span><span class="s">'login_form'</span> <span class="na">onSubmit</span><span class="p">=</span><span class="si">{</span><span class="nx">handleSubmit</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span>
+        <span class="na">type</span><span class="p">=</span><span class="s">"text"</span>
+        <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">username</span><span class="si">}</span>
+        <span class="na">placeholder</span><span class="p">=</span><span class="s">"Username"</span>
+        <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setUsername</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span>
+      <span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">input</span>
+        <span class="na">type</span><span class="p">=</span><span class="s">"password"</span>
+        <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">password</span><span class="si">}</span>
+        <span class="na">placeholder</span><span class="p">=</span><span class="s">"Password"</span>
+        <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setPassword</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span>
+      <span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">className</span><span class="p">=</span><span class="s">"login_btn"</span> <span class="na">type</span><span class="p">=</span><span class="s">"submit"</span><span class="p">&gt;</span>Login<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">'/signup'</span><span class="p">&gt;</span>First time? Register Now!<span class="p">&lt;/</span><span class="nc">Link</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Login</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<h2 id="reference">Reference</h2>

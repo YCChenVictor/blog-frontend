@@ -1,0 +1,190 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>To change the behavior of a class without rewriting the code of the class by wrap the class with a class.</p>
+
+<div id="concept" class="h-screen justify-center items-center">
+  <div id="concept toggle" class=""></div>
+  <div id="concept canvas" class="border"></div>
+</div>
+
+<script>
+  const imagePath = '/assets/img/decorator_concept.png'
+  const conceptDiv = document.getElementById('concept');
+  const conceptWidth = conceptDiv.offsetWidth;
+  let eraseEnable = false;
+  let img;
+  let photoGraph;
+
+  function setup() {
+    setupImage ()
+    setupButton ()
+    setupCanvas ()
+    setupGraphics ()
+  }
+
+  function draw() {
+    image(img, 0, 0, conceptWidth, 400);
+    image(graphic, 0, 0)
+  }
+
+  function mouseDragged() {
+    if (!eraseEnable) {
+      graphic.fill('black');
+      graphic.noStroke();
+      graphic.ellipse(mouseX, mouseY, 5, 5);
+    } else {
+      graphic.fill('white');
+      graphic.noStroke();
+      graphic.ellipse(mouseX, mouseY, 10, 10);
+    }
+  }
+
+  function keyTyped() {
+    if (key === 's') {
+      saveCanvas('decorator_concept.png');
+    }
+  }
+
+  function setupImage () {
+    try {
+      img = loadImage(imagePath);
+    }
+    catch {
+      img = createImage(conceptWidth, 400)
+    }
+  }
+
+  function setupButton () {
+    toggleButton = createButton('erase');
+    toggleButton.parent('concept toggle');
+    toggleButton.addClass("border rounded px-4");
+    toggleButton.mouseClicked(ButtonClicked)
+  }
+
+  function setupCanvas () {
+    const concept = createCanvas(conceptWidth, 400);
+    concept.parent('concept canvas');
+  }
+
+  function setupGraphics () {
+    graphic = createGraphics(conceptWidth, 400);
+  }
+
+  function ButtonClicked () {
+    toggleStyle()
+    toggleErase()
+  }
+
+  function toggleErase() {
+    if (eraseEnable) {
+      noErase();
+      eraseEnable = false;
+    }
+    else {
+      erase();
+      eraseEnable = true;
+    }
+  }
+
+  function toggleStyle() {
+    toggleButton.toggleClass("bg-indigo-100");
+    toggleButton.toggleClass("border");
+  }
+</script>
+
+<h2 id="why">Why?</h2>
+
+<p>Image your resturant serves lots of beverages and you want to design tables to store necessary information in your computer. Intuitively, there are two way: using inheritance or using polymorphism; however, inheritance creates lots of tables with duplicate methods and polymorphism creates multiple columns which is unnecessary for most other tables. To solve it, we use the concept of decorator which is to decorate the base class.</p>
+
+<h2 id="how">How?</h2>
+
+<p>The UML:</p>
+
+<div class="mermaid">
+classDiagram
+  Beverage &lt;-- Espresso : is a
+  Beverage &lt;-- Decaf : is a
+  Beverage &lt;-- Decorator : is a &amp; has a
+  Decorator &lt;-- SoyMilkDecorator : is a
+  Decorator &lt;-- CaramelDecorator : is a
+
+  Beverage : getDesc()
+  Beverage : cost()
+
+  Espresso : cost()
+  Decaf : cost()
+
+  Decorator : getDesc()
+  SoyMilkDecorator : getDesc()
+  SoyMilkDecorator : cost()
+  CaramelDecorator : getDesc()
+  CaramelDecorator : cost()
+</div>
+
+<p>For example, the cost of Espresso is 2 dollar and the cost of SoyMilkDecorator is 1 dollar, so I would expect that <code class="language-plaintext highlighter-rouge">espresso.cost = 2</code>, <code class="language-plaintext highlighter-rouge">SoyMilkDecorator.cost = 1</code>, <code class="language-plaintext highlighter-rouge">espresso_with_soymilk.cost = 3</code></p>
+
+<h2 id="what">What?</h2>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Beverage</span>
+  <span class="k">def</span> <span class="nf">get_desc</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">cost</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Espresso</span> <span class="o">&lt;</span> <span class="no">Beverage</span>
+  <span class="k">def</span> <span class="nf">get_desc</span>
+    <span class="s1">'Espresso'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">cost</span>
+    <span class="mi">2</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Decaf</span> <span class="o">&lt;</span> <span class="no">Beverage</span>
+  <span class="k">def</span> <span class="nf">get_desc</span>
+    <span class="s1">'Decaf'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">cost</span>
+    <span class="mi">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Decorator</span> <span class="o">&lt;</span> <span class="no">Beverage</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:beverage</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">beverage</span><span class="p">)</span>
+    <span class="vi">@beverage</span> <span class="o">=</span> <span class="n">beverage</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">get_desc</span>
+    <span class="vi">@beverage</span><span class="p">.</span><span class="nf">get_desc</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">SoyMilkDecorator</span> <span class="o">&lt;</span> <span class="no">Decorator</span>
+  <span class="k">def</span> <span class="nf">cost</span>
+    <span class="vi">@beverage</span><span class="p">.</span><span class="nf">cost</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">CaramelDecorator</span> <span class="o">&lt;</span> <span class="no">Decorator</span>
+  <span class="k">def</span> <span class="nf">cost</span>
+    <span class="vi">@beverage</span><span class="p">.</span><span class="nf">cost</span> <span class="o">+</span> <span class="mi">3</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">espresso_with_soy_milk</span> <span class="o">=</span> <span class="no">SoyMilkDecorator</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">Espresso</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">espresso_with_soy_milk</span><span class="p">.</span><span class="nf">cost</span> <span class="c1"># 3</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=GCraGHx6gso&amp;list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc&amp;index=3">Decorator Pattern – Design Patterns (ep 3)</a></p>
+
+<p><a href="https://refactoring.guru/design-patterns/decorator/ruby/example">Decorator in Ruby</a></p>

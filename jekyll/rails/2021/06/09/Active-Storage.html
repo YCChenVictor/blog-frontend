@@ -1,0 +1,54 @@
+<h3 id="introduction">Introduction</h3>
+
+<p>Active Storage can attach files to objects in ORM and do not need to add a new column to table. All the attached files are put on a table called <code class="language-plaintext highlighter-rouge">active_storage_blobs</code>. Because we do not need the files to have relations with other tables, putting all of them on a table and labeling the connection of the subject works totally fine.</p>
+
+<h3 id="why">Why</h3>
+
+<p>With it, we do not need to create a new column in each table, requiring the same data; for example, comments and thumbnail attached and because sometimes it is inferior compared to the subject it attached, we can move them to cloud based services such as Amazon S3, Google Cloud Storage, or Microsoft Azure and only keep the main subject on local storage.</p>
+
+<h3 id="how">How</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem ‘image_processing’, ‘~&gt; 1.2’
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">has_one_attached</code> is the grammar of active storage</p>
+
+<p>with <code class="language-plaintext highlighter-rouge">has_one_attached</code>, we can actively upload and store data with third-party cloud services such as AWS …etc.</p>
+
+<p>With Active Storage, in <code class="language-plaintext highlighter-rouge">erb</code> files, in <code class="language-plaintext highlighter-rouge">url_for</code>, <code class="language-plaintext highlighter-rouge">link_to</code>, <code class="language-plaintext highlighter-rouge">image_tag</code>, input the variable, rails can show the file in html.</p>
+
+<p>Suppose we have already used active storage to save an image with following active storage in model, <code class="language-plaintext highlighter-rouge">Product</code>, </p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Product &lt; ApplicationRecord
+
+  ...  
+  has_one_attached :thumbnail  
+  ...
+
+end
+</code></pre></div></div>
+
+<p>then if we want to show this image in view, there are three method:</p>
+
+<h4 id="image_tag-example">image_tag example</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>image_tag @image.file
+</code></pre></div></div>
+
+<h3 id="to-be-continued">to be continued</h3>
+<h4 id="url_for-example">url_for example</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= url_for(product.thumbnail) %&gt;
+</code></pre></div></div>
+
+<h4 id="link_to-example">link_to example</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= link_to document.filename %&gt;
+</code></pre></div></div>
+
+<h3 id="what">What</h3>
+<p><a href="https://github.com/YCChenVictor/marketplace">Example</a></p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://edgeguides.rubyonrails.org/active_storage_overview.html" title="https://edgeguides.rubyonrails.org/active_storage_overview.html"><strong>Active Storage Overview - Ruby on Rails Guides</strong></a><a href="https://edgeguides.rubyonrails.org/active_storage_overview.html"></a></p>
+
+<p><a href="https://5xruby.tw/posts/active-storage-review" title="https://5xruby.tw/posts/active-storage-review"><strong>Active Storage 開箱文</strong></a><a href="https://5xruby.tw/posts/active-storage-review"></a></p>

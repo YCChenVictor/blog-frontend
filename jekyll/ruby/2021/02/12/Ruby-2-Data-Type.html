@@ -1,0 +1,159 @@
+<h2 id="summary">Summary</h2>
+<ol>
+  <li>Please refer to <a href="https://docs.ruby-lang.org/en/3.0.0"><strong>official site</strong></a> for more clear and detailed information.</li>
+  <li>This article presents some comparations and experience while writing ruby.</li>
+  <li>In the world of Ruby, anything is object. nil belongs to nil class.</li>
+</ol>
+
+<h2 id="number-1">Number (1)</h2>
+<p>The classes of number:</p>
+<ol>
+  <li>integer</li>
+  <li>float</li>
+  <li>rational</li>
+  <li>decimal</li>
+</ol>
+
+<h3 id="arithmetics-of-integers">Arithmetics of integers:</h3>
+
+<p>If we use integers to do arithmetics, it returns integer; for example,</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>puts 10/3
+</code></pre></div></div>
+
+<p>The output is 3. If we want to solve this problem, change an integer into float type:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>puts 10/3.0
+</code></pre></div></div>
+
+<p>The output is <code class="language-plaintext highlighter-rouge">3.33333333</code></p>
+
+<h2 id="string-2">String (2)</h2>
+
+<h3 id="string-interpolation">string interpolation:</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = "aaa"
+b = 18
+
+puts "zzz, #{a}, #{b}"
+</code></pre></div></div>
+
+<p>The output:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zzz, aaa, 18
+</code></pre></div></div>
+
+<h3 id="number-of-words-insentence">number of words in sentence</h3>
+<p>In irb,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>words = "I like it"
+p words.split.count
+puts words.split.count
+</code></pre></div></div>
+<p>The result:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3 # =&gt; the output of p
+nil # =&gt; the output of puts
+</code></pre></div></div>
+
+<h3 id="up-case-down-case-swap-case-capitalize-empty">Up Case, Down Case, Swap Case, capitalize, empty</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ puts "hello, ruby".upcase  # =&gt; HELLO, RUBY
+
+$ puts "HELLO, RUBY".downcase # =&gt; hello, ruby
+
+$ puts "Hello, Ruby".swapcase # =&gt; hELLO, rUBY
+
+$ puts "eddie".capitalize # =&gt; Eddie
+
+$ puts "".empty? # =&gt; true
+</code></pre></div></div>
+<h3 id="calculate-the-number-of-letter-appearing-in-astring">Calculate the number of letter appearing in a string</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>words = "iiiiiiiijjjjjjjjAAAAAAAA"
+
+$ puts words.count("i") # =&gt; 8
+
+$ puts words.count("A-Z") # =&gt; 8
+</code></pre></div></div>
+<h3 id="whether-the-string-start-from-a-letter-end-in-a-letter-or-include-aletter">Whether the string start from a letter, end in a letter or include a letter</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>puts "Hello, Ruby".start_with?("H") # =&gt; true
+
+puts "Hello, Ruby".end_with?("y") # =&gt; true
+
+puts "Hello, Ruby".include?("R") # =&gt; true
+</code></pre></div></div>
+<h3 id="change-a-word-to-another-word-instring">Change a word to another word in string</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>puts "PHP is good".sub(/PHP/, "Ruby") # =&gt; Ruby is good
+</code></pre></div></div>
+<h2 id="array-3">Array (3)</h2>
+<p>nothing to elaborate</p>
+
+<h2 id="range-4">Range (4)</h2>
+<p>The difference between array and range is that range has <strong>start</strong> and <strong>end</strong>. That is, the order of the elements of array can be illogic.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(1..5).to_a # =&gt; [1, 2, 3, 4, 5]  
+('a'..'z').to_a # =&gt; ['a', 'b', ..., 'z']  
+</code></pre></div></div>
+
+<h2 id="hash-5">Hash (5)</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>old_hash = {:title =&gt; "Ruby", :price =&gt; 350}
+new_hash = {title: "Ruby", price: 350}
+</code></pre></div></div>
+
+<h3 id="item-extracting-withkey">item extracting with key</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test = {name: "name"}  
+puts test["name"] # nothing happened  
+puts test[:name] # =&gt; name
+</code></pre></div></div>
+<h3 id="print-outkeys">print out keys</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>profile = {name: "name", age: 11}  
+p profile.keys # =&gt; [:name, :age]
+</code></pre></div></div>
+<h3 id="print-outitems">print out items</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test = {name: "name", age: 11}  
+puts test.values # =&gt; name, 11
+</code></pre></div></div>
+<h2 id="symbol-6">Symbol (6)</h2>
+
+<h3 id="form">Form</h3>
+
+<p>It is “:” concatenate with a string; for example, :name, :user …etc</p>
+
+<h3 id="meaning">meaning</h3>
+
+<p>It is an instance of class, Symbol and it is an object with name. That is, if we want to create an object to represent a specific status, we can use symbol.</p>
+
+<h3 id="the-difference-between-symbol-andvariable">The difference between symbol and variable</h3>
+
+<p><strong>symbol can exist independently</strong></p>
+
+<p>variable is an object point to a string; for example, the variable, greeting points to a string, “Hello Ruby”. The variable, greeting cannot existed without “Hello Ruby” being pointed to.</p>
+
+<p>greeting = “Hello Ruby”</p>
+
+<p>However, symbol is an object which can exist independently.</p>
+
+<p><strong>the content of symbol can be changed</strong></p>
+
+<p>“hello”[0] = “k”<br />
+:hello[0] = “k” # =&gt; print out error</p>
+
+<p><strong>the efficiency of symbol is better</strong></p>
+
+<p>In Ruby, a new string will cost a new memory but a new symbol always cost one position of memory.</p>
+
+<p><strong>the comparison of symbol is faster than string</strong></p>
+
+<p><strong>symbol and string can be converted into each other</strong></p>
+
+<p>“name”.to_sym # =&gt; :name<br />
+:name.to_s # =&gt; “name”</p>
+
+<h2 id="true-false-and-nil-7">True, False, and Nil (7)</h2>
+<ol>
+  <li>no Boolean class in Ruby. Only TrueClass, FalseClass</li>
+  <li>true, false, and nil are singleton instances of TrueClass, FalseClass, and NilClass</li>
+  <li>The superclass of TrueClass, FalseClass, and NilClass is Object</li>
+  <li>When requiring Boolean value, nil behaves like false, and any value other than nil or false behaves like true</li>
+</ol>
+
+<h2 id="symbol-vs-string-8">Symbol vs String (8)</h2>
+
+<h2 id="reference">reference</h2>
+<p><a href="https://ruby-doc.org/core-2.5.0/Rational.html"><strong>rational</strong></a></p>
+
+<p><a href="https://www.oreilly.com/library/view/the-ruby-programming/9780596516178/ch03s07.html#:~:text=true%20and%20false%20are%20the,a%20singleton%20instance%20of%20TrueClass%20."><strong>true, false, nil</strong></a></p>

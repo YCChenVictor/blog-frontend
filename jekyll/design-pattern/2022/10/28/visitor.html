@@ -1,0 +1,157 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>This article describes the concept of visitor design pattern, which separates common operations with the objects performing those operations; for example, we want all different types of employees (manager or clerk) to use same style of greetings</p>
+
+<ul>
+  <li>objects: employees</li>
+  <li>visitor pattern: employee rules</li>
+  <li>operations: greetings</li>
+</ul>
+
+<div id="visitor" class="h-screen justify-center items-center">
+  <div id="visitor_toggle_erase" class=""></div>
+  <div id="visitor_image_save" class=""></div>
+  <div id="visitor_canvas" class="border"></div>
+</div>
+
+<script>
+  const id = 'visitor'
+  let binarySearchTree = p5Draw(id)
+  let binarySearchTreeP5 = new p5(binarySearchTree, id);
+</script>
+
+<h2 id="why">Why?</h2>
+
+<p>By modifying the common operations method in visitor pattern, all objects using the common operations behaves consistently.</p>
+
+<ul>
+  <li>pros:
+    <ul>
+      <li>Open/Closed Principle: we can introduce new methods to objects without changing the classes of these objects</li>
+      <li>Single Responsibility Principle: we can define related operations in one class</li>
+      <li>visitor object collects common information in one class, easier to compare different behaviors</li>
+    </ul>
+  </li>
+  <li>cons:
+    <ul>
+      <li>When number of objects changes, we need to update all the common operations</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="how">How?</h2>
+
+<p>The Structure:</p>
+
+<p><img src="/assets/img/visitor_structure.png" alt="" /></p>
+<figcaption>Source: https://refactoring.guru/design-patterns/visitor</figcaption>
+
+<ul>
+  <li>to call methods in visitor pattern, we need <code class="language-plaintext highlighter-rouge">accept</code> in <code class="language-plaintext highlighter-rouge">Element</code> interface</li>
+</ul>
+
+<h2 id="what">What?</h2>
+
+<p>when a customer walk into a restaurant, we want both manager and clerk to</p>
+
+<ul>
+  <li>greet with special slogan and self introductions</li>
+  <li>serve meals with same movement and different kind of professions</li>
+</ul>
+
+<p>With visitor pattern, we can change special slogan and movement day by day without break the classes of objects.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Employee</span> <span class="c1"># Element</span>
+  <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="n">_visitor</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Manager</span> <span class="o">&lt;</span> <span class="no">Employee</span>
+  <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="n">visitor</span><span class="p">)</span>
+    <span class="n">visitor</span><span class="p">.</span><span class="nf">manager</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">status</span>
+    <span class="s1">'Manager'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">profession</span>
+    <span class="s1">'order meal'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Clerk</span> <span class="o">&lt;</span> <span class="no">Employee</span>
+  <span class="k">def</span> <span class="nf">accept</span><span class="p">(</span><span class="n">visitor</span><span class="p">)</span>
+    <span class="n">visitor</span><span class="p">.</span><span class="nf">clerk</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">status</span>
+    <span class="s1">'Clerk'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">profession</span>
+    <span class="s1">'make meal'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Visitor</span>
+  <span class="k">def</span> <span class="nf">manager</span><span class="p">(</span><span class="n">_element</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">clerk</span><span class="p">(</span><span class="n">_element</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="no">NotImplementedError</span><span class="p">,</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">class</span><span class="si">}</span><span class="s2"> has not implemented method '</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2">'"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">SayHi</span> <span class="o">&lt;</span> <span class="no">Visitor</span>
+  <span class="k">def</span> <span class="nf">manager</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">special_slogan</span><span class="si">}</span><span class="s2">, I am </span><span class="si">#{</span><span class="n">element</span><span class="p">.</span><span class="nf">status</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">clerk</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">special_slogan</span><span class="si">}</span><span class="s2">, I am </span><span class="si">#{</span><span class="n">element</span><span class="p">.</span><span class="nf">status</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">special_slogan</span>
+    <span class="s1">'Special Slogan this week!'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">ServeMeal</span> <span class="o">&lt;</span> <span class="no">Visitor</span>
+  <span class="k">def</span> <span class="nf">manager</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">same_pose</span><span class="si">}</span><span class="s2">, and then </span><span class="si">#{</span><span class="n">element</span><span class="p">.</span><span class="nf">profession</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">clerk</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="p">.</span><span class="nf">same_pose</span><span class="si">}</span><span class="s2">, and then </span><span class="si">#{</span><span class="n">element</span><span class="p">.</span><span class="nf">profession</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">same_pose</span>
+    <span class="s1">'dance dance dance'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">client_code</span><span class="p">(</span><span class="n">components</span><span class="p">,</span> <span class="n">visitor</span><span class="p">)</span>
+  <span class="n">components</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">component</span><span class="o">|</span>
+    <span class="n">component</span><span class="p">.</span><span class="nf">accept</span><span class="p">(</span><span class="n">visitor</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">components</span> <span class="o">=</span> <span class="p">[</span><span class="no">Manager</span><span class="p">.</span><span class="nf">new</span><span class="p">,</span> <span class="no">Clerk</span><span class="p">.</span><span class="nf">new</span><span class="p">]</span>
+
+<span class="n">say_hi</span> <span class="o">=</span> <span class="no">SayHi</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">client_code</span><span class="p">(</span><span class="n">components</span><span class="p">,</span> <span class="n">say_hi</span><span class="p">)</span>
+
+<span class="n">serve_meal</span> <span class="o">=</span> <span class="no">ServeMeal</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">client_code</span><span class="p">(</span><span class="n">components</span><span class="p">,</span> <span class="n">serve_meal</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://ithelp.ithome.com.tw/articles/10208766">[ Day 25 ] 每個人關心的點都不同 - 訪問者模式 (Visitor Pattern)</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=UQP5XqMqtqQ">The Visitor Pattern Explained and Implemented in Java Behavioral Design Patterns Geekific</a></p>
+
+<p><a href="https://refactoring.guru/design-patterns/visitors">Visitor</a></p>

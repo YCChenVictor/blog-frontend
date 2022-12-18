@@ -1,0 +1,203 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>For example, at first, there is only <strong>one supervisor</strong> and the host needs to print file with the title of that supervisor; however, right before the meeting, another supervisor requests to join the meeting, so we need another same file with different title. The host now may have these options:</p>
+
+<ol>
+  <li>copy the file and change the title of the copyed file (V)</li>
+  <li>change the title of the file and print it out -&gt; increaseing the risk that the wrong title printed out in other file</li>
+  <li>rewrite the whole file -&gt; takes too much time and some informations from private third-party departments may not be available while rewriting</li>
+</ol>
+
+<ul>
+  <li>some confidential informations may need the customized styles to emphasize only used in this particular file for particular meetings</li>
+</ul>
+
+<p>Prototype design pattern serves as the same concepts of the copy process (option 1); for <strong>creating</strong> new object by <strong>clone</strong> other object and do required modifications <strong>at run time</strong>.</p>
+
+<h2 id="why">Why?</h2>
+
+<ul>
+  <li>run time saving (no need to reconstructure the file)</li>
+  <li>avoid objects created dependent on class (we do not need to modify class to create new objects, which may affect the objects created after the midification)</li>
+  <li>some private field must only connected to this object cannot be used in other object</li>
+</ul>
+
+<h2 id="how--what">How? &amp; What?</h2>
+
+<h3 id="the-concept-of-copy">the concept of copy</h3>
+
+<p>Given the documents looks like</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">'supervisor_1'</span><span class="p">,</span>
+  <span class="ss">:article</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'article_1'</span><span class="p">,</span> <span class="s1">'article_2'</span><span class="p">],</span>
+  <span class="ss">:confidential</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'confidential_1'</span><span class="p">,</span> <span class="s1">'confidential_2'</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>While programming, we may just declare another variable and change the title as follow</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">'supervisor_1'</span><span class="p">,</span>
+  <span class="ss">:article</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'article_1'</span><span class="p">,</span> <span class="s1">'article_2'</span><span class="p">],</span>
+  <span class="ss">:confidential</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'confidential_1'</span><span class="p">,</span> <span class="s1">'confidential_2'</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span>
+<span class="n">x2</span><span class="p">[</span><span class="ss">:title</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'supervisor_2'</span>
+<span class="nb">puts</span> <span class="n">x1</span> <span class="c1"># the title changed</span>
+</code></pre></div></div>
+
+<p>The title changed because both x2 and x1 points to the same object. We need the concept of copy to help us</p>
+
+<ul>
+  <li>shallow copy (only copy the first layer and the objects of second layer still points to the same objects from the copyed object)</li>
+  <li>deep copy (copy whole objects including the nested objects)</li>
+</ul>
+
+<p>In ruby, <code class="language-plaintext highlighter-rouge">dup</code> or <code class="language-plaintext highlighter-rouge">clone</code> are both shallow copy</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">'supervisor_1'</span><span class="p">,</span>
+  <span class="ss">:article</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'article_1'</span><span class="p">,</span> <span class="s1">'article_2'</span><span class="p">],</span>
+  <span class="ss">:confidential</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'confidential_1'</span><span class="p">,</span> <span class="s1">'confidential_2'</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span><span class="p">.</span><span class="nf">clone</span>
+<span class="n">x2</span><span class="p">[</span><span class="ss">:title</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'supervisor_2'</span>
+<span class="nb">puts</span> <span class="n">x1</span> <span class="c1"># the title unchanged</span>
+<span class="nb">puts</span> <span class="n">x2</span>
+</code></pre></div></div>
+
+<p>If we change the nested value as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">'supervisor_1'</span><span class="p">,</span>
+  <span class="ss">:article</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'article_1'</span><span class="p">,</span> <span class="s1">'article_2'</span><span class="p">],</span>
+  <span class="ss">:confidential</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'confidential_1'</span><span class="p">,</span> <span class="s1">'confidential_2'</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span><span class="p">.</span><span class="nf">clone</span>
+<span class="n">x2</span><span class="p">[</span><span class="ss">:article</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'hahahaha'</span>
+<span class="nb">puts</span> <span class="n">x1</span> <span class="c1"># the article of x1 also changed</span>
+<span class="nb">puts</span> <span class="n">x2</span>
+</code></pre></div></div>
+
+<p>To avoid it, we use <code class="language-plaintext highlighter-rouge">deep_dup</code> in ActiveSupport from rails</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">'supervisor_1'</span><span class="p">,</span>
+  <span class="ss">:article</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'article_1'</span><span class="p">,</span> <span class="s1">'article_2'</span><span class="p">],</span>
+  <span class="ss">:confidential</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'confidential_1'</span><span class="p">,</span> <span class="s1">'confidential_2'</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span><span class="p">.</span><span class="nf">deep_dup</span>
+<span class="n">x2</span><span class="p">[</span><span class="ss">:article</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'hahahaha'</span>
+<span class="nb">puts</span> <span class="n">x1</span> <span class="c1"># the article of x1 not changed</span>
+<span class="nb">puts</span> <span class="n">x2</span>
+</code></pre></div></div>
+
+<h3 id="demonstration">Demonstration</h3>
+
+<p>If we build the class intuitively, we may just create a class as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Prototype</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:articles</span><span class="p">,</span> <span class="ss">:confidentials</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@title</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="vi">@articles</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="vi">@confidentials</span> <span class="o">=</span> <span class="kp">nil</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">clone</span>
+    <span class="vi">@articles</span> <span class="o">=</span> <span class="n">deep_copy</span><span class="p">(</span><span class="vi">@articles</span><span class="p">)</span>
+    <span class="vi">@confidentials</span> <span class="o">=</span> <span class="n">deep_copy</span><span class="p">(</span><span class="vi">@confidentials</span><span class="p">)</span>
+    <span class="vi">@confidentials</span><span class="p">.</span><span class="nf">prototype</span> <span class="o">=</span> <span class="nb">self</span>
+    <span class="n">deep_copy</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+  <span class="k">def</span> <span class="nf">deep_copy</span><span class="p">(</span><span class="n">object</span><span class="p">)</span>
+    <span class="no">Marshal</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="no">Marshal</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">object</span><span class="p">))</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">ConfidentialReference</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:prototype</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">prototype</span><span class="p">)</span>
+    <span class="vi">@prototype</span> <span class="o">=</span> <span class="n">prototype</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># The client code.</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="no">Prototype</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">title</span> <span class="o">=</span> <span class="s1">'supervisor_1'</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">articles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'article_1'</span><span class="p">]</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">confidentials</span> <span class="o">=</span> <span class="no">ConfidentialReference</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+
+<span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="p">.</span><span class="nf">clone</span>
+<span class="n">p2</span><span class="p">.</span><span class="nf">title</span> <span class="o">=</span> <span class="s1">'supervisor_2'</span>
+
+<span class="c1"># ============</span>
+<span class="c1"># check</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">title</span> <span class="o">!=</span> <span class="n">p2</span><span class="p">.</span><span class="nf">title</span> <span class="c1"># for two different supervisor</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">articles</span><span class="p">.</span><span class="nf">equal?</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="nf">articles</span><span class="p">)</span> <span class="c1"># two different articles with same content</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">confidentials</span><span class="p">.</span><span class="nf">equal?</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="nf">confidentials</span><span class="p">)</span>
+<span class="n">p1</span><span class="p">.</span><span class="nf">confidentials</span><span class="p">.</span><span class="nf">prototype</span><span class="p">.</span><span class="nf">equal?</span><span class="p">(</span><span class="n">p2</span><span class="p">.</span><span class="nf">confidentials</span><span class="p">.</span><span class="nf">prototype</span><span class="p">)</span> <span class="c1"># again two different confidential articles with same content, so if the information leaks, we know who did it.</span>
+</code></pre></div></div>
+
+<h3 id="design-graph-and-pseudocode">design graph and pseudocode</h3>
+
+<p>The code in section, Demonstration, is for one document. We can extend this design for more documents as following design graph and pseudocode</p>
+
+<h4 id="design-graph">design graph</h4>
+
+<div class="mermaid">
+classDiagram
+  Client --|&gt; Prototype : Call
+  DocumentOne &lt;|-- Prototype : Inherited From
+  DocumentTwo &lt;|-- Prototype : Inherited From
+
+  Prototype : clone()
+  DocumentOne: FieldOne
+  DocumentTwo: FieldTwo
+</div>
+
+<h4 id="pseudocode">pseudocode</h4>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Prototype</span>
+  <span class="k">def</span> <span class="nf">clone</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">ConfidentialReference</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">DocumentOne</span> <span class="o">&lt;</span> <span class="no">Prototype</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@document</span> <span class="o">=</span> <span class="s1">'One'</span>
+    <span class="k">super</span>
+  <span class="k">end</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">DocumentTwo</span> <span class="o">&lt;</span> <span class="no">Prototype</span>
+  <span class="k">def</span> <span class="nf">initialize</span>
+    <span class="vi">@document</span> <span class="o">=</span> <span class="s1">'Two'</span>
+    <span class="k">super</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=AFbZhRL0Uz8">Prototype Design Pattern Tutorial</a></p>
+
+<p><a href="https://ithelp.ithome.com.tw/articles/10221129">[Design Pattern] Prototype 原型模式</a></p>
+
+<p><a href="https://refactoring.guru/design-patterns/prototype">Prototype</a></p>
+
+<p><a href="https://www.programiz.com/python-programming/shallow-deep-copy">Python Shallow Copy and Deep Copy</a></p>

@@ -1,0 +1,61 @@
+<h2 id="introduction">Introduction</h2>
+
+<p>Authentication in API is a way to make sure user from client side has authorization from server side; for example, a user input username and password, then they are encrypted on client side, and then posted from client to server side. Server will parse it and check whether they matches the username and password recorded in database.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>try to answer why we need Authentication</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="basic-structure">Basic Structure</h3>
+
+<p>Given we have the concept of HTTP (refer to 2021-04-09-hyper-text-transfer-protocol.md), client sent requests to server with key information in headers, including <code class="language-plaintext highlighter-rouge">Authorization</code> with form such as</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Authorization: Basic <span class="nv">QWxhZGRpbjpvcGVuIHNlc2FtZQ</span><span class="o">==</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Basic</code> means the method of authentication and <code class="language-plaintext highlighter-rouge">QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code> is encoded on client side and going to be decoded on server side to check authorization.</p>
+
+<h2 id="what">What?</h2>
+
+<p>As technology improves, from easy to advanced,</p>
+
+<h3 id="basic">basic</h3>
+
+<p>For example, given <code class="language-plaintext highlighter-rouge">username = Aladdin</code> and <code class="language-plaintext highlighter-rouge">password = open sesame</code>, the encoding of <code class="language-plaintext highlighter-rouge">Aladdin:open sesame</code> in Base64 is <code class="language-plaintext highlighter-rouge">YWxpY2U6c3VwZXJtYW4=</code> and client will send request with authorization in header:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Authorization: Basic <span class="nv">YWxpY2U6c3VwZXJtYW4</span><span class="o">=</span>
+</code></pre></div></div>
+
+<p>Then server will decode it in Base64 and match the <code class="language-plaintext highlighter-rouge">username</code> and <code class="language-plaintext highlighter-rouge">password</code> stored in server. If the result did not match, the example response:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP/1.1 401 Unauthorized
+Date: Wed, 21 Oct 2015 07:28:00 GMT
+WWW-Authenticate: Basic <span class="nv">realm</span><span class="o">=</span><span class="s2">"Access to staging site"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>pros</li>
+  <li>cons
+    <ul>
+      <li>no session expiration mechanism, meaning once login, login in until browser cookie expires.</li>
+      <li>easy algorithm to hack</li>
+      <li>Replay attack (TBC)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="digest">digest</h3>
+
+<h3 id="oauth">OAuth</h3>
+
+<h3 id="bearer">Bearer</h3>
+
+<h3 id="jwt">JWT</h3>
+
+<p>TBC</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://carsonwah.github.io/http-authentication.html">開發者必備知識 - HTTP認證（HTTP Authentication）</a></p>
