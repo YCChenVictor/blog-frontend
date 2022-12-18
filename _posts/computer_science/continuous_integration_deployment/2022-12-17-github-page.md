@@ -35,6 +35,8 @@ follow [How to use Tailwind CSS with Jekyll on GitHub Pages](https://jekyll.ohso
 
 ### continuous integration (CI) (TBC)
 
+I should wrote easy test for it
+
 ```yaml
 name: integration-workflow
 run-name: ${{ github.actor }} integrating
