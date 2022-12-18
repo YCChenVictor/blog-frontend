@@ -33,7 +33,54 @@ follow [How to use Tailwind CSS with Jekyll on GitHub Pages](https://jekyll.ohso
 
 ### webpack
 
+### continuous integration (CI) (TBC)
 
+```yaml
+name: integration-workflow
+run-name: ${{ github.actor }} integrating
+
+on:
+  pull-request:
+...
+```
+
+### continuous deployment (CD)
+
+```yaml
+name: deployment-workflow
+run-name: ${{ github.actor }} deploying
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  github-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+          bundler-cache: true
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - run: npm install
+      - name: Build site
+        uses: limjh16/jekyll-action-ts@v2
+        with:
+          enable_cache: true
+      - name: Build bundle.js
+      - run: webpack
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+```
 
 ### workflow (TBC)
 
