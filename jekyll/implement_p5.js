@@ -1,4 +1,4 @@
-function p5Draw(id) {
+function p5Draw(id) { // TODO: move to webpacker
   let eraseEnable = false;
   let buttons = {};
   const conceptDiv = document.getElementById(id);
