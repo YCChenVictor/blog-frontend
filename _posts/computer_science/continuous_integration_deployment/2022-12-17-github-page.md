@@ -27,20 +27,24 @@ As my blog getting bigger, I need it
 
 [Testing your GitHub Pages site locally with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll)
 
-### deploy errors
-
-[Viewing Jekyll build error messages in your pull request](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-jekyll-build-errors-for-github-pages-sites)
-
-[Troubleshooting Jekyll build errors for GitHub Pages sites](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/troubleshooting-jekyll-build-errors-for-github-pages-sites)
-
-#### tailwind
+### tailwind
 
 follow [How to use Tailwind CSS with Jekyll on GitHub Pages](https://jekyll.ohsostatic.com/devops/how-to-use-tailwind-css-with-jekyll-on-github-pages)
+
+### webpack
+
+
 
 ### workflow (TBC)
 
 * A workflow is ?
 * The template as follow
+
+### deploy errors
+
+[Viewing Jekyll build error messages in your pull request](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-jekyll-build-errors-for-github-pages-sites)
+
+[Troubleshooting Jekyll build errors for GitHub Pages sites](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/troubleshooting-jekyll-build-errors-for-github-pages-sites)
 
 ## What
 
