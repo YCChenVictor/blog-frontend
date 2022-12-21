@@ -17,16 +17,6 @@ publish: true
 
 This article describes how to answer listening questions.
 
-- [Introduction](#introduction)
-- [Why?](#why)
-- [How?](#how)
-  - [key hints](#key-hints)
-  - [test](#test)
-- [What?](#what)
-  - [conversation](#conversation)
-  - [lecture](#lecture)
-- [Reference](#reference)
-
 ## Why?
 
 Toefl
@@ -37,7 +27,7 @@ Active listening is to infer the speaker's purpose. So after listening the passa
 
 - what questions may be
 
-Steps for practice
+### steps
 
 - drop down template when explanation
   - conversation: T shape
@@ -72,20 +62,20 @@ try to answer each question within 33 seconds
 
 ### conversation
 
-* main idea
-  * the speaker will tell us and we should write it down
-* conclusion
-  * In the end of conversation, make sure to write down the conclusion
-* attitudes
-  * must, surprising, interesting ...
-  * emphasis: repetition, transition, heavy tone, pause, slow
-* details
-  * definition
-  * comparison
-  * cause
+- main idea
+  - the speaker will tell us and we should write it down
+- conclusion
+  - In the end of conversation, make sure to write down the conclusion
+- attitudes
+  - must, surprising, interesting ...
+  - emphasis: repetition, transition, heavy tone, pause, slow
+- details
+  - definition
+  - comparison
+  - cause
 
 ### lecture
 
 ## Reference
 
-[the details](https://toeflv3.kmf.com/listen/order)
+[TPO](https://toeflv3.kmf.com/listen/order)
