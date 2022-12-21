@@ -15,17 +15,7 @@ publish: true
 
 ## Introduction
 
-This article describes the concept and techniques of Toefl reading as follow:
-
-* [Vocabulary](#vocabulary)
-* [Reference](#reference)
-* [Lead Word/ Detail](#lead-word-detail)
-* [Rhetorical Purpose](#rhetorical-purpose)
-* [Paraphrase](#paraphrase)
-* [Sentence Insertion](#sentence-insertion)
-* [EXCEPT/NOT/LEAST](#exceptnotleast)
-* [Inference: author's purpose](#inference)
-* [Summary](#summary)
+This article describes the concept and techniques of reading
 
 ## Why?
 
@@ -35,6 +25,7 @@ Toefl
 
 Steps to answer questions:
 
+* 3 reading passage, 30 questions, 54 minutes
 * draw template
 * analyze question's category
 * utilize answer strategy
@@ -205,7 +196,7 @@ This kind of question is to infer why author write this passage.
 Steps
 
 * Skim the passage and drop key point
-* Think why author wrote this passage and write down self inference
+* Think why author wrote this passage and write down self inference -> please summarize the paragraph first
 * Scan the options and eliminate the extreme answer
 
 For example,
@@ -338,4 +329,4 @@ F => topic of 5
 
 ## Reference articles
 
-[details](https://toeflv3.kmf.com/read/order)
+[TPO](https://toeflv3.kmf.com/read/order)

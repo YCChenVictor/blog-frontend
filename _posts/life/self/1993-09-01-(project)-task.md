@@ -15,7 +15,7 @@ publish:
 
 ## Introduction
 
-This project decentralize the task.
+This project decentralize the tasks.
 
 ## Why?
 
@@ -28,7 +28,9 @@ This project decentralize the task.
 
 ## What?
 
-* add tailwind
+### TODO
+
+* add tailwind (navbar-style)
 * after phase one, deploy it
 
 ## Reference
