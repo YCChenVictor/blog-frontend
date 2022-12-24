@@ -31,7 +31,6 @@ This project decentralize the tasks.
 
 ### TODO
 
-* add tailwind (navbar-style)
 * add create button
   * project name
   * TBC
