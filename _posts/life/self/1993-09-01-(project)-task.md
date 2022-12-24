@@ -15,7 +15,7 @@ publish:
 
 ## Introduction
 
-This project decentralize the task.
+This project decentralize the tasks.
 
 ## Why?
 
@@ -31,6 +31,7 @@ This project decentralize the task.
 
 ### TODO
 
+* add tailwind (navbar-style)
 * add create button
   * project name
   * TBC
