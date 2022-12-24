@@ -17,14 +17,16 @@ publish: true
 
 This article describes how to prepare writing
 
-* [Independent Writing](#independent-writing)
-* [Integration Writing](#integration-writing)
-
 ## Why?
 
 toefl
 
 ## How?
+
+### time
+
+* Integrated writing task (20 minutes)
+* Independent writing task (30 minutes)
 
 ### Independent Writing
 
