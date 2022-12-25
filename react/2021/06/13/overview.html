@@ -84,16 +84,17 @@
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>This article describes basic concepts with a demo result</p>
-
-<p><img src="/assets/img/react_simple_calculator.png" alt="react_simple_calculator" class="w-1/2" /></p>
+<p>react overview</p>
 
 <h2 id="why">Why?</h2>
 
 <p>React:</p>
 
 <ul>
-  <li>is a component framework, managing states and keep track of when the component should be updated</li>
+  <li>maintain by Meta</li>
+  <li>virtual DOM</li>
+  <li>component framework</li>
+  <li>managing states of each component</li>
   <li>has no idea what a browser is</li>
 </ul>
 
@@ -165,9 +166,19 @@ npm start
 <span class="k">export</span> <span class="k">default</span> <span class="nx">Counter</span><span class="p">;</span>
 </code></pre></div></div>
 
+<p>and import them</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Counter</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/counter.jsx</span><span class="dl">'</span>
+
+<span class="p">...</span>
+<span class="o">&lt;</span><span class="nx">Counter</span> <span class="o">/&gt;</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
 <p>It includes</p>
 
 <ul>
+  <li>The naming of component must start from uppercase</li>
   <li>HTML &amp; CSS: the styles
     <ul>
       <li>CSS: through <code class="language-plaintext highlighter-rouge">className</code></li>
@@ -202,7 +213,7 @@ npm start
 
 <h4 id="insert-components">insert components</h4>
 
-<p>React accept pass array of components into a component and render them; for example,</p>
+<p>React accept pass array of components into a component and render them; Take <code class="language-plaintext highlighter-rouge">sidebar</code> as example,</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">menuItems</span><span class="p">,</span> <span class="nx">setMenuItems</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">'</span><span class="s1">testing</span><span class="dl">'</span><span class="p">)</span>
@@ -232,22 +243,19 @@ npm start
 
 <h3 id="concept-of-routes">concept of routes</h3>
 
-<p>Add required library</p>
+<p>Take <code class="language-plaintext highlighter-rouge">Navbar</code> as example,</p>
+
+<ul>
+  <li>create a component, <code class="language-plaintext highlighter-rouge">Navbar</code> in <code class="language-plaintext highlighter-rouge">components/navbar.jsx</code></li>
+  <li>add required library</li>
+</ul>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>react-router-dom
 </code></pre></div></div>
 
-<p>import it with</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
-  <span class="nx">BrowserRouter</span> <span class="k">as</span> <span class="nx">Router</span><span class="p">,</span>
-  <span class="nx">Routes</span><span class="p">,</span>
-  <span class="nx">Route</span><span class="p">,</span>
-  <span class="nx">Link</span>
-<span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-router-dom</span><span class="dl">"</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>and use it</p>
+<ul>
+  <li>add following code in it</li>
+</ul>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserRouter</span> <span class="k">as</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Routes</span><span class="p">,</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Link</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-router-dom</span><span class="dl">"</span><span class="p">;</span>
 
@@ -269,12 +277,74 @@ npm start
     <span class="p">&lt;/</span><span class="nc">Router</span><span class="p">&gt;</span>
   <span class="p">)</span>
 <span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Navbar</span>
 </code></pre></div></div>
 
 <p>If you want to use anchor tag</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">HashLink</span> <span class="k">as</span> <span class="nx">Link</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-router-hash-link</span><span class="dl">'</span><span class="p">;</span>
 <span class="p">&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"/pathLink#yourAnchorTag"</span><span class="p">&gt;</span>Your link text<span class="p">&lt;/</span><span class="nc">Link</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>use it</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Navbar</span> <span class="k">from</span> <span class="s2">`./components/navbar`</span>
+
+
+</code></pre></div></div>
+
+<h3 id="modal">modal</h3>
+
+<ul>
+  <li>install <code class="language-plaintext highlighter-rouge">react-modal</code></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-modal
+</code></pre></div></div>
+
+<ul>
+  <li>create component with</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Modal</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-modal</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">modalOpen</span><span class="p">,</span> <span class="nx">setModalOpen</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">setModalOpen</span><span class="si">}</span><span class="p">&gt;</span>Open Modal<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Modal</span>
+        <span class="na">isOpen</span><span class="p">=</span><span class="si">{</span><span class="nx">modalOpen</span><span class="si">}</span>
+        <span class="na">onRequestClose</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setModalOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span>
+        <span class="na">style</span><span class="p">=</span><span class="si">{</span><span class="nx">customStyles</span><span class="si">}</span>
+      <span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Modal<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setModalOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>Close Modal<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="create-post">create (POST)</h3>
+
+<p>Add a create button</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+<span class="o">&lt;</span><span class="nx">button</span>
+  <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">createTask</span><span class="p">()}</span>
+<span class="o">&gt;</span>
+  <span class="nx">Increment</span>
+<span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span><span class="p">...</span>
 </code></pre></div></div>
 
 <h3 id="concept-of-api">concept of api</h3>
@@ -292,174 +362,9 @@ npm start
 
 <p>Please refer to 2021-10-15-sign-in.md</p>
 
-<h3 id="decompose-app-into-tree">decompose app into tree</h3>
-
-<p>The tree of this app:</p>
-
-<div class="mermaid">
-graph TB
-  id1((App)) --&gt; id2((navbar))
-  id1((App)) --&gt; id4((counter))
-  id4((counter)) --&gt; id5((reset))
-  id4((counter)) --&gt; id6((row))
-  id6((row)) --&gt; id7((total))
-  id6((row)) --&gt; id8((plus))
-  id6((row)) --&gt; id9((minus))
-  id6((row)) --&gt; id10((delete))
-</div>
-
-<p>all the nodes represent a component</p>
-
 <h2 id="what">What?</h2>
 
-<h3 id="sidebar">sidebar</h3>
-
-<p>install</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-pro-sidebar
-</code></pre></div></div>
-
-<p>basic structure with <code class="language-plaintext highlighter-rouge">react-router-dom</code></p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nc">Menu</span><span class="p">&gt;</span>
-              <span class="p">&lt;</span><span class="nc">MenuItem</span> <span class="na">routerLink</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"#why"</span> <span class="p">/&gt;</span><span class="si">}</span><span class="p">&gt;</span> Documentation<span class="p">&lt;/</span><span class="nc">MenuItem</span><span class="p">&gt;</span>
-            <span class="p">&lt;/</span><span class="nc">Menu</span><span class="p">&gt;</span>
-          <span class="p">&lt;/</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h4 id="routing">routing</h4>
-
-<p>You also need to add switch and route</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nc">Switch</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/components"</span> <span class="na">component</span><span class="p">=</span><span class="si">{</span><span class="nx">Components</span><span class="si">}</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/profile"</span> <span class="na">component</span><span class="p">=</span><span class="si">{</span><span class="nx">Profile</span><span class="si">}</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/not-found"</span> <span class="na">component</span><span class="p">=</span><span class="si">{</span><span class="nx">NotFound</span><span class="si">}</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;</span><span class="nc">Route</span> <span class="na">path</span><span class="p">=</span><span class="s">"/"</span> <span class="na">exact</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nc">Home</span> <span class="na">image</span><span class="p">=</span><span class="si">{</span><span class="nx">image</span><span class="si">}</span> <span class="na">handleImageChange</span><span class="p">=</span><span class="si">{</span><span class="nx">handleImageChange</span><span class="si">}</span> <span class="p">/&gt;</span>
-  <span class="p">&lt;/</span><span class="nc">Route</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nc">Redirect</span> <span class="na">to</span><span class="p">=</span><span class="s">"/not-found"</span> <span class="p">/&gt;</span>
-<span class="p">&lt;/</span><span class="nc">Switch</span><span class="p">&gt;</span>
-</code></pre></div></div>
-
-<p>refer to: https://codesandbox.io/s/react-sidebar-routing-boj4c?file=/src/App.js:1232-1242</p>
-
-<h2 id="other">Other</h2>
-
-<h3 id="component">component</h3>
-
-<p>TBC, should write correct component codes, not just the code in how section</p>
-
-<p>Here I only show how to make a workable component for this app. For more concepts, please refer to 2021-06-15-component-and-prop.md</p>
-
-<p>Add a component file with file name: <code class="language-plaintext highlighter-rouge">components/counter.jsx</code> in the <code class="language-plaintext highlighter-rouge">src</code> path and the coding as follow:</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">Counter</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nc">React</span><span class="p">.</span><span class="nc">Fragment</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>
-        <span class="si">{</span><span class="nx">count</span><span class="si">}</span>
-      <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span>
-        <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span>
-      <span class="p">&gt;</span>
-        Increment
-      <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nc">React</span><span class="p">.</span><span class="nc">Fragment</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
- 
-<span class="k">export</span> <span class="k">default</span> <span class="nx">Counter</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>You can change the value of count and see the effect on the webpage.</p>
-
-<p>import this component in <code class="language-plaintext highlighter-rouge">./src/index.html</code> and render it as follow:</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-dom</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Counter</span> <span class="k">from</span> <span class="s2">`./components/counter`</span><span class="p">;</span>
-
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nc">Counter</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">root</span><span class="dl">'</span><span class="p">));</span>
-</code></pre></div></div>
-
-<h3 id="events">events</h3>
-
-<p>TBC, should change it to functional form</p>
-
-<p>In the component section, you can see button for increments, the <code class="language-plaintext highlighter-rouge">onClick</code> defines what method to be executed once users click the button; for example, we can have a following button</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleIncrement</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Increment Clicked</span><span class="dl">'</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="p">&lt;</span><span class="nt">button</span>
-  <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span><span class="si">}</span>
-<span class="p">&gt;</span>
-</code></pre></div></div>
-
-<p>Then it will log the string, Increment Clicked, in console once user clicks the button; however, if we want to change the state with this function, we need to change the method into</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleIncrement</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Increment Clicked</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>so that this method can get the <code class="language-plaintext highlighter-rouge">this</code> in javascript or use <code class="language-plaintext highlighter-rouge">constructor</code> in the class, <code class="language-plaintext highlighter-rouge">Component</code> as follow</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">super</span><span class="p">();</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">handleIncrement</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Increment Clicked</span><span class="dl">'</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>See 2021-06-16-life-cycle.md for further discussion. So the following function can change the <code class="language-plaintext highlighter-rouge">count</code> state when button been clicked</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleIncrement</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">count</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">})</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>Once user click the button and trigger the <code class="language-plaintext highlighter-rouge">handleIncrement</code>, react will change the state in virtual DOM -&gt; compare the new virtual DOM and the old virtual DOM to know the key difference -&gt; update the place with different values compared by virtual DOMs in real DOM. See 2021-06-15-component-and-prop.md for further discussion about how virtual DOM and real DOM work in react.</p>
-
-<h4 id="passing-arguments">passing arguments</h4>
-
-<p>If we want to pass arguments to the event handler function, we can do the following:</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleIncrement</span> <span class="o">=</span> <span class="p">(</span><span class="nx">product</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">product</span><span class="p">)</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">count</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">})</span>
-<span class="p">}</span>
-<span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleIncrement</span><span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span> <span class="p">})}</span>
-</code></pre></div></div>
-
-<p>Actually, I do not know why we need to write it as showing above. I will dive into it.</p>
-
-<h3 id="basic-commands">basic commands</h3>
-
-<ol>
-  <li>run project: <code class="language-plaintext highlighter-rouge">npm start</code></li>
-</ol>
+<p>TBC</p>
 
 <h2 id="reference">Reference</h2>
 

@@ -248,6 +248,35 @@
 <p>As you can see, the basic concept of react is to decompose the website into lots of components.
 <img src="/assets/img/react_basic_layout_what.png" alt="react_basic_layout_what" /></p>
 
+<h2 id="other">Other</h2>
+
+<h3 id="sidebar">sidebar</h3>
+
+<p>install</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-pro-sidebar
+</code></pre></div></div>
+
+<p>basic structure with <code class="language-plaintext highlighter-rouge">react-router-dom</code></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Menu</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nc">MenuItem</span> <span class="na">routerLink</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"#why"</span> <span class="p">/&gt;</span><span class="si">}</span><span class="p">&gt;</span> Documentation<span class="p">&lt;/</span><span class="nc">MenuItem</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nc">Menu</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
 <h2 id="reference">reference</h2>
 
 <p><a href="https://www.youtube.com/watch?v=Ke90Tje7VS0">React JS - React Tutorial for Beginners</a></p>

@@ -166,11 +166,21 @@
 
 <p>The effect: (the width of the layout is 320px (width + border))</p>
 
-<p><img class="" src="/assets/img/concept_of_border.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/concept_of_border.png" alt="" /></p>
 
 <h4 id="radius">radius</h4>
 
-<p>The rounded border</p>
+<p>The rounded border, with react, with <code class="language-plaintext highlighter-rouge">rounded-sm</code></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">button</span>
+  <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">setModalOpen</span><span class="si">}</span>
+  <span class="na">className</span><span class="p">=</span><span class="s">"bg-white absolute top-4 right-4 rounded-sm p-2"</span>
+<span class="p">&gt;</span>Create Task<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>the layout:</p>
+
+<p><img class="" src="/blog/assets/img/concept_of_border_radius.png" alt="" /></p>
 
 <h3 id="concept-ofpadding">concept of padding</h3>
 
@@ -308,7 +318,7 @@
 
 <h3 id="concept-of-position">concept of position</h3>
 
-<p>Suppose we add a block with<code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> with following CSS setting:</p>
+<p>Suppose we add a block with <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> with following CSS setting:</p>
 
 <pre><code class="language-CSS">.whatever{
   width: 200px;
@@ -319,11 +329,11 @@
 
 <p>The layout:</p>
 
-<p><img class="" src="/assets/img/1__7lDcRB2qLIMJuW74CaINjg.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/1__7lDcRB2qLIMJuW74CaINjg.png" alt="" /></p>
 
 <p>if we add <code class="language-plaintext highlighter-rouge">position: fix</code> to the CSS setting, then the layout would be</p>
 
-<p><img class="" src="/assets/img/position_fix.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/position_fix.png" alt="" /></p>
 
 <p>With <code class="language-plaintext highlighter-rouge">position: fix</code>, the object will be rendered on upper layer.</p>
 
@@ -341,7 +351,7 @@
 }
 </code></pre>
 
-<p><img class="" src="/assets/img/specify_position.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/specify_position.png" alt="" /></p>
 
 <p>If we want it to be in the center, the CSS would be</p>
 
@@ -358,7 +368,7 @@
 }
 </code></pre>
 
-<p><img class="" src="/assets/img/position_center.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/position_center.png" alt="" /></p>
 
 <h2 id="reference">Reference</h2>
 
