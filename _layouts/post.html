@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+{% if site.show-nav-menu %}
+  <div id="sidebar" class="p-4 fixed"></div>
+{% endif %}
 <div class="px-4 pt-4 prose prose-{{site.theme-color}}">
   <h1 class="text-center mt-6 mb-6">{{ page.title }}</h1>
   <div class="text-center">
@@ -19,5 +22,3 @@ layout: default
 </div>
 
 {% include footer.html %}
-
-<script type="text/javascript" src="{{site.baseurl}}/assets/javascripts/bundle.js" charset="utf-8"></script>
