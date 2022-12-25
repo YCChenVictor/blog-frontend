@@ -2,7 +2,7 @@
 layout: post
 title:
 description: ''
-date: ''
+date: '1993-09-01'
 categories:
 note:
 mathjax:
@@ -21,7 +21,10 @@ This project decentralize the tasks.
 
 ## How?
 
+Two role: task giver and task receiver
+
 * landing page
+  * login mechanism
   * list out the tasks, each tasks should have a spec to test
   * button to create a task
 * task acquirer can upload their masterpiece and try to pass the specs
@@ -31,9 +34,13 @@ This project decentralize the tasks.
 
 ### TODO
 
-* add create button
+* add modal
   * project name
-  * TBC
+  * project spec
+  * price
+* add login
+  * user email
+  * password
 * create backend on local with PG with rails
 * after phase one, deploy it
 
