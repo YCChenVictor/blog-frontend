@@ -65,10 +65,12 @@
     </div>
   </div>
 </nav>
-        <div id="sidebar" class="p-4 fixed"></div>
       
-      <div class="px-4 pt-4 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">CSS</h1>
+      
+  <div id="sidebar" class="p-4 fixed"></div>
+
+<div class="px-4 pt-4 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
@@ -116,7 +118,7 @@
 
 <p>The effect:</p>
 
-<p><img class="" src="/assets/img/1__SB4JACbhrb4pomSht3pCwg.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/concept_of_style.png" alt="" /></p>
 
 <h3 id="concept-of-size">concept of size</h3>
 
@@ -202,7 +204,7 @@
 
 <p>The layout: (the width of the layout is 340px (width + border + padding))</p>
 
-<p><img class="" src="/assets/img/concept_of_padding.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/concept_of_padding.png" alt="" /></p>
 
 <h3 id="concept-of-float">concept of float</h3>
 
@@ -227,7 +229,7 @@
 
 <p>We can categorize the objects in html into inline and block. The easiest way to distinguish the difference is that one block will fill all the horizontal area while inline would not.</p>
 
-<p><img class="" src="/assets/img/1__FvXF0wJqVIuoRSZibCARTw.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/concept_of_display.png" alt="" /></p>
 
 <ul>
   <li>block markups: <code class="language-plaintext highlighter-rouge">div、p、ul、li</code></li>
@@ -246,18 +248,12 @@
 ...
 </code></pre>
 
-<p><img class="" src="/assets/img/1__D2OzqBeBPksgxvggUjVqvQ.png" alt="" /></p>
+<p><img class="" src="/blog/assets/img/1__D2OzqBeBPksgxvggUjVqvQ.png" alt="" /></p>
 
 <ul>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">display:block</code>: TBC</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">display:inline-block</code>: TBC</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">display:flex</code> can let the objects in this object to be displayed flexibly</p>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">display:block</code>: TBC</li>
+  <li><code class="language-plaintext highlighter-rouge">display:inline-block</code>: TBC</li>
+  <li><code class="language-plaintext highlighter-rouge">display:flex</code> can let the objects in this object to be displayed flexibly</li>
 </ul>
 
 <p>For example,</p>
@@ -311,6 +307,10 @@
 <p><img class="" src="/assets/img/1__C4uMfYkqo8KYLn2QOPhlpA.png" alt="" /></p>
 
 <p>meaning it does not matter how you setup the width of the item in the wrap once you have flex in the CSS.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">display:none</code> can hidden the html</li>
+</ul>
 
 <h4 id="flex-vs-inline">flex vs inline</h4>
 
@@ -370,6 +370,144 @@
 
 <p><img class="" src="/blog/assets/img/position_center.png" alt="" /></p>
 
+<h2 id="other">other</h2>
+
+<h4 id="introduction-1">Introduction</h4>
+
+<p><strong><em>What is CSS?</em></strong> The full name is Cascading Style Sheets. It is a style sheet language to describe the presentation of a document written in a markup language.</p>
+
+<p><strong><em>What can CSS do?</em></strong> All visual control in website can be achieved with CSS.</p>
+
+<p><strong><em>Evolution:</em></strong> Directly write the style we want into HTML markups -&gt; Use markup, <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code>and there are three grammars: selector, property, value -&gt; Write a CSS file independently</p>
+
+<h4 id="how-css-works--whats-the-effect-ofcss">How CSS works &amp; What’s the effect of CSS</h4>
+
+<p><strong><em>How CSS works?</em></strong> For example, if we want the color of a <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> to be green, then</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p <span class="nv">style</span><span class="o">=</span><span class="s2">"color:green;"</span><span class="o">&gt;</span>  &lt;/p&gt;
+</code></pre></div></div>
+
+<p>However, if we want multiple <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> to be green, then we have to specify style in every <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> ; as a result, we use markup,<code class="language-plaintext highlighter-rouge">&lt;style&gt;</code> to collect all the style settings such as</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;style&gt;  
+  p <span class="o">{</span>  
+     color: green<span class="p">;</span>  
+    <span class="o">}</span>  
+&lt;/style&gt;
+</code></pre></div></div>
+
+<p>With above code, it will select all <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> and change the color of content into green, meaning the grammar:</p>
+
+<p>selector {<br />
+          property: value;<br />
+         }</p>
+
+<p><strong><em>What’s the effect of CSS? The appearance of the paragraph:</em></strong></p>
+
+<p>The full html code would be following</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;<span class="o">!</span>DOCTYPE html&gt;  
+&lt;html <span class="nv">lang</span><span class="o">=</span><span class="s2">"en"</span><span class="o">&gt;</span>  
+&lt;<span class="nb">head</span><span class="o">&gt;</span>  
+ &lt;meta <span class="nv">charset</span><span class="o">=</span><span class="s2">"UTF-8"</span><span class="o">&gt;</span>  
+ &lt;meta <span class="nv">name</span><span class="o">=</span><span class="s2">"viewport"</span> <span class="nv">content</span><span class="o">=</span><span class="s2">"width=device-width, initial-scale=1.0"</span><span class="o">&gt;</span>  
+ &lt;title&gt;Document&lt;/title&gt;  
+&lt;/head&gt;  
+&lt;style&gt;  
+ p <span class="o">{</span>  
+     color: green<span class="p">;</span>  
+    <span class="o">}</span>  
+&lt;/style&gt;  
+&lt;body&gt;  
+ &lt;p&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi molestiae laborum delectus, quis temporibus necessitatibus? Ullam optio, adipisci fugit nostrum eligendi. Ullam numquam officia, optio ut illum ex aliquam assumenda?&lt;/p&gt;  
+&lt;/body&gt;  
+&lt;/html&gt;
+</code></pre></div></div>
+
+<p>And the appearance:</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__SB4JACbhrb4pomSht3pCwg.png" alt="" /></p>
+
+<h3 id="the-concept-of-area-size-inlayout">The Concept of Area Size in Layout</h3>
+
+<p>Notice, if you are going to test the code below, make sure the layout in your browser is in 100% mode.</p>
+
+<h4 id="the-concept-of-visiblesize">The concept of visible size</h4>
+
+<p>For example, for the following setting up</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;style&gt;  
+   
+    div<span class="o">{</span>  
+     background-color: <span class="c">#aaa;  </span>
+     width: 300px<span class="p">;</span>
+
+    <span class="o">}</span>
+
+&lt;/style&gt;  
+</code></pre></div></div>
+
+<div>情節網路制度首頁辛苦歡迎您還沒，豪華投訴才會兩個台北新聞高級足球實施業績成就為你老婆好像，轉帖先進。</div>
+
+<p>The layout would be</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__mS__5GQ__fI480KJRwl0EhYA.png" alt="" /></p>
+
+<p>As you can see, the width is 300px.</p>
+
+<h4 id="the-concept-ofborder">The concept of border</h4>
+
+<p>Adding <code class="language-plaintext highlighter-rouge">border: 10px solid #666;</code>into the code above</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;style&gt;  
+   
+    div<span class="o">{</span>  
+     background-color: <span class="c">#aaa;  </span>
+     width: 300px<span class="p">;</span>  
+     border: 10px solid <span class="c">#666;</span>
+
+    <span class="o">}</span>
+
+&lt;/style&gt;  
+</code></pre></div></div>
+
+<div>情節網路制度首頁辛苦歡迎您還沒，豪華投訴才會兩個台北新聞高級足球實施業績成就為你老婆好像，轉帖先進。</div>
+
+<p>Then the layout would be following</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__1eINq6HD5NJv__tCJybanRQ.png" alt="" /></p>
+
+<p>As you can see, the width of the layout now is 320px (width + border).</p>
+
+<h4 id="the-concept-ofpadding">The concept of padding</h4>
+
+<p>Adding <code class="language-plaintext highlighter-rouge">padding: 10px;</code>into the code above as follow</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;style&gt;  
+   
+    div<span class="o">{</span>  
+     background-color: <span class="c">#aaa;  </span>
+     width: 300px<span class="p">;</span>  
+     border: 10px solid <span class="c">#666;  </span>
+     padding: 10px<span class="p">;</span>
+
+<span class="o">}</span>
+
+&lt;/style&gt;  
+</code></pre></div></div>
+
+<div>情節網路制度首頁辛苦歡迎您還沒，豪華投訴才會兩個台北新聞高級足球實施業績成就為你老婆好像，轉帖先進。</div>
+
+<p>Then the layout would be following</p>
+
+<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__J2Trn__68oR9bFusQqa__vvg.png" alt="" /></p>
+
+<p>As you can see, the width of the layout now is 340px (width + border + padding).</p>
+
+<h4 id="key-takeaway">Key Take Away</h4>
+
+<p>As we can see, the total width of an object is width + border + padding in the CSS setting, meaning if we want to insert three 200px width box with 10px padding and 10px border into a 600px width box, we need to specify the CSS width of the inner box into160px, not 200px.</p>
+
 <h2 id="reference">Reference</h2>
 
 <p><a href="https://ithelp.ithome.com.tw/users/20112550/ironman/2072">金魚都能懂的網頁設計入門 - 金魚都能懂了你還怕學不會嗎 :: 2019 iT 邦幫忙鐵人賽</a></p>
@@ -407,8 +545,6 @@
   </div>
 </footer>
 
-<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
-
     </div>
   </body>
 
@@ -437,4 +573,6 @@
         document.getElementById(dropdownID).classList.toggle("block");
       }
   </script>
+
+  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
 </html>

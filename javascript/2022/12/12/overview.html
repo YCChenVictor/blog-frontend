@@ -65,9 +65,11 @@
     </div>
   </div>
 </nav>
-        <div id="sidebar" class="p-4 fixed"></div>
       
-      <div class="px-4 pt-4 prose prose-indigo">
+      
+  <div id="sidebar" class="p-4 fixed"></div>
+
+<div class="px-4 pt-4 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
@@ -83,14 +85,11 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="string">string</h3>
+<h3 id="es">ES</h3>
 
-<h4 id="string-with-variable">string with variable</h4>
+<p>ECMAScript is a JavaScript standard intended to ensure the interoperability of web pages across different browsers.</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">`Hello, </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span>
-</code></pre></div></div>
-
-<h3 id="object">object</h3>
+<h3 id="oop">OOP</h3>
 
 <p>something like</p>
 
@@ -100,62 +99,32 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="string-to-variable-name">string to variable name</h4>
-
-<h3 id="tag">tag</h3>
-
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/tagName">Element.tagName</a></p>
-
 <h3 id="datatype">datatype</h3>
 
-<h4 id="nodelist">nodelist</h4>
-
-<p>What is nodelist?</p>
-
-<h4 id="array">array</h4>
-
-<p>TBC</p>
+<p><a href="/blog/javascript/2022/12/25/datatype.html">datatype</a></p>
 
 <h3 id="methods">methods</h3>
 
-<h4 id="typeof">typeof</h4>
+<p><a href="/blog/javascript/2022/12/25/methods.html">methods</a></p>
 
-<p>Why it returns object?</p>
+<h3 id="logic">logic</h3>
 
-<h4 id="queryselector">querySelector</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">()</span> <span class="p">{</span>
 
-<p><code class="language-plaintext highlighter-rouge">Document.querySelector()</code> returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned.</p>
-
-<h4 id="foreach">forEach</h4>
-
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">Array.prototype.forEach()</a></p>
-
-<h3 id="check-whether-array">check whether array</h3>
-
-<p><a href="https://stackoverflow.com/questions/767486/how-do-i-check-if-a-variable-is-an-array-in-javascript">How do I check if a variable is an array in JavaScript?</a></p>
-
-<h4 id="map">map</h4>
-
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map()</a></p>
-
-<p>To use <code class="language-plaintext highlighter-rouge">map</code> for nodelist,</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...</span><span class="nx">nodelist</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">({</span><span class="na">item</span><span class="p">:</span> <span class="dl">'</span><span class="s1">item</span><span class="dl">'</span><span class="p">}))</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  
+<span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="filter">filter</h4>
+<h2 id="what">What</h2>
 
-<h4 id="reduce">reduce</h4>
-
-<h4 id="type-of">type of</h4>
-
-<h2 id="what">What?</h2>
-
-<p>give an example</p>
+<p>TBC</p>
 
 <h2 id="reference">Reference</h2>
 
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">Document.querySelector()</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a></p>
 
   </div>
 </div>
@@ -188,8 +157,6 @@
   </div>
 </footer>
 
-<script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
-
     </div>
   </body>
 
@@ -218,4 +185,6 @@
         document.getElementById(dropdownID).classList.toggle("block");
       }
   </script>
+
+  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
 </html>
