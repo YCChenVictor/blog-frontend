@@ -87,7 +87,7 @@
 
 <p>In <code class="language-plaintext highlighter-rouge">components</code> folder,</p>
 
-<h3 id="headerjs">Header.js</h3>
+<h3 id="header">Header</h3>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">FontAwesomeIcon</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@fortawesome/react-fontawesome</span><span class="dl">"</span><span class="p">;</span>
@@ -135,7 +135,7 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">Header</span>
 </code></pre></div></div>
 
-<h3 id="asidejs">Aside.js</h3>
+<h3 id="aside">Aside</h3>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">FontAwesomeIcon</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@fortawesome/react-fontawesome</span><span class="dl">'</span>
@@ -174,7 +174,7 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">Aside</span>
 </code></pre></div></div>
 
-<h3 id="cardjs">Card.js</h3>
+<h3 id="card">Card</h3>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -208,7 +208,111 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">Card</span>
 </code></pre></div></div>
 
-<h4 id="appjs">App.js</h4>
+<h3 id="sidebar">sidebar</h3>
+
+<p>install</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-pro-sidebar
+</code></pre></div></div>
+
+<p>basic structure with <code class="language-plaintext highlighter-rouge">react-router-dom</code></p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Menu</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nc">MenuItem</span> <span class="na">routerLink</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"#why"</span> <span class="p">/&gt;</span><span class="si">}</span><span class="p">&gt;</span> Documentation<span class="p">&lt;/</span><span class="nc">MenuItem</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nc">Menu</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="modal">modal</h3>
+
+<ul>
+  <li>install <code class="language-plaintext highlighter-rouge">react-modal</code></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-modal
+</code></pre></div></div>
+
+<ul>
+  <li>create component with</li>
+</ul>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Modal</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-modal</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">modalOpen</span><span class="p">,</span> <span class="nx">setModalOpen</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">setModalOpen</span><span class="si">}</span><span class="p">&gt;</span>Open Modal<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">Modal</span>
+        <span class="na">isOpen</span><span class="p">=</span><span class="si">{</span><span class="nx">modalOpen</span><span class="si">}</span>
+        <span class="na">onRequestClose</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setModalOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span>
+        <span class="na">style</span><span class="p">=</span><span class="si">{</span><span class="nx">customStyles</span><span class="si">}</span>
+      <span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Modal<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setModalOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>Close Modal<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="list">list</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">listItems</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span>
+  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">number</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="form">form</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">MyForm</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">name</span><span class="p">,</span> <span class="nx">setName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">email</span><span class="p">,</span> <span class="nx">setEmail</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+
+  <span class="kd">function</span> <span class="nx">handleSubmit</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="c1">// submit the form data (e.g. via an AJAX request)</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="p">=</span><span class="si">{</span><span class="nx">handleSubmit</span><span class="si">}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
+        Name:
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="p">=</span><span class="s">"text"</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">name</span><span class="si">}</span> <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setName</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
+        Email:
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="p">=</span><span class="s">"email"</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">email</span><span class="si">}</span> <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setEmail</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="p">=</span><span class="s">"submit"</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="app">App</h3>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Header</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/Header.js</span><span class="dl">'</span><span class="p">;</span>
 <span class="k">import</span> <span class="nx">Card</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/Card.js</span><span class="dl">'</span><span class="p">;</span>
@@ -247,37 +351,11 @@
 
 <h2 id="what">What</h2>
 
-<p>As you can see, the basic concept of react is to decompose the website into lots of components.
-<img src="/assets/img/react_basic_layout_what.png" alt="react_basic_layout_what" /></p>
+<p>As you can see, the basic concept of react is to decompose the website into lots of components</p>
 
-<h2 id="other">Other</h2>
+<p><img src="/blog/assets/img/react_basic_layout_what.png" alt="react_basic_layout_what" /></p>
 
-<h3 id="sidebar">sidebar</h3>
-
-<p>install</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-pro-sidebar
-</code></pre></div></div>
-
-<p>basic structure with <code class="language-plaintext highlighter-rouge">react-router-dom</code></p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nc">Menu</span><span class="p">&gt;</span>
-              <span class="p">&lt;</span><span class="nc">MenuItem</span> <span class="na">routerLink</span><span class="p">=</span><span class="si">{</span><span class="p">&lt;</span><span class="nc">Link</span> <span class="na">to</span><span class="p">=</span><span class="s">"#why"</span> <span class="p">/&gt;</span><span class="si">}</span><span class="p">&gt;</span> Documentation<span class="p">&lt;/</span><span class="nc">MenuItem</span><span class="p">&gt;</span>
-            <span class="p">&lt;/</span><span class="nc">Menu</span><span class="p">&gt;</span>
-          <span class="p">&lt;/</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p>Should host a frontend to show them</p>
 
 <h2 id="reference">reference</h2>
 

@@ -180,7 +180,7 @@ npm start
 <p>It includes</p>
 
 <ul>
-  <li>The naming of component must start from uppercase</li>
+  <li>Naming of component must start from uppercase</li>
   <li>HTML &amp; CSS: the styles
     <ul>
       <li>CSS: through <code class="language-plaintext highlighter-rouge">className</code></li>
@@ -188,30 +188,12 @@ npm start
   </li>
   <li>relationship between states and events
     <ul>
-      <li>useState
-        <ul>
-          <li>define how state changes and store the value when an event occur and <strong>rerender</strong> component to show the effect</li>
-          <li>example: <code class="language-plaintext highlighter-rouge">&lt;button onClick={() =&gt; setCount((prev) =&gt; prev + 1)}&gt; increment &lt;/button&gt;</code></li>
-        </ul>
-      </li>
-      <li>useEffect
-        <ul>
-          <li>define customized effects and trigger it <strong>when rerender</strong> component</li>
-        </ul>
-      </li>
-      <li>useRef: two usages
-        <ul>
-          <li>store value of reference and it will not rerender component when value changed</li>
-          <li>serve as reference of current component (like queryselector)</li>
-        </ul>
-      </li>
-      <li>useContext: TBC</li>
+      <li>check <a href="/blog/react/2021/06/17/React-4-Hook.html">hook</a></li>
     </ul>
   </li>
-  <li>class &amp; lifecycle vs hooks: TBC</li>
 </ul>
 
-<p>For more detailed discussion, please refer to 2021-06-15-react-component-and-prop.md</p>
+<p>The reason to use component: <code class="language-plaintext highlighter-rouge">render()</code> method returns <strong>react elements</strong>, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.</p>
 
 <h4 id="insert-components">insert components</h4>
 
@@ -243,10 +225,70 @@ npm start
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="render-components">render components</h4>
+<h4 id="child">child</h4>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<p>To decompose elements with full functionality, check <a href="/blog/react/2021/06/15/prop.html">prop</a></p>
+
+<h4 id="from-class-to-functional">from class to functional</h4>
+
+<p>Form example, from</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Clock</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="na">date</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()};</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">timerID</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span>
+      <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+          <span class="na">date</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+        <span class="p">}),</span>
+      <span class="mi">1000</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timerID</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>It is <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span><span class="si">}</span>.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
 </code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Clock</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">date</span><span class="p">,</span> <span class="nx">setDate</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span>
+      <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span> <span class="mi">1000</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">interval</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>It is <span class="si">{</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span><span class="si">}</span>.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Clock</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The hook, <code class="language-plaintext highlighter-rouge">useState</code> to setup the date and <code class="language-plaintext highlighter-rouge">setDate</code> function to change the date. If I want <code class="language-plaintext highlighter-rouge">setInterval</code> to be disabled after this component closed, just like <code class="language-plaintext highlighter-rouge">componentWillUnmount</code>, adding <code class="language-plaintext highlighter-rouge">return () =&gt; clearInterval(interval);</code></p>
 
 <h3 id="concept-of-routes">concept of routes</h3>
 
@@ -299,71 +341,15 @@ npm start
 </ul>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Navbar</span> <span class="k">from</span> <span class="s2">`./components/navbar`</span>
-
-
 </code></pre></div></div>
 
-<h3 id="modal">modal</h3>
+<h3 id="api">API</h3>
 
-<ul>
-  <li>install <code class="language-plaintext highlighter-rouge">react-modal</code></li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-modal
-</code></pre></div></div>
-
-<ul>
-  <li>create component with</li>
-</ul>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
-<span class="k">import</span> <span class="nx">Modal</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-modal</span><span class="dl">"</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">modalOpen</span><span class="p">,</span> <span class="nx">setModalOpen</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">setModalOpen</span><span class="si">}</span><span class="p">&gt;</span>Open Modal<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">Modal</span>
-        <span class="na">isOpen</span><span class="p">=</span><span class="si">{</span><span class="nx">modalOpen</span><span class="si">}</span>
-        <span class="na">onRequestClose</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setModalOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span>
-        <span class="na">style</span><span class="p">=</span><span class="si">{</span><span class="nx">customStyles</span><span class="si">}</span>
-      <span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Modal<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setModalOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>Close Modal<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
-</code></pre></div></div>
-
-<h3 id="create-post">create (POST)</h3>
-
-<p>Add a create button</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-<span class="o">&lt;</span><span class="nx">button</span>
-  <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">createTask</span><span class="p">()}</span>
-<span class="o">&gt;</span>
-  <span class="nx">Increment</span>
-<span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span><span class="p">...</span>
-</code></pre></div></div>
-
-<h3 id="concept-of-api">concept of api</h3>
-
-<p>Given the routes above, we can write method to get data once component rendered as follow:</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
+<p><a href="/blog/react/2022/09/14/api.html">api</a></p>
 
 <h3 id="layout">layout</h3>
 
-<p>Because this section is too long, please refer to 2021-06-14-layout.md</p>
+<p><a href="/blog/react/2021/06/14/layout.html">layout</a></p>
 
 <h3 id="sign-in-mechanism">sign in mechanism</h3>
 

@@ -133,11 +133,40 @@
 </code></pre></div></div>
 
 <h3 id="usecontext">useContext</h3>
-<p>I am going to show how <code class="language-plaintext highlighter-rouge">useContext</code> share the states globally</p>
+
+<p>When we want to call method from parent component</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">ParentComponent</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">MyContext</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createContext</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">The button was clicked!</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">MyContext</span><span class="p">.</span><span class="nc">Provider</span> <span class="na">value</span><span class="p">=&gt;</span>
+      <span class="p">&lt;</span><span class="nc">ChildComponent</span>
+        <span class="na">MyContext</span><span class="p">=</span><span class="si">{</span><span class="nx">MyContext</span><span class="si">}</span>
+      <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">MyContext</span><span class="p">.</span><span class="nc">Provider</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">ChildComponent</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">handleClick</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useContext</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">MyContext</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">handleClick</span><span class="si">}</span><span class="p">&gt;</span>Click me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Note that <code class="language-plaintext highlighter-rouge">MyContext</code> should be the same</li>
+</ul>
 
 <h3 id="useref">useRef</h3>
 
 <h3 id="usecallback">useCallback</h3>
+
 <p>I can use the <code class="language-plaintext highlighter-rouge">webcam</code> example</p>
 
 <h3 id="useroute">useRoute</h3>
@@ -176,16 +205,41 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
+<h2 id="other">Other</h2>
+
+<ul>
+  <li>useState
+    <ul>
+      <li>define how state changes and store the value when an event occur and <strong>rerender</strong> component to show the effect</li>
+      <li>example: <code class="language-plaintext highlighter-rouge">&lt;button onClick={() =&gt; setCount((prev) =&gt; prev + 1)}&gt; increment &lt;/button&gt;</code></li>
+      <li>useEffect
+        <ul>
+          <li>define customized effects and trigger it <strong>when rerender</strong> component</li>
+        </ul>
+      </li>
+      <li>useRef: two usages
+        <ul>
+          <li>store value of reference and it will not rerender component when value changed</li>
+          <li>serve as reference of current component (like queryselector)</li>
+        </ul>
+      </li>
+      <li>useContext: TBC</li>
+    </ul>
+  </li>
+  <li>class &amp; lifecycle vs hooks: TBC</li>
+</ul>
+
 <h2 id="reference">Reference</h2>
-<p><a href="https://www.youtube.com/watch?v=TNhaISOUy6Q"><strong>10 React Hooks Explained // Plus Build your own from Scratch</strong></a></p>
 
-<p><a href="https://blog.logrocket.com/how-react-hooks-can-replace-react-router/"><strong>useRoute</strong></a></p>
+<p><a href="https://www.youtube.com/watch?v=TNhaISOUy6Q">10 React Hooks Explained // Plus Build your own from Scratch</a></p>
 
-<p><a href="https://stackoverflow.com/questions/53464595/how-to-use-componentwillmount-in-react-hooks"><strong>life cycle methods in React Hooks?</strong></a></p>
+<p><a href="https://blog.logrocket.com/how-react-hooks-can-replace-react-router/">useRoute</a></p>
 
-<p><a href="https://reactjs.org/docs/hooks-effect.html"><strong>Using the Effect Hook</strong></a></p>
+<p><a href="https://stackoverflow.com/questions/53464595/how-to-use-componentwillmount-in-react-hooks">life cycle methods in React Hooks?</a></p>
 
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-share-state-across-react-components-with-context"><strong>how to share state across react components with context</strong></a></p>
+<p><a href="https://reactjs.org/docs/hooks-effect.html">Using the Effect Hook</a></p>
+
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-share-state-across-react-components-with-context">how to share state across react components with context</a></p>
 
   </div>
 </div>
