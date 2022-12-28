@@ -147,4 +147,4 @@ And that's how the professor explained the two reasons.
 
 ## Reference
 
-[details](https://toeflv3.kmf.com/speak/tpotheme/10)
+[TPO](https://toeflv3.kmf.com/speak/tpotheme/10)
