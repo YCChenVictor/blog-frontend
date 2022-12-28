@@ -34,10 +34,6 @@ Two role: task giver and task receiver
 
 ### TODO
 
-* add modal
-  * project name
-  * project spec
-  * price
 * add login
   * user email
   * password
