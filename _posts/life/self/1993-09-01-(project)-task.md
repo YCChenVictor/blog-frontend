@@ -34,9 +34,11 @@ Two role: task giver and task receiver
 
 ### TODO
 
-* add login
+* add sign up (backend)
+* add login (backend)
   * user email
   * password
+* add API (frontend) to post login info
 * create backend on local with PG with rails
 * after phase one, deploy it
 
