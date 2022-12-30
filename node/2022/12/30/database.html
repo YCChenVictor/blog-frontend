@@ -70,51 +70,54 @@
   <div id="sidebar" class="p-4 fixed"></div>
 
 <div class="px-4 pt-4 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(project) Task</h1>
+  <h1 class="text-center mt-6 mb-6">Database</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>This project decentralize the tasks.</p>
+<p>TBC</p>
 
 <h2 id="why">Why?</h2>
 
+<p>TBC</p>
+
 <h2 id="how">How?</h2>
 
-<p>Two role: task giver and task receiver</p>
+<h3 id="infra">infra</h3>
 
-<ul>
-  <li>landing page
-    <ul>
-      <li>login mechanism</li>
-      <li>list out the tasks, each tasks should have a spec to test</li>
-      <li>button to create a task</li>
-    </ul>
-  </li>
-  <li>task acquirer can upload their masterpiece and try to pass the specs</li>
-  <li>Once the specs complete, the transactions complete automatically by blockchain</li>
-</ul>
+<p>follow <a href="https://www.npmjs.com/package/node-pg-migrate">node-pg-migrate</a></p>
+
+<h3 id="migration">migration</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<h3 id="connect">connect</h3>
+
+<p>Take postgreSQL as example,</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">pg</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">()</span>
+
+<span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>create table</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
 
 <h2 id="what">What?</h2>
 
-<h3 id="todo">TODO</h3>
-
-<ul>
-  <li>add sign up (backend)</li>
-  <li>add login (backend)
-    <ul>
-      <li>user email</li>
-      <li>password</li>
-    </ul>
-  </li>
-  <li>add API (frontend) to post login info</li>
-  <li>create backend on local with PG with rails</li>
-  <li>after phase one, deploy it</li>
-</ul>
+<p>TBC</p>
 
 <h2 id="reference">Reference</h2>
+
+<p><a href="https://jimmyswebnote.com/postgresql-migration-database-migration/">前端工程師邁向後端之路 5 – PostgreSQL migration：淺談 database migration ( 資料庫遷移 )？</a></p>
+
+<p><a href="https://www.npmjs.com/package/node-pg-migrate">node-pg-migrate</a></p>
 
   </div>
 </div>
