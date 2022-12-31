@@ -122,18 +122,38 @@
 
 <p><a href="https://stackoverflow.com/questions/767486/how-do-i-check-if-a-variable-is-an-array-in-javascript">How do I check if a variable is an array in JavaScript?</a></p>
 
-<h4 id="map-1">map</h4>
+<h3 id="filter">filter</h3>
 
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array.prototype.map()</a></p>
+<h3 id="reduce">reduce</h3>
 
-<p>To use <code class="language-plaintext highlighter-rouge">map</code> for nodelist,</p>
+<h3 id="key-value">key, value</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[...</span><span class="nx">nodelist</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">({</span><span class="na">item</span><span class="p">:</span> <span class="dl">'</span><span class="s1">item</span><span class="dl">'</span><span class="p">}))</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">object1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">a</span><span class="p">:</span> <span class="dl">'</span><span class="s1">somestring</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">b</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+  <span class="na">c</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">};</span>
+
+<span class="c1">// key</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">object1</span><span class="p">));</span>
+
+<span class="c1">// value</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">object1</span><span class="p">));</span>
 </code></pre></div></div>
 
-<h4 id="filter">filter</h4>
+<h3 id="join">join</h3>
 
-<h4 id="reduce">reduce</h4>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">elements</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Fire</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Air</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Water</span><span class="dl">'</span><span class="p">];</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">elements</span><span class="p">.</span><span class="nx">join</span><span class="p">());</span>
+<span class="c1">// expected output: "Fire,Air,Water"</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">elements</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">));</span>
+<span class="c1">// expected output: "FireAirWater"</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">elements</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">));</span>
+<span class="c1">// expected output: "Fire-Air-Water"</span>
+</code></pre></div></div>
 
 <h2 id="what">What?</h2>
 
@@ -142,6 +162,10 @@
 <h2 id="reference">Reference</h2>
 
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">Array.prototype.forEach()</a></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys()</a></p>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join">Array.prototype.join()</a></p>
 
   </div>
 </div>

@@ -81,7 +81,7 @@
 
 <h2 id="why">Why?</h2>
 
-<p>TBC</p>
+<p>TBC (why to use javascript)</p>
 
 <h2 id="how">How?</h2>
 
@@ -116,6 +116,27 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
+<h3 id="import--export">import &amp; export</h3>
+
+<p>Export with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">table</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="kd">get</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`get </span><span class="p">${</span><span class="nx">table</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">},</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">post</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`post </span><span class="p">${</span><span class="nx">table</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>and import with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">test</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./Log.js</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">task</span><span class="dl">'</span><span class="p">).</span><span class="kd">get</span><span class="p">();</span>
+</code></pre></div></div>
+
 <h2 id="what">What</h2>
 
 <p>TBC</p>
@@ -125,6 +146,8 @@
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">Document.querySelector()</a></p>
 
 <p><a href="https://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a></p>
+
+<p><a href="https://www.educative.io/answers/what-are-module-exports-in-javascript">What are module exports in JavaScript?</a></p>
 
   </div>
 </div>
