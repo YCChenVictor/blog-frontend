@@ -32,9 +32,32 @@ Two role: task giver and task receiver
 
 ## What?
 
+### project
+
+put official url
+
+### postman
+
+* new collection for task
+* setup environment
+* setup APIs
+
+my localhost:
+
+| variable | value |
+| :--- | :--- |
+| host | http://localhost:3000 |
+
+my requests:
+
+GET /
+POST /sign_up
+POST /login
+
 ### TODO
 
-* add sign up (backend)
+* backend, add sign up, with spec
+* backend, deploy on fly
 * add login (backend)
   * user email
   * password
