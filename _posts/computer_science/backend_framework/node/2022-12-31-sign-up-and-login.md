@@ -2,7 +2,7 @@
 layout: post
 title:
 description: ''
-date: '2022-12-30'
+date: '2022-12-31'
 categories: node
 note:
 mathjax:
@@ -23,80 +23,19 @@ TBC
 
 ## How?
 
-### init
+### sign up
 
-#### install
-
-install node and PG
-
-#### src
-
-```bash
-mkdir my-project
-cd my-project
-npm init -y
-```
-
-#### dependency
-
-```bash
-npm install express pg
-```
-
-#### server
-
-create `app.js` with
-
-```js
-const express = require('express')
-const app = express()
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.listen(4000, () => {
-  console.log('Server listening on port 4000')
-})
-```
-
-and run it with `node server.js`
-
-#### routes
-
-create a directory, `routes/` with API going to be imported in `app.js`
-
-For example, `routes/summary.js`
+Given we have route
 
 ```javascript
-const express = require('express')
-
-module.exports = function(app) {
-  app.use(express.json());
-  app.use('/', (req, res) => {
-    res.send('Hello World!')
+module.exports = (app) => {
+  app.post('/sign_up', (req, res) => {
+    ...
   })
 }
 ```
 
-in `app.js`,
-
-```javascript
-const express = require('express')
-const app = express()
-
-require("./routes/summary")(app);
-const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
-```
-
-#### database
-
-[datatype]({{site.baseurl}}/node/2022/12/30/overview.html)
-
-### sign up mechanism
-
-define routes
+define method
 
 ```javascript
 app.post('/sign_up', (req, res) => {
@@ -117,7 +56,7 @@ app.post('/sign_up', (req, res) => {
 
 * you can extract the sign up login as `sign_up.js`
 
-### login mechanism
+### login
 
 define routes
 
@@ -178,8 +117,6 @@ app.post('/login',
 
 ## What?
 
-give an example
+TBC
 
 ## Reference
-
-[How to organize routes in Nodejs Express app](https://stackoverflow.com/questions/59681974/how-to-organize-routes-in-nodejs-express-app)
