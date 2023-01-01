@@ -70,31 +70,71 @@
   <div id="sidebar" class="p-4 fixed"></div>
 
 <div class="px-4 pt-4 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(project) Blog</h1>
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>This article tries to clarify the concepts related to test</p>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<p>Tests can prevent bugs earlier.</p>
 
 <h2 id="how">How?</h2>
 
-<ul>
-  <li>add button to the top</li>
-  <li>css for points</li>
-</ul>
+<h3 id="concept-of-testing">concept of testing</h3>
+
+<p>Add pyramid to demo the decomposition of tests end-to-end -&gt; integration -&gt; unit (TBC)</p>
+
+<p>The end goal of testing is to make sure users have good experience, so before users use our app, we should let testers do what users will do in all scenarios and check whether the experience is acceptable. We call this kind of tests end-to-end test or quality assurance.</p>
+
+<h3 id="aaa-principle-arrange---act--assert">AAA principle (Arrange -&gt; Act -&gt; Assert)</h3>
+
+<blockquote>
+  <p>The basic principle to build spec is AAA principle.
+<strong>arrange:</strong> describe the environment before action begin
+<strong>act:</strong> execute the unit function that we want to test
+<strong>assert:</strong> check whether the result is what we want</p>
+</blockquote>
+
+<h3 id="integration-testing">integration testing</h3>
+
+<p>During the end-to-end testing, there must be some fix processes, and we can automize them with integration testing, which simulates the users behaviors on <strong>browsers</strong> and ensure the expect results.</p>
+
+<h3 id="unit-testing">unit testing</h3>
+
+<p>Unit tests mainly ensures the input and output of each components such as code for database query, flows in controller, and the presentation on view, but it do not simulate the users’ behaviors.</p>
+
+<h3 id="functional-testing">functional testing</h3>
+
+<p>TBC</p>
+
+<h3 id="test-driven-development">test driven development</h3>
+
+<p>TDD maps to unit testing. We write unit test first and then develop software.</p>
+
+<h3 id="behavior-driven-development">behavior driven development</h3>
+
+<p>BDD maps to integration testing. We write feature test first and then develop software.</p>
 
 <h2 id="what">What?</h2>
 
-<p>production url</p>
+<h3 id="tdd">TDD</h3>
+
+<p>TDD maps unit test. Refer to <a href="/blog/test/2021/04/06/TDD.html">TDD</a> for further information.</p>
+
+<h3 id="bdd">BDD</h3>
+
+<p>BDD maps integration test maps capybara + Rspec. Refer to 2022-08-31-behavior-driven-development-in-rspec-and-capybara.md.</p>
 
 <h2 id="reference">Reference</h2>
+
+<p><a href="https://www.guru99.com/software-testing-introduction-importance.html">What is Software Testing? Definition</a></p>
+
+<p><a href="https://www.browserstack.com/guide/testing-pyramid-for-test-automation">Testing Pyramid : How to jumpstart Test Automation</a></p>
 
   </div>
 </div>

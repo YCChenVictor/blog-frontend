@@ -101,6 +101,53 @@ npm init <span class="nt">-y</span>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>express pg
 </code></pre></div></div>
 
+<h3 id="root--path-tbc">root &amp; path (TBC)</h3>
+
+<p>I now still using relative import</p>
+
+<p>We want our project structure as follow:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-project/
+  src/
+    components/
+      Button.js
+  tests/
+    Button.test.js
+</code></pre></div></div>
+
+<p>install required package with <code class="language-plaintext highlighter-rouge">npm install --save-dev babel-plugin-module-resolver</code> (<a href="https://www.npmjs.com/package/babel-plugin-module-resolver">babel-plugin-module-resolver</a>)</p>
+
+<p>and in <code class="language-plaintext highlighter-rouge">./.babel.config.js</code>, add</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module.exports <span class="o">=</span> <span class="o">{</span>
+  presets: <span class="o">[</span><span class="s1">'module:metro-react-native-babel-preset'</span><span class="o">]</span>,
+  plugins: <span class="o">[</span>
+    <span class="o">[</span>
+      <span class="s1">'module-resolver'</span>,
+      <span class="o">{</span>
+        root: <span class="o">[</span><span class="s1">'./src'</span><span class="o">]</span>,
+        extensions: <span class="o">[</span><span class="s1">'.ios.js'</span>, <span class="s1">'.android.js'</span>, <span class="s1">'.js'</span>, <span class="s1">'.ts'</span>, <span class="s1">'.tsx'</span>, <span class="s1">'.json'</span><span class="o">]</span>,
+        <span class="nb">alias</span>: <span class="o">{</span>
+          <span class="s1">'*'</span>: <span class="s1">'.'</span>,
+          <span class="s1">'@root'</span>: <span class="s1">'./'</span>,
+          <span class="s1">'@src'</span>: <span class="s1">'./src'</span>,
+          <span class="s1">'@components'</span>: <span class="s1">'./src/components'</span>,
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">]</span>
+<span class="o">}</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>then we can import with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Button</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">src/components/Button</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="git">git</h3>
+
+<p>add <code class="language-plaintext highlighter-rouge">.gitignore</code></p>
+
 <h3 id="server">server</h3>
 
 <p>create <code class="language-plaintext highlighter-rouge">app.js</code> with</p>
@@ -149,6 +196,32 @@ npm init <span class="nt">-y</span>
 <span class="p">...</span>
 </code></pre></div></div>
 
+<h4 id="restful-api">restful API</h4>
+
+<p>Given the <a href="">pre-knowledge</a>, we can compose them as follow:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// restful API</span>
+<span class="c1">// GET /records -&gt; records#index</span>
+<span class="c1">// POST /records -&gt; records#create</span>
+<span class="c1">// GET /records/new -&gt; records#new</span>
+<span class="c1">// GET /records/:id/edit -&gt; records#edit</span>
+<span class="c1">// GET /records/:id -&gt; records#show</span>
+<span class="c1">// PATCH /records/:id -&gt; records#update</span>
+<span class="c1">// PUT /records/:id -&gt; records#update</span>
+<span class="c1">// DELETE /records/:id -&gt; records#destroy</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">records</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// GET /records -&gt; records#index</span>
+  <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">`/</span><span class="p">${</span><span class="nx">records</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">testingaaa World!</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">})</span>
+  <span class="c1">// POST /records -&gt; records#create</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`/</span><span class="p">${</span><span class="nx">records</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">testingaaa World!</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}</span>  
+</code></pre></div></div>
+
 <h3 id="database">database</h3>
 
 <p><a href="/blog/node/2022/12/30/overview.html">datatype</a></p>
@@ -185,7 +258,15 @@ npm init <span class="nt">-y</span>
 
 <h3 id="spec">spec</h3>
 
-<p><a href="">spec</a></p>
+<p><a href="/blog/test/2021/04/06/TDD.html#aaa-principle-maps-jest">jest</a></p>
+
+<p>jest with node:</p>
+
+<ol>
+  <li>wrap node related files in <code class="language-plaintext highlighter-rouge">./app</code></li>
+  <li>set jest root directory</li>
+  <li>import related files in jest with relative path</li>
+</ol>
 
 <h2 id="what">What?</h2>
 

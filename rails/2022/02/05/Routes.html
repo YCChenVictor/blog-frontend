@@ -70,28 +70,28 @@
   <div id="sidebar" class="p-4 fixed"></div>
 
 <div class="px-4 pt-4 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(Rails Elementary) Routes</h1>
+  <h1 class="text-center mt-6 mb-6">Routes</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
-    <h2 id="intro">Intro</h2>
+    <h2 id="introduction">Introduction</h2>
 
 <h2 id="why">Why</h2>
 
 <h2 id="how">How</h2>
 
-<p>REST means Representational State Transfer. The benefit of RESTful API is unity. All coders have the consensus to write it in the same form. The direct implementation in rails is to use <code class="language-plaintext highlighter-rouge">resources</code> method as follow:</p>
+<h3 id="basic">basic</h3>
 
-<p><img src="/assets/img/1_qGzuUl1QZXrzLIrEjFjV1A.png" alt="" /></p>
+<p>REST means Representational State Transfer. The benefit of RESTful API is unity. All programmers have the consensus to write it in the same form. The direct implementation in rails is to use <code class="language-plaintext highlighter-rouge">resources</code> method as follow:</p>
 
-<p>Then we can use again</p>
+<p><img src="/blog/assets/img/1_qGzuUl1QZXrzLIrEjFjV1A.png" alt="" /></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails routes
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails routes
 </code></pre></div></div>
 
 <p>the results: (8 routes related to users)
-<img src="/assets/img/1__ZNgXbOxIkg0wSKGXm8aDCw.png" alt="" /></p>
+<img src="/blog/assets/img/1__ZNgXbOxIkg0wSKGXm8aDCw.png" alt="" /></p>
 
 <p>We can use <code class="language-plaintext highlighter-rouge">only</code> or <code class="language-plaintext highlighter-rouge">except</code> to set the only routes we need</p>
 
@@ -116,13 +116,13 @@
 </code></pre></div></div>
 
 <p>Then the routes:
-<img src="/assets/img/1_YTaNYTwb6aA41Ukylqj-og.png" alt="" /></p>
+<img src="/blog/assets/img/1_YTaNYTwb6aA41Ukylqj-og.png" alt="" /></p>
 
 <p>There is one more route: <code class="language-plaintext highlighter-rouge">cancelled_orders</code></p>
 
 <h3 id="member">member</h3>
 
-<p>時間不夠，來不及補，跟 collection 的差別是，member 會帶 id，collection 不會</p>
+<h3 id="member-vs-collection">member vs collection</h3>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ss">member: </span><span class="n">xxx</span><span class="o">/</span><span class="nb">id</span><span class="o">/</span><span class="n">xxx</span>
 
@@ -141,7 +141,7 @@
 </code></pre></div></div>
 
 <p>Then the route path would be as follow:
-<img src="/assets/img/1_a0_F4MMPrazMJ8PGeD7CGg.png" alt="" /></p>
+<img src="/blog/assets/img/1_a0_F4MMPrazMJ8PGeD7CGg.png" alt="" /></p>
 
 <p>There is will be <code class="language-plaintext highlighter-rouge">/asdfadfaew/…</code> routes</p>
 
