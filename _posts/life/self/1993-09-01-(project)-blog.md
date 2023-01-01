@@ -23,10 +23,11 @@ focus on why we need it
 
 ## How?
 
-focus on the mechanism
+* add button to the top
+* css for points
 
 ## What?
 
-give an example
+production url
 
 ## Reference

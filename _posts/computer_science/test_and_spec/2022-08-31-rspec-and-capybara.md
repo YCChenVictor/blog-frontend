@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-08-31'
 categories: test
-note: 這邊的方法論太玄了，直接先寫個例子在 what，類似的例子在 commit 595b287
+note: 這邊的方法論太玄了，直接先寫個例子在 what，類似的例子在 commit 595b287。把 rspec 跟 capybara 分開
 mathjax:
 mermaid:
 p5:

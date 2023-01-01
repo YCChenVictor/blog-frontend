@@ -57,6 +57,7 @@ POST /login
 ### TODO
 
 * backend, add sign up, with spec
+* backend, let debugger workable
 * backend, deploy on fly
 * add login (backend)
   * user email
