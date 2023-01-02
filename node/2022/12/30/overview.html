@@ -85,23 +85,32 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="install">install</h3>
+<h3 id="init">init</h3>
 
-<p>install node and PG</p>
-
-<h3 id="src">src</h3>
+<ol>
+  <li>
+    <p>install node and PG</p>
+  </li>
+  <li>
+    <p>src</p>
+  </li>
+</ol>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>my-project
 <span class="nb">cd </span>my-project
 npm init <span class="nt">-y</span>
 </code></pre></div></div>
 
-<h3 id="dependency">dependency</h3>
+<ol>
+  <li>dependency</li>
+</ol>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>express pg
 </code></pre></div></div>
 
-<h3 id="root--path-tbc">root &amp; path (TBC)</h3>
+<h3 id="relative--absolute">relative &amp; absolute</h3>
+
+<h4 id="absolute-path">absolute path</h4>
 
 <p>I now still using relative import</p>
 
@@ -142,6 +151,28 @@ npm init <span class="nt">-y</span>
 <p>then we can import with</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Button</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">src/components/Button</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="import--export">import &amp; export</h4>
+
+<p>export</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">signUp</span><span class="p">:</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>and import</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">modelUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../models/users.js</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">modelUser</span><span class="p">.</span><span class="nx">signUp</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+  <span class="p">});</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <h3 id="git">git</h3>
@@ -189,6 +220,7 @@ npm init <span class="nt">-y</span>
 <span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./routes_summary.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
 
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
   <span class="p">...</span>
@@ -224,7 +256,7 @@ npm init <span class="nt">-y</span>
 
 <h3 id="database">database</h3>
 
-<p><a href="/blog/node/2022/12/30/overview.html">datatype</a></p>
+<p><a href="/blog/node/2022/12/30/database.html">database</a></p>
 
 <h3 id="crud">CRUD</h3>
 
@@ -267,6 +299,13 @@ npm init <span class="nt">-y</span>
   <li>set jest root directory</li>
   <li>import related files in jest with relative path</li>
 </ol>
+
+<h3 id="debugger">debugger</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node app.js <span class="nt">--inspect</span>
+</code></pre></div></div>
+
+<p><a href="https://jestjs.io/docs/troubleshooting">jest</a></p>
 
 <h2 id="what">What?</h2>
 

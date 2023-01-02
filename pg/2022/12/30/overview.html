@@ -87,14 +87,50 @@
 
 <h3 id="init">init</h3>
 
-<p>use homebrew</p>
+<p>use homebrew:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>postgresql@14
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>postgresql
 </code></pre></div></div>
 
-<p>and then start it</p>
+<p>start server:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pg_ctl
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services start postgresql
+</code></pre></div></div>
+
+<p>and check it with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services list
+</code></pre></div></div>
+
+<p>debug the logs</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail</span> <span class="nt">-n</span> 50 /usr/local/var/log/postgresql@14.log
+</code></pre></div></div>
+
+<p>(TBC)</p>
+
+<p>login in without password:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> <span class="nt">-u</span> root psql postgre
+</code></pre></div></div>
+
+<p>and then connect to database, postgres with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql postgres
+</code></pre></div></div>
+
+<h4 id="password">password</h4>
+
+<p>in <code class="language-plaintext highlighter-rouge">~/pgpass.conf</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">hostname</span>:port:database:username:password
+</code></pre></div></div>
+
+<p>and permissions set to 0600</p>
+
+<h3 id="create-database">create database</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE &lt;database_name&gt;<span class="p">;</span> 
 </code></pre></div></div>
 
 <h3 id="crud">CRUD</h3>
@@ -146,6 +182,8 @@
 <h2 id="reference">Reference</h2>
 
 <p><a href="https://wiki.postgresql.org/wiki/Homebrew">Homebrew</a></p>
+
+<p><a href="https://tableplus.com/blog/2019/09/how-to-use-pgpass-in-postgresql.html">How to use .pgpass in PostgreSQL?</a></p>
 
   </div>
 </div>
