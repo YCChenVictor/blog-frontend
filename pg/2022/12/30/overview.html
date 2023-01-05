@@ -81,11 +81,13 @@
 
 <h2 id="why">Why?</h2>
 
-<p>TBC</p>
+<p>Compare to MySQL</p>
 
 <h2 id="how">How?</h2>
 
 <h3 id="init">init</h3>
+
+<h4 id="environment">environment</h4>
 
 <p>use homebrew:</p>
 
@@ -107,14 +109,7 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail</span> <span class="nt">-n</span> 50 /usr/local/var/log/postgresql@14.log
 </code></pre></div></div>
 
-<p>(TBC)</p>
-
-<p>login in without password:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo</span> <span class="nt">-u</span> root psql postgre
-</code></pre></div></div>
-
-<p>and then connect to database, postgres with</p>
+<p>connect to database</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql postgres
 </code></pre></div></div>
@@ -128,9 +123,16 @@
 
 <p>and permissions set to 0600</p>
 
-<h3 id="create-database">create database</h3>
+<h3 id="database">database</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE &lt;database_name&gt;<span class="p">;</span> 
+<h4 id="create">create</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE &lt;database_name&gt;<span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="show">show</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\l</span>
 </code></pre></div></div>
 
 <h3 id="crud">CRUD</h3>

@@ -85,9 +85,39 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="database">database</h3>
+<h3 id="connect">connect</h3>
+
+<p>connect to database</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">pg</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
+  <span class="na">user</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGUSER</span><span class="p">,</span>
+<span class="err">  </span><span class="na">host</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGHOST</span><span class="p">,</span>
+<span class="err">  </span><span class="na">database</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGDATABASE</span><span class="p">,</span>
+<span class="err">  </span><span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGPASSWORD</span><span class="p">,</span>
+<span class="err">  </span><span class="na">port</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGPORT</span>
+<span class="p">});</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+</code></pre></div></div>
 
 <p>create a database in pg</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s2">`CREATE DATABASE my_database`</span><span class="p">;</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Database created</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>show a database in pg</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT datname FROM pg_database;</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>create database if no that database</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s2">`/l`</span><span class="p">;</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql</span><span class="p">);</span>
+</code></pre></div></div>
 
 <h3 id="migration">migration</h3>
 
@@ -96,19 +126,25 @@
 
 <h3 id="schema">schema</h3>
 
-<h3 id="connect">connect</h3>
-
-<p>Take postgreSQL as example,</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">pg</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">()</span>
-
-<span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
-</code></pre></div></div>
+<h3 id="table">table</h3>
 
 <p>create table</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<h3 id="crud">CRUD</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">create</span><span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">table</span><span class="p">,</span> <span class="nx">attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">client</span> <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+    <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">`INSERT INTO </span><span class="p">${</span><span class="nx">table</span><span class="p">}</span><span class="s2"> (</span><span class="p">${</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">keys</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)}</span><span class="s2">) VALUES (?) (</span><span class="p">${</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)}</span><span class="s2">)`</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
+    <span class="nx">client</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">},</span>
 </code></pre></div></div>
 
 <h2 id="what">What?</h2>

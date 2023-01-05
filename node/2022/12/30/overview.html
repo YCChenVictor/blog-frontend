@@ -81,7 +81,7 @@
 
 <h2 id="why">Why?</h2>
 
-<p>TBC</p>
+<p>Compare to other framework</p>
 
 <h2 id="how">How?</h2>
 
@@ -101,18 +101,36 @@
 npm init <span class="nt">-y</span>
 </code></pre></div></div>
 
-<ol>
-  <li>dependency</li>
-</ol>
+<h3 id="dependencies">dependencies</h3>
+
+<h4 id="infra">infra</h4>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>express pg
 </code></pre></div></div>
 
-<h3 id="relative--absolute">relative &amp; absolute</h3>
+<h4 id="env">env</h4>
 
-<h4 id="absolute-path">absolute path</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>dotenv <span class="nt">--save</span>
+</code></pre></div></div>
 
-<p>I now still using relative import</p>
+<p>create <code class="language-plaintext highlighter-rouge">.env</code> on root with</p>
+
+<pre><code class="language-linux">DB_NAME=task
+DB_USERNAME=username_you_want
+DB_PASSWORD=password_you_want
+</code></pre>
+
+<p>require it with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dotenv</span><span class="dl">'</span><span class="p">).</span><span class="nx">config</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database name is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_NAME</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database username is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_USERNAME</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database password is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_PASSWORD</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="absolute-path">absolute path</h3>
+
+<p>(I now still using relative import)</p>
 
 <p>We want our project structure as follow:</p>
 
@@ -265,7 +283,7 @@ npm init <span class="nt">-y</span>
 <p>Create <code class="language-plaintext highlighter-rouge">base.js</code> with</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">pg</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">pg</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="k">new</span> <span class="nx">pg</span><span class="p">.</span><span class="nx">Database</span><span class="p">(</span><span class="dl">'</span><span class="s1">test.db</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pg</span><span class="p">.</span><span class="nx">Database</span><span class="p">(</span><span class="dl">'</span><span class="s1">test.db</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">table</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">db</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">`INSERT INTO </span><span class="p">${</span><span class="nx">table</span><span class="p">}</span><span class="s2"> (task) VALUES (?)`</span><span class="p">,</span> <span class="nx">task</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -302,7 +320,7 @@ npm init <span class="nt">-y</span>
 
 <h3 id="debugger">debugger</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node app.js <span class="nt">--inspect</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node inspect app.js
 </code></pre></div></div>
 
 <p><a href="https://jestjs.io/docs/troubleshooting">jest</a></p>
@@ -318,6 +336,8 @@ npm init <span class="nt">-y</span>
 <h2 id="reference">Reference</h2>
 
 <p><a href="https://stackoverflow.com/questions/59681974/how-to-organize-routes-in-nodejs-express-app">How to organize routes in Nodejs Express app</a></p>
+
+<p><a href="https://dev.to/dallington256/how-to-use-env-file-in-nodejs-578h">How to use .env file in node.js</a></p>
 
   </div>
 </div>

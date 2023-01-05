@@ -70,184 +70,212 @@
   <div id="sidebar" class="p-4 fixed"></div>
 
 <div class="px-4 pt-4 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(JavaScript 3) Callback Hell, Promise, and Async/Await</h1>
+  <h1 class="text-center mt-6 mb-6">Callback Hell</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
-    <h2 id="introduction--why">Introduction &amp; Why</h2>
-<p>The concept of Async: letting some steps be skipped and do it latter once conditions matched. Asynchronous programming is common in javascript, because the process of rendering data from server takes time and we do not want our page to be stalled. To achieve it, we use callback function.</p>
+    <h2 id="introduction">Introduction</h2>
+
+<p><code class="language-plaintext highlighter-rouge">Async</code> lets some steps be skipped and do it latter once conditions matched. Asynchronous programming is common in javascript, because the process of rendering data from server takes time and we do not want our page to be stalled and the function to achieve it called callback function.</p>
+
+<h2 id="why">Why</h2>
+
+<p>Compare to other solution</p>
 
 <h2 id="how">How</h2>
+
 <p>For example, thinking of my webpage is the burger store and I serve burgers. The ingredients are simply as follow: sauce, patty, lettuce. The chef(backend) needs time to prepare the ingredients. One second for lettuce cutting, two seconds for patty slicing, and three seconds for sauce cooking. I use <code class="language-plaintext highlighter-rouge">setTimeout()</code> to simulate the delivery time from backend. The Chef can cut and slice while the sauce is boiled. Then the coding may be as follow:</p>
 
 <h3 id="indexhtml">index.html</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;Document&lt;/title&gt;
-  &lt;script&gt;main.js&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"X-UA-Compatible"</span> <span class="na">content=</span><span class="s">"IE=edge"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Document<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;script&gt;</span><span class="nx">main</span><span class="p">.</span><span class="nx">js</span><span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
     
-&lt;/body&gt;
-&lt;/html&gt;
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
 </code></pre></div></div>
 
 <h3 id="mainjs">main.js</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const ingredients = [
-  'buns'
-]
 
-serveBurger()
-createIngredient({ name: 'sauce', time: 3000 })
-createIngredient({ name: 'patty', time: 2000 })
-createIngredient({ name: 'lettuce', time: 1000 })
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ingredients</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="dl">'</span><span class="s1">buns</span><span class="dl">'</span>
+<span class="p">]</span>
 
-function serveBurger() {
-  setTimeout(() =&gt; {
-    let burger = '';
-    ingredients.forEach((ingredient) =&gt; {
-      burger += `&lt;ul&gt;${ingredient}&lt;/ul&gt;`
-    });
-    document.body.innerHTML = burger;
-  }, 4000)
-}
+<span class="nx">serveBurger</span><span class="p">()</span>
+<span class="nx">createIngredient</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">sauce</span><span class="dl">'</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">3000</span> <span class="p">})</span>
+<span class="nx">createIngredient</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">patty</span><span class="dl">'</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">2000</span> <span class="p">})</span>
+<span class="nx">createIngredient</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">lettuce</span><span class="dl">'</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">})</span>
 
-function createIngredient(ingredient) {
-  setTimeout(() =&gt; {
-    ingredients.push(ingredient.name)
-  }, ingredient.time)
-}
+<span class="kd">function</span> <span class="nx">serveBurger</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">burger</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+    <span class="nx">ingredients</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">ingredient</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">burger</span> <span class="o">+=</span> <span class="s2">`&lt;ul&gt;</span><span class="p">${</span><span class="nx">ingredient</span><span class="p">}</span><span class="s2">&lt;/ul&gt;`</span>
+    <span class="p">});</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">burger</span><span class="p">;</span>
+  <span class="p">},</span> <span class="mi">4000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createIngredient</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">ingredients</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+  <span class="p">},</span> <span class="nx">ingredient</span><span class="p">.</span><span class="nx">time</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
+
 <p>Then the burger looks like</p>
 
-<p><img src="/assets/img/burger.png" alt="" width="500" /></p>
+<p><img src="/blog/assets/img/burger.png" alt="" width="500" /></p>
 
 <p>However, what if we do not know how much time each ingredient takes, meaning the waiter may go to get the meal too early and may serve Semi-finished products if the chef did not notice; for example, taking the 4000 out from the setTimout() in the function, serveBurger.</p>
 
 <p>We need callback function to help us. With callback function, we can tell the waiter back after the burger prepared; for example, we call the waiter back every 0.5 second and check whether ingredients prepared. The code:</p>
-<h3 id="js">js</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const requiredIngredients = ['lettuce', 'patty', 'sauce']
 
-const ingredients = [
-  'buns'
-]
+<h3 id="javascript">javascript</h3>
 
-const recipes = [
-  { name: 'lettuce', time: 1000 },
-  { name: 'patty', time: 2000 },
-  { name: 'sauce', time: 3000 }
-]
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">requiredIngredients</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">lettuce</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">patty</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">sauce</span><span class="dl">'</span><span class="p">]</span>
 
-for (let i = 0; i &lt; requiredIngredients.length; i++) {
-  createIngredient(recipes[i], () =&gt; {
-    checkIngredients(() =&gt; {
-      serveBurger()
-    })
-  })
-}
+<span class="kd">const</span> <span class="nx">ingredients</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="dl">'</span><span class="s1">buns</span><span class="dl">'</span>
+<span class="p">]</span>
 
-function checkIngredients(callback) {
-  setTimeout(() =&gt; {
-    if (requiredIngredients.every(result =&gt; ingredients.includes(result))) {
-      callback()
-    } else {
-      console.log("still preparing")
-    }
-  }, 500)
-}
+<span class="kd">const</span> <span class="nx">recipes</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">lettuce</span><span class="dl">'</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">1000</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">patty</span><span class="dl">'</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">2000</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">sauce</span><span class="dl">'</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">3000</span> <span class="p">}</span>
+<span class="p">]</span>
 
-function serveBurger() {
-  setTimeout(() =&gt; {
-    let burger = '';
-    ingredients.forEach((ingredient) =&gt; {
-      burger += `&lt;ul&gt;${ingredient}&lt;/ul&gt;`
-    });
-    document.body.innerHTML = burger;
-  })
-}
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">requiredIngredients</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">createIngredient</span><span class="p">(</span><span class="nx">recipes</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">checkIngredients</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">serveBurger</span><span class="p">()</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
 
-function createIngredient(ingredient, callback) {
-  setTimeout(() =&gt; {
-    ingredients.push(ingredient.name);
-    callback()
-  }, ingredient.time)
-}
+<span class="kd">function</span> <span class="nx">checkIngredients</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">requiredIngredients</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="nx">ingredients</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">result</span><span class="p">)))</span> <span class="p">{</span>
+      <span class="nx">callback</span><span class="p">()</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">still preparing</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="mi">500</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">serveBurger</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">burger</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+    <span class="nx">ingredients</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">ingredient</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">burger</span> <span class="o">+=</span> <span class="s2">`&lt;ul&gt;</span><span class="p">${</span><span class="nx">ingredient</span><span class="p">}</span><span class="s2">&lt;/ul&gt;`</span>
+    <span class="p">});</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">burger</span><span class="p">;</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createIngredient</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">ingredients</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">callback</span><span class="p">()</span>
+  <span class="p">},</span> <span class="nx">ingredient</span><span class="p">.</span><span class="nx">time</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
+
 <p>As you can see, there is some callbacks looks like</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>createIngredient(recipes[i], () =&gt; {
-  checkIngredients(() =&gt; {
-    serveBurger()
-  })
-})
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">createIngredient</span><span class="p">(</span><span class="nx">recipes</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">checkIngredients</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">serveBurger</span><span class="p">()</span>
+  <span class="p">})</span>
+<span class="p">})</span>
 </code></pre></div></div>
+
 <p>As you can see, the more steps to wait, the more callbacks would be, making the code looks like boomerang and this is called the <strong>callback hell</strong>. To solve this kind of issue, we can use <strong>promise</strong></p>
 
 <h3 id="promise">Promise</h3>
-<p>I am going to solve the callback part in the callback hell. With promise, we can eliminate callback from the function first. For example, the checkIngredient(), changing from</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function createIngredient(ingredient, callback) {
-  setTimeout(() =&gt; {
-    ingredients.push(ingredient.name);
-    callback()
-  }, ingredient.time)
-}
-</code></pre></div></div>
-<p>to</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function createIngredient(ingredient) {
-  return new Promise((resolve, reject) =&gt; {
-    setTimeout(() =&gt; {
-      ingredients.push(ingredient.name);
-      
-      const error = true
-      if (!error) {
-        resolve();
-      } else {
-        reject(`Error: Something went wrong while creating ingredient, ${ ingredient.name }`)
-      }
 
-    }, ingredient.time)
-  })
-}
+<p>I am going to solve the callback part in the callback hell. With promise, we can eliminate callback from the function first. For example, the checkIngredient(), changing from</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createIngredient</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">ingredients</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">callback</span><span class="p">()</span>
+  <span class="p">},</span> <span class="nx">ingredient</span><span class="p">.</span><span class="nx">time</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
-<p>and eliminate callback() from checkIngredients with same technique. Then, the callback hell structure, changing from</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>createIngredient(recipes[i], () =&gt; {
-  checkIngredients(() =&gt; {
-    serveBurger()
-  })
-})
-</code></pre></div></div>
+
 <p>to</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>createIngredient(recipes[i])
-  .then(checkIngredients)
-  .then(serveBurger)
-  .catch(error =&gt; console.log(error))
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">createIngredient</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">ingredients</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">ingredient</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+      
+      <span class="kd">const</span> <span class="nx">error</span> <span class="o">=</span> <span class="kc">true</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">resolve</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">reject</span><span class="p">(</span><span class="s2">`Error: Something went wrong while creating ingredient, </span><span class="p">${</span> <span class="nx">ingredient</span><span class="p">.</span><span class="nx">name</span> <span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+      <span class="p">}</span>
+
+    <span class="p">},</span> <span class="nx">ingredient</span><span class="p">.</span><span class="nx">time</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}</span>
 </code></pre></div></div>
+
+<p>and eliminate callback() from checkIngredients with same technique. Then, the callback hell structure, changing from</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">createIngredient</span><span class="p">(</span><span class="nx">recipes</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">checkIngredients</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">serveBurger</span><span class="p">()</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">createIngredient</span><span class="p">(</span><span class="nx">recipes</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">checkIngredients</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">serveBurger</span><span class="p">)</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">))</span>
+</code></pre></div></div>
+
 <p>However, there is still a hell like chain structure, so I am going to use async/await.</p>
 
 <h3 id="asyncawait">Async/Await</h3>
+
 <p>With the promise function defined above, we can turn the chain structure into</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>async function step(recipe) {
-  await createIngredient(recipe).catch(error)
-  await checkIngredients()
-  serveBurger()
-}
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">async</span> <span class="kd">function</span> <span class="nx">step</span><span class="p">(</span><span class="nx">recipe</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">await</span> <span class="nx">createIngredient</span><span class="p">(</span><span class="nx">recipe</span><span class="p">).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+  <span class="k">await</span> <span class="nx">checkIngredients</span><span class="p">()</span>
+  <span class="nx">serveBurger</span><span class="p">()</span>
+<span class="p">}</span>
 </code></pre></div></div>
+
 <p>and call them with</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (let i = 0; i &lt; requiredIngredients.length; i++) {
-  step(recipes[i]);
-}
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">requiredIngredients</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">step</span><span class="p">(</span><span class="nx">recipes</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <h2 id="reference">Reference</h2>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises"><strong>Using Promise (MDN)</strong></a></p>
 
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><strong>Promise (MDN)</strong></a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">Using Promise (MDN)</a></p>
 
-<p><a href="https://www.youtube.com/watch?v=PoRJizFvM7s"><strong>Async JS Crash Course - Callbacks, Promises, Async Await</strong></a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise (MDN)</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=PoRJizFvM7s">Async JS Crash Course - Callbacks, Promises, Async Await</a></p>
 
   </div>
 </div>

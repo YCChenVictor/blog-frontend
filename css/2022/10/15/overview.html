@@ -79,28 +79,11 @@
 
 <p>This article describes the concept of CSS, Cascading Style Sheets. It is a style sheet language to describe the presentation of a document written in a markup language. All visual control in website can be achieved with CSS.</p>
 
-<ul>
-  <li>concept of style</li>
-  <li>concept of size</li>
-  <li>concept of border</li>
-  <li>concept of padding</li>
-</ul>
-
-<p>The total width of an object is width + border + padding. If we want to insert three 200px width box with 10px padding and 10px border into a 600px width box, we need to specify the CSS width of the inner box into 160px, not 200px.</p>
-
-<ul>
-  <li>concept of float</li>
-  <li>concept of display</li>
-  <li>concept of position</li>
-</ul>
-
 <h2 id="why">Why?</h2>
 
 <p>The evolution: Directly write the style we want into HTML markups -&gt; Use markup, <code class="language-plaintext highlighter-rouge">&lt;style&gt;</code> and there are three grammars: selector, property, value -&gt; Write a CSS file independently</p>
 
 <h2 id="how--what">How? &amp; What?</h2>
-
-<h3 id="concept-of-style">concept of style</h3>
 
 <p>For example, if we want the color of a <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> to be green, then</p>
 
@@ -119,6 +102,24 @@
 <p>The effect:</p>
 
 <p><img class="" src="/blog/assets/img/concept_of_style.png" alt="" /></p>
+
+<h3 id="concept-of-style">concept of style</h3>
+
+<h4 id="ul-ol">ul, ol</h4>
+
+<p>take tailwind as example</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">ul</span> <span class="p">{</span>
+  <span class="err">@apply</span> <span class="err">list-disc;</span>
+  <span class="err">@apply</span> <span class="err">list-inside;</span>
+  <span class="err">@apply</span> <span class="err">p-4;</span>
+<span class="p">}</span>
+<span class="nt">ol</span> <span class="p">{</span>
+  <span class="err">@apply</span> <span class="err">list-decimal;</span>
+  <span class="err">@apply</span> <span class="err">list-inside;</span>
+  <span class="err">@apply</span> <span class="err">p-4;</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h3 id="concept-of-size">concept of size</h3>
 

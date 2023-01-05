@@ -70,39 +70,55 @@
   <div id="sidebar" class="p-4 fixed"></div>
 
 <div class="px-4 pt-4 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(Ruby 1) Overview</h1>
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
-    <h2 id="install-1">Install (1)</h2>
+    <h2 id="introduction">introduction</h2>
+
+<h2 id="how">How</h2>
 
 <h3 id="install-rvm-ruby-versionmanager">Install RVM (Ruby Version Manager)</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl -sSL https://get.rvm.io | bash -s stable
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-sSL</span> https://get.rvm.io | bash <span class="nt">-s</span> stable
 </code></pre></div></div>
+
 <h3 id="open-rvm">Open RVM</h3>
 
 <p>You should know your own path of ruby. Take Mac as example, the path should be <code class="language-plaintext highlighter-rouge">/Users/user_name/.rvm/scripts/rvm</code></p>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source 'your own path'
 </code></pre></div></div>
+
 <h2 id="version-control">Version Control</h2>
 
 <h3 id="all-versions-of-ruby-that-can-be-installed">All Versions of Ruby that can be installed</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list known
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list known
 </code></pre></div></div>
+
 <h3 id="install-ruby26">Install Ruby 2.6</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm install 2.6
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm <span class="nb">install </span>2.6
 </code></pre></div></div>
+
 <h3 id="errors-fixing">Errors Fixing</h3>
+
 <h4 id="check-the-log">Check the log</h4>
+
 <p>You may have the following path to access it (please replace your_user_name with your user name)</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/your_user_name/.rvm/log/1625795250_ruby-2.7.1/make.log
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/your_user_name/.rvm/log/1625795250_ruby-2.7.1/make.log
 </code></pre></div></div>
+
 <p><a href="https://github.com/ffi/ffi/issues/869"><strong>solve the ruby old version cannot install on M1 problem</strong></a></p>
 
 <h3 id="check-installed-versions">Check Installed Versions</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list
 </code></pre></div></div>
+
 <h3 id="check-currentversion">Check Current Version</h3>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby -v
 </code></pre></div></div>
