@@ -25,6 +25,7 @@ focus on why we need it
 
 * add button to the top
 * css for points
+* css for other width
 * solve category tags of uppercase
 
 ## What?

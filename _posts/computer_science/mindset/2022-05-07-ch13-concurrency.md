@@ -3,7 +3,7 @@ layout: post
 title: ch13 concurrency
 description: ''
 date: '2022-05-07'
-categories: presentation mindset
+categories: mindset presentation
 note:
 mathjax:
 mermaid: true

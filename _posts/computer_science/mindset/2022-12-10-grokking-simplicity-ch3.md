@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2022-12-10'
-categories: presentation
+categories: mindset presentation
 note: TODO, remove the images from textbook
 mathjax:
 mermaid: true
