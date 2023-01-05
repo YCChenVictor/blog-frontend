@@ -39,6 +39,11 @@
     @apply p-8;
   }
   ul {
+    @apply list-disc;
+    @apply list-inside;
+    @apply p-4;
+  }
+  ol {
     @apply list-decimal;
     @apply list-inside;
     @apply p-4;

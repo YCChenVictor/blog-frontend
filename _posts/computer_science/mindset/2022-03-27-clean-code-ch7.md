@@ -3,7 +3,7 @@ layout: post
 title: clean code ch7
 description: ''
 date: '2022-03-27'
-categories: presentation clean-code
+categories: mindset presentation
 note:
 mathjax:
 mermaid:

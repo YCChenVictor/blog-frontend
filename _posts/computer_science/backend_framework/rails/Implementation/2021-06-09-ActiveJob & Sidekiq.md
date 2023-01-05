@@ -131,15 +131,18 @@ Then the following web page shows up
 接下來要改成 deliver now 來測試 job 在 sidekiq 中的樣子
 
 ### Redis
+
 1. install redis
+
+```bash
+brew install redis
 ```
-$ brew install redis
-```
-2. start redis
+
+1. start redis
 ```
 $ redis-server
 ```
-3. open cli
+1. open cli
 ```
 $ redis-cli
 ```
