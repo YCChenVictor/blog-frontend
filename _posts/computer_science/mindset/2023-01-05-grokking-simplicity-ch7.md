@@ -6,7 +6,7 @@ date: '2023-01-05'
 categories: mindset presentation
 note:
 mathjax:
-mermaid:
+mermaid: true
 p5:
 threeJS:
 anchor:
@@ -19,7 +19,7 @@ Maintaining immutability when interacting with code designed with mutable data.
 
 ## Why?
 
-Stay immutable with legacy code
+Stay immutable with legacy code and other library designed with mutable data
 
 ## How?
 
@@ -99,14 +99,17 @@ console.log(user)
 
 ## What?
 
-把這裡補一補即可
+* Defensive copying in web application programming interfaces (API):
 
-* Defensive copying in web application programming interfaces (API)
-
-```javascript
-```
+<div class="mermaid">
+graph LR
+  id1(request) --JSON-deep-copy-from-request--> id2(API)
+  id2(API) --JSON-deep-copy-from-API--> id3(response)
+</div>
 
 * Defensive copying in Erlang and Elixir
+
+The functions designed in both languages follow functional programming. They will deepCopy the data sent in and received from.
 
 ## Reference
 
