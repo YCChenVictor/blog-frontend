@@ -15,37 +15,37 @@ publish: true
 
 ## Introduction
 
-This article describes the basic usage of git:
-
-* install git
-* settings of git
-* initialize git
-* remove git
-* status mechanism in git
-* find key words in commits
-* remove specific file in git
-* modify message in commit
-* add files in git
-* ignore files in git
-* check author of commits
-* checkout mechanism in git
+This article describes the basic usage of git
 
 ## Why?
 
 Version control system helps us to track changes and why key decision were made along the way. Git is the most popular version control system.
 
-## How? & What?
+## How?
+
+### install git
 
 * install: `brew install git`
-  * where it is: `which git`
-  * version: `git --version`
+* where it is: `which git`
+* version: `git --version`
+
+### setting
+
 * setting: `git config --list`
-  * change local setting: `git config --local user.email "xxx@yyy.com"`
-  * change global setting: `git config --global user.email "xxx@yyy.com"`
+* change local setting: `git config --local user.email "xxx@yyy.com"`
+* change global setting: `git config --global user.email "xxx@yyy.com"`
+
+### init
+
 * initialize: `git init`
-* remove
-  * git: `rm -rf .git`
-  * untracked file: `git clean -fX`
+
+### remove git
+
+* git: `rm -rf .git`
+* untracked file: `git clean -fX`
+
+### process
+
 * status (details below): working -> `git add` -> staged -> `git commit` -> history -> view
 * find
   * keyword in commits: `git log --oneline --grep='the_message_you_want_to_find'`
