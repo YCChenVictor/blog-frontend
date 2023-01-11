@@ -70,117 +70,68 @@
   <div id="sidebar" class="p-4 fixed"></div>
 
 <div class="px-4 pt-4 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">basic usage</h1>
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>This article describes the basic usage of git</p>
+<p>quick explanation</p>
 
 <h2 id="why">Why?</h2>
 
-<p>Version control system helps us to track changes and why key decision were made along the way. Git is the most popular version control system.</p>
+<p>focus on why we need it</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="install-git">install git</h3>
+<h3 id="install">install</h3>
 
-<ul>
-  <li>install: <code class="language-plaintext highlighter-rouge">brew install git</code></li>
-  <li>where it is: <code class="language-plaintext highlighter-rouge">which git</code></li>
-  <li>version: <code class="language-plaintext highlighter-rouge">git --version</code></li>
-</ul>
-
-<h3 id="setting">setting</h3>
-
-<ul>
-  <li>setting: <code class="language-plaintext highlighter-rouge">git config --list</code></li>
-  <li>change local setting: <code class="language-plaintext highlighter-rouge">git config --local user.email "xxx@yyy.com"</code></li>
-  <li>change global setting: <code class="language-plaintext highlighter-rouge">git config --global user.email "xxx@yyy.com"</code></li>
-</ul>
-
-<h3 id="init">init</h3>
-
-<ul>
-  <li>initialize: <code class="language-plaintext highlighter-rouge">git init</code></li>
-</ul>
-
-<h3 id="remove-git">remove git</h3>
-
-<ul>
-  <li>git: <code class="language-plaintext highlighter-rouge">rm -rf .git</code></li>
-  <li>untracked file: <code class="language-plaintext highlighter-rouge">git clean -fX</code></li>
-</ul>
-
-<h3 id="process">process</h3>
-
-<ul>
-  <li>status (details below): working -&gt; <code class="language-plaintext highlighter-rouge">git add</code> -&gt; staged -&gt; <code class="language-plaintext highlighter-rouge">git commit</code> -&gt; history -&gt; view</li>
-  <li>find
-    <ul>
-      <li>keyword in commits: <code class="language-plaintext highlighter-rouge">git log --oneline --grep='the_message_you_want_to_find'</code></li>
-      <li>commits in a time frame: <code class="language-plaintext highlighter-rouge">git log --online --since="9am" --until="12am"</code></li>
-      <li>commits of specific file: <code class="language-plaintext highlighter-rouge">git log the_specific_file.html</code></li>
-      <li>historical changes of a specific file: <code class="language-plaintext highlighter-rouge">git log -p the_specific_file.html</code></li>
-    </ul>
-  </li>
-  <li>remove a file: <code class="language-plaintext highlighter-rouge">git rm --cached the_file_you_want_to_remove.html</code></li>
-  <li>modify message: checkout to the commit (<code class="language-plaintext highlighter-rouge">gco commit_sha</code>) -&gt; amend the message of this commit (<code class="language-plaintext highlighter-rouge">git commit --amend</code>)</li>
-  <li>add files
-    <ul>
-      <li>to last commit (<code class="language-plaintext highlighter-rouge">git add</code> -&gt; <code class="language-plaintext highlighter-rouge">git commit --amend --no-edit</code>)</li>
-      <li>add empty directory (<code class="language-plaintext highlighter-rouge">touch .gitkeep</code>)</li>
-    </ul>
-  </li>
-  <li>ignore files (details below): (.gitignore)</li>
-  <li>check author: <code class="language-plaintext highlighter-rouge">git blame</code></li>
-  <li>checkout: (to be continued)</li>
-</ul>
-
-<h3 id="status">status</h3>
-
-<p>check status (<code class="language-plaintext highlighter-rouge">git status</code>) and the message</p>
-
-<p><img class="w-3/4" src="/assets/img/1__Pv1briXOtMvI7tU6__knn3g.png" /></p>
-
-<p>create a file (<code class="language-plaintext highlighter-rouge">echo "hello.git" &gt; welcome.html</code>) and check status again (<code class="language-plaintext highlighter-rouge">git status</code>)</p>
-
-<p><img class="w-3/4" src="/assets/img/1__7JZv6zcN9KPNz6Y3XdQM6w.png" /></p>
-
-<p>There is a untracked file now, <code class="language-plaintext highlighter-rouge">welcome.html</code>, in git status</p>
-
-<p>Add file to temp (<code class="language-plaintext highlighter-rouge">git add welcome.html</code>) then check status (<code class="language-plaintext highlighter-rouge">git status</code>)</p>
-
-<p><img class="w-3/4" src="/assets/img/1__5fKmVmoT6k30KoRtrfd69w.png" /></p>
-
-<p>store it directly without vim (<code class="language-plaintext highlighter-rouge">git commit -m "the message to note to this commit"</code>)</p>
-
-<p>or open vim to type in message we want (<code class="language-plaintext highlighter-rouge">git commit</code>)</p>
-
-<p>After all the works above, view the historical commits with (<code class="language-plaintext highlighter-rouge">git log</code>):</p>
-
-<p><img class="w-3/4" src="/assets/img/1__xM9A96o__hrRKduVcs1vPCA.png" /></p>
-
-<p>or <code class="language-plaintext highlighter-rouge">git log --oneline --graph</code> for oneline messages</p>
-
-<p><img class="w-3/4" src="/assets/img/1__HP4y4QxFD2OVofPPrZgcAA.png" /></p>
-
-<h3 id="ignore">ignore</h3>
-
-<p>Create a file called <code class="language-plaintext highlighter-rouge">.gitignore</code> on the same level of <code class="language-plaintext highlighter-rouge">.git</code> created by initialization of git and input the file name in it</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># in .gitignore</span>
-filename_to_ignore.xxx
-
-<span class="c"># or ignore all the file with format .xxx with</span>
-<span class="k">*</span>.xxx
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install</span> <span class="nt">--cask</span> docker
 </code></pre></div></div>
+
+<ul>
+  <li>check installation</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker info
+</code></pre></div></div>
+
+<h3 id="run">run</h3>
+
+<p>on mac, start docker with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>open <span class="nt">-a</span> Docker
+</code></pre></div></div>
+
+<p>and shut down with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pkill <span class="nt">-SIGHUP</span> <span class="nt">-f</span> /Applications/Docker.app <span class="s1">'docker serve'</span>
+</code></pre></div></div>
+
+<p>and run app with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> &lt;xxx&gt;
+</code></pre></div></div>
+
+<h3 id="applications">applications</h3>
+
+<p>check app running on docker with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker top &lt;xxx&gt;
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
+
+<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
 
 <h2 id="reference">Reference</h2>
 
-<p><a href="https://gitbook.tw/chapters/introduction/what-is-git.html">什麼是 Git？為什麼要學習它？ - 為你自己學 Git</a></p>
+<p><a href="https://docs.docker.com/desktop/install/mac-install/">Install on Mac</a></p>
 
   </div>
 </div>

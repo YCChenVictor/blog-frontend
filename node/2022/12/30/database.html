@@ -85,43 +85,100 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="connect">connect</h3>
+<h3 id="create-database">create database</h3>
 
-<p>connect to database</p>
+<p><a href="/blog/pg/2022/12/30/overview.html#database">here</a></p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">Client</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">pg</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Client</span><span class="p">({</span>
-  <span class="na">user</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGUSER</span><span class="p">,</span>
-<span class="err">  </span><span class="na">host</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGHOST</span><span class="p">,</span>
-<span class="err">  </span><span class="na">database</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGDATABASE</span><span class="p">,</span>
-<span class="err">  </span><span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGPASSWORD</span><span class="p">,</span>
-<span class="err">  </span><span class="na">port</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PGPORT</span>
-<span class="p">});</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">();</span>
+<h3 id="connect-database-with-docker">connect database with docker</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> my_db <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">POSTGRESQL_PORT</span><span class="o">=</span>5432 <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>my_db <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>postgres <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>test1234 <span class="se">\</span>
+    <span class="nt">-d</span> postgres
 </code></pre></div></div>
 
-<p>create a database in pg</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s2">`CREATE DATABASE my_database`</span><span class="p">;</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Database created</span><span class="dl">"</span><span class="p">);</span>
-</code></pre></div></div>
-
-<p>show a database in pg</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">SELECT datname FROM pg_database;</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql</span><span class="p">);</span>
-</code></pre></div></div>
-
-<p>create database if no that database</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s2">`/l`</span><span class="p">;</span>
-<span class="nx">client</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql</span><span class="p">);</span>
-</code></pre></div></div>
+<ul>
+  <li>remember to create desired database first</li>
+  <li>remember to change <code class="language-plaintext highlighter-rouge">my_db</code> and <code class="language-plaintext highlighter-rouge">test1234</code></li>
+</ul>
 
 <h3 id="migration">migration</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<h4 id="install">install</h4>
+
+<p>use <code class="language-plaintext highlighter-rouge">sequelize</code></p>
+
+<p>(1) create database with pg command</p>
+
+<p>(2) install <code class="language-plaintext highlighter-rouge">sequelize</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">--save</span> sequelize
+npm <span class="nb">install</span> <span class="nt">-g</span> sequelize-cli
+</code></pre></div></div>
+
+<h4 id="configuration">configuration</h4>
+
+<p>(1) create <code class="language-plaintext highlighter-rouge">.sequelizerc</code> with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">path</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">config</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">./database/config</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">config.js</span><span class="dl">'</span><span class="p">),</span>
+  <span class="dl">'</span><span class="s1">models-path</span><span class="dl">'</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">./database/models</span><span class="dl">'</span><span class="p">),</span>
+  <span class="dl">'</span><span class="s1">seeders-path</span><span class="dl">'</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">./database/seeders</span><span class="dl">'</span><span class="p">),</span>
+  <span class="dl">'</span><span class="s1">migrations-path</span><span class="dl">'</span><span class="p">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">./database/migrations</span><span class="dl">'</span><span class="p">),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>(2) create sub-directories: <code class="language-plaintext highlighter-rouge">config</code>, <code class="language-plaintext highlighter-rouge">models</code>, <code class="language-plaintext highlighter-rouge">seeders</code> and <code class="language-plaintext highlighter-rouge">migrations</code> in <code class="language-plaintext highlighter-rouge">./database</code></p>
+
+<p>(3) in <code class="language-plaintext highlighter-rouge">config.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dotenv</span><span class="dl">'</span><span class="p">).</span><span class="nx">config</span><span class="p">()</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">development</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">url</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DEV_DATABASE_URL</span><span class="p">,</span>
+      <span class="na">dialect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">postgres</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">test</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">url</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">TEST_DATABASE_URL</span><span class="p">,</span>
+      <span class="na">dialect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">postgres</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">production</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">url</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_URL</span><span class="p">,</span>
+      <span class="na">dialect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">postgres</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>(4) In <code class="language-plaintext highlighter-rouge">.env</code>,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">DEV_DATABASE_URL</span><span class="o">=</span>postgres://postgres:test1234@127.0.0.1:5432/my_db
+<span class="nv">NODE_ENV</span><span class="o">=</span>development
+</code></pre></div></div>
+
+<ul>
+  <li>remember to change <code class="language-plaintext highlighter-rouge">test1234</code>, <code class="language-plaintext highlighter-rouge">my_db</code> to what you desired</li>
+</ul>
+
+<h4 id="migrate">migrate</h4>
+
+<p>generate migration file</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequelize model:generate <span class="nt">--name</span> user <span class="nt">--attributes</span> name:string,mail:string,password:string
+</code></pre></div></div>
+
+<p>migrate with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequelize db:migrate
+</code></pre></div></div>
+
+<h4 id="init">init</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequelize init
 </code></pre></div></div>
 
 <h3 id="schema">schema</h3>
@@ -154,6 +211,10 @@
 <h2 id="reference">Reference</h2>
 
 <p><a href="https://www.kindsonthegenius.com/db-migrate-simplified-how-to-generate-posgresql-database-from-node-js/">DB-Migrate Simplified – How to Generate PosgreSQL Database From Node.js</a></p>
+
+<p><a href="https://hackmd.io/@TSMI_E7ORNeP8YBbWm-lFA/ryCtaVW_M?print-pdf">透過 sequelize 來達成 DB Schema Migration</a></p>
+
+<p><a href="https://blog.devgenius.io/use-sequelize-orm-with-postgresql-in-your-express-project-3c277b289522">Use Sequelize ORM with PostgreSQL in Your Express Project</a></p>
 
   </div>
 </div>

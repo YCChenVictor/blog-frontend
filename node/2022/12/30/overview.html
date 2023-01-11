@@ -87,14 +87,12 @@
 
 <h3 id="init">init</h3>
 
-<ol>
-  <li>
-    <p>install node and PG</p>
-  </li>
-  <li>
-    <p>src</p>
-  </li>
-</ol>
+<p>(1) install node and PG</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>express pg
+</code></pre></div></div>
+
+<p>(2) src</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>my-project
 <span class="nb">cd </span>my-project
@@ -103,12 +101,7 @@ npm init <span class="nt">-y</span>
 
 <h3 id="dependencies">dependencies</h3>
 
-<h4 id="infra">infra</h4>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>express pg
-</code></pre></div></div>
-
-<h4 id="env">env</h4>
+<h3 id="env">env</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>dotenv <span class="nt">--save</span>
 </code></pre></div></div>
@@ -128,9 +121,11 @@ DB_PASSWORD=password_you_want
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database password is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_PASSWORD</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
 </code></pre></div></div>
 
-<h3 id="absolute-path">absolute path</h3>
+<h3 id="structure">structure</h3>
 
-<p>(I now still using relative import)</p>
+<p>I now still using relative import and actually we can refer to [rails] structure.</p>
+
+<p>(TBC)</p>
 
 <p>We want our project structure as follow:</p>
 
@@ -196,6 +191,16 @@ DB_PASSWORD=password_you_want
 <h3 id="git">git</h3>
 
 <p>add <code class="language-plaintext highlighter-rouge">.gitignore</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Dependency directories</span>
+node_modules/
+
+<span class="c"># Optional npm cache directory</span>
+.npm
+
+<span class="c"># dotenv environment variables file</span>
+.env
+</code></pre></div></div>
 
 <h3 id="server">server</h3>
 
