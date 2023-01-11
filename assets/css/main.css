@@ -49,7 +49,8 @@
     @apply p-4;
   }
   code {
-    @apply bg-stone-500;
+    @apply bg-gray-300;
+    @apply text-inherit;
   }
 }
 
