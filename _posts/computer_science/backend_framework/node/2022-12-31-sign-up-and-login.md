@@ -15,17 +15,68 @@ publish: true
 
 ## Introduction
 
-TBC
+This article describes how to implement it with passport.
 
 ## Why?
 
-TBC
+Compare to not using it
+
+Compare to not use passport
 
 ## How?
 
+### init
+
+install
+
+```bash
+npm i passport
+npm i passport-local
+```
+
+### config
+
+add `./configs/config.js` with
+
+```javascript
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
+module.exports = (passport) => {
+  passport.use(new LocalStrategy(
+    (username, password, done) => {
+      User.findOne({ username: username }, (err, user) => {
+        if (err) {
+          return done(err);
+        }
+        if (user) {
+          return done(null, false);
+        }
+        const newUser = new User({ username: username, password: password });
+        newUser.save((err) => {
+          if (err) {
+            return done(err);
+          }
+          return done(null, newUser);
+        });
+      });
+    }
+  ));
+}
+```
+
+and import it in `app.js`
+
+```javascript
+const passport = require('./config/passport.js');
+app.use(passport.initialize())
+```
+
+In the code, you can see it will first find whether the user exist; if not, it will create a new user for you.
+
 ### sign up
 
-Given we have route
+Given we have api
 
 ```javascript
 module.exports = (app) => {
