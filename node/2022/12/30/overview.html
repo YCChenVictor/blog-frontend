@@ -77,31 +77,59 @@
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>TBC</p>
+<p>This article describes how to setup baseline node app.</p>
 
 <h2 id="why">Why?</h2>
 
-<p>Compare to other framework</p>
+<ul>
+  <li>node: real-time, high-performance, and scalable network applications.</li>
+  <li>rails: convention -&gt; easier to code &amp; build app quicker</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
 <h3 id="init">init</h3>
 
-<p>(1) install node and PG</p>
+<p>(1) install dependencies:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>express pg
-</code></pre></div></div>
+<ul>
+  <li>for production
+    <ul>
+      <li>node</li>
+      <li>pg</li>
+      <li>dotenv</li>
+      <li>axios</li>
+    </ul>
+  </li>
+  <li>for development
+    <ul>
+      <li>nodemon</li>
+    </ul>
+  </li>
+</ul>
 
-<p>(2) src</p>
+<p>(2) initialize:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>my-project
 <span class="nb">cd </span>my-project
 npm init <span class="nt">-y</span>
 </code></pre></div></div>
 
-<h3 id="dependencies">dependencies</h3>
+<p>(3) git:</p>
 
-<h3 id="env">env</h3>
+<p>add <code class="language-plaintext highlighter-rouge">.gitignore</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Dependency directories</span>
+node_modules/
+
+<span class="c"># Optional npm cache directory</span>
+.npm
+
+<span class="c"># dotenv environment variables file</span>
+.env
+</code></pre></div></div>
+
+<p>(4) env:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>dotenv <span class="nt">--save</span>
 </code></pre></div></div>
@@ -121,21 +149,46 @@ DB_PASSWORD=password_you_want
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database password is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_PASSWORD</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
 </code></pre></div></div>
 
+<p>(5) servevr</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx nodemon server.js
+</code></pre></div></div>
+
 <h3 id="structure">structure</h3>
 
-<p>I now still using relative import and actually we can refer to [rails] structure.</p>
-
-<p>(TBC)</p>
-
-<p>We want our project structure as follow:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-project/
-  src/
-    components/
-      Button.js
-  tests/
-    Button.test.js
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span>
+├── __test__
+├── api
+├── app.js
+├── database
+├── node_modules
+├── package-lock.json
+└── package.json
 </code></pre></div></div>
+
+<h4 id="import--export">import &amp; export</h4>
+
+<p>export</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">signUp</span><span class="p">:</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>and import</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">modelUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../models/users.js</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">modelUser</span><span class="p">.</span><span class="nx">signUp</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="absolute-path-tbc">absolute path (TBC)</h4>
 
 <p>install required package with <code class="language-plaintext highlighter-rouge">npm install --save-dev babel-plugin-module-resolver</code> (<a href="https://www.npmjs.com/package/babel-plugin-module-resolver">babel-plugin-module-resolver</a>)</p>
 
@@ -166,42 +219,6 @@ DB_PASSWORD=password_you_want
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Button</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">src/components/Button</span><span class="dl">'</span><span class="p">;</span>
 </code></pre></div></div>
 
-<h4 id="import--export">import &amp; export</h4>
-
-<p>export</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">signUp</span><span class="p">:</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="p">...</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>and import</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">modelUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../models/users.js</span><span class="dl">'</span><span class="p">)</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">modelUser</span><span class="p">.</span><span class="nx">signUp</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-  <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="git">git</h3>
-
-<p>add <code class="language-plaintext highlighter-rouge">.gitignore</code></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Dependency directories</span>
-node_modules/
-
-<span class="c"># Optional npm cache directory</span>
-.npm
-
-<span class="c"># dotenv environment variables file</span>
-.env
-</code></pre></div></div>
-
 <h3 id="server">server</h3>
 
 <p>create <code class="language-plaintext highlighter-rouge">app.js</code> with</p>
@@ -220,11 +237,76 @@ node_modules/
 
 <p>and run it with <code class="language-plaintext highlighter-rouge">node server.js</code></p>
 
-<h3 id="routes-api">routes (API)</h3>
+<ul>
+  <li>test it with curl: <code class="language-plaintext highlighter-rouge">curl http://localhost:5000/</code></li>
+</ul>
 
-<p>create a directory, <code class="language-plaintext highlighter-rouge">routes/</code> with API going to be imported in <code class="language-plaintext highlighter-rouge">app.js</code></p>
+<h3 id="database">database</h3>
 
-<p>For example, <code class="language-plaintext highlighter-rouge">routes/summary.js</code></p>
+<p><a href="/blog/node/2022/12/30/database.html">database setup</a></p>
+
+<h3 id="model">model</h3>
+
+<p>create <code class="language-plaintext highlighter-rouge">./model/index.js</code> with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dotenv</span><span class="dl">'</span><span class="p">).</span><span class="nx">config</span><span class="p">()</span>
+
+<span class="kd">const</span> <span class="nx">Sequelize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">sequelize</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">sequelize</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">development</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DEV_DATABASE_URL</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">test</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">TEST_DATABASE_URL</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_URL</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">sequelize</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>and then in <code class="language-plaintext highlighter-rouge">./model/user.js</code></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">Sequelize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">sequelize</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">sequelize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./index.js</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="dl">'</span><span class="s1">user</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span>
+  <span class="p">},</span>
+  <span class="na">mail</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span>
+  <span class="p">},</span>
+  <span class="na">password</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">user</span>
+</code></pre></div></div>
+
+<h4 id="crud">CRUD</h4>
+
+<p>After the database setup, with <code class="language-plaintext highlighter-rouge">sequelize</code>, we can</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create</span>
+
+<span class="c1">// Read</span>
+<span class="nx">findAll</span>
+
+<span class="c1">// Update</span>
+
+<span class="c1">// Delete</span>
+</code></pre></div></div>
+
+<h3 id="api">API</h3>
+
+<p>create a directory, <code class="language-plaintext highlighter-rouge">api/</code> with API going to be imported in <code class="language-plaintext highlighter-rouge">app.js</code></p>
+
+<p>For example, <code class="language-plaintext highlighter-rouge">api/summary.js</code></p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -265,46 +347,25 @@ node_modules/
 <span class="c1">// PUT /records/:id -&gt; records#update</span>
 <span class="c1">// DELETE /records/:id -&gt; records#destroy</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">,</span> <span class="nx">records</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// GET /records -&gt; records#index</span>
-  <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="s2">`/</span><span class="p">${</span><span class="nx">records</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">testingaaa World!</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">})</span>
-  <span class="c1">// POST /records -&gt; records#create</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">`/</span><span class="p">${</span><span class="nx">records</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">testingaaa World!</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span>  
-</code></pre></div></div>
+<span class="kd">const</span> <span class="nx">modelUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../database/models/user.js</span><span class="dl">'</span><span class="p">)</span>
 
-<h3 id="database">database</h3>
-
-<p><a href="/blog/node/2022/12/30/database.html">database</a></p>
-
-<h3 id="crud">CRUD</h3>
-
-<p>For example, we want to create tasks</p>
-
-<p>Create <code class="language-plaintext highlighter-rouge">base.js</code> with</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">pg</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">pg</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pg</span><span class="p">.</span><span class="nx">Database</span><span class="p">(</span><span class="dl">'</span><span class="s1">test.db</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">table</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">db</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">`INSERT INTO </span><span class="p">${</span><span class="nx">table</span><span class="p">}</span><span class="s2"> (task) VALUES (?)`</span><span class="p">,</span> <span class="nx">task</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mi">201</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// create</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">modelUser</span><span class="p">.</span><span class="nx">signUp</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
   <span class="p">});</span>
-  <span class="p">...</span>
+  <span class="c1">// read, index</span>
+  <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/users</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">============</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">modelUser</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">modelUser</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
+      <span class="na">order</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">[</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ASC</span><span class="dl">'</span><span class="p">],</span>
+      <span class="p">],</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
 <span class="p">}</span>
-</code></pre></div></div>
-
-<p>and inherit it in <code class="language-plaintext highlighter-rouge">task.js</code></p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// implement CRUD</span>
 </code></pre></div></div>
 
 <h3 id="sign-up-and-login-mechanism">sign up and login mechanism</h3>
@@ -343,6 +404,8 @@ node_modules/
 <p><a href="https://stackoverflow.com/questions/59681974/how-to-organize-routes-in-nodejs-express-app">How to organize routes in Nodejs Express app</a></p>
 
 <p><a href="https://dev.to/dallington256/how-to-use-env-file-in-nodejs-578h">How to use .env file in node.js</a></p>
+
+<p><a href="https://sequelize.org/docs/v6/core-concepts/model-querying-finders/">Model Querying - Finders</a></p>
 
   </div>
 </div>

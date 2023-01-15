@@ -87,8 +87,6 @@
 
 <h3 id="init">init</h3>
 
-<h4 id="environment">environment</h4>
-
 <p>use homebrew:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>postgresql
@@ -147,53 +145,54 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
 
+<p>or with</p>
+
+<ul>
+  <li><a href="">node migration</a></li>
+  <li><a href="">rails migration</a></li>
+</ul>
+
 <p>Show:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\d</span>t
 </code></pre></div></div>
 
-<p><a href="">node migration</a></p>
-
 <h3 id="crud">CRUD</h3>
 
 <p>CREATE</p>
 
-<pre><code class="language-SQL">INSERT INTO table (variable1, variable2, variable3) VALUES (value1, value2, value3);
-</code></pre>
+<pre><code class="language-SQL">-- general
+INSERT INTO table (variable1, variable2, variable3) VALUES (value1, value2, value3);
 
-<p>example</p>
-
-<pre><code class="language-SQL">INSERT INTO users (username, password, email) VALUES ('john', '123456', 'john@example.com');
+-- example
+INSERT INTO users (username, password, email) VALUES ('john', '123456', 'john@example.com');
 </code></pre>
 
 <p>READ</p>
 
-<pre><code class="language-SQL">SELECT * FROM table WHERE variable1 = value1;
-</code></pre>
+<pre><code class="language-SQL">-- general
+SELECT * FROM table WHERE variable1 = value1;
 
-<p>example</p>
-
-<pre><code class="language-SQL">SELECT * FROM users WHERE username = 'john';
+-- example
+SELECT * FROM users WHERE username = 'john';
 </code></pre>
 
 <p>UPDATE</p>
 
-<pre><code class="language-SQL">UPDATE table SET variable1 = value1 WHERE variable2 = value2;
-</code></pre>
+<pre><code class="language-SQL">-- general
+UPDATE table SET variable1 = value1 WHERE variable2 = value2;
 
-<p>example</p>
-
-<pre><code class="language-SQL">UPDATE users SET password = '654321' WHERE username = 'john';
+-- example
+UPDATE users SET password = '654321' WHERE username = 'john';
 </code></pre>
 
 <p>DELETE</p>
 
-<pre><code class="language-SQL">DELETE FROM table WHERE variable1 = value1;
-</code></pre>
+<pre><code class="language-SQL">-- general
+DELETE FROM table WHERE variable1 = value1;
 
-<p>example</p>
-
-<pre><code class="language-SQL">DELETE FROM users WHERE username = 'john';
+-- example
+DELETE FROM users WHERE username = 'john';
 </code></pre>
 
 <h2 id="what">What?</h2>
