@@ -65,13 +65,6 @@ module.exports = (passport) => {
 }
 ```
 
-and import it in `app.js`
-
-```javascript
-const passport = require('./config/passport.js');
-app.use(passport.initialize())
-```
-
 In the code, you can see it will first find whether the user exist; if not, it will create a new user for you.
 
 ### sign up
@@ -89,23 +82,25 @@ module.exports = (app) => {
 define method
 
 ```javascript
-app.post('/sign_up', (req, res) => {
-  const { email, password } = req.body;
+const modelUser = require('../database/models/user.js')
+const { passport } = require('../configs/passport.js');
 
-  if (!isValidEmail(email)) {
-    return res.status(400).send('Invalid email address');
-  }
-  if (password.length < 8) {
-    return res.status(400).send('Password must be at least 8 characters');
-  }
-
-  User.create({ email, password })
-    .then(() => res.send('Account created successfully'))
-    .catch(err => res.status(500).send('Error creating account'));
-});
+module.exports = (app) => {
+  // create
+  app.post('/sign_up', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/'); }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        return res.redirect('/');
+      });
+    })
+    modelUser.signUp(req.body)
+    console.log(res)
+  });
+}
 ```
-
-* you can extract the sign up login as `sign_up.js`
 
 ### login
 
