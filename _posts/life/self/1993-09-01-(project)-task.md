@@ -56,8 +56,8 @@ POST /login
 
 ### TODO
 
-* backend, add sign up, with spec
 * backend, let debugger workable
+* backend, add sign up spec
 * the backend should be private repo because of business logic
 * backend, deploy on fly
 * add login (backend)

@@ -32,6 +32,7 @@ install
 ```bash
 npm i passport
 npm i passport-local
+npm i express-session
 ```
 
 ### config
@@ -39,75 +40,66 @@ npm i passport-local
 add `./configs/config.js` with
 
 ```javascript
-const passport = require('passport');
+const User = require('../database/models/user.js');
 const LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport');
 
-module.exports = (passport) => {
-  passport.use(new LocalStrategy(
-    (username, password, done) => {
-      User.findOne({ username: username }, (err, user) => {
-        if (err) {
-          return done(err);
-        }
-        if (user) {
-          return done(null, false);
-        }
-        const newUser = new User({ username: username, password: password });
-        newUser.save((err) => {
+passport.use(new LocalStrategy({
+    usernameField : 'email', // override username with email
+    passwordField : 'password',
+  }, (email, password, done) => {
+    User.findOne({
+      where: {
+        email: email
+      }
+    }).then(function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (user) {
+        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+      } else {
+        let newUser = User.build({ email: email, password: password });
+        newUser.save(function(err) {
           if (err) {
-            return done(err);
+            throw err;
           }
           return done(null, newUser);
         });
-      });
-    }
-  ));
-}
-```
+      }
+    });
+  })
+);
 
-and import it in `app.js`
-
-```javascript
-const passport = require('./config/passport.js');
-app.use(passport.initialize())
+module.exports = passport
 ```
 
 In the code, you can see it will first find whether the user exist; if not, it will create a new user for you.
 
-### sign up
-
-Given we have api
+### API
 
 ```javascript
+const passport = require('../configs/passport.js');
+
 module.exports = (app) => {
-  app.post('/sign_up', (req, res) => {
-    ...
+  // create
+  app.post('/signup', passport.authenticate('local', {
+    successRedirect : '/',
+    failureRedirect : '/signup',
+  }));
+
+  // read, index (TBC)
+  app.get('/users', () => {
+    modelUser.findAll().then(res => {
+      console.log(res)
+    }).catch((error) => {
+        console.error('Failed to retrieve data : ', error);
+    });
   })
 }
 ```
 
-define method
-
-```javascript
-app.post('/sign_up', (req, res) => {
-  const { email, password } = req.body;
-
-  if (!isValidEmail(email)) {
-    return res.status(400).send('Invalid email address');
-  }
-  if (password.length < 8) {
-    return res.status(400).send('Password must be at least 8 characters');
-  }
-
-  User.create({ email, password })
-    .then(() => res.send('Account created successfully'))
-    .catch(err => res.status(500).send('Error creating account'));
-});
-```
-
-* you can extract the sign up login as `sign_up.js`
-
-### login
+#### login (TBC)
 
 define routes
 
@@ -171,3 +163,5 @@ app.post('/login',
 TBC
 
 ## Reference
+
+[Node Authentication using passport.js - Part 1](https://dev.to/ganeshmani/node-authentication-using-passport-js-part-1-53k7)
