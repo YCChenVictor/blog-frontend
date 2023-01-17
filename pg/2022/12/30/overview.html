@@ -112,6 +112,12 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql postgres
 </code></pre></div></div>
 
+<p>remove process</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-ef</span> | <span class="nb">grep </span>postmaster | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span>
+<span class="nb">kill</span> &lt;the_pid_you_just_got&gt;
+</code></pre></div></div>
+
 <h4 id="password">password</h4>
 
 <p>in <code class="language-plaintext highlighter-rouge">~/pgpass.conf</code></p>

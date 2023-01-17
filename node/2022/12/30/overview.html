@@ -149,7 +149,7 @@ DB_PASSWORD=password_you_want
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database password is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_PASSWORD</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>(5) servevr</p>
+<p>(5) server</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx nodemon server.js
 </code></pre></div></div>
@@ -166,27 +166,9 @@ DB_PASSWORD=password_you_want
 └── package.json
 </code></pre></div></div>
 
-<h4 id="import--export">import &amp; export</h4>
+<h4 id="import-and-export">import and export</h4>
 
-<p>export</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">signUp</span><span class="p">:</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="p">...</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>and import</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">modelUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../models/users.js</span><span class="dl">'</span><span class="p">)</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">modelUser</span><span class="p">.</span><span class="nx">signUp</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-  <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p><a href="/blog/blog/javascript/2022/12/12/overview.html#import-and-export">import &amp; export</a></p>
 
 <h4 id="absolute-path-tbc">absolute path (TBC)</h4>
 
@@ -293,6 +275,7 @@ DB_PASSWORD=password_you_want
 <p>After the database setup, with <code class="language-plaintext highlighter-rouge">sequelize</code>, we can</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create</span>
+<span class="nx">build</span>
 
 <span class="c1">// Read</span>
 <span class="nx">findAll</span>
@@ -335,7 +318,7 @@ DB_PASSWORD=password_you_want
 
 <h4 id="restful-api">restful API</h4>
 
-<p>Given the <a href="">pre-knowledge</a>, we can compose them as follow:</p>
+<p>Given <a href="/blog/api/2021/02/18/overview.html">pre-knowledge</a>, we can compose them as follow:</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// restful API</span>
 <span class="c1">// GET /records -&gt; records#index</span>
@@ -386,10 +369,17 @@ DB_PASSWORD=password_you_want
 
 <h3 id="debugger">debugger</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node inspect app.js
-</code></pre></div></div>
+<p>In <code class="language-plaintext highlighter-rouge">package.json</code>,</p>
 
-<p><a href="https://jestjs.io/docs/troubleshooting">jest</a></p>
+<pre><code class="language-JSON">"scripts": {
+  "debug": "nodemon --inspect app.js"
+}
+</code></pre>
+
+<p>and run debug with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run debug
+</code></pre></div></div>
 
 <h2 id="what">What?</h2>
 
@@ -406,6 +396,8 @@ DB_PASSWORD=password_you_want
 <p><a href="https://dev.to/dallington256/how-to-use-env-file-in-nodejs-578h">How to use .env file in node.js</a></p>
 
 <p><a href="https://sequelize.org/docs/v6/core-concepts/model-querying-finders/">Model Querying - Finders</a></p>
+
+<p><a href="https://jestjs.io/docs/troubleshooting">jest debug</a></p>
 
   </div>
 </div>

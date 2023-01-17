@@ -93,80 +93,72 @@
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i passport
 npm i passport-local
+npm i express-session
 </code></pre></div></div>
 
 <h3 id="config">config</h3>
 
 <p>add <code class="language-plaintext highlighter-rouge">./configs/config.js</code> with</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../database/models/user.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">LocalStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport-local</span><span class="dl">'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">passport</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">(</span>
-    <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="nx">username</span> <span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="kd">const</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="nx">username</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="nx">password</span> <span class="p">});</span>
-        <span class="nx">newUser</span><span class="p">.</span><span class="nx">save</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">({</span>
+    <span class="na">usernameField</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// override username with email</span>
+    <span class="na">passwordField</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">password</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">},</span> <span class="p">(</span><span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span>
+      <span class="na">where</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">email</span><span class="p">:</span> <span class="nx">email</span>
+      <span class="p">}</span>
+    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">flash</span><span class="p">(</span><span class="dl">'</span><span class="s1">signupMessage</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">That email is already taken.</span><span class="dl">'</span><span class="p">));</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="nx">User</span><span class="p">.</span><span class="nx">build</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span> <span class="nx">email</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="nx">password</span> <span class="p">});</span>
+        <span class="nx">newUser</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
           <span class="p">}</span>
           <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">newUser</span><span class="p">);</span>
         <span class="p">});</span>
-      <span class="p">});</span>
-    <span class="p">}</span>
-  <span class="p">));</span>
-<span class="p">}</span>
-</code></pre></div></div>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">})</span>
+<span class="p">);</span>
 
-<p>and import it in <code class="language-plaintext highlighter-rouge">app.js</code></p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./config/passport.js</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">())</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">passport</span>
 </code></pre></div></div>
 
 <p>In the code, you can see it will first find whether the user exist; if not, it will create a new user for you.</p>
 
-<h3 id="sign-up">sign up</h3>
+<h3 id="api">API</h3>
 
-<p>Given we have api</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../configs/passport.js</span><span class="dl">'</span><span class="p">);</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="p">...</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// create</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/signup</span><span class="dl">'</span><span class="p">,</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="dl">'</span><span class="s1">local</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">successRedirect</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">failureRedirect</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">/signup</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">}));</span>
+
+  <span class="c1">// read, index (TBC)</span>
+  <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/users</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">modelUser</span><span class="p">.</span><span class="nx">findAll</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
+    <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Failed to retrieve data : </span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="p">});</span>
   <span class="p">})</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>define method</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
-
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isValidEmail</span><span class="p">(</span><span class="nx">email</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Invalid email address</span><span class="dl">'</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">password</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Password must be at least 8 characters</span><span class="dl">'</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="nx">User</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span> <span class="p">})</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Account created successfully</span><span class="dl">'</span><span class="p">))</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Error creating account</span><span class="dl">'</span><span class="p">));</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<ul>
-  <li>you can extract the sign up login as <code class="language-plaintext highlighter-rouge">sign_up.js</code></li>
-</ul>
-
-<h3 id="login">login</h3>
+<h4 id="login-tbc">login (TBC)</h4>
 
 <p>define routes</p>
 
@@ -227,6 +219,8 @@ npm i passport-local
 <p>TBC</p>
 
 <h2 id="reference">Reference</h2>
+
+<p><a href="https://dev.to/ganeshmani/node-authentication-using-passport-js-part-1-53k7">Node Authentication using passport.js - Part 1</a></p>
 
   </div>
 </div>
