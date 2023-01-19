@@ -76,7 +76,7 @@ module.exports = passport
 
 In the code, you can see it will first find whether the user exist; if not, it will create a new user for you.
 
-### API
+### APIs (signup, users, login)
 
 ```javascript
 const passport = require('../configs/passport.js');
@@ -97,6 +97,12 @@ module.exports = (app) => {
     });
   })
 }
+```
+
+### spec
+
+```javascript
+
 ```
 
 #### login (TBC)
