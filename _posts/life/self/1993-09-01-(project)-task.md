@@ -56,15 +56,15 @@ POST /login
 
 ### TODO
 
-* backend, let debugger workable
-* backend, add sign up spec
 * the backend should be private repo because of business logic
-* backend, deploy on fly
-* add login (backend)
-  * user email
-  * password
-* add API (frontend) to post login info
-* create backend on local with PG with rails
-* after phase one, deploy it
+* add frontend to post API login
+* add bcrypt for password
+* add JWT mechanism to do session
+* let user to create task with spec
+* let user to upload commit to pass spec
+* connect blockchain for contract, once the commit pass spec, they get money
+* connect chatGPT to create spec and solution for us
+* add mock database for jest
+* after phase one, deploy it on fly
 
 ## Reference

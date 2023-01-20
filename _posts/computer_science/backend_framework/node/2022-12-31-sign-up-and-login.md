@@ -25,6 +25,8 @@ Compare to not use passport
 
 ## How?
 
+I will use passport for authentication. After sign up, the system will login this user automatically.
+
 ### init
 
 install
@@ -48,47 +50,80 @@ passport.use(new LocalStrategy({
     usernameField : 'email', // override username with email
     passwordField : 'password',
   }, (email, password, done) => {
-    User.findOne({
-      where: {
-        email: email
+    User.findOne({ email: email }).then(user => {
+      if (!user) {
+        return done(null, false, { message: 'That email is not registered' });
       }
-    }).then(function(err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (user) {
-        return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-      } else {
-        let newUser = User.build({ email: email, password: password });
-        newUser.save(function(err) {
-          if (err) {
-            throw err;
-          }
-          return done(null, newUser);
-        });
-      }
-    });
+
+      bcrypt.compare(password, user.password, (err, isMatch) => {
+        if (err) throw err;
+        if (isMatch) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: 'Password incorrect' });
+        }
+      });
+    })
   })
 );
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
 
 module.exports = passport
 ```
 
 In the code, you can see it will first find whether the user exist; if not, it will create a new user for you.
 
-### API
+### APIs (signup, users, login)
 
 ```javascript
 const passport = require('../configs/passport.js');
+const User = require('../database/models/user.js');
 
 module.exports = (app) => {
-  // create
-  app.post('/signup', passport.authenticate('local', {
-    successRedirect : '/',
-    failureRedirect : '/signup',
-  }));
+  app.post('/signup', (req, res, next) => { // create
+    const { email, password } = req.body;
 
-  // read, index (TBC)
+    if (!email || !password) {
+      return res.status(400).json({ msg: 'Please enter all fields' });
+    }
+    
+    User.findOne({ email }).then(user => {
+      if (user) return res.status(400).json({ msg: 'User already exists' });
+  
+      const newUser = new User({
+        email,
+        password
+      });
+  
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => {
+              return passport.authenticate('local', {
+                successRedirect: '/dashboard',
+                failureRedirect: '/signup',
+                failureFlash: true
+              })(req, res, next);
+            })
+            .catch(err => console.log(err));
+        });
+      });
+    });
+  });
+
+  // read, index
   app.get('/users', () => {
     modelUser.findAll().then(res => {
       console.log(res)
@@ -97,6 +132,12 @@ module.exports = (app) => {
     });
   })
 }
+```
+
+### spec
+
+```javascript
+
 ```
 
 #### login (TBC)
@@ -165,3 +206,5 @@ TBC
 ## Reference
 
 [Node Authentication using passport.js - Part 1](https://dev.to/ganeshmani/node-authentication-using-passport-js-part-1-53k7)
+
+[How do you debug Jest Tests?](https://stackoverflow.com/questions/33247602/how-do-you-debug-jest-tests)

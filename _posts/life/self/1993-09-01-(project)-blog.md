@@ -23,10 +23,8 @@ focus on why we need it
 
 ## How?
 
-* add button to the top
-* css for points
-* css for other width
 * solve category tags of uppercase
+* backend with rails to login and signup
 
 ## What?
 
