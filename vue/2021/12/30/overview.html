@@ -70,20 +70,180 @@
   <div id="sidebar" class="p-4 fixed"></div>
 
 <div class="px-4 pt-4 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(Vue 0) Overview</h1>
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>This article describes how to create basic component with all life cycle.</p>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<p>going to compare with react</p>
 
 <h2 id="how">How?</h2>
+
+<h3 id="init">init</h3>
+
+<p>install</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> @vue/cli
+</code></pre></div></div>
+
+<p>create project</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vue create project-name
+</code></pre></div></div>
+
+<h3 id="basic-structure">basic structure</h3>
+
+<p>When to extract a component? When you believe this component can be used in another scenario.</p>
+
+<h3 id="index">index</h3>
+
+<p>create <code class="language-plaintext highlighter-rouge">components/AppIndex.vue</code></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;Modal</span>
+      <span class="na">:modalOpen=</span><span class="s">"modalOpen"</span>
+      <span class="na">:modalOptions=</span><span class="s">"modalOptions"</span>
+      <span class="err">@</span><span class="na">refreshRecords=</span><span class="s">"refreshRecords"</span>
+      <span class="err">@</span><span class="na">closeModal=</span><span class="s">"closeModal"</span>
+    <span class="nt">/&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">""</span> <span class="err">@</span><span class="na">click=</span><span class="s">"openModal"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;span&gt;</span>create record<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;Records</span>
+      <span class="na">:records=</span><span class="s">"records"</span>
+      <span class="err">@</span><span class="na">editRecord=</span><span class="s">"editRecord"</span>
+      <span class="err">@</span><span class="na">deleteRecord=</span><span class="s">"deleteRecord"</span>
+    <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">Modal</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/Modal.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">Records</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/Records.vue</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">AppIndex</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">components</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">Modal</span><span class="p">,</span>
+    <span class="nx">Records</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>and in <code class="language-plaintext highlighter-rouge">App.vue</code> import and render it</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;AppIndex</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">AppIndex</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/AppIndex.vue</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">App</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">components</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nx">AppIndex</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">style</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="modal">modal</h3>
+
+<p>With single selection, upload data.</p>
+
+<p>Create <code class="language-plaintext highlighter-rouge">./components/Modal.vue</code></p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;f-modal</span>
+      <span class="na">v-if=</span><span class="s">"modalOpen"</span>
+    <span class="nt">&gt;</span>
+      <span class="nt">&lt;template</span> <span class="na">#close-button</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span>
+          <span class="na">class=</span><span class="s">"close"</span>
+          <span class="na">href=</span><span class="s">"javascript:void(0)"</span>
+          <span class="err">@</span><span class="na">click=</span><span class="s">"closeModal"</span>
+        <span class="nt">&gt;</span>
+          <span class="ni">&amp;times;</span>
+        <span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;</span><span class="k">template</span>
+        <span class="na">#header</span>
+      <span class="nt">&gt;</span>
+        practice
+      <span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;</span><span class="k">template</span> <span class="na">#body</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span>
+          <span class="na">v-if=</span><span class="s">"false"</span>
+          <span class="na">class=</span><span class="s">""</span>
+        <span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span>
+            <span class="na">class=</span><span class="s">""</span>
+            <span class="na">data-dismiss=</span><span class="s">"alert"</span>
+          <span class="nt">&gt;</span>
+            ×
+          <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;h4&gt;</span>title<span class="nt">&lt;/h4&gt;</span>
+          <span class="nt">&lt;ul&gt;</span>
+            <span class="nt">&lt;li</span> <span class="na">v-bind=</span><span class="s">"error"</span><span class="nt">&gt;</span>
+              
+            <span class="nt">&lt;/li&gt;</span>
+          <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;b-row&gt;</span>
+          <span class="nt">&lt;b-col</span> <span class="na">md=</span><span class="s">"4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span>
+              <span class="na">class=</span><span class="s">""</span>
+            <span class="nt">&gt;</span>
+              <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">""</span><span class="nt">&gt;</span>file<span class="nt">&lt;/label&gt;</span>
+              <span class="nt">&lt;/div&gt;</span>
+              <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">id=</span><span class="s">"file"</span> <span class="err">@</span><span class="na">change=</span><span class="s">"handleFileUpload"</span> <span class="na">ref=</span><span class="s">"file"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/b-col&gt;</span>
+        <span class="nt">&lt;/b-row&gt;</span>
+      <span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;</span><span class="k">template</span> <span class="na">#footer</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;b-button</span>
+          <span class="na">class=</span><span class="s">""</span>
+          <span class="na">:disabled=</span><span class="s">"submitting"</span>
+          <span class="err">@</span><span class="na">click=</span><span class="s">"submit"</span>
+        <span class="nt">&gt;</span>
+          submit
+        <span class="nt">&lt;/b-button&gt;</span>
+      <span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/f-modal&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">script</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">style</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/</span><span class="k">style</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="list">list</h3>
+
+<h3 id="crud">CRUD</h3>
+
+<p>create</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="other">other</h2>
 
 <h3 id="indexhtml">index.html</h3>
 

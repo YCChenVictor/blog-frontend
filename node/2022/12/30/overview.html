@@ -99,11 +99,13 @@
       <li>pg</li>
       <li>dotenv</li>
       <li>axios</li>
+      <li>bcrypt</li>
     </ul>
   </li>
-  <li>for development
+  <li>for development &amp; test
     <ul>
       <li>nodemon</li>
+      <li>debug</li>
     </ul>
   </li>
 </ul>
@@ -131,93 +133,59 @@ node_modules/
 
 <p>(4) env:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>dotenv <span class="nt">--save</span>
-</code></pre></div></div>
+<p>In <code class="language-plaintext highlighter-rouge">.env</code>, we can add environment variables we want; for example, how to connect development database …etc</p>
 
-<p>create <code class="language-plaintext highlighter-rouge">.env</code> on root with</p>
-
-<pre><code class="language-linux">DB_NAME=task
-DB_USERNAME=username_you_want
-DB_PASSWORD=password_you_want
-</code></pre>
-
-<p>require it with</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dotenv</span><span class="dl">'</span><span class="p">).</span><span class="nx">config</span><span class="p">()</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database name is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_NAME</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database username is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_USERNAME</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Database password is </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DB_PASSWORD</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
-</code></pre></div></div>
+<p>We can call it with <code class="language-plaintext highlighter-rouge">process.env.xxx</code></p>
 
 <p>(5) server</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx nodemon server.js
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">NODE_ENV</span><span class="o">=</span>development npx nodemon server.js
 </code></pre></div></div>
 
 <h3 id="structure">structure</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span>
-├── __test__
-├── api
-├── app.js
-├── database
-├── node_modules
-├── package-lock.json
-└── package.json
-</code></pre></div></div>
-
-<h4 id="import-and-export">import and export</h4>
-
-<p><a href="/blog/blog/javascript/2022/12/12/overview.html#import-and-export">import &amp; export</a></p>
-
-<h4 id="absolute-path-tbc">absolute path (TBC)</h4>
-
-<p>install required package with <code class="language-plaintext highlighter-rouge">npm install --save-dev babel-plugin-module-resolver</code> (<a href="https://www.npmjs.com/package/babel-plugin-module-resolver">babel-plugin-module-resolver</a>)</p>
-
-<p>and in <code class="language-plaintext highlighter-rouge">./.babel.config.js</code>, add</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module.exports <span class="o">=</span> <span class="o">{</span>
-  presets: <span class="o">[</span><span class="s1">'module:metro-react-native-babel-preset'</span><span class="o">]</span>,
-  plugins: <span class="o">[</span>
-    <span class="o">[</span>
-      <span class="s1">'module-resolver'</span>,
-      <span class="o">{</span>
-        root: <span class="o">[</span><span class="s1">'./src'</span><span class="o">]</span>,
-        extensions: <span class="o">[</span><span class="s1">'.ios.js'</span>, <span class="s1">'.android.js'</span>, <span class="s1">'.js'</span>, <span class="s1">'.ts'</span>, <span class="s1">'.tsx'</span>, <span class="s1">'.json'</span><span class="o">]</span>,
-        <span class="nb">alias</span>: <span class="o">{</span>
-          <span class="s1">'*'</span>: <span class="s1">'.'</span>,
-          <span class="s1">'@root'</span>: <span class="s1">'./'</span>,
-          <span class="s1">'@src'</span>: <span class="s1">'./src'</span>,
-          <span class="s1">'@components'</span>: <span class="s1">'./src/components'</span>,
-        <span class="o">}</span>
-      <span class="o">}</span>
-    <span class="o">]</span>
-  <span class="o">]</span>
-<span class="o">}</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>then we can import with</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Button</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">src/components/Button</span><span class="dl">'</span><span class="p">;</span>
-</code></pre></div></div>
+<p><a href="/blog/node/2023/01/20/structure.html">structure</a></p>
 
 <h3 id="server">server</h3>
 
-<p>create <code class="language-plaintext highlighter-rouge">app.js</code> with</p>
+<p>(1) init file:</p>
+
+<p>For test and development environment, create <code class="language-plaintext highlighter-rouge">server.js</code> with</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">)</span>
 <span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./api/api_summary.js</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">)</span>
-<span class="p">})</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">development</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">in development environment</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Server listening on port 5000</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">test</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">in test environment</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Server listening on port 8080</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// TODO for production</span>
+<span class="p">}</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Server listening on port 5000</span><span class="dl">'</span><span class="p">)</span>
-<span class="p">})</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span>
 </code></pre></div></div>
 
-<p>and run it with <code class="language-plaintext highlighter-rouge">node server.js</code></p>
+<p>(2) init server</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">package.json</code></p>
+
+<pre><code class="language-JSON">"scripts": {
+  "test": "NODE_ENV=test jest",
+  "dev": "NODE_ENV=development npx nodemon server.js",
+  "debug": "npx nodemon --inspect-brk server.js"
+},
+</code></pre>
 
 <ul>
   <li>test it with curl: <code class="language-plaintext highlighter-rouge">curl http://localhost:5000/</code></li>
@@ -225,65 +193,16 @@ DB_PASSWORD=password_you_want
 
 <h3 id="database">database</h3>
 
-<p><a href="/blog/node/2022/12/30/database.html">database setup</a></p>
+<p><a href="/blog/node/2022/12/30/database.html">database setup</a> for test and development</p>
+
+<ul>
+  <li>docker</li>
+  <li>sequelize</li>
+</ul>
 
 <h3 id="model">model</h3>
 
-<p>create <code class="language-plaintext highlighter-rouge">./model/index.js</code> with</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dotenv</span><span class="dl">'</span><span class="p">).</span><span class="nx">config</span><span class="p">()</span>
-
-<span class="kd">const</span> <span class="nx">Sequelize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">sequelize</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">sequelize</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">development</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DEV_DATABASE_URL</span><span class="p">)</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">test</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">TEST_DATABASE_URL</span><span class="p">)</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_URL</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">sequelize</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>and then in <code class="language-plaintext highlighter-rouge">./model/user.js</code></p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">Sequelize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">sequelize</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">sequelize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./index.js</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="dl">'</span><span class="s1">user</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span>
-  <span class="p">},</span>
-  <span class="na">mail</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span>
-  <span class="p">},</span>
-  <span class="na">password</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">user</span>
-</code></pre></div></div>
-
-<h4 id="crud">CRUD</h4>
-
-<p>After the database setup, with <code class="language-plaintext highlighter-rouge">sequelize</code>, we can</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create</span>
-<span class="nx">build</span>
-
-<span class="c1">// Read</span>
-<span class="nx">findAll</span>
-
-<span class="c1">// Update</span>
-
-<span class="c1">// Delete</span>
-</code></pre></div></div>
+<p><a href="/blog/node/2022/12/30/database.html">model</a></p>
 
 <h3 id="api">API</h3>
 
@@ -316,9 +235,7 @@ DB_PASSWORD=password_you_want
 <span class="p">...</span>
 </code></pre></div></div>
 
-<h4 id="restful-api">restful API</h4>
-
-<p>Given <a href="/blog/api/2021/02/18/overview.html">pre-knowledge</a>, we can compose them as follow:</p>
+<p>Given <a href="/blog/api/2021/02/18/overview.html">pre-knowledge</a>, we can compose RESTful them as follow:</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// restful API</span>
 <span class="c1">// GET /records -&gt; records#index</span>
@@ -351,28 +268,18 @@ DB_PASSWORD=password_you_want
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="sign-up-and-login-mechanism">sign up and login mechanism</h3>
-
-<p><a href="/blog/node/2022/12/31/sign-up-and-login.html">sign up and login</a></p>
-
 <h3 id="spec">spec</h3>
 
-<p><a href="/blog/test/2021/04/06/TDD.html#aaa-principle-maps-jest">jest</a></p>
-
-<p>jest with node:</p>
-
-<ol>
-  <li>wrap node related files in <code class="language-plaintext highlighter-rouge">./app</code></li>
-  <li>set jest root directory</li>
-  <li>import related files in jest with relative path</li>
-</ol>
+<p><a href="/blog/node/2023/01/20/spec.html">spec</a></p>
 
 <h3 id="debugger">debugger</h3>
+
+<h4 id="project">project</h4>
 
 <p>In <code class="language-plaintext highlighter-rouge">package.json</code>,</p>
 
 <pre><code class="language-JSON">"scripts": {
-  "debug": "nodemon --inspect app.js"
+  "debug": "nodemon --inspect-brk server.js"
 }
 </code></pre>
 
@@ -381,13 +288,29 @@ DB_PASSWORD=password_you_want
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm run debug
 </code></pre></div></div>
 
+<p>and in chrome, enter <code class="language-plaintext highlighter-rouge">chrome://inspect</code> and then click “inspect”</p>
+
+<h4 id="jest">jest</h4>
+
+<p>The better way is to use vscode.</p>
+
+<p>open command palette with Ctrl + Shift + P and then input</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Debug: JavaScript Debug Terminal
+</code></pre></div></div>
+
+<p>In the terminal, input</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">test</span> <span class="nt">--watch</span>
+</code></pre></div></div>
+
+<p>Then we can debug the code in [debug console]</p>
+
 <h2 id="what">What?</h2>
 
-<p>place the task github url</p>
+<h3 id="sign-up-and-login">sign up and login</h3>
 
-<p>and test it with</p>
-
-<p>postman</p>
+<p><a href="/blog/node/2022/12/31/sign-up-and-login.html">sign up and login</a></p>
 
 <h2 id="reference">Reference</h2>
 
@@ -398,6 +321,8 @@ DB_PASSWORD=password_you_want
 <p><a href="https://sequelize.org/docs/v6/core-concepts/model-querying-finders/">Model Querying - Finders</a></p>
 
 <p><a href="https://jestjs.io/docs/troubleshooting">jest debug</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=IDjF6-s1hGk">Mocking a Database in Node with Jest</a></p>
 
   </div>
 </div>

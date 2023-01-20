@@ -87,7 +87,17 @@
 
 <h3 id="create-database">create database</h3>
 
-<p><a href="/blog/pg/2022/12/30/overview.html#database">here</a></p>
+<p>TODO: compose SQL file for docker to import it</p>
+
+<h4 id="with-command">with command</h4>
+
+<p><a href="/blog/pg/2022/12/30/overview.html#database">here</a> for test and development</p>
+
+<h4 id="with-docker">with docker</h4>
+
+<p>TBC, you can refer to <a href="https://dev.to/andre347/how-to-easily-create-a-postgres-database-in-docker-4moj">Create a Dockerfile and Docker Image</a></p>
+
+<h3 id="match-test-database-with-development">match test database with development</h3>
 
 <h3 id="connect-database-with-docker">connect database with docker</h3>
 
@@ -168,17 +178,47 @@ npm <span class="nb">install</span> <span class="nt">-g</span> sequelize-cli
   <li>remember to change <code class="language-plaintext highlighter-rouge">test1234</code>, <code class="language-plaintext highlighter-rouge">my_db</code> to what you desired</li>
 </ul>
 
-<h4 id="migrate">migrate</h4>
+<h4 id="migration-file">migration file</h4>
 
-<p>generate migration file</p>
+<p>generate</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequelize model:generate <span class="nt">--name</span> user <span class="nt">--attributes</span> name:string,mail:string,password:string
 </code></pre></div></div>
+
+<p>and then you can setup constraints in migration file:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+<span class="cm">/** @type {import('sequelize-cli').Migration} */</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="k">async</span> <span class="nx">up</span><span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">createTable</span><span class="p">(</span><span class="dl">'</span><span class="s1">users</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="p">...</span>
+      <span class="na">email</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
+        <span class="na">unique</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">// add this line</span>
+      <span class="p">},</span>
+      <span class="p">...</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+  <span class="k">async</span> <span class="nx">down</span><span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">dropTable</span><span class="p">(</span><span class="dl">'</span><span class="s1">users</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="migrate">migrate</h4>
 
 <p>migrate with</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequelize db:migrate
 </code></pre></div></div>
+
+<p>or add script to migrate both test and development</p>
+
+<pre><code class="language-JSON">"scripts": {
+  "database": "NODE_ENV=development sequelize db:migrate; NODE_ENV=test sequelize db:migrate"
+}
+</code></pre>
 
 <h4 id="rollback">rollback</h4>
 
@@ -200,6 +240,8 @@ npm <span class="nb">install</span> <span class="nt">-g</span> sequelize-cli
 <p><a href="https://hackmd.io/@TSMI_E7ORNeP8YBbWm-lFA/ryCtaVW_M?print-pdf">透過 sequelize 來達成 DB Schema Migration</a></p>
 
 <p><a href="https://blog.devgenius.io/use-sequelize-orm-with-postgresql-in-your-express-project-3c277b289522">Use Sequelize ORM with PostgreSQL in Your Express Project</a></p>
+
+<p><a href="https://dev.to/andre347/how-to-easily-create-a-postgres-database-in-docker-4moj">How to easily create a Postgres database in Docker</a></p>
 
   </div>
 </div>
