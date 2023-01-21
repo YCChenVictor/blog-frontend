@@ -3,7 +3,7 @@ baseurl: "/blog" # the name of your github repo
 url: "https://ycchenvictor.github.io" # the url of your github pages
 
 # site information used in page title, meta data etc.
-title: ""
+title:
 description:
 
 # color theme for links

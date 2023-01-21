@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 function Category() {
   const [tags, setTags] = useState(null)
   useEffect(() => {
-    const tags = Array.from(document.querySelector('#tags').children).
-      map(x => Tag(x.innerText.replace(/^\s+|\s+$/gm,'')));
+    const tagComponents = Array.from(document.querySelector('#tags').children)
+    const tags = tagComponents.map(x => Tag(x.innerText.replace(/^\s+|\s+$/gm,'')));
     setTags(tags)
   })
 
@@ -18,7 +18,7 @@ function Category() {
 function Tag(name) {
   return(
     <div
-        class="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border"
+        class="ml-4 text-xs inline-flex items-center font-bold leading-sm px-3 py-1 rounded-full bg-white text-gray-700 border"
       >
       <svg
         xmlns="http://www.w3.org/2000/svg"

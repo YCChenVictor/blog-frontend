@@ -17,23 +17,6 @@ publish: true
 
 Given we have basic concepts of react, threeJS and 3D model, we can start to build a 3D frontend.
 
-- [Introduction](#introduction)
-- [Why?](#why)
-- [How?](#how)
-  - [create a react app](#create-a-react-app)
-  - [install](#install)
-  - [first threejs component](#first-threejs-component)
-  - [background](#background)
-  - [import 3D model](#import-3d-model)
-  - [perspective](#perspective)
-  - [animate](#animate)
-  - [interaction](#interaction)
-  - [light and color](#light-and-color)
-  - [routes](#routes)
-  - [deploy](#deploy)
-- [What?](#what)
-- [Reference](#reference)
-
 ## Why?
 
 focus on why we need it
@@ -156,7 +139,7 @@ and put it in `<Canvas>`
 
 ### animate
 
-You can find how to build animation in 2022-05-01-threeJS-character.md and we can use it with
+You can find how to build animation in [threeJS character]({{site.baseurl}}/threejs/2022/05/01/threeJS-character.html) and we can use it with
 
 ```jsx
 useEffect(() => {
