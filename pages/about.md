@@ -1,7 +1,17 @@
 ---
 layout: page
-title: About
 permalink: about
 ---
 
-Hello
+<div class="mx-auto text-center prose prose-{{site.theme-color}}">
+  <div>
+    <img class="object-cover mx-auto h-36 w-36 rounded-full" src="{{site.baseurl}}/assets/img/{{site.author-image}}"
+      alt="author profile image">
+    <h1>{{site.author}}</h1>
+  </div>
+  {% if site.author-bio %}
+    <p class="text-gray-500 pb-4">{{site.author-bio}}</p>
+  {% endif %}
+</div>
+
+{% include social-media.html %}
