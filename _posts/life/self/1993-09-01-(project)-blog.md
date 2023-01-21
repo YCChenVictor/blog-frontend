@@ -23,7 +23,12 @@ focus on why we need it
 
 ## How?
 
-* solve category tags of uppercase
+* make landing api looks like openai, with capybara image as title image and the art drawing as background
+* move image to about section
+* solve <meta name="viewport"
+* connect linkedin API
+* add landing page for it
+* add animation on landing page
 * backend with rails to login and signup
 
 ## What?

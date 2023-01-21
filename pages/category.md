@@ -33,7 +33,7 @@ permalink: category
   
 <div id='articles'>
   {% for category in categories %}
-    <h2 id="{{ category | slugify }}">{{ category }}</h2>
+    <h2 id="{{ category }}">{{ category }}</h2>
     <ul>
       {% for post in site.posts %}
         {% if post.publish %}
