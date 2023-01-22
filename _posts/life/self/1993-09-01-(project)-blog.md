@@ -23,7 +23,8 @@ focus on why we need it
 
 ## How?
 
-* make landing api looks like openai, with capybara image as title image and the art drawing as background
+* add a stylish title image (generate by AI)
+* make landing api looks like openai, with capybara image as helper image and the art (branch: update-landing-page) drawing as background
 * move image to about section
 * solve <meta name="viewport"
 * connect linkedin API
