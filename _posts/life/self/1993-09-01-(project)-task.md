@@ -30,6 +30,12 @@ Two role: task giver and task receiver
 * task acquirer can upload their masterpiece and try to pass the specs
 * Once the specs complete, the transactions complete automatically by blockchain
 
+### frontend
+
+please do the frontend first tomorrow
+
+### backend
+
 ## What?
 
 ### project
@@ -56,7 +62,11 @@ POST /login
 
 ### TODO
 
-* try to connect Jenkins API to upload tests
+* understand how to create job on jenkins' UI
+* create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
+* create frontend to upload commit to be test by the job
+* post back the test result from jenkins
+* once solved a contract should make the deal immediately
 * let user to create task with spec
 * add frontend to post API login
 * add bcrypt for password
