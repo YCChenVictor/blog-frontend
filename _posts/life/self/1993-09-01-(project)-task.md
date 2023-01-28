@@ -4,7 +4,7 @@ title:
 description: ''
 date: '1993-09-01'
 categories:
-note:
+note: 用最快的速度做出 MVP
 mathjax:
 mermaid:
 p5:
@@ -29,6 +29,12 @@ Two role: task giver and task receiver
   * button to create a task
 * task acquirer can upload their masterpiece and try to pass the specs
 * Once the specs complete, the transactions complete automatically by blockchain
+
+### frontend
+
+Please refer to `package.json` to find how to start the project
+
+### backend
 
 ## What?
 
@@ -56,7 +62,16 @@ POST /login
 
 ### TODO
 
-* try to connect Jenkins API to upload tests
+* (backend) solve CSRF
+* (frontend) solve CSRF
+* (backend) add bcrypt to password
+* signup and login on frontend
+* (backend: create-task-api) create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
+* understand how to create job on jenkins' UI
+* create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
+* create frontend to upload commit to be test by the job
+* post back the test result from jenkins
+* once solved a contract should make the deal immediately
 * let user to create task with spec
 * add frontend to post API login
 * add bcrypt for password
