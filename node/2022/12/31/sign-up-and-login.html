@@ -93,7 +93,7 @@
 
 <h2 id="how">How?</h2>
 
-<p>I will use passport for authentication. After sign up, the system will login this user automatically.</p>
+<p>I will use passport for authentication.</p>
 
 <h3 id="init">init</h3>
 
@@ -104,9 +104,50 @@ npm i passport-local
 npm i express-session
 </code></pre></div></div>
 
-<h3 id="config">config</h3>
+<h3 id="sign-up">sign up</h3>
 
-<p>add <code class="language-plaintext highlighter-rouge">./configs/config.js</code> with</p>
+<h4 id="api">API</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../services/passport.js</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../database/models/user.js</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsonwebtoken</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/signup</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="c1">// create</span>
+    <span class="kd">const</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">username</span>
+    <span class="kd">const</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">password</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">email</span> <span class="o">||</span> <span class="o">!</span><span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">msg</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Please enter all fields</span><span class="dl">'</span> <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">User</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+      <span class="nx">email</span><span class="p">,</span>
+      <span class="nx">password</span>
+    <span class="p">})</span>
+
+    <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span> <span class="dl">'</span><span class="s1">secret_key</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="na">token</span><span class="p">:</span> <span class="nx">token</span> <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+  <span class="p">})</span>
+
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="spec">spec</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<h3 id="login-tbc">login (TBC)</h3>
+
+<h4 id="service">service</h4>
+
+<p>You can think <code class="language-plaintext highlighter-rouge">passport.js</code> as a service to check whether this user can enter the border of our app.</p>
+
+<ul>
+  <li>add <code class="language-plaintext highlighter-rouge">./service/passport.js</code> with (which can help use check whether it is legal for this user to check in)</li>
+</ul>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../database/models/user.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">LocalStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport-local</span><span class="dl">'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">;</span>
@@ -145,66 +186,6 @@ npm i express-session
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">passport</span>
 </code></pre></div></div>
-
-<p>In the code, you can see it will first find whether the user exist; if not, it will create a new user for you.</p>
-
-<h3 id="apis-signup-users-login">APIs (signup, users, login)</h3>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../configs/passport.js</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../database/models/user.js</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/signup</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="c1">// create</span>
-    <span class="kd">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">email</span> <span class="o">||</span> <span class="o">!</span><span class="nx">password</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">msg</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Please enter all fields</span><span class="dl">'</span> <span class="p">});</span>
-    <span class="p">}</span>
-    
-    <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="nx">email</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">user</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">msg</span><span class="p">:</span> <span class="dl">'</span><span class="s1">User already exists</span><span class="dl">'</span> <span class="p">});</span>
-  
-      <span class="kd">const</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">({</span>
-        <span class="nx">email</span><span class="p">,</span>
-        <span class="nx">password</span>
-      <span class="p">});</span>
-  
-      <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">genSalt</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">salt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span> <span class="nx">salt</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">hash</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
-          <span class="nx">newUser</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">;</span>
-          <span class="nx">newUser</span>
-            <span class="p">.</span><span class="nx">save</span><span class="p">()</span>
-            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user</span> <span class="o">=&gt;</span> <span class="p">{</span>
-              <span class="k">return</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="dl">'</span><span class="s1">local</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-                <span class="na">successRedirect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/dashboard</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">failureRedirect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/signup</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">failureFlash</span><span class="p">:</span> <span class="kc">true</span>
-              <span class="p">})(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">);</span>
-            <span class="p">})</span>
-            <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
-        <span class="p">});</span>
-      <span class="p">});</span>
-    <span class="p">});</span>
-  <span class="p">});</span>
-
-  <span class="c1">// read, index</span>
-  <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/users</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">modelUser</span><span class="p">.</span><span class="nx">findAll</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
-    <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Failed to retrieve data : </span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
-    <span class="p">});</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="spec">spec</h3>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
-
-<h4 id="login-tbc">login (TBC)</h4>
 
 <p>define routes</p>
 
@@ -269,6 +250,8 @@ npm i express-session
 <p><a href="https://dev.to/ganeshmani/node-authentication-using-passport-js-part-1-53k7">Node Authentication using passport.js - Part 1</a></p>
 
 <p><a href="https://stackoverflow.com/questions/33247602/how-do-you-debug-jest-tests">How do you debug Jest Tests?</a></p>
+
+<p><a href="https://www.passportjs.org/concepts/authentication/password/">Username &amp; Password</a></p>
 
   </div>
 </div>

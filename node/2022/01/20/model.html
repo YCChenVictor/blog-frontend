@@ -142,7 +142,7 @@
 <h3 id="read">Read</h3>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// find last one</span>
-<span class="nx">model</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="nx">key</span> <span class="p">},</span> <span class="na">order</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span> <span class="dl">'</span><span class="s1">createdAt</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">DESC</span><span class="dl">'</span> <span class="p">]],</span> <span class="p">});</span>
+<span class="nx">record</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">model</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="nx">key</span> <span class="p">},</span> <span class="na">order</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span> <span class="dl">'</span><span class="s1">createdAt</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">DESC</span><span class="dl">'</span> <span class="p">]],</span> <span class="p">});</span>
 </code></pre></div></div>
 
 <h3 id="update">Update</h3>

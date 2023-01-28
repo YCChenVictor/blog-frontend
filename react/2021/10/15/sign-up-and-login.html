@@ -109,29 +109,64 @@
   <span class="kd">const</span> <span class="p">[</span><span class="nx">username</span><span class="p">,</span> <span class="nx">setUsername</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">password</span><span class="p">,</span> <span class="nx">setPassword</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span>
   <span class="kd">const</span> <span class="p">{</span> <span class="nx">signUpModalOpen</span><span class="p">,</span> <span class="nx">setSignUpModalOpen</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useContext</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">MyContext</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">PostSignUpInfo</span> <span class="o">=</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:5000/signup</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">params</span> <span class="p">}),</span>
+    <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+    <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span>
+    <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+
   <span class="k">return</span><span class="p">(</span>
     <span class="p">&lt;</span><span class="nc">Modal</span>
-      <span class="err">...</span>
+      <span class="na">ariaHideApp</span><span class="p">=</span><span class="si">{</span><span class="kc">false</span><span class="si">}</span> <span class="c1">// TODO: remove it and fix the errors</span>
+      <span class="na">isOpen</span><span class="p">=</span><span class="si">{</span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">signUpModalOpen</span><span class="p">)</span><span class="si">}</span>
+      <span class="na">className</span><span class="p">=</span><span class="s">'rounded-lg dark:bg-gray-700 max-w-2xl md:h-auto'</span>
     <span class="p">&gt;</span>
-      ...
-      <span class="p">&lt;</span><span class="nt">button</span>
-        <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">PostSignUpInfo</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span><span class="nx">username</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span><span class="nx">password</span> <span class="p">})</span><span class="si">}</span>
-      <span class="p">&gt;</span>Sign Up<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      ...
+      <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">className</span><span class="p">=</span><span class="s">"text-xl font-semibold text-gray-900 dark:text-white"</span>
+      <span class="p">&gt;</span>Sign Up<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
+          email:
+          <span class="p">&lt;</span><span class="nt">input</span>
+            <span class="na">type</span><span class="p">=</span><span class="s">"text"</span>
+            <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">username</span><span class="si">}</span>
+            <span class="na">placeholder</span><span class="p">=</span><span class="s">"Username"</span>
+            <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setUsername</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span>
+          <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
+          password:
+          <span class="p">&lt;</span><span class="nt">input</span>
+            <span class="na">type</span><span class="p">=</span><span class="s">"password"</span>
+            <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">password</span><span class="si">}</span>
+            <span class="na">placeholder</span><span class="p">=</span><span class="s">"Password"</span>
+            <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setPassword</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span>
+          <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">'flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600'</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span>
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">PostSignUpInfo</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span><span class="nx">username</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span><span class="nx">password</span> <span class="p">})</span><span class="si">}</span>
+          <span class="na">className</span><span class="p">=</span><span class="s">'block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'</span>
+        <span class="p">&gt;</span>Sign Up<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span>
+          <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setSignUpModalOpen</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="si">}</span>
+          <span class="na">className</span><span class="p">=</span><span class="s">'text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600'</span>
+        <span class="p">&gt;</span>Close<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nc">Modal</span><span class="p">&gt;</span>
   <span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">PostSignUpInfo</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:3000/sign_up</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-      <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">params</span> <span class="p">}),</span>
-  <span class="p">})</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">r</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">));</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">SignUpModal</span><span class="p">;</span>

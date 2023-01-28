@@ -103,6 +103,12 @@
   <li>Once the specs complete, the transactions complete automatically by blockchain</li>
 </ul>
 
+<h3 id="frontend">frontend</h3>
+
+<p>Please refer to <code class="language-plaintext highlighter-rouge">package.json</code> to find how to start the project</p>
+
+<h3 id="backend">backend</h3>
+
 <h2 id="what">What?</h2>
 
 <h3 id="project">project</h3>
@@ -143,7 +149,16 @@ POST /login</p>
 <h3 id="todo">TODO</h3>
 
 <ul>
-  <li>try to connect Jenkins API to upload tests</li>
+  <li>(backend) solve CSRF</li>
+  <li>(frontend) solve CSRF</li>
+  <li>(backend) add bcrypt to password</li>
+  <li>signup and login on frontend</li>
+  <li>(backend: create-task-api) create frontend to create job: once login -&gt; click create job -&gt; redirect to Jenkins (should create service to translate DSL to xml in the future) -&gt; create job</li>
+  <li>understand how to create job on jenkins’ UI</li>
+  <li>create frontend to create job: once login -&gt; click create job -&gt; redirect to Jenkins (should create service to translate DSL to xml in the future) -&gt; create job</li>
+  <li>create frontend to upload commit to be test by the job</li>
+  <li>post back the test result from jenkins</li>
+  <li>once solved a contract should make the deal immediately</li>
   <li>let user to create task with spec</li>
   <li>add frontend to post API login</li>
   <li>add bcrypt for password</li>

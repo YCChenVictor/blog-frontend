@@ -149,152 +149,7 @@ npm start
 
 <h3 id="concept-of-component">concept of component</h3>
 
-<p>A really basic component: in <code class="language-plaintext highlighter-rouge">src</code>, create <code class="language-plaintext highlighter-rouge">components/counter.jsx</code> with</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useRef</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">Counter</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-  <span class="c1">// should add two example of useRef</span>
-
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="o">&lt;</span><span class="nx">React</span><span class="p">.</span><span class="nx">Fragment</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">xxx</span><span class="dl">'</span><span class="o">&gt;</span>
-        <span class="p">{</span><span class="nx">count</span><span class="p">}</span>
-      <span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
-</span>      <span class="o">&lt;</span><span class="nx">button</span>
-        <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span>
-      <span class="o">&gt;</span>
-        <span class="nx">Increment</span>
-      <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>    <span class="o">&lt;</span><span class="sr">/React.Fragment</span><span class="err">&gt;
-</span>  <span class="p">);</span>
-<span class="p">}</span>
- 
-<span class="k">export</span> <span class="k">default</span> <span class="nx">Counter</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>and import them</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Counter</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/counter.jsx</span><span class="dl">'</span>
-
-<span class="p">...</span>
-<span class="o">&lt;</span><span class="nx">Counter</span> <span class="o">/&gt;</span>
-<span class="p">...</span>
-</code></pre></div></div>
-
-<p>It includes</p>
-
-<ul>
-  <li>Naming of component must start from uppercase</li>
-  <li>HTML &amp; CSS: the styles
-    <ul>
-      <li>CSS: through <code class="language-plaintext highlighter-rouge">className</code></li>
-    </ul>
-  </li>
-  <li>relationship between states and events
-    <ul>
-      <li>check <a href="/blog/react/2021/06/17/React-4-Hook.html">hook</a></li>
-    </ul>
-  </li>
-</ul>
-
-<p>The reason to use component: <code class="language-plaintext highlighter-rouge">render()</code> method returns <strong>react elements</strong>, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.</p>
-
-<h4 id="insert-components">insert components</h4>
-
-<p>React accept pass array of components into a component and render them; Take <code class="language-plaintext highlighter-rouge">sidebar</code> as example,</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">menuItems</span><span class="p">,</span> <span class="nx">setMenuItems</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">'</span><span class="s1">testing</span><span class="dl">'</span><span class="p">)</span>
-  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">queriedTitles</span> <span class="o">=</span> <span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">h1, h2, h3, h4, h5, h6</span><span class="dl">'</span><span class="p">)];</span>
-    <span class="kd">const</span> <span class="nx">titles</span> <span class="o">=</span> <span class="nx">queriedTitles</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">H1</span><span class="dl">'</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span>
-      <span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="na">tag</span><span class="p">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/</span><span class="se">\d</span><span class="sr">+/</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="na">position</span><span class="p">:</span> <span class="nx">queriedTitles</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">item</span><span class="p">)})</span>
-    <span class="p">)</span>
-    <span class="kd">const</span> <span class="nx">menuItemsDesired</span> <span class="o">=</span> <span class="nx">titles</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">title</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nc">MenuItem</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">title</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&lt;/</span><span class="nc">MenuItem</span><span class="p">&gt;))</span>
-    <span class="nx">setMenuItems</span><span class="p">(</span><span class="nx">menuItemsDesired</span><span class="p">)</span>
-  <span class="p">},</span> <span class="p">[]);</span>
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="p">=</span> <span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
-            <span class="p">&lt;</span><span class="nc">Menu</span><span class="p">&gt;</span>
-              <span class="si">{</span><span class="nx">menuItems</span><span class="si">}</span>
-            <span class="p">&lt;/</span><span class="nc">Menu</span><span class="p">&gt;</span>
-          <span class="p">&lt;/</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
-        <span class="p">&lt;/</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h4 id="child">child</h4>
-
-<p>To decompose elements with full functionality, check <a href="/blog/react/2021/06/15/prop.html">prop</a></p>
-
-<h4 id="from-class-to-functional">from class to functional</h4>
-
-<p>Form example, from</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Clock</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-
-  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="na">date</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()};</span>
-  <span class="p">}</span>
-
-  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">timerID</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span>
-      <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
-          <span class="na">date</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
-        <span class="p">}),</span>
-      <span class="mi">1000</span>
-    <span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timerID</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>It is <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span><span class="si">}</span>.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">);</span>
-  <span class="p">}</span>
-
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>to</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Clock</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">[</span><span class="nx">date</span><span class="p">,</span> <span class="nx">setDate</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
-
-  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span>
-      <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span> <span class="mi">1000</span>
-    <span class="p">);</span>
-    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">interval</span><span class="p">);</span>
-  <span class="p">});</span>
-
-  <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>It is <span class="si">{</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span><span class="si">}</span>.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">export</span> <span class="k">default</span> <span class="nx">Clock</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>The hook, <code class="language-plaintext highlighter-rouge">useState</code> to setup the date and <code class="language-plaintext highlighter-rouge">setDate</code> function to change the date. If I want <code class="language-plaintext highlighter-rouge">setInterval</code> to be disabled after this component closed, just like <code class="language-plaintext highlighter-rouge">componentWillUnmount</code>, adding <code class="language-plaintext highlighter-rouge">return () =&gt; clearInterval(interval);</code></p>
+<p><a href="/blog/react/2023/01/27/component.html">component</a></p>
 
 <h3 id="concept-of-routes">concept of routes</h3>
 
@@ -357,13 +212,41 @@ npm start
 
 <p><a href="/blog/react/2021/06/14/layout.html">layout</a></p>
 
-<h3 id="sign-up-and-login-mechanism">sign up and login mechanism</h3>
+<h3 id="risk">risk</h3>
 
-<p><a href="/blog/react/2021/10/15/sign-up-and-login.html">sign up and login mechanism</a></p>
+<ul>
+  <li><a href="/blog/web-security/2022/08/30/overview.html#csrf">CSRF</a></li>
+  <li>XSS: (TODO) try to explain how react prevent it</li>
+</ul>
+
+<h3 id="cookie">cookie</h3>
+
+<p>We can access it with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">cookieValue</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">(?:(?:</span><span class="sr">^|.*;</span><span class="se">\s</span><span class="sr">*</span><span class="se">)</span><span class="sr">username</span><span class="se">\s</span><span class="sr">*</span><span class="se">\=\s</span><span class="sr">*</span><span class="se">([^</span><span class="sr">;</span><span class="se">]</span><span class="sr">*</span><span class="se">)</span><span class="sr">.*$</span><span class="se">)</span><span class="sr">|^.*$/</span><span class="p">,</span> <span class="dl">"</span><span class="s2">$1</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="localstorage">localStorage</h3>
+
+<ul>
+  <li>set it</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>read it</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">items</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h2 id="what">What?</h2>
 
-<p>TBC</p>
+<h3 id="sign-up-and-login-mechanism">sign up and login mechanism</h3>
+
+<p><a href="/blog/react/2021/10/15/sign-up-and-login.html">sign up and login mechanism</a></p>
 
 <h2 id="reference">Reference</h2>
 
@@ -371,14 +254,7 @@ npm start
 
 <p><a href="https://www.youtube.com/watch?v=9ZEjSxDRIik">Build a 3D World in React with ThreeJS and React Three Fiber</a></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>[【React教學】一個範例讓你搞懂useState, useRef, useEffect</td>
-      <td>5分鐘快速教學](https://www.youtube.com/watch?v=q0C5g4WIrKU&amp;t=132s)</td>
-    </tr>
-  </tbody>
-</table>
+<p><a href="https://www.youtube.com/watch?v=q0C5g4WIrKU&amp;t=132s">【React教學】一個範例讓你搞懂useState, useRef, useEffect, 5分鐘快速教學</a></p>
 
 <p><a href="https://reactjs.org/docs/hooks-overview.html">Hooks at a Glance</a></p>
 

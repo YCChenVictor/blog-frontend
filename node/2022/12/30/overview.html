@@ -208,71 +208,15 @@ node_modules/
 
 <h3 id="model">model</h3>
 
-<p><a href="/blog/node/2022/12/30/database.html">model</a></p>
+<p><a href="/blog/node/2022/01/20/model.html">model</a></p>
+
+<ul>
+  <li>CRUD in sequelize</li>
+</ul>
 
 <h3 id="api">API</h3>
 
-<p>create a directory, <code class="language-plaintext highlighter-rouge">api/</code> with API going to be imported in <code class="language-plaintext highlighter-rouge">app.js</code></p>
-
-<p>For example, <code class="language-plaintext highlighter-rouge">api/summary.js</code></p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">})</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>in <code class="language-plaintext highlighter-rouge">app.js</code>,</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-<span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./routes_summary.js</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
-
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
-  <span class="p">...</span>
-<span class="p">})</span>
-<span class="p">...</span>
-</code></pre></div></div>
-
-<p>Given <a href="/blog/api/2021/02/18/overview.html">pre-knowledge</a>, we can compose RESTful them as follow:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// restful API</span>
-<span class="c1">// GET /records -&gt; records#index</span>
-<span class="c1">// POST /records -&gt; records#create</span>
-<span class="c1">// GET /records/new -&gt; records#new</span>
-<span class="c1">// GET /records/:id/edit -&gt; records#edit</span>
-<span class="c1">// GET /records/:id -&gt; records#show</span>
-<span class="c1">// PATCH /records/:id -&gt; records#update</span>
-<span class="c1">// PUT /records/:id -&gt; records#update</span>
-<span class="c1">// DELETE /records/:id -&gt; records#destroy</span>
-
-<span class="kd">const</span> <span class="nx">modelUser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../database/models/user.js</span><span class="dl">'</span><span class="p">)</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// create</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/sign_up</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">modelUser</span><span class="p">.</span><span class="nx">signUp</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
-  <span class="p">});</span>
-  <span class="c1">// read, index</span>
-  <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/users</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">============</span><span class="dl">'</span><span class="p">)</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">modelUser</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nx">modelUser</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
-      <span class="na">order</span><span class="p">:</span> <span class="p">[</span>
-          <span class="p">[</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ASC</span><span class="dl">'</span><span class="p">],</span>
-      <span class="p">],</span>
-    <span class="p">})</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p><a href="/blog/node/2022/01/26/api.html">API</a></p>
 
 <h3 id="spec">spec</h3>
 
@@ -285,7 +229,7 @@ node_modules/
 <p>In <code class="language-plaintext highlighter-rouge">package.json</code>,</p>
 
 <pre><code class="language-JSON">"scripts": {
-  "debug": "nodemon --inspect-brk server.js"
+  "debug": "NODE_ENV=test npx nodemon --inspect-brk server.js",
 }
 </code></pre>
 
@@ -329,6 +273,8 @@ node_modules/
 <p><a href="https://jestjs.io/docs/troubleshooting">jest debug</a></p>
 
 <p><a href="https://www.youtube.com/watch?v=IDjF6-s1hGk">Mocking a Database in Node with Jest</a></p>
+
+<p><a href="https://nodejs.org/api/http.html">Node.js v19.5.0 documentation</a></p>
 
   </div>
 </div>

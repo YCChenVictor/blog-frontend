@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="flex">
+    <div class="flex absolute left-0 top-0">
+      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
+        alt="author profile image">
+    </div>
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="w-full relative flex justify-center">
+        <button type="button" onclick="toggleNavbar('navbar')"
+          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+          aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute right-16 flex hidden md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+           <!-- don't show Home in menu for Homepage -->
+          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+            href="/blog/">
+            Home
+          </a>
+          
+
+        <!-- dynamic menu based on navigation info in _config.yml -->
+        
+           <!-- don't show current page in menu -->
+          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+            href="/blog/about">
+            About
+          </a>
+          
+        
+           <!-- don't show current page in menu -->
+          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+            href="/blog/category">
+            Category
+          </a>
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+
+<div class="p-16 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Component</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>quick explanation</p>
+
+<h2 id="why">Why?</h2>
+
+<p>focus on why we need it</p>
+
+<h2 id="how">How?</h2>
+
+<p>A really basic component: in <code class="language-plaintext highlighter-rouge">src</code>, create <code class="language-plaintext highlighter-rouge">components/counter.jsx</code> with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useRef</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">Counter</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  <span class="c1">// should add two example of useRef</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">React</span><span class="p">.</span><span class="nx">Fragment</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">xxx</span><span class="dl">'</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">count</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span>
+        <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">setCount</span><span class="p">((</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">prev</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span>
+      <span class="o">&gt;</span>
+        <span class="nx">Increment</span>
+      <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/React.Fragment</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Counter</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>and import them</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">Counter</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/counter.jsx</span><span class="dl">'</span>
+
+<span class="p">...</span>
+<span class="o">&lt;</span><span class="nx">Counter</span> <span class="o">/&gt;</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>It includes</p>
+
+<ul>
+  <li>Naming of component must start from uppercase</li>
+  <li>HTML &amp; CSS: the styles
+    <ul>
+      <li>CSS: through <code class="language-plaintext highlighter-rouge">className</code></li>
+    </ul>
+  </li>
+  <li>relationship between states and events
+    <ul>
+      <li>check <a href="/blog/react/2021/06/17/React-4-Hook.html">hook</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>The reason to use component: <code class="language-plaintext highlighter-rouge">render()</code> method returns <strong>react elements</strong>, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.</p>
+
+<h3 id="hook">hook</h3>
+
+<p><a href="/blog/react/2021/06/17/hook.html">hook</a></p>
+
+<h3 id="insert-components">insert components</h3>
+
+<p>React accept pass array of components into a component and render them; Take <code class="language-plaintext highlighter-rouge">sidebar</code> as example,</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">SidebarLayout</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">menuItems</span><span class="p">,</span> <span class="nx">setMenuItems</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">'</span><span class="s1">testing</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">queriedTitles</span> <span class="o">=</span> <span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">h1, h2, h3, h4, h5, h6</span><span class="dl">'</span><span class="p">)];</span>
+    <span class="kd">const</span> <span class="nx">titles</span> <span class="o">=</span> <span class="nx">queriedTitles</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">tagName</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">H1</span><span class="dl">'</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span>
+      <span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="na">tag</span><span class="p">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/</span><span class="se">\d</span><span class="sr">+/</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="na">position</span><span class="p">:</span> <span class="nx">queriedTitles</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">item</span><span class="p">)})</span>
+    <span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">menuItemsDesired</span> <span class="o">=</span> <span class="nx">titles</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">title</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nc">MenuItem</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">title</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&lt;/</span><span class="nc">MenuItem</span><span class="p">&gt;))</span>
+    <span class="nx">setMenuItems</span><span class="p">(</span><span class="nx">menuItemsDesired</span><span class="p">)</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="p">=</span> <span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Menu</span><span class="p">&gt;</span>
+              <span class="si">{</span><span class="nx">menuItems</span><span class="si">}</span>
+            <span class="p">&lt;/</span><span class="nc">Menu</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nc">Sidebar</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">BrowserRouter</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nc">ProSidebarProvider</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="child">child</h3>
+
+<p>To decompose elements with full functionality, check <a href="/blog/react/2021/06/15/prop.html">prop</a></p>
+
+<h3 id="class-to-functional">class to functional</h3>
+
+<p>Form example, from</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Clock</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="na">date</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()};</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">timerID</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span>
+      <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+          <span class="na">date</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+        <span class="p">}),</span>
+      <span class="mi">1000</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timerID</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>It is <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span><span class="si">}</span>.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Clock</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">date</span><span class="p">,</span> <span class="nx">setDate</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span>
+      <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">setDate</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()),</span> <span class="mi">1000</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">interval</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>It is <span class="si">{</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()</span><span class="si">}</span>.<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Clock</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The hook, <code class="language-plaintext highlighter-rouge">useState</code> to setup the date and <code class="language-plaintext highlighter-rouge">setDate</code> function to change the date. If I want <code class="language-plaintext highlighter-rouge">setInterval</code> to be disabled after this component closed, just like <code class="language-plaintext highlighter-rouge">componentWillUnmount</code>, adding <code class="language-plaintext highlighter-rouge">return () =&gt; clearInterval(interval);</code></p>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
+
+<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+</html>

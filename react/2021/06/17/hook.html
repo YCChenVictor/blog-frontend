@@ -121,6 +121,15 @@
 
 <p><code class="language-plaintext highlighter-rouge">useState</code> returns the current state and a function for updating the state. In the <code class="language-plaintext highlighter-rouge">Clock</code>, <code class="language-plaintext highlighter-rouge">const [count, setDate] = useState(0)</code> means set the initial value of count equals to 0 and use setCount to update the value of the state</p>
 
+<ul>
+  <li>we can warp the set method from <code class="language-plaintext highlighter-rouge">useState</code> in a function</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">example</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setDate</span><span class="p">(</span><span class="nx">xxx</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
 <h3 id="useeffect">useEffect</h3>
 
 <p>Define customized effects and trigger it <strong>when rerender</strong> component. In the example above, after <code class="language-plaintext highlighter-rouge">Clock</code> component created, it will trigger function in <code class="language-plaintext highlighter-rouge">useEffect()</code>, which will trigger <code class="language-plaintext highlighter-rouge">setDate()</code> to set the value of <code class="language-plaintext highlighter-rouge">date</code> in each 1000 millisecond.</p>
@@ -211,27 +220,31 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h2 id="other">Other</h2>
+<h3 id="other">Other</h3>
+
+<h4 id="onclick">Onclick</h4>
+
+<p>Define what to do when we click a button</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">button</span>
+  <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">fn1</span><span class="p">();</span> <span class="nx">fn2</span><span class="p">()}}</span>
+  <span class="nx">className</span><span class="o">=</span><span class="dl">""</span>
+<span class="o">&gt;</span><span class="nx">Click</span> <span class="nx">me</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span></code></pre></div></div>
 
 <ul>
-  <li>useState
+  <li>useEffect
     <ul>
-      <li>define how state changes and store the value when an event occur and <strong>rerender</strong> component to show the effect</li>
-      <li>example: <code class="language-plaintext highlighter-rouge">&lt;button onClick={() =&gt; setCount((prev) =&gt; prev + 1)}&gt; increment &lt;/button&gt;</code></li>
-      <li>useEffect
-        <ul>
-          <li>define customized effects and trigger it <strong>when rerender</strong> component</li>
-        </ul>
-      </li>
-      <li>useRef: two usages
-        <ul>
-          <li>store value of reference and it will not rerender component when value changed</li>
-          <li>serve as reference of current component (like queryselector)</li>
-        </ul>
-      </li>
-      <li>useContext: TBC</li>
+      <li>define customized effects and trigger it <strong>when rerender</strong> component</li>
     </ul>
   </li>
+  <li>useRef: two usages
+    <ul>
+      <li>store value of reference and it will not rerender component when value changed</li>
+      <li>serve as reference of current component (like queryselector)</li>
+    </ul>
+  </li>
+  <li>useContext: TBC</li>
   <li>class &amp; lifecycle vs hooks: TBC</li>
 </ul>
 
