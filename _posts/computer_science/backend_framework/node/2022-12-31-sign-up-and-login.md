@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-12-31'
 categories: node
-note:
+note: 似乎只有 login 需要用到 passport
 mathjax:
 mermaid:
 p5:
@@ -25,7 +25,7 @@ Compare to not use passport
 
 ## How?
 
-I will use passport for authentication. After sign up, the system will login this user automatically.
+I will use passport for authentication.
 
 ### init
 
@@ -37,9 +37,50 @@ npm i passport-local
 npm i express-session
 ```
 
-### config
+### sign up
 
-add `./configs/config.js` with
+#### API
+
+```javascript
+const passport = require('../services/passport.js');
+const User = require('../database/models/user.js');
+const jwt = require('jsonwebtoken');
+
+module.exports = (app) => {
+  app.post('/signup', async (req, res, next) => { // create
+    const email = req.body.params.username
+    const password = req.body.params.password
+    if (!email || !password) {
+      return res.status(401).json({ msg: 'Please enter all fields' });
+    }
+
+    const user = await User.create({
+      email,
+      password
+    })
+
+    const token = jwt.sign(user.email, 'secret_key');
+    res.json({ token: token });
+    res.end()
+  })
+
+  ...
+}
+```
+
+#### spec
+
+```javascript
+
+```
+
+### login (TBC)
+
+#### service
+
+You can think `passport.js` as a service to check whether this user can enter the border of our app.
+
+* add `./service/passport.js` with (which can help use check whether it is legal for this user to check in)
 
 ```javascript
 const User = require('../database/models/user.js');
@@ -79,68 +120,6 @@ passport.deserializeUser((id, done) => {
 
 module.exports = passport
 ```
-
-In the code, you can see it will first find whether the user exist; if not, it will create a new user for you.
-
-### APIs (signup, users, login)
-
-```javascript
-const passport = require('../configs/passport.js');
-const User = require('../database/models/user.js');
-
-module.exports = (app) => {
-  app.post('/signup', (req, res, next) => { // create
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({ msg: 'Please enter all fields' });
-    }
-    
-    User.findOne({ email }).then(user => {
-      if (user) return res.status(400).json({ msg: 'User already exists' });
-  
-      const newUser = new User({
-        email,
-        password
-      });
-  
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => {
-              return passport.authenticate('local', {
-                successRedirect: '/dashboard',
-                failureRedirect: '/signup',
-                failureFlash: true
-              })(req, res, next);
-            })
-            .catch(err => console.log(err));
-        });
-      });
-    });
-  });
-
-  // read, index
-  app.get('/users', () => {
-    modelUser.findAll().then(res => {
-      console.log(res)
-    }).catch((error) => {
-        console.error('Failed to retrieve data : ', error);
-    });
-  })
-}
-```
-
-### spec
-
-```javascript
-
-```
-
-#### login (TBC)
 
 define routes
 
@@ -208,3 +187,5 @@ TBC
 [Node Authentication using passport.js - Part 1](https://dev.to/ganeshmani/node-authentication-using-passport-js-part-1-53k7)
 
 [How do you debug Jest Tests?](https://stackoverflow.com/questions/33247602/how-do-you-debug-jest-tests)
+
+[Username & Password](https://www.passportjs.org/concepts/authentication/password/)

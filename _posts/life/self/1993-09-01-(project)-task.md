@@ -4,7 +4,7 @@ title:
 description: ''
 date: '1993-09-01'
 categories:
-note:
+note: 用最快的速度做出 MVP
 mathjax:
 mermaid:
 p5:
@@ -32,7 +32,7 @@ Two role: task giver and task receiver
 
 ### frontend
 
-please do the frontend first tomorrow
+Please refer to `package.json` to find how to start the project
 
 ### backend
 
@@ -62,6 +62,11 @@ POST /login
 
 ### TODO
 
+* (backend) solve CSRF
+* (frontend) solve CSRF
+* (backend) add bcrypt to password
+* signup and login on frontend
+* (backend: create-task-api) create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
 * understand how to create job on jenkins' UI
 * create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
 * create frontend to upload commit to be test by the job
