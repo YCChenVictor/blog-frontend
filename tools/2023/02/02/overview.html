@@ -76,99 +76,93 @@
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(project) Task</h1>
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>This project decentralize the tasks.</p>
+<p>M2 seems cannot use zsh, so use kitty terminal instead but still use oh my zsh and Powerlevel10k</p>
 
 <h2 id="why">Why?</h2>
 
 <h2 id="how">How?</h2>
 
-<p>Two role: task giver and task receiver</p>
+<h3 id="brew">brew</h3>
 
 <ul>
-  <li>landing page
-    <ul>
-      <li>login mechanism</li>
-      <li>list out the tasks, each tasks should have a spec to test</li>
-      <li>button to create a task</li>
-    </ul>
-  </li>
-  <li>task acquirer can upload their masterpiece and try to pass the specs</li>
-  <li>Once the specs complete, the transactions complete automatically by blockchain</li>
+  <li>install</li>
 </ul>
 
-<h3 id="frontend">frontend</h3>
+<p>https://brew.sh/</p>
 
-<p>Please refer to <code class="language-plaintext highlighter-rouge">package.json</code> to find how to start the project</p>
+<ul>
+  <li>add export</li>
+</ul>
 
-<h3 id="backend">backend</h3>
+<p>In <code class="language-plaintext highlighter-rouge">.zshrc</code>,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>/opt/homebrew/bin:<span class="nv">$PATH</span>
+</code></pre></div></div>
+
+<h3 id="iterm2-or-kitty">iterm2 or kitty</h3>
+
+<ul>
+  <li>install iterm2</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>iterm2
+</code></pre></div></div>
+
+<ul>
+  <li>install kitty terminal</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h3 id="zsh">zsh</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>zsh
+</code></pre></div></div>
+
+<h3 id="powerlevel9k">Powerlevel9k</h3>
+
+<ul>
+  <li>install</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+</code></pre></div></div>
+
+<ul>
+  <li>enable</li>
+</ul>
+
+<p>In <code class="language-plaintext highlighter-rouge">.zshrc</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">"powerlevel9k/powerlevel9k"</span>
+</code></pre></div></div>
+
+<h3 id="github-ssh">github ssh</h3>
+
+<p><a href="https://ithelp.ithome.com.tw/articles/10205988">reference</a></p>
+
+<h3 id="vscode">vscode</h3>
+
+<p><a href="https://stackoverflow.com/questions/29955500/code-is-not-working-in-on-the-command-line-for-visual-studio-code-on-os-x-ma">vscode terminal settings</a></p>
+
+<h3 id="obsidian">Obsidian</h3>
+
+<p><a href="https://help.obsidian.md/Obsidian+Sync/Introduction+to+Obsidian+Sync">obsidian sync</a> or []</p>
 
 <h2 id="what">What?</h2>
 
-<h3 id="project">project</h3>
+<p>give an example</p>
 
-<p>put official url</p>
+<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
 
-<h3 id="postman">postman</h3>
-
-<ul>
-  <li>new collection for task</li>
-  <li>setup environment</li>
-  <li>setup APIs</li>
-</ul>
-
-<p>my localhost:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">variable</th>
-      <th style="text-align: left">value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">host</td>
-      <td style="text-align: left">http://localhost:3000</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>my requests:</p>
-
-<p>GET /
-POST /sign_up
-POST /login</p>
-
-<h3 id="todo">TODO</h3>
-
-<ul>
-  <li>(frontend) login modal style</li>
-  <li>(frontend) get JWT after login</li>
-  <li>(backend) add bcrypt to password</li>
-  <li>signup and login on frontend</li>
-  <li>(backend: create-task-api) create frontend to create job: once login -&gt; click create job -&gt; redirect to Jenkins (should create service to translate DSL to xml in the future) -&gt; create job</li>
-  <li>understand how to create job on jenkins’ UI</li>
-  <li>create frontend to create job: once login -&gt; click create job -&gt; redirect to Jenkins (should create service to translate DSL to xml in the future) -&gt; create job</li>
-  <li>create frontend to upload commit to be test by the job</li>
-  <li>post back the test result from jenkins</li>
-  <li>once solved a contract should make the deal immediately</li>
-  <li>let user to create task with spec</li>
-  <li>add frontend to post API login</li>
-  <li>add bcrypt for password</li>
-  <li>add JWT mechanism to do session</li>
-  <li>let user to upload commit to pass spec</li>
-  <li>connect blockchain for contract, once the commit pass spec, they get money</li>
-  <li>connect chatGPT to create spec and solution for us</li>
-  <li>add mock database for jest</li>
-  <li>after phase one, deploy it on fly</li>
-</ul>
+<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
 
 <h2 id="reference">Reference</h2>
 
