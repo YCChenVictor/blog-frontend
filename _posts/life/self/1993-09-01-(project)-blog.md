@@ -23,9 +23,7 @@ focus on why we need it
 
 ## How?
 
-* add a stylish title image (generate by AI)
-* make landing api looks like openai, with capybara image as helper image and the art (branch: update-landing-page) drawing as background
-* move image to about section
+* add dots plot for articles (mind map)
 * solve <meta name="viewport"
 * connect linkedin API
 * add landing page for it
