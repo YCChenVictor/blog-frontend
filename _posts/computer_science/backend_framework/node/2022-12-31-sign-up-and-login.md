@@ -19,6 +19,8 @@ This article describes how to implement it with passport.
 
 ## Why?
 
+(TBC)
+
 Compare to not using it
 
 Compare to not use passport
@@ -70,11 +72,13 @@ module.exports = (app) => {
 
 #### spec
 
+TBC
+
 ```javascript
 
 ```
 
-### login (TBC)
+### login
 
 #### service
 
@@ -121,61 +125,19 @@ passport.deserializeUser((id, done) => {
 module.exports = passport
 ```
 
-define routes
+#### routes
 
 ```javascript
 module.exports = function(app) {
   ...
-  app.post('/login', (req, res) => {
-    const info = req.body;
-    product.id = new Date().getTime();
-    data.push(product);
-    // 傳響應告訴前端已新增成功
-    res.send({ success: true, data }).end();
-    // console.log 看一下 data, 確認是否新增成功
-    console.log(data);
-  })
+  app.post('/login',
+    passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }),
+    (req, res) => {
+      res.redirect('/');
+    }
+  )
   ...
 }
-```
-
-Create `login.js` with
-
-```javascript
-const express = require('express');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const app = express();
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(passport.initialize());
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-```
-
-and
-
-```javascript
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  }
-);
 ```
 
 ## What?
