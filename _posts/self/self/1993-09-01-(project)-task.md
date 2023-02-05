@@ -3,8 +3,8 @@ layout: post
 title:
 description: ''
 date: '1993-09-01'
-categories:
-note: 用最快的速度做出 MVP
+categories: project
+note:
 mathjax:
 mermaid:
 p5:
@@ -62,9 +62,8 @@ POST /login
 
 ### TODO
 
-* (frontend) login modal style
-* (frontend) get JWT after login
 * (backend) add bcrypt to password
+* (backend) add spec for login and sign up
 * signup and login on frontend
 * (backend: create-task-api) create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
 * understand how to create job on jenkins' UI

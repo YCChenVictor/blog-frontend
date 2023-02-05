@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-12-31'
 categories: node
-note: 似乎只有 login 需要用到 passport
+note: 把 task 的 login 貼過來
 mathjax:
 mermaid:
 p5:
@@ -19,30 +19,48 @@ This article describes how to implement it with passport.
 
 ## Why?
 
-Compare to not using it
-
-Compare to not use passport
+* middleware for authentication
+* multiple authentication strategies
+  * Local Authentication (username and password)
+  * OAuth (e.g. Facebook, Google)
+  * OpenID Connect
+* improve the security
 
 ## How?
 
-I will use passport for authentication.
-
-### init
-
-install
-
-```bash
-npm i passport
-npm i passport-local
-npm i express-session
-```
-
-### sign up
-
-#### API
+### server
 
 ```javascript
-const passport = require('../services/passport.js');
+...
+
+// parse body
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+
+// session
+const session = require('express-session');
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+// passport
+const passport = require('./middleware/passport.js');
+app.use(passport.initialize());
+
+...
+
+module.exports = app
+```
+
+### API
+
+* signup
+* login
+
+```javascript
+const passport = require('../middleware/passport.js');
 const User = require('../database/models/user.js');
 const jwt = require('jsonwebtoken');
 
@@ -64,123 +82,70 @@ module.exports = (app) => {
     res.end()
   })
 
-  ...
+  app.post(
+    '/login',
+    passport.authenticate('local'),
+    (req, res) => {
+      res.status(200).send({token: req.user.token});
+    }
+  );
 }
 ```
 
-#### spec
+### passport middleware
 
-```javascript
+You can think `passport.js` as a middleware to check whether this user can enter the border of our app.
 
-```
-
-### login (TBC)
-
-#### service
-
-You can think `passport.js` as a service to check whether this user can enter the border of our app.
-
-* add `./service/passport.js` with (which can help use check whether it is legal for this user to check in)
+* add `./middleware/passport.js`
 
 ```javascript
 const User = require('../database/models/user.js');
 const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
-passport.use(new LocalStrategy({
-    usernameField : 'email', // override username with email
-    passwordField : 'password',
-  }, (email, password, done) => {
-    User.findOne({ email: email }).then(user => {
-      if (!user) {
-        return done(null, false, { message: 'That email is not registered' });
-      }
-
-      bcrypt.compare(password, user.password, (err, isMatch) => {
-        if (err) throw err;
-        if (isMatch) {
-          return done(null, user);
-        } else {
-          return done(null, false, { message: 'Password incorrect' });
-        }
-      });
+const customizedPassport = passport.use(
+  new LocalStrategy({ // here can be changed to JWT strategy
+    usernameField: 'email',
+    passwordField: 'password',
+    session: false,
+  }, async (username, password, done) => {
+    user = await User.findOne({
+      username,
+      password
     })
+
+    if (!user) {
+      return done(null, false, { message: 'no user' });
+    } else {
+      const token = jwt.sign(user.email, 'secret_key');
+      return done(null, {token: token});
+    }
   })
 );
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
+customizedPassport.serializeUser(function(user, done) {
+  done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
+customizedPassport.deserializeUser(function(user, done) {
+  done(null, user);
 });
 
-module.exports = passport
+module.exports = customizedPassport
 ```
 
-define routes
+### spec
+
+TBC
 
 ```javascript
-module.exports = function(app) {
-  ...
-  app.post('/login', (req, res) => {
-    const info = req.body;
-    product.id = new Date().getTime();
-    data.push(product);
-    // 傳響應告訴前端已新增成功
-    res.send({ success: true, data }).end();
-    // console.log 看一下 data, 確認是否新增成功
-    console.log(data);
-  })
-  ...
-}
-```
 
-Create `login.js` with
-
-```javascript
-const express = require('express');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const app = express();
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(passport.initialize());
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-```
-
-and
-
-```javascript
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  }
-);
 ```
 
 ## What?
 
-TBC
+give a project and use postman to demo
 
 ## Reference
 
@@ -189,3 +154,5 @@ TBC
 [How do you debug Jest Tests?](https://stackoverflow.com/questions/33247602/how-do-you-debug-jest-tests)
 
 [Username & Password](https://www.passportjs.org/concepts/authentication/password/)
+
+[Easy Way to Debug Passport Authentication in Express](https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express)
