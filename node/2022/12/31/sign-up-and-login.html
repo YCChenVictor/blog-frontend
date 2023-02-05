@@ -87,28 +87,53 @@
 
 <h2 id="why">Why?</h2>
 
-<p>Compare to not using it</p>
-
-<p>Compare to not use passport</p>
+<ul>
+  <li>middleware for authentication</li>
+  <li>multiple authentication strategies
+    <ul>
+      <li>Local Authentication (username and password)</li>
+      <li>OAuth (e.g. Facebook, Google)</li>
+      <li>OpenID Connect</li>
+    </ul>
+  </li>
+  <li>improve the security</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
-<p>I will use passport for authentication.</p>
+<h3 id="server">server</h3>
 
-<h3 id="init">init</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
 
-<p>install</p>
+<span class="c1">// parse body</span>
+<span class="kd">const</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">body-parser</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i passport
-npm i passport-local
-npm i express-session
+<span class="c1">// session</span>
+<span class="kd">const</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express-session</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">session</span><span class="p">({</span>
+  <span class="na">secret</span><span class="p">:</span> <span class="dl">'</span><span class="s1">keyboard cat</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">resave</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">saveUninitialized</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">}));</span>
+
+<span class="c1">// passport</span>
+<span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./middleware/passport.js</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">());</span>
+
+<span class="p">...</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span>
 </code></pre></div></div>
 
-<h3 id="sign-up">sign up</h3>
+<h3 id="api">API</h3>
 
-<h4 id="api">API</h4>
+<ul>
+  <li>signup</li>
+  <li>login</li>
+</ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../services/passport.js</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../middleware/passport.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../database/models/user.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsonwebtoken</span><span class="dl">'</span><span class="p">);</span>
 
@@ -130,120 +155,70 @@ npm i express-session
     <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
   <span class="p">})</span>
 
-  <span class="p">...</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+    <span class="dl">'</span><span class="s1">/login</span><span class="dl">'</span><span class="p">,</span>
+    <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="dl">'</span><span class="s1">local</span><span class="dl">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">({</span><span class="na">token</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">token</span><span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="spec">spec</h4>
+<h3 id="passport-middleware">passport middleware</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
-
-<h3 id="login-tbc">login (TBC)</h3>
-
-<h4 id="service">service</h4>
-
-<p>You can think <code class="language-plaintext highlighter-rouge">passport.js</code> as a service to check whether this user can enter the border of our app.</p>
+<p>You can think <code class="language-plaintext highlighter-rouge">passport.js</code> as a middleware to check whether this user can enter the border of our app.</p>
 
 <ul>
-  <li>add <code class="language-plaintext highlighter-rouge">./service/passport.js</code> with (which can help use check whether it is legal for this user to check in)</li>
+  <li>add <code class="language-plaintext highlighter-rouge">./middleware/passport.js</code></li>
 </ul>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../database/models/user.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">LocalStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport-local</span><span class="dl">'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsonwebtoken</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">({</span>
-    <span class="na">usernameField</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// override username with email</span>
-    <span class="na">passwordField</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">password</span><span class="dl">'</span><span class="p">,</span>
-  <span class="p">},</span> <span class="p">(</span><span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span> <span class="nx">email</span> <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">user</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">That email is not registered</span><span class="dl">'</span> <span class="p">});</span>
-      <span class="p">}</span>
-
-      <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">compare</span><span class="p">(</span><span class="nx">password</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">isMatch</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">isMatch</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Password incorrect</span><span class="dl">'</span> <span class="p">});</span>
-        <span class="p">}</span>
-      <span class="p">});</span>
+<span class="kd">const</span> <span class="nx">customizedPassport</span> <span class="o">=</span> <span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+  <span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">({</span> <span class="c1">// here can be changed to JWT strategy</span>
+    <span class="na">usernameField</span><span class="p">:</span> <span class="dl">'</span><span class="s1">email</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">passwordField</span><span class="p">:</span> <span class="dl">'</span><span class="s1">password</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">session</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">},</span> <span class="k">async</span> <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span>
+      <span class="nx">username</span><span class="p">,</span>
+      <span class="nx">password</span>
     <span class="p">})</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">no user</span><span class="dl">'</span> <span class="p">});</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span> <span class="dl">'</span><span class="s1">secret_key</span><span class="dl">'</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="na">token</span><span class="p">:</span> <span class="nx">token</span><span class="p">});</span>
+    <span class="p">}</span>
   <span class="p">})</span>
 <span class="p">);</span>
 
-<span class="nx">passport</span><span class="p">.</span><span class="nx">serializeUser</span><span class="p">((</span><span class="nx">user</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<span class="nx">customizedPassport</span><span class="p">.</span><span class="nx">serializeUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="nx">passport</span><span class="p">.</span><span class="nx">deserializeUser</span><span class="p">((</span><span class="nx">id</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">User</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
-  <span class="p">});</span>
+<span class="nx">customizedPassport</span><span class="p">.</span><span class="nx">deserializeUser</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">passport</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">customizedPassport</span>
 </code></pre></div></div>
 
-<p>define routes</p>
+<h3 id="spec">spec</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/login</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
-    <span class="nx">product</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
-    <span class="nx">data</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">product</span><span class="p">);</span>
-    <span class="c1">// 傳響應告訴前端已新增成功</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span> <span class="na">success</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">data</span> <span class="p">}).</span><span class="nx">end</span><span class="p">();</span>
-    <span class="c1">// console.log 看一下 data, 確認是否新增成功</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">...</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p>TBC</p>
 
-<p>Create <code class="language-plaintext highlighter-rouge">login.js</code> with</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">LocalStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport-local</span><span class="dl">'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">;</span>
-<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
-
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}));</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">());</span>
-
-<span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">(</span>
-  <span class="kd">function</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="nx">username</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Incorrect username.</span><span class="dl">'</span> <span class="p">});</span>
-      <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">.</span><span class="nx">validPassword</span><span class="p">(</span><span class="nx">password</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">{</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Incorrect password.</span><span class="dl">'</span> <span class="p">});</span>
-      <span class="p">}</span>
-      <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
-    <span class="p">});</span>
-  <span class="p">}</span>
-<span class="p">));</span>
-</code></pre></div></div>
-
-<p>and</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/login</span><span class="dl">'</span><span class="p">,</span>
-  <span class="nx">passport</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="dl">'</span><span class="s1">local</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">successRedirect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="na">failureRedirect</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/login</span><span class="dl">'</span> <span class="p">}),</span>
-  <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
 
 <h2 id="what">What?</h2>
 
-<p>TBC</p>
+<p>give a project and use postman to demo</p>
 
 <h2 id="reference">Reference</h2>
 
@@ -252,6 +227,8 @@ npm i express-session
 <p><a href="https://stackoverflow.com/questions/33247602/how-do-you-debug-jest-tests">How do you debug Jest Tests?</a></p>
 
 <p><a href="https://www.passportjs.org/concepts/authentication/password/">Username &amp; Password</a></p>
+
+<p><a href="https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express">Easy Way to Debug Passport Authentication in Express</a></p>
 
   </div>
 </div>

@@ -83,62 +83,68 @@
   <div class="px-72">
     <h2 id="introduction">introduction</h2>
 
+<p>This article describes how to set up ruby on mac.</p>
+
 <h2 id="how">How</h2>
 
-<h3 id="install-rvm-ruby-versionmanager">Install RVM (Ruby Version Manager)</h3>
+<h3 id="install-ruby-manager">install ruby manager</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-sSL</span> https://get.rvm.io | bash <span class="nt">-s</span> stable
+<ul>
+  <li>Ruby Version Manager (RVM)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-sSL</span> https://get.rvm.io | bash <span class="nt">-s</span> stable
 </code></pre></div></div>
 
-<h3 id="open-rvm">Open RVM</h3>
+<ul>
+  <li>rbenv</li>
+</ul>
 
-<p>You should know your own path of ruby. Take Mac as example, the path should be <code class="language-plaintext highlighter-rouge">/Users/user_name/.rvm/scripts/rvm</code></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source 'your own path'
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rbenv ruby-build
 </code></pre></div></div>
 
-<h2 id="version-control">Version Control</h2>
+<p><a href="/blog/tools/2023/02/02/overview.html#brew">brew</a></p>
 
-<h3 id="all-versions-of-ruby-that-can-be-installed">All Versions of Ruby that can be installed</h3>
+<p>and then in <code class="language-plaintext highlighter-rouge">.zshrc</code>,</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list known
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.rbenv/shims:</span><span class="nv">$PATH</span><span class="s2">"</span>
 </code></pre></div></div>
 
-<h3 id="install-ruby26">Install Ruby 2.6</h3>
+<h3 id="ruby">ruby</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm <span class="nb">install </span>2.6
-</code></pre></div></div>
-
-<h3 id="errors-fixing">Errors Fixing</h3>
-
-<h4 id="check-the-log">Check the log</h4>
-
-<p>You may have the following path to access it (please replace your_user_name with your user name)</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/your_user_name/.rvm/log/1625795250_ruby-2.7.1/make.log
-</code></pre></div></div>
-
-<p><a href="https://github.com/ffi/ffi/issues/869"><strong>solve the ruby old version cannot install on M1 problem</strong></a></p>
-
-<h3 id="check-installed-versions">Check Installed Versions</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm list
-</code></pre></div></div>
-
-<h3 id="check-currentversion">Check Current Version</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby -v
-</code></pre></div></div>
-<h3 id="use-other-rubyversion">Use Other Ruby Version</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm use 3.0.0
-</code></pre></div></div>
-<h3 id="change-default-rubyversion">Change Default Ruby Version</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rvm --default use 2.4.1
-</code></pre></div></div>
-<h2 id="variable">Variable</h2>
+<ul>
+  <li>through rbenv
+    <ul>
+      <li>install: <code class="language-plaintext highlighter-rouge">rbenv install 2.7.5</code></li>
+      <li>local versions: <code class="language-plaintext highlighter-rouge">rbenv version</code></li>
+      <li>activate: <code class="language-plaintext highlighter-rouge">rbenv global 2.7.5</code></li>
+      <li>specific version for a project: <code class="language-plaintext highlighter-rouge">rbenv local VERSION</code></li>
+      <li>current version: <code class="language-plaintext highlighter-rouge">ruby -v</code></li>
+    </ul>
+  </li>
+  <li>through rvm
+    <ul>
+      <li>all versions: <code class="language-plaintext highlighter-rouge">rvm list known</code></li>
+      <li>install: <code class="language-plaintext highlighter-rouge">rvm install 2.6</code></li>
+      <li>local versions: <code class="language-plaintext highlighter-rouge">rvm list</code></li>
+      <li>current version: <code class="language-plaintext highlighter-rouge">ruby -v</code></li>
+      <li>use other version: <code class="language-plaintext highlighter-rouge">rvm use 3.0.0</code></li>
+      <li>change default version: <code class="language-plaintext highlighter-rouge">rvm --default use 2.4.1</code></li>
+      <li>errors
+        <ul>
+          <li>log: <code class="language-plaintext highlighter-rouge">/Users/your_user_name/.rvm/log/1625795250_ruby-2.7.1/make.log</code></li>
+          <li><a href="https://github.com/ffi/ffi/issues/869">solve the ruby old version cannot install on M1 problem</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="types">Types</h3>
-<p><img src="/assets/img/1__ywZBLRlHrf____K66pKUAsiA.png" alt="" />
-explanation (skip)</p>
+
+<p><img src="/assets/img/1__ywZBLRlHrf____K66pKUAsiA.png" alt="" /></p>
+
+<p>explanation (skip)</p>
 
 <h3 id="scope">Scope</h3>
 
