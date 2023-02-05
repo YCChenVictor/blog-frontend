@@ -3,26 +3,27 @@ layout: post
 title:
 description: ''
 date: '1993-09-01'
-categories:
+categories: project
 note:
 mathjax:
 mermaid:
 p5:
 threeJS:
 anchor:
-publish:
+publish: true
 ---
 
 ## Introduction
 
-quick explanation
+TBC
 
 ## Why?
 
-focus on why we need it
+I need to structure my thoughts.
 
 ## How?
 
+* split articles according to modules of projects
 * add dots plot for articles (mind map)
 * solve <meta name="viewport"
 * connect linkedin API

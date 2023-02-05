@@ -3,8 +3,8 @@ layout: post
 title:
 description: ''
 date: '1993-09-01'
-categories:
-note: 用最快的速度做出 MVP
+categories: project
+note:
 mathjax:
 mermaid:
 p5:
@@ -62,7 +62,6 @@ POST /login
 
 ### TODO
 
-* (frontend) JWT
 * (backend) add bcrypt to password
 * (backend) add spec for login and sign up
 * signup and login on frontend
