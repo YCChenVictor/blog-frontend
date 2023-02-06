@@ -25,6 +25,10 @@ I need to structure my thoughts.
 
 * split articles according to modules of projects
 * add dots plot for articles (mind map)
+* move to react
+* add a stylish title image (generate by AI)
+* make landing api looks like openai, with capybara image as helper image and the art (branch: update-landing-page) drawing as background
+* move image to about section
 * solve <meta name="viewport"
 * connect linkedin API
 * add landing page for it
