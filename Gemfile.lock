@@ -67,9 +67,8 @@ PLATFORMS
 DEPENDENCIES
   jekyll
   jekyll-postcss
-  tzinfo (~> 1.2)
+  tzinfo
   tzinfo-data
-  wdm (~> 0.1.1)
   webrick
 
 BUNDLED WITH

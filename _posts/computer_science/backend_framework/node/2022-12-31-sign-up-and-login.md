@@ -15,7 +15,11 @@ publish: true
 
 ## Introduction
 
-This article describes how to implement it with passport.
+This article describes how to implement signup and login with
+
+* express-session (TBC)
+* passport (For login authentication)
+* bcrypt (encode password and store it in database, so attackers still cannot attack even they access database)
 
 ## Why?
 
@@ -29,6 +33,10 @@ This article describes how to implement it with passport.
 ## How?
 
 ### server
+
+* body-parser
+* express-session
+* passport
 
 ```javascript
 ...
@@ -57,7 +65,14 @@ module.exports = app
 ### API
 
 * signup
+  * frontend post email and password
+  * backend encode password with bcrypt and store email and encoded password in database
+  * return jwt token
 * login
+  * frontend post email and password
+  * backend find user with email
+  * backend decode password
+  * return jwt token
 
 ```javascript
 const passport = require('../middleware/passport.js');
@@ -156,3 +171,5 @@ give a project and use postman to demo
 [Username & Password](https://www.passportjs.org/concepts/authentication/password/)
 
 [Easy Way to Debug Passport Authentication in Express](https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express)
+
+[[npm] Passport 筆記（Learn to Use Passport JS）](https://pjchender.dev/npm/npm-passport/)

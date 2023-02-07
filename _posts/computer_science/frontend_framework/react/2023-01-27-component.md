@@ -15,11 +15,11 @@ publish: true
 
 ## Introduction
 
-quick explanation
+This article describes the concept of component.
 
 ## Why?
 
-focus on why we need it
+With component, we can decompose whole frontend into reusable parts.
 
 ## How?
 
