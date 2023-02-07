@@ -62,10 +62,10 @@ POST /login
 
 ### TODO
 
-* (backend) add bcrypt to password
-* (backend) add spec for login and sign up
-* signup and login on frontend
+* (frontend) list tasks (the design can follow JIRA)
 * (backend: create-task-api) create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
+* (backend) add spec for login and sign up
+* (frontend) close modal once signup and login info posted
 * understand how to create job on jenkins' UI
 * create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
 * create frontend to upload commit to be test by the job
