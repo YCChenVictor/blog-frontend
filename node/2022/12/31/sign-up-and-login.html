@@ -83,7 +83,13 @@
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>This article describes how to implement it with passport.</p>
+<p>This article describes how to implement signup and login with</p>
+
+<ul>
+  <li>express-session (TBC)</li>
+  <li>passport (For login authentication)</li>
+  <li>bcrypt (encode password and store it in database, so attackers still cannot attack even they access database)</li>
+</ul>
 
 <h2 id="why">Why?</h2>
 
@@ -102,6 +108,12 @@
 <h2 id="how">How?</h2>
 
 <h3 id="server">server</h3>
+
+<ul>
+  <li>body-parser</li>
+  <li>express-session</li>
+  <li>passport</li>
+</ul>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
 
@@ -129,8 +141,21 @@
 <h3 id="api">API</h3>
 
 <ul>
-  <li>signup</li>
-  <li>login</li>
+  <li>signup
+    <ul>
+      <li>frontend post email and password</li>
+      <li>backend encode password with bcrypt and store email and encoded password in database</li>
+      <li>return jwt token</li>
+    </ul>
+  </li>
+  <li>login
+    <ul>
+      <li>frontend post email and password</li>
+      <li>backend find user with email</li>
+      <li>backend decode password</li>
+      <li>return jwt token</li>
+    </ul>
+  </li>
 </ul>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../middleware/passport.js</span><span class="dl">'</span><span class="p">);</span>
@@ -229,6 +254,8 @@
 <p><a href="https://www.passportjs.org/concepts/authentication/password/">Username &amp; Password</a></p>
 
 <p><a href="https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express">Easy Way to Debug Passport Authentication in Express</a></p>
+
+<p><a href="https://pjchender.dev/npm/npm-passport/">[npm] Passport 筆記（Learn to Use Passport JS）</a></p>
 
   </div>
 </div>

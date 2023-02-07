@@ -83,11 +83,11 @@
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>This article describes how to setup model mechanism in node with sequelize.</p>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<p>With sequelize, we can (TBC)</p>
 
 <h2 id="how">How?</h2>
 
@@ -136,7 +136,15 @@
 
 <h3 id="create">Create</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">build</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">User</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">email</span><span class="p">:</span> <span class="nx">email</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="nx">passwordHash</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1">// or</span>
+
+<span class="kd">const</span> <span class="nx">jane</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">User</span><span class="p">.</span><span class="nx">build</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Jane</span><span class="dl">"</span> <span class="p">});</span>
+<span class="nx">jane</span><span class="p">.</span><span class="nx">save</span>
 </code></pre></div></div>
 
 <h3 id="read">Read</h3>

@@ -76,160 +76,24 @@
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Overview</h1>
+  <h1 class="text-center mt-6 mb-6">(independent) Take Risk</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
-    <h2 id="introduction">Introduction</h2>
+    <p>Successful people try new things and take risks rather than only doing what they know how to do well.</p>
 
-<p>This article describes basic concepts related to postgreSQL.</p>
+<hr />
 
-<h2 id="why">Why?</h2>
+<p>People often have different perspective on whether to take risks to be successful. Based on my past experience, I believe that people should try new things to get a successful results.</p>
 
-<p>Compare to MySQL</p>
+<p>Firstly, I am a curious person and I always want to learn more things and try to use those knowledges to build new things. For example, I wrote a simple program and saved aroudn 50% processing time of a daily task when I was a financial analyst in a big company. Because of this program, I had a better career.</p>
 
-<h2 id="how">How?</h2>
+<p>Secondly, I actually like to take risks. To be more specific, I had founded a company with my friends and we actually make good impact on shrimp industry with advanced technology. Not only I contributed to economy growth but I get a big fortune with it.</p>
 
-<h3 id="init">init</h3>
+<p>Thirdly, I really like to learn new things and I can combine these new knowledges with past experiences to inspire myself for building new adventures. That is to say, I am now building a software application with blockchain technology and wish I can give positive impact to the world.</p>
 
-<p>use homebrew:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>postgresql
-</code></pre></div></div>
-
-<p>start server:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services start postgresql
-</code></pre></div></div>
-
-<p>and check it with</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services list
-</code></pre></div></div>
-
-<p>debug the logs</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail</span> <span class="nt">-n</span> 50 /usr/local/var/log/postgresql@14.log
-</code></pre></div></div>
-
-<h3 id="connect">connect</h3>
-
-<p>connect to database</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql postgres
-</code></pre></div></div>
-
-<p>remove process</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-ef</span> | <span class="nb">grep </span>postmaster | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span>
-<span class="nb">kill</span> &lt;the_pid_you_just_got&gt;
-</code></pre></div></div>
-
-<h4 id="password">password</h4>
-
-<p>in <code class="language-plaintext highlighter-rouge">~/pgpass.conf</code></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">hostname</span>:port:database:username:password
-</code></pre></div></div>
-
-<p>and permissions set to 0600</p>
-
-<h3 id="database">database</h3>
-
-<p>create:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE &lt;database_name&gt;<span class="p">;</span>
-</code></pre></div></div>
-
-<p>show:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\l</span>
-</code></pre></div></div>
-
-<p>use:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\c</span> &lt;database_name&gt;<span class="p">;</span>
-</code></pre></div></div>
-
-<p>delete:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DROP DATABASE &lt;database name&gt;<span class="p">;</span>
-</code></pre></div></div>
-
-<h3 id="table">table</h3>
-
-<p>Create:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
-
-<p>or with</p>
-
-<ul>
-  <li><a href="">node migration</a></li>
-  <li><a href="">rails migration</a></li>
-</ul>
-
-<p>Show:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\d</span>t
-</code></pre></div></div>
-
-<h3 id="user">user</h3>
-
-<p>Show</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="se">\d</span>u
-</code></pre></div></div>
-
-<h3 id="crud">CRUD</h3>
-
-<p>CREATE</p>
-
-<pre><code class="language-SQL">-- general
-INSERT INTO table (variable1, variable2, variable3) VALUES (value1, value2, value3);
-
--- example
-INSERT INTO users (username, password, email) VALUES ('john', '123456', 'john@example.com');
-</code></pre>
-
-<p>READ</p>
-
-<pre><code class="language-SQL">-- general
-SELECT * FROM table WHERE variable1 = value1;
-
--- example
-SELECT * FROM users WHERE username = 'john';
-</code></pre>
-
-<p>UPDATE</p>
-
-<pre><code class="language-SQL">-- general
-UPDATE table SET variable1 = value1 WHERE variable2 = value2;
-
--- example
-UPDATE users SET password = '654321' WHERE username = 'john';
-</code></pre>
-
-<p>DELETE</p>
-
-<pre><code class="language-SQL">-- general
-DELETE FROM table WHERE variable1 = value1;
-
--- example
-DELETE FROM users WHERE username = 'john';
-</code></pre>
-
-<h2 id="what">What?</h2>
-
-<p>give an example</p>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="https://wiki.postgresql.org/wiki/Homebrew">Homebrew</a></p>
-
-<p><a href="https://tableplus.com/blog/2019/09/how-to-use-pgpass-in-postgresql.html">How to use .pgpass in PostgreSQL?</a></p>
+<p>In conclusion, given my curious personality, willingness to take risk and eagerness to learn, I believe that people should not only do what they know how to do well. We should all try new things and take risks to gain a sucessful results.</p>
 
   </div>
 </div>
