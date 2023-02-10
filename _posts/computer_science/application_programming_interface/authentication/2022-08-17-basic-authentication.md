@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2022-08-17'
-categories: api
+categories: API
 note: 這邊期望是能在 what 實作，還有用 reply attack 攻擊看看
 mathjax:
 mermaid:
