@@ -15,17 +15,17 @@ publish: true
 
 ## Introduction
 
-Authentication in API is a way to make sure user from client side has authorization from server side; for example, a user input username and password, then they are encrypted on client side, and then posted from client to server side. Server will parse it and check whether they matches the username and password recorded in database.
+Authentication in API is a way to make sure user from client side has authorization from server side.
 
 ## Why?
 
-try to answer why we need Authentication
+With authentication, only authorized users are able to access sensitive information or perform actions that could affect the system or its users.
 
 ## How?
 
 ### Basic Structure
 
-Given we have the [concept of HTTP]({{site.baseurl}}/internet/2021/04/09/hyper-text-transfer-protocol.html), client sent requests to server with key information in headers, including `Authorization` with form such as
+Given we have the [concept of HTTP]({{site.baseurl}}/internet/2021/04/09/http.html), client sent requests to server with key information in headers, including `Authorization` with form such as
 
 ```bash
 Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
