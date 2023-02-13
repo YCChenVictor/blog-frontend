@@ -23,7 +23,7 @@ With authentication, only authorized users are able to access sensitive informat
 
 ## How?
 
-### Basic Structure
+### Structure
 
 Given we have the [concept of HTTP]({{site.baseurl}}/internet/2021/04/09/http.html), client sent requests to server with key information in headers, including `Authorization` with form such as
 
@@ -33,11 +33,7 @@ Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 
 `Basic` means the method of authentication and `QWxhZGRpbjpvcGVuIHNlc2FtZQ==` is encoded on client side and going to be decoded on server side to check authorization.
 
-## What?
-
-As technology improves, from easy to advanced,
-
-### basic
+### Basic
 
 For example, given `username = Aladdin` and `password = open sesame`, the encoding of `Aladdin:open sesame` in Base64 is `YWxpY2U6c3VwZXJtYW4=` and client will send request with authorization in header:
 
@@ -61,142 +57,53 @@ WWW-Authenticate: Basic realm="Access to staging site"
 
 ### digest
 
+to be continued
+
 ### OAuth
+
+to be continued
 
 ### Bearer
 
+to be continued
+
 ### JWT
 
-JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties.
+JSON Web Tokens (JWT) are a compact, URL-safe means of representing claims to be transferred between two parties. JWT is often used to authenticate users and pass information about them between systems, especially in stateless systems like single-page applications and RESTful APIs.
 
-#### sign up with node and react
+The steps of JWT:
 
-* On the client side (React), when a user submits their sign-up form, a request is made to the server to create a new user account. For example, you can use the fetch API to send a POST request to the server with the user's information:
+1. Claims: JWT consists of a set of claims encoded as a JSON object. These claims can include information about the user, such as the user's name, ID, and roles.
+2. Encoding: The JSON object is then Base64Url encoded to produce a compact string, which is the JWT.
+3. Signature: To ensure that the information in the JWT has not been tampered with, a signature is generated using a secret key shared between the parties. The signature is calculated over the encoded JWT and is appended to it, separated by a period.
+4. Transmission: The JWT is then sent from the client to the server in the **Authorization** header of an HTTP request, usually as a Bearer Token.
+5. Verification: On the server, the signature is verified using the shared secret key, and if the signature is valid, the information in the JWT is trusted and can be used to perform authorized actions.
 
-```javascript
-handleSubmit = (event) => {
-  event.preventDefault();
-  const { email, password, name } = this.state;
-  fetch('/api/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email, password, name })
-  })
-  .then(response => response.json())
-  .then(data => {
-    localStorage.setItem('token', data.token); // try to prevent XSS
-    this.setState({ isAuthenticated: true });
-  })
-  .catch(error => console.error(error));
-}
-```
+In conclusion, JWT is a secure and efficient way of transmitting information between parties. The compact format and digital signature of JWT make it an ideal choice for authentication and authorization in modern web applications.
 
-* On the server side (Node), the user's information is verified and then added to the database. After that, a JWT is generated and sent back to the client in the response. For example, you can use the jsonwebtoken library to generate a JWT:
+## What?
+
+### JWT in JS
 
 ```javascript
 const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'secret_key';
 
-app.post('/api/signup', (req, res) => {
-  const { email, password, name } = req.body;
-  //verify the input and create user
-  if (isValid(email, password, name)) {
-    createUser(email,password,name)
-    const user = { email };
-    const token = jwt.sign(user, 'secret_key');
-    res.json({ token });
-  } else {
-    res.status(401).json({ message: 'Invalid input' });
-  }
+// Generate a JWT
+const token = jwt.sign({ id: 123, name: 'John Doe' }, SECRET_KEY, {
+  expiresIn: '1h'
 });
+
+// Verify a JWT
+const decoded = jwt.verify(token, SECRET_KEY);
+console.log(decoded); // { id: 123, name: 'John Doe', iat: 1547451138, exp: 1547454738 }
 ```
 
-It's important to note that you should also hash the password before storing it in the database. This can be done using a library such as bcrypt.
-
-* On the client side, the JWT is stored in local storage or a cookie.
-* For subsequent requests to protected routes or resources, the client attaches the JWT to the request header as an "Authorization" field.
-* On the server side, the JWT is extracted from the request header and verified. If the JWT is valid, the request is processed, otherwise, the server sends back a 401 Unauthorized response.
-
-#### other API with node and react
-
-* On the client side (React), when a user submits their login credentials, a request is made to the server to authenticate the user.
+* we can generate SECRET_KEY with `crypto`
 
 ```javascript
-handleSubmit = (event) => {
-  event.preventDefault();
-  const { email, password } = this.state;
-  fetch('/api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email, password })
-  })
-  .then(response => response.json())
-  .then(data => {
-    localStorage.setItem('token', data.token);
-    this.setState({ isAuthenticated: true });
-  })
-  .catch(error => console.error(error));
-}
-```
-
-* On the server side (Node), the login credentials are checked against the database, and if they are valid, a JWT is generated and sent back to the client in the response. For example, you can use the jsonwebtoken library to generate a JWT:
-
-```javascript
-const jwt = require('jsonwebtoken');
-
-app.post('/api/login', (req, res) => {
-  const { email, password } = req.body;
-  // check credentials against database
-  if (isValid(email, password)) {
-    const user = { email };
-    const token = jwt.sign(user, 'secret_key');
-    res.json({ token });
-  } else {
-    res.status(401).json({ message: 'Invalid credentials' });
-  }
-});
-```
-
-* On the client side, the JWT is stored in local storage or a cookie.
-* For subsequent requests to protected routes or resources, the client attaches the JWT to the request header as an "Authorization" field.
-
-```javascript
-const token = localStorage.getItem('token');
-
-fetch('/api/users', {
-  method: 'GET',
-  headers: {
-    'Authorization': `Bearer ${token}`
-  }
-})
-.then(response => response.json())
-.then(data => {
-  console.log(data);
-})
-.catch(error => console.error(error));
-```
-
-* On the server side, the JWT is extracted from the request header and verified. If the JWT is valid, the request is processed, otherwise, the server sends back a 401 Unauthorized response.
-
-```javascript
-const jwt = require('jsonwebtoken');
-
-app.use((req, res, next) => {
-  const token = req.headers.authorization;
-  if (token) {
-    jwt.verify(token, 'secret_key', (error, decoded) => {
-      if (error) {
-        res.status(401).json({ message: 'Invalid token' });
-      } else {
-        req.decoded = decoded;
-        next();
-      }
-    });
-  } else {
-    res.status(401).json({ message: 'No token provided' });
+const crypto = require('crypto')
+const key = crypto.randomBytes(32).toString('hex') // secret key
 ```
 
 ## Reference
