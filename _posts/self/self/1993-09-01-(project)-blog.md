@@ -23,6 +23,7 @@ I need to structure my thoughts.
 
 ## How?
 
+* add searching bar
 * Increase the padding of each sentence (CSS)
 * let sidebar be expendable (or I should try to know other's design)
 * split articles according to modules of projects

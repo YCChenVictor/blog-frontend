@@ -19,45 +19,9 @@ This article describes how to setup database and models for node project.
 
 ## Why?
 
-TBC
+We need stable way to create database schema for node app.
 
 ## How?
-
-### local database setup
-
-[postgre]({{site.baseurl}}/pg/2022/12/30/overview.html)
-
-### connect database with docker
-
-[connect docker]({{site.baseurl}}/docker/2022/01/09/overview.html#run)
-
-and then
-
-```bash
-docker run --name my_db \
-    -e POSTGRESQL_PORT=5432 \
-    -e POSTGRESQL_DB=my_db \
-    -e POSTGRESQL_USER=postgres \
-    -e POSTGRES_PASSWORD=test1234 \
-    -d postgres
-```
-
-* remember to create desired database first
-* remember to change desired `my_db`, `postgres` and `test1234`, which will match `DEV_DATABASE_URL` below
-
-### create database
-
-TODO: compose SQL file for docker to import it
-
-#### with command
-
-[here]({{site.baseurl}}/pg/2022/12/30/overview.html#database) for test and development
-
-#### with docker
-
-TBC, you can refer to [Create a Dockerfile and Docker Image](https://dev.to/andre347/how-to-easily-create-a-postgres-database-in-docker-4moj)
-
-### match test database with development
 
 ### migration
 
@@ -151,6 +115,8 @@ module.exports = {
 };
 ```
 
+* [types](https://sequelize.org/docs/v7/other-topics/other-data-types/)
+
 #### migrate
 
 migrate with
@@ -176,6 +142,10 @@ npx sequelize-cli db:migrate:undo:all --to XXXXXXXXXXXXXX-create-posts.js
 ### schema
 
 TBC
+
+### match test database with development
+
+to be continued
 
 ## What?
 
