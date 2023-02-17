@@ -19,16 +19,17 @@ This article describes how to implement signup and login with
 
 * express-session (TBC)
 * passport (For login authentication)
+  * middleware for authentication
+  * multiple authentication strategies
+    * Local Authentication (username and password)
+    * OAuth (e.g. Facebook, Google)
+    * OpenID Connect
+  * improve the security
 * bcrypt (encode password and store it in database, so attackers still cannot attack even they access database)
 
 ## Why?
 
-* middleware for authentication
-* multiple authentication strategies
-  * Local Authentication (username and password)
-  * OAuth (e.g. Facebook, Google)
-  * OpenID Connect
-* improve the security
+Validate whether this user can use our product
 
 ## How?
 
