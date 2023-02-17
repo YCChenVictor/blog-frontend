@@ -87,11 +87,40 @@
 
 <h2 id="why">Why</h2>
 
-<p>With API, developers can access the functionality of one system from within another system, without having to know the details of how the underlying system works.</p>
+<p>With API, developers can access the functionality of one system within another system, without having to know the details of how the underlying system works.</p>
 
 <h2 id="how">How</h2>
 
-<p>The concept of CRUD (create, read, update, delete) maps to POST, GET, PATCH/PUT, DELETE in HTTP.</p>
+<p>The concept of CRUD (create, read, update, delete) maps to POST, GET, PATCH/PUT, DELETE in <a href="/blog/internet/2021/03/29/overview.html">HTTP</a>.</p>
+
+<h3 id="restful-api">RESTful API</h3>
+
+<p>For example,</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">GET</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="k">new</span> <span class="c1">// (Create Show) Show the place to create task</span>
+
+<span class="nx">POST</span> <span class="o">/</span><span class="nx">tasks</span> <span class="c1">// (Create) Add a new task to the list</span>
+
+<span class="nx">GET</span> <span class="o">/</span><span class="nx">tasks</span> <span class="c1">// (Read list) Retrieve a list of all tasks</span>
+
+<span class="nx">GET</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="c1">// (Read one) Retrieve a task with the specified ID</span>
+
+<span class="nx">GET</span> <span class="o">/</span><span class="nx">records</span><span class="o">/</span><span class="p">:</span><span class="nx">id</span><span class="o">/</span><span class="nx">edit</span> <span class="c1">// (Update Show) Show the place to update task</span>
+
+<span class="nx">PUT</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="c1">// (Update a task) Update a task with the specified ID</span>
+
+<span class="nx">PATCH</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="c1">// (Update a task partially) Update a task with the specified ID</span>
+
+<span class="nx">DELETE</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="c1">// (Destroy one) Delete a task with the specified ID</span>
+</code></pre></div></div>
+
+<p>The URL structure follows the RESTful pattern of using a noun (in this case, “tasks”) to represent a resource and the HTTP method (GET, POST, PUT, DELETE) to specify the action to be taken on that resource.</p>
+
+<p>refer to <a href="/blog/api/2023/01/22/restful.html">concept of REST</a></p>
+
+<h3 id="node">node</h3>
+
+<p><a href="/blog/node/2022/01/26/api.html">node api</a></p>
 
 <h3 id="rails">rails</h3>
 
@@ -105,30 +134,6 @@
 <p>HTML now can only use GET and POST; as a result, rails adds params, method=PATCH and method=DELETE in POST for PATCH and DELETE.</p>
 
 <p>refer to <a href="/blog/rails/2022/02/05/routes.html">rails API</a></p>
-
-<h3 id="node">node</h3>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">axios</span><span class="p">({</span>
-    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">data</span><span class="p">:</span> <span class="nx">formData</span><span class="p">,</span> <span class="c1">// maps to curl -d</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="c1">// maps to curl -H</span>
-      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">multipart/form-data</span><span class="dl">'</span>
-    <span class="p">}</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="c1">//handle success</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="c1">//handle error</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div></div>
-
-<h3 id="rest">REST</h3>
-
-<p>refer to <a href="/blog/api/2023/01/22/restful.html">concept of REST</a></p>
 
 <h3 id="frontend-vs-backend">frontend vs backend</h3>
 

@@ -87,7 +87,7 @@
 
 <h2 id="why">Why</h2>
 
-<p>TBC</p>
+<p>To have better understandings on how to build styles.</p>
 
 <h2 id="how">How</h2>
 
@@ -296,10 +296,31 @@
 </code></pre></div></div>
 
 <ul>
-  <li>todo list</li>
+  <li>ul</li>
 </ul>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Todo List<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nc">Text</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">input</span><span class="si">}</span> <span class="na">onInput</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span><span class="nx">setInput</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nc">Button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">handleClick</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>Add<span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+      <span class="si">{</span><span class="nx">todoList</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">todo</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+          <span class="p">&lt;</span><span class="nc">LIST</span>
+            <span class="na">complete</span> <span class="p">=</span> <span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">complete</span><span class="si">}</span>
+            <span class="na">id</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span>
+            <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">handleComplete</span><span class="p">(</span><span class="nx">todo</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span>
+            <span class="na">style</span><span class="p">=</span>
+          <span class="p">&gt;</span>
+            <span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">task</span><span class="si">}</span>
+          <span class="p">&lt;/</span><span class="nc">LIST</span><span class="p">&gt;</span>
+        <span class="p">);</span>
+      <span class="p">})</span><span class="si">}</span>
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div></div>
 
 <h3 id="form">form</h3>
 
@@ -334,7 +355,37 @@
 
 <h3 id="input">input</h3>
 
-<h4 id="type">type</h4>
+<ul>
+  <li>input</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">input</span>
+  <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span>
+  <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">name</span><span class="p">}</span>
+  <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">setName</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)}</span>
+<span class="sr">/</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<ul>
+  <li>type will change the appearance of UI and the format posted to backend (refer to <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type">here</a>)</li>
+  <li>select (to be continued)</li>
+  <li>textarea (to be continued)</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">textarea</span> <span class="o">/&gt;</span>
+</code></pre></div></div>
+
+<h3 id="image">image</h3>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">logo</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./logo.png</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Image</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Import result is the URL of your image</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="p">=</span><span class="si">{</span><span class="nx">logo</span><span class="si">}</span> <span class="na">alt</span><span class="p">=</span><span class="s">"Logo"</span> <span class="p">/&gt;;</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Image</span><span class="p">;</span>
+</code></pre></div></div>
 
 <h3 id="app">App</h3>
 
@@ -390,6 +441,17 @@
 <span class="p">)</span>
 </code></pre></div></div>
 
+<h3 id="condition">condition</h3>
+
+<p>We can use concept of ternary to achieve it</p>
+
+<pre><code class="language-JSX">{false ? (
+&lt;button
+  onClick={setTaskModalOpen}
+  className="bg-white p-2"
+&gt;Create Task&lt;/button&gt;) : ('')}
+</code></pre>
+
 <h2 id="what">What</h2>
 
 <p>As you can see, the basic concept of react is to decompose the website into lots of components</p>
@@ -403,6 +465,8 @@
 <p><a href="https://www.youtube.com/watch?v=Ke90Tje7VS0">React JS - React Tutorial for Beginners</a></p>
 
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type"><input />: The Input (Form Input) element</a></p>
+
+<p><a href="https://medium.com/codex/building-a-to-do-list-app-using-react-hooks-and-styled-component-7e413a16b91e">Building a To-Do List App Using React — Hooks and Styled Component</a></p>
 
   </div>
 </div>

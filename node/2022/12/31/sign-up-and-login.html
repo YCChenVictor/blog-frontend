@@ -87,23 +87,25 @@
 
 <ul>
   <li>express-session (TBC)</li>
-  <li>passport (For login authentication)</li>
+  <li>passport (For login authentication)
+    <ul>
+      <li>middleware for authentication</li>
+      <li>multiple authentication strategies
+        <ul>
+          <li>Local Authentication (username and password)</li>
+          <li>OAuth (e.g. Facebook, Google)</li>
+          <li>OpenID Connect</li>
+        </ul>
+      </li>
+      <li>improve the security</li>
+    </ul>
+  </li>
   <li>bcrypt (encode password and store it in database, so attackers still cannot attack even they access database)</li>
 </ul>
 
 <h2 id="why">Why?</h2>
 
-<ul>
-  <li>middleware for authentication</li>
-  <li>multiple authentication strategies
-    <ul>
-      <li>Local Authentication (username and password)</li>
-      <li>OAuth (e.g. Facebook, Google)</li>
-      <li>OpenID Connect</li>
-    </ul>
-  </li>
-  <li>improve the security</li>
-</ul>
+<p>Validate whether this user can use our product</p>
 
 <h2 id="how">How?</h2>
 

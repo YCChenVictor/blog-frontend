@@ -83,28 +83,24 @@
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>Authentication in API is a way to make sure user from client side has authorization from server side; for example, a user input username and password, then they are encrypted on client side, and then posted from client to server side. Server will parse it and check whether they matches the username and password recorded in database.</p>
+<p>Authentication in API is a way to make sure user from client side has authorization from server side.</p>
 
 <h2 id="why">Why?</h2>
 
-<p>try to answer why we need Authentication</p>
+<p>With authentication, only authorized users are able to access sensitive information or perform actions that could affect the system or its users.</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="basic-structure">Basic Structure</h3>
+<h3 id="structure">Structure</h3>
 
-<p>Given we have the <a href="/blog/internet/2021/04/09/hyper-text-transfer-protocol.html">concept of HTTP</a>, client sent requests to server with key information in headers, including <code class="language-plaintext highlighter-rouge">Authorization</code> with form such as</p>
+<p>Given we have the <a href="/blog/internet/2021/04/09/http.html">concept of HTTP</a>, client sent requests to server with key information in headers, including <code class="language-plaintext highlighter-rouge">Authorization</code> with form such as</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Authorization: Basic <span class="nv">QWxhZGRpbjpvcGVuIHNlc2FtZQ</span><span class="o">==</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">Basic</code> means the method of authentication and <code class="language-plaintext highlighter-rouge">QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code> is encoded on client side and going to be decoded on server side to check authorization.</p>
 
-<h2 id="what">What?</h2>
-
-<p>As technology improves, from easy to advanced,</p>
-
-<h3 id="basic">basic</h3>
+<h3 id="basic">Basic</h3>
 
 <p>For example, given <code class="language-plaintext highlighter-rouge">username = Aladdin</code> and <code class="language-plaintext highlighter-rouge">password = open sesame</code>, the encoding of <code class="language-plaintext highlighter-rouge">Aladdin:open sesame</code> in Base64 is <code class="language-plaintext highlighter-rouge">YWxpY2U6c3VwZXJtYW4=</code> and client will send request with authorization in header:</p>
 
@@ -131,150 +127,55 @@ WWW-Authenticate: Basic <span class="nv">realm</span><span class="o">=</span><sp
 
 <h3 id="digest">digest</h3>
 
+<p>to be continued</p>
+
 <h3 id="oauth">OAuth</h3>
+
+<p>to be continued</p>
 
 <h3 id="bearer">Bearer</h3>
 
+<p>to be continued</p>
+
 <h3 id="jwt">JWT</h3>
 
-<p>JSON Web Token (JWT) is a compact, URL-safe means of representing claims to be transferred between two parties.</p>
+<p>JSON Web Tokens (JWT) are a compact, URL-safe means of representing claims to be transferred between two parties. JWT is often used to authenticate users and pass information about them between systems, especially in stateless systems like single-page applications and RESTful APIs.</p>
 
-<h4 id="sign-up-with-node-and-react">sign up with node and react</h4>
+<p>The steps of JWT:</p>
 
-<ul>
-  <li>On the client side (React), when a user submits their sign-up form, a request is made to the server to create a new user account. For example, you can use the fetch API to send a POST request to the server with the user’s information:</li>
-</ul>
+<ol>
+  <li>Claims: JWT consists of a set of claims encoded as a JSON object. These claims can include information about the user, such as the user’s name, ID, and roles.</li>
+  <li>Encoding: The JSON object is then Base64Url encoded to produce a compact string, which is the JWT.</li>
+  <li>Signature: To ensure that the information in the JWT has not been tampered with, a signature is generated using a secret key shared between the parties. The signature is calculated over the encoded JWT and is appended to it, separated by a period.</li>
+  <li>Transmission: The JWT is then sent from the client to the server in the <strong>Authorization</strong> header of an HTTP request, usually as a Bearer Token.</li>
+  <li>Verification: On the server, the signature is verified using the shared secret key, and if the signature is valid, the information in the JWT is trusted and can be used to perform authorized actions.</li>
+</ol>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/signup</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
-    <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span> <span class="p">})</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span> <span class="c1">// try to prevent XSS</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">isAuthenticated</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<p>In conclusion, JWT is a secure and efficient way of transmitting information between parties. The compact format and digital signature of JWT make it an ideal choice for authentication and authorization in modern web applications.</p>
 
-<ul>
-  <li>On the server side (Node), the user’s information is verified and then added to the database. After that, a JWT is generated and sent back to the client in the response. For example, you can use the jsonwebtoken library to generate a JWT:</li>
-</ul>
+<h2 id="what">What?</h2>
+
+<h3 id="jwt-in-js">JWT in JS</h3>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsonwebtoken</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">SECRET_KEY</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">secret_key</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/signup</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
-  <span class="c1">//verify the input and create user</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">isValid</span><span class="p">(</span><span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span><span class="p">))</span> <span class="p">{</span>
-    <span class="nx">createUser</span><span class="p">(</span><span class="nx">email</span><span class="p">,</span><span class="nx">password</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
-    <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">email</span> <span class="p">};</span>
-    <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">secret_key</span><span class="dl">'</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="nx">token</span> <span class="p">});</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Invalid input</span><span class="dl">'</span> <span class="p">});</span>
-  <span class="p">}</span>
+<span class="c1">// Generate a JWT</span>
+<span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">({</span> <span class="na">id</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John Doe</span><span class="dl">'</span> <span class="p">},</span> <span class="nx">SECRET_KEY</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">expiresIn</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1h</span><span class="dl">'</span>
 <span class="p">});</span>
-</code></pre></div></div>
 
-<p>It’s important to note that you should also hash the password before storing it in the database. This can be done using a library such as bcrypt.</p>
-
-<ul>
-  <li>On the client side, the JWT is stored in local storage or a cookie.</li>
-  <li>For subsequent requests to protected routes or resources, the client attaches the JWT to the request header as an “Authorization” field.</li>
-  <li>On the server side, the JWT is extracted from the request header and verified. If the JWT is valid, the request is processed, otherwise, the server sends back a 401 Unauthorized response.</li>
-</ul>
-
-<h4 id="other-api-with-node-and-react">other API with node and react</h4>
-
-<ul>
-  <li>On the client side (React), when a user submits their login credentials, a request is made to the server to authenticate the user.</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/login</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
-    <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span> <span class="p">})</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">isAuthenticated</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
-<span class="p">}</span>
+<span class="c1">// Verify a JWT</span>
+<span class="kd">const</span> <span class="nx">decoded</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="nx">SECRET_KEY</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">decoded</span><span class="p">);</span> <span class="c1">// { id: 123, name: 'John Doe', iat: 1547451138, exp: 1547454738 }</span>
 </code></pre></div></div>
 
 <ul>
-  <li>On the server side (Node), the login credentials are checked against the database, and if they are valid, a JWT is generated and sent back to the client in the response. For example, you can use the jsonwebtoken library to generate a JWT:</li>
+  <li>we can generate SECRET_KEY with <code class="language-plaintext highlighter-rouge">crypto</code></li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsonwebtoken</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/login</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
-  <span class="c1">// check credentials against database</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">isValid</span><span class="p">(</span><span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">))</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">email</span> <span class="p">};</span>
-    <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">secret_key</span><span class="dl">'</span><span class="p">);</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="nx">token</span> <span class="p">});</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Invalid credentials</span><span class="dl">'</span> <span class="p">});</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div></div>
-
-<ul>
-  <li>On the client side, the JWT is stored in local storage or a cookie.</li>
-  <li>For subsequent requests to protected routes or resources, the client attaches the JWT to the request header as an “Authorization” field.</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/users</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
-</code></pre></div></div>
-
-<ul>
-  <li>On the server side, the JWT is extracted from the request header and verified. If the JWT is valid, the request is processed, otherwise, the server sends back a 401 Unauthorized response.</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsonwebtoken</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">authorization</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="dl">'</span><span class="s1">secret_key</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">decoded</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Invalid token</span><span class="dl">'</span> <span class="p">});</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">req</span><span class="p">.</span><span class="nx">decoded</span> <span class="o">=</span> <span class="nx">decoded</span><span class="p">;</span>
-        <span class="nx">next</span><span class="p">();</span>
-      <span class="p">}</span>
-    <span class="p">});</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">No token provided</span><span class="dl">'</span> <span class="p">});</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">crypto</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">randomBytes</span><span class="p">(</span><span class="mi">32</span><span class="p">).</span><span class="nx">toString</span><span class="p">(</span><span class="dl">'</span><span class="s1">hex</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// secret key</span>
 </code></pre></div></div>
 
 <h2 id="reference">Reference</h2>

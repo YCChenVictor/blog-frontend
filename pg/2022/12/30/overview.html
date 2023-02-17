@@ -87,7 +87,14 @@
 
 <h2 id="why">Why?</h2>
 
-<p>Compare to MySQL</p>
+<ul>
+  <li>Robust feature set: PostgreSQL has a comprehensive feature set that supports advanced data types, indexes, stored procedures, triggers, and more.</li>
+  <li>Scalability: PostgreSQL is designed to scale horizontally, meaning that you can add more resources to the system as your data and processing needs grow.</li>
+  <li>Strong reliability: PostgreSQL is known for its strong reliability and stability.</li>
+  <li>Open source</li>
+  <li>Active community</li>
+  <li>Strong security: PostgreSQL has a strong focus on security, with features such as role-based access control, data encryption, and secure communication protocols built in.</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
@@ -115,6 +122,8 @@
 
 <h3 id="connect">connect</h3>
 
+<h4 id="base">base</h4>
+
 <p>connect to database</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql postgres
@@ -134,6 +143,25 @@
 </code></pre></div></div>
 
 <p>and permissions set to 0600</p>
+
+<h4 id="with-docker">with docker</h4>
+
+<p><a href="/blog/docker/2022/01/09/overview.html#run">connect docker</a></p>
+
+<p>and then</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> my_db <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">POSTGRESQL_PORT</span><span class="o">=</span>5432 <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>my_db <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>postgres <span class="se">\</span>
+    <span class="nt">-e</span> <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>test1234 <span class="se">\</span>
+    <span class="nt">-d</span> postgres
+</code></pre></div></div>
+
+<ul>
+  <li>remember to create desired database first</li>
+  <li>remember to change desired <code class="language-plaintext highlighter-rouge">my_db</code>, <code class="language-plaintext highlighter-rouge">postgres</code> and <code class="language-plaintext highlighter-rouge">test1234</code>, which will match <code class="language-plaintext highlighter-rouge">DEV_DATABASE_URL</code> below</li>
+</ul>
 
 <h3 id="database">database</h3>
 
@@ -180,7 +208,7 @@
 
 <p>Show</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="se">\d</span>u
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\d</span>u
 </code></pre></div></div>
 
 <h3 id="crud">CRUD</h3>

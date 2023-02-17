@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="flex">
+    <div class="flex absolute left-0 top-0">
+      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
+        alt="author profile image">
+    </div>
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="w-full relative flex justify-center">
+        <button type="button" onclick="toggleNavbar('navbar')"
+          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+          aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute right-16 flex hidden md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+           <!-- don't show Home in menu for Homepage -->
+          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+            href="/blog/">
+            Home
+          </a>
+          
+
+        <!-- dynamic menu based on navigation info in _config.yml -->
+        
+           <!-- don't show current page in menu -->
+          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+            href="/blog/about">
+            About
+          </a>
+          
+        
+           <!-- don't show current page in menu -->
+          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+            href="/blog/category">
+            Category
+          </a>
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+
+<div class="p-16 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Token</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>This article describes how to implement JWT in node project.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>We need a good way for authentication to grand user permission. For more other authentication method, please refer to <a href="/blog/api/2022/08/17/authentication.html">here</a>.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="with-node-and-react">with node and react</h3>
+
+<ul>
+  <li>On the client side (React), when a user submits their sign-up form, a request is made to the server to create a new user account. For example, you can use the fetch API to send a POST request to the server with the user’s information:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/signup</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+    <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span> <span class="p">})</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span> <span class="c1">// try to prevent XSS</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="na">isAuthenticated</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>On the server side (Node), the user’s information is verified and then added to the database. After that, a JWT is generated and sent back to the client in the response. For example, you can use the jsonwebtoken library to generate a JWT:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsonwebtoken</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/signup</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+  <span class="c1">//verify the input and create user</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">isValid</span><span class="p">(</span><span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">name</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">createUser</span><span class="p">(</span><span class="nx">email</span><span class="p">,</span><span class="nx">password</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+    <span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">email</span> <span class="p">};</span>
+    <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="dl">'</span><span class="s1">secret_key</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="nx">token</span> <span class="p">});</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Invalid input</span><span class="dl">'</span> <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>It’s important to note that you should also hash the password before storing it in the database. This can be done using a library such as bcrypt.</p>
+
+<ul>
+  <li>On the client side, the JWT is stored in local storage or a cookie.</li>
+  <li>For subsequent requests to protected routes or resources, the client attaches the JWT to the request header as an <strong>Authorization</strong> field.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/users</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+</code></pre></div></div>
+
+<ul>
+  <li>On the server side, the JWT is extracted from the request header and verified. If the JWT is valid, the request is processed, otherwise, the server sends back a 401 Unauthorized response.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">jsonwebtoken</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">authorization</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="dl">'</span><span class="s1">secret_key</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">decoded</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Invalid token</span><span class="dl">'</span> <span class="p">});</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">decoded</span> <span class="o">=</span> <span class="nx">decoded</span><span class="p">;</span>
+        <span class="nx">next</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="dl">'</span><span class="s1">No token provided</span><span class="dl">'</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<h4 id="expirations">expirations</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Sign a JWT token with an expiration time of 30 minutes</span>
+<span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">({</span> <span class="na">userId</span><span class="p">:</span> <span class="mi">123</span> <span class="p">},</span> <span class="dl">'</span><span class="s1">your-secret-key</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">expiresIn</span><span class="p">:</span> <span class="dl">'</span><span class="s1">30m</span><span class="dl">'</span> <span class="p">});</span>
+
+<span class="c1">// Verify the token and check whether it has expired</span>
+<span class="nx">jwt</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">token</span><span class="p">,</span> <span class="dl">'</span><span class="s1">your-secret-key</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">decoded</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Token is invalid or has expired</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// Token is valid and has not expired</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
+
+<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+</html>

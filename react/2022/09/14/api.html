@@ -87,63 +87,139 @@
 
 <h2 id="why">Why?</h2>
 
+<p>With the <a href="/blog/api/2023/01/22/restful.html">concept of RESTful</a>, we can separate client and server side and follow standardized principles for exchanging data between client and server.</p>
+
+<p>With the principles, we have scalability via enlarging machines and flexibility to all other languages (we only need to make sure the methods of exchanging data are the same)</p>
+
 <h2 id="how">How?</h2>
 
-<h3 id="envrionment">envrionment</h3>
+<p>Given we have a backend, then we can create frontend components to GET and POST. I use JWT mechanism.</p>
 
-<p>Create a file, <code class="language-plaintext highlighter-rouge">server.js</code></p>
+<h3 id="create">create</h3>
 
-<h3 id="get">GET</h3>
+<p>Suppose we what to create tasks in a to-do list</p>
 
-<p>In <code class="language-plaintext highlighter-rouge">server.js</code></p>
+<pre><code class="language-JSX">import React, { useContext, useState } from 'react';
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">rulesURL</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span>
-    <span class="dl">"</span><span class="s2">https://api.twitter.com/2/tweets/search/stream/rules</span><span class="dl">"</span>
-  <span class="p">);</span>
+function CreateTask(props) {
+  const [variable, setVariable] = useState('');
 
-  <span class="kd">const</span> <span class="nx">requestConfig</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">url</span><span class="p">:</span> <span class="nx">rulesURL</span><span class="p">,</span>
-    <span class="na">auth</span><span class="p">:</span> <span class="p">{</span>
-      <span class="na">bearer</span><span class="p">:</span> <span class="nx">token</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="na">json</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="p">};</span>
-</code></pre></div></div>
+  ...
+  
+  const token = localStorage.getItem('token');
+  const PostTask = (params) =&gt; {
+    fetch('http://localhost:5000/tasks', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(params),
+    }).then((res) =&gt; {
+      return res.json()
+    }).then((data) =&gt; {
+      console.log(data);
+    }).catch(error =&gt; {
+      console.log(error)
+    })
+  }
 
-<h3 id="backend">backend</h3>
+  return(
+    ...
+  )
+}
 
-<p>Because react hides nothing and Same-Origin Policy of twitter api, we still need a backend to hide tokens and to build proxy for react to get and post. (refer to 2022-08-30-top-10-risks.md for further information)</p>
-
-<p>Please refer to …</p>
-
-<h2 id="note">Note</h2>
-
-<p>Try to get data from twitter api:</p>
+export default CreateTask;
+</code></pre>
 
 <ul>
-  <li>how to hide token -&gt;</li>
-  <li>how to build get? -&gt; use fetch</li>
+  <li><code class="language-plaintext highlighter-rouge">PostTask</code> will <code class="language-plaintext highlighter-rouge">POST</code> <code class="language-plaintext highlighter-rouge">/tasks</code> with JWT token in headers</li>
 </ul>
 
-<h2 id="other">Other</h2>
+<h3 id="read">READ</h3>
 
-<p>Add a create button</p>
+<p>GET list of tasks</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-<span class="o">&lt;</span><span class="nx">button</span>
-  <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">createTask</span><span class="p">()}</span>
-<span class="o">&gt;</span>
-  <span class="nx">Increment</span>
-<span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span><span class="p">...</span>
-</code></pre></div></div>
+<pre><code class="language-JSX">import React, { useEffect } from "react";
+import TaskList from './task_list.jsx'
 
-<h3 id="concept-of-api">concept of api</h3>
+function TaskLists() {
+  useEffect(() =&gt; {
+    fetch("http://localhost:5000/tasks", {
+      method: "GET",
+    })
+  }, []);
 
-<p>Given the routes above, we can write method to get data once component rendered as follow:</p>
+  return(
+    &lt;div&gt;
+      &lt;h2&gt;Todo List&lt;/h2&gt;
+      &lt;div&gt;
+        &lt;ul&gt;
+          &lt;TaskList /&gt;
+          &lt;TaskList /&gt;
+          &lt;TaskList /&gt;
+          &lt;TaskList /&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  )
+}
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
+export default TaskLists;
+</code></pre>
+
+<h3 id="token">token</h3>
+
+<p>We can check whether token expired given <a href="/blog/node/2023/02/10/token.html#expirations">backend</a></p>
+
+<pre><code class="language-JSX">import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+
+const withSessionTimeout = WrappedComponent =&gt; {
+  const SessionTimeout = props =&gt; {
+    const [redirect, setRedirect] = useState(false);
+
+    useEffect(() =&gt; {
+      const token = localStorage.getItem('token'); // or read from a cookie
+      if (token) {
+        try {
+          const decoded = jwt_decode(token);
+          const currentTime = Date.now() / 1000;
+          if (decoded.exp &lt; currentTime) {
+            setRedirect(true);
+          }
+        } catch (error) {
+          setRedirect(true);
+        }
+      } else {
+        setRedirect(true);
+      }
+    }, []);
+
+    if (redirect) {
+      return &lt;Redirect to="/login" /&gt;;
+    }
+
+    return &lt;WrappedComponent {...props} /&gt;;
+  };
+
+  return SessionTimeout;
+};
+
+export default withSessionTimeout;
+</code></pre>
+
+<p>and use it</p>
+
+<pre><code class="language-JSX">import React from 'react';
+import withSessionTimeout from './withSessionTimeout';
+
+const MyComponent = props =&gt; {
+  return &lt;div&gt;Hello, world!&lt;/div&gt;;
+};
+
+export default withSessionTimeout(MyComponent);
+</code></pre>
 
 <h2 id="what">What</h2>
 
@@ -156,6 +232,8 @@
 <p><a href="https://developer.twitter.com/en/docs/tutorials/building-an-app-to-stream-tweets">Building an app to stream Tweets in real-time</a></p>
 
 <p><a href="https://www.quod.ai/post/how-to-integrate-twitter-login-api-into-your-react-app">Why can’t we integrate Twitter login with React alone?</a></p>
+
+<p><a href="https://hackmd.io/@Heidi-Liu/note-fe302-react-blog-login">[week 22] React：用 SPA 架構實作一個部落格（二）- 身分驗證</a></p>
 
   </div>
 </div>

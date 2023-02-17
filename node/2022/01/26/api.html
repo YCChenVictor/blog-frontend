@@ -83,13 +83,27 @@
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>This article describes how to design API in node</p>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<p>We need a common sense</p>
 
 <h2 id="how">How?</h2>
+
+<ul>
+  <li>internal API
+    <ul>
+      <li>create app and then design the routes in it</li>
+      <li>also needs special way to consume internally</li>
+    </ul>
+  </li>
+  <li>external API
+    <ul>
+      <li>use axios to CRUD</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="internal-api">internal API</h3>
 
@@ -124,10 +138,14 @@
 
 <h5 id="req">req</h5>
 
+<p>The way to get request params</p>
+
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">req</span><span class="p">.</span><span class="nx">query</span>
 </code></pre></div></div>
 
 <h5 id="res">res</h5>
+
+<p>The way to get response</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
 </code></pre></div></div>
