@@ -42,6 +42,11 @@
 
       <div class="absolute right-16 flex hidden md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
+           <!-- don't show Home in menu for Homepage -->
+          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+            href="/blog/">
+            Home
+          </a>
           
 
         <!-- dynamic menu based on navigation info in _config.yml -->
@@ -67,17 +72,60 @@
 </nav>
 
       
-      <div class="mx-auto text-center prose prose-indigo">
-  <div>
-    <img class="object-cover mx-auto" src="/blog/assets/img/home_background.jpeg"
-      alt="author profile image">
-  </div>
+      
+  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
 
-  <div>
-    Hi, welcome to my blog. In each topic, please start the reading from overview or use the following node graph.
+<div class="p-16 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
+  <div class="text-center">
+    
   </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
 
-  <div id='node-graph' class="border-4 border-sky-500"></div>
+<p>This article describes how to implement jeykll.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>Because I am now still using jekyll for blog.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="environment">environment</h3>
+
+<p>add a file <code class="language-plaintext highlighter-rouge">environment-variables.json</code> with</p>
+
+<pre><code class="language-JSON">{
+  "production": {
+    "endpoint": "https://ycchenvictor.github.io/blog/"
+  },
+  "production": {
+    "endpoint": "http://127.0.0.1:4000/blog/"
+  }
+}
+</code></pre>
+
+<p>and import it with javascript</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/environment-variables.json</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">environmentVariables</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>    
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>give an example</p>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
 </div>
 
 <footer class="relative px-4 pt-4 pb-4">

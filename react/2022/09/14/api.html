@@ -221,6 +221,26 @@ const MyComponent = props =&gt; {
 export default withSessionTimeout(MyComponent);
 </code></pre>
 
+<h3 id="environment-variables">environment variables</h3>
+
+<p>add a <code class="language-plaintext highlighter-rouge">.env</code> file and put variables; for example,</p>
+
+<ul>
+  <li>endpoint:</li>
+</ul>
+
+<p>Take backend API as example, we can create two environment files: <code class="language-plaintext highlighter-rouge">.env.development</code> &amp; <code class="language-plaintext highlighter-rouge">.env.production</code> as follow:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">REACT_APP_API_ENDPOINT</span><span class="o">=</span><span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:9999</span>
+</code></pre></div></div>
+
+<p>and</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">REACT_APP_API_ENDPOINT</span><span class="o">=</span><span class="nx">https</span><span class="p">:</span><span class="c1">//servername:9999</span>
+</code></pre></div></div>
+
+<p>and we can use it with <code class="language-plaintext highlighter-rouge">process.env.REACT_APP_API_ENDPOINT</code>. When <code class="language-plaintext highlighter-rouge">npm start</code>, react uses variables in <code class="language-plaintext highlighter-rouge">.env.development</code> and when <code class="language-plaintext highlighter-rouge">npm run build</code>, react uses variables in <code class="language-plaintext highlighter-rouge">.env.production</code></p>
+
 <h2 id="what">What</h2>
 
 <h3 id="project-task">project, task</h3>

@@ -76,28 +76,181 @@
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Overview</h1>
+  <h1 class="text-center mt-6 mb-6">Node Graph</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>This article describes how to draw node based force graph in react.</p>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<p>I want to create node plot in my blog.</p>
 
 <h2 id="how">How?</h2>
 
-<p>focus on the mechanism</p>
+<h3 id="init">init</h3>
+
+<p>to be continued</p>
+
+<pre><code class="language-JSX">import React, { useEffect, useRef, useState, useMemo } from "react";
+import ReactDOM from "react-dom";
+import ForceGraph2D from "react-force-graph-2d";
+import { data, clusterIds, clusters } from "./exampleData";
+import * as d3 from "d3";
+
+const NodeGraph = () =&gt; {
+  const [initialCenter, setInitialCenter] = useState(true);
+  const [collapsedClusters, setCollapsedClusters] = useState(clusterIds);
+  const [hiddenClusters, setHiddenClusters] = useState([]);
+  const forceRef = useRef();
+
+  useEffect(() =&gt; {
+    // forceRef.current.d3Force("collide", d3.forceCollide(13));
+    forceRef.current.d3Force("charge").strength(-40);
+    forceRef.current.d3Force("link").distance(50);
+    forceRef.current.d3Force("charge").distanceMax(150);
+  }, []);
+
+  const toggleClusterCollapse = (clusterId) =&gt; {
+    if (collapsedClusters.includes(clusterId)) {
+      setCollapsedClusters(collapsedClusters.filter((id) =&gt; id !== clusterId));
+    } else {
+      setCollapsedClusters([...collapsedClusters, clusterId]);
+    }
+  };
+
+  const handleNodeClick = (node) =&gt; {
+    toggleClusterCollapse(node.id);
+    if (collapsedClusters.includes(node.id)) {
+      forceRef.current.zoom(3.5, 400);
+      forceRef.current.centerAt(node.x, node.y, 400);
+    }
+  };
+
+  const toggleCluster = (clusterId) =&gt; {
+    if (hiddenClusters.includes(clusterId)) {
+      setHiddenClusters(hiddenClusters.filter((id) =&gt; id !== clusterId));
+    } else {
+      setHiddenClusters([...hiddenClusters, clusterId]);
+    }
+    if (!collapsedClusters.includes(clusterId)) {
+      toggleClusterCollapse(clusterId);
+    }
+  };
+
+  const graphData = useMemo(() =&gt; {
+    return {
+      nodes: data.nodes.filter((node) =&gt; !hiddenClusters.includes(node.id)),
+      links: data.links
+    };
+  }, [hiddenClusters]);
+
+  return (
+    &lt;div&gt;
+      &lt;button
+        onClick={() =&gt; {
+          forceRef.current.zoomToFit();
+          setHiddenClusters([]);
+          setCollapsedClusters(clusterIds);
+        }}
+      &gt;
+        RESET
+      &lt;/button&gt;
+      &lt;div style=&gt;
+        {clusters.map((cluster) =&gt; (
+          &lt;button
+            key={cluster.id}
+            onClick={() =&gt; {
+              toggleCluster(cluster.id);
+            }}
+          &gt;
+            Toggle {cluster.name}
+          &lt;/button&gt;
+        ))}
+      &lt;/div&gt;
+      &lt;div
+        style=
+      &gt;
+        &lt;ForceGraph2D
+          width={window.innerWidth}
+          height={650}
+          ref={forceRef}
+          onNodeClick={handleNodeClick}
+          graphData={graphData}
+          cooldownTicks={50}
+          nodeRelSize={1}
+          onEngineStop={() =&gt; {
+            if (initialCenter) {
+              forceRef.current.zoomToFit();
+            }
+            setInitialCenter(false);
+          }}
+          nodeCanvasObjectMode={() =&gt; "after"}
+          nodeCanvasObject={(node, ctx, globalScale) =&gt; {
+            const label = node.name;
+            const fontSize = node.isClusterNode
+              ? 14 * (node.val / 1500)
+              : 14 / (globalScale * 1.2);
+            ctx.font = `${fontSize}px Sans-Serif`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = node.isClusterNode ? "white" : "black"; //node.color;
+            if (node.isClusterNode) {
+              // console.log();
+              const lineHeight = fontSize * 1.2;
+              const lines = label.split(",");
+              let x = node.x;
+              let y = node.y - lineHeight;
+              for (let i = 0; i &lt; lines.length; ++i) {
+                ctx.fillText(lines[i], x, y);
+                y += lineHeight;
+              }
+            } else if (globalScale &gt;= 3.5) {
+              ctx.fillText(label, node.x, node.y + 2.5);
+            }
+          }}
+          enableNodeDrag={false}
+          nodeVisibility={(node) =&gt; {
+            if (collapsedClusters.includes(node.clusterId)) {
+              return false;
+            } else return true;
+          }}
+          linkVisibility={(link) =&gt; {
+            if (
+              collapsedClusters.includes(link.source.id) &amp;&amp;
+              !link.target.isClusterNode
+            ) {
+              return false;
+            } else if (
+              hiddenClusters.includes(link.source.id) ||
+              hiddenClusters.includes(link.target.id)
+            ) {
+              return false;
+            } else return true;
+          }}
+        /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById("container"));
+</code></pre>
 
 <h2 id="what">What?</h2>
 
 <p>give an example</p>
 
+<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
+
+<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
+
 <h2 id="reference">Reference</h2>
+
+<p><a href="https://codesandbox.io/s/force-directed-clusters-with-links-between-clusters-forked-tsbf3b?file=/src/index.js:0-4553">force-directed-clusters-with-links-between-clusters-forked</a></p>
 
   </div>
 </div>

@@ -89,17 +89,6 @@
 
 <h2 id="how">How</h2>
 
-<h3 id="cors">CORS</h3>
-
-<p>To deal with CORS in <code class="language-plaintext highlighter-rouge">fetch</code>:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">REACT_APP_BACKEND_URL</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">mode</span><span class="p">:</span><span class="dl">'</span><span class="s1">cors</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">body</span><span class="p">:</span> <span class="nx">formData</span>
-<span class="p">})</span>
-</code></pre></div></div>
-
 <h3 id="environment-variable">environment variable</h3>
 
 <p>Take backend API as example, we can create two environment files: <code class="language-plaintext highlighter-rouge">.env.development</code> &amp; <code class="language-plaintext highlighter-rouge">.env.production</code> as follow:</p>

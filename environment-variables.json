@@ -1,0 +1,10 @@
+{
+"production": {
+    "endpoint": "https://ycchenvictor.github.io/blog/",
+    "baseurl": "/blog"
+  },
+"development": {
+    "endpoint": "http://127.0.0.1:4000/blog/",
+    "baseurl": "/blog"
+  }
+}
