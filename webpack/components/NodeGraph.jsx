@@ -2,6 +2,11 @@ import React, { useMemo } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 
 function NodeGraph() {
+  const endpoint = document.querySelector('#endpoint');
+  const baseurl = document.querySelector('#base');
+  const url = `${endpoint.textContent}${baseurl.textContent}`
+
+  scrapeData() // try to scrape all the article first
   const data = { // the data structure required for node graph
     nodes: [
       {
@@ -9,7 +14,7 @@ function NodeGraph() {
         isClusterNode: true,
         name: "project, idea, user",
         size: 9.785932721712538,
-        href: "http://127.0.0.1:4000/blog/0_self/1993/09/01/software.html"
+        href: `${url}/0_self/1993/09/01/software.html`
       },
       {
         id: "project",
@@ -66,6 +71,11 @@ function NodeGraph() {
       onNodeClick={handleNodeClick}
     />
   )
+
+  function scrapeData() {
+    console.log('scraping data')
+    
+  }
 }
 
 export default NodeGraph;
