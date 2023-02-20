@@ -23,6 +23,7 @@ I need to structure my thoughts.
 
 ## How?
 
+* overview articles should start from category and then 'overview'
 * add dots plot for articles (mind map)
 * add searching bar
 * Increase the padding of each sentence (CSS)
