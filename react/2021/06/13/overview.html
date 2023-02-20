@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <!-- 3D drawing -->
+  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
+<div id="base" class="hidden">/blog</div>
+<!-- 3D drawing -->
     
     <!-- 2D drawing -->
     
@@ -52,26 +53,26 @@
       <div class="absolute right-16 flex hidden md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
            <!-- don't show Home in menu for Homepage -->
-          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-            href="/blog/">
-            Home
-          </a>
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/">
+              Home
+            </a>
           
 
         <!-- dynamic menu based on navigation info in _config.yml -->
         
            <!-- don't show current page in menu -->
-          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-            href="/blog/about">
-            About
-          </a>
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/about">
+              About
+            </a>
           
         
            <!-- don't show current page in menu -->
-          <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-            href="/blog/category">
-            Category
-          </a>
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/category">
+              Category
+            </a>
           
         
         </div>
@@ -242,6 +243,52 @@ npm start
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">items</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div></div>
 
+<h3 id="ajax">ajax</h3>
+
+<p>combined with useEffect and useState</p>
+
+<pre><code class="language-JSX">function NodeGraph() {
+  const endpoint = document.querySelector('#endpoint');
+  const baseurl = document.querySelector('#base');
+  const url = `${endpoint.textContent}${baseurl.textContent}`;
+
+  const [data, setData] = useState([]);
+
+  useEffect(() =&gt; {
+    fetch(`${url}/articles`)
+      .then(response =&gt; response.text())
+      .then(html =&gt; {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const articlesNode = doc.querySelector('#articles');
+        const articles = Array.from(articlesNode.querySelectorAll('div')).filter(div =&gt; div.querySelector('div'));
+        return articles
+      })
+      .then(articles =&gt; {
+        const data = {
+          nodes: [
+            articles.map(article =&gt; ({
+              id: article.getAttribute('id'),
+              name: article.getAttribute('id'),
+              href: article.querySelector('a').getAttribute('href')
+            })
+          )],
+          links: [
+            articles.map(article =&gt; ({
+              source: article.getAttribute('id'),
+              target: article.getAttribute('id'),
+            })
+          )]
+        }
+        setData(data)
+      })
+  })
+
+  console.log('testing!!!')
+  console.log(data)
+}
+</code></pre>
+
 <h2 id="what">What?</h2>
 
 <h3 id="sign-up-and-login-mechanism">sign up and login mechanism</h3>
@@ -261,6 +308,8 @@ npm start
 <p><a href="https://www.w3schools.com/react/react_useref.asp">React useRef Hook</a></p>
 
 <p><a href="https://codesandbox.io/s/78ize">react-sidebar-menu-medium</a></p>
+
+<p><a href="https://reactjs.org/docs/faq-ajax.html">AJAX and APIs</a></p>
 
   </div>
 </div>
