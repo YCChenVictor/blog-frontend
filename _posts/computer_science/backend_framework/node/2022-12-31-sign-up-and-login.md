@@ -17,7 +17,7 @@ publish: true
 
 This article describes how to implement signup and login with
 
-* express-session (TBC)
+* express-session
 * passport (For login authentication)
   * middleware for authentication
   * multiple authentication strategies
@@ -159,6 +159,14 @@ TBC
 
 ```
 
+### session vs token
+
+I just choose JWT (token) for my apps (Of course, we can use both). Both sessions and JWTs (JSON Web Tokens) are commonly used for user authentication and authorization.
+
+Session: server-side authentication -> server creates unique session ID -> store on server -> send it to client as cookie -> client send session ID in each request -> match for authentication
+
+JWT: stateless authentication -> server generates token containing the user's identity -> send to client as a response to a successful login request -> client includes the token in header of requests -> server authenticate and authorize
+
 ## What?
 
 give a project and use postman to demo
@@ -174,3 +182,5 @@ give a project and use postman to demo
 [Easy Way to Debug Passport Authentication in Express](https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express)
 
 [[npm] Passport 筆記（Learn to Use Passport JS）](https://pjchender.dev/npm/npm-passport/)
+
+[Session vs Token Authentication in 100 Seconds](https://www.youtube.com/watch?v=UBUNrFtufWo)
