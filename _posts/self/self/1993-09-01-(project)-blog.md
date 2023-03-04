@@ -23,6 +23,7 @@ I need to structure my thoughts.
 
 ## How?
 
+* complete cracking coding interview first
 * the overview article will be the core of each section and connect the groups of dots as network
 * add dots plot for articles (mind map)
 * add searching bar
