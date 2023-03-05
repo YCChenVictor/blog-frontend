@@ -1,9 +1,9 @@
 ---
 layout: post
-title: basic concept related to DSA
+title:
 description: ''
 date: '2022-05-02'
-categories: 'mindset'
+categories: DSA
 note: 'to be continued'
 mathjax: true
 mermaid: true
