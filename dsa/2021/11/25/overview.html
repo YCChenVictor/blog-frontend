@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
+<div id="base" class="hidden">/blog</div>
+<!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="flex">
+    <div class="flex absolute left-0 top-0">
+      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
+        alt="author profile image">
+    </div>
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="w-full relative flex justify-center">
+        <button type="button" onclick="toggleNavbar('navbar')"
+          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+          aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute right-16 flex hidden md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+           <!-- don't show Home in menu for Homepage -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/">
+              Home
+            </a>
+          
+
+        <!-- dynamic menu based on navigation info in _config.yml -->
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/about">
+              About
+            </a>
+          
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/category">
+              Category
+            </a>
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+
+<div class="p-16 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>Before we dive into it, please understand concept of <a href="/blog/dsa/2022/05/02/complexity.html">complexity</a>.</p>
+
+<p>Data structures describe how data can be organized, stored, and manipulated. Some common data structures include arrays, linked lists, stacks, queues, trees, graphs, and hash tables. Algorithms are procedures for solving problems such as searching for information, sorting data, processing graphs, performing calculations, and many other tasks.</p>
+
+<ul>
+  <li>Structure
+    <ul>
+      <li>array, arraylist, string</li>
+      <li>linked list</li>
+      <li>stack</li>
+      <li>queue</li>
+      <li>tree</li>
+      <li>graph</li>
+      <li>hash table</li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li>Most common algorithms (according to ChatGPT)
+    <ul>
+      <li>string
+        <ul>
+          <li>reversing a string</li>
+          <li>string is a palindrome</li>
+          <li>longest common prefix</li>
+        </ul>
+      </li>
+      <li>array
+        <ul>
+          <li>finding the maximum subarray</li>
+          <li>binary search</li>
+          <li>sorting an array
+            <ul>
+              <li>merge sort</li>
+              <li>quick sort</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>dynamic programming
+        <ul>
+          <li>longest increasing subsequence</li>
+          <li>0/1 knapsack problem</li>
+        </ul>
+      </li>
+      <li>Graph traversal
+        <ul>
+          <li>shortest path between two nodes</li>
+          <li>detecting cycles in a graph</li>
+        </ul>
+      </li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li>key concepts (according to cracking the coding interview)
+    <ul>
+      <li>bit Manipulation</li>
+      <li>memory (stack vs. heap)</li>
+      <li>recursion</li>
+      <li>dynamic programming</li>
+      <li>big O about time and space complexity</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="why">Why</h2>
+
+<p>To solve problem in a more efficient way, making no more space to improve both the time complexity and space complexity.</p>
+
+<h2 id="how">How</h2>
+
+<p>We can decompose all the programming logics into four actions:</p>
+
+<ul>
+  <li>create (insert)</li>
+  <li>read (access with id)</li>
+  <li>update (access with attributes)</li>
+  <li>delete (delete)</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">time complexity</th>
+      <th style="text-align: center">arraylist</th>
+      <th style="text-align: center">linkedlist</th>
+      <th style="text-align: center">stack</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">C</td>
+      <td style="text-align: center">O(1) - O(n)</td>
+      <td style="text-align: center">O(1)</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">R</td>
+      <td style="text-align: center">O(1)</td>
+      <td style="text-align: center">あなたたち</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">U</td>
+      <td style="text-align: center">O(1)</td>
+      <td style="text-align: center">かのじょたち</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: left">D</td>
+      <td style="text-align: center">O(1) - O(n)</td>
+      <td style="text-align: center">かのじょたち</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="array">array</h3>
+
+<ul>
+  <li>example:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>create: O(1) to O(N)
+    <ul>
+      <li>inserting an element at the end of an array has \(O(1)\)</li>
+      <li>inserting an element at the beginning of an array has \(O(N)\) because we need to shift all the elements</li>
+    </ul>
+  </li>
+  <li>read: O(1)
+    <ul>
+      <li>given an index i, the read operation in an ArrayList retrieves the element at that index in constant time, regardless of the size of the ArrayList.</li>
+      <li>linear search has \(O(N)\) because it needs to search the value from beginning</li>
+    </ul>
+  </li>
+  <li>update: O(1)
+    <ul>
+      <li>Given an index i and a new value v, the update operation in an ArrayList replaces the element at index i with the new value v in constant time, regardless of the size of the ArrayList.</li>
+    </ul>
+  </li>
+  <li>delete: O(1) to O(N)
+    <ul>
+      <li>in the worst case, where n is the number of elements in the ArrayList because deleting an element requires shifting all subsequent elements one position to the left to fill the gap left by the deleted element. Deleting the last element in an ArrayList has a time complexity of O(1) on average because it can be done by simply updating the size of the ArrayList</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="linkedlist">linkedlist</h3>
+
+<ul>
+  <li>singly linked list: pointer points the next node in each node</li>
+</ul>
+<div class="mermaid">
+graph LR
+  id1((A)) --&gt; id2((B))
+  id2((B)) --&gt; id3((C))
+  id3((C)) --&gt; id4((...))
+</div>
+<ul>
+  <li>doubly linked list: pointer points the next and previous nodes in each node</li>
+</ul>
+<div class="mermaid">
+graph LR
+  id1((A)) --&gt; id2((B))
+  id2((B)) --&gt; id1((A))
+  id2((B)) --&gt; id3((C))
+  id3((C)) --&gt; id2((B))
+  id3((C)) --&gt; id4((...))
+  id4((...)) --&gt; id3((C))
+</div>
+
+<ul>
+  <li>coding example:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Define a Node class for the elements of the linked list</span>
+<span class="kd">class</span> <span class="nx">Node</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Define the LinkedList class</span>
+<span class="kd">class</span> <span class="nx">LinkedList</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Add a new element to the end of the list</span>
+  <span class="nx">add</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tail</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Get an element at a specified index</span>
+  <span class="kd">get</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">index</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nx">current</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">index</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">current</span> <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">current</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Remove an element at a specified index</span>
+  <span class="nx">remove</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">index</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nx">current</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">previous</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">index</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">previous</span> <span class="o">=</span> <span class="nx">current</span><span class="p">;</span>
+        <span class="nx">current</span> <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">previous</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="nx">previous</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">current</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="kd">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LinkedList</span><span class="p">();</span>
+<span class="nx">list</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">list</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">list</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">list</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// Output: "b"</span>
+<span class="nx">list</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">list</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// Output: "c"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>create: O(1)
+    <ul>
+      <li>adding a new element to a LinkedList involves creating a new node and updating the head pointer to point to the new node, which can be done in constant time</li>
+    </ul>
+  </li>
+  <li>read: O(n)
+    <ul>
+      <li>In singly-linked list, the time complexity of read is O(n) in the worst case, where n is the length of the list Unlike an array, where elements are stored contiguously in memory and can be accessed in constant time using an index, in a linked list, we have to traverse the list from the head node to the desired index, which takes linear time proportional to the size of the list.</li>
+    </ul>
+  </li>
+  <li>update: O(n)
+    <ul>
+      <li>In a singly-linked list, the time complexity of update (i.e., modifying an element by index) is also O(n) in the worst case, where n is the length of the list. This is because like accessing an element, we need to traverse the list from the head node to the desired index to update it. Once we have reached the node, updating it takes constant time, i.e., O(1).</li>
+    </ul>
+  </li>
+  <li>delete: O(n)
+    <ul>
+      <li>In a singly-linked list, the time complexity of delete (i.e., removing an element by index) is also O(n) in the worst case, where n is the length of the list. This is because we need to traverse the list from the head node to the node immediately before the one we want to delete, which takes linear time proportional to the size of the list. Once we have found the node before the one we want to delete, we can remove the target node in constant time, i.e., O(1), by updating its predecessor’s next pointer to skip over the target node.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="stack">stack</h3>
+
+<p><img src="/blog/assets/img/stack.png" alt="" />
+image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
+
+<ul>
+  <li>coding example:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Stack</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+
+  <span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">pop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">"</span><span class="s2">Underflow</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">peek</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="nx">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">print</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="kd">const</span> <span class="nx">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stack</span><span class="p">();</span>
+<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">peek</span><span class="p">());</span> <span class="c1">// Output: 30</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">pop</span><span class="p">());</span> <span class="c1">// Output: 30</span>
+<span class="nx">stack</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// Output: [10, 20]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>create: O(1)
+    <ul>
+      <li>simply initializing a new stack data structure with an empty array or linked list, which can be done in constant time, regardless of the size of the stack.</li>
+    </ul>
+  </li>
+  <li>read: O(1)
+    <ul>
+      <li>we can only access the top, so the time complexity of this operation is O(1), which is constant time complexity.</li>
+    </ul>
+  </li>
+  <li>update: O(1)
+    <ul>
+      <li>Again, we can only access the top, so the time complexity of this operation is O(1)</li>
+    </ul>
+  </li>
+  <li>delete:
+    <ul>
+      <li>Again, we can only access the top, so the time complexity of this operation is O(1)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="queue">queue</h3>
+
+<p><img src="/blog/assets/img/queue.png" alt="" />
+image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
+
+<ul>
+  <li>code example:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Queue</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+
+  <span class="nx">enqueue</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">dequeue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">"</span><span class="s2">Queue is empty</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">peek</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">"</span><span class="s2">Queue is empty</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="nx">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">print</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Queue</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">());</span> <span class="c1">// true</span>
+<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// [1, 2, 3]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">peek</span><span class="p">());</span> <span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">());</span> <span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">());</span> <span class="c1">// [2, 3]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 2</span>
+</code></pre></div></div>
+
+<ul>
+  <li>create: O(1)
+    <ul>
+      <li>the enqueue method will concatenate item on the last without elements shifting</li>
+    </ul>
+  </li>
+  <li>read: O(1)
+    <ul>
+      <li>reading the front element of the queue, then the time complexity of this operation is O(1)</li>
+      <li>accessing elements from the middle or end of a queue is not supported, which can result in a time complexity of O(n).</li>
+    </ul>
+  </li>
+  <li>update: O(n)
+    <ul>
+      <li>dequeuing an element from the front of the queue may require shifting all the remaining elements one position to the front of the queue, which takes O(n) time in the worst case. Then, enqueuing the modified element again requires O(1) time complexity. Therefore, the overall time complexity for updating an element in a queue is O(n).</li>
+    </ul>
+  </li>
+  <li>delete: O(1)
+    <ul>
+      <li>deleting an element from the front of a queue simply involves removing the first element of an array-based queue or the head node of a linked-list based queue, which can be done in constant time, regardless of the size of the queue.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="trees">trees</h3>
+
+<ul>
+  <li>code example (binary tree)</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">TreeNode</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">val</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">left</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">val</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">right</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">createTree</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Base case: empty data</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">mid</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>  <span class="c1">// Find middle index of data</span>
+  <span class="kd">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TreeNode</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">mid</span><span class="p">]);</span>  <span class="c1">// Create root node with middle value</span>
+
+  <span class="c1">// Recursively create left and right subtrees</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">createTree</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">mid</span><span class="p">));</span>
+  <span class="nx">root</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">createTree</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+
+  <span class="k">return</span> <span class="nx">root</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>create: O(n)
+    <ul>
+      <li>using a recursive algorithm is O(n), where n is the number of nodes in the tree. The recursive algorithm traverses each node in the tree exactly once. Specifically, at each level of the recursion, the algorithm creates one node and recursively calls itself twice to create the left and right subtrees. Since each node is created exactly once, the total number of operations performed by the algorithm is proportional to the number of nodes in the tree, which is O(n).</li>
+    </ul>
+  </li>
+  <li>read:
+    <ul>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="graphs">graphs</h3>
+
+<h3 id="tries">tries</h3>
+
+<h3 id="hash-table">hash table</h3>
+
+<h3 id="dynamic-programming">dynamic programming</h3>
+
+<p>Arrays: Arrays are commonly used in dynamic programming to store the results of subproblems. The values in the array represent the solutions to subproblems, and the array can be indexed to quickly access the solution to a specific subproblem.</p>
+
+<p>Hash tables: Hash tables can be used to store the solutions to subproblems in a way that allows for efficient lookup. Hash tables are particularly useful when the solutions to subproblems have a sparse or irregular structure.</p>
+
+<p>Trees: Trees can be used to represent the dependencies between subproblems in a dynamic programming solution. The parent-child relationships between nodes in the tree correspond to the subproblem relationships, and the values stored at each node represent the solutions to the subproblems.</p>
+
+<p>Graphs: Graphs can be used to represent the dependencies between subproblems in a more general way than trees. Graphs can handle cyclic dependencies between subproblems, as well as cases where multiple subproblems depend on the same subproblem.</p>
+
+<h2 id="what">what</h2>
+
+<p>put leetcode here</p>
+
+<h2 id="reference">reference</h2>
+
+<p>cracking the coding interview</p>
+
+<p><a href="https://www.freecodecamp.org/news/the-top-data-structures-you-should-know-for-your-next-coding-interview-36af0831f5e3/"><strong>The top data structures you should know for your next coding interview</strong></a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+</html>

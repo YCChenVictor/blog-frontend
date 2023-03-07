@@ -77,95 +77,117 @@
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Software</h1>
+  <h1 class="text-center mt-6 mb-6">Solidity</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>My thoughts about software</p>
+<p>Smart contracts are self-executing contracts with the terms of the agreement between buyer and seller being directly written into lines of code. Solidity is essential for building decentralized applications and smart contracts on the Ethereum blockchain. statically-typed language</p>
 
 <h2 id="why">Why?</h2>
 
-<p>This article is the central article of software development.</p>
+<ul>
+  <li>high-level programming language</li>
+  <li>most widely used</li>
+  <li>a range of built-in features, such as functions, variables, and control structures</li>
+  <li>define the logic and conditions of a smart contract</li>
+  <li>ensure the security and reliability of smart contracts with cryptographic operations, such as hashing and digital signatures</li>
+  <li>detecting and preventing common security vulnerabilities, such as integer overflow and reentrancy attacks</li>
+  <li>a wide range of use cases, from simple token contracts to complex decentralized applications (dApps)</li>
+  <li>compatible with a range of development tools and frameworks, making it easy for developers to integrate their smart contracts with other blockchain-based applications</li>
+  <li>used in the Ethereum ecosystem, which is one of the largest and most active blockchain communities in the world</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
-<h3 id="backend">backend</h3>
+<h3 id="basic-contract-example">basic contract example</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Declare the Solidity version</span>
+<span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.8</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="c1">// Declare the contract</span>
+<span class="nx">contract</span> <span class="nx">ExampleContract</span> <span class="p">{</span>
+
+  <span class="c1">// Declare a variable to store a string</span>
+  <span class="nx">string</span> <span class="kr">public</span> <span class="nx">greeting</span><span class="p">;</span>
+
+  <span class="c1">// Constructor function to set the initial value of the variable</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">greeting</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Function to update the value of the variable</span>
+  <span class="kd">function</span> <span class="nx">setGreeting</span><span class="p">(</span><span class="nx">string</span> <span class="nx">memory</span> <span class="nx">newGreeting</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="nx">greeting</span> <span class="o">=</span> <span class="nx">newGreeting</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="develop-locally">develop locally</h3>
 
 <ul>
-  <li><a href="/blog/api/2021/02/18/overview.html">API</a></li>
-  <li><a href="/blog/node/2022/12/30/overview.html">node</a>
-    <ul>
-      <li>database
-        <ul>
-          <li><a href="/blog/pg/2022/12/30/overview.html">PG</a></li>
-          <li><a href="/blog/node/2022/12/30/database-setup.html">database setup</a></li>
-          <li><a href="/blog/node/2022/01/20/model.html">model</a> with sequelize</li>
-        </ul>
-      </li>
-      <li><a href="/blog/node/2022/01/26/api.html">API</a></li>
-      <li><a href="/blog/node/2023/02/13/web-security.html">web-security</a></li>
-      <li><a href="/blog/node/2022/12/31/sign-up-and-login.html">Signup And Login</a> (session, JWT)</li>
-      <li><a href="/blog/node/2023/02/10/token.html">token</a></li>
-    </ul>
-  </li>
+  <li><a href="https://www.trufflesuite.com/ganache">Download Ganache</a></li>
+  <li>open Ganache and you will be presented with a local Ethereum blockchain network running on your computer</li>
+  <li>Ganache provides you with ten pre-funded accounts that you can use for testing your smart contracts. Each account has an initial balance of 100 Ether, which can be adjusted as per your needs</li>
 </ul>
 
-<h3 id="frontend">frontend</h3>
+<p><img src="/blog/assets/img/ganache_initial_ten_token.png" alt="" /></p>
 
 <ul>
-  <li><a href="/blog/html/2021/12/17/overview.html">HTML</a></li>
-  <li><a href="/blog/css/2022/10/15/overview.html">CSS</a></li>
-  <li><a href="/blog/react/2021/06/13/overview.html">react</a> (routes)
-    <ul>
-      <li><a href="/blog/react/2021/06/17/hook.html">hook</a> (useState, useEffect)</li>
-      <li><a href="/blog/react/2021/06/14/layout.html">layout</a> for HTML &amp; CSS (sidebar)</li>
-      <li><a href="/blog/react/2022/09/14/api.html">API</a> (JWT)</li>
-      <li>other
-        <ul>
-          <li><a href="/blog/react/2023/02/18/node-graph.html">force graph</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
+  <li>Configure your development environment to connect to Ganache. You can use Remix, Truffle, or any other development environment that supports Ethereum.</li>
 </ul>
 
-<h3 id="web">web</h3>
+<p>Write your smart contract code in Solidity in a file with the .sol extension.</p>
+
+<p>Compile your Solidity code using Remix or a command-line compiler like Solc.</p>
+
+<p>Deploy your smart contract to Ganache using Remix or Truffle.</p>
+
+<p>Interact with your deployed smart contract using the Ganache interface or by sending transactions using Remix, Truffle, or a command-line tool like Web3.js.</p>
+
+<p>Write tests for your smart contract to ensure that it functions as expected and to catch any potential issues or vulnerabilities.</p>
+
+<h3 id="deploy-it">deploy it</h3>
+
+<p>Compile your smart contract code using a Solidity compiler. You can use an online compiler like Remix or a command-line tool like Solc.</p>
 
 <ul>
   <li></li>
 </ul>
 
-<h3 id="blockchain">blockchain</h3>
+<p>Choose a blockchain platform to deploy your smart contract on. Ethereum is the most popular platform for smart contract deployment, but there are other platforms like Binance Smart Chain, Polkadot, and others.</p>
 
-<h3 id="machine-learning">machine learning</h3>
+<p>Create a wallet on the chosen blockchain platform and fund it with the required cryptocurrency to pay for gas fees (transaction fees).</p>
 
-<h3 id="concepts">concepts</h3>
+<p>Deploy your smart contract using a deployment tool like Remix, Truffle, or Hardhat. These tools provide an interface to interact with the blockchain network and deploy your smart contract.</p>
 
-<h4 id="dsa">DSA</h4>
+<p>Once the deployment transaction is confirmed by the blockchain network, your smart contract will be deployed and you will receive the contract address.</p>
 
-<p>connect the overview of DSA</p>
+<p>Interact with your deployed smart contract using a blockchain wallet or by sending transactions to the contract address.</p>
 
-<h4 id="middleware">middleware</h4>
+<h3 id="interact-with-it-on-production">interact with it on production</h3>
 
-<ul>
-  <li>intermediary between the client and the server and runs on the server</li>
-</ul>
-
-<h4 id="service">service</h4>
+<p>and users can interact with it:</p>
 
 <ul>
-  <li>self-contained units of functionality that can be used across multiple applications</li>
+  <li>view the current value of the greeting variable</li>
 </ul>
+
+<p>Users can interact with a smart contract by sending transactions to the contract’s address on the blockchain. These transactions can trigger the execution of the contract’s functions and update its variables.</p>
+
+<p>In the case of the example contract I provided earlier, users could interact with it in the following ways:</p>
+
+<p>View the current value of the greeting variable: Users can simply read the value of the greeting variable by calling its getter function. This can be done using a blockchain explorer or by calling the function from another smart contract.</p>
+
+<p>Update the value of the greeting variable: Users can update the value of the greeting variable by calling the setGreeting function and passing in a new string value as a parameter. This can be done using a blockchain wallet or by calling the function from another smart contract.</p>
+
+<p>When a user sends a transaction to a smart contract, the transaction is processed by the blockchain network and added to the blockchain’s immutable ledger. The smart contract’s code is then executed on the blockchain, and any changes to the contract’s variables or state are recorded on the blockchain. This ensures that the contract’s behavior is transparent, auditable, and tamper-proof.</p>
 
 <h2 id="what">What?</h2>
 
-<ul>
-  <li><a href="/blog/project/1993/09/01/(project)-blog.html">blog</a></li>
-  <li><a href="/blog/project/1993/09/01/(project)-task.html">task</a></li>
-</ul>
+<p>going to give example in project, task</p>
 
 <h2 id="reference">Reference</h2>
 

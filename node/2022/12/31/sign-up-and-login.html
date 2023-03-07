@@ -87,7 +87,7 @@
 <p>This article describes how to implement signup and login with</p>
 
 <ul>
-  <li>express-session (TBC)</li>
+  <li>express-session</li>
   <li>passport (For login authentication)
     <ul>
       <li>middleware for authentication</li>
@@ -244,6 +244,14 @@
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
 
+<h3 id="session-vs-token">session vs token</h3>
+
+<p>I just choose JWT (token) for my apps (Of course, we can use both). Both sessions and JWTs (JSON Web Tokens) are commonly used for user authentication and authorization.</p>
+
+<p>Session: server-side authentication -&gt; server creates unique session ID -&gt; store on server -&gt; send it to client as cookie -&gt; client send session ID in each request -&gt; match for authentication</p>
+
+<p>JWT: stateless authentication -&gt; server generates token containing the user’s identity -&gt; send to client as a response to a successful login request -&gt; client includes the token in header of requests -&gt; server authenticate and authorize</p>
+
 <h2 id="what">What?</h2>
 
 <p>give a project and use postman to demo</p>
@@ -259,6 +267,8 @@
 <p><a href="https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express">Easy Way to Debug Passport Authentication in Express</a></p>
 
 <p><a href="https://pjchender.dev/npm/npm-passport/">[npm] Passport 筆記（Learn to Use Passport JS）</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=UBUNrFtufWo">Session vs Token Authentication in 100 Seconds</a></p>
 
   </div>
 </div>
