@@ -23,7 +23,9 @@ I need to structure my thoughts.
 
 ## How?
 
-* overview articles should start from category and then 'overview'
+* add react sketch https://codesandbox.io/s/charity-chat-canvas-sw4jy?file=/src/index.js()
+* complete cracking coding interview first
+* the overview article will be the core of each section and connect the groups of dots as network
 * add dots plot for articles (mind map)
 * add searching bar
 * Increase the padding of each sentence (CSS)
