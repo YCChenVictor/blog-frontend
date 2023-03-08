@@ -22,7 +22,7 @@ function SidebarLayout() {
     setMenuItems(menuItemsDesired)
   }, [])
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'auto' }} >
+    <div style={{ display: 'flex', height: '75vh', overflow: 'auto' }} >
       <ProSidebarProvider>
         <BrowserRouter>
           <Sidebar>
