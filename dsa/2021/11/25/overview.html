@@ -191,19 +191,19 @@
     <tr>
       <td style="text-align: left">R</td>
       <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">あなたたち</td>
+      <td style="text-align: center"> </td>
       <td style="text-align: center"> </td>
     </tr>
     <tr>
       <td style="text-align: left">U</td>
       <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">かのじょたち</td>
+      <td style="text-align: center"> </td>
       <td style="text-align: center"> </td>
     </tr>
     <tr>
       <td style="text-align: left">D</td>
       <td style="text-align: center">O(1) - O(n)</td>
-      <td style="text-align: center">かのじょたち</td>
+      <td style="text-align: center"> </td>
       <td style="text-align: center"> </td>
     </tr>
   </tbody>
@@ -564,22 +564,92 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
   <li>create: O(n)
     <ul>
       <li>using a recursive algorithm is O(n), where n is the number of nodes in the tree. The recursive algorithm traverses each node in the tree exactly once. Specifically, at each level of the recursion, the algorithm creates one node and recursively calls itself twice to create the left and right subtrees. Since each node is created exactly once, the total number of operations performed by the algorithm is proportional to the number of nodes in the tree, which is O(n).</li>
+      <li>Inserting a new node into a binary tree requires finding the correct position for the new node in the tree. In the worst case, this involves traversing the height of the tree, which has a time complexity of O(log n) for a balanced binary tree and O(n) for an unbalanced binary tree.</li>
     </ul>
   </li>
-  <li>read:
+  <li>read: O(n)
     <ul>
-      <li></li>
+      <li>Pre-order traversal visits each node in the tree in the order root, left subtree, right subtree. The time complexity of pre-order traversal is O(n), where n is the number of nodes in the tree.</li>
+      <li>In-order traversal visits each node in the tree in the order left subtree, root, right subtree. The time complexity of in-order traversal is also O(n), where n is the number of nodes in the tree.</li>
+      <li>Post-order traversal visits each node in the tree in the order left subtree, right subtree, root. The time complexity of post-order traversal is also O(n), where n is the number of nodes in the tree.</li>
+      <li>Level-order traversal visits each node in the tree by level, starting at the root and moving down to each level. The time complexity of level-order traversal is also O(n), where n is the number of nodes in the tree.</li>
+    </ul>
+  </li>
+  <li>update: O(1)
+    <ul>
+      <li>Updating a node in a binary tree involves finding the node to be updated and then modifying its value. This can be done in O(1) time once the node has been found (O(n)).</li>
+    </ul>
+  </li>
+  <li>delete: O(log n) to O(n)
+    <ul>
+      <li>Deleting a node from a binary tree requires finding the node to be deleted and then rearranging the tree to maintain its properties. In the worst case, this also involves traversing the height of the tree, which has a time complexity of O(log n) for a balanced binary tree and O(n) for an unbalanced binary tree.</li>
     </ul>
   </li>
 </ul>
 
 <h3 id="graphs">graphs</h3>
 
+<ul>
+  <li>code example</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Graph</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">nodes</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">addNode</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="p">[]);</span>
+  <span class="p">}</span>
+
+  <span class="nx">addEdge</span><span class="p">(</span><span class="nx">nodeA</span><span class="p">,</span> <span class="nx">nodeB</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">nodeA</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">addNode</span><span class="p">(</span><span class="nx">nodeA</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">nodeB</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">addNode</span><span class="p">(</span><span class="nx">nodeB</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">nodeA</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">nodeB</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">nodeB</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">nodeA</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">getNeighbors</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Create a new graph</span>
+<span class="kd">const</span> <span class="nx">graph</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Graph</span><span class="p">();</span>
+
+<span class="c1">// Add nodes and edges to the graph</span>
+<span class="nx">graph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">graph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">graph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">graph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="dl">"</span><span class="s2">D</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">E</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">graph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="dl">"</span><span class="s2">E</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">F</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">graph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="dl">"</span><span class="s2">F</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">G</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">graph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="dl">"</span><span class="s2">G</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// Get the neighbors of node "C"</span>
+<span class="kd">const</span> <span class="nx">neighborsOfC</span> <span class="o">=</span> <span class="nx">graph</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">neighborsOfC</span><span class="p">);</span> <span class="c1">// Output: ["B", "D"]</span>
+</code></pre></div></div>
+
+<ul>
+  <li>time complexity (to be continued)</li>
+</ul>
+
 <h3 id="tries">tries</h3>
+
+<p>to be continued</p>
 
 <h3 id="hash-table">hash table</h3>
 
+<p>to be continued</p>
+
 <h3 id="dynamic-programming">dynamic programming</h3>
+
+<p>to be continued</p>
 
 <p>Arrays: Arrays are commonly used in dynamic programming to store the results of subproblems. The values in the array represent the solutions to subproblems, and the array can be indexed to quickly access the solution to a specific subproblem.</p>
 
@@ -591,7 +661,9 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
 
 <h2 id="what">what</h2>
 
-<p>put leetcode here</p>
+<h3 id="array-1">array</h3>
+
+<h3 id="linkedlist-1">linkedlist</h3>
 
 <h2 id="reference">reference</h2>
 
