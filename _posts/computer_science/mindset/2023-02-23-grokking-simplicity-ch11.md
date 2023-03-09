@@ -213,10 +213,10 @@ function saveUserDataWithLogging(user) { // before
 
 ```javascript
 function saveUserDataWithLogging(user) {
-  withLogging()
+  wrapLogging()
 }
 
-function withLogging() {
+function wrapLogging() {
   try {
     saveUserDataNoLogging(user); // -> no user
   } catch (error) {

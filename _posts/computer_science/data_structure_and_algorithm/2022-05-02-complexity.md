@@ -14,27 +14,10 @@ publish: true
 
 ## Introduction
 
-This article describes the basic concepts related to data structure and algorithm as follow:
+Complexity is a measure of the resources required to solve a problem or execute an algorithm.
 
-* <a id="complexity" href="#complexity_example">complexity</a>
-  * <a id="concept_of_complexity" href="#concept_of_complexity_example">concept of complexity</a>
-  * asymptotic notations
-  * notations simplification
-* time complexity
-  * concept of time complexity
-  * amortized time
-* space complexity
-  * concept of space complexity
-* solve the problems correctly
-  * bottleneck, Unnecessary work, Duplicated work
-  * real world example
-  * simplest form, then stack up
-  * generalize
-  * fit into data structure
-  * figure time complexity first
-  * clean code (please refer to 2022-02-07-clean-code.md)
-
-In the how section, it describes the general idea of these points and it the what section, it demonstrates the real examples.
+* Time complexity refers to the amount of time or number of operations required to solve a problem or execute an algorithm. The goal of analyzing time complexity is to identify algorithms that are efficient and can solve problems within a reasonable amount of time.
+* Space complexity refers to the amount of memory or storage space required to solve a problem or execute an algorithm. The goal of analyzing space complexity is to identify algorithms that are efficient in terms of memory usage.
 
 ## Why?
 
@@ -42,9 +25,7 @@ Basic data structure and algorithm knowledge is useful for problem solving. With
 
 ## How?
 
-### <span id="complexity_example">complexity</span>
-
-#### <span id= 'concept_of_complexity_example'>concept of complexity</span>
+### concept
 
 Complexity describes the relationship between the cost we care and the size of input; for example, the total time to create x books may be as follow:
 
@@ -59,6 +40,8 @@ There are notations such as big-O ($$O$$), big-theta ($$\Theta$$), big-omega ($$
 $$\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
 
 given we have some knowledege with set theory. Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $$2x + 100$$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 100$$. The following plot demostrates that $$2x + 100$$ is wrapped by $$3x$$ and $$x$$ after $$x > 100$$
+
+(redraw following graph with react plotly)
 
 <canvas id="canvas" width="400" height="200"></canvas>
 
@@ -126,8 +109,6 @@ Based on the defination, we know that the big O of
 
 ### time complexity
 
-#### concept of time complexity
-
 * Again, we use the definition of industry
 * `Time complexity = O(n)` means **at most** n elements **involved** to get things done
 
@@ -137,32 +118,12 @@ Based on the defination, we know that the big O of
 
 ### space complexity
 
-#### concept of space complexity
-
 * we use the definition of industry
 * space complexity = O(n) means it needs to at most n elements of space to get things done
 
-### solve the problems correctly
-
-1. read or listen to the question and ask all the necessary informations, use as little hint as possible
-2. brainstorm to think about all the cases, including edge case
-3. come up with a brute force solution and write it on paper
-4. optimize the brute force (on paper)
-   * think about bottleneck, Unnecessary work, Duplicated work
-   * just think of the real world example
-   * start from the simplest form and then stack up
-   * fit the problem into a specific data structure and use the related knowledge
-   * try to find more general solution
-   * try to figure out the best time complexity first
-5. walk through the idea again (on paper)
-6. start to write code as clean as possible (on computer)
-7. write test with general, base, error cases
-
 ## What?
 
-### examples
-
-#### example 1 (two liner iteration)
+### two liner iteration
 
 * time complexity = O(A + B)
 * space complexity = 
@@ -176,7 +137,7 @@ for (let i = 0; i < arrayB.length; i++) {
 }
 ```
 
-#### example 2 (iteration in a iteration)
+### iteration in a iteration
 
 * time complexity = O(A * B)
 * space complexity = 
@@ -189,7 +150,7 @@ for (let i = 0; i < arrayA.length; i++) {
 }
 ```
 
-#### example 3 (recursive binary search)
+### recursive binary search
 
 * time complexity = O(log N)
 * space complexity = 
@@ -218,17 +179,17 @@ function binarySearch (array, target) {
 
 For example, if the number of the elements in an array is 16, then it at most need to work through 5 elements to find the target with steps:
 
-the middle element of 16 elements (step 1) -> the middle element of 8 elements (step 2) -> the middle element of 4 elements (step 3) -> the middle element of 2 elements (step 4) -> the middle element of 1 element (step 5)
+* the middle element of 16 elements (step 1) -> the middle element of 8 elements (step 2) -> the middle element of 4 elements (step 3) -> the middle element of 2 elements (step 4) -> the middle element of 1 element (step 5)
 
 As a result, we can describe the number of traverse (k) with the number of elements (N) as follow:
 
-$$N = 2^k$$, which means
+$$N = 2^k$$
 
-$$k = log_2N = logN$$, which means
+$$=> k = log_2N = logN$$
 
-$$O(logN)$$
+so the complexity = $$O(logN)$$
 
-#### example 4 (recursive, like fibonacci series)
+### recursive, like fibonacci series
 
 * time complexity = $$O(2^N)$$
 * space complexity = $$O(N)$$
@@ -261,7 +222,7 @@ Then the time complexity = O(1 + 2 + 4 + ... + 2^(n-1)) = O(2^n - 1) = O(2^n)
 
 The data we need to store is f(1), f(2), ... f(n), meaning the space complexity = O(n)
 
-example 5 (two loop with same length (n) of array)
+### two loop with same length (n) of array
 
 * time complexity = $$O(N)$$
 * space complexity = 
@@ -282,7 +243,7 @@ function (array) => {
 
 The time complexity = O(2N) = O(N)
 
-example 6 (related iteration in a iteration)
+### related iteration in a iteration
 
 * time complexity = $$O(N^2)$$
 * space complexity =
@@ -302,172 +263,6 @@ Given there are N elements in this array, the total steps is
 $$ N + (N-1) + (N-2) + ... + 1 = (1+N)*N/2$$, meaning the time complexity = O((1+N)*N/2) = O(N^2)
 
 (to be continued with more example in the future)
-
-### example of solving problems correctly
-
-#### BUD (Bottlenecks, Unnecessary work, Duplicated work)
-
-* example: Print all positive integer solutions to the equation $$a^3 + b^3 = c^3 + d^3$$ where a, b, c, and d are integers between 1 and 1000.
-
-* brute force:
-
-```javascript
-k = 1000
-result = []
-for (a in [1..1000]) {
-  for (b in [1..1000]) {
-    for (c in [1..1000]) {
-      for (d in [1..1000]) {
-        if (a^3 + b^3 = c^3 + d^3) {
-          result.append([a, b, c, d])
-        }
-      }
-    }
-  }
-}
-```
-
-The time complexity is $$O(N^4)$$
-
-* unnecessary work
-
-We should always observe any unnecessary work first because it is truly not part of the problem we are going to solve. In the brute force above the loop in `d` is an unnecessary work and should be remove as follow:
-
-```javascript
-k = 1000
-result = []
-for (a in [1..1000]) {
-  for (b in [1..1000]) {
-    for (c in [1..1000]) {
-      d = (a^3 + b^3 - c^3)^(1/3)
-      if (a^3 + b^3 = c^3 + d^3) {
-        result.append([a, b, c, d])
-      }
-    }
-  }
-}
-```
-
-Then the time complexity will decrease to $$O(N^3)$$
-
-* Bottlenecks
-
-Then we start to solve the problem. When we talk about bottleneck, it means the place having the highest time complexity. To solve it, we usually have two approaches: cost some space or sort it. Given it is already from 1 to 1000, cost some space should direct to the solution.
-
-The easiest way to use space for solving problem is the concept of hash table. We can store the data in the upper loops and use this data in the later loop. For example, we can decrease the time complexity with following approach:
-
-```javascript
-k = 1000
-result = []
-hash_table = {}
-for (a in [1..1000]) {
-  for (b in [1..1000]) {
-    hash_table[a^3 + b^3] << [a, b]
-  }
-}
-
-for (c in [1..1000]) {
-  for (d in [1..1000]) {
-    if (c^3 + d^3 exist in hash_table) {
-      result.append([hash_table[c^3 + d^3], [c, d]])
-    }
-  }
-}
-```
-
-Given a, b, c, d will all loop through 1 to 1000, the time complexity = $$O(2N^2) = O(N^2)$$
-
-* Duplicated work
-
-Although the complexity is already in $$O(N^2)$$; however, it is actually $$O(2N^2)$$ and the first nested for loops are the same as the second nested for loops, which is duplicated work. We can simplify it further with
-
-```javascript
-k = 1000
-result = []
-hash_table = {}
-for (a in [1..1000]) {
-  for (b in [1..1000]) {
-    hash_table[a^3 + b^3] << [a, b]
-  }
-}
-
-for element in hash_table {
-  if (count(element) > 1) {
-    result << select(element, 2) // select two out of this element
-  }
-}
-```
-
-Then the time complexity = $$O(N^2 + AB)$$, where A is the number of elements in hash table and B is the number of items in each element, meaning $$A, B < N$$. Then time complexity = $$O(N^2)$$
-
-#### just think of the real world example
-
-Again, we use the problems, finding all a, b, c, d, which $$a^3 + b^3 = c^3 + d^3$$. If we need to do it by brain, then what should we do to find the result quickly?
-
-We will write down the result of $$a^3 + b^3$$ from 1 to 1000 and then find the pair of (c, d) to map (a, b) and this is the concept of hash table.
-
-#### try to find more general solution
-
-(to be continued)
-
-For example, to check whether a tic-tac-toe game has a winner, we should not suppose it is asking the winner from 3x3 board. With generalization, we have more chance to fit the problem into specific data structure and solve it.
-
-#### start from the simplest form and then stack up
-
-* example: Design an algorithm to print all permutations of a string. For simplicity, assume all characters are unique.
-* brute force:
-
-```javascript
-string = 'abcdefg' // all characters are unique
-result = []
-length = len(string)
-targets = []
-for (i in length) {
-  targets << string[0..(length-i)]
-}
-for (target in targets) {
-  result << shuffle(target)
-}
-
-function shuffle (string) => {
-  // some brute force algorithm with O(N!)
-  // when string = 'abc', results = 'abc', 'acb', 'bac', 'bca', 'cab', 'cba', the times is 3! 
-}
-```
-
-Then the time complexity = $$N + N * N! = O( N*N! )$$. We can start from string = 'a', then string 'ab', ...etc and we will find out that the desired result of 'ab' is based on the result of 'a' and append 'b' on both side of the result of 'a' and so on as follow:
-
-```javascript
-{
-  'a',
-  'ab', 'ba',
-  'cab', 'abc', 'cba', 'bac',
-  'dcab', ...
-  ...
-}
-```
-
-As a result the algorithm would be
-
-```javascript
-string = 'abcdefg' // all characters are unique
-
-function getPermutationsBasedOnLastOne (string, lastPermutations) {
-  length = len(string)
-  lastPermutations = getPermutationsBasedOnLastOne (string[0..(length-1)], lastPermutations)
-  for (Permutation in lastPermutations) {
-    result << string[-1] + Permutation
-    result << Permutation + string[-1]
-  }
-  return result
-}
-```
-
-Usually, this approach will lead to a recursive solution.
-
-#### figure out the best time complexity first
-
-We can start from the big picture by calculating the best time complexity first; for example, in the problem of $$a^3 + b^3 = c^3 + d^3$$, we know that we must at least know the result of $$a^3 + b^3$$, so the best time complexity will be $$O(N^2)$$ and once we find out an algorithm with $$O(N^2)$$, we can wrap up.
 
 ## Reference
 
