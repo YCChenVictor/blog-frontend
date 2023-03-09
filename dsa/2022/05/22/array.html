@@ -112,38 +112,6 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="hash-table">hash table</h3>
-
-<p>The data flow:</p>
-
-<div class="mermaid">
-graph LR
-  id1(value 1) --&gt; id4(hash<br />function)
-  id2(value 2) --&gt; id4(hash<br />function)
-  id3(value 3) --&gt; id4(hash<br />function)
-
-  id4(hash<br />function) -- insert value 1 --&gt; id5(key 0)
-  id4(hash<br />function) -- insert value 2 --&gt; id7(key 1)
-  id4(hash<br />function) -- insert value 3 --&gt; id7(key 2)
-  subgraph Buckets
-    id5(key 0)
-    id6(key 1)
-    id7(key 2)
-    id8(key 3)
-    ...
-  end
-
-  id5(key 0) --&gt; id9(value 1)
-  id7(key 2) --&gt; id10(value 2)
-  id10(value 2) --&gt; id11(value 3)
-</div>
-
-<p>The value will be calculated by certain method in hash function to get the key of buckets and then connects the value with linked list if the mapping key is the same.</p>
-
-<p>Given the length of buckets is N, meaning there are N keys, if we want to search an element, it will first pass the element into hash function to get the key for certain linked list and then sarch through the linked list.</p>
-
-<p>The time complexity = \(O(A + B)\), where A is the length of bucket and B is the length of linked list. A is actually 1 because the magic of hash function and B is usually close to 1 if we making the collisions, meaning values map to same key, as low as possible. As a result, the time complexity is actually \(O(1)\)</p>
-
 <h3 id="arraylist">arraylist</h3>
 
 <p>Array in JAVA is not automatically resizable but in other language such as python or ruby; the later will grow as we append the items. In this section, we focus on <strong>resizable</strong> structure, which is arraylist in JAVA and list in python.</p>
