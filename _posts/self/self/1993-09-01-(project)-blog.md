@@ -23,6 +23,10 @@ I need to structure my thoughts.
 
 ## How?
 
+* split complexity and problem solving
+* the leet code practice truly need paper work
+* ask GPT the most common leetcode questions for all data structures
+* add plotly and P5
 * add react sketch https://codesandbox.io/s/charity-chat-canvas-sw4jy?file=/src/index.js()
 * complete cracking coding interview first
 * the overview article will be the core of each section and connect the groups of dots as network
