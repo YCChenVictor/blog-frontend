@@ -179,10 +179,12 @@
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">time complexity</th>
-      <th style="text-align: center">arraylist</th>
-      <th style="text-align: center">linkedlist</th>
-      <th style="text-align: center">stack</th>
+      <th style="text-align: left">(time complexity)</th>
+      <th style="text-align: center">(arraylist)</th>
+      <th style="text-align: center">(linkedlist)</th>
+      <th style="text-align: center">(stack)</th>
+      <th style="text-align: center">(queue)</th>
+      <th>(trees)</th>
     </tr>
   </thead>
   <tbody>
@@ -190,25 +192,33 @@
       <td style="text-align: left">C</td>
       <td style="text-align: center">O(1) - O(n)</td>
       <td style="text-align: center">O(1)</td>
-      <td style="text-align: center"> </td>
+      <td style="text-align: center">O(1)</td>
+      <td style="text-align: center">O(1)</td>
+      <td>O(n)</td>
     </tr>
     <tr>
       <td style="text-align: left">R</td>
       <td style="text-align: center">O(1)</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
+      <td style="text-align: center">O(n)</td>
+      <td style="text-align: center">O(1)</td>
+      <td style="text-align: center">O(1)</td>
+      <td>O(n)</td>
     </tr>
     <tr>
       <td style="text-align: left">U</td>
       <td style="text-align: center">O(1)</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
+      <td style="text-align: center">O(n)</td>
+      <td style="text-align: center">O(1)</td>
+      <td style="text-align: center">O(n)</td>
+      <td>O(1)</td>
     </tr>
     <tr>
       <td style="text-align: left">D</td>
       <td style="text-align: center">O(1) - O(n)</td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center"> </td>
+      <td style="text-align: center">O(n)</td>
+      <td style="text-align: center">O(1)</td>
+      <td style="text-align: center">O(1)</td>
+      <td>O(log(n)) - O(n)</td>
     </tr>
   </tbody>
 </table>
@@ -681,21 +691,23 @@ graph LR
 
 <h3 id="dynamic-programming">dynamic programming</h3>
 
-<p>to be continued</p>
+<p>When we need to solve the optimal subproblem in the substructure of the whole structure. The optimal solution can be composed of optimal solutions to its subproblems.</p>
 
-<p>Arrays: Arrays are commonly used in dynamic programming to store the results of subproblems. The values in the array represent the solutions to subproblems, and the array can be indexed to quickly access the solution to a specific subproblem.</p>
+<p>A tyical example: Maximum subarray sum</p>
 
-<p>Hash tables: Hash tables can be used to store the solutions to subproblems in a way that allows for efficient lookup. Hash tables are particularly useful when the solutions to subproblems have a sparse or irregular structure.</p>
+<p>()</p>
 
-<p>Trees: Trees can be used to represent the dependencies between subproblems in a dynamic programming solution. The parent-child relationships between nodes in the tree correspond to the subproblem relationships, and the values stored at each node represent the solutions to the subproblems.</p>
+<p>Dynamic programming is particularly useful when the problem can be broken down into a series of decisions, each of which leads to a smaller subproblem that can be solved independently. By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.</p>
 
-<p>Graphs: Graphs can be used to represent the dependencies between subproblems in a more general way than trees. Graphs can handle cyclic dependencies between subproblems, as well as cases where multiple subproblems depend on the same subproblem.</p>
+<p>However, dynamic programming can be computationally expensive and may not be the best approach for all problems. It is important to carefully consider the problem structure and the trade-off between time and space complexity before deciding to use dynamic programming.</p>
 
 <h2 id="what">what</h2>
 
 <p>Given we have the knowledge above and we know <a href="/blog//dsa/2023/03/08/solve-problem.html">how to solve problem</a>.</p>
 
 <h3 id="array-1">array</h3>
+
+<p><a href="/blog/dsa/2022/05/22/array.html">array</a></p>
 
 <h3 id="linkedlist-1">linkedlist</h3>
 

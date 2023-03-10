@@ -127,8 +127,7 @@
 
 <h4 id="brute-force">brute force</h4>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">k</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">a</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="nx">b</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="nx">c</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
@@ -152,8 +151,7 @@
 
 <p>We should always observe any unnecessary work first because it is truly not part of the problem we are going to solve. In the brute force above the loop in <code class="language-plaintext highlighter-rouge">d</code> is an unnecessary work and should be remove as follow:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">k</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">a</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="nx">b</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="nx">c</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
@@ -176,8 +174,7 @@
 
 <p>The easiest way to use space for solving problem is the concept of hash table. We can store the data in the upper loops and use this data in the later loop. For example, we can decrease the time complexity with following approach:</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">k</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="nx">hash_table</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">a</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="nx">b</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
@@ -202,8 +199,7 @@
 
 <p>Although the complexity is already in \(O(N^2)\); however, it is actually \(O(2N^2)\) and the first nested for loops are the same as the second nested for loops, which is duplicated work. We can simplify it further with</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">k</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="nx">hash_table</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="p">(</span><span class="nx">a</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="nx">b</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="mi">1000</span><span class="p">])</span> <span class="p">{</span>
@@ -228,11 +224,36 @@
 
 <h4 id="try-to-find-more-general-solution">try to find more general solution</h4>
 
-<p>(to be continued)</p>
+<p>More general</p>
 
-<p>For example, to check whether a tic-tac-toe game has a winner, we should not suppose it is asking the winner from 3x3 board. With generalization, we have more chance to fit the problem into specific data structure and solve it.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">a_b_c_d</span><span class="p">(</span><span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="nx">hash_table</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">a</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="nx">k</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">b</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="nx">k</span><span class="p">])</span> <span class="p">{</span>
+      <span class="nx">hash_table</span><span class="p">[</span><span class="nx">a</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="nx">b</span><span class="o">^</span><span class="mi">3</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="nx">c</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="nx">k</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">d</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..</span><span class="nx">k</span><span class="p">])</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="nx">d</span><span class="o">^</span><span class="mi">3</span> <span class="nx">exist</span> <span class="k">in</span> <span class="nx">hash_table</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span><span class="p">.</span><span class="nx">append</span><span class="p">([</span><span class="nx">hash_table</span><span class="p">[</span><span class="nx">c</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="nx">d</span><span class="o">^</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">]])</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Then we can input any positive integer</li>
+</ul>
 
 <h4 id="start-from-the-simplest-form-and-then-stack-up">start from the simplest form and then stack up</h4>
+
+<p>Usually, this approach will lead to a recursive solution.</p>
+
+<h5 id="other-example">other example</h5>
 
 <ul>
   <li>example: Design an algorithm to print all permutations of a string. For simplicity, assume all characters are unique.</li>
@@ -282,13 +303,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Usually, this approach will lead to a recursive solution.</p>
-
 <h4 id="figure-out-the-best-time-complexity-first">figure out the best time complexity first</h4>
 
 <p>We can start from the big picture by calculating the best time complexity first; for example, in the problem of \(a^3 + b^3 = c^3 + d^3\), we know that we must at least know the result of \(a^3 + b^3\), so the best time complexity will be \(O(N^2)\) and once we find out an algorithm with \(O(N^2)\), we can wrap up.</p>
-
-<h2 id="what">What?</h2>
 
 <h2 id="reference">Reference</h2>
 
