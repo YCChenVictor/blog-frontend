@@ -35,158 +35,107 @@ graph LR
 
 Given a memory disk with multiple data preserved and we cannot insert a serial data in it, we may use linked list to achieve it because the nodes can be unserial.
 
-### Time complexity of linkedlist
-
-| :--- | :---- |
-| create (insert) | O(1) |
-| read (access with id) | O(N) |
-| update | O(1) |
-| search (access with attributes) | O(N) |
-| destroy (delete) | O(1) |
-
-* create: given we finish the search, we just need to change the pointer values to point to the new element, so inserting an element takes $$O(1)$$
-* read: even though we have the id for specific element, we still need to traverse all the nodes so the complexity of read is at most $$O(N)$$
-* search: the complexity of search is at most $$O(N)$$ because we need to start from the begining everytime for one element
-* update: after we found the element, we just need to change the value of that node, so it takes $$O(1)$$
-* destroy: after we found the element we want to delete, we just need to change the pointers before it to point to the next element, so it takes $$O(1)$$
-
 ## How
 
-### create a singly linked list
+### singly linked list in javascript
 
-#### The example in dynamic (singly linked list)
-
-A node:
+* code example
 
 ```javascript
 class Node {
   constructor(value, next = null) {
-    this.value = value,
-    this.next = next
-  }
-}
-```
-
-A linkedlist:
-
-```javascript
-class Node {
-  constructor(value, next = null) {
-    this.value = value,
-    this.next = next
+    this.value = value;
+    this.next = next;
   }
 }
 
 class LinkedList {
   constructor() {
     this.head = null;
+    this.tail = null;
+    this.length = 0;
   }
 
-  values() {
-    let node = this.head;
-    let result = [];
-    while (node !== null) {
-      result.push(node.value);
-      node = node.next;
-    }
-    return result;
-  }
-
-  insertAtBegin(value) {
-    let newNode = new Node(value);
-    newNode.next = this.head;
-    this.head = newNode;
-    return this.head;
-  }
-
-  insertAtEnd(value) {
-    let newNode = new Node(value);
-    let tail;
-    if (!this.head) {
-      this.insertAtBegin(value)
-    } else {
-      tail = this.findTail();
-      tail.next = newNode;
-    }
-    return this.head
-  }
-    
-  insertAt(value, index) {
-    const preNode = this.find(index - 1);
+  // Create
+  prepand(value) {
     const newNode = new Node(value);
-    if (!this.head || index === 0) {
-      this.insertAtBegin(value)
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
     } else {
-      newNode.next = preNode.next;
-      preNode.next = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
     }
-  }
     
-  deleteAtBegin() {
+    this.length++;
+  }
+
+  append(value) {
+    const newNode = new Node(value);
+
     if (!this.head) {
-      return
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      tail.tail = newNode;
     }
-    this.head = this.head.next;
-    return this.head;
+    
+    this.length++;
   }
     
-  deleteAtEnd() {
-    let beforeTail = this.head;
-    let tail = this.head.next;
-    if (!this.head || !this.head.next) {
-      this.head = null;
-      return this.head;
+  // Read
+  traverseToIndex(index) {
+    let currentNode = this.head;
+
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
     }
-    while(tail.next !== null) {
-      beforeTail = tail;
-      tail = tail.next;
-    }
-    beforeTail.next = null;
-    return this.head;
+
+    return currentNode;
   }
-    
-  deleteAt(index) {
-    const preNode = this.find(index - 1);
-    if (!this.head) {
-      return this.head;
-    } else if (index === 0) {
+
+  printList() {
+    const list = [];
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      list.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+
+    return list;
+  }
+
+  // Update
+  insert(index, value) {
+    if (index === 0) {
+      this.prepend(value);
+    } else if (index >= this.length) {
+      this.append(value);
+    } else {
+      const newNode = new Node(value);
+      const leader = this.traverseToIndex(index - 1);
+      const nextNode = leader.next;
+
+      leader.next = newNode;
+      newNode.next = nextNode;
+      this.length++;
+    }
+  }
+
+  // Delete    
+  remove(index) {
+    if (index === 0) {
       this.head = this.head.next;
-      return this.head;
+      this.length--;
     } else {
-      if (!preNode || !preNode.next) {
-        return;
-      }
-      preNode.next = preNode.next.next;     
-      return this.head
-    }
-  }
-    
-  find(index) {
-    let counter = 0;
-    let node = this.head;
-    while (node) {
-      if (counter === index) {
-        return node;
-      }
-      counter++;
-      node = node.next;
-    }
-    return null;
-  }
-    
-  findTail() {
-    let node = this.head;
-    while (node.next !== null) {
-      node = node.next
-    }
-    return node
-  }
-  
-  print() {
-    let node = this.head;
-    while (node !== null) {
-      console.log(node.value);
-      node = node.next;
+      const leader = this.traverseToIndex(index - 1);
+      const unwantedNode = leader.next;
+
+      leader.next = unwantedNode.next;
+      this.length--;
     }
   }
 }
@@ -207,32 +156,27 @@ describe('LinkedList', () => {
     testLinkedList = new LinkedList();
     const values = [1, 74, 888, 62, 33];
     for(let i = 0; i < values.length; i++){
-      testLinkedList.insertAtBegin(values[i]);
+      testLinkedList.append(values[i]);
     }
   });
 
-  test('insert at begin', () => {
-    testLinkedList.insertAtBegin(0);
-    expect(testLinkedList.values()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
+  test('#prepand', () => {
+    testLinkedList.prepand(0);
+    expect(testLinkedList.printList()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
   });
 
-  test('insert at end', () => {
-    testLinkedList.insertAtEnd(0);
-    expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
+  test('#append', () => {
+    testLinkedList.append(0);
+    expect(testLinkedList.printList()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
   });
 
-  test('insert at given index', () => {
-    testLinkedList.insertAt(1000, 2);
-    expect(testLinkedList.values()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
+  test('#insert', () => {
+    testLinkedList.insert(2, 1000);
+    expect(testLinkedList.printList()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
   });
-
   // more test to be continued
 });
 ```
-
-#### The example in static (singly linked list)
-
-to be continued
 
 ### create a doubly linked list
 
