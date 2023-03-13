@@ -192,36 +192,53 @@ two pointers iterates through a linkedlist at the same time.
 
 ### Remove Dups
 
-Implementation:
+* problem: Write code to remove duplicates from an unsorted linked list; for example, a linkedlist = [1, 4, 6, 3, 2, 7, 4, 8, 3] -> [1, 4, 6, 3, 2, 7, 8]
+
+* brute force:
+
+It's trivial, so I just skip to the result
+
+* code example:
 
 ```javascript
-function removeDups (linkedList) {
-  let node = linkedList.head;
-  let preNode = null;
-  let dups = [];
-  while (node !== null) {
-    if (dups.includes(node.value)) {
-      preNode.next = node.next
+function removeDup(linkedList) {
+  // skip brute force, we must at least loop through all node, so the time complexity = O(n), space complexity = O(n)
+  set = new Set();
+  let currentNode = linkedList.head
+  let previousNode = null
+
+  for (let i = 0; i < linkedList.length; i++) {
+    if (!set.has(currentNode.value)) {
+      set.add(currentNode.value)
     } else {
-      dups.push(node.value)
-      preNode = node // only when dups not include the value of current node, we redefine preNode
+      previousNode.next = currentNode.next
     }
-    node = node.next;
+    previousNode = currentNode
+    currentNode = currentNode.next
   }
-  linkedList.print()
+
+  return linkedList.printList()
 }
 ```
 
-Test:
+* test
 
 ```javascript
-let linkedList = new LinkedList();
-const values = [1, 1, 1, 1, 449, 12];
-for(let i = 0; i < values.length; i++){
-  linkedList.insertAtBegin(values[i]);
-}
+describe('RemoveDup', () => {
+  let testLinkedList;
+  beforeEach(() => {
+    testLinkedList = new LinkedList();
+    const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+    for(let i = 0; i < values.length; i++){
+      testLinkedList.append(values[i]);
+    }
+  });
 
-removeDups(linkedList) // 12, 449, 1
+  test('#', () => {
+    const result = removeDup(testLinkedList)
+    expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
+  });
+});
 ```
 
 #### temporary buffer not allowed
