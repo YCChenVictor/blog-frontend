@@ -323,6 +323,10 @@ while (node !== null) {
 
 To be continued (more questions)
 
+## What
+
+Try to demo it with real world examples
+
 ## reference
 
 cracking the coding interview
