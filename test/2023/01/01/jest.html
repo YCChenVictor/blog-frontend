@@ -92,62 +92,27 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="install">install</h3>
+<h3 id="terminal">terminal</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">--save-dev</span> jest
+<ul>
+  <li>install jest</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>jest <span class="nt">--global</span>
 </code></pre></div></div>
 
-<h3 id="files">files</h3>
+<ul>
+  <li>run it</li>
+</ul>
 
-<ol>
-  <li>package.json:</li>
-</ol>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jest"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<ol>
-  <li>
-    <p>directory: <code class="language-plaintext highlighter-rouge">__tests__</code></p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">xxx.spec.js</code></p>
-  </li>
-  <li>
-    <p>root</p>
-  </li>
-</ol>
-
-<p>in <code class="language-plaintext highlighter-rouge">package.json</code>,</p>
-
-<pre><code class="language-JSON">"jest": {
-  "roots": [
-    "&lt;rootDir&gt;",
-    "/home/some/path/"
-  ],
-  ...
-}
-</code></pre>
-
-<h3 id="run">run</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">test</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jest <span class="nt">--</span> file_name.spec.js
 </code></pre></div></div>
 
-<h3 id="mock-api">mock API</h3>
+<h3 id="node">node</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<p><a href="/blog/node/2023/01/20/spec.html">spec</a></p>
 
-<span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">GET /api/users</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:3000/api/users</span><span class="dl">'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span> <span class="p">},</span> <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Jane</span><span class="dl">'</span> <span class="p">}]);</span>
-    <span class="p">});</span>
-<span class="p">});</span>
-</code></pre></div></div>
+<h3 id="react">react</h3>
 
 <h2 id="what">What?</h2>
 

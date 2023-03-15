@@ -225,326 +225,23 @@
 
 <h3 id="array">array</h3>
 
-<ul>
-  <li>example:</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-</code></pre></div></div>
-
-<ul>
-  <li>create: O(1) to O(N)
-    <ul>
-      <li>inserting an element at the end of an array has \(O(1)\)</li>
-      <li>inserting an element at the beginning of an array has \(O(N)\) because we need to shift all the elements</li>
-    </ul>
-  </li>
-  <li>read: O(1)
-    <ul>
-      <li>given an index i, the read operation in an ArrayList retrieves the element at that index in constant time, regardless of the size of the ArrayList.</li>
-      <li>linear search has \(O(N)\) because it needs to search the value from beginning</li>
-    </ul>
-  </li>
-  <li>update: O(1)
-    <ul>
-      <li>Given an index i and a new value v, the update operation in an ArrayList replaces the element at index i with the new value v in constant time, regardless of the size of the ArrayList.</li>
-    </ul>
-  </li>
-  <li>delete: O(1) to O(N)
-    <ul>
-      <li>in the worst case, where n is the number of elements in the ArrayList because deleting an element requires shifting all subsequent elements one position to the left to fill the gap left by the deleted element. Deleting the last element in an ArrayList has a time complexity of O(1) on average because it can be done by simply updating the size of the ArrayList</li>
-    </ul>
-  </li>
-</ul>
+<p><a href="/blog/dsa/2022/05/22/array.html">array</a></p>
 
 <h3 id="linkedlist">linkedlist</h3>
 
-<ul>
-  <li>singly linked list: pointer points the next node in each node</li>
-</ul>
-<div class="mermaid">
-graph LR
-  id1((A)) --&gt; id2((B))
-  id2((B)) --&gt; id3((C))
-  id3((C)) --&gt; id4((...))
-</div>
-<ul>
-  <li>doubly linked list: pointer points the next and previous nodes in each node</li>
-</ul>
-<div class="mermaid">
-graph LR
-  id1((A)) --&gt; id2((B))
-  id2((B)) --&gt; id1((A))
-  id2((B)) --&gt; id3((C))
-  id3((C)) --&gt; id2((B))
-  id3((C)) --&gt; id4((...))
-  id4((...)) --&gt; id3((C))
-</div>
-
-<ul>
-  <li>coding example:</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Define a Node class for the elements of the linked list</span>
-<span class="kd">class</span> <span class="nx">Node</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Define the LinkedList class</span>
-<span class="kd">class</span> <span class="nx">LinkedList</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Add a new element to the end of the list</span>
-  <span class="nx">add</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">tail</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">++</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Get an element at a specified index</span>
-  <span class="kd">get</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">index</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kd">let</span> <span class="nx">current</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">index</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">current</span> <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">current</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Remove an element at a specified index</span>
-  <span class="nx">remove</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">index</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kd">let</span> <span class="nx">current</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
-      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="kd">let</span> <span class="nx">previous</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-      <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">index</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">previous</span> <span class="o">=</span> <span class="nx">current</span><span class="p">;</span>
-        <span class="nx">current</span> <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
-      <span class="p">}</span>
-      <span class="nx">previous</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">tail</span> <span class="o">=</span> <span class="nx">previous</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">--</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">current</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Example usage</span>
-<span class="kd">const</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LinkedList</span><span class="p">();</span>
-<span class="nx">list</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">list</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">list</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">list</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// Output: "b"</span>
-<span class="nx">list</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">list</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span> <span class="c1">// Output: "c"</span>
-</code></pre></div></div>
-
-<ul>
-  <li>create: O(1)
-    <ul>
-      <li>adding a new element to a LinkedList involves creating a new node and updating the head pointer to point to the new node, which can be done in constant time</li>
-    </ul>
-  </li>
-  <li>read: O(n)
-    <ul>
-      <li>In singly-linked list, the time complexity of read is O(n) in the worst case, where n is the length of the list Unlike an array, where elements are stored contiguously in memory and can be accessed in constant time using an index, in a linked list, we have to traverse the list from the head node to the desired index, which takes linear time proportional to the size of the list.</li>
-    </ul>
-  </li>
-  <li>update: O(n)
-    <ul>
-      <li>In a singly-linked list, the time complexity of update (i.e., modifying an element by index) is also O(n) in the worst case, where n is the length of the list. This is because like accessing an element, we need to traverse the list from the head node to the desired index to update it. Once we have reached the node, updating it takes constant time, i.e., O(1).</li>
-    </ul>
-  </li>
-  <li>delete: O(n)
-    <ul>
-      <li>In a singly-linked list, the time complexity of delete (i.e., removing an element by index) is also O(n) in the worst case, where n is the length of the list. This is because we need to traverse the list from the head node to the node immediately before the one we want to delete, which takes linear time proportional to the size of the list. Once we have found the node before the one we want to delete, we can remove the target node in constant time, i.e., O(1), by updating its predecessor’s next pointer to skip over the target node.</li>
-    </ul>
-  </li>
-</ul>
+<p><a href="/blog/dsa/2022/05/23/linked_list.html">linkedlist</a></p>
 
 <h3 id="stack">stack</h3>
 
-<p><img src="/blog/assets/img/stack.png" alt="" />
-image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
-
-<ul>
-  <li>coding example:</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Stack</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="p">}</span>
-
-  <span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="nx">pop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="dl">"</span><span class="s2">Underflow</span><span class="dl">"</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
-  <span class="p">}</span>
-
-  <span class="nx">peek</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-  <span class="p">}</span>
-
-  <span class="nx">isEmpty</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="nx">print</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Example usage</span>
-<span class="kd">const</span> <span class="nx">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stack</span><span class="p">();</span>
-<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
-<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">peek</span><span class="p">());</span> <span class="c1">// Output: 30</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">pop</span><span class="p">());</span> <span class="c1">// Output: 30</span>
-<span class="nx">stack</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// Output: [10, 20]</span>
-</code></pre></div></div>
-
-<ul>
-  <li>create: O(1)
-    <ul>
-      <li>simply initializing a new stack data structure with an empty array or linked list, which can be done in constant time, regardless of the size of the stack.</li>
-    </ul>
-  </li>
-  <li>read: O(1)
-    <ul>
-      <li>we can only access the top, so the time complexity of this operation is O(1), which is constant time complexity.</li>
-    </ul>
-  </li>
-  <li>update: O(1)
-    <ul>
-      <li>Again, we can only access the top, so the time complexity of this operation is O(1)</li>
-    </ul>
-  </li>
-  <li>delete:
-    <ul>
-      <li>Again, we can only access the top, so the time complexity of this operation is O(1)</li>
-    </ul>
-  </li>
-</ul>
+<p><a href="/blog/dsa/2022/06/24/stack.html">stack</a></p>
 
 <h3 id="queue">queue</h3>
 
-<p><img src="/blog/assets/img/queue.png" alt="" />
-image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
+<p><a href="/blog/dsa/2022/06/24/queue.html">queue</a></p>
 
-<ul>
-  <li>code example:</li>
-</ul>
+<h3 id="tree">tree</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Queue</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="p">}</span>
-
-  <span class="nx">enqueue</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="nx">dequeue</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="dl">"</span><span class="s2">Queue is empty</span><span class="dl">"</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
-  <span class="p">}</span>
-
-  <span class="nx">peek</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="dl">"</span><span class="s2">Queue is empty</span><span class="dl">"</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-  <span class="p">}</span>
-
-  <span class="nx">isEmpty</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="nx">print</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Example usage</span>
-<span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Queue</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">());</span> <span class="c1">// true</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// [1, 2, 3]</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">peek</span><span class="p">());</span> <span class="c1">// 1</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">());</span> <span class="c1">// 1</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">());</span> <span class="c1">// [2, 3]</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 2</span>
-</code></pre></div></div>
-
-<ul>
-  <li>create: O(1)
-    <ul>
-      <li>the enqueue method will concatenate item on the last without elements shifting</li>
-    </ul>
-  </li>
-  <li>read: O(1)
-    <ul>
-      <li>reading the front element of the queue, then the time complexity of this operation is O(1)</li>
-      <li>accessing elements from the middle or end of a queue is not supported, which can result in a time complexity of O(n).</li>
-    </ul>
-  </li>
-  <li>update: O(n)
-    <ul>
-      <li>dequeuing an element from the front of the queue may require shifting all the remaining elements one position to the front of the queue, which takes O(n) time in the worst case. Then, enqueuing the modified element again requires O(1) time complexity. Therefore, the overall time complexity for updating an element in a queue is O(n).</li>
-    </ul>
-  </li>
-  <li>delete: O(1)
-    <ul>
-      <li>deleting an element from the front of a queue simply involves removing the first element of an array-based queue or the head node of a linked-list based queue, which can be done in constant time, regardless of the size of the queue.</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="trees">trees</h3>
+<p>to be continued (extract)</p>
 
 <ul>
   <li>code example (binary tree)</li>
@@ -603,6 +300,8 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
 
 <h3 id="graphs">graphs</h3>
 
+<p>to be continued (extract)</p>
+
 <ul>
   <li>code example</li>
 </ul>
@@ -655,9 +354,11 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
 
 <h3 id="tries">tries</h3>
 
-<p>to be continued</p>
+<p>to be continued (extract)</p>
 
 <h3 id="hash-table">hash table</h3>
+
+<p>to be continued (extract)</p>
 
 <p>The data flow:</p>
 
@@ -691,25 +392,37 @@ graph LR
 
 <h3 id="dynamic-programming">dynamic programming</h3>
 
+<p>to be continued (extract)</p>
+
 <p>When we need to solve the optimal subproblem in the substructure of the whole structure. The optimal solution can be composed of optimal solutions to its subproblems.</p>
 
 <p>A tyical example: Maximum subarray sum</p>
 
-<p>()</p>
+<p>Please return the sub array that has biggest sum</p>
 
-<p>Dynamic programming is particularly useful when the problem can be broken down into a series of decisions, each of which leads to a smaller subproblem that can be solved independently. By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">maxSubarraySum</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">dp</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nx">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="kd">let</span> <span class="nx">maxSum</span> <span class="o">=</span> <span class="nx">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="nx">maxSum</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">maxSum</span><span class="p">,</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="nx">maxSum</span><span class="p">;</span>
+<span class="p">}</span>
 
-<p>However, dynamic programming can be computationally expensive and may not be the best approach for all problems. It is important to carefully consider the problem structure and the trade-off between time and space complexity before deciding to use dynamic programming.</p>
+<span class="c1">// Example usage:</span>
+<span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">maxSubarraySum</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span> <span class="c1">// Returns 3</span>
+</code></pre></div></div>
+
+<p>By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.</p>
 
 <h2 id="what">what</h2>
 
-<p>Given we have the knowledge above and we know <a href="/blog//dsa/2023/03/08/solve-problem.html">how to solve problem</a>.</p>
-
-<h3 id="array-1">array</h3>
-
-<p><a href="/blog/dsa/2022/05/22/array.html">array</a></p>
-
-<h3 id="linkedlist-1">linkedlist</h3>
+<p>Try to give real world example</p>
 
 <h2 id="reference">reference</h2>
 

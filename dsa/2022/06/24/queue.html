@@ -84,57 +84,106 @@
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>A queue implements FIFO ordering. (add a draw here)</p>
+<p>A queue implements FIFO ordering.</p>
 
-<h3 id="time-comlexity">Time comlexity</h3>
-
-<table>
-  <tbody>
-    <tr>
-      <td>create (enqueue)</td>
-      <td>O(1) or O(N)</td>
-    </tr>
-    <tr>
-      <td>read (peek, isEmpty)</td>
-      <td>O(1)</td>
-    </tr>
-    <tr>
-      <td>destroy (dequeue)</td>
-      <td>O(1)</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>euqueue takes O(1) unless the array size has to be increased, which takes O(N)</li>
-  <li>the time complexity of dequeue is O(1) because we only need to remove the last elements and no more space created or no more elements involved in this process</li>
-</ul>
+<p><img src="/blog/assets/img/queue.png" alt="" />
+image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
 
 <h2 id="why">Why?</h2>
 
-<p>to be continued</p>
+<p>To pass coding interview</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="realize-it-in-linked-list">realize it in linked list</h3>
+<h3 id="build-it">build it</h3>
 
-<p>to be continued</p>
+<ul>
+  <li>code example:</li>
+</ul>
 
-<h3 id="relize-it-in-dynamic-language">relize it in dynamic language</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Queue</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">[];</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// enqueue</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span> <span class="c1">// dequeue</span>
+  <span class="nx">enqueue</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">dequeue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">"</span><span class="s2">Queue is empty</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">peek</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">"</span><span class="s2">Queue is empty</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="nx">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">print</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Queue</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">());</span> <span class="c1">// true</span>
+<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// [1, 2, 3]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">peek</span><span class="p">());</span> <span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">());</span> <span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">());</span> <span class="c1">// [2, 3]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 2</span>
 </code></pre></div></div>
 
-<h2 id="what">What?</h2>
+<ul>
+  <li>create: O(1)
+    <ul>
+      <li>the enqueue method will concatenate item on the last without elements shifting</li>
+    </ul>
+  </li>
+  <li>read: O(1)
+    <ul>
+      <li>reading the front element of the queue, then the time complexity of this operation is O(1)</li>
+      <li>accessing elements from the middle or end of a queue is not supported, which can result in a time complexity of O(n).</li>
+    </ul>
+  </li>
+  <li>update: O(n)
+    <ul>
+      <li>dequeuing an element from the front of the queue may require shifting all the remaining elements one position to the front of the queue, which takes O(n) time in the worst case. Then, enqueuing the modified element again requires O(1) time complexity. Therefore, the overall time complexity for updating an element in a queue is O(n).</li>
+    </ul>
+  </li>
+  <li>delete: O(1)
+    <ul>
+      <li>deleting an element from the front of a queue simply involves removing the first element of an array-based queue or the head node of a linked-list based queue, which can be done in constant time, regardless of the size of the queue.</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="queue-via-stacks">Queue via Stacks</h3>
 
 <p>Question: implement a MyQueue class which implements a queue using two stacks.</p>
 
-<p>Impelmentation: use stack two to make top of stack one be the first elements of pushing so that the pop of stack one will be the first in of this queue.</p>
+<p>This question is to test how to implement FIFO with two LIFO, so we only need to test whether it can FIFO.</p>
+
+<ul>
+  <li>coding example:</li>
+</ul>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">MyQueue</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
@@ -164,7 +213,11 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>Test:</p>
+<p>Impelmentation: use stack two to make top of stack one be the first elements of pushing so that the pop of stack one will be the first in of this queue.</p>
+
+<ul>
+  <li>jest</li>
+</ul>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">test</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyQueue</span><span class="p">()</span>
 <span class="nx">test</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -174,6 +227,10 @@
 <span class="nx">test</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">()</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="c1">// [5] -&gt; should remove 2 (FIFO)</span>
 </code></pre></div></div>
+
+<h2 id="what">What</h2>
+
+<p>Please give real world example</p>
 
 <h2 id="reference">Reference</h2>
 
