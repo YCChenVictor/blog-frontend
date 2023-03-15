@@ -39,16 +39,18 @@ Given a memory disk with multiple data preserved and we cannot insert a serial d
 
 ### singly linked list in javascript
 
-* code example
+* coding example:
 
 ```javascript
+// Define a Node class for the elements of the linked list
 class Node {
-  constructor(value, next = null) {
-    this.value = value;
+  constructor(data, next = null) {
+    this.data = data;
     this.next = next;
   }
 }
 
+// Define the LinkedList class
 class LinkedList {
   constructor() {
     this.head = null;
@@ -56,96 +58,78 @@ class LinkedList {
     this.length = 0;
   }
 
-  // Create
-  prepand(value) {
-    const newNode = new Node(value);
-
+  // Add a new element to the end of the list
+  add(data) {
+    const node = new Node(data);
     if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
+      this.head = node;
+      this.tail = node;
     } else {
-      newNode.next = this.head;
-      this.head = newNode;
+      this.tail.next = node;
+      this.tail = node;
     }
-    
     this.length++;
   }
 
-  append(value) {
-    const newNode = new Node(value);
-
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail.next = newNode;
-      tail.tail = newNode;
+  // Get an element at a specified index
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      return null;
     }
-    
-    this.length++;
-  }
-    
-  // Read
-  traverseToIndex(index) {
-    let currentNode = this.head;
-
+    let current = this.head;
     for (let i = 0; i < index; i++) {
-      currentNode = currentNode.next;
+      current = current.next;
     }
-
-    return currentNode;
+    return current.data;
   }
 
-  printList() {
-    const list = [];
-    let currentNode = this.head;
-
-    while (currentNode !== null) {
-      list.push(currentNode.value);
-      currentNode = currentNode.next;
-    }
-
-    return list;
-  }
-
-  // Update
-  insert(index, value) {
-    if (index === 0) {
-      this.prepend(value);
-    } else if (index >= this.length) {
-      this.append(value);
-    } else {
-      const newNode = new Node(value);
-      const leader = this.traverseToIndex(index - 1);
-      const nextNode = leader.next;
-
-      leader.next = newNode;
-      newNode.next = nextNode;
-      this.length++;
-    }
-  }
-
-  // Delete    
+  // Remove an element at a specified index
   remove(index) {
-    if (index === 0) {
-      this.head = this.head.next;
-      this.length--;
-    } else {
-      const leader = this.traverseToIndex(index - 1);
-      const unwantedNode = leader.next;
-
-      leader.next = unwantedNode.next;
-      this.length--;
+    if (index < 0 || index >= this.length) {
+      return null;
     }
+    let current = this.head;
+    if (index === 0) {
+      this.head = current.next;
+      if (this.length === 1) {
+        this.tail = null;
+      }
+    } else {
+      let previous = null;
+      for (let i = 0; i < index; i++) {
+        previous = current;
+        current = current.next;
+      }
+      previous.next = current.next;
+      if (index === this.length - 1) {
+        this.tail = previous;
+      }
+    }
+    this.length--;
+    return current.data;
   }
 }
 
-export {LinkedList};
+// Example usage
+const list = new LinkedList();
+list.add('a');
+list.add('b');
+list.add('c');
+console.log(list.get(1)); // Output: "b"
+list.remove(1);
+console.log(list.get(1)); // Output: "c"
 ```
 
-* index of linkedlist starts from 0
+* create: O(1)
+  * adding a new element to a LinkedList involves creating a new node and updating the head pointer to point to the new node, which can be done in constant time
+* read: O(n)
+  * In singly-linked list, the time complexity of read is O(n) in the worst case, where n is the length of the list Unlike an array, where elements are stored contiguously in memory and can be accessed in constant time using an index, in a linked list, we have to traverse the list from the head node to the desired index, which takes linear time proportional to the size of the list.
+* update: O(n)
+  * In a singly-linked list, the time complexity of update (i.e., modifying an element by index) is also O(n) in the worst case, where n is the length of the list. This is because like accessing an element, we need to traverse the list from the head node to the desired index to update it. Once we have reached the node, updating it takes constant time, i.e., O(1).
+* delete: O(n)
+  * In a singly-linked list, the time complexity of delete (i.e., removing an element by index) is also O(n) in the worst case, where n is the length of the list. This is because we need to traverse the list from the head node to the node immediately before the one we want to delete, which takes linear time proportional to the size of the list. Once we have found the node before the one we want to delete, we can remove the target node in constant time, i.e., O(1), by updating its predecessor's next pointer to skip over the target node.
 
-With Jest, we can write unit tests:
+* spec
 
 ```javascript
 import {LinkedList} from '../singly_linked_list.js';
