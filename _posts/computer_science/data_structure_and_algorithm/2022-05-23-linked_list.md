@@ -35,168 +35,101 @@ graph LR
 
 Given a memory disk with multiple data preserved and we cannot insert a serial data in it, we may use linked list to achieve it because the nodes can be unserial.
 
-### Time complexity of linkedlist
-
-| :--- | :---- |
-| create (insert) | O(1) |
-| read (access with id) | O(N) |
-| update | O(1) |
-| search (access with attributes) | O(N) |
-| destroy (delete) | O(1) |
-
-* create: given we finish the search, we just need to change the pointer values to point to the new element, so inserting an element takes $$O(1)$$
-* read: even though we have the id for specific element, we still need to traverse all the nodes so the complexity of read is at most $$O(N)$$
-* search: the complexity of search is at most $$O(N)$$ because we need to start from the begining everytime for one element
-* update: after we found the element, we just need to change the value of that node, so it takes $$O(1)$$
-* destroy: after we found the element we want to delete, we just need to change the pointers before it to point to the next element, so it takes $$O(1)$$
-
 ## How
 
-### create a singly linked list
+### singly linked list in javascript
 
-#### The example in dynamic (singly linked list)
-
-A node:
+* coding example:
 
 ```javascript
+// Define a Node class for the elements of the linked list
 class Node {
-  constructor(value, next = null) {
-    this.value = value,
-    this.next = next
-  }
-}
-```
-
-A linkedlist:
-
-```javascript
-class Node {
-  constructor(value, next = null) {
-    this.value = value,
-    this.next = next
+  constructor(data, next = null) {
+    this.data = data;
+    this.next = next;
   }
 }
 
+// Define the LinkedList class
 class LinkedList {
   constructor() {
     this.head = null;
+    this.tail = null;
+    this.length = 0;
   }
 
-  values() {
-    let node = this.head;
-    let result = [];
-    while (node !== null) {
-      result.push(node.value);
-      node = node.next;
+  // Add a new element to the end of the list
+  add(data) {
+    const node = new Node(data);
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
     }
-    return result;
+    this.length++;
   }
 
-  insertAtBegin(value) {
-    let newNode = new Node(value);
-    newNode.next = this.head;
-    this.head = newNode;
-    return this.head;
+  // Get an element at a specified index
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
+    let current = this.head;
+    for (let i = 0; i < index; i++) {
+      current = current.next;
+    }
+    return current.data;
   }
 
-  insertAtEnd(value) {
-    let newNode = new Node(value);
-    let tail;
-    if (!this.head) {
-      this.insertAtBegin(value)
-    } else {
-      tail = this.findTail();
-      tail.next = newNode;
+  // Remove an element at a specified index
+  remove(index) {
+    if (index < 0 || index >= this.length) {
+      return null;
     }
-    return this.head
-  }
-    
-  insertAt(value, index) {
-    const preNode = this.find(index - 1);
-    const newNode = new Node(value);
-    if (!this.head || index === 0) {
-      this.insertAtBegin(value)
-    } else {
-      newNode.next = preNode.next;
-      preNode.next = newNode;
-    }
-  }
-    
-  deleteAtBegin() {
-    if (!this.head) {
-      return
-    }
-    this.head = this.head.next;
-    return this.head;
-  }
-    
-  deleteAtEnd() {
-    let beforeTail = this.head;
-    let tail = this.head.next;
-    if (!this.head || !this.head.next) {
-      this.head = null;
-      return this.head;
-    }
-    while(tail.next !== null) {
-      beforeTail = tail;
-      tail = tail.next;
-    }
-    beforeTail.next = null;
-    return this.head;
-  }
-    
-  deleteAt(index) {
-    const preNode = this.find(index - 1);
-    if (!this.head) {
-      return this.head;
-    } else if (index === 0) {
-      this.head = this.head.next;
-      return this.head;
-    } else {
-      if (!preNode || !preNode.next) {
-        return;
+    let current = this.head;
+    if (index === 0) {
+      this.head = current.next;
+      if (this.length === 1) {
+        this.tail = null;
       }
-      preNode.next = preNode.next.next;     
-      return this.head
-    }
-  }
-    
-  find(index) {
-    let counter = 0;
-    let node = this.head;
-    while (node) {
-      if (counter === index) {
-        return node;
+    } else {
+      let previous = null;
+      for (let i = 0; i < index; i++) {
+        previous = current;
+        current = current.next;
       }
-      counter++;
-      node = node.next;
+      previous.next = current.next;
+      if (index === this.length - 1) {
+        this.tail = previous;
+      }
     }
-    return null;
-  }
-    
-  findTail() {
-    let node = this.head;
-    while (node.next !== null) {
-      node = node.next
-    }
-    return node
-  }
-  
-  print() {
-    let node = this.head;
-    while (node !== null) {
-      console.log(node.value);
-      node = node.next;
-    }
+    this.length--;
+    return current.data;
   }
 }
 
-export {LinkedList};
+// Example usage
+const list = new LinkedList();
+list.add('a');
+list.add('b');
+list.add('c');
+console.log(list.get(1)); // Output: "b"
+list.remove(1);
+console.log(list.get(1)); // Output: "c"
 ```
 
-* index of linkedlist starts from 0
+* create: O(1)
+  * adding a new element to a LinkedList involves creating a new node and updating the head pointer to point to the new node, which can be done in constant time
+* read: O(n)
+  * In singly-linked list, the time complexity of read is O(n) in the worst case, where n is the length of the list Unlike an array, where elements are stored contiguously in memory and can be accessed in constant time using an index, in a linked list, we have to traverse the list from the head node to the desired index, which takes linear time proportional to the size of the list.
+* update: O(n)
+  * In a singly-linked list, the time complexity of update (i.e., modifying an element by index) is also O(n) in the worst case, where n is the length of the list. This is because like accessing an element, we need to traverse the list from the head node to the desired index to update it. Once we have reached the node, updating it takes constant time, i.e., O(1).
+* delete: O(n)
+  * In a singly-linked list, the time complexity of delete (i.e., removing an element by index) is also O(n) in the worst case, where n is the length of the list. This is because we need to traverse the list from the head node to the node immediately before the one we want to delete, which takes linear time proportional to the size of the list. Once we have found the node before the one we want to delete, we can remove the target node in constant time, i.e., O(1), by updating its predecessor's next pointer to skip over the target node.
 
-With Jest, we can write unit tests:
+* spec
 
 ```javascript
 import {LinkedList} from '../singly_linked_list.js';
@@ -207,32 +140,27 @@ describe('LinkedList', () => {
     testLinkedList = new LinkedList();
     const values = [1, 74, 888, 62, 33];
     for(let i = 0; i < values.length; i++){
-      testLinkedList.insertAtBegin(values[i]);
+      testLinkedList.append(values[i]);
     }
   });
 
-  test('insert at begin', () => {
-    testLinkedList.insertAtBegin(0);
-    expect(testLinkedList.values()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
+  test('#prepand', () => {
+    testLinkedList.prepand(0);
+    expect(testLinkedList.printList()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
   });
 
-  test('insert at end', () => {
-    testLinkedList.insertAtEnd(0);
-    expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
+  test('#append', () => {
+    testLinkedList.append(0);
+    expect(testLinkedList.printList()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
   });
 
-  test('insert at given index', () => {
-    testLinkedList.insertAt(1000, 2);
-    expect(testLinkedList.values()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
+  test('#insert', () => {
+    testLinkedList.insert(2, 1000);
+    expect(testLinkedList.printList()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
   });
-
   // more test to be continued
 });
 ```
-
-#### The example in static (singly linked list)
-
-to be continued
 
 ### create a doubly linked list
 
@@ -248,36 +176,53 @@ two pointers iterates through a linkedlist at the same time.
 
 ### Remove Dups
 
-Implementation:
+* problem: Write code to remove duplicates from an unsorted linked list; for example, a linkedlist = [1, 4, 6, 3, 2, 7, 4, 8, 3] -> [1, 4, 6, 3, 2, 7, 8]
+
+* brute force:
+
+It's trivial, so I just skip to the result
+
+* code example:
 
 ```javascript
-function removeDups (linkedList) {
-  let node = linkedList.head;
-  let preNode = null;
-  let dups = [];
-  while (node !== null) {
-    if (dups.includes(node.value)) {
-      preNode.next = node.next
+function removeDup(linkedList) {
+  // skip brute force, we must at least loop through all node, so the time complexity = O(n), space complexity = O(n)
+  set = new Set();
+  let currentNode = linkedList.head
+  let previousNode = null
+
+  for (let i = 0; i < linkedList.length; i++) {
+    if (!set.has(currentNode.value)) {
+      set.add(currentNode.value)
     } else {
-      dups.push(node.value)
-      preNode = node // only when dups not include the value of current node, we redefine preNode
+      previousNode.next = currentNode.next
     }
-    node = node.next;
+    previousNode = currentNode
+    currentNode = currentNode.next
   }
-  linkedList.print()
+
+  return linkedList.printList()
 }
 ```
 
-Test:
+* test
 
 ```javascript
-let linkedList = new LinkedList();
-const values = [1, 1, 1, 1, 449, 12];
-for(let i = 0; i < values.length; i++){
-  linkedList.insertAtBegin(values[i]);
-}
+describe('RemoveDup', () => {
+  let testLinkedList;
+  beforeEach(() => {
+    testLinkedList = new LinkedList();
+    const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+    for(let i = 0; i < values.length; i++){
+      testLinkedList.append(values[i]);
+    }
+  });
 
-removeDups(linkedList) // 12, 449, 1
+  test('#', () => {
+    const result = removeDup(testLinkedList)
+    expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
+  });
+});
 ```
 
 #### temporary buffer not allowed
@@ -361,6 +306,10 @@ while (node !== null) {
 ```
 
 To be continued (more questions)
+
+## What
+
+Try to demo it with real world examples
 
 ## reference
 

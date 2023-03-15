@@ -23,6 +23,8 @@ I need to structure my thoughts.
 
 ## How?
 
+* have a better table CSS
+* all articles should be as independent as possible
 * split complexity and problem solving
 * the leet code practice truly need paper work
 * ask GPT the most common leetcode questions for all data structures
