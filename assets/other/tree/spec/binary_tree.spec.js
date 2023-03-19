@@ -27,4 +27,13 @@ describe('Tree', () => {
     expect(testTree.root.right.left.value).toBe(12)
     expect(testTree.root.right.right.value).toBe(17)
   })
+
+  // test('#addNode', () => {
+  //   testTree.addNode(7);
+  //   expect(testTree.root.left.left.left.value).toBe(7)
+  // })
+
+  // test('#inorderTraversal', () => {
+
+  // })
 });
