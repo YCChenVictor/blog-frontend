@@ -41,7 +41,12 @@
   ul {
     @apply list-disc;
     @apply list-inside;
-    @apply p-4;
+    @apply px-2;
+    @apply py-2;
+  }
+  li {
+    @apply px-2;
+    @apply pb-2;
   }
   ol {
     @apply list-decimal;

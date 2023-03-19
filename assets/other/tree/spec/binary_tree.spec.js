@@ -1,6 +1,6 @@
 const BinaryTree = require('../examples/binary_tree.js');
 
-describe('Tree', () => {
+describe('BinaryTree', () => {
 //     10
 //    /  \
 //   5    15
@@ -28,12 +28,47 @@ describe('Tree', () => {
     expect(testTree.root.right.right.value).toBe(17)
   })
 
-  // test('#addNode', () => {
-  //   testTree.addNode(7);
-  //   expect(testTree.root.left.left.left.value).toBe(7)
-  // })
+  test('#search', () => {
+    expect(testTree.search(10)).toEqual({
+      value: 10,
+      left: {
+        value: 5,
+        left: {
+          value: 3,
+          left: null,
+          right: null
+        },
+        right: {
+          value: 7,
+          left: null,
+          right: null
+        }
+      },
+      right: {
+        value: 15,
+        left: {
+          value: 12,
+          left: null,
+          right: null
+        },
+        right: {
+          value: 17,
+          left: null,
+          right: null
+        }
+      }
+    })
+  })
 
-  // test('#inorderTraversal', () => {
+  test('#inorderTraversal', () => { // L > V > R
+    expect(testTree.inorderTraversal()).toEqual([3, 5, 7, 10, 12, 15, 17])
+  })
 
-  // })
+  test('#preorderTraversal', () => { // V > L > R
+    expect(testTree.preorderTraversal()).toEqual([10, 5, 3, 7, 15, 12, 17])
+  })
+
+  test('#postorderTraversal', () => { // L > R > V
+    expect(testTree.postorderTraversal()).toEqual([3, 7, 5, 12, 17, 15, 10])
+  }) 
 });
