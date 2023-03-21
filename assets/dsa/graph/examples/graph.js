@@ -16,3 +16,5 @@ class Graph {
     return this.vertices.get(vertex);
   }
 }
+
+module.exports = Graph;
