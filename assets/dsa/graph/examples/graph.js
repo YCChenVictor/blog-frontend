@@ -15,6 +15,20 @@ class Graph {
   getNeighbors(vertex) {
     return this.vertices.get(vertex);
   }
+
+  depthFirstSearch(vertex, visited = new Set()) {
+    visited.add(vertex);
+    this.getNeighbors(vertex).forEach(neighbor => {
+      if(!visited.has(neighbor)) {
+        this.depthFirstSearch(neighbor, visited)
+      }
+    })
+    return visited
+  }
+  
+  breadthFirstSearch() {
+    
+  }
 }
 
 module.exports = Graph;
