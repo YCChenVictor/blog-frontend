@@ -185,47 +185,55 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
   <li>coding example:</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">MyQueue</span> <span class="p">{</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Stack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../../stack/examples/stack.js</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="kd">class</span> <span class="nx">QueueViaStacks</span> <span class="p">{</span> <span class="c1">// FIFO</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">s1</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">s2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stack</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stackTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stack</span><span class="p">();</span>
   <span class="p">}</span>
 
-  <span class="nx">enqueue</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">s1</span><span class="p">.</span><span class="nx">length</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">s2</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">s1</span><span class="p">.</span><span class="nx">pop</span><span class="p">())</span>
-    <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">s1</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
-    <span class="k">while</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">s2</span><span class="p">.</span><span class="nx">length</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">s1</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">s2</span><span class="p">.</span><span class="nx">pop</span><span class="p">())</span>
-    <span class="p">}</span>
+  <span class="nx">enqueue</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="nx">dequeue</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">s1</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">empty queue</span><span class="dl">'</span><span class="p">)</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">s1</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">s1</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">s1</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
-      <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">'</span><span class="s1">no element</span><span class="dl">'</span>
     <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stackTwo</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span><span class="p">.</span><span class="nx">pop</span><span class="p">())</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">stackTwo</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></div>
 
-<p>Impelmentation: use stack two to make top of stack one be the first elements of pushing so that the pop of stack one will be the first in of this queue.</p>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">QueueViaStacks</span>
+</code></pre></div></div>
 
 <ul>
   <li>jest</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">test</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyQueue</span><span class="p">()</span>
-<span class="nx">test</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="c1">// [2]</span>
-<span class="nx">test</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="c1">// [5, 2]</span>
-<span class="nx">test</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">()</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="c1">// [5] -&gt; should remove 2 (FIFO)</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">QueueViaStacks</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../examples/queue_via_stacks.js</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">QueueViaStacks</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">testQueueViaStacks</span><span class="p">;</span>
+  <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testQueueViaStacks</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">QueueViaStacks</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="nx">testQueueViaStacks</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#FIFO</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="c1">// TBC</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testQueueViaStacks</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">});</span>
 </code></pre></div></div>
 
 <h2 id="what">What</h2>

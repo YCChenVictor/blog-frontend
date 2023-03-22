@@ -11,15 +11,16 @@ class QueueViaStacks { // FIFO
   }
 
   dequeue() {
+    const length = this.stackOne.items.length
+
     if (this.stackOne.length == 0) {
       return 'no element'
     }
 
-    for (let i = 0; i < this.stackOne.items.length; i++) {
-      console.log(this.stackOne.pop())
-    //   this.stackTwo.push(this.stackOne.pop())
+    for (let i = 0; i < length; i++) {
+      this.stackTwo.push(this.stackOne.pop())
     }
-    // return this.stackTwo.pop()
+    return this.stackTwo.pop()
   }
 }
 

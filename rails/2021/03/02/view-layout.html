@@ -77,12 +77,61 @@
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(Rails Elementary 4) View-Layout</h1>
+  <h1 class="text-center mt-6 mb-6">view-layout</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
-    <h3 id="csrf-cross-site-requestforgery">CSRF (Cross-Site Request Forgery)</h3>
+    <h2 id="introduction">Introduction</h2>
+
+<p>to be continued</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="view-helper">View Helper</h3>
+
+<p>Take a look at following</p>
+
+<pre><code class="language-HTML">&lt;tr&gt;  
+  &lt;td&gt;  
+   &lt;% if gender == 1 %&gt;  
+     male  
+   &lt;% elsif gender == 0 %&gt;  
+     female  
+   &lt;% else %&gt;  
+     anything  
+   &lt;% end %&gt;
+  &lt;/td&gt;  
+&lt;/tr&gt;
+</code></pre>
+<p>There is an <code class="language-plaintext highlighter-rouge">if else</code> logic in it. However, because view should just render template, the logic should not in view, so in rails, there is <code class="language-plaintext highlighter-rouge">app/helpers</code> to solve this problem.</p>
+
+<p>In helper, we can define a function</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">user_gender</span><span class="p">(</span><span class="n">gender</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">gender</span> <span class="o">==</span> <span class="mi">1</span>  
+    <span class="k">return</span> <span class="s2">"male"</span>  
+  <span class="k">elsif</span> <span class="n">gender</span> <span class="o">==</span> <span class="mi">0</span>  
+    <span class="k">return</span> <span class="s2">"female"</span>  
+  <span class="k">else</span>  
+    <span class="k">return</span> <span class="s2">"anything"</span>
+
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Then the logic in html can be written as</p>
+
+<pre><code class="language-HTML">&lt;tr&gt;
+  &lt;td&gt;
+   &lt;%= user_gender(gender) %&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;
+</code></pre>
+
+<h3 id="csrf-cross-site-requestforgery">CSRF (Cross-Site Request Forgery)</h3>
 
 <h4 id="what-is-csrf">What is CSRF?</h4>
 <p>wiki: Cross-site request forgery, also known as <strong>one-click attack</strong> or session riding and abbreviated as CSRF or XSRF, is a type of malicious exploit of a website where <strong>unauthorized commands</strong> are submitted from <strong>a user that the web application trusts</strong></p>
@@ -174,45 +223,7 @@ end
 
 <p>Because <code class="language-plaintext highlighter-rouge">_form.html.erb</code> as reusable file, it should not take any responsible to find the variable @candidate rather being fed value to candidate with @candidate.</p>
 
-<h3 id="view-helper">View Helper</h3>
-
-<p>Take a look at following</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tr&gt;  
-  &lt;td&gt;  
-   &lt;% if gender == 1 %&gt;  
-     male  
-   &lt;% elsif gender == 0 %&gt;  
-     female  
-   &lt;% else %&gt;  
-     anything  
-   &lt;% end %&gt;    
-  &lt;/td&gt;  
-&lt;/tr&gt;
-</code></pre></div></div>
-<p>There is if else logic in it. However, because view should just render template, the logic should not in view, so in rails, there is helper to solve this problem.</p>
-
-<p>In helper, we can define a function</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def user_gender (gender)
-
-  if gender == 1  
-    return "male"  
-  elsif gender == 0  
-    return "female"  
-  else  
-    return "anything"
-
-  end
-
-end
-</code></pre></div></div>
-<p>Then the logic in html can be written as</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tr&gt;  
-  &lt;td&gt;  
-   &lt;%= user_gender(gender) %&gt;  
-  &lt;/td&gt;  
-&lt;/tr&gt;
-</code></pre></div></div>
-<h3 id="reference">Reference:</h3>
+<h2 id="reference">Reference:</h2>
 
 <p><a href="https://railsbook.tw/"><strong>為你自己學 Ruby on Rails 高見龍</strong></a></p>
 

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
+<div id="base" class="hidden">/blog</div>
+<!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="flex">
+    <div class="flex absolute left-0 top-0">
+      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
+        alt="author profile image">
+    </div>
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="w-full relative flex justify-center">
+        <button type="button" onclick="toggleNavbar('navbar')"
+          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+          aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute right-16 flex hidden md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+           <!-- don't show Home in menu for Homepage -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/">
+              Home
+            </a>
+          
+
+        <!-- dynamic menu based on navigation info in _config.yml -->
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/about">
+              About
+            </a>
+          
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/category">
+              Category
+            </a>
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+
+<div class="p-16 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Graph</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<ul>
+  <li>This article describes the concept of graph, non-linear data structure that consists of a collection of vertices (also known as nodes) connected by edges.</li>
+  <li>Vertices represent the objects or entities being modeled</li>
+  <li>Edges represent the relationships or connections between those objects. Edges can be directed or undirected, and can have weights or costs associated with them to represent the strength or importance of the relationship between vertices</li>
+  <li>Represented using various data structures, such as adjacency matrices, adjacency lists, and edge lists</li>
+  <li>Algorithms
+    <ul>
+      <li>traversal algorithms
+        <ul>
+          <li>depth-first search</li>
+          <li>breadth-first search</li>
+        </ul>
+      </li>
+      <li>shortest path algorithms
+        <ul>
+          <li>Dijkstra’s algorithm</li>
+          <li>Bellman-Ford algorithm</li>
+        </ul>
+      </li>
+      <li>minimum spanning tree algorithms
+        <ul>
+          <li>Prim’s algorithm</li>
+          <li>Kruskal’s algorithm</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>To pass coding interview</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="visualization">Visualization</h3>
+
+<div class="mermaid">
+flowchart TD
+    id1((1)) --&gt; id2((2))
+    id4((4)) --&gt; id2((2))
+    id4((4)) --&gt; id3((3))
+    id1((1)) --&gt; id4((4))
+    id3((3)) --&gt; id1((1))
+    id2((2)) --&gt; id2((2))
+</div>
+
+<h3 id="terminology">terminology</h3>
+
+<ul>
+  <li>vertices: the nodes with naming, 1, 2, 3, 4</li>
+  <li>edges: the lines connect the vertices</li>
+  <li>self loop: the edge from a vertex to itself</li>
+</ul>
+
+<h3 id="code-example">code example</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Graph</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">addVertex</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">vertex</span><span class="p">,</span> <span class="p">[]);</span>
+  <span class="p">}</span>
+
+  <span class="nx">addEdge</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">,</span> <span class="nx">vertex2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">vertex2</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex2</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">getNeighbors</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">depthFirstSearch</span><span class="p">(</span><span class="nx">startVertex</span><span class="p">,</span> <span class="nx">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nx">visited</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">startVertex</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="nx">startVertex</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">vertex</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">visited</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">vertex</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">depthFirstSearch</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>DFS (depth first search)
+    <ul>
+      <li>Application: Find paths between two vertices, detecting cycles in a graph, and determining whether a graph is bipartite</li>
+      <li>Solution: Visits each node exactly once and records the path it takes to reach each node. The algorithm can be implemented recursively or iteratively using a stack.</li>
+      <li>Concept: Follow a path as far as possible before <strong>backtracking and exploring</strong> other paths. This means that DFS explores the deepest possible path in the graph before backtracking, hence the name “depth-first”</li>
+      <li>Intuition: Have a look at this <a href="https://www.youtube.com/watch?v=7fujbpJ0LB4">video</a></li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">graph</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">],</span>
+  <span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">D</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">E</span><span class="dl">'</span><span class="p">],</span>
+  <span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">F</span><span class="dl">'</span><span class="p">],</span>
+  <span class="dl">'</span><span class="s1">D</span><span class="dl">'</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="dl">'</span><span class="s1">E</span><span class="dl">'</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">F</span><span class="dl">'</span><span class="p">],</span>
+  <span class="dl">'</span><span class="s1">F</span><span class="dl">'</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">dfs</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">visited</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">node</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">visited</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+    <span class="nx">graph</span><span class="p">[</span><span class="nx">node</span><span class="p">].</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">neighbor</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">dfs</span><span class="p">(</span><span class="nx">neighbor</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">dfs</span><span class="p">(</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">visited</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>A -&gt; B -&gt; D -&gt; E -&gt; F -&gt; C -&gt; F</p>
+
+<h3 id="time-complexity">time complexity</h3>
+
+<ul>
+  <li>Adding a vertex: O(1) (constant time)</li>
+  <li>Adding an edge: O(1) (constant time)</li>
+  <li>Removing a vertex: O(V + E) (linear time, where V is the number of vertices and E is the number of edges)</li>
+  <li>Removing an edge: O(1) (constant time)</li>
+  <li>Finding a vertex: O(V) (linear time)</li>
+  <li>Finding an edge: O(E) (linear time)</li>
+  <li>Depth-first search: O(V + E) (linear time)</li>
+  <li>Breadth-first search: O(V + E) (linear time)</li>
+  <li>Shortest path (Dijkstra’s algorithm): O((V + E) * log V) (where V is the number of vertices and E is the number of edges)</li>
+  <li>Minimum spanning tree (Prim’s algorithm): O((V + E) * log V) (where V is the number of vertices and E is the number of edges)</li>
+</ul>
+
+<h2 id="what">What?</h2>
+
+<h3 id="maze">Maze</h3>
+
+<ul>
+  <li>Try to find the shortest path in maze with DFS</li>
+  <li>Represent maze as a graph, each cell is a node and the neighboring cells are connected by edges</li>
+  <li>Use a depth-first search algorithm to explore all possible paths from the starting cell to the exit cell. We can mark each cell as visited as we explore the maze and keep track of the shortest path we’ve found so far. Once we reach the exit cell, we compare the length of the path we’ve found to the shortest path so far and update it if the new path is shorter.</li>
+  <li>This approach can be optimized using techniques such as backtracking and memoization to avoid exploring paths that cannot lead to the shortest path.</li>
+</ul>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.tutorialspoint.com/Graph-Data-Structure-in-Javascript#:~:text=A%20graph%20is%20a%20pictorial,the%20vertices%20are%20called%20edges.">Graph Data Structure in Javascript</a></p>
+
+<p><a href="https://towardsdatascience.com/10-graph-algorithms-visually-explained-e57faa1336f3">10 Graph Algorithms Visually Explained</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+</html>
