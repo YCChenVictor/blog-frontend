@@ -1,11 +1,63 @@
 ---
 layout: post
-title: (Rails Elementary 4) View-Layout
+title: view-layout
 date: '2021-03-02'
 categories: rails
-note: CSRF (Cross-site request forgery)
-publish:
+note:
+publish: true
 ---
+
+## Introduction
+
+to be continued
+
+## How
+
+### View Helper
+
+Take a look at following
+
+```HTML
+<tr>  
+  <td>  
+   <% if gender == 1 %>  
+     male  
+   <% elsif gender == 0 %>  
+     female  
+   <% else %>  
+     anything  
+   <% end %>
+  </td>  
+</tr>
+```
+There is an `if else` logic in it. However, because view should just render template, the logic should not in view, so in rails, there is `app/helpers` to solve this problem.
+
+In helper, we can define a function
+
+```ruby
+def user_gender(gender)
+
+  if gender == 1  
+    return "male"  
+  elsif gender == 0  
+    return "female"  
+  else  
+    return "anything"
+
+  end
+
+end
+```
+
+Then the logic in html can be written as
+
+```HTML
+<tr>
+  <td>
+   <%= user_gender(gender) %>
+  </td>
+</tr>
+```
 
 ### CSRF (Cross-Site Request Forgery)
 
@@ -108,48 +160,7 @@ it will put the codes of `_form.html.erb` on the place of `render` in `edit.html
 
 Because `_form.html.erb` as reusable file, it should not take any responsible to find the variable @candidate rather being fed value to candidate with @candidate.
 
-### View Helper
-
-Take a look at following
-```
-<tr>  
-  <td>  
-   <% if gender == 1 %>  
-     male  
-   <% elsif gender == 0 %>  
-     female  
-   <% else %>  
-     anything  
-   <% end %>    
-  </td>  
-</tr>
-```
-There is if else logic in it. However, because view should just render template, the logic should not in view, so in rails, there is helper to solve this problem.
-
-In helper, we can define a function
-```
-def user_gender (gender)
-
-  if gender == 1  
-    return "male"  
-  elsif gender == 0  
-    return "female"  
-  else  
-    return "anything"
-
-  end
-
-end
-```
-Then the logic in html can be written as
-```
-<tr>  
-  <td>  
-   <%= user_gender(gender) %>  
-  </td>  
-</tr>
-```
-### Reference:
+## Reference:
 
 [**為你自己學 Ruby on Rails 高見龍**](https://railsbook.tw/)
 
