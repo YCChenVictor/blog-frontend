@@ -18,4 +18,12 @@ describe('Graph', () => {
     [['A', 'B'], ['A', 'C'], ['B', 'D'], ['B', 'E'], ['C', 'F'], ['E', 'F']].forEach(edge => testGraph.addEdge(edge[0], edge[1]))
     expect(testGraph.depthFirstSearch('A')).toEqual(expectSet);
   })
+
+  test('BFS', () => {
+    testGraph = new Graph();
+    expectSet = new Set(['A', 'B', 'C', 'D', 'E', 'F']);
+    ['A', 'B', 'C', 'D', 'E', 'F'].forEach(node => testGraph.addVertex(node));
+    [['A', 'B'], ['A', 'C'], ['B', 'D'], ['B', 'E'], ['C', 'F'], ['E', 'F']].forEach(edge => testGraph.addEdge(edge[0], edge[1]))
+    expect(testGraph.breadthFirstSearch('A')).toEqual(expectSet);
+  })
 })

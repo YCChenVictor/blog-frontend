@@ -26,8 +26,23 @@ class Graph {
     return visited
   }
   
-  breadthFirstSearch() {
+  breadthFirstSearch(startingVertex) {
+    const queue = [startingVertex];
+    const visited = new Set([startingVertex]);
+
+    while (queue.length) {
+      const currentVertex = queue.shift();
+      const neighbors = this.getNeighbors(currentVertex);
+  
+      for (let neighbor of neighbors) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
+          queue.push(neighbor);
+        }
+      }
+    }
     
+    return visited;
   }
 }
 
