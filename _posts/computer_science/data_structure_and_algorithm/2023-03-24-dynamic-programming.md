@@ -90,7 +90,7 @@ By storing the solutions to the subproblems, dynamic programming can avoid redun
 We want to find the most profitable tasks in a give time as follow
 
 ```javascript
-const time = 5;
+const time = 5; // it can be changed
 
 const tasks = [
   { name: 'Task A', profit: 2, time: 1 },
@@ -100,12 +100,34 @@ const tasks = [
 ];
 ```
 
+The algorithm will construct table:
+
+```javascript
+[
+  [ 0, 0, 0, 0, 0, 0 ],
+  [ 0, 2, 2, 2, 2, 2 ],
+  [ 0, 2, 3, 5, 5, 5 ],
+  [ 0, 2, 3, 5, 6, 7 ],
+  [ 0, 2, 3, 5, 6, 7 ],
+]
+```
+
+where row is accumulated profit of projects on given time (columns)
+
+And use dynamic programming:
+
+* It will start from table[4][5], which has value of 7, the maximum profit the time limit can obtain
+* Then extracts the solution by backtracking from the last cell of the table
+* Avoiding the repetition of sub-problems, recomputing the maximum profit that can be obtained for the same accumulated projects and time limit, which occurs multiple times if a recursive or a brute-force approach were used
+* Time complexity = O(n * time)
+
 ```javascript
 function allocateResources(tasks, time) {
   const n = tasks.length;
   const table = Array.from({ length: n + 1 }, () => Array(time + 1).fill(0));
 
-  // construct desired structure (seems no bottle neck, to be continued)
+  // construct desired structure
+  // Rows are the accumulated projects and column are the limit of time
   for (let i = 1; i <= n; i++) {
     const { profit, time: taskTime } = tasks[i - 1];
     for (let j = 1; j <= time; j++) {
@@ -117,22 +139,20 @@ function allocateResources(tasks, time) {
     }
   }
 
-  console.log(table)
+  const solution = [];
+  let i = n, j = time;
+  while (i > 0 && j > 0) {
+    if (table[i][j] === table[i - 1][j]) {
+      i--;
+    } else {
+      const { profit, time: taskTime } = tasks[i - 1];
+      solution.unshift(tasks[i - 1]);
+      i--;
+      j -= taskTime;
+    }
+  }
 
-//   const solution = [];
-//   let i = n, j = time;
-//   while (i > 0 && j > 0) {
-//     if (table[i][j] === table[i - 1][j]) {
-//       i--;
-//     } else {
-//       const { profit, time: taskTime } = tasks[i - 1];
-//       solution.unshift(tasks[i - 1]);
-//       i--;
-//       j -= taskTime;
-//     }
-//   }
-
-//   return { maxProfit: table[n][time], solution };
+  return { maxProfit: table[n][time], solution };
 }
 
 const time = 5;
