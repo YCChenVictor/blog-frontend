@@ -77,12 +77,12 @@
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">rails ORM</h1>
+  <h1 class="text-center mt-6 mb-6">ORM</h1>
   <div class="text-center">
     
   </div>
   <div class="px-72">
-    <h2 id="introduction--why">Introduction &amp; Why</h2>
+    <h2 id="introduction">Introduction</h2>
 
 <p>In rails, active record serves as the layer between model and database.</p>
 
@@ -96,7 +96,9 @@
 </code></pre></div></div>
 <p>and also avoid different syntax problem on different database language.</p>
 
-<h2 id="how">How?</h2>
+<h2 id="why">Why</h2>
+
+<h2 id="how">How</h2>
 
 <p>Given I have a project with a model, <code class="language-plaintext highlighter-rouge">User</code> and track the source code with <code class="language-plaintext highlighter-rouge">bundle open activerecord</code> (No worries, we can use <code class="language-plaintext highlighter-rouge">bundle pristine activerecord</code> to recover the gem)</p>
 
@@ -277,6 +279,12 @@ TRANSACTION (1.0ms)  commit transaction
 </code></pre></div></div>
 
 <p>As you can see the framework of sql in <code class="language-plaintext highlighter-rouge">build_insert_sql</code> is the same as <code class="language-plaintext highlighter-rouge">sql = +"INSERT #{insert.into} #{insert.values_list}"</code> and given the conditions the sql code modified according to database languages.</p>
+
+<h2 id="what">what</h2>
+
+<h3 id="include">include</h3>
+
+<p><a href="">include</a></p>
 
   </div>
 </div>

@@ -77,50 +77,59 @@
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6"></h1>
+  <h1 class="text-center mt-6 mb-6">Include</h1>
   <div class="text-center">
-    
-      <i class="text-xs fas fa-tags"></i>
-      
     
   </div>
   <div class="px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>In Rails ORM (Object-Relational Mapping), the include method is used to eager load associated records. It is often used to avoid the <a href="/blog/database/2022/08/12/N+1.html">N+1 query problem</a>, which occurs when an application issues too many SQL queries to retrieve associated records. By eager loading associations, you can reduce the number of SQL queries and improve performance.</p>
 
-<h2 id="why">Why?</h2>
+<p>Here’s an example of how to use include in Rails ORM:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_many</span> <span class="ss">:comments</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Comment</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">belongs_to</span> <span class="ss">:post</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>If we want to retrieve all posts and their associated comments, we can use the includes method to eager load the comments:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This will load all posts and their associated comments in a <strong>single query</strong>, rather than issuing a separate query for each post’s comments.</p>
+
+<p>In addition to includes, Rails ORM also provides other methods for eager loading associations, such as joins and preload. The choice of which method to use depends on the specific use case and performance considerations.</p>
+
+<p>Eager loading associations can significantly improve the performance of your Rails application, especially when dealing with large datasets. However, it’s important to use it judiciously and avoid overloading your queries with unnecessary associations.</p>
+
+<h2 id="why">Why</h2>
 
 <p>focus on why we need it</p>
 
-<h2 id="how">How?</h2>
+<h2 id="how">How</h2>
 
-<p>focus on the mechanism</p>
+<h3 id="condition">condition</h3>
 
-<h2 id="what">What?</h2>
+<p>Take above include as example, we can set condition with chaining as follow:</p>
 
-<style>
-  div {
-    background-color: #aaa;  
-    width: 300px;  
-    border: 10px;
-  }
-</style>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="ss">comments: </span><span class="p">[</span><span class="ss">:user</span><span class="p">]).</span><span class="nf">where</span><span class="p">(</span><span class="ss">comments: </span><span class="p">{</span> <span class="ss">approved: </span><span class="kp">true</span> <span class="p">},</span> <span class="ss">users: </span><span class="p">{</span> <span class="ss">admin: </span><span class="kp">true</span> <span class="p">})</span>
+</code></pre></div></div>
 
-<p>情節網路制度首頁辛苦歡迎您還沒，豪華投訴才會兩個台北新聞高級足球實施業績成就為你老婆好像，轉帖先進。</p>
-<p>情節網路制度首頁辛苦歡迎您還沒，豪華投訴才會兩個台北新聞高級足球實施業績成就為你老婆好像，轉帖先進。</p>
+<p>include = preload + eager_load</p>
 
-<p>give an example</p>
+<h2 id="what">What</h2>
 
-<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
-
-<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
+<p>Give a real world example</p>
 
 <h2 id="reference">Reference</h2>
 
-<p>Why: asking for the reason or purpose behind something.
-How: asking for the method or process of doing something.
-What: asking for information about a specific thing or object.</p>
+<p><a href="https://blog.saeloun.com/2020/01/08/activerecord-database-performance-n-1-includes-preload-eager-load-pluck.html">Improving Database performance and overcoming common N+1 issues in Active Record using includes, preload, eager_load, pluck, select, exists?</a></p>
 
   </div>
 </div>

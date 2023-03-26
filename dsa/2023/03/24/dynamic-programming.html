@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
+<div id="base" class="hidden">/blog</div>
+<!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="flex">
+    <div class="flex absolute left-0 top-0">
+      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
+        alt="author profile image">
+    </div>
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="w-full relative flex justify-center">
+        <button type="button" onclick="toggleNavbar('navbar')"
+          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+          aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute right-16 flex hidden md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+           <!-- don't show Home in menu for Homepage -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/">
+              Home
+            </a>
+          
+
+        <!-- dynamic menu based on navigation info in _config.yml -->
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/about">
+              About
+            </a>
+          
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/category">
+              Category
+            </a>
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+
+<div class="p-16 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Dynamic Programming</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<ul>
+  <li>Application: Dynamic programming is often used in problems where the solution can be expressed as a recursive sequence of sub-problems, such as finding the shortest path in a graph or the longest common subsequence of two strings. By solving each subproblem only once and storing its solution, dynamic programming algorithms can often solve large-scale optimization problems efficiently.</li>
+  <li>Solution: Solve optimization problems by breaking them down into smaller, simpler sub-problems and solving each subproblem only once.</li>
+  <li>Concept: The key idea behind dynamic programming is to store the solutions to sub-problems and reuse them when needed, rather than repeatedly recomputing the solutions</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>The main advantage of dynamic programming is that it can often solve large-scale optimization problems efficiently. By breaking the problem down into smaller sub-problems and solving each subproblem only once, dynamic programming can avoid the repeated computations that would be necessary if the problem were solved using a brute-force approach.</p>
+
+<p>Dynamic programming is used in a wide variety of fields, including computer science, mathematics, engineering, economics, and operations research. It is particularly useful in problems related to optimization, such as finding the shortest path in a graph, scheduling tasks, or maximizing profits.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="fibonacci">fibonacci</h3>
+
+<ul>
+  <li>recursive</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">memo</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">function</span> <span class="nx">fibonacciHelper</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">memo</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">n</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="k">in</span> <span class="nx">memo</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">memo</span><span class="p">[</span><span class="nx">n</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">memo</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fibonacciHelper</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">fibonacciHelper</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">memo</span><span class="p">[</span><span class="nx">n</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">fibonacciHelper</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span> <span class="c1">// Output: 55</span>
+</code></pre></div></div>
+
+<h3 id="maximum-sub-array-sum">Maximum sub-array sum</h3>
+
+<ul>
+  <li>Please return the sub array that has biggest sum</li>
+  <li>iterative</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">maxSubArraySum</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">dp</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nx">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="kd">let</span> <span class="nx">maxSum</span> <span class="o">=</span> <span class="nx">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="nx">maxSum</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">maxSum</span><span class="p">,</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="nx">maxSum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage:</span>
+<span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">maxSubArraySum</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span> <span class="c1">// Returns 3</span>
+</code></pre></div></div>
+
+<p>By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.</p>
+
+<h2 id="what">What?</h2>
+
+<h3 id="resource-allocation">resource allocation</h3>
+
+<ul>
+  <li>Problem: Allocates scarce resources in the most efficient way possible to maximize the overall benefit or profit. The problem can be represented as a table where the rows represent the projects and the columns represent the available budget. The table is filled out in a bottom-up manner, where each cell represents the maximum profit that can be obtained for a given budget and a subset of projects. Resource allocation problems can arise in many different fields, such as in supply chain management, healthcare, and environmental management. By using dynamic programming to optimize resource allocation, businesses and organizations can make more informed decisions and achieve better outcomes.</li>
+  <li>Example: Consider a company that has a limited budget and needs to allocate its resources (e.g., money, manpower, equipment) across different projects to maximize profits.</li>
+  <li>Solution: Use dynamic programming solve this problem by breaking it down into smaller sub-problems and optimizing each subproblem independently. By computing the values in the table for all possible combinations of projects and budgets, the optimal solution can be found by selecting the combination of projects with the highest profit that also fits within the budget constraints.</li>
+  <li>Code: Suppose we have a list of n tasks, each with an associated profit and time required. We also have a limited amount of time available to complete tasks. Our goal is to choose a subset of tasks to complete in the allotted time that maximizes the total profit. We can use dynamic programming to solve this problem by building a table where the rows represent the tasks and the columns represent the available time. We fill out the table in a bottom-up manner, computing the maximum profit that can be obtained for each subset of tasks and time.</li>
+</ul>
+
+<p>We want to find the most profitable tasks in a give time as follow</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// it can be changed</span>
+
+<span class="kd">const</span> <span class="nx">tasks</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task A</span><span class="dl">'</span><span class="p">,</span> <span class="na">profit</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task B</span><span class="dl">'</span><span class="p">,</span> <span class="na">profit</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">2</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task C</span><span class="dl">'</span><span class="p">,</span> <span class="na">profit</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">3</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task D</span><span class="dl">'</span><span class="p">,</span> <span class="na">profit</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">4</span> <span class="p">},</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<p>The algorithm will construct table:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span> <span class="p">],</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>where row is accumulated profit of projects on given time (columns)</p>
+
+<p>And use dynamic programming:</p>
+
+<ul>
+  <li>It will start from table[4][5], which has value of 7, the maximum profit the time limit can obtain</li>
+  <li>Then extracts the solution by backtracking from the last cell of the table</li>
+  <li>Avoiding the repetition of sub-problems, recomputing the maximum profit that can be obtained for the same accumulated projects and time limit, which occurs multiple times if a recursive or a brute-force approach were used</li>
+  <li>Time complexity = O(n * time)</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">allocateResources</span><span class="p">(</span><span class="nx">tasks</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">tasks</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">table</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">({</span> <span class="na">length</span><span class="p">:</span> <span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">},</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+  <span class="c1">// construct desired structure</span>
+  <span class="c1">// Rows are the accumulated projects and column are the limit of time</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">profit</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="nx">taskTime</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">tasks</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;=</span> <span class="nx">time</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">taskTime</span> <span class="o">&gt;</span> <span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nx">table</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nx">j</span><span class="p">];</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">table</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nx">j</span><span class="p">],</span> <span class="nx">profit</span> <span class="o">+</span> <span class="nx">table</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nx">j</span> <span class="o">-</span> <span class="nx">taskTime</span><span class="p">]);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">solution</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">time</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">table</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span> <span class="o">===</span> <span class="nx">table</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nx">j</span><span class="p">])</span> <span class="p">{</span>
+      <span class="nx">i</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="p">{</span> <span class="nx">profit</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="nx">taskTime</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">tasks</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+      <span class="nx">solution</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">tasks</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+      <span class="nx">i</span><span class="o">--</span><span class="p">;</span>
+      <span class="nx">j</span> <span class="o">-=</span> <span class="nx">taskTime</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">{</span> <span class="na">maxProfit</span><span class="p">:</span> <span class="nx">table</span><span class="p">[</span><span class="nx">n</span><span class="p">][</span><span class="nx">time</span><span class="p">],</span> <span class="nx">solution</span> <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">time</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">tasks</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task A</span><span class="dl">'</span><span class="p">,</span> <span class="na">profit</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task B</span><span class="dl">'</span><span class="p">,</span> <span class="na">profit</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">2</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task C</span><span class="dl">'</span><span class="p">,</span> <span class="na">profit</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">3</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Task D</span><span class="dl">'</span><span class="p">,</span> <span class="na">profit</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">time</span><span class="p">:</span> <span class="mi">4</span> <span class="p">},</span>
+<span class="p">];</span>
+
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">maxProfit</span><span class="p">,</span> <span class="nx">solution</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">allocateResources</span><span class="p">(</span><span class="nx">tasks</span><span class="p">,</span> <span class="nx">time</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Max profit: </span><span class="p">${</span><span class="nx">maxProfit</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Solution: </span><span class="p">${</span><span class="nx">solution</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">task</span> <span class="o">=&gt;</span> <span class="nx">task</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+</html>
