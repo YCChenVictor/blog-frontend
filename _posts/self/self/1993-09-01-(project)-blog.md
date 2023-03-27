@@ -23,6 +23,7 @@ I need to structure my thoughts.
 
 ## How?
 
+* read rails til test, rspec
 * have a better table CSS
 * all articles should be as independent as possible
 * split complexity and problem solving

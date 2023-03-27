@@ -1,10 +1,10 @@
 ---
 layout: post
-title: (Rails Elementary) Controller
+title:
 date: '2022-02-06'
 categories: rails
 note: to be continued
-publish:
+publish: true
 ---
 
 ## Introduction
