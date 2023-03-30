@@ -87,13 +87,14 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">ch13 concurrency</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction--why">Introduction &amp; why?</h2>
 
 <p>Concurrency is a <strong>decoupling</strong> strategy. It helps us decouple what gets done <strong>from when</strong> it gets done, so we need it if there are too many tasks should be done in a given time; however it causes problems that <strong>same method</strong> return <strong>different results</strong> at the same time and the way to solve the problems is as follow:</p>

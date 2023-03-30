@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
+<div id="base" class="hidden">/blog</div>
+<!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc">
+    <div class="pt-12 pb-4">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+  <div class="flex">
+    <div class="flex absolute left-0 top-0">
+      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
+        alt="author profile image">
+    </div>
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="w-full relative flex justify-center">
+        <button type="button" onclick="toggleNavbar('navbar')"
+          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+          aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute right-16 flex hidden md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+           <!-- don't show Home in menu for Homepage -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/">
+              Home
+            </a>
+          
+
+        <!-- dynamic menu based on navigation info in _config.yml -->
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/about">
+              About
+            </a>
+          
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/category">
+              Category
+            </a>
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
+
+<div class="p-16 prose prose-indigo">
+  <h1 class="text-center mt-6 mb-6">Database</h1>
+  <div class="text-center">
+    
+  </div>
+  <div class="md:px-4 md:grid lg:px-72">
+    <h2 id="introduction">Introduction</h2>
+
+<p>There are several topics in rails related to database:</p>
+
+<ul>
+  <li>Database migrations: Manage changes to the database schema. Migrations are written in Ruby and allow you to make changes to the database schema while keeping track of the changes over time.</li>
+  <li>Associations: Allow you to define relationships between different database tables. For example, a user may have many blog posts, and each blog post belongs to a user.</li>
+  <li>Querying: Rails provides a query interface called ActiveRecord::Relation, which allows you to build and execute database queries. This interface is based on a fluent API, which makes it easy to chain query methods and build complex queries.
+    <ul>
+      <li>Indexing: Indexes are used to speed up database queries by creating a data structure that allows for fast lookups. In Rails, you can create indexes on specific columns in your database tables to optimize query performance.</li>
+    </ul>
+  </li>
+  <li>Validations: Validations allow you to define constraints on the data stored in your database. For example, you can validate that a user’s email address is unique or that a password meets certain complexity requirements.</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>Because web application framework relies heavily on databases to store and manage application data.</p>
+
+<ul>
+  <li>Databases play a critical role in storing, managing, and retrieving data that is used by web applications. They provide a structured way to store and organize data, allowing web applications to scale and handle large amounts of data efficiently.</li>
+  <li>Learning how to work with databases in Ruby on Rails is essential for building effective web applications that can handle large amounts of data and scale to meet the needs of users. A strong understanding of database concepts and best practices will enable developers to design and build robust, reliable, and scalable Rails applications.</li>
+</ul>
+
+<h2 id="how">How?</h2>
+
+<h3 id="migration">Migration</h3>
+
+<p>A typical migration file:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AddAgeToUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.0</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">up</span>
+    <span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:age</span><span class="p">,</span> <span class="ss">:integer</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">down</span>
+    <span class="n">remove_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:age</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Ruby file that contains two methods: up and down
+    <ul>
+      <li>Up method is used to define the changes you want to make to the database schema</li>
+      <li>Down method is used to define how to undo those changes</li>
+    </ul>
+  </li>
+  <li>Migration is like version control of database</li>
+  <li>Any changes related to database schema will be recorded in migrations with Ruby DSL * The summary of the changes of migration is in <code class="language-plaintext highlighter-rouge">schema.rb</code></li>
+</ul>
+
+<p>To run migration:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:migrate
+</code></pre></div></div>
+
+<p>To undo:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:rollback
+</code></pre></div></div>
+
+<p>There are not only <code class="language-plaintext highlighter-rouge">add_column</code> and <code class="language-plaintext highlighter-rouge">remove_column</code> but also</p>
+
+<ul>
+  <li>create_table - creates a new database table</li>
+  <li>drop_table - drops an existing database table</li>
+  <li>rename_table - renames an existing database table</li>
+  <li>add_column - adds a new column to an existing database table</li>
+  <li>remove_column - removes a column from an existing database table</li>
+  <li>rename_column - renames a column in an existing database table</li>
+  <li>change_column - changes the data type or options of a column in an existing database table</li>
+  <li>add_index - adds a new index to a database table</li>
+  <li>remove_index - removes an existing index from a database table</li>
+  <li>execute - executes a custom SQL statement</li>
+  <li>add_reference - adds a foreign key reference to an existing database table</li>
+  <li>remove_reference - removes a foreign key reference from an existing database table</li>
+  <li>change_table - allows you to make multiple changes to an existing database table in a single migration</li>
+  <li>reversible - creates a reversible migration that can be rolled back</li>
+  <li>up - defines the changes to be made to the database schema when the migration is run</li>
+  <li>down - defines how to revert the changes made by the migration</li>
+</ul>
+
+<h3 id="associations">Associations</h3>
+
+<p>With the <code class="language-plaintext highlighter-rouge">add_reference</code>, we can add association to two tables. One-to-many association between a User model and a Post model using migration files:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AddUserRefToPosts</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.0</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">add_reference</span> <span class="ss">:posts</span><span class="p">,</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span><span class="p">,</span> <span class="ss">foreign_key: </span><span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">add_reference</code> adds a new column called user_id to the posts table</li>
+  <li><code class="language-plaintext highlighter-rouge">:user</code> tells Rails this column should be a foreign key reference to the User model</li>
+  <li><code class="language-plaintext highlighter-rouge">null: false</code> ensures that every post must belong to a user</li>
+  <li><code class="language-plaintext highlighter-rouge">foreign_key: true</code> enforces referential integrity</li>
+</ul>
+
+<p>By using migration files to establish associations between models, you can ensure that your database schema is consistent and follows best practices for data modeling. You can also take advantage of Rails’ powerful query interface to query data across multiple tables using associations.</p>
+
+<p>Remember to declare <code class="language-plaintext highlighter-rouge">has_many</code> and <code class="language-plaintext highlighter-rouge">belongs_to</code> on <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Post</code></p>
+
+<h3 id="querying">querying</h3>
+
+<ul>
+  <li>Time is money, how to query fast plays key role</li>
+  <li>In rails, we use active record to query and it uses ORM</li>
+  <li>For more information, please refer to <a href="/blog/rails/2021/06/10/active-record.html">active record</a></li>
+</ul>
+
+<h4 id="sub-query">sub query</h4>
+
+<h4 id="indexing">indexing</h4>
+
+<h2 id="what">What?</h2>
+
+<p>give real world example</p>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+  
+  <!-- divider -->
+  <div class="relative my-8">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-200"></div>
+    </div>
+    <div class="relative flex justify-center ">
+      <span class="bg-white px-2 text-gray-200">
+        <i class="text-xs far fa-square"></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <div class="text-sm text-gray-300">
+      © <span id="get-current-year"></span>
+      
+      <a href="" class="!no-underline">
+        
+      </a>
+      
+    </div>
+  </div>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+</html>

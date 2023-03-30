@@ -75,13 +75,14 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
 <p>This article describes the concept of CSS, Cascading Style Sheets. It is a style sheet language to describe the presentation of a document written in a markup language. All visual control in website can be achieved with CSS.</p>
@@ -387,6 +388,119 @@
 </code></pre>
 
 <p><img class="" src="/blog/assets/img/position_center.png" alt="" /></p>
+
+<h3 id="responsive-web-design">Responsive Web Design</h3>
+
+<p>Allows web pages to adjust their layout and content based on the size of the screen they are being viewed on.</p>
+
+<h4 id="plain-css">plain CSS</h4>
+
+<p>to be continued</p>
+
+<h4 id="tailwind">tailwind</h4>
+
+<p>We can change the layout based on the width of screen</p>
+
+<pre><code class="language-HTML">&lt;div class="p-16 prose prose-indigo"&gt;
+  ...
+  &lt;div class="px-4 md:grid lg:px-72"&gt;
+    
+  &lt;div id="sidebar" class="pt-24 pl-4 fixed"&gt;&lt;/div&gt;
+  &lt;div id="burger-sidebar" class="pt-24 pl-4 fixed"&gt;&lt;/div&gt;
+
+&lt;div class="p-16 prose prose-indigo"&gt;
+  &lt;h1 class="text-center mt-6 mb-6"&gt;Callback&lt;/h1&gt;
+  &lt;div class="text-center"&gt;
+    
+  &lt;/div&gt;
+  &lt;div class="md:px-4 md:grid lg:px-72"&gt;
+    &lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;quick explanation&lt;/p&gt;
+
+&lt;h2 id="why"&gt;Why?&lt;/h2&gt;
+
+&lt;p&gt;focus on why we need it&lt;/p&gt;
+
+&lt;h2 id="how"&gt;How?&lt;/h2&gt;
+
+&lt;p&gt;focus on the mechanim&lt;/p&gt;
+
+&lt;h2 id="what"&gt;What?&lt;/h2&gt;
+
+&lt;p&gt;give an example&lt;/p&gt;
+
+&lt;h2 id="note"&gt;Note&lt;/h2&gt;
+
+&lt;h3 id="model-callback"&gt;Model Callback&lt;/h3&gt;
+
+&lt;p&gt;Callback means adding some methods (hooks) to the life cycle of data in database.&lt;/p&gt;
+
+&lt;p&gt;For example, the process of save in rails:
+&lt;img src="/assets/img/rails_model_callback.png" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;If we want to have an encrypted email before email creation. Then,&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;require 'digest'
+
+class User &amp;lt; ActiveRecord::Base  
+  before_create :encrypt_email  
+    
+  private  
+  def encrypt_email  
+    self.email = Digest::MD5.hexdigest(email)  
+  end  
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;for more callback methods, please refer to &lt;a href="&amp;quot;https://guides.rubyonrails.org/active_record_callbacks.html&amp;quot;"&gt;&lt;strong&gt;Active Record Callbacks - Ruby on Rails Guides&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="reference"&gt;Reference&lt;/h2&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;footer class="relative px-4 pt-4 pb-4"&gt;
+  
+  &lt;!-- divider --&gt;
+  &lt;div class="relative my-8"&gt;
+    &lt;div class="absolute inset-0 flex items-center" aria-hidden="true"&gt;
+      &lt;div class="w-full border-t border-gray-200"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="relative flex justify-center "&gt;
+      &lt;span class="bg-white px-2 text-gray-200"&gt;
+        &lt;i class="text-xs far fa-square"&gt;&lt;/i&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- footer msg --&gt;
+  &lt;div class="flex flex-wrap items-center justify-center"&gt;
+    &lt;div class="text-sm text-gray-300"&gt;
+      © &lt;span id="get-current-year"&gt;&lt;/span&gt;
+      
+      &lt;a href="" class="!no-underline"&gt;
+        
+      &lt;/a&gt;
+      
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3 id="code">code</h3>
+
+<pre><code class="language-CSS">code {
+  font-family: Courier, monospace;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+</code></pre>
+
+<p>and the layout will be</p>
 
 <h2 id="reference">Reference</h2>
 

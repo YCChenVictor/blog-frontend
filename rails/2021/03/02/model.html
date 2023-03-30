@@ -75,13 +75,14 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Model</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
 <p>This article describes the concept of model and what’s the feature in it.</p>
@@ -147,47 +148,6 @@
 <ul>
   <li>scope</li>
   <li>TBC</li>
-</ul>
-
-<h3 id="interact-with-database">Interact with database</h3>
-
-<ul>
-  <li>ORM</li>
-  <li>migration</li>
-</ul>
-
-<h4 id="orm-object-relational-mapping">ORM (Object Relational Mapping)</h4>
-
-<p>Rails use active record to design ORM. Please refer to xxx for further information.</p>
-
-<h4 id="migration">migration</h4>
-
-<p>Migration is like version control of database. Any changes related to database schema will be recorded in migrations with Ruby DSL. And the summary of the changes of migration is in <code class="language-plaintext highlighter-rouge">schema.rb</code>.</p>
-
-<p>Typically, a migration file includes the format as follow:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MigrationName</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="n">xx</span><span class="p">]</span>
-  <span class="k">def</span> <span class="nf">change</span>
-    <span class="n">create_table</span> <span class="ss">:table_name</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
-      <span class="n">t</span><span class="p">.</span><span class="nf">datatype</span> <span class="ss">:cloumn_name</span>
-      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
-    <span class="k">end</span>
-
-    <span class="n">add_column</span> <span class="c1"># TBC</span>
-    <span class="n">add_index</span> <span class="c1"># TBC</span>
-    <span class="n">remove_column</span> <span class="c1"># TBC</span>
-    <span class="n">add_reference</span> <span class="c1"># TBC</span>
-    <span class="n">create_join_table</span> <span class="c1"># TBC</span>
-    <span class="n">revert</span> <span class="c1"># TBC</span>
-
-    <span class="n">suppress_messages</span> <span class="c1"># TBC</span>
-    <span class="n">reversible</span> <span class="c1"># TBC</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<ul>
-  <li>datatype: refer to <a href="https://guides.rubyonrails.org/v3.2/migrations.html#supported-types">here</a>. These types map to the type of database. If no specifying types, rails will choose <code class="language-plaintext highlighter-rouge">string</code> as default datatype.</li>
 </ul>
 
 <h2 id="what">What</h2>
@@ -319,7 +279,7 @@
 
 <p>Notice! <code class="language-plaintext highlighter-rouge">delete</code> will call the SQL delete directly, so no callbacks during deleting process. By ignoring callback and relation, <code class="language-plaintext highlighter-rouge">delete</code> is faster than <code class="language-plaintext highlighter-rouge">destroy</code>.</p>
 
-<h4 id="migration-1">Migration</h4>
+<h4 id="migration">Migration</h4>
 
 <p>TBC</p>
 

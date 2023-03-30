@@ -75,14 +75,17 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
+
+<p>This article is going to build a website quickly</p>
 
 <ul>
   <li>Open-source web application framework in the Ruby</li>
@@ -106,42 +109,172 @@
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<ul>
+  <li>Convention over Configuration: Help you get started quickly and focus on building your application logic instead of configuring the framework.</li>
+  <li>Rapid Development: Rails is designed to make development fast and easy, with features like scaffolding, which generates boilerplate code for you.</li>
+  <li>Rails community: has created a vast ecosystem of gems (libraries) that can be easily integrated into your application.</li>
+  <li>Full-stack framework: Rails is a full-stack framework that includes an ORM (ActiveRecord) for database access, routing, middleware, and a view layer (ActionView) for rendering HTML. This means that you can build a complete web application using just Rails.</li>
+  <li>Mature framework: Rails has been around since 2004 and has a large community of developers contributing to its development. This means that it has a large number of plugins, tools, and resources available, as well as a large pool of experienced developers who can help you troubleshoot issues.</li>
+  <li>Ruby language: Rails is built on the Ruby programming language, which is known for its simplicity and readability</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
-<h3 id="install">install</h3>
+<h3 id="init">init</h3>
 
 <ul>
-  <li>install with <code class="language-plaintext highlighter-rouge">gem install rails -v 5.1.1</code></li>
+  <li>install: <code class="language-plaintext highlighter-rouge">gem install rails</code>
+    <ul>
+      <li>check version: <code class="language-plaintext highlighter-rouge">rails -v</code></li>
+    </ul>
+  </li>
   <li>build project: <code class="language-plaintext highlighter-rouge">bundle install</code></li>
+  <li>start project: <code class="language-plaintext highlighter-rouge">rails new app_name</code></li>
+  <li>start server: <code class="language-plaintext highlighter-rouge">rails s</code></li>
 </ul>
 
-<h3 id="src">src</h3>
+<p><img src="/blog/assets/img/rails_server_start.png" alt="rails_server_start" /></p>
 
-<h3 id="dependency">dependency</h3>
+<p>open browsers and input <code class="language-plaintext highlighter-rouge">http://localhost:3000</code></p>
+
+<p><img src="/blog/assets/img/rails_start_page.png" alt="rails_start_page" /></p>
+
+<h3 id="scaffold">scaffold</h3>
+
+<p>Scaffold in rails is a quick way to create MVC structure; for example, if you want to create a MVC structure with database, user (name:string, email:string, tel:string), in the directory of the project,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g scaffold User name:string email:string tel:string
+</code></pre></div></div>
+<p><img src="/blog/assets/img/files_created_by_scaffold.png" alt="" /></p>
+
+<p>As you can see, there are files for <code class="language-plaintext highlighter-rouge">active_record</code>, <code class="language-plaintext highlighter-rouge">resource_route</code>, <code class="language-plaintext highlighter-rouge">scaffold_controller</code>, <code class="language-plaintext highlighter-rouge">test_unit</code>, <code class="language-plaintext highlighter-rouge">assets</code>, <code class="language-plaintext highlighter-rouge">scss</code>.</p>
 
 <h3 id="routes">routes</h3>
 
-<p><a href="/blog/test/2021/04/06/TDD.html">routes</a></p>
+<p>With scaffold, it will help us add code as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">resources</span> <span class="ss">:users</span>
+  <span class="c1"># For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>RESTful API: REST means Representational State Transfer. The benefit of RESTful API is unity. All coders have the consensus to write it in the same form; for example, given <code class="language-plaintext highlighter-rouge">resources :users</code> and input <code class="language-plaintext highlighter-rouge">rails routes</code>, the routes:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Prefix</th>
+      <th style="text-align: center">Verb</th>
+      <th style="text-align: center">URI Pattern</th>
+      <th>Controller#Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">users</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">/users(.:format)</td>
+      <td>users#index</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">POST</td>
+      <td style="text-align: center">/users(.:format)</td>
+      <td>users#create</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">new_user</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">/users/new(.:format)</td>
+      <td>users#new</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">edit_user</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">/users/:id/edit(.:format)</td>
+      <td>users#edit</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">user</td>
+      <td style="text-align: center">GET</td>
+      <td style="text-align: center">/users/:id(.:format)</td>
+      <td>users#show</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">PATCH</td>
+      <td style="text-align: center">/users/:id(.:format)</td>
+      <td>users#update</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">PUT</td>
+      <td style="text-align: center">/users/:id(.:format)</td>
+      <td>users#update</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">DELETE</td>
+      <td style="text-align: center">/users/:id(.:format)</td>
+      <td>users#destroy</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As you can see, there are four verbs following RESTful, <code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PATCH</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>, directed to the CRUD methods of controller and the controller call the corresponding CRUD methods to database. Actually, <code class="language-plaintext highlighter-rouge">GET</code> maps READ, <code class="language-plaintext highlighter-rouge">POST</code> maps CREATE, <code class="language-plaintext highlighter-rouge">PATCH</code> maps UPDATE, <code class="language-plaintext highlighter-rouge">DELETE</code> maps DESTROY.</p>
+
+<p>For more information, please refer to <a href="/blog/rails/2022/02/05/Routes.html">routes</a></p>
 
 <h3 id="model">model</h3>
 
-<p><a href="">model</a></p>
+<p>Models are in <code class="language-plaintext highlighter-rouge">app/models</code>. file name: <code class="language-plaintext highlighter-rouge">user.rb</code> maps class <code class="language-plaintext highlighter-rouge">User</code> and maps table <code class="language-plaintext highlighter-rouge">users</code>.</p>
+
+<p>For more information, please refer to <a href="/blog/rails/2021/03/02/model.html">model</a></p>
 
 <h3 id="view">view</h3>
 
+<p>Views are in <code class="language-plaintext highlighter-rouge">app/views</code>. For example, the view file related to controller, <code class="language-plaintext highlighter-rouge">UserController</code> will be in <code class="language-plaintext highlighter-rouge">app/views/users</code> as follow:</p>
+
+<p><img src="/blog/assets/img/view_user_index.png" alt="" /></p>
+
+<p>For more information, please refer to <a href="/blog/rails/2021/03/02/view.html">view</a></p>
+
 <h3 id="controller">controller</h3>
+
+<p>Controllers are in <code class="language-plaintext highlighter-rouge">app/controllers</code>. The file names and the controller names are linked; for example, file name: <code class="language-plaintext highlighter-rouge">users_controller.rb</code> maps class, <code class="language-plaintext highlighter-rouge">UserController</code> as follow:</p>
+
+<p><img src="/blog/assets/img/user_controller.png" alt="" /></p>
+
+<p>For more information, please refer to <a href="/blog/rails/2022/02/06/Controller.html">controller</a></p>
 
 <h3 id="orm">ORM</h3>
 
-<p><a href="">ORM</a></p>
-
-<h3 id="database">database</h3>
+<p>Active Record: Ruby on Rails uses an Object-Relational Mapping (ORM) system called Active Record to handle interactions with the database. It provides an interface to communicate with the database and represents database tables as Ruby classes.</p>
 
 <h3 id="crud">CRUD</h3>
 
-<h3 id="other-mechanism">other mechanism</h3>
+<p>to be continued</p>
+
+<h3 id="database">database</h3>
+
+<p><a href="/blog/rails/2023/03/28/database.html">database</a></p>
+
+<h3 id="rspec-and-capybara">rspec and capybara</h3>
+
+<p>We can also use rspec and capybara to compose test for this app (to be continued)</p>
+
+<p>For more information, please refer to <a href="/blog/test/2022/08/31/rspec-and-capybara.html">rspec and capybara</a></p>
+
+<h3 id="test-driven-development">test driven development</h3>
+
+<p>We can write the spec first and keep running the specs to development this app completely.</p>
+
+<p>(compose spec here)</p>
+
+<p>For more information, please refer to <a href="/blog/test/2021/04/06/test-driven-development.html">test driven development</a></p>
 
 <h2 id="what">What?</h2>
 

@@ -90,33 +90,34 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">object oriented programming</h1>
+  <h1 class="text-center mt-6 mb-6">Object Oriented Programming</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>I am going to demonstrate the OOP concepts with ruby.</p>
-
-<ol>
-  <li>classes: object-oriented style to create objects with these classes</li>
-  <li>coupling &amp; cohesion: in OOP, we want low coupling and high cohesion, having a more independent object</li>
-  <li>abstraction:</li>
-  <li>encapsulation:</li>
-  <li>interfaces:</li>
-  <li>inheritnace:</li>
-  <li>polymorphism: treating an object as a generic version of something; for example, car, truck, and bicycle are versions of vehicle.</li>
-  <li>Unified Modeling Language (UML):</li>
-</ol>
+<ul>
+  <li>Use objects to represent and manipulate data</li>
+  <li>Objects are instances of classes that encapsulate data and methods (functions) that operate on that data</li>
+  <li>Principles
+    <ul>
+      <li>Encapsulation: Hide the internal details of an object and exposing only the necessary information through well-defined interfaces. This helps to ensure data integrity and makes code more modular and reusable.</li>
+      <li>Inheritance: One class (the child or subclass) can inherit the properties and methods of another class (the parent or superclass). This allows for code reuse and promotes modularity and extensibility.</li>
+      <li>Polymorphism: Polymorphism refers to the ability of objects of different classes to be treated as if they are of the same class. This allows for more flexible and dynamic programming, as objects can be used interchangeably without the need for complex type checking and casting.</li>
+      <li>Abstraction: Simplify complex systems by representing only the essential features, and interfaces, which define the contract between objects and the outside world.</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="why">Why</h2>
 
-<p>Because we can have deeper understanding in morden software design.</p>
+<p>OOP provides a flexible and powerful way to organize and structure software applications.</p>
 
-<h2 id="how--what">How &amp; What</h2>
+<h2 id="how">How</h2>
 
 <h3 id="classes">classes</h3>
 
@@ -139,13 +140,11 @@
 <span class="n">user</span><span class="p">.</span><span class="nf">name</span>
 </code></pre></div></div>
 
-<h3 id="coupling--cohesion">coupling &amp; cohesion</h3>
+<h3 id="coupling-and-cohesion">Coupling and Cohesion</h3>
 
-<p>We want less coupling and high cohesion</p>
+<p>Coupling refers to the degree to which classes or modules in a software system depend on one another. High coupling can make a system more difficult to maintain, update, and test because changes to one class can have a ripple effect on other classes.</p>
 
-<h4 id="concept">concept</h4>
-
-<p>If this class is a machine in a company, we want it to be as independent as possible so that once it needs to be replace or suspended for some reason, we can easily do it, increasing the maintainability of this company.</p>
+<p>We want less coupling and high cohesion. For example, if this class represents a machine in a company, we want it to be as independent as possible so that once it needs to be replace or suspended for some reason, we can easily do it, increasing the maintainability of this company.</p>
 
 <p>So anything making this machine to be related to other components of this company will increase coupling.</p>
 
@@ -164,9 +163,32 @@
   <li>\(r\) = number of modules calling the module under consideration (fan-in)</li>
 </ol>
 
-<h4 id="how-to-decrease-coupling">how to decrease coupling</h4>
+<ul>
+  <li>data vs control
+    <ul>
+      <li>Data parameters are values that represent input data that is used by the function or method to perform some computation or operation. For example, if a function calculates the area of a rectangle, the length and width of the rectangle would be passed as data parameters.</li>
+      <li>Control parameters are values that represent instructions or options that modify the behavior of the function or method. They do not represent input data but rather control the flow of the function or method. For example, a function that sorts an array of numbers might have a control parameter that determines whether the sort should be ascending or descending.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>skip (to be continued)</p>
+<h4 id="decrease-coupling">Decrease Coupling</h4>
+
+<ul>
+  <li>Use Interfaces: Reduces the dependencies between classes by defining a set of methods that a class must implement</li>
+  <li>Encapsulate data: Hides the internal details of a class from other classes, preventing other classes from depending on the implementation details of a class</li>
+  <li>Dependency Injection: Injects dependencies into a class instead of creating them inside the class. By injecting dependencies, you can reduce the coupling between classes, making them easier to test and update</li>
+  <li>Avoid Global State: Global state refers to data that is accessible by multiple classes in a system. Global state can create strong dependencies between classes, making it harder to change one class without affecting others.</li>
+  <li>Use Design Patterns: Design patterns are proven solutions to common programming problems. By using design patterns, you can reduce coupling and improve the maintainability of your code.</li>
+</ul>
+
+<h3 id="interfaces">Interfaces</h3>
+
+<ul>
+  <li>Implements abstraction and encapsulation thoroughly, making we only see the appearance of this function and use it easily; for example, we know the light can be on by switching the button but we do not know the logics behind it.</li>
+  <li>Reduce the number of global variables used as data or control, as well as the number of input or output parameters, by providing a common interface that can be used by multiple clients.</li>
+  <li>Reduce the number of modules called (fan-out) by promoting modular design and encouraging the use of common interfaces between modules.</li>
+</ul>
 
 <h3 id="abstraction">Abstraction</h3>
 
@@ -215,7 +237,7 @@
 
 <p>The private methods are example of encapsulation in ruby. You cannot use the methods outside the class. We only show the meaningful methods for outsiders.</p>
 
-<h3 id="interfaces">Interfaces</h3>
+<h3 id="interfaces-1">Interfaces</h3>
 
 <p>An interface implements abstraction and encapsulation throughly, making we only see the appearance of this function and use it easily; for example, we know the light can be on by switching the button but we do not know the logics behind it.</p>
 
@@ -320,7 +342,9 @@ classDiagram
 
 <h4 id="aggregation">aggregation</h4>
 
-<h3 id="reference">Reference</h3>
+<h2 id="what">What</h2>
+
+<h2 id="reference">Reference</h2>
 
 <p><a href="https://medium.com/launch-school/the-basics-of-oop-ruby-26eaa97d2e98">The Basics of OOP Ruby</a></p>
 

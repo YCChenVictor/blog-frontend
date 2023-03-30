@@ -75,156 +75,15 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Build Apps</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
-
-<p>This articles describes how to build an app (users can post articles) in rails with following steps:</p>
-
-<ul>
-  <li>install rails</li>
-  <li>start a project</li>
-  <li>the concept of scaffold (for users)</li>
-  <li>migration</li>
-  <li>CRUD</li>
-  <li>relational model without scaffold (for posts)</li>
-  <li>routes without scaffold (for posts)</li>
-  <li>controller without scaffold (for posts)</li>
-  <li>view without scaffold (for posts)</li>
-  <li>try to create a post with a user</li>
-  <li>style</li>
-</ul>
-
-<h2 id="why">Why?</h2>
-
-<p>Rails is really good for minimum viable product.</p>
-
-<h2 id="how--what">How? &amp; What?</h2>
-
-<h3 id="install-rails">Install rails</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>rails <span class="nt">-v</span> 5.1.1
-</code></pre></div></div>
-
-<ul>
-  <li>check rails version</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails <span class="nt">-v</span>
-</code></pre></div></div>
-
-<h3 id="start-a-project">Start a project</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails new app_name
-</code></pre></div></div>
-
-<p>If you want to create rails project with particular version, then</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails 3.2.14 new app_name
-</code></pre></div></div>
-
-<p>after the creation, please <code class="language-plaintext highlighter-rouge">cd</code> into the project directory and start the server with</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails s
-</code></pre></div></div>
-
-<p><img src="/assets/img/rails_server_start.png" alt="rails_server_start" /></p>
-
-<p>open browsers and input <code class="language-plaintext highlighter-rouge">http://localhost:3000</code></p>
-
-<p><img src="/assets/img/rails_start_page.png" alt="rails_start_page" /></p>
-
-<h3 id="the-concept-of-scaffold">the concept of scaffold</h3>
-
-<p>Scaffold in rails is a quick way to create MVC structure; for example, if you want to create a MVC structure with database, user (name:string, email:string, tel:string), in the directory of the project,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g scaffold User name:string email:string tel:string
-</code></pre></div></div>
-<p><img src="/assets/img/1__p5eI09hN9pyvsxCo102__nw.png" alt="" /></p>
-
-<p>As you can see, there are files for <code class="language-plaintext highlighter-rouge">active_record</code>, <code class="language-plaintext highlighter-rouge">resource_route</code>, <code class="language-plaintext highlighter-rouge">scaffold_controller</code>, <code class="language-plaintext highlighter-rouge">test_unit</code>, <code class="language-plaintext highlighter-rouge">assets</code>, <code class="language-plaintext highlighter-rouge">scss</code>.</p>
-
-<h4 id="route">route</h4>
-
-<p>The routes are in <code class="language-plaintext highlighter-rouge">app_name/config/routes.rb</code>:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
-  <span class="n">resources</span> <span class="ss">:users</span>
-  <span class="c1"># For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<ul>
-  <li>RESTful API (interlude): REST means Representational State Transfer. The benefit of RESTful API is unity. All coders have the consensus to write it in the same form; for example, given <code class="language-plaintext highlighter-rouge">resources :users</code> and input <code class="language-plaintext highlighter-rouge">rails routes</code>, the routes:</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Prefix</th>
-      <th style="text-align: center">Verb</th>
-      <th style="text-align: center">URI Pattern</th>
-      <th>Controller#Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">users</td>
-      <td style="text-align: center">GET</td>
-      <td style="text-align: center">/users(.:format)</td>
-      <td>users#index</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center">POST</td>
-      <td style="text-align: center">/users(.:format)</td>
-      <td>users#create</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">new_user</td>
-      <td style="text-align: center">GET</td>
-      <td style="text-align: center">/users/new(.:format)</td>
-      <td>users#new</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">edit_user</td>
-      <td style="text-align: center">GET</td>
-      <td style="text-align: center">/users/:id/edit(.:format)</td>
-      <td>users#edit</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">user</td>
-      <td style="text-align: center">GET</td>
-      <td style="text-align: center">/users/:id(.:format)</td>
-      <td>users#show</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center">PATCH</td>
-      <td style="text-align: center">/users/:id(.:format)</td>
-      <td>users#update</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center">PUT</td>
-      <td style="text-align: center">/users/:id(.:format)</td>
-      <td>users#update</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center">DELETE</td>
-      <td style="text-align: center">/users/:id(.:format)</td>
-      <td>users#destroy</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>As you can see, there are four verbs following RESTful, <code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PATCH</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>, directed to the CRUD methods of controller and the controller call the corresponding CRUD methods to database. Actually, <code class="language-plaintext highlighter-rouge">GET</code> maps READ, <code class="language-plaintext highlighter-rouge">POST</code> maps CREATE, <code class="language-plaintext highlighter-rouge">PATCH</code> maps UPDATE, <code class="language-plaintext highlighter-rouge">DELETE</code> maps DESTROY.</p>
 
 <h4 id="controller">controller</h4>
 

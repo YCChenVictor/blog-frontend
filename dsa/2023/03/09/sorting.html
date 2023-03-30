@@ -7,7 +7,13 @@
     <!-- 2D drawing -->
     
     <!-- for mathjax support -->
-    
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
     <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -75,32 +81,198 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Sorting</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<ul>
+  <li>Application: data analysis, searching, and database operations</li>
+  <li>Concept: The process of rearranging a collection of items in a particular order</li>
+  <li>Trade-Off: time complexity, space complexity, and stability</li>
+  <li>Example:
+    <ul>
+      <li>Bubble sort: This is a simple algorithm that repeatedly swaps adjacent elements if they are in the wrong order. The algorithm continues until no more swaps are needed.</li>
+      <li>Selection sort: This algorithm sorts an array by repeatedly finding the minimum element from the unsorted part of the array and putting it at the beginning.</li>
+      <li>Insertion sort: This algorithm works by inserting each element in its correct position in a sorted subarray.</li>
+      <li>Merge sort: This algorithm is a divide-and-conquer algorithm that works by dividing the array into two halves, sorting each half recursively, and then merging the two sorted halves.</li>
+      <li>Quick sort: This algorithm is also a divide-and-conquer algorithm that works by partitioning the array into two parts, where one part contains elements that are smaller than a chosen pivot element, and the other part contains elements that are larger than the pivot element. The two parts are then sorted recursively.</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<ul>
+  <li>Searching: Before searching, we need to ensure that the data is sorted. Sorting the data enables faster searching because we can use binary search or other efficient searching algorithms that work only on sorted data.</li>
+  <li>Data Analysis: Sorting is used extensively in data analysis and processing. In some cases, data analysis requires sorting data to identify trends, patterns, or anomalies. For example, sorting sales data can help identify the best-selling products, top-performing salespersons, and customers’ preferences.</li>
+  <li>Database operations: Sorting is used in many database operations such as indexing, optimizing queries, and grouping. Sorting the data can help improve the performance of these operations and enable faster retrieval of data.</li>
+  <li>Efficient use of memory: Sorting can help in efficient use of memory. Many sorting algorithms require only constant extra memory, and they can sort data in place, which means they don’t need additional memory to hold the sorted data. This is especially important in systems with limited memory.</li>
+  <li>Visualization: Sorting can help in data visualization, especially for large datasets. Sorting can help in grouping similar data, highlighting patterns, and enabling easier interpretation of data.</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
-<p>focus on the mechanism</p>
+<h3 id="bubble-sort">Bubble Sort</h3>
+
+<ul>
+  <li>concept: compare element pair by pair and move largest element to most right on each loop</li>
+  <li>time complexity: \(O(n^2)\)
+    <ul>
+      <li>(n - 1) + (n - 2) + … + 1</li>
+    </ul>
+  </li>
+  <li>example:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">bubbleSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+        <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="kd">var</span> <span class="nx">unsortedArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="c1">// The code will compare all element in the inner loop pair by pair and move the largest to most right and because already compare all the elements before the last element, we only need to compare from 1 to n-1 element on next loop</span>
+<span class="nx">bubbleSort</span><span class="p">(</span><span class="nx">unsortedArray</span><span class="p">)</span>
+<span class="c1">// [ 3, 5, 1, 4, 2 ]</span>
+<span class="c1">// [ 3, 1, 5, 4, 2 ]</span>
+<span class="c1">// [ 3, 1, 4, 5, 2 ]</span>
+<span class="c1">// [ 3, 1, 4, 2, 5 ]</span>
+<span class="c1">// ===========</span>
+<span class="c1">// [ 1, 3, 4, 2, 5 ]</span>
+<span class="c1">// [ 1, 3, 4, 2, 5 ]</span>
+<span class="c1">// [ 1, 3, 2, 4, 5 ]</span>
+<span class="c1">// ===========</span>
+<span class="c1">// [ 1, 3, 2, 4, 5 ]</span>
+<span class="c1">// [ 1, 2, 3, 4, 5 ]</span>
+<span class="c1">// ===========</span>
+<span class="c1">// [ 1, 2, 3, 4, 5 ]</span>
+<span class="c1">// ===========</span>
+<span class="c1">// ===========</span>
+<span class="c1">// [ 1, 2, 3, 4, 5 ]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bubbleSort</span><span class="p">(</span><span class="nx">unsortedArray</span><span class="p">));</span> <span class="c1">// [1, 2, 3, 4, 5]</span>
+</code></pre></div></div>
+
+<h3 id="selection-sort">Selection Sort</h3>
+
+<ul>
+  <li>concept: keep swapping the one with element with minimum value</li>
+  <li>time complexity: \(O(n^2)\)
+    <ul>
+      <li>(n - 1) + (n - 2) + … + 1</li>
+    </ul>
+  </li>
+  <li>code:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">selectionSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">minIndex</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">minIndex</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">minIndex</span> <span class="o">=</span> <span class="nx">j</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">minIndex</span> <span class="o">!==</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">minIndex</span><span class="p">];</span>
+      <span class="nx">arr</span><span class="p">[</span><span class="nx">minIndex</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">=============</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage</span>
+<span class="kd">var</span> <span class="nx">unsortedArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
+<span class="c1">// The code will pick each element on first loop and compare the rest elements and swap the picked element with the one with minimum value in the rest elements</span>
+<span class="nx">selectionSort</span><span class="p">(</span><span class="nx">unsortedArray</span><span class="p">)</span>
+<span class="c1">// [ 5, 3, 1, 4, 2 ]</span>
+<span class="c1">// [ 5, 3, 1, 4, 2 ]</span>
+<span class="c1">// [ 5, 3, 1, 4, 2 ]</span>
+<span class="c1">// [ 5, 3, 1, 4, 2 ]</span>
+<span class="c1">// =============</span>
+<span class="c1">// [ 1, 3, 5, 4, 2 ]</span>
+<span class="c1">// [ 1, 3, 5, 4, 2 ]</span>
+<span class="c1">// [ 1, 3, 5, 4, 2 ]</span>
+<span class="c1">// =============</span>
+<span class="c1">// [ 1, 2, 5, 4, 3 ]</span>
+<span class="c1">// [ 1, 2, 5, 4, 3 ]</span>
+<span class="c1">// =============</span>
+<span class="c1">// [ 1, 2, 3, 4, 5 ]</span>
+<span class="c1">// =============</span>
+<span class="c1">// [ 1, 2, 3, 4, 5 ]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">selectionSort</span><span class="p">(</span><span class="nx">unsortedArray</span><span class="p">));</span> <span class="c1">// [1, 2, 3, 4, 5]</span>
+</code></pre></div></div>
 
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
+<h3 id="e-commerce-websites">E-commerce websites</h3>
 
-<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
+<p>Sorting algorithms are used to sort products on e-commerce websites based on price, popularity, ratings, and other criteria.</p>
 
-<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// An array of objects representing shoes</span>
+<span class="kd">const</span> <span class="nx">shoes</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Nike Air Zoom Pegasus 38</span><span class="dl">"</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">110</span><span class="p">,</span> <span class="na">popularity</span><span class="p">:</span> <span class="mi">8</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Adidas Ultraboost 21</span><span class="dl">"</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span> <span class="na">popularity</span><span class="p">:</span> <span class="mi">9</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">New Balance Fresh Foam 1080v11</span><span class="dl">"</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span> <span class="na">popularity</span><span class="p">:</span> <span class="mi">7</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Brooks Ghost 14</span><span class="dl">"</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">130</span><span class="p">,</span> <span class="na">popularity</span><span class="p">:</span> <span class="mi">6</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hoka One One Bondi 7</span><span class="dl">"</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span> <span class="na">popularity</span><span class="p">:</span> <span class="mi">8</span> <span class="p">}</span>
+<span class="p">];</span>
+
+<span class="c1">// Sort the shoes by price in ascending order</span>
+<span class="nx">shoes</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">price</span> <span class="o">-</span> <span class="nx">b</span><span class="p">.</span><span class="nx">price</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shoes</span><span class="p">);</span>
+<span class="c1">// Output: </span>
+<span class="c1">// [</span>
+<span class="c1">//   { name: "Nike Air Zoom Pegasus 38", price: 110, popularity: 8 },</span>
+<span class="c1">//   { name: "Brooks Ghost 14", price: 130, popularity: 6 },</span>
+<span class="c1">//   { name: "New Balance Fresh Foam 1080v11", price: 150, popularity: 7 },</span>
+<span class="c1">//   { name: "Hoka One One Bondi 7", price: 150, popularity: 8 },</span>
+<span class="c1">//   { name: "Adidas Ultraboost 21", price: 180, popularity: 9 }</span>
+<span class="c1">// ]</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">sort()</code> uses a hybrid sorting algorithm that combines both insertion sort and quicksort; generally uses quicksort for larger arrays and insertion sort for smaller arrays.</p>
+
+<h3 id="search-engines">Search engines</h3>
+
+<p>Sorting algorithms are used to sort search results based on relevance, popularity, and other criteria.</p>
+
+<h3 id="transportation-and-logistics">Transportation and logistics</h3>
+
+<p>Sorting algorithms are used to optimize the routing and scheduling of vehicles, packages, and personnel in transportation and logistics industries.</p>
+
+<h3 id="financial-services">Financial services</h3>
+
+<p>Sorting algorithms are used to sort and analyze large amounts of financial data, such as stock prices, transactions, and customer accounts.</p>
+
+<h3 id="multimedia-applications">Multimedia applications</h3>
+
+<p>Sorting algorithms are used to sort and organize multimedia files, such as photos and videos, based on attributes like date, size, and location.</p>
+
+<h3 id="data-mining-and-machine-learning">Data mining and machine learning</h3>
+
+<p>Sorting algorithms are used to preprocess and prepare data for data mining and machine learning algorithms, which require data to be sorted and organized in specific ways.</p>
 
 <h2 id="reference">Reference</h2>
 

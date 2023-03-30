@@ -75,43 +75,57 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Rspec And Capybara</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>RSpec is a testing framework for Ruby that allows you to write tests for your Ruby code.</p>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<ul>
+  <li>Easy-to-read: RSpec provides a clean and easy-to-read syntax for writing tests, making it easier for you and your team to understand the intent of the tests and to quickly identify any issues.</li>
+  <li>Powerful matchers: RSpec comes with a wide range of built-in matchers that allow you to easily test for a variety of conditions, such as whether a value is equal to another value or whether an error is raised.</li>
+  <li>Test organization: RSpec allows you to group your tests into logical sections using describe and context blocks, making it easier to understand and maintain your test suite.</li>
+  <li>Test-driven development: RSpec supports a test-driven development (TDD) workflow, where you write tests before writing the actual code. This can help you ensure that your code is well-tested and reliable from the start.</li>
+  <li>Integration with other tools: RSpec can integrate with other tools, such as SimpleCov for code coverage analysis and Guard for running tests automatically when changes are made to your code.</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
-<h3 id="aaa-principle-arrange---act--assert">AAA principle (Arrange -&gt; Act -&gt; Assert)</h3>
+<h3 id="install-rspec">Install rspec</h3>
 
-<p>The basic principle to build spec is AAA principle.
-<strong>arrange:</strong> describe the environment before action begin
-<strong>act:</strong> execute the unit function that we want to test
-<strong>assert:</strong> check whether the result is what we want</p>
+<p>Install RSpec by adding it to your Gemfile and running bundle install. Alternatively, you can install it using the command gem install rspec.</p>
+
+<h3 id="create-spec">Create spec</h3>
 
 <ul>
-  <li>AAA principle maps spec</li>
+  <li>Create a directory named spec at the root of your project. This directory will contain your test files.</li>
+  <li>Create a test file in the spec directory with the name of the file you want to test, followed by _spec.rb. For example, if you want to test a file named calculator.rb, the test file should be named calculator_spec.rb.</li>
 </ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="s2">"the_summary"</span><span class="p">,</span> <span class="ss">type: :feature</span> <span class="k">do</span>
+<p>In the test file, require the file you want to test and RSpec by adding the following code at the top:</p>
 
-  <span class="n">context</span> <span class="s2">"arrange"</span> <span class="k">do</span>
-    <span class="n">it</span> <span class="s2">"assertion"</span> <span class="k">do</span>
-      <span class="s2">"act"</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require_relative</span> <span class="s1">'../calculator'</span>
+<span class="nb">require</span> <span class="s1">'rspec'</span>
+
+<span class="n">describe</span> <span class="no">Calculator</span> <span class="k">do</span>
+  <span class="n">describe</span> <span class="s2">"#add"</span> <span class="k">do</span>
+    <span class="n">it</span> <span class="s2">"returns the sum of two numbers"</span> <span class="k">do</span>
+      <span class="n">calc</span> <span class="o">=</span> <span class="no">Calculator</span><span class="p">.</span><span class="nf">new</span>
+      <span class="n">expect</span><span class="p">(</span><span class="n">calc</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>
+
+<p>This test describes the behavior of the add method in the Calculator class. It creates a new instance of the Calculator class and expects the result of calc.add(2, 3) to be equal to 5.</p>
 
 <h2 id="what">What?</h2>
 

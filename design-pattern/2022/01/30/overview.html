@@ -75,44 +75,70 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">overview</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>Before we get started, please understand object-oriented programming first. (2021-11-21-object-oriented-programming.md)</p>
+<p>Before we get started, please understand <a href="/blog/concept/2021/11/21/Object-Oriented-Programming.html">object-oriented programming</a> first. Design pattern provides elegant solutions to <strong>repeatable</strong> problems. There are three categories:</p>
 
-<p>Design pattern provides elegant solutions to <strong>repeatable</strong> problems. There are three categories:</p>
-
-<ol>
+<ul>
   <li>Creational patterns: different ways to create objects</li>
   <li>Structural patterns: the relationship between these objects</li>
   <li>Behavioral patterns: interaction or communication between these objects</li>
-</ol>
+</ul>
 
 <h2 id="why">Why?</h2>
 
-<p>Design reusable and extensible object-oriented software</p>
+<p>Design reusable and extensible object-oriented software.</p>
 
 <h2 id="how">How?</h2>
 
-<p>Main 23 design patterns, divided by three categories, are as follow:</p>
+<p>Main 23 design patterns as follow:</p>
 
-<ol>
+<ul>
   <li>creational: factory method, builder, prototype, singleton, abstract method</li>
   <li>structural: composition, decorator, adapter, proxy, bridge, facade, flyweight</li>
   <li>behavioral: observer, template Method, strategy, interpreter, chain of Responsibility, command, iterator, mediator, memento, null Object, state, visitor</li>
-</ol>
-
-<p>For more details, refer to other articles in the design pattern section.</p>
+</ul>
 
 <h3 id="comparison">comparison</h3>
 
-<p>Please compare these patterns according to the categories.</p>
+<ul>
+  <li>Creational design patterns try to create objects in a manner suitable for the situation
+    <ul>
+      <li>Factory Method provides a way to delegate the creation of objects to subclasses. It’s useful when you want to create objects without specifying the exact class of object that will be created.</li>
+      <li>Builder separates the construction of a complex object from its representation, so that the same construction process can create different representations. It’s useful when you want to create complex objects with many optional parameters.</li>
+      <li>Prototype involves creating new objects by cloning existing objects. It’s useful when creating objects is expensive, and you want to reuse existing objects.</li>
+      <li>Singleton ensures that only one instance of a class can be created, and provides a global point of access to that instance. It’s useful when you want to limit the number of instances of a class, or when you need to coordinate actions across the system.</li>
+      <li>Abstract Method: This pattern provides an interface for creating families of related objects, without specifying the concrete classes of those objects. It’s useful when you want to create objects that share a common interface, but have different implementations.</li>
+    </ul>
+  </li>
+  <li>Structural design patterns deal with object composition and provide ways to organize objects to form larger structures
+    <ul>
+      <li>Composition: This pattern allows you to create hierarchical structures of objects by composing objects into tree structures. It’s useful when you want to represent part-whole hierarchies.</li>
+      <li>Decorator: This pattern allows you to add behavior to objects dynamically by wrapping them in an object of a decorator class. It’s useful when you want to add functionality to an object without changing its interface.</li>
+      <li>Adapter: This pattern allows you to adapt an object to another interface, without changing the underlying object. It’s useful when you want to reuse existing code with a different interface.</li>
+      <li>Proxy: This pattern provides a surrogate or placeholder for another object to control access to it. It’s useful when you want to add security, logging, or caching to an object.</li>
+      <li>Bridge: This pattern separates an object’s interface from its implementation, so that the two can vary independently. It’s useful when you want to decouple an abstraction from its implementation, allowing both to evolve independently.</li>
+      <li>Facade: This pattern provides a simplified interface to a complex subsystem of objects. It’s useful when you want to provide a simple interface to a complex system.</li>
+      <li>Flyweight: This pattern allows you to share objects to reduce memory usage, by sharing common parts of state between objects. It’s useful when you want to create many objects with similar state.</li>
+    </ul>
+  </li>
+  <li>Behavioral design patterns deal with communication between objects and how objects interact with each other
+    <ul>
+      <li>Observer: This pattern allows you to define a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically. It’s useful when you want to keep multiple objects in sync with each other.</li>
+      <li>Template Method: This pattern defines the skeleton of an algorithm in a base class, allowing subclasses to provide concrete implementations of certain steps. It’s useful when you want to define the basic structure of an algorithm, while allowing certain steps to be customized.</li>
+      <li>Strategy: This pattern allows you to define a family of interchangeable algorithms, encapsulate each one, and make them interchangeable at runtime. It’s useful when you want to choose an algorithm dynamically, based on runtime conditions.</li>
+      <li>Interpreter: This pattern provides a way to define the grammar of a language, and to interpret sentences in that language. It’s useful</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="what">What?</h2>
 
@@ -134,14 +160,7 @@
 
 <p><a href="https://en.wikipedia.org/wiki/Software_design_pattern">Software design pattern</a></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>[Design Patterns in Plain English</td>
-      <td>Mosh Hamedani](https://www.youtube.com/watch?v=NU_1StN5Tkk)</td>
-    </tr>
-  </tbody>
-</table>
+<p><a href="https://www.youtube.com/watch?v=NU_1StN5Tkk">Design Patterns in Plain English Mosh Hamedani</a></p>
 
   </div>
 </div>

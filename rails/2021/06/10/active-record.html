@@ -75,46 +75,45 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(rails) Active Record</h1>
+  <h1 class="text-center mt-6 mb-6">Active Record</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>In rails, active record serves as the layer between model and database. In business environment, the persistent process of data usage and creation requires a way to connect to database persistently, so called <strong>Active Record</strong>.</p>
-
-<ol>
-  <li>Table map to classes</li>
-  <li>Rows map to objects</li>
-  <li>Columns map to object attributes</li>
-</ol>
+<ul>
+  <li>Software design pattern</li>
+  <li>Used in object-oriented programming to manage database access</li>
+  <li>A part of the Model-View-Controller (MVC) architectural pattern</li>
+  <li>Provides an easy and intuitive way to represent and manipulate data stored in a database</li>
+  <li>Define classes that map to database tables, and provides a set of methods that can be used to query, insert, update, and delete records from the database
+    <ul>
+      <li>Table map to classes</li>
+      <li>Rows map to objects</li>
+      <li>Columns map to object attributes</li>
+    </ul>
+  </li>
+  <li>Abstracts away much of the low-level database interaction code that developers would otherwise have to write. This makes it easier to work with databases, and also reduces the likelihood of errors and bugs</li>
+  <li>Used in popular web frameworks such as Ruby on Rails, Django, and Laravel. It is a powerful tool that allows developers to focus on building their applications, rather than on database management</li>
+</ul>
 
 <h2 id="why">Why</h2>
 
-<p>There are lots of database management system such as MySQL, SQLite, and PostgreSQL with different syntax, so ORM (object-relational mapping) born to help us for using same syntax for same purpose on different databases.</p>
-
-<p><strong>Active Record</strong> pattern is a solution for ORM. With this pattern, we can access all data from table, User, with unified way:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User.all
-</code></pre></div></div>
-<p>rather than</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * FROM User
-</code></pre></div></div>
-<p>and also avoid different syntax problem on different database language.</p>
+<p>Active Record is a specific implementation of <a href="/blog//rails/2022/01/13/object-relational-mapping.html">ORM</a> that maps database tables to objects. It allows developers to work with database records as if they were objects, with each record represented by a single instance of a class. Active Record handles the persistence of the objects to the database and provides methods for querying and updating the data.</p>
 
 <h2 id="how">How</h2>
 
-<p>I am going to explore the following topics:</p>
+<p>Research Active Record in Rails. Rails use adapter design pattern for user to use same syntax for different SQL.</p>
 
-<ol>
-  <li>CRUD</li>
-  <li>Validation</li>
-  <li>Callbacks</li>
-</ol>
+<h3 id="design-pattern">design pattern</h3>
 
-<h3 id="crud">CRUD</h3>
+<p>Please understand <a href="">adapter</a> first.</p>
+
+<h3 id="source-code-of-crud">Source code of CRUD</h3>
 
 <p>Please rails new a project and create a random table (I create table with <code class="language-plaintext highlighter-rouge">rails g scaffold User name:string email:string</code> and then <code class="language-plaintext highlighter-rouge">rails db:migrate</code>) and then we can create a new User with <code class="language-plaintext highlighter-rouge">test = User.create</code>.</p>
 
@@ -451,6 +450,8 @@ class Employee &lt; User
 end
 </code></pre></div></div>
 <p>Notice! Employer and Employee use the concept of STI(Single-table inheritance).</p>
+
+<p>Try to understand how to query in rails with <a href="https://guides.rubyonrails.org/active_record_querying.html">ActiveRecord Query Interface</a></p>
 
 <h2 id="reference">Reference</h2>
 

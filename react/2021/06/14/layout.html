@@ -75,13 +75,14 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Layout</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
 <p>We discuss the HTML and CSS in react here.</p>
@@ -217,6 +218,8 @@
 
 <h3 id="sidebar">sidebar</h3>
 
+<h4 id="pro-sidebar">pro sidebar</h4>
+
 <p>install</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i react-pro-sidebar
@@ -242,9 +245,35 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h4 id="nested-sidebar">nested sidebar</h4>
+<ul>
+  <li>nested sidebar</li>
+</ul>
 
 <p>TBC</p>
+
+<h4 id="burger-menu">burger menu</h4>
+
+<p>install the react-burger-menu</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>react-burger-menu
+</code></pre></div></div>
+
+<p>and the code example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">slide</span> <span class="k">as</span> <span class="nx">Menu</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-burger-menu</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="o">&lt;</span><span class="nx">Menu</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">menu-item</span><span class="dl">"</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">/</span><span class="dl">"</span><span class="o">&gt;</span>
+    <span class="nx">Home</span>
+  <span class="o">&lt;</span><span class="sr">/a</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">menu-item</span><span class="dl">"</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">/about</span><span class="dl">"</span><span class="o">&gt;</span>
+    <span class="nx">About</span>
+  <span class="o">&lt;</span><span class="sr">/a</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">menu-item</span><span class="dl">"</span> <span class="nx">href</span><span class="o">=</span><span class="dl">"</span><span class="s2">/contact</span><span class="dl">"</span><span class="o">&gt;</span>
+    <span class="nx">Contact</span>
+  <span class="o">&lt;</span><span class="sr">/a</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/Menu</span><span class="err">&gt;
+</span></code></pre></div></div>
 
 <h3 id="modal">modal</h3>
 

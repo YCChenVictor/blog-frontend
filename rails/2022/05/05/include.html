@@ -75,13 +75,14 @@
       
       
   <div id="sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
   <h1 class="text-center mt-6 mb-6">Include</h1>
   <div class="text-center">
     
   </div>
-  <div class="px-72">
+  <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
 <p>In Rails ORM (Object-Relational Mapping), the include method is used to eager load associated records. It is often used to avoid the <a href="/blog/database/2022/08/12/N+1.html">N+1 query problem</a>, which occurs when an application issues too many SQL queries to retrieve associated records. By eager loading associations, you can reduce the number of SQL queries and improve performance.</p>
@@ -99,7 +100,7 @@
 
 <p>If we want to retrieve all posts and their associated comments, we can use the includes method to eager load the comments:</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>This will load all posts and their associated comments in a <strong>single query</strong>, rather than issuing a separate query for each post’s comments.</p>
