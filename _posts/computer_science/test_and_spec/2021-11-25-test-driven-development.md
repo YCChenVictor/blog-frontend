@@ -1,6 +1,6 @@
 ---
 layout: post
-title: TDD
+title:
 description: ''
 date: '2021-04-06T12:13:45.562Z'
 note:
@@ -10,7 +10,7 @@ publish: true
 
 ## Introduction
 
-TDD is a kind of software development process by writing test first and then keeping testing the software until all required function developed. The steps:
+TDD is a software development process by writing test first and then keeping testing the software until all required function developed. The steps:
 
 * turn business logic into specifications
 * decompose specifications into functions (MVC)
@@ -23,17 +23,6 @@ TDD is a kind of software development process by writing test first and then kee
 TDD reduces bugs and increase the quality of code, making software to be more maintainable and understandable. With no test, there would be more manual test in the future and it would be hard to update the version.
 
 ## How?
-
-### The Different Types of Specification And The Frequency of Testing
-
-1. Model specs — **always**
-2. System specs/feature specs — **always**
-3. Request specs/controller specs — **rarely**
-4. Helper specs — **rarely**
-5. View specs — **never**
-6. Routing specs — **never**
-7. Mailer specs — **never**
-8. Job specs — **never**
 
 ### AAA principle (Arrange -> Act -> Assert)
 
@@ -55,7 +44,7 @@ RSpec.describe "the_summary", type: :feature do
 end
 ```
 
-[rspec]
+[rspec](link to rspec and capybara)
 
 #### AAA principle maps Jest
 

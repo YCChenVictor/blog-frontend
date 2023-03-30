@@ -5,7 +5,9 @@ import { HashLink } from 'react-router-hash-link';
 
 function SidebarLayout() {
   const [menuItems, setMenuItems] = useState('testing')
+  const [windowWidth, setWindowWidth] = useState(0)
   useEffect(() => {
+    const windowWidth = window.innerWidth;
     const queriedTitles = [...document.querySelectorAll('h2, h3, h4, h5, h6')];
     const titles = queriedTitles.map(
       item => ({id: item.id, tag: item.tagName.match(/\d+/)[0], position: queriedTitles.indexOf(item)})
@@ -20,23 +22,26 @@ function SidebarLayout() {
     >{title.id}
     </MenuItem>))
     setMenuItems(menuItemsDesired)
+    setWindowWidth(windowWidth)
   }, [])
-  return (
-    <div style={{ display: 'flex', height: '75vh', overflow: 'auto' }} >
-      <ProSidebarProvider>
-        <BrowserRouter>
-          <Sidebar>
-            <Menu>
-              {menuItems}
-            </Menu>
-          </Sidebar>
-          <Routes>
-            <Route path="#why"/>
-          </Routes>
-        </BrowserRouter>
-      </ProSidebarProvider>
-    </div>
-  );
+  if (windowWidth >= 1440) {
+    return (
+      <div style={{ display: 'flex', height: '75vh', overflow: 'auto' }} >
+        <ProSidebarProvider>
+          <BrowserRouter>
+            <Sidebar>
+              <Menu>
+                {menuItems}
+              </Menu>
+            </Sidebar>
+            <Routes>
+              <Route path="#why"/>
+            </Routes>
+          </BrowserRouter>
+        </ProSidebarProvider>
+      </div>
+    );
+  }
 }
 
 export default SidebarLayout;

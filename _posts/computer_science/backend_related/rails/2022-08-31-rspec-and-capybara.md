@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-08-31'
 categories: test
-note: 這邊的方法論太玄了，直接先寫個例子在 what，類似的例子在 commit 595b287。把 rspec 跟 capybara 分開
+note:
 mathjax:
 mermaid:
 p5:
@@ -15,33 +15,44 @@ publish: true
 
 ## Introduction
 
-quick explanation
+RSpec is a testing framework for Ruby that allows you to write tests for your Ruby code.
 
 ## Why?
 
-focus on why we need it
+* Easy-to-read: RSpec provides a clean and easy-to-read syntax for writing tests, making it easier for you and your team to understand the intent of the tests and to quickly identify any issues.
+* Powerful matchers: RSpec comes with a wide range of built-in matchers that allow you to easily test for a variety of conditions, such as whether a value is equal to another value or whether an error is raised.
+* Test organization: RSpec allows you to group your tests into logical sections using describe and context blocks, making it easier to understand and maintain your test suite.
+* Test-driven development: RSpec supports a test-driven development (TDD) workflow, where you write tests before writing the actual code. This can help you ensure that your code is well-tested and reliable from the start.
+* Integration with other tools: RSpec can integrate with other tools, such as SimpleCov for code coverage analysis and Guard for running tests automatically when changes are made to your code.
 
 ## How?
 
-### AAA principle (Arrange -> Act -> Assert)
+### Install rspec
 
-The basic principle to build spec is AAA principle.
-**arrange:** describe the environment before action begin
-**act:** execute the unit function that we want to test
-**assert:** check whether the result is what we want
+Install RSpec by adding it to your Gemfile and running bundle install. Alternatively, you can install it using the command gem install rspec.
 
-* AAA principle maps spec
+### Create spec
+
+* Create a directory named spec at the root of your project. This directory will contain your test files.
+* Create a test file in the spec directory with the name of the file you want to test, followed by _spec.rb. For example, if you want to test a file named calculator.rb, the test file should be named calculator_spec.rb.
+
+In the test file, require the file you want to test and RSpec by adding the following code at the top:
 
 ```ruby
-RSpec.describe "the_summary", type: :feature do
+require_relative '../calculator'
+require 'rspec'
 
-  context "arrange" do
-    it "assertion" do
-      "act"
+describe Calculator do
+  describe "#add" do
+    it "returns the sum of two numbers" do
+      calc = Calculator.new
+      expect(calc.add(2, 3)).to eq(5)
     end
   end
 end
 ```
+
+This test describes the behavior of the add method in the Calculator class. It creates a new instance of the Calculator class and expects the result of calc.add(2, 3) to be equal to 5.
 
 ## What?
 
