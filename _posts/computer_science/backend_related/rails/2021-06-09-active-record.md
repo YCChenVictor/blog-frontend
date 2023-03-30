@@ -1,42 +1,38 @@
 ---
 layout: post
-title: (rails) Active Record
+title:
 date: '2021-06-10'
 categories: rails
 note: 這篇之後要分拆，太大一篇了
+publish: true
 ---
 
 ## Introduction
 
-In rails, active record serves as the layer between model and database. In business environment, the persistent process of data usage and creation requires a way to connect to database persistently, so called **Active Record**.
-
-1. Table map to classes
-2. Rows map to objects
-3. Columns map to object attributes
+* Software design pattern
+* Used in object-oriented programming to manage database access
+* A part of the Model-View-Controller (MVC) architectural pattern
+* Provides an easy and intuitive way to represent and manipulate data stored in a database
+* Define classes that map to database tables, and provides a set of methods that can be used to query, insert, update, and delete records from the database
+  * Table map to classes
+  * Rows map to objects
+  * Columns map to object attributes
+* Abstracts away much of the low-level database interaction code that developers would otherwise have to write. This makes it easier to work with databases, and also reduces the likelihood of errors and bugs
+* Used in popular web frameworks such as Ruby on Rails, Django, and Laravel. It is a powerful tool that allows developers to focus on building their applications, rather than on database management
 
 ## Why
 
-There are lots of database management system such as MySQL, SQLite, and PostgreSQL with different syntax, so ORM (object-relational mapping) born to help us for using same syntax for same purpose on different databases.
-
-**Active Record** pattern is a solution for ORM. With this pattern, we can access all data from table, User, with unified way:
-```
-User.all
-```
-rather than
-```
-SELECT * FROM User
-```
-and also avoid different syntax problem on different database language.
+Active Record is a specific implementation of [ORM]({{site.baseurl}}//rails/2022/01/13/object-relational-mapping.html) that maps database tables to objects. It allows developers to work with database records as if they were objects, with each record represented by a single instance of a class. Active Record handles the persistence of the objects to the database and provides methods for querying and updating the data.
 
 ## How
 
-I am going to explore the following topics:
+Research Active Record in Rails. Rails use adapter design pattern for user to use same syntax for different SQL.
 
-1. CRUD
-2. Validation
-3. Callbacks
+### design pattern
 
-### CRUD
+Please understand [adapter]() first.
+
+### Source code of CRUD
 
 Please rails new a project and create a random table (I create table with `rails g scaffold User name:string email:string` and then `rails db:migrate`) and then we can create a new User with `test = User.create`.
 
@@ -370,6 +366,8 @@ class Employee < User
 end
 ```
 Notice! Employer and Employee use the concept of STI(Single-table inheritance).
+
+Try to understand how to query in rails with [ActiveRecord Query Interface](https://guides.rubyonrails.org/active_record_querying.html)
 
 ## Reference
 
