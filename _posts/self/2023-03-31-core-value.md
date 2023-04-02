@@ -10,7 +10,7 @@ mermaid:
 p5:
 threeJS:
 anchor:
-publish: true
+publish:
 ---
 
 ## Introduction
@@ -33,11 +33,13 @@ I need core value to do decision making because I sometimes feel confused whethe
 
 ### golden time
 
-At what event I feel (first though)
+At what event I feel
 
-* Fulfilled: guitar playing, singing, song writing
-* Proud: figure out how to solve a problem
-* Happy: Pigeon flying and eating, cat and dog petting
+* Fulfilled: guitar playing, singing, song writing (creativity)
+* Proud: figure out how to solve a problem (problem-solving)
+* Happy: Pigeon flying and eating, cat and dog petting (compassion).
+
+Based on the information provided, your core values may include creativity, problem-solving, compassion.
 
 ### motivation
 
@@ -58,7 +60,9 @@ At what event I feel (first though)
   * Faith or spirituality: I believe spirit and karma
   * Self-improvement: I always want to be better
 
-### priorities
+Based on the information provided, your core values may include problem-solving, success, recognition, creativity, personal growth, and helping others. You are motivated by your personal beliefs, fear of negative consequences, desire for positive outcomes, social pressure, and intrinsic motivation. Your inspiration comes from pursuing personal goals, positive role models, support from loved ones, inner strength, positive impact on others, faith or spirituality, and self-improvement.
+
+### daily priorities
 
 spirituality > Personal Growth > Career > Family > Relationships > Health
 
@@ -70,11 +74,30 @@ work -> drawing -> practice coding -> play guitar -> read psychology -> meditati
 
 I eat in convenience but not healthy and I sleep when I want to, not regularly
 
+Based on the information provided, it seems that your core values may include creativity, self-improvement, learning, and mindfulness.
+
 ### Feedback
 
 My friend thinks of me as rational, creative, talented, smart, highly moral, scientific
 
 ## What?
+
+### core values ranking
+
+1. Personal growth and self-improvement: You prioritize learning, mindfulness, and pursuing personal goals. This is reflected in your daily routine, your motivation drivers, and your golden time activities.
+2. Creativity: You place a high value on creativity, as evidenced by your fulfillment in guitar playing, singing, songwriting, and your intrinsic motivation to create art.
+3. Problem-solving and strategic thinking: You have a strong drive to figure out how to solve problems, and you value efficiency and effectiveness in achieving your goals
+4. Compassion and helping others: You experience happiness in activities that involve compassion, and you are inspired by the positive impact you can have on others.
+5. Success and recognition: You have a desire for positive outcomes and social recognition, which motivates you to be the best in your group and to make your family proud.
+6. Integrity and morality: You value honesty, authenticity, justice, and fairness, and you may be uncompromising when it comes to your principles and beliefs.
+7. Independence and autonomy: You value your autonomy and prefer to work independently, with a strong sense of self-direction and resistance to external control.
+8. Rationality and evidence-based decision-making: You prioritize logical and analytical thinking, and you may be skeptical of emotional or subjective arguments, preferring to rely on objective facts and data.
+9. Knowledge and expertise: You have a deep interest in learning and acquiring knowledge, and you value intelligence and competence.
+10. Career: Although it is not your top priority, you still value your career and may be focused on achieving success in it.
+11. Family: You value your family, but it may not be your top priority.
+12. Relationships and health: These may be lower on your list of priorities, as reflected in your daily routine of convenience eating and irregular sleeping habits.
+
+### examples
 
 Elon Musk, Malala Yousafzai, Albert Einstein
 

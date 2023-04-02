@@ -1,12 +1,12 @@
 ---
 layout: post
-title: how operating system works
+title: How OS Works
 description: ''
 date: '2021-12-04'
 categories: OS
 note: p5 要加一個可以打字的功能，我可能要切一個 develop 分支
 p5: true
-publish:
+publish: true
 ---
 
 ## Introduction
