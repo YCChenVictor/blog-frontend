@@ -111,6 +111,63 @@
 
 <h3 id="migration">Migration</h3>
 
+<h4 id="create">Create</h4>
+
+<ul>
+  <li>create_table - creates a new database table</li>
+</ul>
+
+<p>To add model, <code class="language-plaintext highlighter-rouge">Article</code> with columns: title, content, is_online</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g model Article title content:text is_online:boolean
+</code></pre></div></div>
+
+<ul>
+  <li>To remove invoke while generating, <code class="language-plaintext highlighter-rouge">--no-helper --no-assets --no-controller-specs --no-view-specs</code> or</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># application.rb</span>
+config.generators.assets <span class="o">=</span> <span class="nb">false
+</span>config.generators.helper <span class="o">=</span> <span class="nb">false</span>
+</code></pre></div></div>
+
+<p>Then in db/migrate, timestamp_create_articles.rb:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CreateArticles</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.1</span><span class="p">]</span>  
+  <span class="k">def</span> <span class="nf">change</span>  
+    <span class="n">create_table</span> <span class="ss">:articles</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>  
+      <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span>  
+      <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:content</span>  
+      <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:is_online</span>  
+        
+      <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>  
+    <span class="k">end</span>  
+  <span class="k">end</span>  
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>timestamp for recording <code class="language-plaintext highlighter-rouge">:created_at, :updated_at</code></li>
+</ul>
+
+<h4 id="update">Update</h4>
+
+<ul>
+  <li>rename_table - renames an existing database table</li>
+  <li>add_column - adds a new column to an existing database table</li>
+  <li>remove_column - removes a column from an existing database table</li>
+  <li>rename_column - renames a column in an existing database table</li>
+  <li>change_column - changes the data type or options of a column in an existing database table</li>
+  <li>add_index - adds a new index to a database table</li>
+  <li>remove_index - removes an existing index from a database table</li>
+  <li>add_reference - adds a foreign key reference to an existing database table</li>
+  <li>remove_reference - removes a foreign key reference from an existing database table</li>
+  <li>change_table - allows you to make multiple changes to an existing database table in a single migration</li>
+  <li>reversible - creates a reversible migration that can be rolled back</li>
+  <li>up - defines the changes to be made to the database schema when the migration is run</li>
+  <li>down - defines how to revert the changes made by the migration</li>
+</ul>
+
 <p>A typical migration file:</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AddAgeToUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.0</span><span class="p">]</span>
@@ -142,29 +199,34 @@
 
 <p>To undo:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:rollback
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:rollback <span class="nv">STEP</span><span class="o">=</span>3
 </code></pre></div></div>
 
-<p>There are not only <code class="language-plaintext highlighter-rouge">add_column</code> and <code class="language-plaintext highlighter-rouge">remove_column</code> but also</p>
+<p>However, the Rollback method is not recommended. We should use another migration to modify database to what we want; for example, if we want to <strong>add a column</strong> to an existed table, we can add another generate migration</p>
+
+<h4 id="delete">Delete</h4>
 
 <ul>
-  <li>create_table - creates a new database table</li>
   <li>drop_table - drops an existing database table</li>
-  <li>rename_table - renames an existing database table</li>
-  <li>add_column - adds a new column to an existing database table</li>
-  <li>remove_column - removes a column from an existing database table</li>
-  <li>rename_column - renames a column in an existing database table</li>
-  <li>change_column - changes the data type or options of a column in an existing database table</li>
-  <li>add_index - adds a new index to a database table</li>
-  <li>remove_index - removes an existing index from a database table</li>
-  <li>execute - executes a custom SQL statement</li>
-  <li>add_reference - adds a foreign key reference to an existing database table</li>
-  <li>remove_reference - removes a foreign key reference from an existing database table</li>
-  <li>change_table - allows you to make multiple changes to an existing database table in a single migration</li>
-  <li>reversible - creates a reversible migration that can be rolled back</li>
-  <li>up - defines the changes to be made to the database schema when the migration is run</li>
-  <li>down - defines how to revert the changes made by the migration</li>
 </ul>
+
+<p>To delete migration files,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails d migration MigrationName
+</code></pre></div></div>
+
+<p>Notice! please do it only before <code class="language-plaintext highlighter-rouge">db:migrate</code></p>
+
+<h4 id="other">Other</h4>
+
+<ul>
+  <li>execute - executes a custom SQL statement</li>
+</ul>
+
+<p>If we want to know which migration ever be executed</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">rails</span> <span class="n">db</span><span class="ss">:migrate:status</span>
+</code></pre></div></div>
 
 <h3 id="associations">Associations</h3>
 
@@ -193,16 +255,160 @@
 <ul>
   <li>Time is money, how to query fast plays key role</li>
   <li>In rails, we use active record to query and it uses ORM</li>
-  <li>For more information, please refer to <a href="/blog/rails/2021/06/10/active-record.html">active record</a></li>
+  <li><a href="/blog/rails/2021/06/10/active-record.html">active record</a>
+    <ul>
+      <li>scopes: help you DRY up your code and make it more readable by abstracting away common conditions</li>
+      <li>associations: methods like has_many, belongs_to, and has_and_belongs_to_many to define associations, and then use these associations in your queries</li>
+      <li>Arel is a SQL AST (Abstract Syntax Tree) manager that is used internally by Active Record. Arel provides a powerful DSL (Domain-Specific Language) that you can use to construct complex SQL queries.</li>
+    </ul>
+  </li>
+  <li>SQL: Rails also provides methods to execute SQL queries directly</li>
+  <li>Performance: You can use tools like the includes method to eager load associations and reduce the number of database queries, and the joins method to perform more efficient SQL joins.</li>
+  <li>Debugging queries: Rails provides several tools to help you debug queries, including the to_sql method, which lets you see the SQL generated by your Active Record queries, and the explain method, which shows you the execution plan for a query.</li>
 </ul>
+
+<h4 id="performance">performance</h4>
+
+<ul>
+  <li>Avoid N+1 queries: One of the most common performance issues in Rails is the N+1 query problem. This occurs when you load a collection of records, and then load a related association for each record individually. To avoid this problem, use the includes method to eagerly load associations; for example, instead of doing:</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">all</span>
+<span class="vi">@posts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">post</span><span class="p">.</span><span class="nf">comments</span><span class="p">.</span><span class="nf">count</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>You can do:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">).</span><span class="nf">all</span>
+<span class="vi">@posts</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">post</span><span class="p">.</span><span class="nf">comments</span><span class="p">.</span><span class="nf">count</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This will load all the comments for all the posts in a single query, rather than issuing a separate query for each post.</p>
+
+<p>We can set condition with chaining as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="ss">comments: </span><span class="p">[</span><span class="ss">:user</span><span class="p">]).</span><span class="nf">where</span><span class="p">(</span><span class="ss">comments: </span><span class="p">{</span> <span class="ss">approved: </span><span class="kp">true</span> <span class="p">},</span> <span class="ss">users: </span><span class="p">{</span> <span class="ss">admin: </span><span class="kp">true</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>And include = preload + eager_load: to be continued</p>
+
+<ul>
+  <li>Use indexes: Indexes can significantly improve the performance of your queries by reducing the amount of time it takes to find and retrieve records. Use the add_index method in your migrations to add indexes to your database tables. For example, to add an index to the email column in a users table, you can do:</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AddIndexToUsersEmail</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.0</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:email</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Once added an index to a table, use the newly created index in your queries to improve their performance.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">email: </span><span class="s1">'john@example.com'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This query will use the index on the email column to quickly find the matching record(s) in the users table.</p>
+
+<p>The SQL script of querying remains the same as</p>
+
+<pre><code class="language-SQL">SELECT * FROM users WHERE email = 'john@example.com';
+</code></pre>
+
+<p>The speed of a SQL query can be faster after adding an index because an index provides a more efficient way for MySQL to locate the rows that match the conditions in the query. MySQL will use the index on the email column to quickly locate the rows that match the condition email = ‘john@example.com’. MySQL will read only the index pages that contain the relevant data, and retrieve the matching rows from the table using the row ID stored in the index. This is much faster than scanning every row in the users table to find the matching rows.</p>
+
+<h4 id="index-page">Index Page</h4>
+
+<p>An index in MySQL consists of one or more index pages, which are stored separately from the data pages that contain the actual table rows. Each index page contains a subset of the index data, and includes information about the location of the corresponding rows in the data pages.</p>
+
+<p>The example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Index page 1:
+--------------
+email                | row ID
+---------------------
+john@example.com     | 1
+jane@example.com     | 2
+jim@example.com      | 3
+...
+
+Index page 2:
+--------------
+email                | row ID
+---------------------
+kim@example.com      | 4
+kevin@example.com    | 5
+katie@example.com    | 6
+...
+</code></pre></div></div>
+
+<p>Each index page contains a list of email addresses and their corresponding row IDs.</p>
+
+<p>In the SELECT,</p>
+
+<pre><code class="language-SQL">SELECT * FROM users WHERE email = 'john@example.com';
+</code></pre>
+
+<p>MySQL will read the index pages for the email column, and locate the row ID for the user with email address “john@example.com”. MySQL will then retrieve the corresponding row from the data pages using the row ID. The use of the index pages can make this query much faster than if MySQL had to scan the entire table to find the user with email address “john@example.com”.</p>
+
+<ul>
+  <li>Use database-specific features: Different databases have different features and optimizations that you can take advantage of. For example, PostgreSQL has a feature called partial indexes that can improve the performance of queries that only need to retrieve a subset of records.</li>
+  <li>Use caching: Caching can be a powerful tool to improve the performance of your queries. Rails provides several caching mechanisms, including fragment caching, action caching, and page caching. Use caching judiciously, as it can also introduce its own set of challenges.</li>
+  <li>Use pluck and select: When you only need a specific set of attributes from a collection of records, use the pluck or select methods to retrieve only those attributes, rather than retrieving the entire record.</li>
+</ul>
+
+<p>For example, instead of doing:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">all</span>
+<span class="vi">@user_emails</span> <span class="o">=</span> <span class="vi">@users</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:email</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>do</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@user_emails</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">pluck</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This will retrieve only the email attribute for all the users, rather than retrieving the entire user record.</p>
+
+<p>These are just a few tips to help you optimize the performance of your queries in Rails. There are many other factors to consider, such as database tuning, query optimization, and server configuration. It’s important to carefully monitor and profile your application to identify performance bottlenecks and make informed decisions about how to optimize your queries.</p>
 
 <h4 id="sub-query">sub query</h4>
 
-<h4 id="indexing">indexing</h4>
+<h3 id="schema">Schema</h3>
+
+<ul>
+  <li>A representation of your database’s structure</li>
+  <li>defined in a file called schema.rb in the db directory</li>
+  <li>As more models and migrations, the schema file is updated to reflect the changes</li>
+  <li>example:</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Schema</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">version: </span><span class="mi">2022_01_01_000000</span><span class="p">)</span> <span class="k">do</span>
+
+  <span class="n">create_table</span> <span class="s2">"users"</span><span class="p">,</span> <span class="ss">force: :cascade</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="s2">"email"</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="s2">"password_digest"</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+  <span class="k">end</span>
+
+  <span class="n">create_table</span> <span class="s2">"posts"</span><span class="p">,</span> <span class="ss">force: :cascade</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="s2">"title"</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="s2">"content"</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">references</span> <span class="s2">"user"</span><span class="p">,</span> <span class="ss">foreign_key: </span><span class="kp">true</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>When you run migrations in your Rails application, they are used to modify the database schema. Each migration corresponds to a specific change to the schema, such as adding a new table or column, renaming a table, or modifying a column’s data type. When you run rails db:migrate, Rails applies all of the migrations that haven’t been run yet to bring your database schema up to date with your application’s current state.</p>
 
 <h2 id="what">What?</h2>
 
-<p>give real world example</p>
+<p>I ame going to have real world example in querying</p>
 
 <h2 id="reference">Reference</h2>
 

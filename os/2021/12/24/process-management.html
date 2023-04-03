@@ -94,13 +94,59 @@
   <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>With the help of PCB (Process Control Block), OS can manage tasks such as creation, scheduling, termination, deadlock. A PCB stores all the information about a process:</p>
+<ul>
+  <li>A process is an instance of a program that is executing on a computer. Each process has its own memory space and runs independently of other processes.</li>
+  <li>Process management involves creating, scheduling, and managing processes. Process management is responsible for managing the execution of processes to ensure that they run efficiently and don’t interfere with each other.</li>
+  <li>The system also manages the state of each process, including whether it is running, blocked, or waiting for input. In addition, the process management system is responsible for terminating processes when they are no longer needed.</li>
+  <li>One of the key functions of process management is CPU scheduling, which involves determining which process should be executed next. The scheduler allocates the CPU to the most deserving process, based on a set of predefined criteria, such as priority or time slice.</li>
+  <li>By managing processes properly, the operating system can ensure that resources are used efficiently and that processes run smoothly.</li>
+</ul>
 
-<p>(drawing to be continued)</p>
+<h2 id="why">Why?</h2>
 
-<p>Add a PCB drawing here with list of elements such as process state, process number, program counter …etc</p>
+<ul>
+  <li>Understanding operating systems: Processes are a fundamental concept in operating systems</li>
+  <li>Writing efficient code: By managing processes properly, you can improve system performance and reduce resource utilization.</li>
+  <li>Improving system stability: By managing processes properly, you can prevent crashes and other issues that can affect system stability.</li>
+  <li>Developing concurrent systems: Allows multiple tasks to execute simultaneously. You can design and implement systems that make efficient use of system resources and improve system performance.</li>
+  <li>Understanding process management can help you identify issues and debug code more effectively.</li>
+</ul>
 
-<p>The flow of PCB:</p>
+<h2 id="how">How?</h2>
+
+<h3 id="flow">Flow</h3>
+
+<ul>
+  <li>process creation</li>
+</ul>
+
+<p>Process creation is the process of creating a new process in an operating system. It involves allocating resources, initializing data structures, and setting up the necessary environment for the process to execute.</p>
+
+<p>When a process is created, the operating system sets up a new address space for the process, including allocating memory and creating a page table to map the process’s virtual address space to physical memory. The operating system also initializes the process control block (PCB), which is a data structure that contains information about the process, including its process ID, state, and resource usage.</p>
+
+<p>The new process is typically created by a parent process, which may pass parameters to the child process or inherit some of its own properties. For example, a new process may inherit the file descriptors of its parent, allowing it to read and write to the same files.</p>
+
+<p>Process creation is a complex process that involves a number of steps, including allocating resources, initializing data structures, and setting up the necessary environment for the process to execute. It is a critical component of process management, as the creation of new processes allows the operating system to execute multiple tasks simultaneously and make efficient use of system resources.</p>
+
+<ul>
+  <li>process scheduling</li>
+  <li>process synchronization</li>
+  <li>process termination</li>
+  <li>process states, process control blocks, and context switching.</li>
+</ul>
+
+<p>The PCB is a critical component of process management in modern operating systems, allowing the operating system to manage and control multiple processes concurrently and efficiently. By maintaining a separate PCB for each process, the operating system can track and manage each process individually, ensuring that each process runs safely and efficiently.</p>
+
+<p>With the help of PCB (Process Control Block), OS can manage tasks such as creation, scheduling, termination, deadlock.</p>
+
+<ul>
+  <li>A Process Control Block (PCB) is a data structure used by the operating system to manage and control the execution of a process. It contains information about the state of a process, including its process ID, memory allocation, CPU usage, and other important parameters.</li>
+  <li>The PCB is created when a process is initiated and is updated by the operating system as the process executes.</li>
+  <li>The PCB is also used by the operating system to switch between processes and manage the scheduling of the CPU.</li>
+  <li>When a process is created, the operating system allocates a PCB for that process and stores the relevant information about the process in that PCB. As the process runs, the operating system updates the PCB to reflect changes in the process state, memory allocation, CPU usage, and other parameters.</li>
+</ul>
+
+<p>How PCB flows:</p>
 
 <div class="mermaid">
 graph TB
@@ -116,19 +162,29 @@ graph TB
   id3(running) --exit--&gt; id4(terminated)
 </div>
 
-<h2 id="why">Why?</h2>
+<h3 id="cpu-scheduling-algorithms">CPU scheduling algorithms</h3>
 
-<p>For multitasking</p>
+<p>CPU scheduling is a critical part of process management, and you should understand the different CPU scheduling algorithms such as Round Robin, FCFS, SJF, and Priority Scheduling. You should also learn about their advantages and disadvantages.</p>
 
-<h2 id="how">How?</h2>
+<h3 id="memory-management">Memory Management</h3>
 
-<p>Explain the structure of PCB</p>
+<p>Learn about memory allocation, fragmentation, and virtual memory.</p>
+
+<h3 id="os-simulation-tools">OS Simulation Tools</h3>
+
+<p>Process Explorer allows us to see the running processes and their resource utilization.</p>
+
+<p>###</p>
 
 <h2 id="what">What?</h2>
 
+<h3 id="coding">Coding</h3>
+
+<p>Practice coding by implementing basic process management algorithms such as process scheduling or process synchronization.</p>
+
 <h2 id="reference">Reference</h2>
 
-<p>[Process control block](https://en.wikipedia.org/wiki/Process_control_block#:~:text=A%20process%20control%20block%20(PCB,a%20corresponding%20process%20control%20block.)</p>
+<p><a href="https://en.wikipedia.org/wiki/Process_control_block">Process control block</a></p>
 
 <p><a href="https://medium.com/@akhandmishra/operating-system-process-and-process-management-108d83e8ce60">Operating System: Process and Process Management</a></p>
 

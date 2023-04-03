@@ -78,96 +78,100 @@
   <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(Rails) React</h1>
+  <h1 class="text-center mt-6 mb-6">Software</h1>
   <div class="text-center">
     
   </div>
   <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>My thoughts about software</p>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<p>This article is the central article of software development. Software is built to solve a problem or to fulfill a specific need. To get an idea, just think all the services now in the world.</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="setting-up-webpacker-and-react">Setting up Webpacker and React</h3>
+<h3 id="os">OS</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rails webpacker:install
-<span class="nv">$ </span>bundle <span class="nb">exec </span>rails webpacker:install:react
-</code></pre></div></div>
+<h3 id="web-backend">web backend</h3>
 
-<p>and remove <code class="language-plaintext highlighter-rouge">app/javascript/packs/hello_react.jsx</code></p>
+<ul>
+  <li><a href="/blog/api/2021/02/18/overview.html">API</a></li>
+  <li><a href="/blog/rails/2023/01/01/overview.html">rails</a></li>
+  <li><a href="/blog/node/2022/12/30/overview.html">node</a>
+    <ul>
+      <li>database
+        <ul>
+          <li><a href="/blog/pg/2022/12/30/overview.html">PG</a></li>
+          <li><a href="/blog/node/2022/12/30/database-setup.html">database setup</a></li>
+          <li><a href="/blog/node/2022/01/20/model.html">model</a> with sequelize</li>
+        </ul>
+      </li>
+      <li><a href="/blog/node/2022/01/26/api.html">API</a></li>
+      <li><a href="/blog/node/2023/02/13/web-security.html">web-security</a></li>
+      <li><a href="/blog/node/2022/12/31/sign-up-and-login.html">Signup And Login</a> (session, JWT)</li>
+      <li><a href="/blog/node/2023/02/10/token.html">token</a></li>
+    </ul>
+  </li>
+</ul>
 
-<h3 id="start-react-dom">start react-dom</h3>
+<h3 id="web-frontend">web frontend</h3>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>yarn add react-dom react-on-rails
-</code></pre></div></div>
+<ul>
+  <li><a href="/blog/html/2021/12/17/overview.html">HTML</a></li>
+  <li><a href="/blog/css/2022/10/15/overview.html">CSS</a></li>
+  <li><a href="/blog/react/2021/06/13/overview.html">react</a> (routes)
+    <ul>
+      <li><a href="/blog/react/2021/06/17/hook.html">hook</a> (useState, useEffect)</li>
+      <li><a href="/blog/react/2021/06/14/layout.html">layout</a> for HTML &amp; CSS (sidebar)</li>
+      <li><a href="/blog/react/2022/09/14/api.html">API</a> (JWT)</li>
+      <li>other
+        <ul>
+          <li><a href="/blog/react/2023/02/18/node-graph.html">force graph</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<h3 id="add-gem">add gem</h3>
+<h3 id="web">web</h3>
 
-<p>In <code class="language-plaintext highlighter-rouge">Gemfile</code>,</p>
+<ul>
+  <li></li>
+</ul>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s2">"react_on_rails"</span><span class="p">,</span> <span class="s2">"~&gt; 6"</span>
-</code></pre></div></div>
+<h3 id="blockchain">blockchain</h3>
 
-<h3 id="config">config</h3>
+<h3 id="machine-learning">machine learning</h3>
 
-<p>create <code class="language-plaintext highlighter-rouge">config/initializers/react_on_rails.rb</code> and input</p>
+<h3 id="concepts">concepts</h3>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># frozen_string_literal: true</span>
+<h4 id="dsa">DSA</h4>
 
-<span class="c1"># See https://github.com/shakacode/react_on_rails/blob/master/docs/basics/configuration.md</span>
-<span class="c1"># for many more options.</span>
+<p>connect the overview of DSA</p>
 
-<span class="no">ReactOnRails</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-  <span class="c1"># This configures the script to run to build the production assets by webpack. Set this to nil</span>
-  <span class="c1"># if you don't want react_on_rails building this file for you.</span>
-  <span class="n">config</span><span class="p">.</span><span class="nf">npm_build_production_command</span> <span class="o">=</span> <span class="s2">"RAILS_ENV=production NODE_ENV=production bin/webpack"</span>
-  
-  <span class="c1">################################################################################</span>
-  <span class="c1">################################################################################</span>
-  <span class="c1"># TEST CONFIGURATION OPTIONS</span>
-  <span class="c1"># Below options are used with the use of this test helper:</span>
-  <span class="c1"># ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config)</span>
-  <span class="c1">################################################################################</span>
-  
-  <span class="c1"># If you are using this in your spec_helper.rb (or rails_helper.rb):</span>
-  <span class="c1">#</span>
-  <span class="c1"># ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config)</span>
-  <span class="c1">#</span>
-  <span class="c1"># with rspec then this controls what yarn command is run</span>
-  <span class="c1"># to automatically refresh your webpack assets on every test run.</span>
-  <span class="c1">#</span>
-  <span class="n">config</span><span class="p">.</span><span class="nf">npm_build_test_command</span> <span class="o">=</span> <span class="s2">"RAILS_ENV=test bin/webpack"</span>
-  
-  <span class="c1">################################################################################</span>
-  <span class="c1">################################################################################</span>
-  <span class="c1"># SERVER RENDERING OPTIONS</span>
-  <span class="c1">################################################################################</span>
-  <span class="c1"># This is the file used for server rendering of React when using `(prerender: true)`</span>
-  <span class="c1"># If you are never using server rendering, you should set this to "".</span>
-  <span class="c1"># Note, there is only one server bundle, unlike JavaScript where you want to minimize the size</span>
-  <span class="c1"># of the JS sent to the client. For the server rendering, React on Rails creates a pool of</span>
-  <span class="c1"># JavaScript execution instances which should handle any component requested.</span>
-  <span class="c1">#</span>
-  <span class="c1"># While you may configure this to be the same as your client bundle file, this file is typically</span>
-  <span class="c1"># different. You should have ONE server bundle which can create all of your server rendered</span>
-  <span class="c1"># React components.</span>
-  <span class="c1">#</span>
-  <span class="n">config</span><span class="p">.</span><span class="nf">server_bundle_js_file</span> <span class="o">=</span> <span class="s2">""</span>
-<span class="n">endGemfile</span><span class="p">.</span><span class="nf">lock</span>
-</code></pre></div></div>
+<h4 id="middleware">middleware</h4>
+
+<ul>
+  <li>intermediary between the client and the server and runs on the server</li>
+</ul>
+
+<h4 id="service">service</h4>
+
+<ul>
+  <li>self-contained units of functionality that can be used across multiple applications</li>
+</ul>
 
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
+<ul>
+  <li><a href="/blog/project/1993/09/01/(project)-blog.html">blog</a></li>
+  <li><a href="/blog/project/1993/09/01/(project)-task.html">task</a></li>
+</ul>
 
 <h2 id="reference">Reference</h2>
-
-<p><a href="https://cognitiveclass.ai/blog/react-on-rails-tutorial-integrating-react-and-ruby-on-rails">React on Rails Tutorial: Integrating React and Ruby on Rails 5.2</a></p>
 
   </div>
 </div>

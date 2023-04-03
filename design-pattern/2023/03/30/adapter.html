@@ -85,19 +85,93 @@
   <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>The Adapter pattern allows two incompatible interfaces to work together by creating a class that acts as an interface between them. The adapter class maps the methods of one interface to another, making it possible for the two interfaces to communicate.</p>
+
+<p>Three components</p>
+<ul>
+  <li>Client: The client is the component that is trying to use the adaptee, but cannot do so directly because the adaptee’s interface is incompatible with the client’s interface</li>
+  <li>Adapter: The adapter is a class that acts as a bridge between the client and the adaptee. It maps the methods of the adaptee to the methods of the client.</li>
+  <li>Adaptee: The adaptee is the component that the client wants to use, but cannot do so directly because its interface is incompatible with the client’s interface.</li>
+</ul>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<ul>
+  <li>Reuse an existing class that does not match the interface of the client</li>
+  <li>Create a class that can work with multiple incompatible classes</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
-<p>focus on the mechanism</p>
+<h3 id="example-in-javascript">example in javascript</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// First Adaptee - the complex class that needs to be adapted</span>
+<span class="kd">class</span> <span class="nx">LegacyPaymentProcessor</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">addLegacyPayment</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">total</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">getLegacyTotal</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">total</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Second Adaptee - another complex class that needs to be adapted</span>
+<span class="kd">class</span> <span class="nx">ModernPaymentProcessor</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">addModernPayment</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">total</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">getModernTotal</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">total</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Adapter - the class that adapts the interface of the Adaptees</span>
+<span class="kd">class</span> <span class="nx">PaymentAdapter</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">adaptee</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span> <span class="o">=</span> <span class="nx">adaptee</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">processPayment</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span> <span class="k">instanceof</span> <span class="nx">LegacyPaymentProcessor</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span><span class="p">.</span><span class="nx">addLegacyPayment</span><span class="p">(</span><span class="nx">amount</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span> <span class="k">instanceof</span> <span class="nx">ModernPaymentProcessor</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span><span class="p">.</span><span class="nx">addModernPayment</span><span class="p">(</span><span class="nx">amount</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">getAmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span> <span class="k">instanceof</span> <span class="nx">LegacyPaymentProcessor</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span><span class="p">.</span><span class="nx">getLegacyTotal</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span> <span class="k">instanceof</span> <span class="nx">ModernPaymentProcessor</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">adaptee</span><span class="p">.</span><span class="nx">getModernTotal</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Client code that uses the PaymentAdapter with two Adaptees</span>
+<span class="kd">const</span> <span class="nx">legacyPaymentProcessor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">LegacyPaymentProcessor</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">modernPaymentProcessor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ModernPaymentProcessor</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">paymentAdapter1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PaymentAdapter</span><span class="p">(</span><span class="nx">legacyPaymentProcessor</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">paymentAdapter2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PaymentAdapter</span><span class="p">(</span><span class="nx">modernPaymentProcessor</span><span class="p">);</span>
+<span class="nx">paymentAdapter1</span><span class="p">.</span><span class="nx">processPayment</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="nx">paymentAdapter2</span><span class="p">.</span><span class="nx">processPayment</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">paymentAdapter1</span><span class="p">.</span><span class="nx">getAmount</span><span class="p">());</span> <span class="c1">// Output: 100</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">paymentAdapter2</span><span class="p">.</span><span class="nx">getAmount</span><span class="p">());</span> <span class="c1">// Output: 200</span>
+</code></pre></div></div>
 
 <h2 id="what">What?</h2>
 
-<p>give real world example</p>
+<p>We can have a look at rails <a href="">active record</a></p>
 
 <h2 id="reference">Reference</h2>
 

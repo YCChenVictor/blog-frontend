@@ -78,59 +78,100 @@
   <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
 
 <div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Include</h1>
+  <h1 class="text-center mt-6 mb-6">Overview</h1>
   <div class="text-center">
     
   </div>
   <div class="md:px-4 md:grid lg:px-72">
     <h2 id="introduction">Introduction</h2>
 
-<p>In Rails ORM (Object-Relational Mapping), the include method is used to eager load associated records. It is often used to avoid the <a href="/blog/database/2022/08/12/N+1.html">N+1 query problem</a>, which occurs when an application issues too many SQL queries to retrieve associated records. By eager loading associations, you can reduce the number of SQL queries and improve performance.</p>
+<ul>
+  <li>A software program that manages the hardware and software resources of a computer system</li>
+  <li>Interface between computer applications and the computer hardware</li>
+  <li>Responsible for managing the computer’s memory, processing power, storage, input/output devices, and other resources.</li>
+  <li>Types
+    <ul>
+      <li>desktop operating systems
+        <ul>
+          <li>Microsoft Windows</li>
+          <li>macOS</li>
+          <li>Linux</li>
+        </ul>
+      </li>
+      <li>server operating systems</li>
+      <li>mobile operating systems
+        <ul>
+          <li>Android</li>
+          <li>iOS</li>
+        </ul>
+      </li>
+      <li>embedded operating systems</li>
+    </ul>
+  </li>
+</ul>
 
-<p>Here’s an example of how to use include in Rails ORM:</p>
+<h2 id="why">Why?</h2>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-  <span class="n">has_many</span> <span class="ss">:comments</span>
-<span class="k">end</span>
+<ul>
+  <li>To Understand how computers work at a low level for computer engineering, software development, and information technology</li>
+  <li>To Develop efficient and effective software applications that work well with the underlying operating system</li>
+  <li>To managing computer systems, including servers, networks, and other infrastructure.</li>
+  <li>To Enhance security that protect computer systems from external threats, including viruses and hackers.</li>
+</ul>
 
-<span class="k">class</span> <span class="nc">Comment</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-  <span class="n">belongs_to</span> <span class="ss">:post</span>
-<span class="k">end</span>
-</code></pre></div></div>
+<h2 id="how">How?</h2>
 
-<p>If we want to retrieve all posts and their associated comments, we can use the includes method to eager load the comments:</p>
+<h3 id="how-os-work">How OS Work</h3>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span>
-</code></pre></div></div>
+<p>Overview of operating system functions, history, and types.</p>
 
-<p>This will load all posts and their associated comments in a <strong>single query</strong>, rather than issuing a separate query for each post’s comments.</p>
+<p><a href="/blog/os/2021/12/04/how-os-works.html">How OS Works</a></p>
 
-<p>In addition to includes, Rails ORM also provides other methods for eager loading associations, such as joins and preload. The choice of which method to use depends on the specific use case and performance considerations.</p>
+<h3 id="process-management">Process Management</h3>
 
-<p>Eager loading associations can significantly improve the performance of your Rails application, especially when dealing with large datasets. However, it’s important to use it judiciously and avoid overloading your queries with unnecessary associations.</p>
+<p>Managing processes, threads, and scheduling algorithms.</p>
 
-<h2 id="why">Why</h2>
+<p><a href="/blog/os/2021/12/24/process-management.html">process management</a></p>
 
-<p>focus on why we need it</p>
+<h3 id="memory-management">Memory Management</h3>
 
-<h2 id="how">How</h2>
+<p>Memory allocation, virtual memory, and paging</p>
 
-<h3 id="condition">condition</h3>
+<h3 id="file-systems">File Systems</h3>
 
-<p>Take above include as example, we can set condition with chaining as follow:</p>
+<p>File organization, access, and protection.</p>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@posts</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="ss">comments: </span><span class="p">[</span><span class="ss">:user</span><span class="p">]).</span><span class="nf">where</span><span class="p">(</span><span class="ss">comments: </span><span class="p">{</span> <span class="ss">approved: </span><span class="kp">true</span> <span class="p">},</span> <span class="ss">users: </span><span class="p">{</span> <span class="ss">admin: </span><span class="kp">true</span> <span class="p">})</span>
-</code></pre></div></div>
+<h3 id="inputoutput-io-systems">Input/output (I/O) systems</h3>
 
-<p>include = preload + eager_load</p>
+<p>Handling input/output devices, buffering, and interrupt handling.</p>
+
+<h3 id="device-drivers">Device drivers</h3>
+
+<p>Writing and managing device drivers.</p>
+
+<h3 id="security">Security</h3>
+
+<p>Authentication, access control, and security policies.</p>
+
+<h3 id="distributed-operating-systems">Distributed operating systems</h3>
+
+<p>Distributed systems, remote procedure calls, and distributed file systems.</p>
+
+<h3 id="real-time-operating-systems">Real-time operating systems</h3>
+
+<p>Real-time systems, scheduling, and response times.</p>
 
 <h2 id="what">What</h2>
 
-<p>Give a real world example</p>
+<h3 id="linux">Linux</h3>
+
+<p>Case Study</p>
 
 <h2 id="reference">Reference</h2>
 
-<p><a href="https://blog.saeloun.com/2020/01/08/activerecord-database-performance-n-1-includes-preload-eager-load-pluck.html">Improving Database performance and overcoming common N+1 issues in Active Record using includes, preload, eager_load, pluck, select, exists?</a></p>
+<p>Why: asking for the reason or purpose behind something.
+How: asking for the method or process of doing something.
+What: asking for information about a specific thing or object.</p>
 
   </div>
 </div>

@@ -96,6 +96,65 @@
 
 <h3 id="crud">CRUD</h3>
 
+<p>To create a candidate</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="no">Candidate</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"aaa"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">19</span><span class="p">)</span>  
+<span class="n">user</span><span class="p">.</span><span class="nf">save</span>
+</code></pre></div></div>
+
+<p>means in SQL,</p>
+
+<pre><code class="language-SQL">TBC
+</code></pre>
+
+<p>To read all users,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">User</span><span class="p">.</span><span class="nf">all</span>
+</code></pre></div></div>
+
+<p>means in SQL,</p>
+
+<pre><code class="language-SQL">SELECT * FROM users;
+</code></pre>
+
+<p>To find all table names</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">tables</span>
+</code></pre></div></div>
+
+<p>means in SQL,</p>
+
+<pre><code class="language-SQL">TBC
+</code></pre>
+
+<p>To update the candidate’s name with id = 1,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">candidate</span> <span class="o">=</span> <span class="no">Candidate</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="mi">1</span><span class="p">)</span>  
+<span class="n">candidate</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="s2">"hahaha"</span>  
+<span class="n">candidate</span><span class="p">.</span><span class="nf">save</span>
+
+<span class="c1"># SQL</span>
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">candidate</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"hahahaha"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># SQL</span>
+</code></pre></div></div>
+
+<p>To delete candidate with id = 1,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Candidate</span><span class="p">.</span><span class="nf">destroy</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>means in SQL</p>
+
+<pre><code class="language-SQL">TBC
+</code></pre>
+
+<p>Notice! <code class="language-plaintext highlighter-rouge">delete</code> will call the SQL delete directly, so no callbacks during deleting process. By ignoring callback and relation, <code class="language-plaintext highlighter-rouge">delete</code> is faster than <code class="language-plaintext highlighter-rouge">destroy</code>.</p>
+
 <h3 id="optimization">optimization</h3>
 
 <h4 id="eager-loading">eager loading</h4>

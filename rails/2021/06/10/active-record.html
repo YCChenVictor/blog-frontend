@@ -111,163 +111,34 @@
 
 <h3 id="design-pattern">design pattern</h3>
 
-<p>Please understand <a href="">adapter</a> first.</p>
+<p>Please understand <a href="/blog/design-pattern/2023/03/30/adapter.html">adapter</a> first.</p>
 
-<h3 id="source-code-of-crud">Source code of CRUD</h3>
+<h3 id="model">Model</h3>
 
-<p>Please rails new a project and create a random table (I create table with <code class="language-plaintext highlighter-rouge">rails g scaffold User name:string email:string</code> and then <code class="language-plaintext highlighter-rouge">rails db:migrate</code>) and then we can create a new User with <code class="language-plaintext highlighter-rouge">test = User.create</code>.</p>
+<ul>
+  <li>In Active Record, a model represents a table in a database. It encapsulates the logic for retrieving, creating, updating, and deleting records in the table.</li>
+  <li>Attributes are the properties of a model that map to the columns of the corresponding database table. They represent the data stored in the table.</li>
+  <li>Associations: Associations represent the relationships between models in the database. They define how records in one table are related to records in another table, such as a one-to-one, one-to-many, or many-to-many relationship.</li>
+  <li>In Ruby on Rails, a model is a component of the MVC (Model-View-Controller) architecture that is used to represent the data and business logic of an application. In this context, a model can be any object that is used to interact with data, not just an Active Record model. For example, a model could represent an API endpoint, a user session, or a business process. In Active Record, a model is specifically an object that represents a table in a database, while in Ruby on Rails, a model is a more general term that refers to any object that represents data and business logic in an application.</li>
+</ul>
 
-<p>To track the source code, <code class="language-plaintext highlighter-rouge">bundle open activerecord</code> and it will open the gem in <code class="language-plaintext highlighter-rouge">.rvm/gems/ruby-2.7.4/gems/activerecord-6.1.4.4/lib</code> and the source of CRUD:</p>
+<p>On the application point of view, we only care about how to use model. In rails, all model inherit from <code class="language-plaintext highlighter-rouge">ActiveRecord::Base</code>; for example,</p>
 
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">create</code>: in <code class="language-plaintext highlighter-rouge">activerecord/lib/active_record/persistence.rb</code></li>
-  <li><code class="language-plaintext highlighter-rouge">find</code>: in <code class="language-plaintext highlighter-rouge">activerecord/lib/active_record/core.rb</code> (skip)</li>
-  <li><code class="language-plaintext highlighter-rouge">update</code>: in <code class="language-plaintext highlighter-rouge">activerecord/lib/active_record/persistence.rb</code> (skip)</li>
-  <li><code class="language-plaintext highlighter-rouge">destroy</code>: in <code class="language-plaintext highlighter-rouge">activerecord/lib/active_record/persistence.rb</code> (skip)</li>
-</ol>
-
-<p>Then we can track it with <code class="language-plaintext highlighter-rouge">binding.pry</code>. Try to find the raw SQL code. After you have done, input <code class="language-plaintext highlighter-rouge">bundle pristine activerecord</code> to recover the gems.</p>
-
-<p>In rails console, input <code class="language-plaintext highlighter-rouge">ActiveRecord::Base.connection.adapter_name</code> to know what database system using.</p>
-
-<p>I am going to use three sections to explain these methods</p>
-<ol>
-  <li>How <code class="language-plaintext highlighter-rouge">User.create</code> link to general methods of ActiveRecord of create</li>
-  <li>How these general methods link the plain SQL</li>
-  <li>How rails determines which plain SQL being used by connection methods</li>
-  <li>The conecept of design pattern of these adapters
-    <h4 id="create">create</h4>
-  </li>
-</ol>
-
-<h5 id="how-usercreate-link-to-general-methods-of-activerecord-of-create">How <code class="language-plaintext highlighter-rouge">User.create</code> link to general methods of ActiveRecord of create</h5>
-
-<p>Fire up the rails console, and input <code class="language-plaintext highlighter-rouge">User.create</code>, then the SQL would be</p>
-<pre><code class="language-SQL">TRANSACTION (0.1ms)  begin transaction
-User Create (0.4ms)  INSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2022-01-11 02:01:31.475084"], ["updated_at", "2022-01-11 02:01:31.475084"]]
-TRANSACTION (1.0ms)  commit transaction
-</code></pre>
-
-<p>I am using SQLite and the key issue is why rails knows to use the INSERT grammar for SQLite instead of MySQL or PG.</p>
-
-<p>Add <code class="language-plaintext highlighter-rouge">binding.pry</code> in class as follow:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-  <span class="nb">binding</span><span class="p">.</span><span class="nf">pry</span>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
 <span class="k">end</span>
 </code></pre></div></div>
-<p>and input <code class="language-plaintext highlighter-rouge">User.create</code> in rails console</p>
 
-<p>Then the data flow of <code class="language-plaintext highlighter-rouge">create</code> would be as follow:</p>
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">create</code> method in superclass when calling <code class="language-plaintext highlighter-rouge">user.create</code> in <code class="language-plaintext highlighter-rouge">.../research_activerecord/app/models/user.rb</code></li>
-  <li>the superclass of <code class="language-plaintext highlighter-rouge">User</code>: <code class="language-plaintext highlighter-rouge">ApplicationRecord</code></li>
-  <li>the superclass of <code class="language-plaintext highlighter-rouge">ApplicationRecord</code>: <code class="language-plaintext highlighter-rouge">ActiveRecord::Base</code></li>
-  <li>Have a look at <code class="language-plaintext highlighter-rouge">base.rb</code>
-    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">ActiveRecord</span> <span class="c1">#:nodoc:</span>
-  <span class="o">...</span>
-  <span class="k">class</span> <span class="nc">Base</span>
- <span class="o">...</span>
- <span class="kp">extend</span> <span class="no">ConnectionHandling</span>
- <span class="o">...</span>
- <span class="kp">include</span> <span class="no">Core</span>
- <span class="kp">include</span> <span class="no">Persistence</span>
- <span class="o">...</span>
-  <span class="k">end</span>
-  <span class="o">...</span>
-<span class="k">end</span>
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<p>Given that we know, <code class="language-plaintext highlighter-rouge">create</code> methods equals to <code class="language-plaintext highlighter-rouge">new</code> + <code class="language-plaintext highlighter-rouge">save</code>, then in <code class="language-plaintext highlighter-rouge">Core</code>, there are methods such as <code class="language-plaintext highlighter-rouge">initialize</code> and in <code class="language-plaintext highlighter-rouge">Persistence</code>, there are methods such as <code class="language-plaintext highlighter-rouge">save</code>.</p>
-
-<ol>
-  <li>The <code class="language-plaintext highlighter-rouge">create</code> method in <code class="language-plaintext highlighter-rouge">persistence.rb</code></li>
-</ol>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">attributes</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">attributes</span><span class="p">.</span><span class="nf">is_a?</span><span class="p">(</span><span class="no">Array</span><span class="p">)</span>
-    <span class="n">attributes</span><span class="p">.</span><span class="nf">collect</span> <span class="p">{</span> <span class="o">|</span><span class="kp">attr</span><span class="o">|</span> <span class="n">create</span><span class="p">(</span><span class="kp">attr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
-  <span class="k">else</span>
-    <span class="n">object</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-    <span class="n">object</span><span class="p">.</span><span class="nf">save</span>
-    <span class="n">object</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre></div></div>
-<p>As you can see, it will call <code class="language-plaintext highlighter-rouge">new</code> and then <code class="language-plaintext highlighter-rouge">save</code> method.</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">new</code> (skip)</li>
-  <li><code class="language-plaintext highlighter-rouge">save</code> in <code class="language-plaintext highlighter-rouge">persistence.rb</code> -&gt; <code class="language-plaintext highlighter-rouge">create_or_update</code> -&gt; <code class="language-plaintext highlighter-rouge">result = new_record? ? _create_record(&amp;block) : _update_record(&amp;block)</code> -&gt; <code class="language-plaintext highlighter-rouge">_create_record(&amp;block)</code> -&gt; <code class="language-plaintext highlighter-rouge">yield(self)</code> (追不下去)</li>
-</ol>
-
-<h5 id="how-these-general-methods-link-the-plain-sql">How these general methods link the plain SQL</h5>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">insert_all</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/persistence.rb</code> -&gt; <code class="language-plaintext highlighter-rouge">InsertAll.new(self, attributes, on_duplicate: :skip, returning: returning, unique_by: unique_by).execute</code></li>
-  <li><code class="language-plaintext highlighter-rouge">initialize(model, inserts, on_duplicate:, returning: nil, unique_by: nil)</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/insert_all.rb</code> and the model is <code class="language-plaintext highlighter-rouge">User</code> in my case</li>
-  <li><code class="language-plaintext highlighter-rouge">execute</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/insert_all.rb</code></li>
-  <li><code class="language-plaintext highlighter-rouge">execute</code> -&gt; <code class="language-plaintext highlighter-rouge">connection.exec_insert_all to_sql, message</code></li>
-  <li><code class="language-plaintext highlighter-rouge">connection</code> in <code class="language-plaintext highlighter-rouge">attr_reader :connection</code>, which means
-    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">connection</span>
-  <span class="vi">@connection</span>
-<span class="k">end</span>
-</code></pre></div>    </div>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">@connection = model.connection</code> and <code class="language-plaintext highlighter-rouge">model</code> is the <code class="language-plaintext highlighter-rouge">self</code> in <code class="language-plaintext highlighter-rouge">InsertAll.new</code>, which is <code class="language-plaintext highlighter-rouge">User</code> in my case.</li>
-  <li><code class="language-plaintext highlighter-rouge">exec_insert_all</code> in <code class="language-plaintext highlighter-rouge">database_statements.rb</code></li>
-  <li><code class="language-plaintext highlighter-rouge">to_sql</code> = <code class="language-plaintext highlighter-rouge">connection.build_insert_sql(ActiveRecord::InsertAll::Builder.new(self))</code></li>
-  <li><code class="language-plaintext highlighter-rouge">build_insert_sql</code> can be in <code class="language-plaintext highlighter-rouge">abstract_adapter.rb</code>, <code class="language-plaintext highlighter-rouge">abstract_mysql_adapter.rb</code>, <code class="language-plaintext highlighter-rouge">postgresql_adapter.rb</code>, or <code class="language-plaintext highlighter-rouge">sqlite3_adapter.rb</code></li>
-  <li>rails determines which <code class="language-plaintext highlighter-rouge">build_insert_sql</code> to be used by <code class="language-plaintext highlighter-rouge">connection</code></li>
-</ol>
-
-<h5 id="how-rails-determines-which-plain-sql-being-used-by-connection-methods">How rails determines which plain SQL being used by connection methods</h5>
-
-<p>Then how does it determine what SQL command to use?</p>
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">establish_connection</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/connection_handling.rb</code></li>
-  <li>it determines which adapter to be used through <code class="language-plaintext highlighter-rouge">establish_connection</code>
-    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">establish_connection</span><span class="p">(</span>
-  <span class="ss">adapter:  </span><span class="s2">"mysql2"</span><span class="p">,</span>
-  <span class="ss">host:     </span><span class="s2">"localhost"</span><span class="p">,</span>
-  <span class="ss">username: </span><span class="s2">"myuser"</span><span class="p">,</span>
-  <span class="ss">password: </span><span class="s2">"mypass"</span><span class="p">,</span>
-  <span class="ss">database: </span><span class="s2">"somedatabase"</span>
-<span class="p">)</span>
-</code></pre></div>    </div>
-  </li>
-  <li>and it will call <code class="language-plaintext highlighter-rouge">connection_handler</code>, which is <code class="language-plaintext highlighter-rouge">self.connection_handler</code> in <code class="language-plaintext highlighter-rouge">core.rb</code></li>
-  <li>call <code class="language-plaintext highlighter-rouge">default_connection_handler</code> given there is no thread -&gt; <code class="language-plaintext highlighter-rouge">self.default_connection_handler = ConnectionAdapters::ConnectionHandler.new</code></li>
-  <li><code class="language-plaintext highlighter-rouge">initialize</code> in <code class="language-plaintext highlighter-rouge">class ConnectionHandler</code> of <code class="language-plaintext highlighter-rouge">connection_pool.rb</code></li>
-  <li>so it actually call <code class="language-plaintext highlighter-rouge">establish_connection</code> in <code class="language-plaintext highlighter-rouge">connection_pool.rb</code> -&gt; <code class="language-plaintext highlighter-rouge">resolve_pool_config</code> -&gt; <code class="language-plaintext highlighter-rouge">path_to_adapter = "active_record/connection_adapters/#{db_config.adapter}_adapter"</code> -&gt; <code class="language-plaintext highlighter-rouge">require path_to_adapter</code> (<strong>where the determination of adapter</strong>)</li>
-  <li>Take mysql as example, it require <code class="language-plaintext highlighter-rouge">.../lib/active_record/connection_adapters/mysql2_adapter.rb</code> -&gt; <code class="language-plaintext highlighter-rouge">require "active_record/connection_adapters/abstract_mysql_adapter"</code></li>
-  <li><code class="language-plaintext highlighter-rouge">build_insert_sql</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/connection_adapters/abstract_mysql_adapter</code></li>
-</ol>
-
-<h5 id="the-conecept-of-design-pattern-of-these-adapters">The conecept of design pattern of these adapters</h5>
-<p>to be continued</p>
-
-<p>SQLite3Adapter &lt; AbstractAdapter</p>
-
-<p>Mysql2Adapter &lt; AbstractMysqlAdapter &lt; AbstractAdapter</p>
-
-<p>PostgreSQLAdapter &lt; AbstractAdapter</p>
-
-<p>之後再從這裡繼續，就是要大概知道這個轉接器怎麼出來的，還有他會怎麼處理 create，至於 object or class adapter 我實在分不出來，算了</p>
-
-<h4 id="find">find</h4>
-
-<h4 id="update">update</h4>
-
-<h4 id="destroy">destroy</h4>
+<p>So please refer to <a href="/blog/rails/2021/03/02/model.html">model</a> for more information</p>
 
 <h3 id="validation">Validation</h3>
+
+<p>Validations: Validations are rules that ensure the data stored in a model is valid and consistent with the requirements of the application. They can be used to enforce constraints such as required fields, data format, and uniqueness.</p>
 
 <p>For data to be consistent in a model, we should validate it <strong>before</strong> inserting into a database. The methods for validation in <a href="https://guides.rubyonrails.org/active_record_validations.html">Active Record Validation - Ruby on Rails</a></p>
 
 <h3 id="callbacks">Callbacks</h3>
+
+<p>Callbacks: Callbacks are methods that are automatically called at certain points in the lifecycle of a model, such as before or after a record is saved or deleted. They can be used to perform additional operations or validations on the data.</p>
 
 <p>Callback is the function that are going to be call after a function executed.</p>
 
@@ -452,6 +323,126 @@ end
 <p>Notice! Employer and Employee use the concept of STI(Single-table inheritance).</p>
 
 <p>Try to understand how to query in rails with <a href="https://guides.rubyonrails.org/active_record_querying.html">ActiveRecord Query Interface</a></p>
+
+<h2 id="what">what</h2>
+
+<h3 id="source-code-of-adapter-in-rails-active-record">Source Code of adapter in rails active record</h3>
+
+<p>Please <code class="language-plaintext highlighter-rouge">rails new</code> a project and create a random table (I create table with <code class="language-plaintext highlighter-rouge">rails g scaffold User name:string email:string</code> and then <code class="language-plaintext highlighter-rouge">rails db:migrate</code>) and then we can create a new User with <code class="language-plaintext highlighter-rouge">test = User.create</code>. To track the source code, <code class="language-plaintext highlighter-rouge">bundle open activerecord</code> and it will open the gem in <code class="language-plaintext highlighter-rouge">.rvm/gems/ruby-2.7.4/gems/activerecord-6.1.4.4/lib</code>. I will only track the <code class="language-plaintext highlighter-rouge">create</code> method because I only want to know the design. We can track it with <code class="language-plaintext highlighter-rouge">binding.pry</code>. Try to find the raw SQL code. After you have done, input <code class="language-plaintext highlighter-rouge">bundle pristine activerecord</code> to recover the gems.</p>
+
+<p>Input <code class="language-plaintext highlighter-rouge">ActiveRecord::Base.connection.adapter_name</code> in console, to know what database system using</p>
+
+<p><code class="language-plaintext highlighter-rouge">User.create</code> link to general methods of ActiveRecord of create: Fire up the rails console, and input <code class="language-plaintext highlighter-rouge">User.create</code>, then the SQL would be</p>
+
+<pre><code class="language-SQL">TRANSACTION (0.1ms)  begin transaction
+User Create (0.4ms)  INSERT INTO "users" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2022-01-11 02:01:31.475084"], ["updated_at", "2022-01-11 02:01:31.475084"]]
+TRANSACTION (1.0ms)  commit transaction
+</code></pre>
+
+<p>I am using SQLite and the key issue is why rails knows to use the INSERT grammar for SQLite instead of MySQL or PG.</p>
+
+<p>Add <code class="language-plaintext highlighter-rouge">binding.pry</code> in class as follow:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="nb">binding</span><span class="p">.</span><span class="nf">pry</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>and input <code class="language-plaintext highlighter-rouge">User.create</code> in rails console again. Then the data flow of <code class="language-plaintext highlighter-rouge">create</code> would be as follow:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">create</code> method in superclass when calling <code class="language-plaintext highlighter-rouge">user.create</code> in <code class="language-plaintext highlighter-rouge">.../research_activerecord/app/models/user.rb</code></li>
+  <li>the superclass of <code class="language-plaintext highlighter-rouge">User</code> is <code class="language-plaintext highlighter-rouge">ApplicationRecord</code></li>
+  <li>the superclass of <code class="language-plaintext highlighter-rouge">ApplicationRecord</code> is <code class="language-plaintext highlighter-rouge">ActiveRecord::Base</code></li>
+  <li>Have a look at <code class="language-plaintext highlighter-rouge">base.rb</code></li>
+</ol>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nn">ActiveRecord</span> <span class="c1">#:nodoc:</span>
+  <span class="o">...</span>
+  <span class="k">class</span> <span class="nc">Base</span>
+    <span class="o">...</span>
+    <span class="kp">extend</span> <span class="no">ConnectionHandling</span>
+    <span class="o">...</span>
+    <span class="kp">include</span> <span class="no">Core</span>
+    <span class="kp">include</span> <span class="no">Persistence</span>
+    <span class="o">...</span>
+  <span class="k">end</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Given that we know, <code class="language-plaintext highlighter-rouge">create</code> methods equals to <code class="language-plaintext highlighter-rouge">new</code> + <code class="language-plaintext highlighter-rouge">save</code>, then in <code class="language-plaintext highlighter-rouge">Core</code>, there are methods such as <code class="language-plaintext highlighter-rouge">initialize</code> and in <code class="language-plaintext highlighter-rouge">Persistence</code>, there are methods such as <code class="language-plaintext highlighter-rouge">save</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">create</code> method in <code class="language-plaintext highlighter-rouge">persistence.rb</code></p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">attributes</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">attributes</span><span class="p">.</span><span class="nf">is_a?</span><span class="p">(</span><span class="no">Array</span><span class="p">)</span>
+    <span class="n">attributes</span><span class="p">.</span><span class="nf">collect</span> <span class="p">{</span> <span class="o">|</span><span class="kp">attr</span><span class="o">|</span> <span class="n">create</span><span class="p">(</span><span class="kp">attr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">object</span> <span class="o">=</span> <span class="n">new</span><span class="p">(</span><span class="n">attributes</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+    <span class="n">object</span><span class="p">.</span><span class="nf">save</span>
+    <span class="n">object</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>As you can see, it will call <code class="language-plaintext highlighter-rouge">new</code> and then <code class="language-plaintext highlighter-rouge">save</code> method. We can</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">new</code> (to eb continued)</li>
+  <li><code class="language-plaintext highlighter-rouge">save</code> in <code class="language-plaintext highlighter-rouge">persistence.rb</code> -&gt; <code class="language-plaintext highlighter-rouge">create_or_update</code> -&gt; <code class="language-plaintext highlighter-rouge">result = new_record? ? _create_record(&amp;block) : _update_record(&amp;block)</code> -&gt; <code class="language-plaintext highlighter-rouge">_create_record(&amp;block)</code> -&gt; <code class="language-plaintext highlighter-rouge">yield(self)</code></li>
+</ul>
+
+<p>It is tedious to probe the methods. The general ideas are these methods will link to <code class="language-plaintext highlighter-rouge">build_insert_sql</code> of <code class="language-plaintext highlighter-rouge">connection</code> as follow:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">insert_all</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/persistence.rb</code> -&gt; <code class="language-plaintext highlighter-rouge">InsertAll.new(self, attributes, on_duplicate: :skip, returning: returning, unique_by: unique_by).execute</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">initialize(model, inserts, on_duplicate:, returning: nil, unique_by: nil)</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/insert_all.rb</code> and the model is <code class="language-plaintext highlighter-rouge">User</code> in my case</li>
+      <li><code class="language-plaintext highlighter-rouge">execute</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/insert_all.rb</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">execute</code> -&gt; <code class="language-plaintext highlighter-rouge">connection.exec_insert_all to_sql, message</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">connection</code> in <code class="language-plaintext highlighter-rouge">attr_reader :connection</code>, which means
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">connection</span>
+   <span class="vi">@connection</span>
+ <span class="k">end</span>
+</code></pre></div>        </div>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">@connection = model.connection</code> and <code class="language-plaintext highlighter-rouge">model</code> is the <code class="language-plaintext highlighter-rouge">self</code> in <code class="language-plaintext highlighter-rouge">InsertAll.new</code>, which is <code class="language-plaintext highlighter-rouge">User</code> in my case.</li>
+      <li><code class="language-plaintext highlighter-rouge">exec_insert_all</code> in <code class="language-plaintext highlighter-rouge">database_statements.rb</code></li>
+      <li><code class="language-plaintext highlighter-rouge">to_sql</code> = <code class="language-plaintext highlighter-rouge">connection.build_insert_sql(ActiveRecord::InsertAll::Builder.new(self))</code> (where connection transfer code into SQL)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">build_insert_sql</code> can be in <code class="language-plaintext highlighter-rouge">abstract_adapter.rb</code>, <code class="language-plaintext highlighter-rouge">abstract_mysql_adapter.rb</code>, <code class="language-plaintext highlighter-rouge">postgresql_adapter.rb</code>, or <code class="language-plaintext highlighter-rouge">sqlite3_adapter.rb</code></li>
+  <li>rails determines which <code class="language-plaintext highlighter-rouge">build_insert_sql</code> to be used by <code class="language-plaintext highlighter-rouge">connection</code></li>
+</ul>
+
+<p>The most important part is <code class="language-plaintext highlighter-rouge">to_sql</code>. Then now the problem is how rails determines with adapter to be used:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">establish_connection</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/connection_handling.rb</code></li>
+  <li>it determines which adapter to be used through <code class="language-plaintext highlighter-rouge">establish_connection</code></li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span><span class="p">.</span><span class="nf">establish_connection</span><span class="p">(</span>
+  <span class="ss">adapter:  </span><span class="s2">"mysql2"</span><span class="p">,</span>
+  <span class="ss">host:     </span><span class="s2">"localhost"</span><span class="p">,</span>
+  <span class="ss">username: </span><span class="s2">"myuser"</span><span class="p">,</span>
+  <span class="ss">password: </span><span class="s2">"mypass"</span><span class="p">,</span>
+  <span class="ss">database: </span><span class="s2">"somedatabase"</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>and it will call <code class="language-plaintext highlighter-rouge">connection_handler</code>, which is <code class="language-plaintext highlighter-rouge">self.connection_handler</code> in <code class="language-plaintext highlighter-rouge">core.rb</code></li>
+  <li>call <code class="language-plaintext highlighter-rouge">default_connection_handler</code> given there is no thread -&gt; <code class="language-plaintext highlighter-rouge">self.default_connection_handler = ConnectionAdapters::ConnectionHandler.new</code></li>
+  <li><code class="language-plaintext highlighter-rouge">initialize</code> in <code class="language-plaintext highlighter-rouge">class ConnectionHandler</code> of <code class="language-plaintext highlighter-rouge">connection_pool.rb</code></li>
+  <li>so it actually call <code class="language-plaintext highlighter-rouge">establish_connection</code> in <code class="language-plaintext highlighter-rouge">connection_pool.rb</code> -&gt; <code class="language-plaintext highlighter-rouge">resolve_pool_config</code> -&gt; <code class="language-plaintext highlighter-rouge">path_to_adapter = "active_record/connection_adapters/#{db_config.adapter}_adapter"</code> -&gt; <code class="language-plaintext highlighter-rouge">require path_to_adapter</code> (<strong>where the determination of adapter</strong>)</li>
+  <li>Take mysql as example, it require <code class="language-plaintext highlighter-rouge">.../lib/active_record/connection_adapters/mysql2_adapter.rb</code> -&gt; <code class="language-plaintext highlighter-rouge">require "active_record/connection_adapters/abstract_mysql_adapter"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">build_insert_sql</code> in <code class="language-plaintext highlighter-rouge">.../lib/active_record/connection_adapters/abstract_mysql_adapter</code></li>
+</ul>
 
 <h2 id="reference">Reference</h2>
 
