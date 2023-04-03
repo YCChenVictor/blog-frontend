@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Action Cable
+title:
 date: '2022-03-06'
-categories: presentation rails
-publish: true
+categories: rails
+note: going to connect to overview.md
+publish:
 ---
 
 ## Introduction
