@@ -22,12 +22,14 @@
     "acorn-import-assertions": "^1.8.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-react-transform": "^3.0.0",
+    "cheerio": "^1.0.0-rc.12",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.9",
     "react-dom": "^18.2.0",
     "react-force-graph-2d": "^1.24.0",
     "react-pro-sidebar": "^1.0.0-alpha.9",
     "react-router-dom": "^6.4.5",
-    "react-router-hash-link": "^2.4.3"
+    "react-router-hash-link": "^2.4.3",
+    "request": "^2.88.2"
   }
 }

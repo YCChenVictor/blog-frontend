@@ -1,46 +1,23 @@
-import React, { useMemo, useState, useEffect } from "react";
+// import React, { useMemo, useState, useEffect } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 
 function NodeGraph() {
-  const endpoint = document.querySelector('#endpoint');
-  const baseurl = document.querySelector('#base');
-
-  const [nodes, setNodes] = useState([]);
-  const [links, setLinks] = useState([]);
-  useEffect(() => {
-    fetch(`${baseurl.textContent}/articles`)
-      .then(response => response.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const articlesNode = doc.querySelector('#articles');
-        const articles = Array.from(articlesNode.querySelectorAll('div')).filter(div => div.querySelector('div'));
-        return articles
-      })
-      .then(articles => {
-        const nodes = articles.map(article => ({
-          id: article.getAttribute('id'),
-          name: article.getAttribute('id'),
-          href: article.querySelector('a').getAttribute('href')
-        }))
-        setNodes(nodes)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    const hrefs = nodes.map(node => node.href)
-    const requests = hrefs.map(href => fetch(href));
-      
-    Promise.all(requests)
-      .then(([item1, item2]) => {
-        console.log(item1)
-        console.log(item2)
-      })
-      .catch(error => {
-        console.log(error)
-      });
-
+  const nodes = [
+    { id: 1, name: 'Node 1' },
+    { id: 2, name: 'Node 2' },
+    { id: 3, name: 'Node 3' }
+  ];
+  
+  const links = [
+    { source: 1, target: 2 },
+    { source: 2, target: 3 },
+    { source: 3, target: 1 }
+  ];
+  
+  return <ForceGraph2D
+    graphData={{ nodes, links }}
+    nodeLabel="name"
+  />
     // Promise.all([ // Try to scrape local files
 
     //   fetch("http://localhost:3000/items/get"),
@@ -78,7 +55,6 @@ function NodeGraph() {
     //     // const doc = parser.parseFromString(html, 'text/html');
     //     // console.log(doc)
     //   })
-  })
   
     // fetch(`${url}/articles`)
     //   .then(response => response.text())

@@ -23,7 +23,8 @@ I need to structure my thoughts.
 
 ## How?
 
-* read rails til test, rspec
+* solve all the warnings on webpack
+* read fashion trends in aesthetics
 * have a better table CSS
 * all articles should be as independent as possible
 * split complexity and problem solving

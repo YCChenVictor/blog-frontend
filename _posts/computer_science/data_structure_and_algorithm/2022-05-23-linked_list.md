@@ -6,7 +6,7 @@ categories: DSA
 note:
 mathjax: true
 mermaid: true
-publish: true
+publish:
 ---
 
 ## Introduction

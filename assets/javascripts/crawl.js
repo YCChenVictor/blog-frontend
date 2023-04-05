@@ -37,9 +37,25 @@ function crawl() {
 }
 
 function desiredFormat(structure) {
-  const node = structure.keys
-  
-  return node
+  const nodes = Object.keys(structure).map((value, index) => {
+    return {id: index + 1, name: value}
+  })
+  const links = Object.entries(structure).map(([key, value]) => {
+    return value.map((item) => {
+      return {source: getIdFromNodeName(key), target: getIdFromNodeName(item)}
+    })
+  }).flat()
+
+  function getIdFromNodeName(name) {
+    result = nodes.find(node => node.name === name)
+    if(result) {
+      return result['id']
+    } else {
+      null
+    }
+  }
+
+  return { nodes: nodes, links: links }
 }
 
-crawl().then((structure) => desiredFormat(structure))
+crawl().then((structure) => console.log(desiredFormat(structure)))
