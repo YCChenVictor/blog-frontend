@@ -2,10 +2,10 @@
 layout: page
 title: Category
 permalink: category
+note: this can be the backstage for me
 ---
 <div class='p-16'>
   <div id='category'></div>
-
   {% assign rawcategories = "" %}
   {% for post in site.posts %}
     {% assign tcategories = post.categories | join:'|' | append:'|' %}
@@ -52,5 +52,3 @@ permalink: category
     {% endfor %}
   </div>
 </div>
-
-<script type="text/javascript" src="{{site.baseurl}}/assets/javascripts/bundle.js" charset="utf-8"></script>

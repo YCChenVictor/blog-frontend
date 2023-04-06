@@ -23,8 +23,12 @@ I need to structure my thoughts.
 
 ## How?
 
+* grokking the simplicity
+* better href style
+* migrate to react (jekyll has no update since 2019)
 * solve all the warnings on webpack
 * read fashion trends in aesthetics
+* re-design in minimalist way
 * have a better table CSS
 * all articles should be as independent as possible
 * split complexity and problem solving

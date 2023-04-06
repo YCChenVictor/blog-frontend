@@ -2,7 +2,7 @@
 title: (Frontend_3) CSS inline & block
 description: ''
 date: '2021-03-25T05:46:10.207Z'
-categories: css
+categories: CSS
 keywords: []
 note: 還有一些內容沒整理
 slug: /@t5204713910/frontend-3-inline-block-9e33b99da580

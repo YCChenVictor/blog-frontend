@@ -1,7 +1,7 @@
 module.exports = {
   entry: "./webpack/entry.js",
   output: {
-    path: __dirname + "/assets/javascripts/",
+    path: __dirname + "/assets/javascript/",
     filename: "bundle.js"
   },
   module: {
