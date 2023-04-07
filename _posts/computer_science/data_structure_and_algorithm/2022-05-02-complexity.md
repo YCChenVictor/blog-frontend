@@ -9,7 +9,7 @@ mathjax: true
 mermaid: true
 p5:
 threeJS:
-publish: true
+publish:
 ---
 
 ## Introduction

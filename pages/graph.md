@@ -1,9 +1,11 @@
 ---
 layout: page
-title: Category
-permalink: category
-note: this can be the backstage for me
+title: Explore
+permalink: /graph
 ---
+
+<div id='node-graph'></div>
+
 <div class='p-16'>
   <div id='category'></div>
   {% assign rawcategories = "" %}

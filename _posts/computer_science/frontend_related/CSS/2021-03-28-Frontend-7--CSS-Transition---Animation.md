@@ -4,7 +4,7 @@ title: (CSS_7) Transition & Animation
 description: ''
 date: '2021-03-28T08:13:52.813Z'
 states: unmodified
-categories: css
+categories:
 publish:
 ---
 

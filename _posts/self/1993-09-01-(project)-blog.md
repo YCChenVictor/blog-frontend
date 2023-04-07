@@ -23,7 +23,15 @@ I need to structure my thoughts.
 
 ## How?
 
-* read rails til test, rspec
+* grokking the simplicity
+* connect code pan API, which means I can create code result on a defined area
+* organize the css style to main.css
+* Try to start from self/overview
+* better href style
+* migrate to react (jekyll has no update since 2019)
+* solve all the warnings on webpack
+* read fashion trends in aesthetics
+* re-design in minimalist way
 * have a better table CSS
 * all articles should be as independent as possible
 * split complexity and problem solving

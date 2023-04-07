@@ -2,17 +2,15 @@
 layout: default
 ---
 
-<div class="mx-auto text-center prose prose-{{site.theme-color}}">
+<div class="mx-auto text-center prose bg-gray-600 p-4">
   <div>
-    <img class="object-cover mx-auto" src="{{site.baseurl}}/assets/img/home_background.jpeg"
+    <img class="object-cover mx-auto p-2" src="{{site.baseurl}}/assets/img/home_background.jpeg"
       alt="author profile image">
   </div>
 
   <div>
-    Hi, welcome to my blog. In each topic, please start the reading from overview or use the following node graph.
+    Hi, welcome to my blog. Explore <a href="{{site.baseurl}}/graph">here</a>
   </div>
-
-  <!-- <div id='node-graph' class="border-4 border-sky-500"></div> -->
 </div>
 
 {% include footer.html %}
