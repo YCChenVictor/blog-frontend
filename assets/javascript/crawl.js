@@ -26,9 +26,13 @@ function desiredFormat(structure) {
   })
   const links = Object.entries(structure).map(([key, value]) => {
     return value.map((item) => {
-      return {source: getIdFromNodeName(key), target: getIdFromNodeName(item)}
+      const source = getIdFromNodeName(key)
+      const target = getIdFromNodeName(item)
+      if(source && target) {
+        return {source: source, target: target}
+      }
     })
-  }).flat()
+  }).flat().filter(obj => obj !== undefined)
 
   function getIdFromNodeName(name) {
     result = nodes.find(node => node.name === name)
@@ -59,11 +63,12 @@ function crawl() { // Promise in this function
           const href = $(link).attr('href');
           if (href && href.startsWith('/blog') && href.endsWith('html')) {
             const absoluteUrl = domain + href;
-            childNodes.push(absoluteUrl);
+            childNodes.push(href);
             queue.push(absoluteUrl);
           }
         });
-        structure[url] = childNodes;
+        parentNode = url.replace(domain, "")
+        structure[parentNode] = childNodes;
         resolve(crawl()); // resolve with calling this function again
       }
     });
@@ -71,4 +76,7 @@ function crawl() { // Promise in this function
 }
 
 // currently, just store the result as a JSON file in frontend.
-crawl().then((structure) => storeAsFile(desiredFormat(structure)))
+crawl().then((structure) => {
+  console.log(structure)
+  storeAsFile(desiredFormat(structure)
+)})

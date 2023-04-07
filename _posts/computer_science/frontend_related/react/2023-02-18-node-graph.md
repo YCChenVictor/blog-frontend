@@ -26,39 +26,38 @@ I want to create node plot in my blog.
 ### init
 
 * install
-```bash
-npm install react-force-graph-2d
-```
+  ```bash
+  npm install react-force-graph-2d
+  ```
+
 * Basic example
-```javascript
-import { ForceGraph2D } from 'react-force-graph-2d';
-
-const nodes = [
-  { id: 1, name: 'Node 1' },
-  { id: 2, name: 'Node 2' },
-  { id: 3, name: 'Node 3' }
-];
-
-const links = [
-  { source: 1, target: 2 },
-  { source: 2, target: 3 },
-  { source: 3, target: 1 }
-];
-
-<ForceGraph2D
-  graphData={{ nodes, links }}
-  nodeLabel="name"
-/>
-```
-* with react properties: to be continued
+  ```javascript
+  import { ForceGraph2D } from 'react-force-graph-2d';
+  
+  const nodes = [
+    { id: 1, name: 'Node 1' },
+    { id: 2, name: 'Node 2' },
+    { id: 3, name: 'Node 3' }
+  ];
+  
+  const links = [
+    { source: 1, target: 2 },
+    { source: 2, target: 3 },
+    { source: 3, target: 1 }
+  ];
+  
+  <ForceGraph2D
+    graphData={{ nodes, links }}
+    nodeLabel="name"
+  />
+  ```
 
 ## What?
 
-give an example
-
-[test]({{site.baseurl}}/test/2021/06/14/xxx.html)
-
-<img src="{{site.baseurl}}/assets/img/xxx.png" alt="">
+* real world example: [graph]({{site.baseurl}}/graph)
+* code:
+  ```javascript
+  ```
 
 ## Reference
 
