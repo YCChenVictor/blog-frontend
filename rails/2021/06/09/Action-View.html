@@ -18,14 +18,15 @@
     <script>hljs.highlightAll();</script>
   </head>
 
-  <body class="font-mono list-disc">
-    <div class="pt-12 pb-4">
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
   <div class="flex">
-    <div class="flex absolute left-0 top-0">
-      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
-        alt="author profile image">
+    <div class="absolute left-0 top-0">
+      <a href="/blog/">
+        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
+      </a>
     </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
       <div class="w-full relative flex justify-center">
@@ -43,26 +44,13 @@
 
       <div class="absolute right-16 flex hidden md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-           <!-- don't show Home in menu for Homepage -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/">
-              Home
-            </a>
-          
 
         <!-- dynamic menu based on navigation info in _config.yml -->
         
            <!-- don't show current page in menu -->
             <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
               href="/blog/about">
-              About
-            </a>
-          
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/category">
-              Category
+              About Me
             </a>
           
         
@@ -74,15 +62,15 @@
 
       
       
-  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
-  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">(Rails) Action View</h1>
-  <div class="text-center">
+<div class='p-16 prose bg-gray-600'>
+  <h1 class='text-center mt-6 mb-6'>(Rails) Action View</h1>
+  <div class='text-center'>
     
   </div>
-  <div class="md:px-4 md:grid lg:px-72">
+  <div class='md:px-4 md:grid lg:px-72'>
     <h2 id="introduction">Introduction</h2>
 
 <p>Action View templates are written with embedded Ruby in tags <strong>mingled</strong> with HTML. Action View responsible for compiling the response from action controller, communicating with the database and performing CRUD actions. There are also action view helpers for creating neat templates for views.</p>
@@ -206,30 +194,9 @@
 </div>
 
 <footer class="relative px-4 pt-4 pb-4">
-  
-  <!-- divider -->
-  <div class="relative my-8">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-200"></div>
-    </div>
-    <div class="relative flex justify-center ">
-      <span class="bg-white px-2 text-gray-200">
-        <i class="text-xs far fa-square"></i>
-      </span>
-    </div>
-  </div>
-
-  <!-- footer msg -->
+    <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
-    <div class="text-sm text-gray-300">
-      © <span id="get-current-year"></span>
-      
-      <a href="" class="!no-underline">
-        
-      </a>
-      
-    </div>
-  </div>
+    <br>
   </div>
 </footer>
 
@@ -237,7 +204,7 @@
         type="button"
         data-mdb-ripple="true"
         data-mdb-ripple-color="light"
-        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        class="scrollTopBtn"
         id="btn-back-to-top"
       >
         <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
@@ -293,5 +260,5 @@
     }
   </script>
 
-  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
 </html>

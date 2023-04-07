@@ -18,14 +18,15 @@
     <script>hljs.highlightAll();</script>
   </head>
 
-  <body class="font-mono list-disc">
-    <div class="pt-12 pb-4">
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
   <div class="flex">
-    <div class="flex absolute left-0 top-0">
-      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
-        alt="author profile image">
+    <div class="absolute left-0 top-0">
+      <a href="/blog/">
+        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
+      </a>
     </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
       <div class="w-full relative flex justify-center">
@@ -43,26 +44,13 @@
 
       <div class="absolute right-16 flex hidden md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-           <!-- don't show Home in menu for Homepage -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/">
-              Home
-            </a>
-          
 
         <!-- dynamic menu based on navigation info in _config.yml -->
         
            <!-- don't show current page in menu -->
             <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
               href="/blog/about">
-              About
-            </a>
-          
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/category">
-              Category
+              About Me
             </a>
           
         
@@ -74,18 +62,38 @@
 
       
       
-  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
-  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Overview</h1>
-  <div class="text-center">
+<div class='p-16 prose bg-gray-600'>
+  <h1 class='text-center mt-6 mb-6'>Overview</h1>
+  <div class='text-center'>
     
   </div>
-  <div class="md:px-4 md:grid lg:px-72">
+  <div class='md:px-4 md:grid lg:px-72'>
     <h2 id="introduction">Introduction</h2>
 
-<p>This article collects basic concepts related to javascript. You can directly use the methods in browser console.</p>
+<p>JavaScript is used in conjunction with popular web development frameworks like React, Angular, and Vue.js on the client-side to build complex and interactive web applications. On the server-side, JavaScript is used with Node.js to build web applications using popular frameworks like Express.js and NestJS, which provide a robust and scalable platform for building server-side logic.</p>
+
+<ul>
+  <li>Object-oriented language
+    <ul>
+      <li>Using objects to represent data and functionality</li>
+      <li>This allows developers to create reusable code that can be organized into modules and classes, making it easier to maintain and update large codebase</li>
+    </ul>
+  </li>
+  <li>Client-side
+    <ul>
+      <li>Interact with the Document Object Model (DOM) of a web page, which allows developers to manipulate the content and structure of a page in real-time without requiring a full page refresh</li>
+    </ul>
+  </li>
+  <li>Server-side
+    <ul>
+      <li>NodeJS</li>
+      <li>Allows developers to use JavaScript to build full-stack web applications that can handle both client-side and server-side logic.</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="why">Why?</h2>
 
@@ -100,11 +108,123 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="es">ES</h3>
+<h3 id="execution-order">Execution Order</h3>
 
-<p>ECMAScript is a JavaScript standard intended to ensure the interoperability of web pages across different browsers.</p>
+<ul>
+  <li>Normally, from top to bottom</li>
+  <li>Function: If a function is defined in the file but not called until later in the code, the function definition will still be processed when the file is loaded, but the function itself will not be executed until it is called.</li>
+  <li>Asynchronous: If the JavaScript code makes use of asynchronous operations, such as fetching data from an external API, the order in which the code is executed may not be strictly linear. In such cases, the JavaScript runtime will handle the asynchronous operations separately from the main execution thread, and the order in which the asynchronous code is executed may not correspond to the order in which it appears in the file.</li>
+  <li>Module
+    <ul>
+      <li>Firstly, any top-level import statements will be processed before any other code in the file is executed. This means that if a module depends on another module, the dependent module must be imported first.</li>
+      <li>Secondly, any module-level statements, such as variable declarations or function definitions, will be processed. These statements can reference any imported modules, since the import statements have already been processed.</li>
+      <li>Finally, any top-level export statements will be processed. These statements determine which functions, objects, or variables from the module should be exposed to other modules that import it.</li>
+      <li>Modules are loaded and executed asynchronously, so the order in which they are loaded and executed may not correspond to the order in which they appear in the code. This can lead to issues with circular dependencies, where two or more modules depend on each other, but neither can be loaded until the other has been loaded. To avoid circular dependency issues, it’s important to design module dependencies carefully and avoid circular references wherever possible.</li>
+    </ul>
+  </li>
+</ul>
 
-<h3 id="protected-methods-in-class">protected methods in class</h3>
+<h3 id="datatype">datatype</h3>
+
+<p><a href="/blog/javascript/2022/12/25/datatype.html">datatype</a></p>
+
+<h3 id="operators">operators</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Arithmetic operators:</span>
+<span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>     <span class="c1">// addition</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">4</span><span class="p">;</span>    <span class="c1">// subtraction</span>
+<span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>     <span class="c1">// multiplication</span>
+<span class="kd">let</span> <span class="nx">d</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>     <span class="c1">// division</span>
+<span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">%</span> <span class="mi">4</span><span class="p">;</span>    <span class="c1">// modulus (returns the remainder after division)</span>
+
+<span class="c1">// Comparison operators:</span>
+<span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">;</span>      <span class="c1">// greater than (returns true)</span>
+<span class="kd">let</span> <span class="nx">g</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">;</span>    <span class="c1">// less than or equal to (returns false)</span>
+<span class="kd">let</span> <span class="nx">h</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">world</span><span class="dl">"</span><span class="p">;</span>  <span class="c1">// strict equality (returns false)</span>
+<span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">world</span><span class="dl">"</span><span class="p">;</span>  <span class="c1">// strict inequality (returns true)</span>
+
+<span class="c1">// Logical operators:</span>
+<span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">false</span><span class="p">;</span>    <span class="c1">// logical AND (returns false)</span>
+<span class="kd">let</span> <span class="nx">k</span> <span class="o">=</span> <span class="kc">true</span> <span class="o">||</span> <span class="kc">false</span><span class="p">;</span>    <span class="c1">// logical OR (returns true)</span>
+<span class="kd">let</span> <span class="nx">l</span> <span class="o">=</span> <span class="o">!</span><span class="kc">true</span><span class="p">;</span>            <span class="c1">// logical NOT (returns false)</span>
+</code></pre></div></div>
+
+<p>going to add more strange logic in javascript</p>
+
+<h3 id="control-structure">Control Structure</h3>
+
+<ul>
+  <li>Conditional Statements:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">if</code> statement
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">x is greater than 5</span><span class="dl">"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">switch</code> statement
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">day</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Monday</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">switch</span><span class="p">(</span><span class="nx">day</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">case</span> <span class="dl">"</span><span class="s2">Monday</span><span class="dl">"</span><span class="p">:</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">It's Monday!</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">break</span><span class="p">;</span>
+<span class="k">case</span> <span class="dl">"</span><span class="s2">Tuesday</span><span class="dl">"</span><span class="p">:</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">It's Tuesday!</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">break</span><span class="p">;</span>
+<span class="nl">default</span><span class="p">:</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">It's not Monday or Tuesday.</span><span class="dl">"</span><span class="p">);</span>
+<span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>Loops
+        <ul>
+          <li>for loop
+            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>            </div>
+          </li>
+          <li>while loop
+            <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Control Statements
+    <ul>
+      <li>break
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>continue (skip over an iteration of a loop)
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">continue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="function">function</h3>
+
+<h4 id="protected-methods-in-class">protected methods in class</h4>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
@@ -132,22 +252,9 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="datatype">datatype</h3>
-
-<p><a href="/blog/javascript/2022/12/25/datatype.html">datatype</a></p>
-
-<h3 id="methods">methods</h3>
+<h3 id="built-in-methods">built-in methods</h3>
 
 <p><a href="/blog/javascript/2022/12/25/methods.html">methods</a></p>
-
-<h3 id="logic">logic</h3>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">()</span> <span class="p">{</span>
-
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  
-<span class="p">}</span>
-</code></pre></div></div>
 
 <h3 id="error-handling">error handling</h3>
 
@@ -156,129 +263,96 @@
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">throw</span> <span class="dl">"</span><span class="s2">Error occurred</span><span class="dl">"</span><span class="p">;</span>
 </code></pre></div></div>
 
-<h3 id="import-and-export">import and export</h3>
+<h3 id="promises-and-asynchronous">Promises and Asynchronous</h3>
 
-<h4 id="function">function</h4>
-
-<p>export</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">subtract</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">add</span><span class="p">:</span> <span class="nx">add</span><span class="p">,</span>
-  <span class="na">subtract</span><span class="p">:</span> <span class="nx">subtract</span>
-<span class="p">};</span>
-</code></pre></div></div>
-
-<p>and import</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">add</span><span class="p">,</span> <span class="nx">subtract</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./math.js</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// Output: 5</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">subtract</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// Output: 3</span>
-</code></pre></div></div>
-
-<h4 id="class">class</h4>
-
+<p>Asynchronous programming is usually implemented using callbacks or Promises</p>
 <ul>
-  <li>export</li>
+  <li>JavaScript is a single-threaded language, which means that it can only execute one task at a time</li>
+  <li>A callback is a function that is passed as an argument to another function, and is called when the other function completes its task. This allows the program to continue executing while the asynchronous task is being performed in the background. We can ensure that the data is processed only when it is available, rather than blocking the program while waiting for the data to be fetched. This allows the program to continue executing other tasks while the data is being fetched in the background. For example,</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">User</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-  <span class="p">}</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fetchData</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// simulate fetching data from a server</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">},</span> <span class="mi">200</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Process this first</span><span class="dl">'</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">User</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">processData</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Processing data:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Call fetchData function and pass processData function as a callback</span>
+<span class="nx">fetchData</span><span class="p">(</span><span class="nx">processData</span><span class="p">);</span>
 </code></pre></div></div>
 
 <ul>
-  <li>import</li>
+  <li>Promise is another way to implement asynchronous programming in JavaScript. A Promise is an object that represents a value that may not be available yet. When a Promise is resolved, the value is made available to the program. Promises can be chained together using the then() method to create a sequence of asynchronous tasks. For example,</li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">User</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./user.js</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div></div>
-
-<h4 id="module">module</h4>
-
-<p>Export with</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">...</span>
-  <span class="na">create</span><span class="p">:</span> <span class="p">(</span><span class="nx">table</span><span class="p">,</span> <span class="nx">attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">db</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">()</span>
-    <span class="nx">db</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="s2">`INSERT INTO </span><span class="p">${</span><span class="nx">table</span><span class="p">}</span><span class="s2"> (</span><span class="p">${</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">keys</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)}</span><span class="s2">) VALUES (?) (</span><span class="p">${</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)}</span><span class="s2">)`</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span> <span class="p">?</span> <span class="nx">err</span><span class="p">.</span><span class="nx">stack</span> <span class="p">:</span> <span class="nx">res</span><span class="p">.</span><span class="nx">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">message</span><span class="p">);</span>
-      <span class="nx">client</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-    <span class="p">});</span>
-  <span class="p">},</span>
-  <span class="p">...</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fetchData</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// return a new Promise</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// simulate fetching data from a server</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+      <span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// fulfill the promise with the data</span>
+    <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+  <span class="p">});</span>
 <span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">processData</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Processing data:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Call fetchData function which returns a promise</span>
+<span class="nx">fetchData</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">processData</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
 </code></pre></div></div>
 
-<p>and import with</p>
+<ul>
+  <li>Async/await is a newer syntax introduced in ES2017 that provides a more intuitive way to write asynchronous code. It allows developers to write asynchronous code that looks and behaves like synchronous code, making it easier to reason about and debug. Async/await works by using Promises under the hood, but hides the details of Promise chaining and error handling.</li>
+</ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">base</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./base.js</span><span class="dl">'</span><span class="p">)</span>
+<h3 id="ajax">AJAX</h3>
 
-<span class="nx">base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="dl">'</span><span class="s1">user</span><span class="dl">'</span><span class="p">,</span> <span class="nx">attributes</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h4 id="variable">variable</h4>
-
-<p>export it</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">LocalStrategy</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">passport-local</span><span class="dl">'</span><span class="p">).</span><span class="nx">Strategy</span><span class="p">;</span>
-
-<span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">(</span>
-  <span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">User</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="nx">username</span> <span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="kd">const</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">({</span> <span class="na">username</span><span class="p">:</span> <span class="nx">username</span><span class="p">,</span> <span class="na">password</span><span class="p">:</span> <span class="nx">password</span> <span class="p">});</span>
-      <span class="nx">newUser</span><span class="p">.</span><span class="nx">save</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nx">done</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">newUser</span><span class="p">);</span>
-      <span class="p">});</span>
-    <span class="p">});</span>
-  <span class="p">}</span>
-<span class="p">));</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">passport</span> <span class="p">};</span>
-</code></pre></div></div>
-
-<p>and import it</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">passport</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./configs/passport.js</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">());</span>
-</code></pre></div></div>
-
-<h3 id="split-a-file">split a file</h3>
-
-<h3 id="callback-hell">callback hell</h3>
-
-<p><a href="/blog/javascript/2021/06/19/callback-hell.html">callback hell</a></p>
+<p><a href="/blog/javascript/2021/06/19/AJAX.html">AJAX</a></p>
 
 <h3 id="metaprogramming">metaprogramming</h3>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
+
+<h3 id="es">ES</h3>
+
+<p>ES stands for ECMAScript, which is a standardized scripting language specification that is used to implement JavaScript. ECMAScript is the official name for the scripting language that is commonly referred to as “JavaScript”. ECMAScript is maintained by the European Computer Manufacturers Association (ECMA) and is designed to be a cross-platform, vendor-neutral standard that can be used by multiple web browsers and other environments that support JavaScript. Each new version of ECMAScript (ES6, ES7, ES8, etc.) introduces new features and updates to the language, which are implemented by web browsers and other environments to provide developers with new tools and capabilities for building modern web applications.</p>
+
+<h3 id="json">JSON</h3>
+
+<h3 id="import-and-export">Import and Export</h3>
+
+<p><a href="/blog/javascript/2023/04/06/import-export.html">Import and Export</a></p>
+
+<h3 id="other-topics">other topics</h3>
+
+<ul>
+  <li>Objects and prototypes</li>
+  <li>Arrays and array methods</li>
+  <li>String manipulation</li>
+  <li>Regular expressions</li>
+  <li>Date and time</li>
+  <li>Error handling and debugging</li>
+  <li>DOM (Document Object Model) manipulation</li>
+  <li>Events and event handling</li>
+  <li>AJAX (Asynchronous JavaScript and XML)</li>
+  <li>APIs (Application Programming Interfaces)</li>
+  <li>ES6 (ECMAScript 2015) features, such as arrow functions, template literals, and classes</li>
+  <li>Functional programming concepts in JavaScript, such as higher-order functions, closures, and currying</li>
+  <li>Node.js and server-side JavaScript</li>
+  <li>Popular JavaScript libraries and frameworks, such as React, Angular, and Vue.js</li>
+  <li>Best practices and code organization</li>
+</ul>
 
 <h2 id="what">What</h2>
 
@@ -338,30 +412,9 @@
 </div>
 
 <footer class="relative px-4 pt-4 pb-4">
-  
-  <!-- divider -->
-  <div class="relative my-8">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-200"></div>
-    </div>
-    <div class="relative flex justify-center ">
-      <span class="bg-white px-2 text-gray-200">
-        <i class="text-xs far fa-square"></i>
-      </span>
-    </div>
-  </div>
-
-  <!-- footer msg -->
+    <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
-    <div class="text-sm text-gray-300">
-      © <span id="get-current-year"></span>
-      
-      <a href="" class="!no-underline">
-        
-      </a>
-      
-    </div>
-  </div>
+    <br>
   </div>
 </footer>
 
@@ -369,7 +422,7 @@
         type="button"
         data-mdb-ripple="true"
         data-mdb-ripple-color="light"
-        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        class="scrollTopBtn"
         id="btn-back-to-top"
       >
         <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
@@ -425,5 +478,5 @@
     }
   </script>
 
-  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
 </html>

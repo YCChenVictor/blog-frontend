@@ -18,14 +18,15 @@
     <script>hljs.highlightAll();</script>
   </head>
 
-  <body class="font-mono list-disc">
-    <div class="pt-12 pb-4">
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
   <div class="flex">
-    <div class="flex absolute left-0 top-0">
-      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
-        alt="author profile image">
+    <div class="absolute left-0 top-0">
+      <a href="/blog/">
+        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
+      </a>
     </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
       <div class="w-full relative flex justify-center">
@@ -43,26 +44,13 @@
 
       <div class="absolute right-16 flex hidden md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-           <!-- don't show Home in menu for Homepage -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/">
-              Home
-            </a>
-          
 
         <!-- dynamic menu based on navigation info in _config.yml -->
         
            <!-- don't show current page in menu -->
             <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
               href="/blog/about">
-              About
-            </a>
-          
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/category">
-              Category
+              About Me
             </a>
           
         
@@ -74,24 +62,70 @@
 
       
       
-  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
-  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Callback Hell</h1>
-  <div class="text-center">
+<div class='p-16 prose bg-gray-600'>
+  <h1 class='text-center mt-6 mb-6'>Ajax</h1>
+  <div class='text-center'>
     
   </div>
-  <div class="md:px-4 md:grid lg:px-72">
+  <div class='md:px-4 md:grid lg:px-72'>
     <h2 id="introduction">Introduction</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Async</code> lets some steps be skipped and do it latter once conditions matched. Asynchronous programming is common in javascript, because the process of rendering data from server takes time and we do not want our page to be stalled and the function to achieve it called callback function.</p>
+<p>AJAX is a web development technique that allows you to update parts of a web page without reloading the entire page.</p>
+
+<ul>
+  <li>AJAX = Asynchronous JavaScript and XML</li>
+  <li>To make web applications more interactive and responsive by exchanging data with a web server asynchronously</li>
+  <li>Asynchronous programming is common in javascript, because the process of rendering data from server takes time and we do not want our page to be stalled and the function to achieve it called callback function.</li>
+</ul>
 
 <h2 id="why">Why</h2>
 
-<p>Compare to other solution</p>
+<p>To create more efficient, dynamic, and interactive web applications</p>
+
+<ul>
+  <li>Enhanced User Experience: AJAX allows web applications to update specific parts of a web page without reloading the entire page, resulting in faster response times and a smoother user experience</li>
+  <li>Reduced Server Load: Because AJAX requests only update specific parts of a web page, it can help reduce the amount of data that needs to be transferred between the client and the server. This can help reduce server load, improve application performance, and reduce bandwidth usage.</li>
+  <li>Increased Efficiency: AJAX can help make web applications more efficient by enabling them to update data in real-time without requiring a page refresh</li>
+</ul>
 
 <h2 id="how">How</h2>
+
+<h3 id="plain-javascript">Plain Javascript</h3>
+
+<ul>
+  <li>Create an instance of the XMLHttpRequest object
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">xhttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Define a function to handle the response when it arrives.
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">xhttp</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// handle the response here</span>
+<span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Send the request to the server (GET request)
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">xhttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">url_to_server_script</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Handle the server response: When the server response arrives, the function you defined in step 2 is executed. You can use the responseText property of the XMLHttpRequest object to get the response from the server
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">xhttp</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">result</span><span class="dl">"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>In the above code, the response from the server is added to an HTML element with the id of “result”.</p>
+
+<h2 id="what">What</h2>
 
 <p>For example, thinking of my webpage is the burger store and I serve burgers. The ingredients are simply as follow: sauce, patty, lettuce. The chef(backend) needs time to prepare the ingredients. One second for lettuce cutting, two seconds for patty slicing, and three seconds for sauce cooking. I use <code class="language-plaintext highlighter-rouge">setTimeout()</code> to simulate the delivery time from backend. The Chef can cut and slice while the sauce is boiled. Then the coding may be as follow:</p>
 
@@ -289,30 +323,9 @@
 </div>
 
 <footer class="relative px-4 pt-4 pb-4">
-  
-  <!-- divider -->
-  <div class="relative my-8">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-200"></div>
-    </div>
-    <div class="relative flex justify-center ">
-      <span class="bg-white px-2 text-gray-200">
-        <i class="text-xs far fa-square"></i>
-      </span>
-    </div>
-  </div>
-
-  <!-- footer msg -->
+    <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
-    <div class="text-sm text-gray-300">
-      © <span id="get-current-year"></span>
-      
-      <a href="" class="!no-underline">
-        
-      </a>
-      
-    </div>
-  </div>
+    <br>
   </div>
 </footer>
 
@@ -320,7 +333,7 @@
         type="button"
         data-mdb-ripple="true"
         data-mdb-ripple-color="light"
-        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        class="scrollTopBtn"
         id="btn-back-to-top"
       >
         <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
@@ -376,5 +389,5 @@
     }
   </script>
 
-  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
 </html>

@@ -18,14 +18,15 @@
     <script>hljs.highlightAll();</script>
   </head>
 
-  <body class="font-mono list-disc">
-    <div class="pt-12 pb-4">
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
   <div class="flex">
-    <div class="flex absolute left-0 top-0">
-      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
-        alt="author profile image">
+    <div class="absolute left-0 top-0">
+      <a href="/blog/">
+        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
+      </a>
     </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
       <div class="w-full relative flex justify-center">
@@ -43,26 +44,13 @@
 
       <div class="absolute right-16 flex hidden md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-           <!-- don't show Home in menu for Homepage -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/">
-              Home
-            </a>
-          
 
         <!-- dynamic menu based on navigation info in _config.yml -->
         
            <!-- don't show current page in menu -->
             <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
               href="/blog/about">
-              About
-            </a>
-          
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/category">
-              Category
+              About Me
             </a>
           
         
@@ -74,103 +62,83 @@
 
       
       
-  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
-  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Overview</h1>
-  <div class="text-center">
+<div class='p-16 prose bg-gray-600'>
+  <h1 class='text-center mt-6 mb-6'>Overview</h1>
+  <div class='text-center'>
     
   </div>
-  <div class="md:px-4 md:grid lg:px-72">
+  <div class='md:px-4 md:grid lg:px-72'>
     <h2 id="introduction">Introduction</h2>
 
-<p>HTML = hypertext markup language, a kind of text file with <strong>markup</strong> for data, layout and arrangements.</p>
+<p>HTML, or HyperText Markup Language, is the standard markup language used to create web pages. HTML is a markup language, which means it uses tags to define the structure and content of a web page.</p>
 
-<p>Structure of this article:</p>
-
-<ul>
-  <li>markups in a html</li>
-  <li>CSS concepts</li>
-</ul>
+<p>Tags are enclosed in angle brackets, like this: <tagname>. Most tags have an opening tag and a closing tag, like this: <tagname>content</tagname>. The content goes between the opening and closing tags.</tagname></p>
 
 <h2 id="why">Why</h2>
 
-<p>With markup, search engine and blind people can read the content of website correctly, giving semantic meanings to website.</p>
+<p>With markup, search engine can read the content of website correctly, giving semantic meanings to website.</p>
 
 <h2 id="how">How</h2>
 
-<h3 id="markups-in-a-html">markups in a html</h3>
+<h3 id="basic-form">basic form</h3>
 
-<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;  
-&lt;html lang="en"&gt;  
-  &lt;head&gt;  
-    &lt;meta charset="UTF-8"&gt;  
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;  
-    &lt;title&gt;Document&lt;/title&gt;  
-  &lt;/head&gt;  
-  &lt;body&gt;  
-    &lt;h1&gt;threeJS Blender&lt;/h1&gt;  
-    &lt;p&gt;text&lt;strong&gt;bold text&lt;/strong&gt;&lt;em&gt;italic text&lt;/em&gt;text&lt;/p&gt;
-    &lt;ul&gt;  
-      &lt;li&gt;無序清單&lt;/li&gt;  
-      &lt;li&gt;無序清單&lt;/li&gt;  
-      &lt;li&gt;無序清單&lt;/li&gt;  
-      &lt;li&gt;無序清單&lt;/li&gt;  
-      &lt;li&gt;無序清單&lt;/li&gt;  
-    &lt;/ul&gt;  
-    &lt;ol&gt;  
-      &lt;li&gt;有序清單&lt;/li&gt;  
-      &lt;li&gt;有序清單&lt;/li&gt;  
-      &lt;li&gt;有序清單&lt;/li&gt;  
-      &lt;li&gt;有序清單&lt;/li&gt;  
-      &lt;li&gt;有序清單&lt;/li&gt;  
-    &lt;/ol&gt;  
-    &lt;nav&gt;這是導覽列&lt;/nav&gt;  
-    &lt;a href="[https://www.google.com.tw/](https://www.google.com.tw/)"&gt;這是超連結&lt;/a&gt;  
-    &lt;figure&gt;  
-      &lt;img src="./example.png" alt="要是圖片失效會出現的一段文字"&gt;  
-      &lt;figcaption&gt;這是這個圖片的註解&lt;/figcaption&gt;  
-    &lt;/figure&gt;  
-    &lt;table border="2"&gt; &lt;!-- border 代表邊框的寬度 --&gt;  
-      &lt;!-- table 會先從橫列開始寫，在開始寫直欄 --&gt;  
-      &lt;tr&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-      &lt;/tr&gt;  
-      &lt;tr&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-      &lt;/tr&gt;  
-      &lt;tr&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-        &lt;td&gt;data&lt;/td&gt;  
-      &lt;/tr&gt;  
-    &lt;/table&gt;  
-  &lt;/body&gt;  
+<p>Every HTML document starts with a DOCTYPE declaration, which tells the browser what version of HTML the page is using.</p>
+
+<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Page content goes here.
+  &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 
+<p>The <code class="language-plaintext highlighter-rouge">&lt;!DOCTYPE html&gt;</code> declaration should always be the first line of an HTML document. The <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> tag is the root element of the page, and everything else goes inside it.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> section of an HTML document contains metadata about the page, such as the title, keywords, and description. The <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code> tag is used to define the title of the page, which appears in the browser tab and search engine results.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> section of an HTML document contains the content of the page. This is where you put text, images, links, and other elements that make up the page.</p>
+
+<h3 id="tags">tags</h3>
+
+<p>HTML has a variety of tags for different types of content. Here are some examples:</p>
+
 <ul>
-  <li>
-    <p>Semantic: with proper HTML tags to markup the content of a website, the content, texts, can have clear meanings; this is a process of semantization.</p>
-  </li>
-  <li>
-    <p>result of above:</p>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code> to <code class="language-plaintext highlighter-rouge">&lt;h6&gt;</code>: Headings of different sizes</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;p&gt;</code>: Paragraphs of text</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;a&gt;</code>: Links to other pages or resources</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;img&gt;</code>: Images</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;ul&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;ol&gt;</code>: Unordered and ordered lists</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;table&gt;</code>: Tables of data</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;form&gt;</code>: Forms for collecting user input</li>
 </ul>
 
-<p><img class="" src="/blog/assets/img/1__DA557vbelt6kYmxMKa5SPw.png" alt="" /></p>
+<p>HTML also has attributes, which are used to provide additional information about elements. Attributes are added to tags as name-value pairs, like this: <code class="language-plaintext highlighter-rouge">&lt;tagname attribute="value"&gt;</code>. Some common attributes include:</p>
 
-<h3 id="tag">tag</h3>
+<ul>
+  <li>id: A unique identifier for an element</li>
+  <li>class: A way to group elements together for styling with CSS</li>
+  <li>src: The source URL for an image or other resource</li>
+  <li>href: The URL to link to</li>
+  <li>alt: Alternate text for an image, for accessibility purposes</li>
+  <li>That should give you a good starting point for learning HTML. There’s a lot more to learn, but these basics will help you get started with creating simple web pages.</li>
+</ul>
 
-<p>We want a tag having <code class="language-plaintext highlighter-rouge">svg</code> and <code class="language-plaintext highlighter-rouge">a</code></p>
+<h3 id="implementation">implementation</h3>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
+<ul>
+  <li>add link to image
+    <pre><code class="language-HTML">&lt;a href="http://example.com"&gt;
+  &lt;img src="path/to/image.jpg" alt="Description of the image"&gt;
+&lt;/a&gt;
+</code></pre>
+  </li>
+</ul>
 
 <h2 id="reference">Reference</h2>
 
@@ -184,30 +152,9 @@ _Edit description_en.wikipedia.org</a><a href="https://en.wikipedia.org/wiki/CSS
 </div>
 
 <footer class="relative px-4 pt-4 pb-4">
-  
-  <!-- divider -->
-  <div class="relative my-8">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-200"></div>
-    </div>
-    <div class="relative flex justify-center ">
-      <span class="bg-white px-2 text-gray-200">
-        <i class="text-xs far fa-square"></i>
-      </span>
-    </div>
-  </div>
-
-  <!-- footer msg -->
+    <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
-    <div class="text-sm text-gray-300">
-      © <span id="get-current-year"></span>
-      
-      <a href="" class="!no-underline">
-        
-      </a>
-      
-    </div>
-  </div>
+    <br>
   </div>
 </footer>
 
@@ -215,7 +162,7 @@ _Edit description_en.wikipedia.org</a><a href="https://en.wikipedia.org/wiki/CSS
         type="button"
         data-mdb-ripple="true"
         data-mdb-ripple-color="light"
-        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        class="scrollTopBtn"
         id="btn-back-to-top"
       >
         <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
@@ -271,5 +218,5 @@ _Edit description_en.wikipedia.org</a><a href="https://en.wikipedia.org/wiki/CSS
     }
   </script>
 
-  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
 </html>

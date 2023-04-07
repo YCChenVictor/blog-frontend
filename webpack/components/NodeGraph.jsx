@@ -1,141 +1,51 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 
-function NodeGraph() {
-  const endpoint = document.querySelector('#endpoint');
-  const baseurl = document.querySelector('#base');
-
+const NodeGraph = () => {
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
+  const borderStyle = { // TODO: try to know why Tailwind does not work
+    border: "1px solid black",
+    borderRadius: "10px",
+    padding: "10px"
+  };
+
+  const handleNodeClick = (node) => {
+    // Redirect to a new path
+    console.log(node.name)
+    // history.push(`/node/${node.id}`);
+  }
+
   useEffect(() => {
-    fetch(`${baseurl.textContent}/articles`)
-      .then(response => response.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const articlesNode = doc.querySelector('#articles');
-        const articles = Array.from(articlesNode.querySelectorAll('div')).filter(div => div.querySelector('div'));
-        return articles
-      })
-      .then(articles => {
-        const nodes = articles.map(article => ({
-          id: article.getAttribute('id'),
-          name: article.getAttribute('id'),
-          href: article.querySelector('a').getAttribute('href')
-        }))
+    fetch('assets/javascript/nodeGraph.json')
+      .then(response => response.json())
+      .then(data => {
+        const { nodes, links } = data;
         setNodes(nodes)
+        setLinks(links)
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(error => console.error(error));
+  }, []);
 
-    const hrefs = nodes.map(node => node.href)
-    const requests = hrefs.map(href => fetch(href));
-      
-    Promise.all(requests)
-      .then(([item1, item2]) => {
-        console.log(item1)
-        console.log(item2)
-      })
-      .catch(error => {
-        console.log(error)
-      });
-
-    // Promise.all([ // Try to scrape local files
-
-    //   fetch("http://localhost:3000/items/get"),
-    //   fetch("http://localhost:3000/contactlist/get"),
-    //   fetch("http://localhost:3000/itemgroup/get")
-    // ])
-    //   .then(([items, contactlist, itemgroup]) => {
-    //     ReactDOM.render(
-    //         <Test items={items} contactlist={contactlist} itemgroup={itemgroup} />,
-    //         document.getElementById('overview');
-    //     );
-    //   }).catch((err) => {
-    //       console.log(err);
-    //   });
-    
-    // nodes.forEach(node => {
-    //   fetch(node.href)
-    //     .then(response => {
-    //       response.text()
-    //     })
-    //     .then(html => {
-    //       console.log(html)
-    //       // const parser = new DOMParser();
-    //       // const doc = parser.parseFromString(html, 'text/html');
-    //       // console.log(doc)
-    //     })
-    // })
-    // fetch(`http://localhost:4000/blog/ruby/2021/02/04/overview.html`)
-    //   .then(response => {
-    //     response.text()
-    //   })
-    //   .then(html => {
-    //     console.log(html)
-    //     // const parser = new DOMParser();
-    //     // const doc = parser.parseFromString(html, 'text/html');
-    //     // console.log(doc)
-    //   })
-  })
-  
-    // fetch(`${url}/articles`)
-    //   .then(response => response.text())
-    //   .then(html => {
-    //     const parser = new DOMParser();
-    //     const doc = parser.parseFromString(html, 'text/html');
-    //     const articlesNode = doc.querySelector('#articles');
-    //     const articles = Array.from(articlesNode.querySelectorAll('div')).filter(div => div.querySelector('div'));
-    //     return articles
-    //   })
-    //   .then(articles => {
-    //     const nodes = articles.map(article => ({
-    //       id: article.getAttribute('id'),
-    //       name: article.getAttribute('id'),
-    //       href: article.querySelector('a').getAttribute('href')
-    //     }))
-    //     articles.forEach(article => { // try to create the links here (I think this fetch should be in another fetch)
-    //       const href = article.querySelector('a').getAttribute('href')
-    //       console.log(`${endpoint.textContent}${href}`)
-    //       fetch(`http://localhost:4000/blog/ruby/2021/02/04/overview.html`)
-    //         .then(response => {
-    //           response.text()
-    //         })
-    //         .then(html => {
-    //           console.log(html)
-    //           // const parser = new DOMParser();
-    //           // const doc = parser.parseFromString(html, 'text/html');
-    //           // console.log(doc)
-    //         })
-    //     })
-    //     const data = {
-    //       nodes: articles.map(article => ({
-    //           id: article.getAttribute('id'),
-    //           name: article.getAttribute('id'),
-    //           href: article.querySelector('a').getAttribute('href')
-    //         })
-    //       ),
-    //       links: articles.map(article => ({
-    //           source: article.getAttribute('id'),
-    //           target: article.getAttribute('id'),
-    //         })
-    //       )
-    //     }
-    //     setData(data)
-    //   })
-  // }, [])
-
-  // const handleNodeClick = (node) => { // click and redirect to the href
-  //   window.location.href = node.href;
-  // };
-
-  // return(
-  //   <ForceGraph2D // draw it with 2D graph with the nodes and links
-  //     graphData={data}
-  //     onNodeClick={handleNodeClick}
-  //   />
-  // )
+  return(
+    <div style={borderStyle}>
+      <ForceGraph2D
+        graphData={{ nodes, links }}
+        width={window.innerWidth}
+        height={650}
+        linkDirectionalArrowRelPos={1}
+        linkDirectionalArrowLength={5}
+        linkDirectionalArrowResolution={0}
+        d3VelocityDecay={0.6} // Decrease velocity decay to reduce node overlap
+        d3Force="charge" // Use only charge force
+        d3AlphaDecay={0.03} // Decrease alpha decay to increase simulation time
+        d3Charge={-80} // Decrease charge to reduce node repulsion
+        d3LinkDistance={80} // Increase link distance to reduce link overlap
+        enableZoomPanInteraction={true} // Enable zooming
+        onNodeClick={handleNodeClick} // redirect to the page when click node
+      />
+    </div>
+  )
 }
 
 export default NodeGraph;

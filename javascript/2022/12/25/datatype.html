@@ -18,14 +18,15 @@
     <script>hljs.highlightAll();</script>
   </head>
 
-  <body class="font-mono list-disc">
-    <div class="pt-12 pb-4">
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
   <div class="flex">
-    <div class="flex absolute left-0 top-0">
-      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
-        alt="author profile image">
+    <div class="absolute left-0 top-0">
+      <a href="/blog/">
+        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
+      </a>
     </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
       <div class="w-full relative flex justify-center">
@@ -43,26 +44,13 @@
 
       <div class="absolute right-16 flex hidden md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-           <!-- don't show Home in menu for Homepage -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/">
-              Home
-            </a>
-          
 
         <!-- dynamic menu based on navigation info in _config.yml -->
         
            <!-- don't show current page in menu -->
             <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
               href="/blog/about">
-              About
-            </a>
-          
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/category">
-              Category
+              About Me
             </a>
           
         
@@ -74,15 +62,15 @@
 
       
       
-  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
-  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Datatype</h1>
-  <div class="text-center">
+<div class='p-16 prose bg-gray-600'>
+  <h1 class='text-center mt-6 mb-6'>Datatype</h1>
+  <div class='text-center'>
     
   </div>
-  <div class="md:px-4 md:grid lg:px-72">
+  <div class='md:px-4 md:grid lg:px-72'>
     <h2 id="introduction">Introduction</h2>
 
 <p>Data types define the way to store values and pass them as parameters. The built-in data types as follow:</p>
@@ -110,20 +98,117 @@
 
 <h2 id="why">Why?</h2>
 
-<p>With the understanding of datatype, we generate better algorithm to solve problems.</p>
+<p>To work with data more effectively and avoid errors in your code</p>
+
+<ul>
+  <li>Type conversions: JavaScript automatically converts data types in some situations, such as when performing mathematical operations or comparing values. Understanding how these conversions work is important for avoiding unexpected results in your code.</li>
+  <li>Variable declaration: In JavaScript, variables are dynamically typed, meaning their data type can change based on the value assigned to them. It’s important to understand how variables are declared and initialized to avoid errors in your code.</li>
+  <li>Data manipulation: Understanding data types is crucial for manipulating data effectively in your code. For example, you need to know how to concatenate strings, perform mathematical operations on numbers, and loop through arrays.</li>
+  <li>Memory management: Different data types consume different amounts of memory in JavaScript, which can affect the performance of your program. It’s important to be aware of how much memory your data types are using and to optimize your code accordingly.</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
 <h3 id="const-vs-let">const vs let</h3>
 
-<p>reference of result never changed, so using the const</p>
+<ul>
+  <li>const is used to declare a variable that cannot be <strong>reassigned</strong> after its initial value is set, while let allows for reassignment.</li>
+  <li>const variables must be initialized with a value at the time of declaration, whereas let variables can be initialized later.</li>
+  <li>example</li>
+</ul>
 
-<h3 id="object">object</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// This will throw an error, because x is a const and cannot be reassigned.</span>
 
-<h4 id="get-keys">get keys</h4>
+<span class="kd">let</span> <span class="nx">y</span><span class="p">;</span>
+<span class="nx">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">y</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// This is allowed, because y is a let and can be reassigned.</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">({</span> <span class="na">user</span><span class="p">:</span> <span class="dl">'</span><span class="s1">test</span><span class="dl">'</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="dl">'</span><span class="s1">test@example.com</span><span class="dl">'</span> <span class="p">})</span>
+<span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">z</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">w</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">z</span><span class="p">);</span> <span class="c1">// This will output 5.</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">w</span><span class="p">);</span> <span class="c1">// This will output 10.</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">z</span><span class="p">);</span> <span class="c1">// This will throw an error, because z is only accessible within the if block.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">w</span><span class="p">);</span> <span class="c1">// This will also throw an error, because w is only accessible within the if block.</span>
 </code></pre></div></div>
+
+<h3 id="number">Number</h3>
+
+<ul>
+  <li>Numeric literals:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>        <span class="c1">// integer</span>
+<span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>      <span class="c1">// floating-point number</span>
+<span class="kd">let</span> <span class="nx">z</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="p">;</span>       <span class="c1">// negative integer</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Arithmetic operators:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>     <span class="c1">// addition</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="mi">4</span><span class="p">;</span>    <span class="c1">// subtraction</span>
+<span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>     <span class="c1">// multiplication</span>
+<span class="kd">let</span> <span class="nx">d</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>     <span class="c1">// division</span>
+<span class="kd">let</span> <span class="nx">e</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">%</span> <span class="mi">4</span><span class="p">;</span>    <span class="c1">// modulus (returns the remainder after division)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Math library:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">f</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>      <span class="c1">// square root of 16</span>
+<span class="kd">let</span> <span class="nx">g</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="mf">3.9</span><span class="p">);</span>    <span class="c1">// round down to nearest integer (returns 3)</span>
+<span class="kd">let</span> <span class="nx">h</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">();</span>      <span class="c1">// generate a random number between 0 and 1</span>
+</code></pre></div></div>
+
+<ul>
+  <li>NaN:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// NaN (not a number)</span>
+<span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">abc</span><span class="dl">"</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// NaN (attempting to divide a string by a number)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Infinity and -Infinity:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span><span class="p">;</span>     <span class="c1">// Infinity</span>
+<span class="kd">let</span> <span class="nx">l</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span><span class="p">;</span>    <span class="c1">// -Infinity</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Number object:</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">m</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">(</span><span class="dl">"</span><span class="s2">42</span><span class="dl">"</span><span class="p">);</span>           <span class="c1">// convert a string to a number</span>
+<span class="kd">let</span> <span class="nx">n</span> <span class="o">=</span> <span class="mf">42.3456</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>     <span class="c1">// round a number to 2 decimal places (returns "42.35")</span>
+<span class="kd">let</span> <span class="nx">o</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">MAX_VALUE</span><span class="p">;</span>       <span class="c1">// largest possible number in JavaScript</span>
+<span class="kd">let</span> <span class="nx">p</span> <span class="o">=</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">MIN_VALUE</span><span class="p">;</span>       <span class="c1">// smallest possible positive number in JavaScript</span>
+</code></pre></div></div>
+
+<h3 id="string">string</h3>
+
+<ul>
+  <li>string with variable
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">`Hello, </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span>
+</code></pre></div>    </div>
+  </li>
+  <li>substring
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">originalString</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">substringToRemove</span><span class="p">,</span> <span class="dl">""</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>clean text
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">text</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">       Hello World!        </span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^</span><span class="se">\s</span><span class="sr">+|</span><span class="se">\s</span><span class="sr">+$/gm</span><span class="p">,</span><span class="dl">''</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <h3 id="htmlcollection">HTMLCollection</h3>
 
@@ -134,22 +219,9 @@
 <span class="p">});</span>
 </code></pre></div></div>
 
-<h3 id="string">string</h3>
-
-<h4 id="string-with-variable">string with variable</h4>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">`Hello, </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span>
-</code></pre></div></div>
-
 <h4 id="get-text">get text</h4>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">HTMLElement</span><span class="p">.</span><span class="nx">innerText</span>
-</code></pre></div></div>
-
-<h4 id="clean-text">clean text</h4>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">text</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">       Hello World!        </span><span class="dl">"</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^</span><span class="se">\s</span><span class="sr">+|</span><span class="se">\s</span><span class="sr">+$/gm</span><span class="p">,</span><span class="dl">''</span><span class="p">);</span>
 </code></pre></div></div>
 
 <h3 id="nodelist">nodelist</h3>
@@ -231,6 +303,42 @@
 
 <p>to be continued</p>
 
+<h3 id="object">object</h3>
+
+<ul>
+  <li>example
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">object1</span> <span class="o">=</span> <span class="p">{</span>
+<span class="na">a</span><span class="p">:</span> <span class="dl">'</span><span class="s1">someString</span><span class="dl">'</span><span class="p">,</span>
+<span class="na">b</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+<span class="na">c</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+  <li>get keys
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">object1</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>get values
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">object1</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>destructing
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+<span class="na">firstName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+<span class="na">lastName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Doe</span><span class="dl">'</span><span class="p">,</span>
+<span class="na">age</span><span class="p">:</span> <span class="mi">30</span>
+<span class="p">};</span>
+<span class="c1">//</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">age</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
+<span class="c1">//</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">);</span> <span class="c1">// Output: John</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lastName</span><span class="p">);</span> <span class="c1">// Output: Doe</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// Output: 30</span>
+</code></pre></div>    </div>
+  </li>
+  <li>check whether a value match an attributes: use <code class="language-plaintext highlighter-rouge">find</code> or <code class="language-plaintext highlighter-rouge">filter</code>; please refer to [methods]</li>
+</ul>
+
 <h2 id="what">What?</h2>
 
 <p>give real world example</p>
@@ -243,30 +351,9 @@
 </div>
 
 <footer class="relative px-4 pt-4 pb-4">
-  
-  <!-- divider -->
-  <div class="relative my-8">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-200"></div>
-    </div>
-    <div class="relative flex justify-center ">
-      <span class="bg-white px-2 text-gray-200">
-        <i class="text-xs far fa-square"></i>
-      </span>
-    </div>
-  </div>
-
-  <!-- footer msg -->
+    <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
-    <div class="text-sm text-gray-300">
-      © <span id="get-current-year"></span>
-      
-      <a href="" class="!no-underline">
-        
-      </a>
-      
-    </div>
-  </div>
+    <br>
   </div>
 </footer>
 
@@ -274,7 +361,7 @@
         type="button"
         data-mdb-ripple="true"
         data-mdb-ripple-color="light"
-        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        class="scrollTopBtn"
         id="btn-back-to-top"
       >
         <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
@@ -330,5 +417,5 @@
     }
   </script>
 
-  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
 </html>

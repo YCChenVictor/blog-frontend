@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
+<div id="base" class="hidden">/blog</div>
+<!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
+  <div class="flex">
+    <div class="absolute left-0 top-0">
+      <a href="/blog/">
+        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
+      </a>
+    </div>
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="w-full relative flex justify-center">
+        <button type="button" onclick="toggleNavbar('navbar')"
+          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
+          aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="absolute right-16 flex hidden md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+
+        <!-- dynamic menu based on navigation info in _config.yml -->
+        
+           <!-- don't show current page in menu -->
+            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
+              href="/blog/about">
+              About Me
+            </a>
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+
+<div class='p-16 prose bg-gray-600'>
+  <h1 class='text-center mt-6 mb-6'>Import Export</h1>
+  <div class='text-center'>
+    
+  </div>
+  <div class='md:px-4 md:grid lg:px-72'>
+    <h2 id="introduction">Introduction</h2>
+
+<p>Import and export statements are used in JavaScript to organize code into reusable modules, making it easier to manage, maintain, and collaborate on larger applications.</p>
+
+<h2 id="why">Why?</h2>
+
+<ul>
+  <li>Encapsulation: Modules allow you to keep the implementation details of a module hidden from other parts of the application. This helps to reduce the complexity of the code and prevent naming collisions.</li>
+  <li>Reusability: Modules can be reused across different parts of the application, making it easier to develop and maintain the code.</li>
+  <li>Better performance: By importing only the specific modules that are needed, you can reduce the amount of code that needs to be loaded, which can improve the performance of your application.</li>
+  <li>Collaboration: When working on a project with other developers, modules allow you to work on separate parts of the application independently and then integrate them together.</li>
+</ul>
+
+<h2 id="how">How?</h2>
+
+<h3 id="source">Source</h3>
+
+<ul>
+  <li>Part of the ECMAScript 2015 (ES6) specification, which was released in June 2015.</li>
+  <li>Prior to ES6, JavaScript did not have a native module system, so developers had to use third-party libraries or workarounds to manage dependencies and module loading. The introduction of import and export in ES6 made it easier for developers to organize and reuse code across multiple files.</li>
+  <li>Since the release of ES6, import and export have become a widely used feature in modern JavaScript development, and many tools and frameworks have been built around the module system, such as Node.js, Webpack, and Babel.</li>
+</ul>
+
+<h3 id="ecmascript-modules">ECMAScript modules</h3>
+
+<p>Add “type”: “module” to your <code class="language-plaintext highlighter-rouge">package.json</code> file.</p>
+
+<p>This tells Node.js to treat all .js files in your project as ESM modules by default. Here’s an example of what your package.json might look like:</p>
+
+<pre><code class="language-JSON">{
+  "type": "module",
+  "dependencies": {
+    "module-name": "^1.0.0"
+  }
+}
+</code></pre>
+
+<p>After adding this line, you can use import and export statements in your JavaScript files without seeing the warning.</p>
+
+<p>Then transform old block from</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">postcss-import</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">tailwindcss</span><span class="dl">'</span><span class="p">)(</span><span class="dl">'</span><span class="s1">./tailwind.config.js</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">autoprefixer</span><span class="dl">'</span><span class="p">),</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>to</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">postcssImport</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">postcss-import</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">tailwindcss</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">tailwindcss</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">autoprefixer</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">autoprefixer</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">plugins</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="nx">postcssImport</span><span class="p">(),</span>
+  <span class="nx">tailwindcss</span><span class="p">(</span><span class="dl">'</span><span class="s1">./tailwind.config.js</span><span class="dl">'</span><span class="p">),</span>
+  <span class="nx">autoprefixer</span><span class="p">(),</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<h3 id="export">Export</h3>
+
+<p>There are two way:</p>
+
+<ul>
+  <li>export</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// export a function</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">addNumbers</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// export an object</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">30</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>export at once</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// export multiple functions/objects</span>
+<span class="k">export</span> <span class="p">{</span> <span class="nx">addNumbers</span><span class="p">,</span> <span class="nx">person</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="import">import</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// main.js file</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">addNumbers</span><span class="p">,</span> <span class="nx">person</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./math.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">addNumbers</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// Output: 5</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Output: John</span>
+</code></pre></div></div>
+
+<h3 id="default">default</h3>
+
+<p>A default export is a way to export a single function, object, or value as the default export from a module.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// utils.js file</span>
+<span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">subtract</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">multiply</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span> <span class="nx">add</span><span class="p">,</span> <span class="nx">subtract</span><span class="p">,</span> <span class="nx">multiply</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<p>In this example, we’re exporting an object that contains multiple functions as the default export. When importing this module, you can destructure the object and access its properties like this:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// main.js file</span>
+<span class="k">import</span> <span class="nx">utils</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./utils.js</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// you can name the imported object as anything you want</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// Output: 3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">subtract</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span> <span class="c1">// Output: 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">));</span> <span class="c1">// Output: 6</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>give real world example</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>Why: asking for the reason or purpose behind something.
+How: asking for the method or process of doing something.
+What: asking for information about a specific thing or object.</p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+    <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <br>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="scrollTopBtn"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
+</html>

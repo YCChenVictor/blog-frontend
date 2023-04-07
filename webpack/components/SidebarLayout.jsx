@@ -6,6 +6,7 @@ import { HashLink } from 'react-router-hash-link';
 function SidebarLayout() {
   const [menuItems, setMenuItems] = useState('testing')
   const [windowWidth, setWindowWidth] = useState(0)
+
   useEffect(() => {
     const windowWidth = window.innerWidth;
     const queriedTitles = [...document.querySelectorAll('h2, h3, h4, h5, h6')];
@@ -14,7 +15,7 @@ function SidebarLayout() {
     )
     const menuItemsDesired = titles.map((title) => (<MenuItem
       rootStyles={{
-        'font-size': 48 / title.tag + 'px'
+        'font-size': 48 / title.tag + 'px',
       }}
       routerLink={
         <HashLink to={`#${title.id}`} />
@@ -26,11 +27,16 @@ function SidebarLayout() {
   }, [])
   if (windowWidth >= 1440) {
     return (
-      <div style={{ display: 'flex', height: '75vh', overflow: 'auto' }} >
-        <ProSidebarProvider>
-          <BrowserRouter>
-            <Sidebar>
-              <Menu>
+      <div style={{ display: 'flex', height: '75vh' }} >
+        <ProSidebarProvider
+        >
+          <BrowserRouter
+          >
+            <Sidebar
+              backgroundColor="rgb(75 85 99)"
+            >
+              <Menu
+              >
                 {menuItems}
               </Menu>
             </Sidebar>

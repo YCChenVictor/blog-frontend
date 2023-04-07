@@ -18,14 +18,15 @@
     <script>hljs.highlightAll();</script>
   </head>
 
-  <body class="font-mono list-disc">
-    <div class="pt-12 pb-4">
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6">
+        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
   <div class="flex">
-    <div class="flex absolute left-0 top-0">
-      <img class="object-cover mx-auto h-36 w-36 rounded-full" src="/blog/assets/img/title.jpeg"
-        alt="author profile image">
+    <div class="absolute left-0 top-0">
+      <a href="/blog/">
+        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
+      </a>
     </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
       <div class="w-full relative flex justify-center">
@@ -43,26 +44,13 @@
 
       <div class="absolute right-16 flex hidden md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-           <!-- don't show Home in menu for Homepage -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/">
-              Home
-            </a>
-          
 
         <!-- dynamic menu based on navigation info in _config.yml -->
         
            <!-- don't show current page in menu -->
             <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
               href="/blog/about">
-              About
-            </a>
-          
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/category">
-              Category
+              About Me
             </a>
           
         
@@ -74,15 +62,15 @@
 
       
       
-  <div id="sidebar" class="pt-24 pl-4 fixed"></div>
-  <div id="burger-sidebar" class="pt-24 pl-4 fixed"></div>
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class="p-16 prose prose-indigo">
-  <h1 class="text-center mt-6 mb-6">Node Graph</h1>
-  <div class="text-center">
+<div class='p-16 prose bg-gray-600'>
+  <h1 class='text-center mt-6 mb-6'>Node Graph</h1>
+  <div class='text-center'>
     
   </div>
-  <div class="md:px-4 md:grid lg:px-72">
+  <div class='md:px-4 md:grid lg:px-72'>
     <h2 id="introduction">Introduction</h2>
 
 <p>This article describes how to draw node based force graph in react.</p>
@@ -95,160 +83,42 @@
 
 <h3 id="init">init</h3>
 
-<p>to be continued</p>
-
-<pre><code class="language-JSX">import React, { useEffect, useRef, useState, useMemo } from "react";
-import ReactDOM from "react-dom";
-import ForceGraph2D from "react-force-graph-2d";
-import { data, clusterIds, clusters } from "./exampleData";
-import * as d3 from "d3";
-
-const NodeGraph = () =&gt; {
-  const [initialCenter, setInitialCenter] = useState(true);
-  const [collapsedClusters, setCollapsedClusters] = useState(clusterIds);
-  const [hiddenClusters, setHiddenClusters] = useState([]);
-  const forceRef = useRef();
-
-  useEffect(() =&gt; {
-    // forceRef.current.d3Force("collide", d3.forceCollide(13));
-    forceRef.current.d3Force("charge").strength(-40);
-    forceRef.current.d3Force("link").distance(50);
-    forceRef.current.d3Force("charge").distanceMax(150);
-  }, []);
-
-  const toggleClusterCollapse = (clusterId) =&gt; {
-    if (collapsedClusters.includes(clusterId)) {
-      setCollapsedClusters(collapsedClusters.filter((id) =&gt; id !== clusterId));
-    } else {
-      setCollapsedClusters([...collapsedClusters, clusterId]);
-    }
-  };
-
-  const handleNodeClick = (node) =&gt; {
-    toggleClusterCollapse(node.id);
-    if (collapsedClusters.includes(node.id)) {
-      forceRef.current.zoom(3.5, 400);
-      forceRef.current.centerAt(node.x, node.y, 400);
-    }
-  };
-
-  const toggleCluster = (clusterId) =&gt; {
-    if (hiddenClusters.includes(clusterId)) {
-      setHiddenClusters(hiddenClusters.filter((id) =&gt; id !== clusterId));
-    } else {
-      setHiddenClusters([...hiddenClusters, clusterId]);
-    }
-    if (!collapsedClusters.includes(clusterId)) {
-      toggleClusterCollapse(clusterId);
-    }
-  };
-
-  const graphData = useMemo(() =&gt; {
-    return {
-      nodes: data.nodes.filter((node) =&gt; !hiddenClusters.includes(node.id)),
-      links: data.links
-    };
-  }, [hiddenClusters]);
-
-  return (
-    &lt;div&gt;
-      &lt;button
-        onClick={() =&gt; {
-          forceRef.current.zoomToFit();
-          setHiddenClusters([]);
-          setCollapsedClusters(clusterIds);
-        }}
-      &gt;
-        RESET
-      &lt;/button&gt;
-      &lt;div style=&gt;
-        {clusters.map((cluster) =&gt; (
-          &lt;button
-            key={cluster.id}
-            onClick={() =&gt; {
-              toggleCluster(cluster.id);
-            }}
-          &gt;
-            Toggle {cluster.name}
-          &lt;/button&gt;
-        ))}
-      &lt;/div&gt;
-      &lt;div
-        style=
-      &gt;
-        &lt;ForceGraph2D
-          width={window.innerWidth}
-          height={650}
-          ref={forceRef}
-          onNodeClick={handleNodeClick}
-          graphData={graphData}
-          cooldownTicks={50}
-          nodeRelSize={1}
-          onEngineStop={() =&gt; {
-            if (initialCenter) {
-              forceRef.current.zoomToFit();
-            }
-            setInitialCenter(false);
-          }}
-          nodeCanvasObjectMode={() =&gt; "after"}
-          nodeCanvasObject={(node, ctx, globalScale) =&gt; {
-            const label = node.name;
-            const fontSize = node.isClusterNode
-              ? 14 * (node.val / 1500)
-              : 14 / (globalScale * 1.2);
-            ctx.font = `${fontSize}px Sans-Serif`;
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillStyle = node.isClusterNode ? "white" : "black"; //node.color;
-            if (node.isClusterNode) {
-              // console.log();
-              const lineHeight = fontSize * 1.2;
-              const lines = label.split(",");
-              let x = node.x;
-              let y = node.y - lineHeight;
-              for (let i = 0; i &lt; lines.length; ++i) {
-                ctx.fillText(lines[i], x, y);
-                y += lineHeight;
-              }
-            } else if (globalScale &gt;= 3.5) {
-              ctx.fillText(label, node.x, node.y + 2.5);
-            }
-          }}
-          enableNodeDrag={false}
-          nodeVisibility={(node) =&gt; {
-            if (collapsedClusters.includes(node.clusterId)) {
-              return false;
-            } else return true;
-          }}
-          linkVisibility={(link) =&gt; {
-            if (
-              collapsedClusters.includes(link.source.id) &amp;&amp;
-              !link.target.isClusterNode
-            ) {
-              return false;
-            } else if (
-              hiddenClusters.includes(link.source.id) ||
-              hiddenClusters.includes(link.target.id)
-            ) {
-              return false;
-            } else return true;
-          }}
-        /&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-};
-
-ReactDOM.render(&lt;App /&gt;, document.getElementById("container"));
-</code></pre>
+<ul>
+  <li>install
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>react-force-graph-2d
+</code></pre></div>    </div>
+  </li>
+  <li>Basic example
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ForceGraph2D</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-force-graph-2d</span><span class="dl">'</span><span class="p">;</span>
+  
+<span class="kd">const</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Node 1</span><span class="dl">'</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Node 2</span><span class="dl">'</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Node 3</span><span class="dl">'</span> <span class="p">}</span>
+<span class="p">];</span>
+  
+<span class="kd">const</span> <span class="nx">links</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">source</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">target</span><span class="p">:</span> <span class="mi">2</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">source</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">target</span><span class="p">:</span> <span class="mi">3</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">source</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">target</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span>
+<span class="p">];</span>
+  
+<span class="o">&lt;</span><span class="nx">ForceGraph2D</span>
+  <span class="nx">graphData</span><span class="o">=</span>
+  <span class="nx">nodeLabel</span><span class="o">=</span><span class="dl">"</span><span class="s2">name</span><span class="dl">"</span>
+<span class="o">/&gt;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
-
-<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
-
-<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
+<ul>
+  <li>real world example: <a href="/blog/graph">graph</a></li>
+  <li>code:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div>    </div>
+  </li>
+</ul>
 
 <h2 id="reference">Reference</h2>
 
@@ -258,30 +128,9 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById("container"));
 </div>
 
 <footer class="relative px-4 pt-4 pb-4">
-  
-  <!-- divider -->
-  <div class="relative my-8">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-200"></div>
-    </div>
-    <div class="relative flex justify-center ">
-      <span class="bg-white px-2 text-gray-200">
-        <i class="text-xs far fa-square"></i>
-      </span>
-    </div>
-  </div>
-
-  <!-- footer msg -->
+    <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
-    <div class="text-sm text-gray-300">
-      © <span id="get-current-year"></span>
-      
-      <a href="" class="!no-underline">
-        
-      </a>
-      
-    </div>
-  </div>
+    <br>
   </div>
 </footer>
 
@@ -289,7 +138,7 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById("container"));
         type="button"
         data-mdb-ripple="true"
         data-mdb-ripple-color="light"
-        class="inline-block p-3 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out bottom-5 right-5 fixed"
+        class="scrollTopBtn"
         id="btn-back-to-top"
       >
         <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
@@ -345,5 +194,5 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById("container"));
     }
   </script>
 
-  <script type="text/javascript" src="/blog/assets/javascripts/bundle.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
 </html>
