@@ -14,13 +14,13 @@ permalink: about
   {% endif %}
   <div class='article'>
     <p>
-      Hello and welcome to my personal blog! Have fun and have a good day! I was born and raised in Taiwan, and I've always had a passion for <a href="{{site.baseurl}}/self/2023/02/04/software.html">software</a>, social science, aesthetics, and maybe some medical science. I graduated from National Taiwan University with a degree in economics, and I am now working as a software engineer.
+      Hello and welcome to my personal blog! Have fun and have a good day! I was born and raised in Taiwan, and I've always had a passion for <a href='{{site.baseurl}}/self/2023/02/04/software.html' class='textLink'>software</a>, social science, <a href='{{site.baseurl}}/self/2023/04/07/aesthetics.html' class='textLink'>aesthetics</a>, and maybe some medical science. I graduated from National Taiwan University with a degree in economics, and I am now working as a software engineer.
     </p>
     <p>
       In my free time, you can usually find me developing websites, composing music, painting, and working out, or spending time with my family and pet. I also love to explore new topics and ideas.
     </p>
     <p>
-      Through this blog, I hope to share my perspective on a variety of topics, mainly on software area currently. I am a minimalist, and I strive to live my life in a way that reflects those values.
+      Through this blog, I hope to share my perspective on a variety of topics, mainly on software area currently. I like minimalism, and I strive to live my life in a way that reflects those values.
     </p>
     <p>
       Thank you for taking the time to get to know me a little better, and I look forward to connecting with you through this blog!
