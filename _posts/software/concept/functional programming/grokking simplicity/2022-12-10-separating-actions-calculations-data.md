@@ -3,7 +3,7 @@ layout: post
 title:
 description: ''
 date: '2022-12-10'
-categories: mindset presentation
+categories: functional-programming presentation
 note: TODO, remove the images from textbook
 mathjax:
 mermaid: true
@@ -19,12 +19,12 @@ Let's first distinguish actions, calculations, and data with example: grocery sh
 
 from
 
-<img src="/assets/img/grocery_shopping_actions.png" alt="">
+<img src="{{site.baseurl}}/assets/img/grocery_shopping_actions.png" alt="">
 <em>source: [grokking simplicity](https://grokkingsimplicity.com/)</em>
 
 to
 
-<img src="/assets/img/grocery_shopping_ACD.png" alt="">
+<img src="{{site.baseurl}}/assets/img/grocery_shopping_ACD.png" alt="">
 <em>source: [grokking simplicity](https://grokkingsimplicity.com/)</em>
 
 * Why `decide shopping list` is calculation rather than action

@@ -117,7 +117,7 @@ On the point of
 
 ### Promoting positive social norms
 
-My definition of positive social norms is people should try their best to extend human society:
+My definition of positive social norms is people should try their best to extend human society because if something cause problems, something will be eliminate eventually.
   * breadth (region)
     * Adaptability: Designs should be adaptable to changing environmental conditions.
     * Resilience: Designs should be resilient to environmental hazards such as floods, storms, and earthquakes. This might involve designing structures that can withstand high winds or flooding, or developing systems that can continue to operate in the event of power outages or other disruptions.
