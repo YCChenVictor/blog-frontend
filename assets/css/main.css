@@ -39,11 +39,9 @@
     @apply list-disc;
     @apply list-inside;
     @apply px-2;
-    @apply py-2;
   }
   li {
     @apply px-2;
-    @apply pb-2;
   }
   ol {
     @apply list-decimal;
@@ -80,8 +78,32 @@
   @apply p-3 text-white font-medium text-xs uppercase rounded-full hover:bg-gray-700 focus:bg-gray-700 transition duration-150 ease-in-out bottom-5 right-5 fixed
 }
 
+.titleImage {
+  @apply p-4 w-24 rounded-full;
+}
+
+.titleImagePosition {
+  @apply absolute left-0 top-0;
+}
+
+.textLink {
+  @apply text-gray-400 hover:text-gray-900 px-0.5 py-0.5 lg:py-1 mx-auto;
+}
+
+.h-1\/2 {
+  height: 50%
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
 .w-1\/2 {
   width: 50%;
+}
+
+.w-3\/4 {
+  width: 75%;
 }
 
 .w-1\/3 {
