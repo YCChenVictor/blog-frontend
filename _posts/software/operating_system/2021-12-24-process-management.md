@@ -12,8 +12,8 @@ publish: true
 ## Introduction
 
 * A process is an instance of a program that is executing on a computer. Each process has its own memory space and runs independently of other processes.
-* Process management involves creating, scheduling, and managing processes. Process management is responsible for managing the execution of processes to ensure that they run efficiently and don't interfere with each other.
-* The system also manages the state of each process, including whether it is running, blocked, or waiting for input. In addition, the process management system is responsible for terminating processes when they are no longer needed.
+* Process management involves creating, scheduling, and managing processes to ensure that they run efficiently and don't interfere with each other.
+* Process management also manages the state of each process, including whether it is running, blocked, or waiting for input. In addition, the process management system is responsible for terminating processes when they are no longer needed.
 * One of the key functions of process management is CPU scheduling, which involves determining which process should be executed next. The scheduler allocates the CPU to the most deserving process, based on a set of predefined criteria, such as priority or time slice.
 * By managing processes properly, the operating system can ensure that resources are used efficiently and that processes run smoothly.
 
@@ -78,6 +78,12 @@ Learn about memory allocation, fragmentation, and virtual memory.
 
 Process Explorer allows us to see the running processes and their resource utilization.
 
+### Thread
+
+* A lightweight execution unit that exists within a process
+* A process can have multiple threads, and each thread can perform a different task, but they all share the same resources of the process, such as memory and files.
+* Threads are scheduled by the operating system, but they are not self-contained like processes.
+
 ### Issues
 
 #### Resource Allocation
@@ -87,13 +93,26 @@ Process Explorer allows us to see the running processes and their resource utili
 
 #### Deadlocks
 
-I just list one example because I just need to understand what is deadlock. Also, I can connect this with article in clean code
-
 * Description: A deadlock occurs when two or more processes are blocked waiting for each other to release a resource. Deadlocks can lead to a system freeze, where no progress is made, and the processes become unresponsive
 * Solutions (order with frequency)
   * Mutual Exclusion
-    * Description:
-    * Example:
+    * Description: Two resources, A and B, and two processes, P1 and P2, that need access to both resources in order to complete their tasks. However, if both processes acquire one resource and then try to acquire the other, they may end up deadlocked, where neither process can proceed because they are both waiting for the other to release the resource it is holding.
+    * Solution: Give each resource a lock. That is, processes P1 or P2 must gain the lock of each resource, then they can start to process, which means P1 and P2 are mutual exclusive
+    * Code example:
+      ```javascript
+      // Create a Mutex object
+      const mutex = new Mutex();
+
+      // Acquire the lock
+      mutex.acquire().then(function() {
+        // Critical section
+        // Code here will be executed by only one thread at a time
+        // Release the lock
+        mutex.release();
+      });
+
+      // Mutex object is created and then the acquire() method is called to acquire the lock. If the lock is currently held by another thread, the acquire() method will block until it is released. Once the lock is acquired, the critical section of code is executed. Once the critical section is complete, the release() method is called to release the lock and allow other threads to acquire it.
+      ```
   * Deadlock detection and recovery algorithms: These are widely used in many operating systems and databases to detect and recover from deadlocks.
   * Resource allocation policies: These policies are commonly used to allocate resources in a way that minimizes the risk of deadlocks. For example, some systems use priority-based scheduling to give higher priority to processes that are less likely to cause deadlocks.
   * Message passing: This technique is often used in distributed systems to ensure that processes can communicate with each other without the risk of deadlocks.
@@ -107,7 +126,7 @@ I just list one example because I just need to understand what is deadlock. Also
     * Circular Wait can be effective, but it requires careful resource allocation and ordering to prevent deadlocks.
     * Techniques like lock-free programming, transactional memory, and message passing can be more complex to implement but can offer higher performance and scalability. * Deadlock detection algorithms and resource allocation policies can also be effective in detecting and resolving deadlocks in a system.
 
-Ultimately, the choice of strategy will depend on the specific requirements of the system being developed, including performance, scalability, fault tolerance, and ease of implementation.
+article in clean code
 
 #### Race Conditions
 
