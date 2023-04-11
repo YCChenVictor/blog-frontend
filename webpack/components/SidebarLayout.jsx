@@ -27,7 +27,7 @@ function SidebarLayout() {
   }, [])
   if (windowWidth >= 1440) {
     return (
-      <div style={{ display: 'flex', height: '75vh' }} >
+      <div style={{ display: 'flex', height: '70vh' }} >
         <ProSidebarProvider
         >
           <BrowserRouter

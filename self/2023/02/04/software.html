@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
-<div id="base" class="hidden">/blog</div>
-<!-- 3D drawing -->
+  <head>
+    <!-- 3D drawing -->
     
     <!-- 2D drawing -->
     
@@ -21,39 +20,25 @@
   <body class="font-mono list-disc bg-gray-700">
     <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
+        <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
+  <div class="titleImagePosition">
+    <a href="/blog/">
+      <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
+    </a>
+  </div>
   <div class="flex">
-    <div class="absolute left-0 top-0">
-      <a href="/blog/">
-        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
-      </a>
-    </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="w-full relative flex justify-center">
-        <button type="button" onclick="toggleNavbar('navbar')"
-          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
-          aria-expanded="false">
-          <span class="sr-only">Open menu</span>
-          <!-- Heroicon name: outline/menu -->
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-
-      <div class="absolute right-16 flex hidden md:block" id="navbar">
+      <div class="absolute right-16 flex md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-
-        <!-- dynamic menu based on navigation info in _config.yml -->
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/about">
-              About Me
-            </a>
+          <!-- dynamic menu based on navigation info in _config.yml -->
           
-        
+             <!-- don't show current page in menu -->
+              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
+                href="/blog/about">
+                About Me
+              </a>
+            
+          
         </div>
       </div>
     </div>
@@ -66,22 +51,53 @@
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
 <div class='p-16 prose bg-gray-600'>
-  <h1 class='text-center mt-6 mb-6'>Software</h1>
   <div class='text-center'>
     
   </div>
   <div class='md:px-4 md:grid lg:px-72'>
+    <h1 class='text-center mt-6 mb-6'>Software</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>My thoughts about software</p>
+<p>Software is a set of instructions and data that tell a computer what to do</p>
+<ul>
+  <li>Application software: This includes software applications designed for specific purposes, such as word processors, spreadsheets, video editors, and games.</li>
+  <li>System software: This includes software that manages and controls the hardware and other components of a computer system, such as operating systems, device drivers, and utility programs.</li>
+  <li>Embedded software: This includes software that is integrated into devices and systems such as smartphones, automobiles, and medical equipment.</li>
+  <li>Web-based software: This includes software that is accessed through web browsers or other web-enabled devices, such as web applications, cloud-based software, and e-commerce platforms.
+    <ul>
+      <li>Web 3.0, also known as the “decentralized web” or “semantic web”, is an evolving concept that refers to a set of new technologies and applications that aim to build a more decentralized, secure, and user-centric web.</li>
+      <li>Some of the key features of Web 3.0 include decentralized data storage, decentralized identity, decentralized finance (DeFi), and decentralized applications (dApps) that run on blockchain-based platforms. Web 3.0 also aims to address some of the challenges and limitations of Web 2.0, such as issues related to data privacy, security, and ownership.</li>
+    </ul>
+  </li>
+  <li>Artificial intelligence and machine learning software: This includes software that uses algorithms and data to simulate human intelligence and behavior, such as natural language processing, computer vision, and predictive analytics.</li>
+  <li>Database software: This includes software that is used to store, manage, and manipulate large amounts of data, such as relational database management systems (RDBMS) and NoSQL databases.</li>
+  <li>Development tools: This includes software that is used to create, test, and debug other software, such as integrated development environments (IDEs), code editors, and compilers.</li>
+  <li>Security software: This includes software that is designed to protect computer systems and data from unauthorized access and other security threats, such as antivirus software, firewalls, and intrusion detection systems.</li>
+</ul>
 
 <h2 id="why">Why?</h2>
 
-<p>This article is the central article of software development. Software is built to solve a problem or to fulfill a specific need. To get an idea, just think all the services now in the world.</p>
+<p>For me as web developer</p>
+<ul>
+  <li>Automate repetitive tasks</li>
+  <li>Improved job performance</li>
+  <li>Enhanced creativity of future</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
-<h3 id="os">OS</h3>
+<h3 id="operating-system">Operating System</h3>
+
+<ul>
+  <li><a href="/blog/os/2023/04/02/overview.html">overview</a></li>
+</ul>
+
+<h3 id="concepts">concepts</h3>
+
+<ul>
+  <li>data structure and algorithm</li>
+  <li><a href="/blog/api/2021/02/18/overview.html">functional programming</a></li>
+</ul>
 
 <h3 id="web-backend">web backend</h3>
 
@@ -124,21 +140,9 @@
   </li>
 </ul>
 
-<h3 id="web">web</h3>
-
-<ul>
-  <li></li>
-</ul>
-
 <h3 id="blockchain">blockchain</h3>
 
 <h3 id="machine-learning">machine learning</h3>
-
-<h3 id="concepts">concepts</h3>
-
-<h4 id="dsa">DSA</h4>
-
-<p>connect the overview of DSA</p>
 
 <h4 id="middleware">middleware</h4>
 

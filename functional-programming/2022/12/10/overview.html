@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
-<div id="base" class="hidden">/blog</div>
-<!-- 3D drawing -->
+  <head>
+    <!-- 3D drawing -->
     
     <!-- 2D drawing -->
     
@@ -21,39 +20,25 @@
   <body class="font-mono list-disc bg-gray-700">
     <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
+        <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
+  <div class="titleImagePosition">
+    <a href="/blog/">
+      <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
+    </a>
+  </div>
   <div class="flex">
-    <div class="absolute left-0 top-0">
-      <a href="/blog/">
-        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
-      </a>
-    </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="w-full relative flex justify-center">
-        <button type="button" onclick="toggleNavbar('navbar')"
-          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
-          aria-expanded="false">
-          <span class="sr-only">Open menu</span>
-          <!-- Heroicon name: outline/menu -->
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-
-      <div class="absolute right-16 flex hidden md:block" id="navbar">
+      <div class="absolute right-16 flex md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-
-        <!-- dynamic menu based on navigation info in _config.yml -->
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/about">
-              About Me
-            </a>
+          <!-- dynamic menu based on navigation info in _config.yml -->
           
-        
+             <!-- don't show current page in menu -->
+              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
+                href="/blog/about">
+                About Me
+              </a>
+            
+          
         </div>
       </div>
     </div>
@@ -66,34 +51,52 @@
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
 <div class='p-16 prose bg-gray-600'>
-  <h1 class='text-center mt-6 mb-6'>Functional Programming</h1>
   <div class='text-center'>
     
   </div>
   <div class='md:px-4 md:grid lg:px-72'>
+    <h1 class='text-center mt-6 mb-6'>Overview</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>Functional Programming does everything with functions (input -&gt; output). In this concept, we think more about steps than object interactions.</p>
+<p>Functional programming is a programming paradigm that emphasizes the use of pure functions, immutability, and higher-order functions. Functions can be passed around as arguments to other functions, returned as values, and stored in variables.</p>
 
 <ul>
-  <li>pros
-    <ul>
-      <li>avoid side effect: only expected input and output will be created, so it won’t affect other components</li>
-      <li>TBC</li>
-    </ul>
-  </li>
-  <li>cons</li>
+  <li>Pure functions: Easy to reason about and test, since they always return the same output given the same input and have no side effects. This can make your code more reliable and easier to maintain</li>
+  <li>Immutability: Immutability refers to the idea that once a data structure is created, it cannot be modified. Instead, you create a new data structure that is based on the original one. This helps prevent bugs and makes your code more predictable, since you can be sure that the data structure will not change unexpectedly.</li>
+  <li>Higher-order functions: A higher-order function is a function that takes another function as an argument, or returns a function as its result. Higher-order functions allow you to write more concise and expressive code, and they can help you avoid repetition and increase code reuse.</li>
 </ul>
 
 <h2 id="why">Why?</h2>
 
-<p>TBC</p>
+<ul>
+  <li>Improved code quality: By emphasizing pure functions and immutable data structures, functional programming can lead to code that is easier to read, test, and maintain. With fewer side effects to worry about, it can be easier to reason about the behavior of a program and to ensure that it is working correctly.</li>
+  <li>Concurrency and parallelism: Take advantage of multiple processing cores or distributed systems. Since pure functions have no side effects, they can be safely executed in parallel without worrying about race conditions or other synchronization issues.</li>
+  <li>Better abstraction and modularity: Abstractions such as higher-order functions, which can make it easier to write reusable code that can be composed and combined in flexible ways. This can help reduce code duplication and make it easier to reason about the behavior of a program.</li>
+  <li>Declarative programming: Functional programming emphasizes what a program should do rather than how it should do it. This can make code easier to read and understand, especially for complex tasks that involve many transformations on data.</li>
+  <li>Strong type systems: Many functional programming languages have strong type systems that can catch errors at compile time rather than at runtime. This can help catch bugs earlier in the development process and reduce the likelihood of runtime errors.</li>
+</ul>
 
 <h2 id="how">How?</h2>
 
-<h3 id="concept-of-higher-order-function">Concept of higher order function</h3>
+<h3 id="pure-functions">Pure functions</h3>
 
-<p>higher order function will return a function; for example</p>
+<p>Techniques to create them</p>
+<ul>
+  <li><a href="/blog/functional-programming/presentation/2022/12/10/separating-actions-calculations-data.html">Distinguishing actions, calculations, and data</a></li>
+  <li><a href="/blog//functional-programming/2023/04/08/isolating-timelines.html">Isolating Timelines</a></li>
+</ul>
+
+<h3 id="immutability">Immutability</h3>
+
+<p>more predictable and easier-to-maintain code</p>
+
+<h3 id="higher-order-functions">Higher-Order Functions</h3>
+
+<p>This chapter introduces the concept of higher-order functions, which are functions that can take other functions as arguments or return functions as results. The author explains the advantages of higher-order functions, and how they can be used to write more expressive and modular code.</p>
+
+<ul>
+  <li>higher order function will return a function; for example</li>
+</ul>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">baker</span><span class="p">(</span><span class="nx">degree</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">food</span><span class="p">)</span> <span class="p">{</span>
@@ -105,7 +108,9 @@
 <span class="nx">baker_100</span><span class="p">(</span><span class="dl">'</span><span class="s1">banana</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="do-not-iterate">do not iterate</h3>
+<ul>
+  <li>No iteration</li>
+</ul>
 
 <p>Use map, reduce, filter instead. For example, we want to make a sandwich with ingredients, bread, tomato, onion, lettuce and we need to process them before making sandwich. With iteration, we can do</p>
 
@@ -137,23 +142,15 @@
 <span class="nx">ingredientsProcessed</span> <span class="o">=</span> <span class="nx">ingredients</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">_processed</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h3 id="no-mutability">No mutability</h3>
-
-<p>Use immutable data, information in a database that cannot be deleted or modified, to avoid any side effect on other components. Actually, in section of <a href="#do-not-iterate">do not iterate</a>, we can see this philosophy.</p>
-
-<h3 id="persistent-data-structure">persistent data structure</h3>
-
-<p>As we can see, for immutability, as the project getting bigger, there must be lots of process to be redo for a tiny change. To avoid redundant process, we want to utilize the old data as much as possible and we can use tree structure or hash structure as follow:</p>
-
-<p>TBC</p>
-
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
+<p>I got the give a real world example, I think I should try to make my frontend projects fits functional programming</p>
 
 <h2 id="reference">Reference</h2>
 
 <p><a href="https://www.youtube.com/watch?v=e-5obm1G_FY&amp;t=142s">Learning Functional Programming with JavaScript - Anjana Vakil - JSUnconf</a></p>
+
+<p>grokking the simplicity</p>
 
   </div>
 </div>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- 3D drawing -->
+    
+    <!-- 2D drawing -->
+    
+    <!-- for mathjax support -->
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <!-- mermaid --><meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
+  <div class="titleImagePosition">
+    <a href="/blog/">
+      <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
+    </a>
+  </div>
+  <div class="flex">
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="absolute right-16 flex md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+          <!-- dynamic menu based on navigation info in _config.yml -->
+          
+             <!-- don't show current page in menu -->
+              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
+                href="/blog/about">
+                About Me
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+
+<div class='p-16 prose bg-gray-600'>
+  <div class='text-center'>
+    
+  </div>
+  <div class='md:px-4 md:grid lg:px-72'>
+    <h1 class='text-center mt-6 mb-6'>Isolating Timelines</h1>
+    <p>There’s a bug! (V)
+The timeline diagram shows what happens over time (V)
+The two fundamentals of timeline diagrams (V)
+Two tricky details about the order of actions (V)
+Drawing the add-to-cart timeline: Step 1 (V)
+Asynchronous calls require new timelines (V)
+Different languages, different threading models (V)
+Building the timeline step-by-step (X)
+Drawing the add-to-cart timeline: Step 2 (V)
+Timeline diagrams capture the two kinds of sequential code (V)
+Timeline diagrams capture the uncertain ordering of parallel code (X)
+Principles of working with timelines (V)
+JavaScript’s single-thread (V)
+JavaScript’s asynchronous queue (V)
+AJAX and the event queue (V)
+Simplifying the timeline (V)
+Reading our finished timeline (X)
+Simplifying the add-to-cart timeline diagram: Step 3 (V)
+Review: Drawing the timeline (steps 1–3) (V)
+Summary: Drawing timeline diagrams (X)
+Timeline diagrams side-by-side can reveal problems (X)
+Two slow clicks get the right result (X)
+Two fast clicks can get the wrong result (V)
+Timelines that share resources can cause problems (V)
+Converting a global variable to a local one (V)
+Converting a global variable to an argument (V)
+Making our code more reusable (V)
+Principle: In an asynchronous context, we use a final callback instead of a return value as our explicit output (V)
+Conclusion
+Summary
+Up next . . .</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This article describes</p>
+
+<ul>
+  <li>Concept of timeline diagrams
+    <ul>
+      <li>Represent sequences of actions over time</li>
+      <li>Timeline diagrams help us understand how software runs</li>
+      <li>Example: distributed system, such as a web client talks to a web server</li>
+    </ul>
+  </li>
+  <li>How to draw timeline diagrams from code</li>
+  <li>How to use them to diagnose and predict bugs</li>
+</ul>
+
+<h2 id="why">Why?</h2>
+
+<p>By reducing the resources shared between timelines, we can improve code design and create more efficient programs.</p>
+
+<h2 id="how">How?</h2>
+
+<p>Problem: Shopping cart showing the wrong total</p>
+<ul>
+  <li>Reproduce: Click <code class="language-plaintext highlighter-rouge">add 6</code> <strong>twice</strong> fast</li>
+  <li>Desired result: <code class="language-plaintext highlighter-rouge">14</code> (6 * 2 + 2, 2 shoes + shipping)</li>
+  <li>Variant results: <code class="language-plaintext highlighter-rouge">14, 16, 22</code></li>
+</ul>
+
+<h3 id="draw-timeline-diagrams-from-code">Draw timeline diagrams from code</h3>
+
+<p>In this section, code =&gt; diagram =&gt; simplify diagram =&gt; 13 actions to 3 actions</p>
+
+<h4 id="code">code</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">add_item_to_cart</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cart</span> <span class="o">=</span> <span class="nx">add_item</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">);</span>
+  <span class="nx">calc_cart_total</span><span class="p">();</span>
+ <span class="p">}</span>
+  
+<span class="kd">function</span> <span class="nx">calc_cart_total</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">cost_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cost</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// AJAX request</span>
+    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">cost</span><span class="p">;</span> <span class="c1">// when request complete, add on cost</span>
+    <span class="nx">shipping_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">shipping</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// AJAX request</span>
+      <span class="nx">total</span> <span class="o">+=</span> <span class="nx">shipping</span><span class="p">;</span> <span class="c1">// when request complete, add on shipping</span>
+      <span class="nx">update_total_dom</span><span class="p">(</span><span class="nx">total</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">}</span> 
+</code></pre></div></div>
+
+<h4 id="timeline-diagram-one-request-browser">timeline diagram, one request, browser</h4>
+
+<h5 id="basic-diagram">basic diagram</h5>
+
+<p><img src="/blog/assets/img/add_item_to_cart_timeline_diagram.png" class="w-1/2" alt="" /></p>
+
+<ul>
+  <li>Actions
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">+=</code>:
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">total</span><span class="p">;</span> <span class="c1">// read</span>
+<span class="nx">temp</span> <span class="o">=</span> <span class="nx">temp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">total</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span> <span class="c1">// write</span>
+</code></pre></div>        </div>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">console.log(total)</code>:
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">total</span><span class="p">;</span> <span class="c1">// read</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">temp</span><span class="p">);</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Timelines (Three in the graph):
+    <ul>
+      <li>Same timeline: Actions occur in order</li>
+      <li>Separate timeline (Async): Actions happen at the same time or out of order</li>
+    </ul>
+  </li>
+  <li>dot line:
+    <ul>
+      <li>AJAX and Event loop
+<img src="/blog/assets/img/ajax_and_event_loop.png" class="w-3/4" alt="" /></li>
+      <li>Refer to sections “JavaScript’s asynchronous queue”, “AJAX and the event queue”, and also this <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ&amp;t=876s">video</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="consolidate-actions-simplification-step-1">consolidate actions: (simplification step 1)</h5>
+
+<p><img src="/blog/assets/img/add_item_to_cart_timeline_diagram_consolidate_actions.png" class="w-3/4" alt="" /></p>
+
+<ul>
+  <li>JavaScript only has one thread =&gt; Consolidate all actions on a single timeline; that is, a box</li>
+  <li>Refer to sections “Two tricky details about the order of actions” and “Drawing the add-to-cart timeline: Step 1”, “JavaScript’s single-thread”</li>
+  <li>Interleave
+    <ul>
+      <li>Javascript synchronous actions don’t interleave
+<img src="/blog/assets/img/synchronous_actions.png" class="w-1/3" alt="" /></li>
+      <li>Javascript asynchronous actions can interleave
+<img src="/blog/assets/img/asynchronous_actions.png" class="w-1/3" alt="" /></li>
+      <li>Refer to sections “Different languages, different threading models in grokking simplicity”, “Timeline diagrams capture the two kinds of sequential code”</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="consolidate-timelines-simplification-step-2">consolidate timelines: (simplification step 2)</h5>
+
+<p><img src="/blog/assets/img/add_item_to_cart_timeline_diagram_consolidate_timelines.png" class="w-1/4" alt="" /></p>
+
+<ul>
+  <li>JavaScript’s event lop only has one thread =&gt; One AJAX triggered by another will run in queue =&gt; Consolidate timelines that end by creating one new timeline</li>
+</ul>
+
+<h3 id="read-timeline-diagrams-to-find-bugs">Read timeline diagrams to find bugs</h3>
+
+<h4 id="timeline-diagram-two-request-browser">timeline diagram, two request, browser</h4>
+
+<p><img src="/blog/assets/img/add_item_to_cart_two_timeline_diagram.png" alt="" /></p>
+<ul>
+  <li>Problem: The shipping add twice</li>
+</ul>
+
+<h4 id="general-rules">General rules</h4>
+
+<ul>
+  <li>Ordering
+    <ul>
+      <li>Evaluation: \(o = \frac{(ta)!}{(a!)^t}\)</li>
+      <li>Fewer timelines, \(t\)</li>
+      <li>Shorter timelines, \(a\)</li>
+    </ul>
+  </li>
+  <li>Share Resources
+    <ul>
+      <li>Fewer sharing resources: reduce the ordering we need to consider</li>
+      <li>Coordinate when resources are shared</li>
+    </ul>
+  </li>
+  <li>Manipulate time as a first-class concept: in following chapters</li>
+  <li>Refer to sections “The two fundamentals of timeline diagrams”, “Asynchronous calls require new timelines”, “Drawing the add-to-cart timeline: Step 2”, “Principles of working with timelines”</li>
+</ul>
+
+<h4 id="problem-share-resources">Problem: Share Resources</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">add_item_to_cart</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cart</span> <span class="o">=</span> <span class="nx">add_item</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">);</span> <span class="c1">// global variable</span>
+  <span class="nx">calc_cart_total</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">calc_cart_total</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// global variable</span>
+  <span class="nx">cost_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cost</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">cost</span><span class="p">;</span>
+    <span class="nx">shipping_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">shipping</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">total</span> <span class="o">+=</span> <span class="nx">shipping</span><span class="p">;</span>
+      <span class="nx">update_total_dom</span><span class="p">(</span><span class="nx">total</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/blog/assets/img/two_timeline_share_resources.png" class="w-3/4" alt="" /></p>
+
+<h3 id="improve-code-design-by-reducing-resources-shared-between-timelines">Improve code design by reducing resources shared between timelines.</h3>
+
+<p>Based on last section, we can try to fix the bug by</p>
+
+<h4 id="reduce-share-resources">Reduce share resources</h4>
+
+<ul>
+  <li>Through local variable
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">calc_cart_total</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// use local variable instead</span>
+  <span class="nx">cost_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cost</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">cost</span><span class="p">;</span> <span class="c1">// Then the total must be zero here. Another timeline could not write to it</span>
+    <span class="nx">shipping_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">shipping</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">total</span> <span class="o">+=</span> <span class="nx">shipping</span><span class="p">;</span>
+      <span class="nx">update_total_dom</span><span class="p">(</span><span class="nx">total</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Through argument
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">add_item_to_cart</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cart</span> <span class="o">=</span> <span class="nx">add_item</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">);</span>
+  <span class="nx">calc_cart_total</span><span class="p">(</span><span class="nx">cart</span><span class="p">);</span> <span class="c1">// add the cart as argument</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">calc_cart_total</span><span class="p">(</span><span class="nx">cart</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">cost_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cost</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// cart read not global variable anymore</span>
+    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">cost</span><span class="p">;</span>
+    <span class="nx">shipping_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">shipping</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// cart read not global variable anymore</span>
+      <span class="nx">total</span> <span class="o">+=</span> <span class="nx">shipping</span><span class="p">;</span>
+      <span class="nx">update_total_dom</span><span class="p">(</span><span class="nx">total</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="coordinate-when-resources-are-shared">Coordinate when resources are shared</h4>
+
+<p>In following chapters, we will do it. Now we just use a final callback instead of a return value</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">add_item_to_cart</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quant</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">cart</span> <span class="o">=</span> <span class="nx">add_item</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quant</span><span class="p">);</span>
+  <span class="nx">calc_cart_total</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="nx">update_total_dom</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">calc_cart_total</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">cost_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cost</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">total</span> <span class="o">+=</span> <span class="nx">cost</span><span class="p">;</span>
+    <span class="nx">shipping_ajax</span><span class="p">(</span><span class="nx">cart</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">shipping</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">total</span> <span class="o">+=</span> <span class="nx">shipping</span><span class="p">;</span>
+      <span class="nx">callback</span><span class="p">(</span><span class="nx">total</span><span class="p">);</span> <span class="c1">// replace with a callback argument</span>
+    <span class="p">})</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://grokkingsimplicity.com/">grokking simplicity</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+    <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <br>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="scrollTopBtn"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
+</html>

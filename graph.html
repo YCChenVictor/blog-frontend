@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head><div id="endpoint" class="hidden">https://ycchenvictor.github.io</div>
-<div id="base" class="hidden">/blog</div>
-<!-- 3D drawing -->
+  <head>
+    <!-- 3D drawing -->
     
     <!-- 2D drawing -->
     
@@ -21,39 +20,25 @@
   <body class="font-mono list-disc bg-gray-700">
     <div class="pt-8 bg-gray-700">
       
-        <nav class="flex flex-wrap items-center justify-center px-2 mb-6 py-4">
+        <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
+  <div class="titleImagePosition">
+    <a href="/blog/">
+      <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
+    </a>
+  </div>
   <div class="flex">
-    <div class="absolute left-0 top-0">
-      <a href="/blog/">
-        <img class="p-4 w-24 rounded-full" src="/blog/assets/img/title.jpeg" alt="author profile image">
-      </a>
-    </div>
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="w-full relative flex justify-center">
-        <button type="button" onclick="toggleNavbar('navbar')"
-          class="rounded-md inline-flex items-center justify-center text-gray-500 md:hidden"
-          aria-expanded="false">
-          <span class="sr-only">Open menu</span>
-          <!-- Heroicon name: outline/menu -->
-          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-
-      <div class="absolute right-16 flex hidden md:block" id="navbar">
+      <div class="absolute right-16 flex md:block" id="navbar">
         <div class="flex flex-col md:flex-row mr-auto w-full">
-
-        <!-- dynamic menu based on navigation info in _config.yml -->
-        
-           <!-- don't show current page in menu -->
-            <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 lg:py-1 mx-auto uppercase"
-              href="/blog/about">
-              About Me
-            </a>
+          <!-- dynamic menu based on navigation info in _config.yml -->
           
-        
+             <!-- don't show current page in menu -->
+              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
+                href="/blog/about">
+                About Me
+              </a>
+            
+          
         </div>
       </div>
     </div>
@@ -61,7 +46,7 @@
 </nav>
 
       
-      <div class="p-16 prose prose-indigo">
+      <div class="p-16 prose bg-gray-600">
     <h1 class="text-center mt-6 mb-6">Explore</h1>
     <div id="node-graph"></div>
 
@@ -141,6 +126,10 @@
     
       <div>
         english
+      </div>
+    
+      <div>
+        functional-programming
       </div>
     
       <div>
@@ -267,6 +256,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -365,7 +360,7 @@
           
             
               <h3>
-                <a href="/blog/api/2023/01/26/circleCI-api.html">
+                <a href="/blog/api/2023/01/26/circleCI-api.html" class="textLink">
                   Circleci Api
                   <small>26 Jan 2023</small>
                 </a>
@@ -376,7 +371,7 @@
           
             
               <h3>
-                <a href="/blog/api/2023/01/22/restful.html">
+                <a href="/blog/api/2023/01/22/restful.html" class="textLink">
                   Restful
                   <small>22 Jan 2023</small>
                 </a>
@@ -459,6 +454,8 @@
           
         
           
+            
+          
         
           
         
@@ -539,7 +536,7 @@
           
             
               <h3>
-                <a href="/blog/api/2022/09/12/jenkins-api.html">
+                <a href="/blog/api/2022/09/12/jenkins-api.html" class="textLink">
                   Jenkins Api
                   <small>12 Sep 2022</small>
                 </a>
@@ -626,7 +623,7 @@
           
             
               <h3>
-                <a href="/blog/api/2022/08/17/authentication.html">
+                <a href="/blog/api/2022/08/17/authentication.html" class="textLink">
                   Authentication
                   <small>17 Aug 2022</small>
                 </a>
@@ -637,7 +634,7 @@
           
             
               <h3>
-                <a href="/blog/api/2022/08/16/json-api.html">
+                <a href="/blog/api/2022/08/16/json-api.html" class="textLink">
                   Json Api
                   <small>16 Aug 2022</small>
                 </a>
@@ -650,65 +647,9 @@
           
         
           
-            
-          
-        
-          
-        
-          
         
           
             
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
           
         
           
@@ -744,6 +685,62 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
             
           
         
@@ -820,11 +817,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -1058,7 +1055,7 @@
           
             
               <h3>
-                <a href="/blog/api/2021/02/18/overview.html">
+                <a href="/blog/api/2021/02/18/overview.html" class="textLink">
                   Overview
                   <small>18 Feb 2021</small>
                 </a>
@@ -1104,6 +1101,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -1272,7 +1275,7 @@
           
             
               <h3>
-                <a href="/blog/ci-cd/2022/12/17/github-page.html">
+                <a href="/blog/ci-cd/2022/12/17/github-page.html" class="textLink">
                   Github Page
                   <small>17 Dec 2022</small>
                 </a>
@@ -1289,6 +1292,8 @@
           
         
           
+            
+          
         
           
         
@@ -1459,9 +1464,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -1629,11 +1634,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -1906,22 +1911,6 @@
           
         
           
-            
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
         
           
             
@@ -1942,6 +1931,28 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
             
           
         
@@ -1955,18 +1966,6 @@
         
           
         
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
           
         
           
@@ -2010,8 +2009,6 @@
           
         
           
-        
-          
             
           
         
@@ -2021,6 +2018,8 @@
         
           
             
+          
+        
           
         
           
@@ -2083,6 +2082,20 @@
             
           
         
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
           
         
           
@@ -2152,7 +2165,7 @@
           
             
               <h3>
-                <a href="/blog/css/2022/10/15/overview.html">
+                <a href="/blog/css/2022/10/15/overview.html" class="textLink">
                   Overview
                   <small>15 Oct 2022</small>
                 </a>
@@ -2261,65 +2274,9 @@
           
         
           
-            
-          
-        
-          
-        
-          
         
           
             
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
           
         
           
@@ -2355,6 +2312,62 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
             
           
         
@@ -2431,11 +2444,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -2708,6 +2721,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -2885,6 +2904,8 @@
             
           
         
+          
+            
           
         
           
@@ -3056,9 +3077,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -3226,11 +3247,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -3302,7 +3323,7 @@
           
             
               <h3>
-                <a href="/blog/dsa/2021/11/25/overview.html">
+                <a href="/blog/dsa/2021/11/25/overview.html" class="textLink">
                   Overview
                   <small>25 Nov 2021</small>
                 </a>
@@ -3510,6 +3531,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -3518,7 +3545,7 @@
           
             
               <h3>
-                <a href="/blog/os/2023/04/02/overview.html">
+                <a href="/blog/os/2023/04/02/overview.html" class="textLink">
                   Overview
                   <small>02 Apr 2023</small>
                 </a>
@@ -3695,6 +3722,8 @@
           
         
           
+            
+          
         
           
         
@@ -3865,9 +3894,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -4035,11 +4064,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -4081,7 +4110,7 @@
           
             
               <h3>
-                <a href="/blog/os/2021/12/24/threads-and-concurrency.html">
+                <a href="/blog/os/2021/12/24/threads-and-concurrency.html" class="textLink">
                   thread and concurrency
                   <small>24 Dec 2021</small>
                 </a>
@@ -4092,7 +4121,7 @@
           
             
               <h3>
-                <a href="/blog/os/2021/12/24/process-management.html">
+                <a href="/blog/os/2021/12/24/process-management.html" class="textLink">
                   process management
                   <small>24 Dec 2021</small>
                 </a>
@@ -4103,7 +4132,7 @@
           
             
               <h3>
-                <a href="/blog/os/2021/12/24/memory-management.html">
+                <a href="/blog/os/2021/12/24/memory-management.html" class="textLink">
                   memory management
                   <small>24 Dec 2021</small>
                 </a>
@@ -4128,7 +4157,7 @@
           
             
               <h3>
-                <a href="/blog/os/2021/12/04/how-os-works.html">
+                <a href="/blog/os/2021/12/04/how-os-works.html" class="textLink">
                   How OS Works
                   <small>04 Dec 2021</small>
                 </a>
@@ -4340,6 +4369,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -4468,7 +4503,7 @@
           
             
               <h3>
-                <a href="/blog/pg/2022/12/30/overview.html">
+                <a href="/blog/pg/2022/12/30/overview.html" class="textLink">
                   Overview
                   <small>30 Dec 2022</small>
                 </a>
@@ -4525,6 +4560,8 @@
           
         
           
+            
+          
         
           
         
@@ -4695,9 +4732,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -4865,11 +4902,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -5142,6 +5179,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -5319,6 +5362,8 @@
             
           
         
+          
+            
           
         
           
@@ -5490,9 +5535,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -5660,11 +5705,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -5937,6 +5982,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -6114,6 +6165,8 @@
             
           
         
+          
+            
           
         
           
@@ -6285,9 +6338,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -6455,11 +6508,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -6732,22 +6785,6 @@
           
         
           
-            
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
         
           
             
@@ -6768,6 +6805,28 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
             
           
         
@@ -6781,18 +6840,6 @@
         
           
         
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
           
         
           
@@ -6836,8 +6883,6 @@
           
         
           
-        
-          
             
           
         
@@ -6847,6 +6892,8 @@
         
           
             
+          
+        
           
         
           
@@ -6909,6 +6956,20 @@
             
           
         
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
           
         
           
@@ -6972,7 +7033,7 @@
           
             
               <h3>
-                <a href="/blog/blockchain/2022/10/21/solidity.html">
+                <a href="/blog/blockchain/2022/10/21/solidity.html" class="textLink">
                   Solidity
                   <small>21 Oct 2022</small>
                 </a>
@@ -7087,65 +7148,9 @@
           
         
           
-            
-          
-        
-          
-        
-          
         
           
             
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
           
         
           
@@ -7181,6 +7186,62 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
             
           
         
@@ -7257,11 +7318,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -7534,22 +7595,6 @@
           
         
           
-            
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
         
           
             
@@ -7570,6 +7615,28 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
             
           
         
@@ -7583,18 +7650,6 @@
         
           
         
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
           
         
           
@@ -7638,8 +7693,6 @@
           
         
           
-        
-          
             
           
         
@@ -7649,6 +7702,8 @@
         
           
             
+          
+        
           
         
           
@@ -7711,6 +7766,20 @@
             
           
         
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
           
         
           
@@ -7864,7 +7933,7 @@
           
             
               <h3>
-                <a href="/blog/cache/2022/08/19/client-side.html">
+                <a href="/blog/cache/2022/08/19/client-side.html" class="textLink">
                   Client Side
                   <small>19 Aug 2022</small>
                 </a>
@@ -7889,9 +7958,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -8041,7 +8110,7 @@
           
             
               <h3>
-                <a href="/blog/cache/2022/02/09/content-delivery-network.html">
+                <a href="/blog/cache/2022/02/09/content-delivery-network.html" class="textLink">
                   Content Delivery Network
                   <small>09 Feb 2022</small>
                 </a>
@@ -8066,11 +8135,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -8343,22 +8412,6 @@
           
         
           
-            
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
         
           
             
@@ -8379,6 +8432,28 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
             
           
         
@@ -8392,18 +8467,6 @@
         
           
         
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
           
         
           
@@ -8447,8 +8510,6 @@
           
         
           
-        
-          
             
           
         
@@ -8458,6 +8519,8 @@
         
           
             
+          
+        
           
         
           
@@ -8520,6 +8583,20 @@
             
           
         
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
           
         
           
@@ -8579,7 +8656,7 @@
           
             
               <h3>
-                <a href="/blog/chemistry/2022/10/23/ch5-gas.html">
+                <a href="/blog/chemistry/2022/10/23/ch5-gas.html" class="textLink">
                   Ch5 Gas
                   <small>23 Oct 2022</small>
                 </a>
@@ -8612,7 +8689,7 @@
           
             
               <h3>
-                <a href="/blog/chemistry/2022/09/06/ch4-types-of-reaction.html">
+                <a href="/blog/chemistry/2022/09/06/ch4-types-of-reaction.html" class="textLink">
                   Ch4 Types Of Reaction
                   <small>06 Sep 2022</small>
                 </a>
@@ -8657,7 +8734,7 @@
           
             
               <h3>
-                <a href="/blog/chemistry/2022/08/28/ch3-stoichiometry.html">
+                <a href="/blog/chemistry/2022/08/28/ch3-stoichiometry.html" class="textLink">
                   Ch3 Stoichiometry
                   <small>28 Aug 2022</small>
                 </a>
@@ -8668,7 +8745,7 @@
           
             
               <h3>
-                <a href="/blog/chemistry/2022/08/27/ch2-atoms-molecules-Ions.html">
+                <a href="/blog/chemistry/2022/08/27/ch2-atoms-molecules-Ions.html" class="textLink">
                   Ch2 Atoms Molecules Ions
                   <small>27 Aug 2022</small>
                 </a>
@@ -8693,7 +8770,7 @@
           
             
               <h3>
-                <a href="/blog/chemistry/2022/08/21/ch1-chemical-foundations.html">
+                <a href="/blog/chemistry/2022/08/21/ch1-chemical-foundations.html" class="textLink">
                   Ch1 Chemical Foundations
                   <small>21 Aug 2022</small>
                 </a>
@@ -8726,65 +8803,9 @@
           
         
           
-            
-          
-        
-          
-        
-          
         
           
             
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
           
         
           
@@ -8820,6 +8841,62 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
             
           
         
@@ -8896,11 +8973,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -9173,6 +9250,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -9350,6 +9433,8 @@
             
           
         
+          
+            
           
         
           
@@ -9521,9 +9606,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -9691,11 +9776,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -9775,7 +9860,7 @@
           
             
               <h3>
-                <a href="/blog/concept/2021/11/21/Object-Oriented-Programming.html">
+                <a href="/blog/concept/2021/11/21/Object-Oriented-Programming.html" class="textLink">
                   Object Oriented Programming
                   <small>21 Nov 2021</small>
                 </a>
@@ -9975,6 +10060,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -10153,6 +10244,8 @@
           
         
           
+            
+          
         
           
         
@@ -10322,10 +10415,10 @@
         
           
         
-          
-            
           
         
+          
+            
           
         
           
@@ -10333,7 +10426,7 @@
           
             
               <h3>
-                <a href="/blog/database/2022/08/12/N+1.html">
+                <a href="/blog/database/2022/08/12/N+1.html" class="textLink">
                   N+1
                   <small>12 Aug 2022</small>
                 </a>
@@ -10396,7 +10489,7 @@
           
             
               <h3>
-                <a href="/blog/database/presentation/2022/05/14/ACID.html">
+                <a href="/blog/database/presentation/2022/05/14/ACID.html" class="textLink">
                   ACID
                   <small>14 May 2022</small>
                 </a>
@@ -10507,11 +10600,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -10537,7 +10630,7 @@
           
             
               <h3>
-                <a href="/blog/database/2022/01/04/ORM.html">
+                <a href="/blog/database/2022/01/04/ORM.html" class="textLink">
                   ORM
                   <small>04 Jan 2022</small>
                 </a>
@@ -10791,6 +10884,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -10811,7 +10910,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/2023/03/30/adapter.html">
+                <a href="/blog/design-pattern/2023/03/30/adapter.html" class="textLink">
                   Adapter
                   <small>30 Mar 2023</small>
                 </a>
@@ -10976,6 +11075,8 @@
           
         
           
+            
+          
         
           
         
@@ -11030,7 +11131,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/2022/10/28/visitor.html">
+                <a href="/blog/design-pattern/2022/10/28/visitor.html" class="textLink">
                   Visitor
                   <small>28 Oct 2022</small>
                 </a>
@@ -11121,7 +11222,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/2022/08/25/command.html">
+                <a href="/blog/design-pattern/2022/08/25/command.html" class="textLink">
                   Command
                   <small>25 Aug 2022</small>
                 </a>
@@ -11160,9 +11261,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -11190,7 +11291,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/presentation/2022/07/28/facade.html">
+                <a href="/blog/design-pattern/presentation/2022/07/28/facade.html" class="textLink">
                   facade
                   <small>28 Jul 2022</small>
                 </a>
@@ -11263,7 +11364,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/2022/04/09/abstract-factory.html">
+                <a href="/blog/design-pattern/2022/04/09/abstract-factory.html" class="textLink">
                   absctact factory
                   <small>09 Apr 2022</small>
                 </a>
@@ -11278,7 +11379,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/2022/04/06/factory-method.html">
+                <a href="/blog/design-pattern/2022/04/06/factory-method.html" class="textLink">
                   factory method
                   <small>06 Apr 2022</small>
                 </a>
@@ -11289,7 +11390,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/2022/04/02/decorator.html">
+                <a href="/blog/design-pattern/2022/04/02/decorator.html" class="textLink">
                   decorator
                   <small>02 Apr 2022</small>
                 </a>
@@ -11304,7 +11405,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/2022/03/25/observer.html">
+                <a href="/blog/design-pattern/2022/03/25/observer.html" class="textLink">
                   observer
                   <small>25 Mar 2022</small>
                 </a>
@@ -11315,7 +11416,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/presentation/2022/03/22/prototype.html">
+                <a href="/blog/design-pattern/presentation/2022/03/22/prototype.html" class="textLink">
                   prototype
                   <small>22 Mar 2022</small>
                 </a>
@@ -11326,7 +11427,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/2022/03/22/strategy.html">
+                <a href="/blog/design-pattern/2022/03/22/strategy.html" class="textLink">
                   strategy
                   <small>22 Mar 2022</small>
                 </a>
@@ -11379,18 +11480,18 @@
           
         
           
-        
-          
-        
-          
             
               <h3>
-                <a href="/blog/design-pattern/2022/01/30/overview.html">
+                <a href="/blog/design-pattern/2022/01/30/overview.html" class="textLink">
                   overview
                   <small>30 Jan 2022</small>
                 </a>
               </h3>
             
+          
+        
+          
+        
           
         
           
@@ -11663,6 +11764,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -11840,6 +11947,8 @@
             
           
         
+          
+            
           
         
           
@@ -12011,9 +12120,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -12181,11 +12290,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -12207,7 +12316,7 @@
           
             
               <h3>
-                <a href="/blog/docker/2022/01/09/overview.html">
+                <a href="/blog/docker/2022/01/09/overview.html" class="textLink">
                   Overview
                   <small>09 Jan 2022</small>
                 </a>
@@ -12465,6 +12574,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -12642,6 +12757,8 @@
             
           
         
+          
+            
           
         
           
@@ -12806,6 +12923,8 @@
         
           
             
+          
+        
           
         
           
@@ -12815,7 +12934,7 @@
           
             
               <h3>
-                <a href="/blog/economics/2022/08/13/capitalism.html">
+                <a href="/blog/economics/2022/08/13/capitalism.html" class="textLink">
                   Capitalism
                   <small>13 Aug 2022</small>
                 </a>
@@ -12826,8 +12945,6 @@
           
         
           
-        
-          
             
           
         
@@ -12990,11 +13107,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -13267,6 +13384,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -13419,7 +13542,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/12/19/(independent)-take-risk.html">
+                <a href="/blog/english/2022/12/19/(independent)-take-risk.html" class="textLink">
                   (independent) Take Risk
                   <small>19 Dec 2022</small>
                 </a>
@@ -13430,7 +13553,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/12/19/(independent)-library.html">
+                <a href="/blog/english/2022/12/19/(independent)-library.html" class="textLink">
                   (independent) Library
                   <small>19 Dec 2022</small>
                 </a>
@@ -13441,7 +13564,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/12/19/(integration)-preserve-torreya-taxifoha.html">
+                <a href="/blog/english/2022/12/19/(integration)-preserve-torreya-taxifoha.html" class="textLink">
                   (integration) Preserve Torreya Taxifoha
                   <small>19 Dec 2022</small>
                 </a>
@@ -13452,7 +13575,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/12/19/(independent)-decorate-romm.html">
+                <a href="/blog/english/2022/12/19/(independent)-decorate-romm.html" class="textLink">
                   (independent) Decorate Romm
                   <small>19 Dec 2022</small>
                 </a>
@@ -13473,6 +13596,8 @@
           
         
           
+            
+          
         
           
         
@@ -13491,7 +13616,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/26/(integration)-rchaeologist-in-Britain.html">
+                <a href="/blog/english/2022/11/26/(integration)-rchaeologist-in-Britain.html" class="textLink">
                   (integration) Rchaeologist In Britain
                   <small>26 Nov 2022</small>
                 </a>
@@ -13502,7 +13627,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/26/(integration)-is-vessels-the-same-as-batteries.html">
+                <a href="/blog/english/2022/11/26/(integration)-is-vessels-the-same-as-batteries.html" class="textLink">
                   (integration) Is Vessels The Same As Batteries
                   <small>26 Nov 2022</small>
                 </a>
@@ -13513,7 +13638,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/21/(integration)-birds-population.html">
+                <a href="/blog/english/2022/11/21/(integration)-birds-population.html" class="textLink">
                   (integration) Birds Population
                   <small>21 Nov 2022</small>
                 </a>
@@ -13524,7 +13649,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/21/(independent)-advertisement.html">
+                <a href="/blog/english/2022/11/21/(independent)-advertisement.html" class="textLink">
                   (independent) Advertisement
                   <small>21 Nov 2022</small>
                 </a>
@@ -13535,7 +13660,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/21/(independent)-support-artists.html">
+                <a href="/blog/english/2022/11/21/(independent)-support-artists.html" class="textLink">
                   (independent) Support Artists
                   <small>21 Nov 2022</small>
                 </a>
@@ -13546,7 +13671,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/20/(toefl)-writing.html">
+                <a href="/blog/english/2022/11/20/(toefl)-writing.html" class="textLink">
                   (toefl) Writing
                   <small>20 Nov 2022</small>
                 </a>
@@ -13557,7 +13682,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/20/(toefl)-speaking.html">
+                <a href="/blog/english/2022/11/20/(toefl)-speaking.html" class="textLink">
                   (toefl) Speaking
                   <small>20 Nov 2022</small>
                 </a>
@@ -13568,7 +13693,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/19/(toefl)-reading.html">
+                <a href="/blog/english/2022/11/19/(toefl)-reading.html" class="textLink">
                   (toefl) Reading
                   <small>19 Nov 2022</small>
                 </a>
@@ -13579,7 +13704,7 @@
           
             
               <h3>
-                <a href="/blog/english/2022/11/19/(toefl)-listening.html">
+                <a href="/blog/english/2022/11/19/(toefl)-listening.html" class="textLink">
                   (toefl) Listening
                   <small>19 Nov 2022</small>
                 </a>
@@ -13706,65 +13831,9 @@
           
         
           
-            
-          
-        
-          
-        
-          
         
           
             
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
           
         
           
@@ -13800,6 +13869,62 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
             
           
         
@@ -13876,11 +14001,835 @@
           
         
           
+            
+          
+        
+          
         
           
         
           
             
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      </ul>
+    
+      <h2 id="functional-programming">functional-programming</h2>
+      <ul>
+        
+          
+            
+              <h3>
+                <a href="/blog/functional-programming/2023/04/08/isolating-timelines.html" class="textLink">
+                  Isolating Timelines
+                  <small>08 Apr 2023</small>
+                </a>
+              </h3>
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+              <h3>
+                <a href="/blog/functional-programming/presentation/2022/12/10/separating-actions-calculations-data.html" class="textLink">
+                  Separating Actions Calculations Data
+                  <small>10 Dec 2022</small>
+                </a>
+              </h3>
+            
+          
+        
+          
+            
+              <h3>
+                <a href="/blog/functional-programming/2022/12/10/overview.html" class="textLink">
+                  Overview
+                  <small>10 Dec 2022</small>
+                </a>
+              </h3>
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
           
         
           
@@ -14153,6 +15102,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -14331,6 +15286,8 @@
           
         
           
+            
+          
         
           
         
@@ -14500,10 +15457,10 @@
         
           
         
-          
-            
           
         
+          
+            
           
         
           
@@ -14523,7 +15480,7 @@
           
             
               <h3>
-                <a href="/blog/git/2022/08/11/basic-usage.html">
+                <a href="/blog/git/2022/08/11/basic-usage.html" class="textLink">
                   basic usage
                   <small>11 Aug 2022</small>
                 </a>
@@ -14678,11 +15635,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -14834,7 +15791,7 @@
           
             
               <h3>
-                <a href="/blog/git/2021/05/02/Github.html">
+                <a href="/blog/git/2021/05/02/Github.html" class="textLink">
                   Github
                   <small>02 May 2021</small>
                 </a>
@@ -14962,6 +15919,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -15139,6 +16102,8 @@
             
           
         
+          
+            
           
         
           
@@ -15310,9 +16275,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -15480,11 +16445,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -15538,7 +16503,7 @@
           
             
               <h3>
-                <a href="/blog/html/2021/12/17/overview.html">
+                <a href="/blog/html/2021/12/17/overview.html" class="textLink">
                   Overview
                   <small>17 Dec 2021</small>
                 </a>
@@ -15764,6 +16729,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -15941,6 +16912,8 @@
             
           
         
+          
+            
           
         
           
@@ -16112,9 +17085,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -16282,11 +17255,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -16454,7 +17427,7 @@
           
             
               <h3>
-                <a href="/blog/internet/2021/04/09/http.html">
+                <a href="/blog/internet/2021/04/09/http.html" class="textLink">
                   Http
                   <small>09 Apr 2021</small>
                 </a>
@@ -16469,7 +17442,7 @@
           
             
               <h3>
-                <a href="/blog/internet/2021/03/29/overview.html">
+                <a href="/blog/internet/2021/03/29/overview.html" class="textLink">
                   Overview
                   <small>29 Mar 2021</small>
                 </a>
@@ -16573,6 +17546,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -16751,6 +17730,8 @@
           
         
           
+            
+          
         
           
         
@@ -16920,10 +17901,10 @@
         
           
         
-          
-            
           
         
+          
+            
           
         
           
@@ -16977,7 +17958,7 @@
           
             
               <h3>
-                <a href="/blog/japanese/2022/05/26/noun.html">
+                <a href="/blog/japanese/2022/05/26/noun.html" class="textLink">
                   noun (Japanese)
                   <small>26 May 2022</small>
                 </a>
@@ -17014,7 +17995,7 @@
           
             
               <h3>
-                <a href="/blog/japanese/2022/04/19/verb.html">
+                <a href="/blog/japanese/2022/04/19/verb.html" class="textLink">
                   verb (Japanese)
                   <small>19 Apr 2022</small>
                 </a>
@@ -17025,7 +18006,7 @@
           
             
               <h3>
-                <a href="/blog/japanese/2022/04/13/adverb-interjection-conjunction.html">
+                <a href="/blog/japanese/2022/04/13/adverb-interjection-conjunction.html" class="textLink">
                   adverb interjection conjunction (Japanese)
                   <small>13 Apr 2022</small>
                 </a>
@@ -17042,7 +18023,7 @@
           
             
               <h3>
-                <a href="/blog/japanese/2022/04/07/adjective.html">
+                <a href="/blog/japanese/2022/04/07/adjective.html" class="textLink">
                   adjective (Japanese)
                   <small>07 Apr 2022</small>
                 </a>
@@ -17077,7 +18058,7 @@
           
             
               <h3>
-                <a href="/blog/japanese/2022/03/20/sentence-pattern.html">
+                <a href="/blog/japanese/2022/03/20/sentence-pattern.html" class="textLink">
                   sentence pattern (Japanese)
                   <small>20 Mar 2022</small>
                 </a>
@@ -17088,7 +18069,7 @@
           
             
               <h3>
-                <a href="/blog/japanese/2022/03/19/special-pronounce.html">
+                <a href="/blog/japanese/2022/03/19/special-pronounce.html" class="textLink">
                   pronounce (Japanese)
                   <small>19 Mar 2022</small>
                 </a>
@@ -17101,7 +18082,7 @@
           
             
               <h3>
-                <a href="/blog/japanese/2022/03/09/study-for-N5.html">
+                <a href="/blog/japanese/2022/03/09/study-for-N5.html" class="textLink">
                   study for N5
                   <small>09 Mar 2022</small>
                 </a>
@@ -17140,11 +18121,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -17417,9 +18398,15 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
               <h3>
-                <a href="/blog/javascript/2023/04/06/import-export.html">
+                <a href="/blog/javascript/2023/04/06/import-export.html" class="textLink">
                   Import Export
                   <small>06 Apr 2023</small>
                 </a>
@@ -17564,7 +18551,7 @@
           
             
               <h3>
-                <a href="/blog/javascript/2022/12/25/methods.html">
+                <a href="/blog/javascript/2022/12/25/methods.html" class="textLink">
                   Methods
                   <small>25 Dec 2022</small>
                 </a>
@@ -17575,7 +18562,7 @@
           
             
               <h3>
-                <a href="/blog/javascript/2022/12/25/datatype.html">
+                <a href="/blog/javascript/2022/12/25/datatype.html" class="textLink">
                   Datatype
                   <small>25 Dec 2022</small>
                 </a>
@@ -17610,7 +18597,7 @@
           
             
               <h3>
-                <a href="/blog/javascript/2022/12/12/overview.html">
+                <a href="/blog/javascript/2022/12/12/overview.html" class="textLink">
                   Overview
                   <small>12 Dec 2022</small>
                 </a>
@@ -17623,6 +18610,8 @@
           
         
           
+            
+          
         
           
         
@@ -17793,9 +18782,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -17963,11 +18952,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -18075,7 +19064,7 @@
           
             
               <h3>
-                <a href="/blog/javascript/2021/06/19/AJAX.html">
+                <a href="/blog/javascript/2021/06/19/AJAX.html" class="textLink">
                   Ajax
                   <small>19 Jun 2021</small>
                 </a>
@@ -18247,6 +19236,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -18395,7 +19390,7 @@
           
             
               <h3>
-                <a href="/blog/jekyll/2022/12/25/overview.html">
+                <a href="/blog/jekyll/2022/12/25/overview.html" class="textLink">
                   Overview
                   <small>25 Dec 2022</small>
                 </a>
@@ -18432,13 +19427,15 @@
           
         
           
+            
+          
         
           
         
           
             
               <h3>
-                <a href="/blog/jekyll/2022/12/04/react.html">
+                <a href="/blog/jekyll/2022/12/04/react.html" class="textLink">
                   React
                   <small>04 Dec 2022</small>
                 </a>
@@ -18609,65 +19606,9 @@
           
         
           
-            
-          
-        
-          
-        
-          
         
           
             
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
           
         
           
@@ -18703,6 +19644,62 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
             
           
         
@@ -18779,11 +19776,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -19056,6 +20053,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -19233,6 +20236,8 @@
             
           
         
+          
+            
           
         
           
@@ -19404,9 +20409,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -19574,11 +20579,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -19851,6 +20856,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -19905,7 +20916,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2023/02/23/grokking-simplicity-ch11.html">
+                <a href="/blog/mindset/presentation/2023/02/23/grokking-simplicity-ch11.html" class="textLink">
                   Grokking Simplicity Ch11
                   <small>23 Feb 2023</small>
                 </a>
@@ -19927,12 +20938,8 @@
         
           
             
-          
-        
-          
-            
               <h3>
-                <a href="/blog/mindset/2023/02/04/overview.html">
+                <a href="/blog/mindset/2023/02/04/overview.html" class="textLink">
                   Overview
                   <small>04 Feb 2023</small>
                 </a>
@@ -19969,6 +20976,10 @@
           
         
           
+            
+          
+        
+          
         
           
             
@@ -19977,7 +20988,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2023/01/05/grokking-simplicity-ch7.html">
+                <a href="/blog/mindset/presentation/2023/01/05/grokking-simplicity-ch7.html" class="textLink">
                   Grokking Simplicity Ch7
                   <small>05 Jan 2023</small>
                 </a>
@@ -20047,15 +21058,10 @@
         
           
             
-              <h3>
-                <a href="/blog/mindset/presentation/2022/12/10/grokking-simplicity-ch3.html">
-                  Grokking Simplicity Ch3
-                  <small>10 Dec 2022</small>
-                </a>
-              </h3>
-            
           
         
+          
+            
           
         
           
@@ -20187,7 +21193,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/2022/08/26/code-review.html">
+                <a href="/blog/mindset/2022/08/26/code-review.html" class="textLink">
                   Code Review
                   <small>26 Aug 2022</small>
                 </a>
@@ -20234,9 +21240,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -20278,7 +21284,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/07/08/encoding.html">
+                <a href="/blog/mindset/presentation/2022/07/08/encoding.html" class="textLink">
                   encoding
                   <small>08 Jul 2022</small>
                 </a>
@@ -20311,7 +21317,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/05/07/clean-code-ch13-concurrency.html">
+                <a href="/blog/mindset/presentation/2022/05/07/concurrency.html" class="textLink">
                   ch13 concurrency
                   <small>07 May 2022</small>
                 </a>
@@ -20360,7 +21366,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/03/27/clean-code-ch7.html">
+                <a href="/blog/mindset/presentation/2022/03/27/clean-code-ch7.html" class="textLink">
                   clean code ch7
                   <small>27 Mar 2022</small>
                 </a>
@@ -20401,7 +21407,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/02/20/clean-code-ch2.html">
+                <a href="/blog/mindset/presentation/2022/02/20/clean-code-ch2.html" class="textLink">
                   clean code ch2
                   <small>20 Feb 2022</small>
                 </a>
@@ -20432,11 +21438,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -20709,6 +21715,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -20887,6 +21899,8 @@
           
         
           
+            
+          
         
           
         
@@ -21056,10 +22070,10 @@
         
           
         
-          
-            
           
         
+          
+            
           
         
           
@@ -21071,7 +22085,7 @@
           
             
               <h3>
-                <a href="/blog/mysql/2022/08/12/overview.html">
+                <a href="/blog/mysql/2022/08/12/overview.html" class="textLink">
                   Overview
                   <small>12 Aug 2022</small>
                 </a>
@@ -21234,11 +22248,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -21511,6 +22525,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -21573,7 +22593,7 @@
           
             
               <h3>
-                <a href="/blog/node/2023/02/13/web-security.html">
+                <a href="/blog/node/2023/02/13/web-security.html" class="textLink">
                   Web Security
                   <small>13 Feb 2023</small>
                 </a>
@@ -21584,7 +22604,7 @@
           
             
               <h3>
-                <a href="/blog/node/2023/02/10/token.html">
+                <a href="/blog/node/2023/02/10/token.html" class="textLink">
                   Token
                   <small>10 Feb 2023</small>
                 </a>
@@ -21633,7 +22653,7 @@
           
             
               <h3>
-                <a href="/blog/node/2023/01/20/spec.html">
+                <a href="/blog/node/2023/01/20/spec.html" class="textLink">
                   Spec
                   <small>20 Jan 2023</small>
                 </a>
@@ -21656,7 +22676,7 @@
           
             
               <h3>
-                <a href="/blog/node/2022/12/31/sign-up-and-login.html">
+                <a href="/blog/node/2022/12/31/sign-up-and-login.html" class="textLink">
                   Sign Up And Login
                   <small>31 Dec 2022</small>
                 </a>
@@ -21671,7 +22691,7 @@
           
             
               <h3>
-                <a href="/blog/node/2022/12/30/overview.html">
+                <a href="/blog/node/2022/12/30/overview.html" class="textLink">
                   Overview
                   <small>30 Dec 2022</small>
                 </a>
@@ -21682,7 +22702,7 @@
           
             
               <h3>
-                <a href="/blog/node/2022/12/30/database-setup.html">
+                <a href="/blog/node/2022/12/30/database-setup.html" class="textLink">
                   Database Setup
                   <small>30 Dec 2022</small>
                 </a>
@@ -21731,6 +22751,8 @@
           
         
           
+            
+          
         
           
         
@@ -21901,9 +22923,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -22071,17 +23093,17 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
             
               <h3>
-                <a href="/blog/node/2022/01/26/api.html">
+                <a href="/blog/node/2022/01/26/api.html" class="textLink">
                   Api
                   <small>26 Jan 2022</small>
                 </a>
@@ -22092,7 +23114,7 @@
           
             
               <h3>
-                <a href="/blog/node/2022/01/20/model.html">
+                <a href="/blog/node/2022/01/20/model.html" class="textLink">
                   Model
                   <small>20 Jan 2022</small>
                 </a>
@@ -22362,6 +23384,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -22540,6 +23568,8 @@
           
         
           
+            
+          
         
           
         
@@ -22709,10 +23739,10 @@
         
           
         
-          
-            
           
         
+          
+            
           
         
           
@@ -22736,7 +23766,7 @@
           
             
               <h3>
-                <a href="/blog/organic-chemistry/2022/08/07/2-acid-and-base.html">
+                <a href="/blog/organic-chemistry/2022/08/07/2-acid-and-base.html" class="textLink">
                   acid and base
                   <small>07 Aug 2022</small>
                 </a>
@@ -22751,7 +23781,7 @@
           
             
               <h3>
-                <a href="/blog/organic-chemistry/2022/07/25/1-structure-and-bonding.html">
+                <a href="/blog/organic-chemistry/2022/07/25/1-structure-and-bonding.html" class="textLink">
                   structure and bonding
                   <small>25 Jul 2022</small>
                 </a>
@@ -22894,11 +23924,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -23171,6 +24201,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -23348,6 +24384,8 @@
             
           
         
+          
+            
           
         
           
@@ -23519,9 +24557,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -23689,11 +24727,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -23966,6 +25004,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -24044,7 +25088,7 @@
           
             
               <h3>
-                <a href="/blog/package/2023/02/03/overview.html">
+                <a href="/blog/package/2023/02/03/overview.html" class="textLink">
                   Overview
                   <small>03 Feb 2023</small>
                 </a>
@@ -24151,6 +25195,8 @@
           
         
           
+            
+          
         
           
         
@@ -24321,9 +25367,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -24491,11 +25537,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -24768,6 +25814,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -24822,7 +25874,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2023/02/23/grokking-simplicity-ch11.html">
+                <a href="/blog/mindset/presentation/2023/02/23/grokking-simplicity-ch11.html" class="textLink">
                   Grokking Simplicity Ch11
                   <small>23 Feb 2023</small>
                 </a>
@@ -24887,7 +25939,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2023/01/05/grokking-simplicity-ch7.html">
+                <a href="/blog/mindset/presentation/2023/01/05/grokking-simplicity-ch7.html" class="textLink">
                   Grokking Simplicity Ch7
                   <small>05 Jan 2023</small>
                 </a>
@@ -24958,8 +26010,8 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/12/10/grokking-simplicity-ch3.html">
-                  Grokking Simplicity Ch3
+                <a href="/blog/functional-programming/presentation/2022/12/10/separating-actions-calculations-data.html" class="textLink">
+                  Separating Actions Calculations Data
                   <small>10 Dec 2022</small>
                 </a>
               </h3>
@@ -24967,6 +26019,8 @@
           
         
           
+            
+          
         
           
         
@@ -24980,14 +26034,6 @@
         
           
         
-          
-        
-          
-            
-          
-        
-          
-            
           
         
           
@@ -25031,6 +26077,14 @@
           
         
           
+            
+          
+        
+          
+            
+          
+        
+          
         
           
             
@@ -25058,32 +26112,6 @@
         
           
             
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
           
         
           
@@ -25107,6 +26135,32 @@
           
         
           
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
         
           
             
@@ -25137,9 +26191,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -25167,7 +26221,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/presentation/2022/07/28/facade.html">
+                <a href="/blog/design-pattern/presentation/2022/07/28/facade.html" class="textLink">
                   facade
                   <small>28 Jul 2022</small>
                 </a>
@@ -25188,7 +26242,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/07/08/encoding.html">
+                <a href="/blog/mindset/presentation/2022/07/08/encoding.html" class="textLink">
                   encoding
                   <small>08 Jul 2022</small>
                 </a>
@@ -25217,7 +26271,7 @@
           
             
               <h3>
-                <a href="/blog/database/presentation/2022/05/14/ACID.html">
+                <a href="/blog/database/presentation/2022/05/14/ACID.html" class="textLink">
                   ACID
                   <small>14 May 2022</small>
                 </a>
@@ -25228,7 +26282,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/05/07/clean-code-ch13-concurrency.html">
+                <a href="/blog/mindset/presentation/2022/05/07/concurrency.html" class="textLink">
                   ch13 concurrency
                   <small>07 May 2022</small>
                 </a>
@@ -25277,7 +26331,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/03/27/clean-code-ch7.html">
+                <a href="/blog/mindset/presentation/2022/03/27/clean-code-ch7.html" class="textLink">
                   clean code ch7
                   <small>27 Mar 2022</small>
                 </a>
@@ -25292,7 +26346,7 @@
           
             
               <h3>
-                <a href="/blog/design-pattern/presentation/2022/03/22/prototype.html">
+                <a href="/blog/design-pattern/presentation/2022/03/22/prototype.html" class="textLink">
                   prototype
                   <small>22 Mar 2022</small>
                 </a>
@@ -25325,7 +26379,7 @@
           
             
               <h3>
-                <a href="/blog/mindset/presentation/2022/02/20/clean-code-ch2.html">
+                <a href="/blog/mindset/presentation/2022/02/20/clean-code-ch2.html" class="textLink">
                   clean code ch2
                   <small>20 Feb 2022</small>
                 </a>
@@ -25356,11 +26410,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -25633,6 +26687,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -25810,6 +26870,8 @@
             
           
         
+          
+            
           
         
           
@@ -25981,9 +27043,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -26151,11 +27213,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -26413,7 +27475,7 @@
           
             
               <h3>
-                <a href="/blog/project/1993/09/01/(project)-blog.html">
+                <a href="/blog/project/1993/09/01/(project)-blog.html" class="textLink">
                   (project) Blog
                   <small>01 Sep 1993</small>
                 </a>
@@ -26435,6 +27497,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -26447,7 +27515,7 @@
           
             
               <h3>
-                <a href="/blog/psychology/2023/04/01/developmental-psychology.html">
+                <a href="/blog/psychology/2023/04/01/developmental-psychology.html" class="textLink">
                   Developmental Psychology
                   <small>01 Apr 2023</small>
                 </a>
@@ -26472,7 +27540,7 @@
           
             
               <h3>
-                <a href="/blog/psychology/2023/03/26/childhood-trauma-on-adult-mental-health.html">
+                <a href="/blog/psychology/2023/03/26/childhood-trauma-on-adult-mental-health.html" class="textLink">
                   Childhood Trauma On Adult Mental Health
                   <small>26 Mar 2023</small>
                 </a>
@@ -26483,7 +27551,7 @@
           
             
               <h3>
-                <a href="/blog/psychology/2023/03/26/NEO-result.html">
+                <a href="/blog/psychology/2023/03/26/NEO-result.html" class="textLink">
                   Neo Result
                   <small>26 Mar 2023</small>
                 </a>
@@ -26494,7 +27562,7 @@
           
             
               <h3>
-                <a href="/blog/psychology/2023/03/25/parenting-style-child-development.html">
+                <a href="/blog/psychology/2023/03/25/parenting-style-child-development.html" class="textLink">
                   Parenting Style Child Development
                   <small>25 Mar 2023</small>
                 </a>
@@ -26509,7 +27577,7 @@
           
             
               <h3>
-                <a href="/blog/psychology/2023/03/17/overview.html">
+                <a href="/blog/psychology/2023/03/17/overview.html" class="textLink">
                   Overview
                   <small>17 Mar 2023</small>
                 </a>
@@ -26648,6 +27716,8 @@
           
         
           
+            
+          
         
           
         
@@ -26818,9 +27888,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -26988,11 +28058,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -27265,6 +28335,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -27442,6 +28518,8 @@
             
           
         
+          
+            
           
         
           
@@ -27613,9 +28691,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -27783,11 +28861,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -28060,6 +29138,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -28084,7 +29168,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2023/03/28/database.html">
+                <a href="/blog/rails/2023/03/28/database.html" class="textLink">
                   Database
                   <small>28 Mar 2023</small>
                 </a>
@@ -28187,7 +29271,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2023/01/01/overview.html">
+                <a href="/blog/rails/2023/01/01/overview.html" class="textLink">
                   Overview
                   <small>01 Jan 2023</small>
                 </a>
@@ -28252,6 +29336,8 @@
           
         
           
+            
+          
         
           
         
@@ -28265,14 +29351,6 @@
         
           
         
-          
-        
-          
-            
-          
-        
-          
-            
           
         
           
@@ -28316,6 +29394,14 @@
           
         
           
+            
+          
+        
+          
+            
+          
+        
+          
         
           
             
@@ -28343,32 +29429,6 @@
         
           
             
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
           
         
           
@@ -28392,6 +29452,32 @@
           
         
           
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
         
           
             
@@ -28422,9 +29508,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -28586,7 +29672,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2022/02/06/Controller.html">
+                <a href="/blog/rails/2022/02/06/Controller.html" class="textLink">
                   Controller
                   <small>06 Feb 2022</small>
                 </a>
@@ -28597,7 +29683,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2022/02/05/Routes.html">
+                <a href="/blog/rails/2022/02/05/Routes.html" class="textLink">
                   Routes
                   <small>05 Feb 2022</small>
                 </a>
@@ -28606,11 +29692,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -28626,7 +29712,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2022/01/13/object-relational-mapping.html">
+                <a href="/blog/rails/2022/01/13/object-relational-mapping.html" class="textLink">
                   Object Relational Mapping
                   <small>13 Jan 2022</small>
                 </a>
@@ -28753,7 +29839,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2021/06/10/active-record.html">
+                <a href="/blog/rails/2021/06/10/active-record.html" class="textLink">
                   Active Record
                   <small>10 Jun 2021</small>
                 </a>
@@ -28832,7 +29918,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2021/03/04/validation.html">
+                <a href="/blog/rails/2021/03/04/validation.html" class="textLink">
                   Validation
                   <small>04 Mar 2021</small>
                 </a>
@@ -28845,7 +29931,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2021/03/02/model.html">
+                <a href="/blog/rails/2021/03/02/model.html" class="textLink">
                   Model
                   <small>02 Mar 2021</small>
                 </a>
@@ -28856,7 +29942,7 @@
           
             
               <h3>
-                <a href="/blog/rails/2021/03/02/view.html">
+                <a href="/blog/rails/2021/03/02/view.html" class="textLink">
                   View
                   <small>02 Mar 2021</small>
                 </a>
@@ -28918,6 +30004,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -28976,7 +30068,7 @@
           
             
               <h3>
-                <a href="/blog/react/2023/02/18/node-graph.html">
+                <a href="/blog/react/2023/02/18/node-graph.html" class="textLink">
                   Node Graph
                   <small>18 Feb 2023</small>
                 </a>
@@ -29019,7 +30111,7 @@
           
             
               <h3>
-                <a href="/blog/react/2023/01/27/component.html">
+                <a href="/blog/react/2023/01/27/component.html" class="textLink">
                   Component
                   <small>27 Jan 2023</small>
                 </a>
@@ -29110,6 +30202,8 @@
           
         
           
+            
+          
         
           
         
@@ -29184,7 +30278,7 @@
           
             
               <h3>
-                <a href="/blog/react/2022/09/14/api.html">
+                <a href="/blog/react/2022/09/14/api.html" class="textLink">
                   Api
                   <small>14 Sep 2022</small>
                 </a>
@@ -29287,9 +30381,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -29447,7 +30541,7 @@
           
             
               <h3>
-                <a href="/blog/react/2022/02/06/Router.html">
+                <a href="/blog/react/2022/02/06/Router.html" class="textLink">
                   Router
                   <small>06 Feb 2022</small>
                 </a>
@@ -29464,11 +30558,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -29552,7 +30646,7 @@
           
             
               <h3>
-                <a href="/blog/react/2021/10/15/sign-up-and-login.html">
+                <a href="/blog/react/2021/10/15/sign-up-and-login.html" class="textLink">
                   Sign Up And Login
                   <small>15 Oct 2021</small>
                 </a>
@@ -29587,7 +30681,7 @@
           
             
               <h3>
-                <a href="/blog/react/2021/06/17/hook.html">
+                <a href="/blog/react/2021/06/17/hook.html" class="textLink">
                   Hook
                   <small>17 Jun 2021</small>
                 </a>
@@ -29602,7 +30696,7 @@
           
             
               <h3>
-                <a href="/blog/react/2021/06/16/state.html">
+                <a href="/blog/react/2021/06/16/state.html" class="textLink">
                   state
                   <small>16 Jun 2021</small>
                 </a>
@@ -29613,7 +30707,7 @@
           
             
               <h3>
-                <a href="/blog/react/2021/06/15/prop.html">
+                <a href="/blog/react/2021/06/15/prop.html" class="textLink">
                   Prop
                   <small>15 Jun 2021</small>
                 </a>
@@ -29624,7 +30718,7 @@
           
             
               <h3>
-                <a href="/blog/react/2021/06/14/layout.html">
+                <a href="/blog/react/2021/06/14/layout.html" class="textLink">
                   Layout
                   <small>14 Jun 2021</small>
                 </a>
@@ -29635,7 +30729,7 @@
           
             
               <h3>
-                <a href="/blog/react/2021/06/13/overview.html">
+                <a href="/blog/react/2021/06/13/overview.html" class="textLink">
                   Overview
                   <small>13 Jun 2021</small>
                 </a>
@@ -29783,6 +30877,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -29960,6 +31060,8 @@
             
           
         
+          
+            
           
         
           
@@ -30131,9 +31233,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -30301,11 +31403,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -30551,7 +31653,7 @@
           
             
               <h3>
-                <a href="/blog/ruby/2021/02/04/overview.html">
+                <a href="/blog/ruby/2021/02/04/overview.html" class="textLink">
                   Overview
                   <small>04 Feb 2021</small>
                 </a>
@@ -30582,8 +31684,14 @@
         
           
             
+          
+        
+          
+        
+          
+            
               <h3>
-                <a href="/blog/self/2023/04/07/aesthetics.html">
+                <a href="/blog/self/2023/04/07/aesthetics.html" class="textLink">
                   Aesthetics
                   <small>07 Apr 2023</small>
                 </a>
@@ -30661,8 +31769,12 @@
         
           
             
+          
+        
+          
+            
               <h3>
-                <a href="/blog/self/2023/02/04/software.html">
+                <a href="/blog/self/2023/02/04/software.html" class="textLink">
                   Software
                   <small>04 Feb 2023</small>
                 </a>
@@ -30699,10 +31811,6 @@
           
         
           
-            
-          
-        
-          
         
           
             
@@ -30776,6 +31884,8 @@
             
           
         
+          
+            
           
         
           
@@ -30946,10 +32056,10 @@
         
           
         
-          
-            
           
         
+          
+            
           
         
           
@@ -31117,11 +32227,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -31394,6 +32504,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -31571,6 +32687,8 @@
             
           
         
+          
+            
           
         
           
@@ -31742,9 +32860,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -31912,11 +33030,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -32189,6 +33307,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -32366,6 +33490,8 @@
             
           
         
+          
+            
           
         
           
@@ -32537,9 +33663,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -32707,11 +33833,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -32984,6 +34110,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -33100,7 +34232,7 @@
           
             
               <h3>
-                <a href="/blog/test/2023/01/01/jest.html">
+                <a href="/blog/test/2023/01/01/jest.html" class="textLink">
                   Jest
                   <small>01 Jan 2023</small>
                 </a>
@@ -33169,6 +34301,8 @@
           
         
           
+            
+          
         
           
         
@@ -33261,7 +34395,7 @@
           
             
               <h3>
-                <a href="/blog/test/2022/09/03/continuous-integration-continuous-deployment.html">
+                <a href="/blog/test/2022/09/03/continuous-integration-continuous-deployment.html" class="textLink">
                   Continuous Integration Continuous Deployment
                   <small>03 Sep 2022</small>
                 </a>
@@ -33272,7 +34406,7 @@
           
             
               <h3>
-                <a href="/blog/test/2022/09/02/overview.html">
+                <a href="/blog/test/2022/09/02/overview.html" class="textLink">
                   Overview
                   <small>02 Sep 2022</small>
                 </a>
@@ -33295,7 +34429,7 @@
           
             
               <h3>
-                <a href="/blog/test/2022/08/31/rspec-and-capybara.html">
+                <a href="/blog/test/2022/08/31/rspec-and-capybara.html" class="textLink">
                   Rspec And Capybara
                   <small>31 Aug 2022</small>
                 </a>
@@ -33360,65 +34494,9 @@
           
         
           
-            
-          
-        
-          
-        
-          
         
           
             
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
           
         
           
@@ -33454,6 +34532,62 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
             
           
         
@@ -33530,11 +34664,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -33706,7 +34840,7 @@
           
             
               <h3>
-                <a href="/blog/test/2021/04/06/test-driven-development.html">
+                <a href="/blog/test/2021/04/06/test-driven-development.html" class="textLink">
                   Test Driven Development
                   <small>06 Apr 2021</small>
                 </a>
@@ -33814,22 +34948,6 @@
           
         
           
-            
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
         
           
             
@@ -33850,6 +34968,28 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
             
           
         
@@ -33863,18 +35003,6 @@
         
           
         
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
           
         
           
@@ -33918,8 +35046,6 @@
           
         
           
-        
-          
             
           
         
@@ -33929,6 +35055,8 @@
         
           
             
+          
+        
           
         
           
@@ -33991,6 +35119,20 @@
             
           
         
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
           
         
           
@@ -34080,7 +35222,7 @@
           
             
               <h3>
-                <a href="/blog/threejs/2022/09/04/react-three-fiber.html">
+                <a href="/blog/threejs/2022/09/04/react-three-fiber.html" class="textLink">
                   React Three Fiber
                   <small>04 Sep 2022</small>
                 </a>
@@ -34169,9 +35311,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -34247,7 +35389,7 @@
           
             
               <h3>
-                <a href="/blog/threejs/2022/05/01/threeJS-character.html">
+                <a href="/blog/threejs/2022/05/01/threeJS-character.html" class="textLink">
                   Threejs Character
                   <small>01 May 2022</small>
                 </a>
@@ -34258,7 +35400,7 @@
           
             
               <h3>
-                <a href="/blog/threejs/2022/04/30/threeJS-overview.html">
+                <a href="/blog/threejs/2022/04/30/threeJS-overview.html" class="textLink">
                   (threeJS) overview
                   <small>30 Apr 2022</small>
                 </a>
@@ -34353,11 +35495,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
@@ -34630,6 +35772,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -34712,7 +35860,7 @@
           
             
               <h3>
-                <a href="/blog/tools/2023/02/02/overview.html">
+                <a href="/blog/tools/2023/02/02/overview.html" class="textLink">
                   Overview
                   <small>02 Feb 2023</small>
                 </a>
@@ -34815,6 +35963,8 @@
           
         
           
+            
+          
         
           
         
@@ -34985,9 +36135,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -35155,11 +36305,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -35432,6 +36582,12 @@
           
         
           
+        
+          
+            
+          
+        
+          
             
           
         
@@ -35609,6 +36765,8 @@
             
           
         
+          
+            
           
         
           
@@ -35780,9 +36938,9 @@
           
         
           
-            
-          
         
+          
+            
           
         
           
@@ -35950,11 +37108,11 @@
           
         
           
-        
+            
           
         
           
-            
+        
           
         
           
@@ -35988,7 +37146,7 @@
           
             
               <h3>
-                <a href="/blog/vue/2021/12/30/overview.html">
+                <a href="/blog/vue/2021/12/30/overview.html" class="textLink">
                   Overview
                   <small>30 Dec 2021</small>
                 </a>
@@ -36234,22 +37392,6 @@
           
         
           
-            
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
         
           
             
@@ -36270,6 +37412,28 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
             
           
         
@@ -36283,18 +37447,6 @@
         
           
         
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
           
         
           
@@ -36338,8 +37490,6 @@
           
         
           
-        
-          
             
           
         
@@ -36349,6 +37499,8 @@
         
           
             
+          
+        
           
         
           
@@ -36411,6 +37563,20 @@
             
           
         
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
           
         
           
@@ -36512,7 +37678,7 @@
           
             
               <h3>
-                <a href="/blog/web-security/2022/08/31/cross-origin-resource-sharing.html">
+                <a href="/blog/web-security/2022/08/31/cross-origin-resource-sharing.html" class="textLink">
                   Cross Origin Resource Sharing
                   <small>31 Aug 2022</small>
                 </a>
@@ -36523,7 +37689,7 @@
           
             
               <h3>
-                <a href="/blog/web-security/2022/08/31/content-security-policy.html">
+                <a href="/blog/web-security/2022/08/31/content-security-policy.html" class="textLink">
                   Content Security Policy
                   <small>31 Aug 2022</small>
                 </a>
@@ -36542,7 +37708,7 @@
           
             
               <h3>
-                <a href="/blog/web-security/2022/08/30/overview.html">
+                <a href="/blog/web-security/2022/08/30/overview.html" class="textLink">
                   Overview
                   <small>30 Aug 2022</small>
                 </a>
@@ -36603,65 +37769,9 @@
           
         
           
-            
-          
-        
-          
-        
-          
         
           
             
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-            
-          
-        
-          
-        
           
         
           
@@ -36697,6 +37807,62 @@
           
         
           
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
             
           
         
@@ -36773,11 +37939,11 @@
           
         
           
-        
-          
-        
-          
             
+          
+        
+          
+        
           
         
           
