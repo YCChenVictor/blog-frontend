@@ -90,8 +90,20 @@
   @apply text-gray-400 hover:text-gray-900 px-0.5 py-0.5 lg:py-1 mx-auto;
 }
 
+.h-1\/2 {
+  height: 50%
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
 .w-1\/2 {
   width: 50%;
+}
+
+.w-3\/4 {
+  width: 75%;
 }
 
 .w-1\/3 {

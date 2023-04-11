@@ -4,7 +4,7 @@ title: process management
 description: ''
 date: '2021-12-24'
 categories: OS
-note:
+note: 要不斷的精簡與昇華文章
 mermaid: true
 publish: true
 ---
@@ -27,23 +27,7 @@ publish: true
 
 ## How?
 
-### Flow
-
-* process creation
-
-Process creation is the process of creating a new process in an operating system. It involves allocating resources, initializing data structures, and setting up the necessary environment for the process to execute.
-
-When a process is created, the operating system sets up a new address space for the process, including allocating memory and creating a page table to map the process's virtual address space to physical memory. The operating system also initializes the process control block (PCB), which is a data structure that contains information about the process, including its process ID, state, and resource usage.
-
-The new process is typically created by a parent process, which may pass parameters to the child process or inherit some of its own properties. For example, a new process may inherit the file descriptors of its parent, allowing it to read and write to the same files.
-
-Process creation is a complex process that involves a number of steps, including allocating resources, initializing data structures, and setting up the necessary environment for the process to execute. It is a critical component of process management, as the creation of new processes allows the operating system to execute multiple tasks simultaneously and make efficient use of system resources.
-
-
-* process scheduling
-* process synchronization
-* process termination
-* process states, process control blocks, and context switching.
+### PCB data structure
 
 The PCB is a critical component of process management in modern operating systems, allowing the operating system to manage and control multiple processes concurrently and efficiently. By maintaining a separate PCB for each process, the operating system can track and manage each process individually, ensuring that each process runs safely and efficiently.
 
@@ -70,6 +54,18 @@ graph TB
   id3(running) --exit--> id4(terminated)
 </div>
 
+### Flow
+
+* Process creation (the process of creating a new process in an operating system)
+  * Allocating resources: Sets up a new address space for the process, including allocating memory and creating a page table to map the process's virtual address space to physical memory
+  * Initializing data structures: Initializes the process control block (PCB), which is a data structure that contains information about the process, including its process ID, state, and resource usage.
+  * Setting up the necessary environment
+  * Typically created by a parent process, which may pass parameters to the child process or inherit some of its own properties. For example, a new process may inherit the file descriptors of its parent, allowing it to read and write to the same files.
+* process scheduling
+* process synchronization
+* process termination
+* process states, process control blocks, and context switching.
+
 ### CPU scheduling algorithms
 
 CPU scheduling is a critical part of process management, and you should understand the different CPU scheduling algorithms such as Round Robin, FCFS, SJF, and Priority Scheduling. You should also learn about their advantages and disadvantages.
@@ -82,13 +78,68 @@ Learn about memory allocation, fragmentation, and virtual memory.
 
 Process Explorer allows us to see the running processes and their resource utilization.
 
-### 
+### Issues
+
+#### Resource Allocation
+
+* Description: Resource starvation or overloading caused by failing to manage resource efficiently for different processes, which require different amounts of CPU, memory, disk space, network bandwidth, and other resources
+* Solution: To manage resources effectively, you can use tools like task queues, load balancers, and resource allocation algorithms. You can also monitor the system's resource usage and adjust the allocation based on the workload.
+
+#### Deadlocks
+
+I just list one example because I just need to understand what is deadlock. Also, I can connect this with article in clean code
+
+* Description: A deadlock occurs when two or more processes are blocked waiting for each other to release a resource. Deadlocks can lead to a system freeze, where no progress is made, and the processes become unresponsive
+* Solutions (order with frequency)
+  * Mutual Exclusion
+    * Description:
+    * Example:
+  * Deadlock detection and recovery algorithms: These are widely used in many operating systems and databases to detect and recover from deadlocks.
+  * Resource allocation policies: These policies are commonly used to allocate resources in a way that minimizes the risk of deadlocks. For example, some systems use priority-based scheduling to give higher priority to processes that are less likely to cause deadlocks.
+  * Message passing: This technique is often used in distributed systems to ensure that processes can communicate with each other without the risk of deadlocks.
+  * Lock-free programming: This technique is gaining popularity in highly concurrent systems because it avoids the need for locks and can improve performance.
+  * Transactional memory: This is a relatively new technique that is gaining popularity in highly concurrent systems because it allows for fine-grained locking and can improve performance.
+  * Hold and Wait: This strategy can be effective in some situations, but it can also be prone to deadlocks if not used carefully.
+  * No Preemption: This strategy can prevent deadlocks, but it can also lead to resource starvation in certain situations.
+  * Circular Wait: This strategy can be effective, but it requires careful resource allocation and ordering to prevent deadlocks.
+    * Mutual Exclusion and Hold and Wait are relatively simple to implement but can be more prone to deadlocks if used improperly
+    * No Preemption can prevent deadlocks but can also lead to resource starvation in certain situations
+    * Circular Wait can be effective, but it requires careful resource allocation and ordering to prevent deadlocks.
+    * Techniques like lock-free programming, transactional memory, and message passing can be more complex to implement but can offer higher performance and scalability. * Deadlock detection algorithms and resource allocation policies can also be effective in detecting and resolving deadlocks in a system.
+
+Ultimately, the choice of strategy will depend on the specific requirements of the system being developed, including performance, scalability, fault tolerance, and ease of implementation.
+
+#### Race Conditions
+
+* Description: A race condition occurs when two or more processes access a shared resource concurrently, and the outcome depends on the order of execution
+* Solution: To prevent race conditions, you can use synchronization techniques like locks, semaphores, and barriers. You can also use atomic operations and message passing to ensure that shared resources are accessed safely and consistently.
+
+#### Priority Inversion
+
+* Description: Priority inversion is a situation where a low-priority process holds a resource that a high-priority process needs, leading to a delay in the high-priority process's execution. This problem is particularly prevalent in real-time systems.
+* Solution: To prevent priority inversion, you can use techniques like priority inheritance, priority ceiling, and preemptive scheduling. These techniques ensure that high-priority processes get access to the resources they need without being delayed by low-priority processes.
+#### Process Synchronization
+
+* Processes may need to synchronize their activities to ensure correct and consistent behavior. Synchronization problems can arise when processes access shared resources, communicate with each other, or perform parallel computations.
+* Solution:
+
+#### Fault Tolerance
+
+* Process management may need to handle faults and failures gracefully to maintain system availability and reliability. Fault tolerance mechanisms include process restarts, redundancy, and error detection and recovery.
+* Solution:
+
+#### Security
+
+* Process management needs to enforce access control and protect against unauthorized access, malicious attacks, and other security threats.
+* Solution:
 
 ## What?
 
-### Coding
+Give me a real world example
 
-Practice coding by implementing basic process management algorithms such as process scheduling or process synchronization.
+### Javascript
+
+
 
 ## Reference
 

@@ -25,7 +25,25 @@ Drawing the add-to-cart timeline: Step 2 (V)
 Timeline diagrams capture the two kinds of sequential code (V)
 Timeline diagrams capture the uncertain ordering of parallel code (X)
 Principles of working with timelines (V)
-JavaScript’s single-thread
+JavaScript’s single-thread (V)
+JavaScript’s asynchronous queue (V)
+AJAX and the event queue (V)
+Simplifying the timeline (V)
+Reading our finished timeline (X)
+Simplifying the add-to-cart timeline diagram: Step 3 (V)
+Review: Drawing the timeline (steps 1–3) (V)
+Summary: Drawing timeline diagrams (X)
+Timeline diagrams side-by-side can reveal problems (X)
+Two slow clicks get the right result (X)
+Two fast clicks can get the wrong result (V)
+Timelines that share resources can cause problems (V)
+Converting a global variable to a local one (V)
+Converting a global variable to an argument (V)
+Making our code more reusable (V)
+Principle: In an asynchronous context, we use a final callback instead of a return value as our explicit output (V)
+Conclusion
+Summary
+Up next . . .
 
 ## Introduction
 
@@ -51,6 +69,8 @@ Problem: Shopping cart showing the wrong total
 
 ### Draw timeline diagrams from code
 
+In this section, code => diagram => simplify diagram => 13 actions to 3 actions
+
 #### code
 
 ```javascript
@@ -73,7 +93,9 @@ function calc_cart_total() {
 
 #### timeline diagram, one request, browser
 
-<img src='{{site.baseurl}}/assets/img/add_item_to_cart_timeline_diagram.png' alt=''>
+##### basic diagram
+
+<img src='{{site.baseurl}}/assets/img/add_item_to_cart_timeline_diagram.png' class='w-1/2' alt=''>
 
 * Actions
   * `+=`:
@@ -87,18 +109,32 @@ function calc_cart_total() {
   var temp = total; // read
   console.log(temp);
   ```
-  * Refer to sections "Two tricky details about the order of actions" and "Drawing the add-to-cart timeline: Step 1"
-* Interleave
-  * synchronous actions don’t interleave
-  <img src='{{site.baseurl}}/assets/img/synchronous_actions.png' class='w-1/2' alt=''>
-  * Asynchronous actions can interleave
-  <img src='{{site.baseurl}}/assets/img/asynchronous_actions.png' class='w-1/2 h-1/2' alt=''>
-  * Refer to sections "Different languages, different threading models in grokking simplicity", "Timeline diagrams capture the two kinds of sequential code"
 * Timelines (Three in the graph):
   * Same timeline: Actions occur in order
   * Separate timeline (Async): Actions happen at the same time or out of order
 * dot line:
-  * to be continued with JavaScript’s single-thread
+  * AJAX and Event loop
+  <img src='{{site.baseurl}}/assets/img/ajax_and_event_loop.png' class='w-3/4' alt=''>
+  * Refer to sections "JavaScript’s asynchronous queue", "AJAX and the event queue", and also this [video](https://www.youtube.com/watch?v=8aGhZQkoFbQ&t=876s)
+
+##### consolidate actions: (simplification step 1)
+
+<img src='{{site.baseurl}}/assets/img/add_item_to_cart_timeline_diagram_consolidate_actions.png' class='w-3/4' alt=''>
+
+* JavaScript only has one thread => Consolidate all actions on a single timeline; that is, a box
+* Refer to sections "Two tricky details about the order of actions" and "Drawing the add-to-cart timeline: Step 1", "JavaScript’s single-thread"
+* Interleave
+  * Javascript synchronous actions don’t interleave
+  <img src='{{site.baseurl}}/assets/img/synchronous_actions.png' class='w-1/3' alt=''>
+  * Javascript asynchronous actions can interleave
+  <img src='{{site.baseurl}}/assets/img/asynchronous_actions.png' class='w-1/3' alt=''>
+  * Refer to sections "Different languages, different threading models in grokking simplicity", "Timeline diagrams capture the two kinds of sequential code"
+
+##### consolidate timelines: (simplification step 2)
+
+<img src='{{site.baseurl}}/assets/img/add_item_to_cart_timeline_diagram_consolidate_timelines.png' class='w-1/4' alt=''>
+
+* JavaScript's event lop only has one thread => One AJAX triggered by another will run in queue => Consolidate timelines that end by creating one new timeline
 
 ### Read timeline diagrams to find bugs
 
@@ -107,24 +143,97 @@ function calc_cart_total() {
 <img src='{{site.baseurl}}/assets/img/add_item_to_cart_two_timeline_diagram.png' alt=''>
 * Problem: The shipping add twice
 
-#### deal with timeline
+#### General rules
 
-* Principles:
-  * Ordering
-    * Evaluation: $$o = \frac{(ta)!}{(a!)^t}$$
-    * Fewer timelines, $$t$$: merely impossible
-    * Shorter timelines, $$a$$
+* Ordering
+  * Evaluation: $$o = \frac{(ta)!}{(a!)^t}$$
+  * Fewer timelines, $$t$$
+  * Shorter timelines, $$a$$
+* Share Resources
   * Fewer sharing resources: reduce the ordering we need to consider
-  * Coordinate when resources ares hared
-  * Manipulate time as a first-class concept: in following chapters
+  * Coordinate when resources are shared
+* Manipulate time as a first-class concept: in following chapters
 * Refer to sections "The two fundamentals of timeline diagrams", "Asynchronous calls require new timelines", "Drawing the add-to-cart timeline: Step 2", "Principles of working with timelines"
+
+#### Problem: Share Resources
+
+```javascript
+function add_item_to_cart(name, price, quantity) {
+  cart = add_item(cart, name, price, quantity); // global variable
+  calc_cart_total();
+}
+function calc_cart_total() {
+  total = 0; // global variable
+  cost_ajax(cart, function(cost) {
+    total += cost;
+    shipping_ajax(cart, function(shipping) {
+      total += shipping;
+      update_total_dom(total);
+    })
+  })
+}
+```
+
+<img src='{{site.baseurl}}/assets/img/two_timeline_share_resources.png' class='w-3/4' alt=''>
 
 ### Improve code design by reducing resources shared between timelines.
 
+Based on last section, we can try to fix the bug by
 
-## What?
+#### Reduce share resources
 
-list out the solution
+* Through local variable
+  ```javascript
+  function calc_cart_total() {
+    var total = 0; // use local variable instead
+    cost_ajax(cart, function(cost) {
+      total += cost; // Then the total must be zero here. Another timeline could not write to it
+      shipping_ajax(cart, function(shipping) {
+        total += shipping;
+        update_total_dom(total);
+      })
+    })
+  }
+  ```
+* Through argument
+  ```javascript
+  function add_item_to_cart(name, price, quantity) {
+    cart = add_item(cart, name, price, quantity);
+    calc_cart_total(cart); // add the cart as argument
+  }
+  function calc_cart_total(cart) {
+    var total = 0;
+    cost_ajax(cart, function(cost) { // cart read not global variable anymore
+      total += cost;
+      shipping_ajax(cart, function(shipping) { // cart read not global variable anymore
+        total += shipping;
+        update_total_dom(total);
+      })
+    })
+  }
+  ```
+
+#### Coordinate when resources are shared
+
+In following chapters, we will do it. Now we just use a final callback instead of a return value
+
+```javascript
+function add_item_to_cart(name, price, quant) {
+  cart = add_item(cart, name, price, quant);
+  calc_cart_total(cart, update_total_dom);
+}
+
+function calc_cart_total(cart, callback) {
+  var total = 0;
+  cost_ajax(cart, function(cost) {
+    total += cost;
+    shipping_ajax(cart, function(shipping) {
+      total += shipping;
+      callback(total); // replace with a callback argument
+    })
+  })
+}
+```
 
 ## Reference
 
