@@ -28,6 +28,8 @@ give true examples
 * NPM
   * npm is a great tool to manage dependencies in your app using a module bundler.
 
+CDN vs NPM: My recommendation: For development and trying out stuff a CDN is fine. For an actual application I would advise you to compile and minify everything into one file and include that
+
 ## reference
 
 https://stackoverflow.com/questions/43605215/using-cdn-vs-installing-library-by-npm

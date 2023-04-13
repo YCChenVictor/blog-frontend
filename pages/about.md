@@ -14,7 +14,7 @@ permalink: about
   {% endif %}
   <div class='article'>
     <p>
-      Hello and welcome to my personal blog! Have fun and have a good day! I was born and raised in Taiwan, and I've always had a passion for <a href='{{site.baseurl}}/self/2023/02/04/software.html' class='textLink'>software</a>, social science, <a href='{{site.baseurl}}/self/2023/04/07/aesthetics.html' class='textLink'>aesthetics</a>, and maybe some medical science. I graduated from National Taiwan University with a degree in economics, and I am now working as a software engineer.
+      Hello and welcome to my personal blog! Have fun and have a good day! I was born and raised in Taiwan, and I've always had a passion for <a href='{{site.baseurl}}/self/2023/02/04/software.html' class='textLink'>software</a>, <a href='{{site.baseurl}}/self/2023/04/07/aesthetics.html' class='textLink'>aesthetics</a>, social science, and maybe some medical science. I graduated from National Taiwan University with a degree in economics, and I am now working as a software engineer.
     </p>
     <p>
       In my free time, you can usually find me developing websites, composing music, painting, and working out, or spending time with my family and pet. I also love to explore new topics and ideas.
