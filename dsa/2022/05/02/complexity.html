@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <!-- 3D drawing -->
     
-    <!-- 2D drawing -->
+
     
-    <!-- for mathjax support -->
+
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     TeX: { equationNumbers: { autoNumber: "AMS" } }
   });
 </script>
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    <!-- mermaid --><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
 <script>
   const config = {
     theme: 'neutral',
@@ -22,6 +20,7 @@
   };
   mermaid.initialize(config);
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -92,7 +91,7 @@
 
 \[Time(n) = 4n^3 + 4n^2 + 3\]
 
-<p>However, in real world problems, precise function to describe the total time of producinf n amount of books does not exist at all, so we use <strong>asymptotic notations</strong>.</p>
+<p>However, in real world problems, precise function to describe the total time of producing n amount of books does not exist at all, so we use <strong>asymptotic notations</strong>.</p>
 
 <h4 id="asymptotic-notations">asymptotic notations</h4>
 
@@ -102,63 +101,56 @@
 
 <p>given we have some knowledege with set theory. Then f(n) is an element of \(\Theta\) of g(n), which is what industry care about (\(O\), big-O); for example, \(2x + 100\) is an element of \(\Theta(x)\); then we can use \(x\) to describe the complexity of \(2x + 100\). The following plot demostrates that \(2x + 100\) is wrapped by \(3x\) and \(x\) after \(x &gt; 100\)</p>
 
-<p>(redraw following graph with react plotly)</p>
-
-<canvas id="canvas" width="400" height="200"></canvas>
+<canvas id="big-o-graph" width="400" height="200" class="bg-white"></canvas>
 
 <script>
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-const width = ctx.canvas.width;
-const height = ctx.canvas.height;
-const xFrom = 0
-const yFrom = canvas.height
-const range = [0, 10]
-const xSlope = 100
-const ySlope = 1/4
+	const xValues = [];
+	const y1Values = [];
+	const y2Values = [];
+	const y3Values = [];
 
-function fun1(x) {return (2*x + 100);}
-function fun2(x) {return 3*x;}
-function fun3(x) {return x;}
+	for (let x = 0; x <= 300; x++) {
+		xValues.push(x);
+		y1Values.push(3*x);
+		y2Values.push(x);
+		y3Values.push(2*x+100);
+	}
 
-function draw() {
-  if (canvas==null || !canvas.getContext) return;
+	const ctx = document.getElementById("big-o-graph").getContext("2d");
 
-  showXAxes(ctx);
-  // showYAxes(ctx);
-  funGraph(ctx, fun1, "rgb(11,153,11)", 1);
-  funGraph(ctx, fun2, "rgb(66,44,255)", 2);
-  funGraph(ctx, fun3, "rgb(33,22,140)", 3);
-}
-
-function funGraph (ctx, polynomialFunction, color, thick) {
-  ctx.beginPath();
-  ctx.lineWidth = thick;
-  ctx.strokeStyle = color;
-
-  for (let i = range[0]; i <= range[1]; i++) {
-    x = xSlope*i;
-    y = ySlope*polynomialFunction(x);
-    if (i==range[0]) {
-      ctx.moveTo(xFrom+x,yFrom-y);
+	const myChart = new Chart(ctx, {
+		type: "line",
+		data: {
+			labels: xValues,
+			datasets: [
+				{
+					label: "y = 3x",
+					data: y1Values,
+					borderColor: "red",
+					fill: false
+				},
+				{
+					label: "y = x",
+					data: y2Values,
+					borderColor: "blue",
+					fill: false
+				},
+				{
+					label: "y = 2x+100",
+					data: y3Values,
+					borderColor: "green",
+					fill: false
+				}
+			]
+		},
+		options: {
+      plugins: {
+        customCanvasBackgroundColor: {
+          color: 'lightGreen',
+        }
+      }
     }
-    else {
-      ctx.lineTo(xFrom+x,yFrom-y);
-      console.log(xFrom+x)
-      console.log(yFrom-y)
-    }
-  }
-  ctx.stroke();
-}
-
-function showXAxes(ctx) {
-  ctx.strokeStyle = "rgb(128,128,128)";
-  ctx.beginPath();
-  ctx.moveTo(xFrom, height); ctx.lineTo(width, height); // X axis
-  ctx.stroke();
-}
-
-draw()
+	});
 </script>
 
 <h4 id="notation-simplification">notation simplification</h4>
@@ -177,15 +169,57 @@ draw()
   <li><code class="language-plaintext highlighter-rouge">Time complexity = O(n)</code> means <strong>at most</strong> n elements <strong>involved</strong> to get things done</li>
 </ul>
 
-<h4 id="amortized-time">amortized time</h4>
+<h4 id="amortized-time">Amortized Time</h4>
 
-<p>(to be continued)</p>
+<ul>
+  <li>Description: In some data structures, individual operations can take significantly longer than others
+    <ul>
+      <li>For example, adding an element to an array can take O(n) time if the array needs to be resized, but most additions take constant time O(1)</li>
+    </ul>
+  </li>
+  <li>Solution: Considers the average time taken by a sequence of operations, rather than just by one single operation
+    <ul>
+      <li>Amortized time complexity analysis involves dividing the total time taken by a sequence of operations by the number of operations. This gives us the average time taken per operation, which is a more useful measure of the data structure’s performance than the worst-case time complexity of a single operation.</li>
+      <li>Accounting method, which involves assigning a cost to each operation and using the cost to pay for future operations. For example, in an array with dynamic resizing, we could assign a cost of 1 to each add operation, and use the extra time taken by the occasional resize operation to pay for the cost of the future operations.</li>
+    </ul>
+  </li>
+  <li>Example: add element to array
+    <ul>
+      <li>code
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">addToArray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="nx">array</span><span class="p">.</span><span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">newCapacity</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">capacity</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">newArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">newCapacity</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">newArray</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="nx">array</span> <span class="o">=</span> <span class="nx">newArray</span><span class="p">;</span>
+    <span class="nx">array</span><span class="p">.</span><span class="nx">capacity</span> <span class="o">=</span> <span class="nx">newCapacity</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">array</span><span class="p">[</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+      <li>The cost of each add operation is O(1), and the cost of each resize operation is O(n).</li>
+      <li>calculation
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">{</span> <span class="na">capacity</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mi">0</span> <span class="p">};</span>
+<span class="nx">addToArray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// O(1)</span>
+<span class="nx">addToarray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// O(1)</span>
+<span class="nx">addToArray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// O(1 + 2 * 1)</span>
+
+<span class="c1">// O(1 + 1 + 1 + 2 * 1) = O(5)</span>
+<span class="c1">// 5/3 = 1.67 =&gt; amortized time = O(1.67) = O(1)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="space-complexity">space complexity</h3>
 
 <ul>
   <li>we use the definition of industry</li>
-  <li>space complexity = O(n) means it needs to at most n elements of space to get things done</li>
+  <li>space complexity = O(n) means it needs at most n elements of space to get things done</li>
 </ul>
 
 <h2 id="what">What?</h2>
@@ -193,73 +227,87 @@ draw()
 <h3 id="two-liner-iteration">two liner iteration</h3>
 
 <ul>
-  <li>time complexity = O(A + B)</li>
-  <li>space complexity =</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayA</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <li>code
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayA</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayA</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
 <span class="p">}</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayB</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayB</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
 <span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="iteration-in-a-iteration">iteration in a iteration</h3>
-
-<ul>
-  <li>time complexity = O(A * B)</li>
-  <li>space complexity =</li>
+</code></pre></div>    </div>
+  </li>
+  <li>time complexity = O(A + B)
+    <ul>
+      <li>Picks A elements from arrayA, each pick = O(1)</li>
+      <li>Picks B elements from arrayB, each pick = O(1)</li>
+    </ul>
+  </li>
+  <li>space complexity = O(1)
+    <ul>
+      <li>Only need a space for i =&gt; O(1)</li>
+    </ul>
+  </li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayA</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<h3 id="iteration-in-an-iteration">Iteration in An Iteration</h3>
+
+<ul>
+  <li>code
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arrayA</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">arrayB</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayA</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="nx">arrayB</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+  <li>Time complexity = O(A * B)
+    <ul>
+      <li>A will be query with i and B will be query with j in O(1) each</li>
+      <li>The combination of (i, j) = [0..lengthOfA] x [0..lengthOfB]</li>
+    </ul>
+  </li>
+  <li>Space complexity = O(2) = O(1)
+    <ul>
+      <li>The space required by i and j is constant</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="recursive-binary-search">recursive binary search</h3>
 
 <ul>
-  <li>time complexity = O(log N)</li>
-  <li>space complexity =</li>
-</ul>
-
-<p>Given a sorted array, the binary search algorithm as follow:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">binarySearch</span> <span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+  <li>code
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">binarySearch</span> <span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">middleIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-
+  
   <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">middleIndex</span><span class="p">]</span> <span class="o">===</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span>
   <span class="p">}</span>
-
+  
   <span class="k">if</span><span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">false</span>
   <span class="p">}</span>
-
+  
   <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&gt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">middleIndex</span><span class="p">])</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">binarySearch</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">middleIndex</span><span class="p">,</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">),</span> <span class="nx">target</span><span class="p">)</span>
   <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">middleIndex</span><span class="p">])</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">binarySearch</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">middleIndex</span><span class="p">),</span> <span class="nx">target</span><span class="p">)</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></div>
-
-<p>For example, if the number of the elements in an array is 16, then it at most need to work through 5 elements to find the target with steps:</p>
-
-<ul>
-  <li>the middle element of 16 elements (step 1) -&gt; the middle element of 8 elements (step 2) -&gt; the middle element of 4 elements (step 3) -&gt; the middle element of 2 elements (step 4) -&gt; the middle element of 1 element (step 5)</li>
+</code></pre></div>    </div>
+  </li>
+  <li>time complexity = O(log N)
+    <ul>
+      <li>Given the number of the elements in an array is 16, then it at most need to work through 5 elements to find the target with steps: the middle element of 16 elements (step 1) -&gt; the middle element of 8 elements (step 2) -&gt; the middle element of 4 elements (step 3) -&gt; the middle element of 2 elements (step 4) -&gt; the middle element of 1 element (step 5)</li>
+      <li>We can describe the number of traverse (k) with the number of elements (N) as follow: \(N = 2^k =&gt; k = log_2N = logN\), so the complexity = \(O(logN)\)</li>
+    </ul>
+  </li>
+  <li>Space complexity = O(log N) for middleIndex
+    <ul>
+      <li>Again, given the elements in an array is 16, at most need to work through 5 elements. Because it is recursive, before we find the answer, all the binarySearch will be store in stack and wait the final binarySearch to return answer. Because each binarySearch need one middleIndex, O(1) and it will also be 5 steps, so the space complexity is also O(log N)</li>
+    </ul>
+  </li>
 </ul>
-
-<p>As a result, we can describe the number of traverse (k) with the number of elements (N) as follow:</p>
-
-\[N = 2^k\]
-
-\[=&gt; k = log_2N = logN\]
-
-<p>so the complexity = \(O(logN)\)</p>
 
 <h3 id="recursive-like-fibonacci-series">recursive, like fibonacci series</h3>
 
