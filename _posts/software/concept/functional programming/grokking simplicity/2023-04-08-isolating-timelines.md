@@ -13,38 +13,6 @@ anchor:
 publish: true
 ---
 
-There’s a bug! (V)
-The timeline diagram shows what happens over time (V)
-The two fundamentals of timeline diagrams (V)
-Two tricky details about the order of actions (V)
-Drawing the add-to-cart timeline: Step 1 (V)
-Asynchronous calls require new timelines (V)
-Different languages, different threading models (V)
-Building the timeline step-by-step (X)
-Drawing the add-to-cart timeline: Step 2 (V)
-Timeline diagrams capture the two kinds of sequential code (V)
-Timeline diagrams capture the uncertain ordering of parallel code (X)
-Principles of working with timelines (V)
-JavaScript’s single-thread (V)
-JavaScript’s asynchronous queue (V)
-AJAX and the event queue (V)
-Simplifying the timeline (V)
-Reading our finished timeline (X)
-Simplifying the add-to-cart timeline diagram: Step 3 (V)
-Review: Drawing the timeline (steps 1–3) (V)
-Summary: Drawing timeline diagrams (X)
-Timeline diagrams side-by-side can reveal problems (X)
-Two slow clicks get the right result (X)
-Two fast clicks can get the wrong result (V)
-Timelines that share resources can cause problems (V)
-Converting a global variable to a local one (V)
-Converting a global variable to an argument (V)
-Making our code more reusable (V)
-Principle: In an asynchronous context, we use a final callback instead of a return value as our explicit output (V)
-Conclusion
-Summary
-Up next . . .
-
 ## Introduction
 
 This article describes
@@ -52,26 +20,29 @@ This article describes
 * Concept of timeline diagrams
   * Represent sequences of actions over time
   * Timeline diagrams help us understand how software runs
-  * Example: distributed system, such as a web client talks to a web server
 * How to draw timeline diagrams from code
 * How to use them to diagnose and predict bugs
 
 ## Why?
 
-By reducing the resources shared between timelines, we can improve code design and create more efficient programs.
+By concept of timelines, we can identify bug and improve code design to create more efficient programs.
 
 ## How?
+
+### Customers Report Bug
 
 Problem: Shopping cart showing the wrong total
   * Reproduce: Click `add 6` **twice** fast
   * Desired result: `14` (6 * 2 + 2, 2 shoes + shipping)
-  * Variant results: `14, 16, 22`
+  * Variant results: `14, 16`
 
-### Draw timeline diagrams from code
+<img src='{{site.baseurl}}/assets/img/cart_bug_click_twice_fast.png' class='w-3/4' alt=''>
+
+### Draw Timeline Diagrams from Code
 
 In this section, code => diagram => simplify diagram => 13 actions to 3 actions
 
-#### code
+#### Code
 
 ```javascript
 function add_item_to_cart(name, price, quantity) {
@@ -134,7 +105,7 @@ function calc_cart_total() {
 
 <img src='{{site.baseurl}}/assets/img/add_item_to_cart_timeline_diagram_consolidate_timelines.png' class='w-1/4' alt=''>
 
-* JavaScript's event lop only has one thread => One AJAX triggered by another will run in queue => Consolidate timelines that end by creating one new timeline
+* JavaScript's event loop only has one thread => One AJAX triggered by another will run in queue => Consolidate timelines that end by creating one new timeline
 
 ### Read timeline diagrams to find bugs
 
@@ -212,6 +183,10 @@ Based on last section, we can try to fix the bug by
     })
   }
   ```
+* result
+  <img src='{{site.baseurl}}/assets/img/reduce_share_resource_result.png' class='w-3/4' alt=''>
+  * Variable cart is still global but the second timeline is constrained to run after the first step (hence the dotted line), so these first steps that use the cart will always run in order. They can’t interfere with each other.
+  * We’re still sharing the DOM as a resource and going to learn how to share resources in the next chapter.
 
 #### Coordinate when resources are shared
 

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
   <head>
-    <!-- 3D drawing -->
     {% if page.threeJS %}
       {%- include threeJS.html -%}
     {% endif %}
-    <!-- 2D drawing -->
+
     {% if page.p5 %}
       {%- include p5.html -%}
     {% endif %}
-    <!-- for mathjax support -->
+
     {% if page.mathjax %}
       {%- include mathjax.html -%}
     {% endif %}
-    <!-- mermaid -->
+
     {%- if page.mermaid -%}
       {%- include mermaid.html -%}
     {%- endif -%}
+
+    {%- if page.chartJS -%}
+      {%- include chartJS.html -%}
+    {%- endif -%}
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | prepend: site.baseurl }}">

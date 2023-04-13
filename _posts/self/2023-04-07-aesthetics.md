@@ -133,9 +133,26 @@ My definition of positive social norms is people should try their best to extend
 
 ## What?
 
+### Increase Personal Aesthetics
+
+* Observe and appreciate art
+  * Visit museums, galleries, and exhibitions
+  * Observe and appreciate different types of art
+  * Understand different styles and techniques to broaden artistic perspective
+* Practice art
+  * Practicing art
+    * Painting
+    * Drawing
+    * Sculpting
+    * [Music]
+* Experiment with design: Experiment with design principles, such as color, form, and composition, in your daily life. This can help you develop a better eye for aesthetics and recognize good design.
+* Explore nature: Nature is a great source of inspiration for aesthetics. Take the time to explore natural landscapes, observe the details, and appreciate the beauty of the natural world.
+* Engage with different cultures: Different cultures have different aesthetic values and norms. Engaging with different cultures and their art can broaden your understanding of aesthetics and help you appreciate the diversity of the world.
+
+
 ### website
 
-Ok, I will try my best on my blog to fulfill these design targets.
+Based on the idea of promoting positive social norms
 
 * Adaptability
   * Mobile-first approach: Designing for mobile devices first ensures that the website's core features and content are accessible to users on smaller screens. This approach also makes it easier to scale up the design for larger screens. 

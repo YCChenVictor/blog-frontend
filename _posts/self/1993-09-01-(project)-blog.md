@@ -23,7 +23,8 @@ I need to structure my thoughts.
 
 ## How?
 
-* grokking the simplicity
+* 
+* rename all the overview article to the directory name, so that the graph can show the name instead of overview
 * connect code pan API, which means I can create code result on a defined area
 * organize the css style to main.css
 * Try to start from self/overview
