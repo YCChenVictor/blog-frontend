@@ -42,7 +42,7 @@ permalink: /graph
           {% if post.publish %}
             {% if post.categories contains category %}
               <h3>
-                <a href="{{site.baseurl}}{{ post.url }}" class='textLink'>
+                <a href="{{site.baseurl}}{{ post.url }}">
                   {{ post.title }}
                   <small>{{ post.date | date_to_string }}</small>
                 </a>

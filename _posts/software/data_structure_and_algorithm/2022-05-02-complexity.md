@@ -10,7 +10,7 @@ mermaid: true
 p5:
 threeJS:
 chartJS: true
-publish:
+publish: true
 ---
 
 ## Introduction
@@ -212,31 +212,26 @@ Based on the defination, we know that the big O of
 
 ### recursive, like fibonacci series
 
+* code
+  ```javascript
+  function fibonacci(n) {
+    if (n < 2) {
+      return n;
+    }
+    else {
+      return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+  }
+  ```
 * time complexity = $$O(2^N)$$
 * space complexity = $$O(N)$$
 
-```javascript
-function f(n) {
-  if(n <= 1) {
-    return 1;
-  } else {
-    return f(n-1) + f(n-1);
-  }
-}
-```
-
-If n = 3, then the total nodes is 7 (1 + 2 + 4) as follow:
+If n = 4, then the total nodes is 7 (1 + 2 + 4) as follow:
 
 <div class="mermaid">
 graph TD
-  id1((f_3)) --> id2((f_2))
-  id1((f_3)) --> id3((f_2))
-
-  id2((f_2)) --> id4((f_1))
-  id2((f_2)) --> id5((f_1))
-
-  id3((f_2)) --> id6((f_1))
-  id3((f_2)) --> id7((f_1))
+  id1((f_4)) --> id2((f_3))
+  id1((f_4)) --> id3((f_2))
 </div>
 
 Then the time complexity = O(1 + 2 + 4 + ... + 2^(n-1)) = O(2^n - 1) = O(2^n)

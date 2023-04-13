@@ -33,7 +33,7 @@ function SidebarLayout() {
           <BrowserRouter
           >
             <Sidebar
-              backgroundColor="rgb(75 85 99)"
+              backgroundColor="rgb(156 163 175)"
             >
               <Menu
               >
