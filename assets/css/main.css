@@ -22,7 +22,7 @@
   h6 {
   }
   a {
-    @apply text-black hover:text-gray-500 px-0.5 py-0.5 lg:py-1 mx-auto;
+    @apply text-white hover:text-gray-500 px-0.5 py-0.5 lg:py-1 mx-auto;
   }
   ul {
     @apply list-disc;

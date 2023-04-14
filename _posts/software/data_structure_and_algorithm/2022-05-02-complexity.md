@@ -223,62 +223,25 @@ Based on the defination, we know that the big O of
     }
   }
   ```
+* plot
+  <div class="mermaid">
+  graph TD
+    id1((f_4)) --> id2((f_3))
+    id1((f_4)) --> id3((f_2))
+  
+    id2((f_3)) --> id4((f_2))
+    id2((f_3)) --> id5((f_1))
+  
+    id4((f_2)) --> id6((f_1))
+    id4((f_2)) --> id7((f_0))
+  
+    id3((f_2)) --> id8((f_1))
+    id3((f_2)) --> id9((f_0))
+  </div>
 * time complexity = $$O(2^N)$$
+  * Given every function will request two functions, the time complexity = O(1 + 2 + 4 + ... + 2^(n-1)) = O(2^n - 1) = O(2^n)
 * space complexity = $$O(N)$$
-
-If n = 4, then the total nodes is 7 (1 + 2 + 4) as follow:
-
-<div class="mermaid">
-graph TD
-  id1((f_4)) --> id2((f_3))
-  id1((f_4)) --> id3((f_2))
-</div>
-
-Then the time complexity = O(1 + 2 + 4 + ... + 2^(n-1)) = O(2^n - 1) = O(2^n)
-
-The data we need to store is f(1), f(2), ... f(n), meaning the space complexity = O(n)
-
-### two loop with same length (n) of array
-
-* time complexity = $$O(N)$$
-* space complexity = 
-
-```javascript
-function (array) => {
-  let sum = 0;
-  let product = 1;
-
-  for (let i = 0; i < array.length; i++) {
-    sum += array[i]
-  }
-  for (let i = 0; i < array.length; i++) {
-    product*= array[i];
-  }
-}
-```
-
-The time complexity = O(2N) = O(N)
-
-### related iteration in a iteration
-
-* time complexity = $$O(N^2)$$
-* space complexity =
-
-```javascript
-function (array) => {
-  for (let i = 0; i < array.length; i++) {
-    for (let j = i + 1; j < array.length; i++) {
-      console.log(array[i] + array[j])
-    }
-  }
-}
-```
-
-Given there are N elements in this array, the total steps is
-
-$$ N + (N-1) + (N-2) + ... + 1 = (1+N)*N/2$$, meaning the time complexity = O((1+N)*N/2) = O(N^2)
-
-(to be continued with more example in the future)
+  * The data we need to store is f(1), f(2), ... f(n), meaning the space complexity = O(n)
 
 ## Reference
 

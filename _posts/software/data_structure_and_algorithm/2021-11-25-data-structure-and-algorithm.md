@@ -11,71 +11,33 @@ publish: true
 
 ## Introduction
 
-Before we dive into it, please understand concept of [complexity]({{site.baseurl}}/dsa/2022/05/02/complexity.html). Data structures describe how data can be organized, stored, and manipulated. Some common data structures include arrays, linked lists, stacks, queues, trees, graphs, and hash tables. Algorithms are procedures for solving problems such as searching for information, sorting data, processing graphs, performing calculations, and many other tasks.
-
-* Structure
-  * array, arraylist, string
-  * linked list
-  * stack
-  * queue
-  * tree
-  * graph
-  * hash table
-  * ...
-* Most common algorithms (according to ChatGPT)
-  * string
-    * reversing a string
-    * string is a palindrome
-    * longest common prefix
-  * array
-    * finding the maximum subarray
-    * binary search
-    * sorting an array
-      * merge sort
-      * quick sort
-  * dynamic programming
-    * longest increasing subsequence
-    * 0/1 knapsack problem
-  * Graph traversal
-    * shortest path between two nodes
-    * detecting cycles in a graph
-  * ...
-* key concepts (according to cracking the coding interview)
-  * bit Manipulation
-  * memory (stack vs. heap)
-  * recursion
-  * dynamic programming
-  * big O about time and space complexity
+Before we dive into it, please understand concept of [complexity]({{site.baseurl}}/dsa/2022/05/02/complexity.html). Data structures describe how data can be organized, stored, and manipulated. Algorithms are procedures for solving problems such as searching for information, sorting data, processing graphs, performing calculations, and many other tasks.
 
 ## Why
 
-To solve problem in a more efficient way, making no more space to improve both the time complexity and space complexity.
+To solve problem in a more efficient way, making no more space to improve both the time complexity and space complexity. For more information, please refer to [problem solving]({{site.baseurl}}/dsa/2023/03/08/solve-problem.html)
 
 ## How
 
-We can decompose all the programming logics into four actions:
+We can decompose all the programming logics into four actions: create, read, update, delete. The time complexity of CRUD an element in specific data structure is as follow:
 
-* create (insert)
-* read (access with id)
-* update (access with attributes)
-* delete (delete)
+|  | Create | Read | Update | Delete |
+| array list | O(1) - O(n) | O(1) | O(1) | O(1) - O(n) |
+| linked list | O(1) | O(n) | O(n) | O(n) |
+| stack | O(1) | O(1) | O(1) | O(1) |
+| queue | O(1) | O(1) | O(n) | O(1) |
+| trees |
+| graph |
 
-| (time complexity) | (arraylist) | (linkedlist) | (stack) | (queue) | (trees) | (graph)
-| :--- | :----: | :----: | :----: | :----: |
-| C | O(1) - O(n) | O(1) | O(1) | O(1) | O(n) |
-| R | O(1) | O(n) | O(1) | O(1) | O(n) |
-| U | O(1) | O(n) | O(1) | O(n) | O(1) |
-| D | O(1) - O(n) | O(n) | O(1) | O(1) | O(log(n)) - O(n) |
+### Array
 
-### array
+It is a data structure in programming that stores a collection of elements. These elements are stored in contiguous memory locations, and each element can be accessed using an index or a subscript. Please refer to [array]({{site.baseurl}}/dsa/2022/05/22/array.html) for more information.
 
-[array]({{site.baseurl}}/dsa/2022/05/22/array.html)
+### Linkedlist
 
-### linkedlist
+[Linkedlist]({{site.baseurl}}/dsa/2022/05/23/linked_list.html)
 
-[linkedlist]({{site.baseurl}}/dsa/2022/05/23/linked_list.html)
-
-### stack
+### Stack
 
 [stack]({{site.baseurl}}/dsa/2022/06/24/stack.html)
 
@@ -140,6 +102,12 @@ The time complexity = $$O(A + B)$$, where A is the length of bucket and B is the
 ## what
 
 Try to give real world example
+
+## TODO
+
+* key concepts (according to cracking the coding interview)
+  * bit Manipulation
+  * memory (stack vs. heap)
 
 ## reference
 

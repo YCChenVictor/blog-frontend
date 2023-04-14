@@ -170,4 +170,10 @@ console.log(`Max profit: ${maxProfit}`);
 console.log(`Solution: ${solution.map(task => task.name).join(', ')}`);
 ```
 
+## TODO
+
+* dynamic programming
+  * longest increasing subsequence
+  * 0/1 knapsack problem
+
 ## Reference

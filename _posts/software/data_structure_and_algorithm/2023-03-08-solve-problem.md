@@ -23,19 +23,19 @@ To pass coding interview
 
 ## How?
 
-1. read or listen to the question and ask all the necessary informations, use as little hint as possible
-2. brainstorm to think about all the cases, including edge case
-3. come up with a brute force solution and write it **on paper**
-4. optimize the brute force **on paper**
-   * think about bottleneck, Unnecessary work, Duplicated work
-   * just think of the real world example
-   * start from the simplest form and then stack up
-   * fit the problem into a specific data structure and use the related knowledge
-   * try to find more general solution
-   * try to figure out the best time complexity first
-5. walk through the idea again **on paper**
-6. start to write code as clean as possible **on computer**
-7. write tests with general, base, error cases
+1. Read or listen to the question and ask all the necessary informations, use as little hint as possible
+2. Brainstorm to think about all the cases, including edge case
+3. Come up with a brute force solution and write it **on paper**
+4. Optimize the brute force **on paper**
+   * Think about bottleneck, Unnecessary work, Duplicated work
+   * Just think of the real world example
+   * Start from the simplest form and then stack up
+   * Fit the problem into a specific data structure and use the related knowledge
+   * Try to find more general solution
+   * Try to figure out the best time complexity first
+5. Walk through the idea again **on paper**
+6. Start to write code as clean as possible **on computer**
+7. Write tests with general, base, error cases
 
 For example, print all positive integer solutions to the equation $$a^3 + b^3 = c^3 + d^3$$ where a, b, c, and d are integers between 1 and 1000.
 
@@ -45,7 +45,7 @@ Something like this
 
 <img src="{{site.baseurl}}/assets/img/on_paper.png" alt="">
 
-#### brute force
+### brute force
 
 ```javascript
 result = []
@@ -64,7 +64,7 @@ for (a in [1..1000]) {
 
 The time complexity is $$O(N^4)$$
 
-#### BUD (Bottlenecks, Unnecessary work, Duplicated work)
+### BUD (Bottlenecks, Unnecessary work, Duplicated work)
 
 * unnecessary work
 
@@ -88,7 +88,7 @@ Then the time complexity will decrease to $$O(N^3)$$
 
 * Bottlenecks
 
-Then we start to solve the problem. When we talk about bottleneck, it means the place having the highest time complexity. To solve it, we usually have two approaches: cost some space or sort it. Given it is already from 1 to 1000, cost some space should direct to the solution.
+Then we start to solve the problem. When we talk about bottleneck, it means the place having the highest time complexity. To solve it, we usually have two approaches: cost some space or sort it.
 
 The easiest way to use space for solving problem is the concept of hash table. We can store the data in the upper loops and use this data in the later loop. For example, we can decrease the time complexity with following approach:
 
@@ -134,13 +134,13 @@ for element in hash_table {
 
 Then the time complexity = $$O(N^2 + AB)$$, where A is the number of elements in hash table and B is the number of items in each element, meaning $$A, B < N$$. Then time complexity = $$O(N^2)$$
 
-#### just think of the real world example
+### just think of the real world example
 
 Again, we use the problems, finding all a, b, c, d, which $$a^3 + b^3 = c^3 + d^3$$. If we need to do it by brain, then what should we do to find the result quickly?
 
 We will write down the result of $$a^3 + b^3$$ from 1 to 1000 and then find the pair of (c, d) to map (a, b) and this is the concept of hash table.
 
-#### try to find more general solution
+### try to find more general solution
 
 More general
 
@@ -166,11 +166,13 @@ function a_b_c_d(k) {
 
 * Then we can input any positive integer
 
-#### start from the simplest form and then stack up
+### figure out the best time complexity first
+
+We can start from the big picture by calculating the best time complexity first; for example, in the problem of $$a^3 + b^3 = c^3 + d^3$$, we know that we must at least know the result of $$a^3 + b^3$$, so the best time complexity will be $$O(N^2)$$ and once we find out an algorithm with $$O(N^2)$$, we can wrap up.
+
+### Start from Simplest Form and Stack Up
 
 Usually, this approach will lead to a recursive solution.
-
-##### other example
 
 * example: Design an algorithm to print all permutations of a string. For simplicity, assume all characters are unique.
 * brute force:
@@ -221,9 +223,18 @@ function getPermutationsBasedOnLastOne (string, lastPermutations) {
 }
 ```
 
-#### figure out the best time complexity first
+### Test
 
-We can start from the big picture by calculating the best time complexity first; for example, in the problem of $$a^3 + b^3 = c^3 + d^3$$, we know that we must at least know the result of $$a^3 + b^3$$, so the best time complexity will be $$O(N^2)$$ and once we find out an algorithm with $$O(N^2)$$, we can wrap up.
+* for a^3 + b^3 = c^3 + d^3, k = 2 => expect results: [1, 1, 1, 1], [1, 2, 2, 1], [1, 2, 1, 2], [2, 2, 2, 2]
+* We can start write precise code here, with TDD
+
+```javascript
+describe('a^3+b^3=c^3+d^3', () => {
+  describe('k=2', () => {
+    expect(a_b_c_d(2)).toEqual([1, 1, 1, 1], [1, 2, 2, 1], [1, 2, 1, 2], [2, 2, 2, 2]);
+  })
+})
+```
 
 ## Reference
 
