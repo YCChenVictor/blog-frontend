@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 const visited = new Set();
-const queue = ['http://localhost:4000/blog/self/2023/02/04/software.html'];
+const queue = ['http://localhost:4000/blog/about'];
 const domain = 'http://localhost:4000'
 const structure = {};
 

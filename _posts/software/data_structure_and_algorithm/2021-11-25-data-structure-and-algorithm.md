@@ -29,13 +29,15 @@ We can decompose all the programming logics into four actions: create, read, upd
 | trees |
 | graph |
 
+* index starts from 0: By using zero-based indexing, the calculation of the memory address of an element is simplified. The address of the first element in the array is simply the starting address of the array, with no offset required. The address of the second element is the starting address plus the size of one element, the address of the third element is the starting address plus the size of two elements, and so on. This simple arithmetic works nicely with the way memory is allocated and addresses are calculated.
+
 ### Array
 
 It is a data structure in programming that stores a collection of elements. These elements are stored in contiguous memory locations, and each element can be accessed using an index or a subscript. Please refer to [array]({{site.baseurl}}/dsa/2022/05/22/array.html) for more information.
 
 ### Linkedlist
 
-[Linkedlist]({{site.baseurl}}/dsa/2022/05/23/linked_list.html)
+A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linkedlist]({{site.baseurl}}/dsa/2022/05/23/linked_list.html)
 
 ### Stack
 

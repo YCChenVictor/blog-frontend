@@ -3,11 +3,13 @@ import SidebarLayout from './components/SidebarLayout.jsx';
 import BurgerSidebar from './components/BurgerSidebar.jsx';
 import Category from './components/Category.jsx';
 import NodeGraph from './components/NodeGraph.jsx';
+import SearchBar from './components/SearchBar.jsx';
 
 const sidebar = document.getElementById('sidebar')
 const burgerSidebar = document.getElementById('burger-sidebar')
 const category = document.getElementById('category')
 const nodeGraph = document.getElementById('node-graph')
+const searchBar = document.getElementById('search-bar')
 
 if (sidebar !== null) {
   createRoot(sidebar).render(
@@ -30,5 +32,11 @@ if (category !== null) {
 if (nodeGraph !== null) {
   createRoot(nodeGraph).render(
     <NodeGraph />
+  )
+}
+
+if (searchBar !== null) {
+  createRoot(searchBar).render(
+    <SearchBar />
   )
 }

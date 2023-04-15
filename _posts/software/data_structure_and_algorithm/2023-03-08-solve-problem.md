@@ -10,7 +10,7 @@ mermaid:
 p5:
 threeJS:
 anchor:
-publish:
+publish: true
 ---
 
 ## Introduction
@@ -195,7 +195,7 @@ function shuffle (string) => {
 }
 ```
 
-Then the time complexity = $$N + N * N! = O( N*N! )$$. We can start from string = 'a', then string 'ab', ...etc and we will find out that the desired result of 'ab' is based on the result of 'a' and append 'b' on both side of the result of 'a' and so on as follow:
+Then the time complexity = $$N + N * N! = O( N*N! )$$. We can start from `string = 'a'`, then `string 'ab'`, ...etc and we will find out that the desired result of `'ab'` is based on the result of `'a'` and append `'b'` on both side of the result of `'a'` and so on as follow:
 
 ```javascript
 {

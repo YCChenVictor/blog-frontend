@@ -17,7 +17,7 @@ const NodeGraph = () => {
   }
 
   useEffect(() => {
-    fetch('assets/javascript/nodeGraph.json')
+    fetch('assets/data/nodeGraph.json')
       .then(response => response.json())
       .then(data => {
         const { nodes, links } = data;

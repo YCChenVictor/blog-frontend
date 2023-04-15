@@ -50,7 +50,7 @@ JavaScript is used in conjunction with popular web development frameworks like R
 
 ### datatype
 
-[datatype]({{site.baseurl}}/javascript/2022/12/25/datatype.html)
+In JavaScript, data types define the type of data that a variable or a value can hold. JavaScript has six primitive data types and one non-primitive data type. For more information, please refer to [datatype]({{site.baseurl}}/javascript/2022/12/25/datatype.html)
 
 ### operators
 
@@ -136,26 +136,69 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-### function
+### Function
 
-#### protected methods in class
-
-```javascript
-class MyClass {
-  constructor() {
-    this._protectedProperty = 'foo';
+* Arrow vs normal function
+  * Syntax: Arrow functions have a more concise syntax compared to normal functions. They can be written in a single line without using the "return" keyword.
+    ```javascript
+    // Normal function
+    function add(a, b) {
+      return a + b;
+    }
+  
+    // Arrow function
+    const add = (a, b) => a + b;
+    ```
+  * Binding of "this": In arrow functions, the "this" keyword refers to the enclosing context, while in normal functions, the value of "this" is determined by how the function is called.
+    ```javascript
+    const person = {
+      name: "John",
+      sayHello: function() {
+        console.log("Hello, my name is " + this.name);
+      },
+      sayHelloArrow: () => {
+        console.log("Hello, my name is " + this.name);
+      }
+    };
+    
+    person.sayHello(); // output: Hello, my name is John
+    person.sayHelloArrow(); // output: Hello, my name is undefined
+    ```
+    * In the above example, the value of "this" in the arrow function "sayHelloArrow" refers to the global context, which does not have a "name" property.
+  * Use of "arguments": Normal functions have access to a special variable called "arguments", which contains all the arguments passed to the function. Arrow functions do not have access to "arguments".
+    ```javascript
+    function sum() {
+      let total = 0;
+      for(let i=0; i<arguments.length; i++) {
+        total += arguments[i];
+      }
+      return total;
+    }
+    
+    const sumArrow = (...args) => args.reduce((total, num) => total + num, 0);
+    
+    console.log(sum(1, 2, 3, 4)); // output: 10
+    console.log(sumArrow(1, 2, 3, 4)); // output: 10
+    ```
+    * In the above example, the normal function "sum" uses the "arguments" variable to calculate the sum of all the arguments passed to it. The arrow function "sumArrow" uses the spread operator to convert the arguments into an array and then uses the "reduce" method to calculate the sum.
+* protected methods in class
+  ```javascript
+  class MyClass {
+    constructor() {
+      this._protectedProperty = 'foo';
+    }
+  
+    _protectedMethod() {
+      console.log('This method is protected');
+    }
+  
+    publicMethod() {
+      console.log('This is a public method');
+      this._protectedMethod(); // call the protected method from within the class
+    }
   }
-
-  _protectedMethod() {
-    console.log('This method is protected');
-  }
-
-  publicMethod() {
-    console.log('This is a public method');
-    this._protectedMethod(); // call the protected method from within the class
-  }
-}
-```
+  ```
+* arrow
 
 ### OOP
 

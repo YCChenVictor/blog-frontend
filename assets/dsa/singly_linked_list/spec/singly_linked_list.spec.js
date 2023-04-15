@@ -24,5 +24,9 @@ describe('LinkedList', () => {
     testLinkedList.insert(2, 1000);
     expect(testLinkedList.printList()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
   });
-  // more test to be continued
+  
+  test('#update', () => {
+    testLinkedList.update(2, 1000);
+    expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
+  })
 });

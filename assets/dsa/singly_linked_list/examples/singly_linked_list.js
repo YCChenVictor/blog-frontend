@@ -6,6 +6,9 @@ class Node {
   }
   
 class LinkedList {
+  // index starts from 0
+  // position starts from 1
+
   constructor() {
     this.head = null;
     this.tail = null;
@@ -40,6 +43,22 @@ class LinkedList {
     
     this.length++;
   }
+
+  insert(position, value) {
+    if (position === 1) {
+      this.prepend(value);
+    } else if (position >= this.length) {
+      this.append(value);
+    } else {
+      const newNode = new Node(value);
+      const leader = this.traverseToIndex(position - 1);
+      const nextNode = leader.next;
+
+      leader.next = newNode;
+      newNode.next = nextNode;
+      this.length++;
+    }
+  }
     
   // Read
   traverseToIndex(index) {
@@ -65,29 +84,18 @@ class LinkedList {
   }
 
   // Update
-  insert(index, value) {
-    if (index === 0) {
-      this.prepend(value);
-    } else if (index >= this.length) {
-      this.append(value);
-    } else {
-      const newNode = new Node(value);
-      const leader = this.traverseToIndex(index - 1);
-      const nextNode = leader.next;
-
-      leader.next = newNode;
-      newNode.next = nextNode;
-      this.length++;
-    }
+  update(position, value) {
+    const target = this.traverseToIndex(position - 1);
+    target.value = value
   }
 
   // Delete    
-  remove(index) {
-    if (index === 0) {
+  remove(position) {
+    if (position === 1) {
       this.head = this.head.next;
       this.length--;
     } else {
-      const leader = this.traverseToIndex(index - 1);
+      const leader = this.traverseToIndex(position - 1);
       const unwantedNode = leader.next;
 
       leader.next = unwantedNode.next;

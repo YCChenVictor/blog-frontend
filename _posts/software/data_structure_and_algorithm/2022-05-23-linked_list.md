@@ -6,7 +6,7 @@ categories: DSA
 note:
 mathjax: true
 mermaid: true
-publish:
+publish: true
 ---
 
 ## Introduction
@@ -33,7 +33,7 @@ graph LR
 
 ## why
 
-Given a memory disk with multiple data preserved and we cannot insert a serial data in it, we may use linked list to achieve it because the nodes can be unserial.
+Linked lists can dynamically grow and shrink in size during program execution, whereas the size of an array is fixed at the time of creation. Additionally, inserting or deleting elements in a linked list is relatively efficient, whereas in an array these operations can be expensive if the array is large.
 
 ## How
 
@@ -59,15 +59,31 @@ class LinkedList {
   }
 
   // Add a new element to the end of the list
-  add(data) {
-    const node = new Node(data);
+  prepand(value) {
+    const newNode = new Node(value);
+
     if (!this.head) {
-      this.head = node;
-      this.tail = node;
+      this.head = newNode;
+      this.tail = newNode;
     } else {
-      this.tail.next = node;
-      this.tail = node;
+      newNode.next = this.head;
+      this.head = newNode;
     }
+    
+    this.length++;
+  }
+
+  append(value) {
+    const newNode = new Node(value);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    
     this.length++;
   }
 
@@ -120,13 +136,13 @@ list.remove(1);
 console.log(list.get(1)); // Output: "c"
 ```
 
-* create: O(1)
+* create an element: O(1)
   * adding a new element to a LinkedList involves creating a new node and updating the head pointer to point to the new node, which can be done in constant time
-* read: O(n)
+* read an element: O(n)
   * In singly-linked list, the time complexity of read is O(n) in the worst case, where n is the length of the list Unlike an array, where elements are stored contiguously in memory and can be accessed in constant time using an index, in a linked list, we have to traverse the list from the head node to the desired index, which takes linear time proportional to the size of the list.
-* update: O(n)
+* update an element: O(n)
   * In a singly-linked list, the time complexity of update (i.e., modifying an element by index) is also O(n) in the worst case, where n is the length of the list. This is because like accessing an element, we need to traverse the list from the head node to the desired index to update it. Once we have reached the node, updating it takes constant time, i.e., O(1).
-* delete: O(n)
+* delete an element: O(n)
   * In a singly-linked list, the time complexity of delete (i.e., removing an element by index) is also O(n) in the worst case, where n is the length of the list. This is because we need to traverse the list from the head node to the node immediately before the one we want to delete, which takes linear time proportional to the size of the list. Once we have found the node before the one we want to delete, we can remove the target node in constant time, i.e., O(1), by updating its predecessor's next pointer to skip over the target node.
 
 * spec
