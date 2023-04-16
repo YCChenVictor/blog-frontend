@@ -37,7 +37,7 @@ Linked lists can dynamically grow and shrink in size during program execution, w
 
 ## How
 
-### singly linked list in javascript
+### Singly Linked List
 
 * coding example:
 
@@ -178,9 +178,107 @@ describe('LinkedList', () => {
 });
 ```
 
-### create a doubly linked list
+### Doubly Linked List
 
-to be continued
+```javascript
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.prev = null;
+    this.next = null;
+  }
+}
+
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  // create
+  append(data) { // create a node on the head
+    const newNode = new Node(data);
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+  }
+
+  prepend(data) { // create a node on the tail
+    const newNode = new Node(data);
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+  }
+
+  insert() { // create a node on particular position
+
+  }
+
+  // read
+  value() { // return the value of node in particular position
+  }
+
+  values(position = null) { // return ordered values
+    if position === null {
+      let current_node = this.head;
+      while (current_node !== null) {
+        console.log(current_node.data);
+        current_node = current_node.next;
+      }
+    } else {
+      traverseToPosition()
+    }
+  }
+
+  // update
+  update(position, value) { // update the value on particular position
+
+  }
+  
+  // delete
+  remove(position) { // remove the node on particular position
+    if (this.head === null) {
+      return;
+    }
+    if (this.head === this.tail && this.head.data === data) {
+      this.head = null;
+      this.tail = null;
+      return;
+    }
+    if (this.head.data === data) {
+      this.head = this.head.next;
+      this.head.prev = null;
+      return;
+    }
+    let current_node = this.head.next;
+    while (current_node !== null && current_node.data !== data) {
+      current_node = current_node.next;
+    }
+    if (current_node === null) {
+      return;
+    }
+    if (current_node === this.tail) {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+      return;
+    }
+    current_node.prev.next = current_node.next;
+    current_node.next.prev = current_node.prev;
+  }
+}
+```
+
+why we need doubly?
 
 ## What
 
@@ -325,7 +423,80 @@ To be continued (more questions)
 
 ## What
 
-Try to demo it with real world examples
+Real-world problem that uses an linked list data structure and algorithm
+
+* I want to parse the steps from a ChatGPT answer and store them as different Nodes in a linked list
+
+```javascript
+class Step {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  addStep(data) {
+    const newStep = new Step(data);
+
+    if (!this.head) {
+      this.head = newStep;
+    } else {
+      let currentStep = this.head;
+
+      while (currentStep.next) {
+        currentStep = currentStep.next;
+      }
+
+      currentStep.next = newStep;
+    }
+  }
+
+  removeStep(data) {
+    if (!this.head) {
+      return;
+    }
+
+    if (this.head.data === data) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let currentStep = this.head;
+
+    while (currentStep.next) {
+      if (currentStep.next.data === data) {
+        currentStep.next = currentStep.next.next;
+        return;
+      }
+
+      currentStep = currentStep.next;
+    }
+  }
+}
+```
+
+and use this structure
+
+```javascript
+const linkedList = new LinkedList();
+
+async function handleQuestion(question) {
+  const answer = await getChatGPTResponse(question);
+  const steps = parseSteps(answer);
+
+  steps.forEach(step => linkedList.addStep(step));
+}
+
+function parseSteps(answer) {
+  const steps = answer.split('\n');
+  return steps.map(step => step.trim()).filter(step => step !== '');
+}
+```
 
 ## reference
 

@@ -152,7 +152,7 @@ My definition of positive social norms is people should try their best to extend
 * Explore nature: Nature is a great source of inspiration for aesthetics. Take the time to explore natural landscapes, observe the details, and appreciate the beauty of the natural world.
 * Engage with different cultures: Different cultures have different aesthetic values and norms. Engaging with different cultures and their art can broaden your understanding of aesthetics and help you appreciate the diversity of the world.
 
-### Personal
+### Increase Personal Humanity
 
 Based on the idea of humanity
 

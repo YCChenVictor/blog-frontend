@@ -23,6 +23,7 @@ I need to structure my thoughts.
 
 ## How?
 
+* music, I can make video of the song 家，before audio and after audio and write an article and connect the youtube video on my blog
 * add static vs dynamic programming
 * rename all the overview article to the directory name, so that the graph can show the name instead of overview
 * connect code pan API, which means I can create code result on a defined area

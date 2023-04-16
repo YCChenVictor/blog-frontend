@@ -62,6 +62,7 @@ POST /login
 
 ### TODO
 
+* Connect ChatGPT -> ask simple question -> split this question into steps -> connect these steps with linked list -> build spec -> use the spec to build app -> wrap as one commit
 * (frontend) deal with the sidebar problem make it cleaner
 * (frontend) list tasks (the design can follow JIRA)
 * (backend: create-task-api) create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
