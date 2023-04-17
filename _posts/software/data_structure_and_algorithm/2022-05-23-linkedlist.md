@@ -1,6 +1,6 @@
 ---
 layout: post
-title: linkedlist
+title:
 date: '2022-05-23'
 categories: DSA
 note:
@@ -279,6 +279,12 @@ class DoublyLinkedList {
 ```
 
 why we need doubly?
+
+Traversal in both directions: In a singly linked list, you can only traverse the list in one direction, from the head to the tail. With a doubly linked list, you can traverse the list in both directions, which can be very useful in certain applications.
+
+Insertion and deletion at any position: In a singly linked list, if you want to insert a node between two nodes, you need to modify the pointers of the previous node to point to the new node, and the new node to point to the next node. With a doubly linked list, you can simply update the pointers of the neighboring nodes to insert a node in between them. Similarly, when deleting a node from a doubly linked list, you can easily update the pointers of the neighboring nodes to remove the node.
+
+Tail traversal: In a singly linked list, if you want to add a new node at the end of the list, you need to traverse the entire list to reach the tail node. With a doubly linked list, you can keep a reference to the tail node and easily add new nodes at the end of the list.
 
 ## What
 

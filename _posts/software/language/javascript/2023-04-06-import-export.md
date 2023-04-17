@@ -98,7 +98,7 @@ export const person = {
 
 ```javascript
 // export multiple functions/objects
-export { addNumbers, person };
+export default { addNumbers, person };
 ```
 
 ### import

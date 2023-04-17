@@ -15,11 +15,33 @@ publish:
 
 ## Introduction
 
-This project decentralize the tasks.
+This project decentralize and automate the tasks.
 
 ## Why?
 
+I just try to implement AI and blockchain to tasks. Currently on software development.
+
 ## How?
+
+### User Stories
+
+* User story 1: As an entrepreneur who need to create an app, I want AI to create a really quick MVP for me on desktop, so that I can start sell it and build traction.
+* Specification:
+  * AI to create MVP
+    * Input: purpose
+    * Output: decomposed unit tests
+  * Sell it
+    * Input:
+
+### Visitor
+
+* User story: As a visitor, I want to know how to 
+
+### Member
+
+* User story:
+
+### Developer
 
 Two role: task giver and task receiver
 
@@ -62,7 +84,9 @@ POST /login
 
 ### TODO
 
-* Connect ChatGPT -> ask simple question -> split this question into steps -> connect these steps with linked list -> build spec -> use the spec to build app -> wrap as one commit
+* Add 
+* Connect ChatGPT in backend
+* ask simple question -> split this question into steps -> connect these steps with linked list -> build spec -> use the spec to build app -> wrap as one commit
 * (frontend) deal with the sidebar problem make it cleaner
 * (frontend) list tasks (the design can follow JIRA)
 * (backend: create-task-api) create frontend to create job: once login -> click create job -> redirect to Jenkins (should create service to translate DSL to xml in the future) -> create job
@@ -82,5 +106,6 @@ POST /login
 * connect chatGPT to create spec and solution for us
 * add mock database for jest
 * after phase one, deploy it on fly
+* add linter
 
 ## Reference
