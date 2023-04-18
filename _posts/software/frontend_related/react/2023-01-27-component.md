@@ -69,10 +69,6 @@ It includes
 
 The reason to use component: `render()` method returns **react elements**, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.
 
-### hook
-
-[hook]({{site.baseurl}}/react/2021/06/17/hook.html)
-
 ### insert components
 
 React accept pass array of components into a component and render them; Take `sidebar` as example,
@@ -103,6 +99,33 @@ function SidebarLayout() {
   );
 }
 ```
+
+### Conditional Rendering
+
+In React, conditional rendering allows developers to show different parts of a component based on certain conditions.
+
+```javascript
+import React from 'react';
+
+function MyComponent(props) {
+  const isLoggedIn = props.isLoggedIn;
+  
+  return (
+    <div>
+      {isLoggedIn ? (
+        <h1>Welcome back!</h1>
+      ) : (
+        <h1>Please log in.</h1>
+      )}
+    </div>
+  );
+}
+
+export default MyComponent;
+```
+
+In this example, we use the ternary operator (? :) to conditionally render different content inside the return statement based on the value of isLoggedIn. If isLoggedIn is true, the component will render a welcome message, and if it's false, the component will render a login prompt. The JSX syntax allows us to include JavaScript expressions inside curly braces {}, so we can evaluate the condition and render the appropriate content inline.
+
 
 ### child
 

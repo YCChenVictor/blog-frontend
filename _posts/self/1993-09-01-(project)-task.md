@@ -25,21 +25,16 @@ I just try to implement AI and blockchain to tasks. Currently on software develo
 
 ### User Stories
 
-* User story 1: As an entrepreneur who need to create an app, I want AI to create a really quick MVP for me on desktop, so that I can start sell it and build traction.
-* Specification:
+* (V) As a member, I want to redirect my tasks immediately after I login, so that I can check the status of my tasks
+* (V) As a member, after I login, I want to create tasks, so that I can create my own MVP
+  * Create button
+  * No need login and sing up
+* As an entrepreneur who need to create an app, I want AI to create a really quick MVP for me on desktop, so that I can start sell it and build traction.
   * AI to create MVP
-    * Input: purpose
+    * Input: purpose => add a new column purpose to task => create frontend first => create backend to post request to GPT
     * Output: decomposed unit tests
   * Sell it
     * Input:
-
-### Visitor
-
-* User story: As a visitor, I want to know how to 
-
-### Member
-
-* User story:
 
 ### Developer
 

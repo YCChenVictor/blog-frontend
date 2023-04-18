@@ -152,7 +152,7 @@ Show
 \du
 ```
 
-### CRUD
+### CRUD of row
 
 CREATE
 

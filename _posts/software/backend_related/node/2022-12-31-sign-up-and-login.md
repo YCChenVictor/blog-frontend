@@ -15,7 +15,7 @@ publish: true
 
 ## Introduction
 
-This article describes how to implement signup and login with
+This article describes how to implement sign up and log in with
 
 * express-session
 * passport (For login authentication)

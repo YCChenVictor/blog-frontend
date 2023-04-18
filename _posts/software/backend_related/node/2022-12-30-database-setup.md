@@ -23,6 +23,10 @@ We need stable way to create database schema for node app.
 
 ## How?
 
+### PG
+
+Please refer to [PG]({{site.baseurl}}/pg/2022/12/30/postgresql.html)
+
 ### migration
 
 #### install
