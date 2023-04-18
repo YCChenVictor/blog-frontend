@@ -54,26 +54,11 @@ debug the logs
 tail -n 50 /usr/local/var/log/postgresql@14.log
 ```
 
-### connect
+### Connect
 
-#### base
+#### Password
 
-connect to database
-
-```bash
-psql postgres
-```
-
-remove process
-
-```bash
-ps -ef | grep postmaster | grep -v grep | awk '{print $2}'
-kill <the_pid_you_just_got>
-```
-
-#### password
-
-in `~/pgpass.conf`
+In `~/pgpass.conf`
 
 ```bash
 hostname:port:database:username:password
@@ -81,7 +66,24 @@ hostname:port:database:username:password
 
 and permissions set to 0600
 
-#### with docker
+#### In Terminal
+
+* input when we did not setup hostname, port, database, username, password
+  ```bash
+  psql -h <host> -p <port> -U <username> <database>
+  ```
+* input when we already setup hostname, port, database, username, password
+  ```bash
+  psql postgres
+  ```
+* remove process
+
+```bash
+ps -ef | grep postmaster | grep -v grep | awk '{print $2}'
+kill <the_pid_you_just_got>
+```
+
+#### With Docker
 
 [connect docker]({{site.baseurl}}/docker/2022/01/09/overview.html#run)
 

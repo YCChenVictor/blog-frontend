@@ -29,13 +29,9 @@ Please refer to [PG]({{site.baseurl}}/pg/2022/12/30/postgresql.html)
 
 ### migration
 
-#### install
+Migration in database is necessary to manage and track changes in the structure and content of a database, such as adding or modifying tables, columns, or data. It allows for a more organized and controlled approach to database development, deployment, and maintenance.
 
-use `sequelize`
-
-(1) create database with pg command
-
-(2) install `sequelize`
+#### Install Sequelize
 
 ```bash
 npm install --save sequelize
@@ -91,35 +87,90 @@ NODE_ENV=development
 
 #### migration file
 
-generate
-
-```bash
-sequelize model:generate --name user --attributes name:string,mail:string,password:string
-```
-
-and then you can setup constraints in migration file:
-
-```javascript
-'use strict';
-/** @type {import('sequelize-cli').Migration} */
-module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
-      ...
-      email: {
-        type: Sequelize.STRING,
-        unique: true // add this line
+* create model
+  ```bash
+  sequelize model:generate --name user --attributes name:string,mail:string,password:string
+  ```
+  * and then you can setup constraints in migration file:
+    ```javascript
+    'use strict';
+    /** @type {import('sequelize-cli').Migration} */
+    module.exports = {
+      async up(queryInterface, Sequelize) {
+        await queryInterface.createTable('users', {
+          ...
+          email: {
+            type: Sequelize.STRING,
+            unique: true // add this line
+          },
+          ...
+        });
       },
-      ...
-    });
-  },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('users');
-  }
-};
-```
+      async down(queryInterface, Sequelize) {
+        await queryInterface.dropTable('users');
+      }
+    };
+    ```
+* Add column, for example, I want to add column, purpose to tasks table
+  * In terminal, to create migration file
+    ```bash
+    npx sequelize-cli migration:generate --name add-purpose-to-tasks
+    ```
+  * A migration file created and input as follow
+    ```bash
+    module.exports = {
+      up: async (queryInterface, Sequelize) => {
+        await queryInterface.addColumn('YourModelNameHere', 'purpose', {
+          type: Sequelize.STRING,
+          allowNull: false,
+          defaultValue: ''
+        });
+      },
 
-* [types](https://sequelize.org/docs/v7/other-topics/other-data-types/)
+      down: async (queryInterface, Sequelize) => {
+        await queryInterface.removeColumn('YourModelNameHere', 'purpose');
+      }
+    };
+    ```
+  * run migration
+    ```bash
+    npx sequelize-cli db:migrate
+    ```
+  * Update model for column, purpose
+    ```javascript
+    'use strict';
+
+    import Sequelize from 'sequelize';
+    import sequelize from './index.js';
+
+    const task = sequelize.define('task', {
+      project: {
+        type: Sequelize.STRING,
+      },
+      purpose: {
+        type: Sequelize.STRING,
+      },
+      spec: {
+        type: Sequelize.TEXT
+      },
+      price: {
+        type: Sequelize.FLOAT
+      }
+    })
+    
+    export default task
+    ```
+    
+
+#### Must use import to load ES Module
+
+creating a new package.json file in the migrations folder with
+
+```JSON
+{
+  "type": "commonjs"
+}
+```
 
 #### migrate
 
@@ -149,11 +200,41 @@ TBC
 
 ### match test database with development
 
-to be continued
-
 ## What?
 
-TBC
+### ChatGPT
+
+* Sign up for an OpenAI account
+* Create an API key in OpenAI account dashboard. This key will be used to authenticate requests to the API
+* Install the openai package
+  ```bash
+  npm install openai
+  ```
+* connect
+  ```javascript
+  const openai = require('openai');
+  
+  // Set up the OpenAI API credentials
+  openai.apiKey = 'YOUR_API_KEY';
+  
+  // Set up the request parameters
+  const prompt = 'Hello, ChatGPT!';
+  const model = 'text-davinci-002';
+  const temperature = 0.5;
+  const maxTokens = 100;
+  
+  // Send the request to ChatGPT
+  openai.complete({
+    engine: model,
+    prompt: prompt,
+    temperature: temperature,
+    maxTokens: maxTokens,
+  }).then(response => {
+    console.log(response.data.choices[0].text);
+  }).catch(error => {
+    console.log(error);
+  });
+  ```
 
 ## Reference
 
@@ -164,3 +245,5 @@ TBC
 [Use Sequelize ORM with PostgreSQL in Your Express Project](https://blog.devgenius.io/use-sequelize-orm-with-postgresql-in-your-express-project-3c277b289522)
 
 [How to easily create a Postgres database in Docker](https://dev.to/andre347/how-to-easily-create-a-postgres-database-in-docker-4moj)
+
+[Resolving 'Must use import to load ES Module' error while using Sequelize ORM and ES6 syntax in Node.js"](https://dev.to/emekaofe/resolving-must-use-import-to-load-es-module-error-while-using-sequelize-orm-and-es6-syntax-in-nodejs-1o2c)
