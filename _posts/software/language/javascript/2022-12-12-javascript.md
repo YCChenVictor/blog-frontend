@@ -275,12 +275,6 @@ fetchData().then((data) => processData(data));
 
 [AJAX]({{site.baseurl}}/javascript/2021/06/19/AJAX.html)
 
-### metaprogramming
-
-```javascript
-
-```
-
 ### ES
 
 ES stands for ECMAScript, which is a standardized scripting language specification that is used to implement JavaScript. ECMAScript is the official name for the scripting language that is commonly referred to as "JavaScript". ECMAScript is maintained by the European Computer Manufacturers Association (ECMA) and is designed to be a cross-platform, vendor-neutral standard that can be used by multiple web browsers and other environments that support JavaScript. Each new version of ECMAScript (ES6, ES7, ES8, etc.) introduces new features and updates to the language, which are implemented by web browsers and other environments to provide developers with new tools and capabilities for building modern web applications.
@@ -290,6 +284,24 @@ ES stands for ECMAScript, which is a standardized scripting language specificati
 ### Import and Export
 
 [Import and Export]({{site.baseurl}}/javascript/2023/04/06/import-export.html)
+
+### service
+
+A service can refer to a type of object or module that provides a specific functionality or feature to an application. For example,
+
+```javascript
+function MyService() {
+  constructor() {
+    // initialize properties or perform setup tasks
+  },
+  this.getData = function() {
+    // implementation
+  };
+  this.saveData = function(data) {
+    // implementation
+  };
+}
+```
 
 ### other topics
 
