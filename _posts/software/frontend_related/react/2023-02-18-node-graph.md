@@ -54,7 +54,7 @@ I want to create node plot in my blog.
 
 ## What?
 
-* real world example: [graph]({{site.baseurl}}/explore)
+* Real world example: [graph]({{site.baseurl}}/explore)
 * The graph
   ```JSX
   import React, { useState, useEffect } from "react";

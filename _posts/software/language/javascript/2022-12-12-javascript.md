@@ -294,10 +294,7 @@ function MyService() {
   constructor() {
     // initialize properties or perform setup tasks
   },
-  this.getData = function() {
-    // implementation
-  };
-  this.saveData = function(data) {
+  this.perform = function() {
     // implementation
   };
 }

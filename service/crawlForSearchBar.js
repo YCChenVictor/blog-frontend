@@ -37,7 +37,7 @@ function crawl() {
             } else {
               const $article = cheerio.load(body);
               const title = $article('h1').text();
-              const content = $article('article').html();
+              const content = $article.text().replace(/(\r\n|\n|\r)/gm, "").replace(/ +(?= )/g,'');
               items.push({'id': i, 'title': title, 'content': content, 'url': absoluteUrl});
               if (items.length === $('a[href^="/blog"][href$=".html"]').length) {
                 resolve({ items });

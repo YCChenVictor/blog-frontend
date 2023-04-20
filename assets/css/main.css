@@ -22,7 +22,7 @@
   h6 {
   }
   a {
-    @apply text-white hover:text-gray-500 px-0.5 py-0.5 lg:py-1 mx-auto;
+    @apply text-gray-200 hover:text-black px-0.5 py-0.5 lg:py-1 mx-auto;
   }
   ul {
     @apply list-disc;
@@ -52,6 +52,10 @@
 
 @tailwind utilities;
 @tailwind components;
+
+.none {
+  appearance: none;
+}
 
 .article {
   @apply px-32;

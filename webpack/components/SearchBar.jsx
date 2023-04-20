@@ -5,7 +5,7 @@ const SearchBar = () => {
   const [query, setQuery] = useState("");
   
   useEffect(() => {
-    fetch('assets/data/searchBar.json')
+    fetch('service/searchBar.json')
       .then(response => response.json())
       .then(data => {
         const { items } = data;
@@ -20,7 +20,7 @@ const SearchBar = () => {
   
   function searchItems() {
     return items.filter(item => {
-      const itemText = `${item.title} ${item.description}`.toLowerCase();
+      const itemText = `${item.title} ${item.content}`.toLowerCase();
       const searchText = query.toLowerCase();
       
       return itemText.includes(searchText); // the core
@@ -36,8 +36,7 @@ const SearchBar = () => {
       <ul>
         {searchResults.map(item => (
           <li key={item.id}>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
+            <a href={item.url}>{item.title}</a>
           </li>
         ))}
       </ul>

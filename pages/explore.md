@@ -4,5 +4,5 @@ title: Explore
 permalink: /explore
 ---
 
-<div id='node-graph'></div>
-<div id='search-bar'></div>
+<div id='node-graph' class='p-4'></div>
+<div id='search-bar' class='p-4'></div>

@@ -196,7 +196,7 @@ class DoublyLinkedList {
   }
 
   // create
-  append(data) { // create a node on the head
+  append(data) { // create a node on the tail
     const newNode = new Node(data);
     if (this.head === null) {
       this.head = newNode;
@@ -208,7 +208,7 @@ class DoublyLinkedList {
     }
   }
 
-  prepend(data) { // create a node on the tail
+  prepend(data) { // create a node on the head
     const newNode = new Node(data);
     if (this.head === null) {
       this.head = newNode;
@@ -228,15 +228,19 @@ class DoublyLinkedList {
   value() { // return the value of node in particular position
   }
 
-  values(position = null) { // return ordered values
-    if position === null {
-      let current_node = this.head;
-      while (current_node !== null) {
-        console.log(current_node.data);
-        current_node = current_node.next;
-      }
-    } else {
-      traverseToPosition()
+  values() { // return ordered values
+    let current_node = this.head;
+    while (current_node !== null) {
+      console.log(current_node.data);
+      current_node = current_node.next;
+    }
+  }
+
+  reverseValues(position) { // return ordered values from behind
+    let current_node = this.tail;
+    while (current_node !== null) {
+      console.log(current_node.data);
+      current_node = current_node.next;
     }
   }
 

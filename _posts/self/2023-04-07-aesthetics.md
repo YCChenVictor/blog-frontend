@@ -117,7 +117,7 @@ On the point of
 
 ### Promoting Positive Social Norms
 
-My definition of positive social norms is people should try their best to extend human society because if something cause problems, something will be eliminate eventually.
+My definition of positive social norms is people should try their best to extend human society because if something cause problems, something will be eliminate eventually, meaning I should try to increase humanity.
 
 #### Design Principle
 

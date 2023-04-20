@@ -4,7 +4,8 @@ import ForceGraph2D from "react-force-graph-2d";
 const NodeGraph = () => {
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
-  const borderStyle = { // TODO: try to know why Tailwind does not work
+  // const forceRef = useRef();
+  const borderStyle = {
     border: "1px solid black",
     borderRadius: "10px",
     padding: "10px"

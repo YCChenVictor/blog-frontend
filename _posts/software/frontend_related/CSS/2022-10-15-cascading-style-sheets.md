@@ -372,23 +372,42 @@ We can change the layout based on the width of screen
 <div class="p-16 prose prose-{{site.theme-color}}">
   ...
   <div class="px-4 md:grid lg:px-72">
-    {{content}}
+    # content
   </div>
 </div>
 ```
 
-### code
+### Condition
+
+* To apply styles to all <a> elements except <a><img></a> (i.e., anchor elements that contain only an image), we can use the :not() and :only-child pseudo-classes together.
+  ```CSS
+  a:not(:only-child):not(.no-style) {
+    /* Your styles here */
+  }
+  ```
+
+### Tailwind
+
+In Tailwind, you can remove a CSS style from an `<a>` element that is defined in the main.css file and imported through a link tag in the head of your HTML document using the !important keyword to override the existing style. For example,
 
 ```CSS
-code {
-  font-family: Courier, monospace;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border: 1px solid #ccc;
+.my-link {
+  color: blue;
+  text-decoration: none;
 }
 ```
 
-and the layout will be
+and override them with `!`
+
+```CSS
+<a class="my-link text-blue-500 underline !text-decoration-none !hover:text-blue-700">
+  My link
+</a>
+```
+
+## What
+
+
 
 ## Reference
 
