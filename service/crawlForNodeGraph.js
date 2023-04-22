@@ -14,7 +14,7 @@ function storeAsFile(result) {
   const jsonString = JSON.stringify(result);
 
   // Write the JSON data to a file
-  fs.writeFile('nodeGraph.json', jsonString, function (err) {
+  fs.writeFile('../assets/data/nodeGraph.json', jsonString, function (err) {
     if (err) throw err;
     console.log('Saved!');
   });
@@ -22,7 +22,14 @@ function storeAsFile(result) {
 
 function desiredFormat(structure) {
   const nodes = Object.keys(structure).map((value, index) => {
-    return {id: index + 1, name: value}
+    let name
+    const matches = value.match(/\/([^\/]+)\.html$/);
+    if(matches !== null) {
+      name = matches[1]
+    } else {
+      name = value
+    }
+    return {id: index + 1, name: name, url: value}
   })
   const links = Object.entries(structure).map(([key, value]) => {
     return value.map((item) => {
@@ -34,8 +41,8 @@ function desiredFormat(structure) {
     })
   }).flat().filter(obj => obj !== undefined)
 
-  function getIdFromNodeName(name) {
-    result = nodes.find(node => node.name === name)
+  function getIdFromNodeName(url) {
+    result = nodes.find(node => node.url === url)
     if(result) {
       return result['id']
     } else {
@@ -78,5 +85,5 @@ function crawl() { // Promise in this function
 // currently, just store the result as a JSON file in frontend.
 crawl().then((structure) => {
   console.log(structure)
-  storeAsFile(desiredFormat(structure)
-)})
+  storeAsFile(desiredFormat(structure))
+})

@@ -213,7 +213,7 @@ const randomObject = {
 
 ### built-in methods
 
-[methods]({{site.baseurl}}/javascript/2022/12/25/methods.html)
+JavaScript has many built-in methods that provide powerful functionality to manipulate strings, arrays, and other data types. These methods are part of the JavaScript language and can be called directly on the objects they operate on. For more information, please refer to [methods]({{site.baseurl}}/javascript/2022/12/25/methods.html)
 
 ### error handling
 
@@ -299,6 +299,14 @@ function MyService() {
   };
 }
 ```
+
+### Document Object Model
+
+* redirect
+* open new tab
+  ```javascript
+  window.open(url, '_blank').focus();
+  ```
 
 ### other topics
 
