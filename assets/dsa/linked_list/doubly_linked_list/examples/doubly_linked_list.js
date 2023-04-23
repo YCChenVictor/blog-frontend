@@ -37,28 +37,60 @@ class DoublyLinkedList {
     }
   }
   
-insert() { // create a node on particular position
-
-}
+  insert(position, data) { // create a node on particular position
+    const newNode = new Node(data);
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else if (position > this.length) {
+      this.append(data)
+    } else {
+      const nodeOnPosition = this.traverseToIndex(position - 1);
+      newNode.next = nodeOnPosition;
+      newNode.prev = nodeOnPosition.prev;
+      newNode.prev.next = newNode;
+    }
+  }
   
   // read
   value() { // return the value of node in particular position
   }
 
-  values() { // return ordered values
+  values() { // return values from head
     let current_node = this.head;
     const result = [];
     while (current_node !== null) {
-      result.append(current_node.data);
+      result.push(current_node.data);
       current_node = current_node.next;
     }
     return result
   }
-  
-// update
-update(position, value) { // update the value on particular position
 
-}
+  reverseValues() { // return values from tail
+    let current_node = this.tail;
+    const result = [];
+    while (current_node !== null) {
+      result.push(current_node.data);
+      current_node = current_node.prev;
+    }
+    return result
+  }
+
+  // traverse
+  traverseToIndex(index) {
+    let currentNode = this.head;
+
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+
+    return currentNode;
+  }
+  
+  // update
+  update(position, value) { // update the value on particular position
+  
+  }
     
   // delete
   remove(position) { // remove the node on particular position

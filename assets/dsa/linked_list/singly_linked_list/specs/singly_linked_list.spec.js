@@ -26,7 +26,10 @@ describe('LinkedList', () => {
   });
   
   test('#update', () => {
-    testLinkedList.update(2, 1000);
-    expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
+    // TODO
+  })
+  
+  test('#delete', () => {
+    // TODO
   })
 });

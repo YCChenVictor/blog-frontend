@@ -49,7 +49,7 @@ A linked list is a linear data structure where elements are stored in a sequence
 
 ### tree
 
-[tree]({{site.baseurl}}/dsa/2022/06/26/tree.html)
+A tree is a hierarchical data structure with nodes connected by edges, and a single root node at the top. It is used in computer science to represent data with a hierarchical structure, and various algorithms have been developed to manipulate and process tree structures efficiently. For more information, please refer to [tree]({{site.baseurl}}/dsa/2022/06/26/tree.html)
 
 ### graphs
 

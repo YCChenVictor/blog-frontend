@@ -188,13 +188,13 @@ class Node {
     this.next = null;
   }
 }
-
+  
 class DoublyLinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
   }
-
+  
   // create
   append(data) { // create a node on the tail
     const newNode = new Node(data);
@@ -207,7 +207,7 @@ class DoublyLinkedList {
       this.tail = newNode;
     }
   }
-
+  
   prepend(data) { // create a node on the head
     const newNode = new Node(data);
     if (this.head === null) {
@@ -219,36 +219,62 @@ class DoublyLinkedList {
       this.head = newNode;
     }
   }
-
-  insert() { // create a node on particular position
-
+  
+  insert(position, data) { // create a node on particular position
+    const newNode = new Node(data);
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else if (position > this.length) {
+      this.append(data)
+    } else {
+      const nodeOnPosition = this.traverseToIndex(position - 1);
+      newNode.next = nodeOnPosition;
+      newNode.prev = nodeOnPosition.prev;
+      newNode.prev.next = newNode;
+    }
   }
-
+  
   // read
   value() { // return the value of node in particular position
   }
 
-  values() { // return ordered values
+  values() { // return values from head
     let current_node = this.head;
+    const result = [];
     while (current_node !== null) {
-      console.log(current_node.data);
+      result.push(current_node.data);
       current_node = current_node.next;
     }
+    return result
   }
 
-  reverseValues(position) { // return ordered values from behind
+  reverseValues() { // return values from tail
     let current_node = this.tail;
+    const result = [];
     while (current_node !== null) {
-      console.log(current_node.data);
-      current_node = current_node.next;
+      result.push(current_node.data);
+      current_node = current_node.prev;
     }
+    return result
   }
 
-  // update
-  update(position, value) { // update the value on particular position
+  // traverse
+  traverseToIndex(index) {
+    let currentNode = this.head;
 
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+
+    return currentNode;
   }
   
+  // update
+  update(position, value) { // update the value on particular position
+  
+  }
+    
   // delete
   remove(position) { // remove the node on particular position
     if (this.head === null) {
@@ -280,6 +306,8 @@ class DoublyLinkedList {
     current_node.next.prev = current_node.prev;
   }
 }
+
+module.exports = DoublyLinkedList
 ```
 
 why we need doubly?
@@ -289,6 +317,49 @@ Traversal in both directions: In a singly linked list, you can only traverse the
 Insertion and deletion at any position: In a singly linked list, if you want to insert a node between two nodes, you need to modify the pointers of the previous node to point to the new node, and the new node to point to the next node. With a doubly linked list, you can simply update the pointers of the neighboring nodes to insert a node in between them. Similarly, when deleting a node from a doubly linked list, you can easily update the pointers of the neighboring nodes to remove the node.
 
 Tail traversal: In a singly linked list, if you want to add a new node at the end of the list, you need to traverse the entire list to reach the tail node. With a doubly linked list, you can keep a reference to the tail node and easily add new nodes at the end of the list.
+
+* Spec
+  ```javascript
+  const DoublyLinkedList = require('../examples/doubly_linked_list.js');
+
+  describe('DoublyLinkedList', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new DoublyLinkedList();
+      const values = [1, 74, 888, 62, 33];
+      for(let i = 0; i < values.length; i++){ // 33 <- 62 <- 888 <- 74 <- 1
+        testLinkedList.prepend(values[i]);
+      }
+    });
+  
+    test('#prepend', () => { // 0 <- 33 <- 62 <- 888 <- 74 <- 1
+      testLinkedList.prepend(0);
+      expect(testLinkedList.values()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
+      expect(testLinkedList.reverseValues()).toEqual([ 1, 74, 888, 62, 33, 0 ]);
+    });
+  
+    test('#append', () => { // 33 <- 62 <- 888 <- 74 <- 1 <- 0
+      testLinkedList.append(0);
+      expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
+      expect(testLinkedList.reverseValues()).toEqual([ 0, 1, 74, 888, 62, 33 ]);
+    });
+  
+    test('#insert', () => { // 33 <- 1000 <- 62 <- 888 <- 74 <- 1
+      testLinkedList.insert(2, 1000);
+      expect(testLinkedList.values()).toEqual([ 33, 1000, 62, 888, 74, 1 ]);
+    });
+    
+    test('#update', () => {
+      testLinkedList.update(2, 1000);
+      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
+    })
+  
+    test('#delete', () => {
+      testLinkedList.update(2, 1000);
+      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
+    })
+  });
+  ```
 
 ## What
 

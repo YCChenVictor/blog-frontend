@@ -143,11 +143,9 @@ My definition of positive social norms is people should try their best to extend
   * Observe and appreciate different types of art
   * Understand different styles and techniques to broaden artistic perspective
 * Practice art
-  * Practicing art
-    * Painting
-    * Drawing
-    * Sculpting
-    * [Music]
+  * [Sketch]({{site.baseurl}}/art/2022/08/21/sketch.html)
+  * [Origami]({{site.baseurl}}/art/2023/04/23/origami.html)
+  * [Music]({{site.baseurl}}/music/2023/04/11/music.html)
 * Experiment with design: Experiment with design principles, such as color, form, and composition, in your daily life. This can help you develop a better eye for aesthetics and recognize good design.
 * Explore nature: Nature is a great source of inspiration for aesthetics. Take the time to explore natural landscapes, observe the details, and appreciate the beauty of the natural world.
 * Engage with different cultures: Different cultures have different aesthetic values and norms. Engaging with different cultures and their art can broaden your understanding of aesthetics and help you appreciate the diversity of the world.
