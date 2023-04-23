@@ -29,7 +29,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -57,7 +57,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -272,6 +272,17 @@ flowchart TD
   <li>Represent maze as a graph, each cell is a node and the neighboring cells are connected by edges</li>
   <li>Use a depth-first search algorithm to explore all possible paths from the starting cell to the exit cell. We can mark each cell as visited as we explore the maze and keep track of the shortest path we’ve found so far. Once we reach the exit cell, we compare the length of the path we’ve found to the shortest path so far and update it if the new path is shorter.</li>
   <li>This approach can be optimized using techniques such as backtracking and memoization to avoid exploring paths that cannot lead to the shortest path.</li>
+</ul>
+
+<h2 id="todo">TODO</h2>
+
+<ul>
+  <li>Graph traversal
+    <ul>
+      <li>shortest path between two nodes</li>
+      <li>detecting cycles in a graph</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="reference">Reference</h2>

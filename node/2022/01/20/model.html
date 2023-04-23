@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -56,15 +56,24 @@
     <h1 class='text-center mt-6 mb-6'>Model</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>This article describes how to setup model mechanism in node with sequelize.</p>
+<p>In Node.js, a model is a JavaScript object that represents data and its behavior, commonly used in web development to handle data and perform CRUD operations.</p>
 
 <h2 id="why">Why?</h2>
 
-<p>With sequelize, we can (TBC)</p>
+<p>Using models in Node.js can improve data organization, manipulation, and management within an application, leading to increased efficiency.</p>
 
 <h2 id="how">How?</h2>
 
+<p>To implement models in Node.js, we can use various libraries and frameworks such as Mongoose, Sequelize, or Bookshelf, which provide an ORM (Object-Relational Mapping) layer for interacting with databases and managing data models.</p>
+
+<ul>
+  <li>For SQL, use Sequelize</li>
+  <li>For NoSQL, use Mongoose</li>
+</ul>
+
 <h3 id="sequelize">sequelize</h3>
+
+<p>To create a user model,</p>
 
 <p>create <code class="language-plaintext highlighter-rouge">./model/index.js</code> with <code class="language-plaintext highlighter-rouge">sequelize</code> as follow:</p>
 
@@ -107,7 +116,7 @@
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">user</span>
 </code></pre></div></div>
 
-<h3 id="create">Create</h3>
+<h4 id="create">Create</h4>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">User</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
   <span class="na">email</span><span class="p">:</span> <span class="nx">email</span><span class="p">,</span>
@@ -120,33 +129,38 @@
 <span class="nx">jane</span><span class="p">.</span><span class="nx">save</span>
 </code></pre></div></div>
 
-<h3 id="read">Read</h3>
+<h4 id="read">Read</h4>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// find last one</span>
 <span class="nx">record</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">model</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="nx">key</span> <span class="p">},</span> <span class="na">order</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span> <span class="dl">'</span><span class="s1">createdAt</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">DESC</span><span class="dl">'</span> <span class="p">]],</span> <span class="p">});</span>
 </code></pre></div></div>
 
-<h3 id="update">Update</h3>
+<h4 id="update">Update</h4>
 
-<h3 id="delete">Delete</h3>
+<h4 id="delete">Delete</h4>
 
-<h3 id="orm">ORM</h3>
+<h3 id="console">Console</h3>
 
-<p>TODO, try to find a way to direct CRUD in terminal</p>
+<p>You are correct that Sequelize does not have a console feature that is equivalent to the one in Rails.</p>
 
-<ul>
-  <li>ORM</li>
-</ul>
+<p>While Rails console allows developers to interact with their application’s environment, including its database, through a command-line interface, Sequelize is a JavaScript ORM that can be used with Node.js applications to interact with databases programmatically. It does not provide a command-line console like Rails.</p>
 
-<p>In terminal,</p>
+<p>However, you can use the Node.js REPL (Read-Evaluate-Print Loop) to interact with your Sequelize models in a similar way to the Rails console. The Node.js REPL is a built-in feature of Node.js that allows developers to execute JavaScript code interactively.</p>
+
+<p>To use the Node.js REPL with Sequelize, you can start a Node.js process and import your Sequelize models into it. Once you have done this, you can use the Node.js REPL to interact with your models and test out various queries.</p>
+
+<p>For example, assuming you have a Sequelize model for a User object, you can start a Node.js REPL by running node in your terminal, and then import your model using the following code:</p>
+
+<p>javascript
+Copy code
+const { User } = require(‘./path/to/models’);
+Once you have imported your model, you can interact with it using the REPL by calling methods on the model, such as User.findAll() or User.create().</p>
+
+<p>While this method is not exactly the same as using a console like Rails provides, it can be a useful way to interact with your Sequelize models in a command-line environment.</p>
 
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
-
-<p><a href="/blog/test/2021/06/14/xxx.html">test</a></p>
-
-<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
+<p>I use node with sequelize in my project, task</p>
 
 <h2 id="reference">Reference</h2>
 

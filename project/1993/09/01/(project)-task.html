@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -56,11 +56,42 @@
     <h1 class='text-center mt-6 mb-6'>(project) Task</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>This project decentralize the tasks.</p>
+<p>This project decentralize and automate the tasks.</p>
 
 <h2 id="why">Why?</h2>
 
+<p>I just try to implement AI and blockchain to tasks. Currently on software development.</p>
+
 <h2 id="how">How?</h2>
+
+<h3 id="user-stories">User Stories</h3>
+
+<ul>
+  <li>(V) As a member, I want to redirect my tasks immediately after I login, so that I can check the status of my tasks</li>
+  <li>(V) As a member, after I login, I want to create tasks, so that I can create my own MVP
+    <ul>
+      <li>Create button</li>
+      <li>No need login and sing up</li>
+    </ul>
+  </li>
+  <li>As an entrepreneur who need to create an app, I want AI to create a really quick MVP for me on desktop, so that I can start sell it and build traction.
+    <ul>
+      <li>AI to create MVP
+        <ul>
+          <li>Input: purpose =&gt; add a new column purpose to task =&gt; create frontend first =&gt; create backend to post request to GPT</li>
+          <li>Output: decomposed unit tests</li>
+        </ul>
+      </li>
+      <li>Sell it
+        <ul>
+          <li>Input:</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="developer">Developer</h3>
 
 <p>Two role: task giver and task receiver</p>
 
@@ -122,6 +153,9 @@ POST /login</p>
 <h3 id="todo">TODO</h3>
 
 <ul>
+  <li>Add</li>
+  <li>Connect ChatGPT in backend</li>
+  <li>ask simple question -&gt; split this question into steps -&gt; connect these steps with linked list -&gt; build spec -&gt; use the spec to build app -&gt; wrap as one commit</li>
   <li>(frontend) deal with the sidebar problem make it cleaner</li>
   <li>(frontend) list tasks (the design can follow JIRA)</li>
   <li>(backend: create-task-api) create frontend to create job: once login -&gt; click create job -&gt; redirect to Jenkins (should create service to translate DSL to xml in the future) -&gt; create job</li>
@@ -141,6 +175,7 @@ POST /login</p>
   <li>connect chatGPT to create spec and solution for us</li>
   <li>add mock database for jest</li>
   <li>after phase one, deploy it on fly</li>
+  <li>add linter</li>
 </ul>
 
 <h2 id="reference">Reference</h2>

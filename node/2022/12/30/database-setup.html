@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -64,15 +64,15 @@
 
 <h2 id="how">How?</h2>
 
+<h3 id="pg">PG</h3>
+
+<p>Please refer to <a href="/blog/pg/2022/12/30/postgresql.html">PG</a></p>
+
 <h3 id="migration">migration</h3>
 
-<h4 id="install">install</h4>
+<p>Migration in database is necessary to manage and track changes in the structure and content of a database, such as adding or modifying tables, columns, or data. It allows for a more organized and controlled approach to database development, deployment, and maintenance.</p>
 
-<p>use <code class="language-plaintext highlighter-rouge">sequelize</code></p>
-
-<p>(1) create database with pg command</p>
-
-<p>(2) install <code class="language-plaintext highlighter-rouge">sequelize</code></p>
+<h4 id="install-sequelize">Install Sequelize</h4>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">--save</span> sequelize
 npm <span class="nb">install</span> <span class="nt">-g</span> sequelize-cli
@@ -126,14 +126,13 @@ npm <span class="nb">install</span> <span class="nt">-g</span> sequelize-cli
 
 <h4 id="migration-file">migration file</h4>
 
-<p>generate</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequelize model:generate <span class="nt">--name</span> user <span class="nt">--attributes</span> name:string,mail:string,password:string
-</code></pre></div></div>
-
-<p>and then you can setup constraints in migration file:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+<ul>
+  <li>create model
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sequelize model:generate <span class="nt">--name</span> user <span class="nt">--attributes</span> name:string,mail:string,password:string
+</code></pre></div>    </div>
+    <ul>
+      <li>and then you can setup constraints in migration file:
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
 <span class="cm">/** @type {import('sequelize-cli').Migration} */</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
   <span class="k">async</span> <span class="nx">up</span><span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="p">{</span>
@@ -150,11 +149,72 @@ npm <span class="nb">install</span> <span class="nt">-g</span> sequelize-cli
     <span class="k">await</span> <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">dropTable</span><span class="p">(</span><span class="dl">'</span><span class="s1">users</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></div>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Add column, for example, I want to add column, purpose to tasks table
+    <ul>
+      <li>In terminal, to create migration file
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx sequelize-cli migration:generate <span class="nt">--name</span> add-purpose-to-tasks
+</code></pre></div>        </div>
+      </li>
+      <li>A migration file created and input as follow
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>module.exports <span class="o">=</span> <span class="o">{</span>
+  up: async <span class="o">(</span>queryInterface, Sequelize<span class="o">)</span> <span class="o">=&gt;</span> <span class="o">{</span>
+    await queryInterface.addColumn<span class="o">(</span><span class="s1">'YourModelNameHere'</span>, <span class="s1">'purpose'</span>, <span class="o">{</span>
+      <span class="nb">type</span>: Sequelize.STRING,
+      allowNull: <span class="nb">false</span>,
+      defaultValue: <span class="s1">''</span>
+    <span class="o">})</span><span class="p">;</span>
+  <span class="o">}</span>,
 
-<ul>
-  <li><a href="https://sequelize.org/docs/v7/other-topics/other-data-types/">types</a></li>
+  down: async <span class="o">(</span>queryInterface, Sequelize<span class="o">)</span> <span class="o">=&gt;</span> <span class="o">{</span>
+    await queryInterface.removeColumn<span class="o">(</span><span class="s1">'YourModelNameHere'</span>, <span class="s1">'purpose'</span><span class="o">)</span><span class="p">;</span>
+  <span class="o">}</span>
+<span class="o">}</span><span class="p">;</span>
+</code></pre></div>        </div>
+      </li>
+      <li>run migration
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx sequelize-cli db:migrate
+</code></pre></div>        </div>
+      </li>
+      <li>Update model for column, purpose
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="nx">Sequelize</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">sequelize</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">sequelize</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./index.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">task</span> <span class="o">=</span> <span class="nx">sequelize</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="dl">'</span><span class="s1">task</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">project</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">purpose</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">spec</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">TEXT</span>
+  <span class="p">},</span>
+  <span class="na">price</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">FLOAT</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+    
+<span class="k">export</span> <span class="k">default</span> <span class="nx">task</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
 </ul>
+
+<h4 id="must-use-import-to-load-es-module">Must use import to load ES Module</h4>
+
+<p>creating a new package.json file in the migrations folder with</p>
+
+<pre><code class="language-JSON">{
+  "type": "commonjs"
+}
+</code></pre>
 
 <h4 id="migrate">migrate</h4>
 
@@ -181,11 +241,43 @@ npm <span class="nb">install</span> <span class="nt">-g</span> sequelize-cli
 
 <h3 id="match-test-database-with-development">match test database with development</h3>
 
-<p>to be continued</p>
-
 <h2 id="what">What?</h2>
 
-<p>TBC</p>
+<h3 id="chatgpt">ChatGPT</h3>
+
+<ul>
+  <li>Sign up for an OpenAI account</li>
+  <li>Create an API key in OpenAI account dashboard. This key will be used to authenticate requests to the API</li>
+  <li>Install the openai package
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>openai
+</code></pre></div>    </div>
+  </li>
+  <li>connect
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">openai</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">openai</span><span class="dl">'</span><span class="p">);</span>
+  
+<span class="c1">// Set up the OpenAI API credentials</span>
+<span class="nx">openai</span><span class="p">.</span><span class="nx">apiKey</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">YOUR_API_KEY</span><span class="dl">'</span><span class="p">;</span>
+  
+<span class="c1">// Set up the request parameters</span>
+<span class="kd">const</span> <span class="nx">prompt</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello, ChatGPT!</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">model</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">text-davinci-002</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">temperature</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">maxTokens</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  
+<span class="c1">// Send the request to ChatGPT</span>
+<span class="nx">openai</span><span class="p">.</span><span class="nx">complete</span><span class="p">({</span>
+  <span class="na">engine</span><span class="p">:</span> <span class="nx">model</span><span class="p">,</span>
+  <span class="na">prompt</span><span class="p">:</span> <span class="nx">prompt</span><span class="p">,</span>
+  <span class="na">temperature</span><span class="p">:</span> <span class="nx">temperature</span><span class="p">,</span>
+  <span class="na">maxTokens</span><span class="p">:</span> <span class="nx">maxTokens</span><span class="p">,</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">text</span><span class="p">);</span>
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <h2 id="reference">Reference</h2>
 
@@ -196,6 +288,8 @@ npm <span class="nb">install</span> <span class="nt">-g</span> sequelize-cli
 <p><a href="https://blog.devgenius.io/use-sequelize-orm-with-postgresql-in-your-express-project-3c277b289522">Use Sequelize ORM with PostgreSQL in Your Express Project</a></p>
 
 <p><a href="https://dev.to/andre347/how-to-easily-create-a-postgres-database-in-docker-4moj">How to easily create a Postgres database in Docker</a></p>
+
+<p><a href="https://dev.to/emekaofe/resolving-must-use-import-to-load-es-module-error-while-using-sequelize-orm-and-es6-syntax-in-nodejs-1o2c">Resolving ‘Must use import to load ES Module’ error while using Sequelize ORM and ES6 syntax in Node.js”</a></p>
 
   </div>
 </div>

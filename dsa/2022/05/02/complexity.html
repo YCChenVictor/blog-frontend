@@ -36,7 +36,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -64,7 +64,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -312,80 +312,44 @@
 <h3 id="recursive-like-fibonacci-series">recursive, like fibonacci series</h3>
 
 <ul>
-  <li>time complexity = \(O(2^N)\)</li>
-  <li>space complexity = \(O(N)\)</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span><span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <li>code
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">n</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></div>
-
-<p>If n = 3, then the total nodes is 7 (1 + 2 + 4) as follow:</p>
-
-<div class="mermaid">
+</code></pre></div>    </div>
+  </li>
+  <li>plot
+    <div class="mermaid">
 graph TD
-  id1((f_3)) --&gt; id2((f_2))
-  id1((f_3)) --&gt; id3((f_2))
-
-  id2((f_2)) --&gt; id4((f_1))
-  id2((f_2)) --&gt; id5((f_1))
-
-  id3((f_2)) --&gt; id6((f_1))
-  id3((f_2)) --&gt; id7((f_1))
+  id1((f_4)) --&gt; id2((f_3))
+  id1((f_4)) --&gt; id3((f_2))
+  
+  id2((f_3)) --&gt; id4((f_2))
+  id2((f_3)) --&gt; id5((f_1))
+  
+  id4((f_2)) --&gt; id6((f_1))
+  id4((f_2)) --&gt; id7((f_0))
+  
+  id3((f_2)) --&gt; id8((f_1))
+  id3((f_2)) --&gt; id9((f_0))
 </div>
-
-<p>Then the time complexity = O(1 + 2 + 4 + … + 2^(n-1)) = O(2^n - 1) = O(2^n)</p>
-
-<p>The data we need to store is f(1), f(2), … f(n), meaning the space complexity = O(n)</p>
-
-<h3 id="two-loop-with-same-length-n-of-array">two loop with same length (n) of array</h3>
-
-<ul>
-  <li>time complexity = \(O(N)\)</li>
-  <li>space complexity =</li>
+  </li>
+  <li>time complexity = \(O(2^N)\)
+    <ul>
+      <li>Given every function will request two functions, the time complexity = O(1 + 2 + 4 + … + 2^(n-1)) = O(2^n - 1) = O(2^n)</li>
+    </ul>
+  </li>
+  <li>space complexity = \(O(N)\)
+    <ul>
+      <li>The data we need to store is f(1), f(2), … f(n), meaning the space complexity = O(n)</li>
+    </ul>
+  </li>
 </ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="kd">let</span> <span class="nx">product</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-  <span class="p">}</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">product</span><span class="o">*=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>The time complexity = O(2N) = O(N)</p>
-
-<h3 id="related-iteration-in-a-iteration">related iteration in a iteration</h3>
-
-<ul>
-  <li>time complexity = \(O(N^2)\)</li>
-  <li>space complexity =</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>Given there are N elements in this array, the total steps is</p>
-
-<p>\(N + (N-1) + (N-2) + ... + 1 = (1+N)*N/2\), meaning the time complexity = O((1+N)*N/2) = O(N^2)</p>
-
-<p>(to be continued with more example in the future)</p>
 
 <h2 id="reference">Reference</h2>
 

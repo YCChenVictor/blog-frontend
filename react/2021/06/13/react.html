@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
+  <div class="titleImagePosition">
+    <a href="/blog/" class="!px-0 !py-0">
+      <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
+    </a>
+  </div>
+  <div class="flex">
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="absolute right-16 flex md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+          <!-- dynamic menu based on navigation info in _config.yml -->
+          
+             <!-- don't show current page in menu -->
+              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
+                href="/blog/about">
+                About Me
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id='sidebar' class='fixed py-16'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+
+<div class='p-16 prose bg-gray-400' id='article'>
+  <div class='text-center'>
+    
+  </div>
+  <div class='md:px-4 md:grid lg:px-72'>
+    <h1 class='text-center mt-6 mb-6'>React</h1>
+    <h2 id="introduction">Introduction</h2>
+
+<p>React is an open-source JavaScript library used for building user interfaces or UI components.</p>
+
+<h2 id="why">Why?</h2>
+
+<ul>
+  <li>developed by Facebook</li>
+  <li>allowing developers to build complex UIs by breaking them down into smaller, reusable pieces.</li>
+  <li>uses a virtual DOM (Document Object Model) to update the user interface in an efficient way. When a change occurs in a component, React only updates the affected parts of the DOM instead of re-rendering the entire page. This makes React fast and efficient.</li>
+  <li>can be used for server-side rendering</li>
+  <li>has a large and active community, with many resources available to help developers learn and use the library.</li>
+</ul>
+
+<h2 id="how">How?</h2>
+
+<h3 id="start-a-project">start a project</h3>
+
+<ul>
+  <li>Create react app with following command
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx create-react-app@latest your-project-name <span class="nt">--use-npm</span>
+<span class="nb">cd </span>your-project-name
+npm start
+</code></pre></div>    </div>
+  </li>
+  <li>Remove all the files in <code class="language-plaintext highlighter-rouge">/src</code> and add <code class="language-plaintext highlighter-rouge">index.js</code> in it with following code:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createRoot</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-dom/client</span><span class="dl">'</span>
+  
+<span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span> <span class="nx">World</span><span class="o">&lt;</span><span class="sr">/h1&gt;</span><span class="err">;
+</span><span class="nx">createRoot</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">root</span><span class="dl">'</span><span class="p">)).</span><span class="nx">render</span><span class="p">(</span>
+  <span class="nx">element</span>
+<span class="p">)</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>which will create a JS object and render it into the DOM with id = root in the <code class="language-plaintext highlighter-rouge">public/index.html</code></li>
+    </ul>
+  </li>
+  <li>Naming
+    <ul>
+      <li>File: There is no strict convention for naming files in React, but camel case is more commonly used for component files while snake case is more commonly used for non-component modules or helper functions.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="third-party-library">third party library</h3>
+
+<p>just install it with <code class="language-plaintext highlighter-rouge">npm install xxx</code> and follow the official guides</p>
+
+<ul>
+  <li><a href="https://tailwindcss.com/docs/guides/create-react-app">tailwind</a> for style</li>
+  <li><a href="https://www.npmjs.com/package/@fortawesome/react-fontawesome">react-fontawesome</a> for icon</li>
+  <li><a href="https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons">fortawesome/free-solid-svg-icons</a> for icon</li>
+  <li><a href="https://mui.com/getting-started/installation/">mui</a> for react components</li>
+</ul>
+
+<h4 id="tailwind">tailwind</h4>
+
+<p>In <code class="language-plaintext highlighter-rouge">index.js</code>,</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">./index.css</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="concept-of-component">concept of component</h3>
+
+<p>In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to <a href="/blog/react/2023/01/27/component.html">component</a></p>
+
+<h3 id="concept-of-hook">concept of hook</h3>
+
+<p><a href="/blog/react/2023/01/27/component.html">hook</a></p>
+
+<h3 id="concept-of-routes">concept of routes</h3>
+
+<p>In React, routes are used to define different paths and URLs within a web application. react-router-dom is a popular library used to implement routing in React applications. For more information, please refer to <a href="/blog/react/2023/04/21/routes.html">routes</a></p>
+
+<h3 id="api">API</h3>
+
+<p>React uses HTTP requests to communicate with APIs and obtain data that can be rendered dynamically in the user interface. This allows for interactive and responsive web applications. For more information, please refer to <a href="/blog/react/2022/09/14/api.html">api</a></p>
+
+<h3 id="layout">layout</h3>
+
+<p><a href="/blog/react/2021/06/14/layout.html">layout</a></p>
+
+<h3 id="risk">risk</h3>
+
+<ul>
+  <li><a href="/blog/web-security/2022/08/30/overview.html#csrf">CSRF</a></li>
+  <li>XSS: (TODO) try to explain how react prevent it</li>
+</ul>
+
+<h3 id="cookie">cookie</h3>
+
+<p>We can access it with</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">cookieValue</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">(?:(?:</span><span class="sr">^|.*;</span><span class="se">\s</span><span class="sr">*</span><span class="se">)</span><span class="sr">username</span><span class="se">\s</span><span class="sr">*</span><span class="se">\=\s</span><span class="sr">*</span><span class="se">([^</span><span class="sr">;</span><span class="se">]</span><span class="sr">*</span><span class="se">)</span><span class="sr">.*$</span><span class="se">)</span><span class="sr">|^.*$/</span><span class="p">,</span> <span class="dl">"</span><span class="s2">$1</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="localstorage">localStorage</h3>
+
+<ul>
+  <li>set it</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>read it</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">items</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="ajax">ajax</h3>
+
+<p>combined with useEffect and useState</p>
+
+<pre><code class="language-JSX">function NodeGraph() {
+  const endpoint = document.querySelector('#endpoint');
+  const baseurl = document.querySelector('#base');
+  const url = `${endpoint.textContent}${baseurl.textContent}`;
+
+  const [data, setData] = useState([]);
+
+  useEffect(() =&gt; {
+    fetch(`${url}/articles`)
+      .then(response =&gt; response.text())
+      .then(html =&gt; {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const articlesNode = doc.querySelector('#articles');
+        const articles = Array.from(articlesNode.querySelectorAll('div')).filter(div =&gt; div.querySelector('div'));
+        return articles
+      })
+      .then(articles =&gt; {
+        const data = {
+          nodes: [
+            articles.map(article =&gt; ({
+              id: article.getAttribute('id'),
+              name: article.getAttribute('id'),
+              href: article.querySelector('a').getAttribute('href')
+            })
+          )],
+          links: [
+            articles.map(article =&gt; ({
+              source: article.getAttribute('id'),
+              target: article.getAttribute('id'),
+            })
+          )]
+        }
+        setData(data)
+      })
+  })
+
+  console.log('testing!!!')
+  console.log(data)
+}
+</code></pre>
+
+<h3 id="file">File</h3>
+
+<ul>
+  <li>store</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Sample JSON data</span>
+<span class="kd">const</span> <span class="nx">myData</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">age</span><span class="dl">"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">city</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">New York</span><span class="dl">"</span>
+<span class="p">};</span>
+
+<span class="c1">// Convert JSON data to a string</span>
+<span class="kd">const</span> <span class="nx">jsonString</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">myData</span><span class="p">);</span>
+
+<span class="c1">// Create a new file from the JSON string</span>
+<span class="kd">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">File</span><span class="p">([</span><span class="nx">jsonString</span><span class="p">],</span> <span class="dl">"</span><span class="s2">myData.json</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">});</span>
+
+<span class="c1">// Save the file locally</span>
+<span class="nx">saveAs</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>read: use <code class="language-plaintext highlighter-rouge">fetch()</code></li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">myData</span><span class="p">,</span> <span class="nx">setMyData</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">myData.json</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">setMyData</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+      <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="nx">myData</span> <span class="p">?</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Name</span><span class="p">:</span> <span class="p">{</span><span class="nx">myData</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="na">Age</span><span class="p">:</span> <span class="p">{</span><span class="nx">myData</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="na">City</span><span class="p">:</span> <span class="p">{</span><span class="nx">myData</span><span class="p">.</span><span class="nx">city</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>      <span class="p">)</span> <span class="p">:</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="p">)}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<h3 id="sign-up-and-login-mechanism">sign up and login mechanism</h3>
+
+<p><a href="/blog/react/2021/10/15/sign-up-and-login.html">sign up and login mechanism</a></p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=Ke90Tje7VS0">React JS - React Tutorial for Beginners</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=9ZEjSxDRIik">Build a 3D World in React with ThreeJS and React Three Fiber</a></p>
+
+<p><a href="https://www.youtube.com/watch?v=q0C5g4WIrKU&amp;t=132s">【React教學】一個範例讓你搞懂useState, useRef, useEffect, 5分鐘快速教學</a></p>
+
+<p><a href="https://reactjs.org/docs/hooks-overview.html">Hooks at a Glance</a></p>
+
+<p><a href="https://www.w3schools.com/react/react_useref.asp">React useRef Hook</a></p>
+
+<p><a href="https://codesandbox.io/s/78ize">react-sidebar-menu-medium</a></p>
+
+<p><a href="https://reactjs.org/docs/faq-ajax.html">AJAX and APIs</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+    <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <br>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="scrollTopBtn"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
+</html>

@@ -35,7 +35,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -63,7 +63,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -71,144 +71,83 @@
     <h1 class='text-center mt-6 mb-6'>Data Structure And Algorithm</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>Before we dive into it, please understand concept of <a href="/blog/dsa/2022/05/02/complexity.html">complexity</a>. Data structures describe how data can be organized, stored, and manipulated. Some common data structures include arrays, linked lists, stacks, queues, trees, graphs, and hash tables. Algorithms are procedures for solving problems such as searching for information, sorting data, processing graphs, performing calculations, and many other tasks.</p>
-
-<ul>
-  <li>Structure
-    <ul>
-      <li>array, arraylist, string</li>
-      <li>linked list</li>
-      <li>stack</li>
-      <li>queue</li>
-      <li>tree</li>
-      <li>graph</li>
-      <li>hash table</li>
-      <li>…</li>
-    </ul>
-  </li>
-  <li>Most common algorithms (according to ChatGPT)
-    <ul>
-      <li>string
-        <ul>
-          <li>reversing a string</li>
-          <li>string is a palindrome</li>
-          <li>longest common prefix</li>
-        </ul>
-      </li>
-      <li>array
-        <ul>
-          <li>finding the maximum subarray</li>
-          <li>binary search</li>
-          <li>sorting an array
-            <ul>
-              <li>merge sort</li>
-              <li>quick sort</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>dynamic programming
-        <ul>
-          <li>longest increasing subsequence</li>
-          <li>0/1 knapsack problem</li>
-        </ul>
-      </li>
-      <li>Graph traversal
-        <ul>
-          <li>shortest path between two nodes</li>
-          <li>detecting cycles in a graph</li>
-        </ul>
-      </li>
-      <li>…</li>
-    </ul>
-  </li>
-  <li>key concepts (according to cracking the coding interview)
-    <ul>
-      <li>bit Manipulation</li>
-      <li>memory (stack vs. heap)</li>
-      <li>recursion</li>
-      <li>dynamic programming</li>
-      <li>big O about time and space complexity</li>
-    </ul>
-  </li>
-</ul>
+<p>Before we dive into it, please understand concept of <a href="/blog/dsa/2022/05/02/complexity.html">complexity</a>. Data structures describe how data can be organized, stored, and manipulated. Algorithms are procedures for solving problems such as searching for information, sorting data, processing graphs, performing calculations, and many other tasks.</p>
 
 <h2 id="why">Why</h2>
 
-<p>To solve problem in a more efficient way, making no more space to improve both the time complexity and space complexity.</p>
+<p>To solve problem in a more efficient way, making no more space to improve both the time complexity and space complexity. For more information, please refer to <a href="/blog/dsa/2023/03/08/solve-problem.html">problem solving</a></p>
 
 <h2 id="how">How</h2>
 
-<p>We can decompose all the programming logics into four actions:</p>
-
-<ul>
-  <li>create (insert)</li>
-  <li>read (access with id)</li>
-  <li>update (access with attributes)</li>
-  <li>delete (delete)</li>
-</ul>
+<p>We can decompose all the programming logics into four actions: create, read, update, delete. The time complexity of CRUD an element in specific data structure is as follow:</p>
 
 <table>
-  <thead>
-    <tr>
-      <th style="text-align: left">(time complexity)</th>
-      <th style="text-align: center">(arraylist)</th>
-      <th style="text-align: center">(linkedlist)</th>
-      <th style="text-align: center">(stack)</th>
-      <th style="text-align: center">(queue)</th>
-      <th>(trees)</th>
-      <th>(graph)</th>
-    </tr>
-  </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">C</td>
-      <td style="text-align: center">O(1) - O(n)</td>
-      <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">O(1)</td>
-      <td>O(n)</td>
       <td> </td>
+      <td>Create</td>
+      <td>Read</td>
+      <td>Update</td>
+      <td>Delete</td>
     </tr>
     <tr>
-      <td style="text-align: left">R</td>
-      <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">O(n)</td>
-      <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">O(1)</td>
-      <td>O(n)</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td style="text-align: left">U</td>
-      <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">O(n)</td>
-      <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">O(n)</td>
+      <td>array list</td>
+      <td>O(1) - O(n)</td>
       <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(1) - O(n)</td>
+    </tr>
+    <tr>
+      <td>linked list</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+    </tr>
+    <tr>
+      <td>stack</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+    </tr>
+    <tr>
+      <td>queue</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+    </tr>
+    <tr>
+      <td>trees</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
-      <td style="text-align: left">D</td>
-      <td style="text-align: center">O(1) - O(n)</td>
-      <td style="text-align: center">O(n)</td>
-      <td style="text-align: center">O(1)</td>
-      <td style="text-align: center">O(1)</td>
-      <td>O(log(n)) - O(n)</td>
+      <td>graph</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="array">array</h3>
+<ul>
+  <li>index starts from 0: By using zero-based indexing, the calculation of the memory address of an element is simplified. The address of the first element in the array is simply the starting address of the array, with no offset required. The address of the second element is the starting address plus the size of one element, the address of the third element is the starting address plus the size of two elements, and so on. This simple arithmetic works nicely with the way memory is allocated and addresses are calculated.</li>
+</ul>
 
-<p><a href="/blog/dsa/2022/05/22/array.html">array</a></p>
+<h3 id="array">Array</h3>
 
-<h3 id="linkedlist">linkedlist</h3>
+<p>It is a data structure in programming that stores a collection of elements. These elements are stored in contiguous memory locations, and each element can be accessed using an index or a subscript. Please refer to <a href="/blog/dsa/2022/05/22/array.html">array</a> for more information.</p>
 
-<p><a href="/blog/dsa/2022/05/23/linked_list.html">linkedlist</a></p>
+<h3 id="linkedlist">Linkedlist</h3>
 
-<h3 id="stack">stack</h3>
+<p>A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to <a href="/blog/dsa/2022/05/23/linkedlist.html">linkedlist</a></p>
+
+<h3 id="stack">Stack</h3>
 
 <p><a href="/blog/dsa/2022/06/24/stack.html">stack</a></p>
 
@@ -218,7 +157,7 @@
 
 <h3 id="tree">tree</h3>
 
-<p><a href="/blog/dsa/2022/06/26/tree.html">tree</a></p>
+<p>A tree is a hierarchical data structure with nodes connected by edges, and a single root node at the top. It is used in computer science to represent data with a hierarchical structure, and various algorithms have been developed to manipulate and process tree structures efficiently. For more information, please refer to <a href="/blog/dsa/2022/06/26/tree.html">tree</a></p>
 
 <h3 id="graphs">graphs</h3>
 
@@ -273,6 +212,17 @@ graph LR
 <h2 id="what">what</h2>
 
 <p>Try to give real world example</p>
+
+<h2 id="todo">TODO</h2>
+
+<ul>
+  <li>key concepts (according to cracking the coding interview)
+    <ul>
+      <li>bit Manipulation</li>
+      <li>memory (stack vs. heap)</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="reference">reference</h2>
 

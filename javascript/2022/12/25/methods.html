@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -77,66 +77,60 @@
 <ul>
   <li>map()
     <ul>
-      <li>basic example:</li>
-    </ul>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">];</span>
-  
+      <li>basic example:
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">];</span>
+    
 <span class="nx">array1</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="nx">element</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</code></pre></div>    </div>
-
-    <ul>
-      <li>with index</li>
-    </ul>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
-  
+</code></pre></div>        </div>
+      </li>
+      <li>with index
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">];</span>
+    
 <span class="kd">const</span> <span class="nx">newArray</span> <span class="o">=</span> <span class="nx">myArray</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">value</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="nx">value</span> <span class="o">*</span> <span class="nx">index</span><span class="p">;</span>
 <span class="p">});</span>
-  
+    
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newArray</span><span class="p">);</span> <span class="c1">// Output: [0, 4, 12, 24, 40]</span>
-</code></pre></div>    </div>
-
-    <ul>
-      <li>with object</li>
-    </ul>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre></div>        </div>
+      </li>
+      <li>with object
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="na">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
   <span class="na">c</span><span class="p">:</span> <span class="mi">3</span>
 <span class="p">};</span>
-
+  
 <span class="kd">const</span> <span class="nx">modifiedObject</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">myObject</span><span class="p">).</span><span class="nx">map</span><span class="p">(([</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">],</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="o">*</span> <span class="nx">index</span><span class="p">];</span>
   <span class="p">})</span>
 <span class="p">);</span>
-  
+    
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">modifiedObject</span><span class="p">);</span> <span class="c1">// Output: { a: 0, b: 2, c: 6 }</span>
-</code></pre></div>    </div>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>filter()
     <ul>
       <li>It will return the elements that match the condition</li>
-      <li>example</li>
-    </ul>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">people</span> <span class="o">=</span> <span class="p">[</span>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">people</span> <span class="o">=</span> <span class="p">[</span>
   <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">30</span> <span class="p">},</span>
   <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Jane</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">25</span> <span class="p">},</span>
   <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bob</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">40</span> <span class="p">}</span>
 <span class="p">];</span>
-
+  
 <span class="kd">const</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">people</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">obj</span> <span class="o">=&gt;</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">age</span> <span class="o">===</span> <span class="mi">30</span><span class="p">);</span>
-
+  
 <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Found </span><span class="p">${</span><span class="nx">matches</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2"> people who are 30 years old`</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">No people found</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div>    </div>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>find()
     <ul>
@@ -171,7 +165,18 @@
 </code></pre></div>    </div>
   </li>
   <li>indexOf()</li>
-  <li>push()</li>
+  <li>push()
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Declare an empty array</span>
+<span class="kd">let</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="c1">// Add elements to the array using push method</span>
+<span class="nx">myArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">apple</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">myArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">banana</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">myArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">"</span><span class="s2">orange</span><span class="dl">"</span><span class="p">);</span>
+  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myArray</span><span class="p">);</span> <span class="c1">// Output: ["apple", "banana", "orange"]</span>
+</code></pre></div>    </div>
+  </li>
   <li>pop()</li>
   <li>shift()</li>
   <li>unshift()</li>
@@ -186,6 +191,24 @@
   
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">flattenedArray</span><span class="p">);</span> <span class="c1">// Output: [1, 2, 3, 4, 5, 6]</span>
 </code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="string-methods">String Methods</h3>
+
+<ul>
+  <li>substring
+    <ul>
+      <li>between two string:
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">This is a sample string to demonstrate substring method in JavaScript</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">startStr</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">sample</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">endStr</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">method</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">startIndex</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">startStr</span><span class="p">)</span> <span class="o">+</span> <span class="nx">startStr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">endIndex</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">endStr</span><span class="p">,</span> <span class="nx">startIndex</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">startIndex</span><span class="p">,</span> <span class="nx">endIndex</span><span class="p">);</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
 </ul>
 

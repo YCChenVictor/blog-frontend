@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -152,6 +152,8 @@
 </ul>
 
 <h3 id="useref">useRef</h3>
+
+<p><code class="language-plaintext highlighter-rouge">useRef</code> is a React hook that returns a mutable ref object used to access DOM elements or persist values. It is more efficient to use a ref to access a DOM element than to use <code class="language-plaintext highlighter-rouge">document.querySelector()</code>.</p>
 
 <pre><code class="language-JSX">import React, { useRef } from 'react';
 

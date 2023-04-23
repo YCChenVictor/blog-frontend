@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -58,12 +58,26 @@
 
 <ul>
   <li>ORM is based on <a href="/blog/concept/2021/11/21/Object-Oriented-Programming.html">OOP concepts</a>. Some important concepts to learn include classes, objects, inheritance, polymorphism, and encapsulation</li>
-  <li>ORM works by mapping database tables to objects</li>
+  <li>ORM works by mapping database tables to objects. Object-Relational Mapping: ORM is a technique that maps database tables to classes, and vice versa, so that developers can work with the database using object-oriented programming.</li>
 </ul>
 
 <h2 id="why">Why</h2>
 
 <h2 id="how">How</h2>
+
+<p>Models: In ORM, models are classes that represent database tables. They define the structure and behavior of the data in the table, and the relationships between tables.</p>
+
+<p>Fields: Fields are attributes of a model that represent the columns in the corresponding database table. Each field has a data type and a set of constraints that determine how data is stored and validated.</p>
+
+<p>Relationships: Relationships define how models are related to each other in the database. There are several types of relationships, such as one-to-one, one-to-many, and many-to-many.</p>
+
+<p>Querysets: Querysets are objects that represent a collection of model objects that match a certain query. Querysets allow developers to retrieve, filter, and sort data from the database using object-oriented syntax.</p>
+
+<p>Transactions: Transactions are a way to group multiple database operations into a single atomic operation. Transactions ensure that either all operations succeed, or none of them do.</p>
+
+<p>Migrations: Migrations are a way to manage changes to the database schema over time. Migrations allow developers to add, remove, or modify database tables and fields while preserving the data in the database.</p>
+
+<p>These are just some of the key concepts in ORM. There are many more advanced concepts and techniques in ORM, but understanding these fundamentals is a good starting point.</p>
 
 <h3 id="crud">CRUD</h3>
 

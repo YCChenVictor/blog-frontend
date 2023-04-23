@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -214,19 +214,21 @@
 <h3 id="array">array</h3>
 
 <ul>
-  <li>fill array with a value</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>first</p>
+  <li>fill array with a value
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>    </div>
   </li>
-  <li>
-    <p>last</p>
+  <li>unique
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="k">new</span> <span class="nb">Set</span><span class="p">(</span><span class="nx">myArray</span><span class="p">))</span>
+</code></pre></div>    </div>
   </li>
+  <li>every
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">containsOnlyZeros</span> <span class="o">=</span> <span class="nx">myArray</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="nx">element</span> <span class="o">===</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>first</li>
+  <li>last</li>
 </ul>
 
 <h3 id="set">set</h3>

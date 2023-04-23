@@ -8,7 +8,16 @@
 <script src='/implement_p5.js'></script>
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
     <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
@@ -23,7 +32,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -51,7 +60,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -67,6 +76,89 @@
   <li>Three type of traversals: inorder, preorder, postorder</li>
 </ul>
 
+<h3 id="types-of-tree">types of tree</h3>
+
+<ul>
+  <li>general tree: each node has 0 to many child node
+    <div class="mermaid">
+  graph TD
+    id1((A)) --&gt; id2((B))
+    id1((A)) --&gt; id3((C))
+    id1((A)) --&gt; id4((D))
+    id1((A)) --&gt; id5((E))
+    
+    id2((B)) --&gt; id6((F))
+    id3((C)) --&gt; id7((G))
+    id3((C)) --&gt; id8((H))
+    id5((E)) --&gt; id9((I))
+    
+    id8((H)) --&gt; id10((J))
+</div>
+  </li>
+  <li>binary tree: each node has at most 2 child modes
+    <div class="mermaid">
+  graph TD
+    id1((1)) --&gt; id2((7))
+    id1((1)) --&gt; id3((9))
+    
+    id2((7)) --&gt; id4((2))
+    id2((7)) --&gt; id5((6))
+    id3((9)) --&gt; STOP1[ ]
+    id3((9)) --&gt; id6((9))
+    
+    id5((6)) --&gt; id7((5))
+    id5((6)) --&gt; id8((11))
+    
+    id6((9)) --&gt; id9((5))
+    id6((9)) --&gt; STOP2[ ]
+</div>
+  </li>
+  <li>balanced tree</li>
+  <li>unbalanced tree</li>
+  <li>complete binary tee</li>
+  <li>full binary tree</li>
+  <li>perfect binary tree</li>
+</ul>
+
+<h3 id="types-of-traversal">types of traversal</h3>
+
+<p>Given a tree as follow:</p>
+
+<div class="mermaid">
+  graph TD
+    id1((1)) --&gt; id2((7))
+    id1((1)) --&gt; id3((9))
+  
+    id2((7)) --&gt; id4((2))
+    id2((7)) --&gt; id5((6))
+    id3((9)) --&gt; STOP1[ ]
+    id3((9)) --&gt; id6((9))
+  
+    id5((6)) --&gt; id7((5))
+    id5((6)) --&gt; id8((11))
+  
+    id6((9)) --&gt; id9((5))
+    id6((9)) --&gt; STOP2[ ]
+</div>
+
+<p>There are three actions we can do in current node</p>
+
+<ul>
+  <li>visit (return the value of current node)</li>
+  <li>left (traverse to the left node)</li>
+  <li>right (traverse to the right)</li>
+</ul>
+
+<p>After each traverse, redo it from begin</p>
+
+<ul>
+  <li>inorder traversals (L &gt; V &gt; R): 2 -&gt; 7 -&gt; 5 -&gt; 6 -&gt; 11 -&gt; 1 -&gt; 9 -&gt; 5 -&gt; 9</li>
+  <li>preorder traversals (V &gt; L &gt; R): 1 -&gt; 7 -&gt; 2 -&gt; 6 -&gt; 5 -&gt; 11 -&gt; 9 -&gt; 9 -&gt; 5</li>
+  <li>postorder traversals (L &gt; R &gt; V): 2 -&gt; 5 -&gt; 11 -&gt; 6 -&gt; 7 -&gt; 5 -&gt; 9 -&gt; 9 -&gt; 1</li>
+</ul>
+
+<p>Tips: for example, in inorder traversal, the tree with root 7 &gt; root 1 &gt; tree with root 9, so it will traverse the nodes of tree with root 7 first then root 1 then tree with root 9.</p>
+
 <h3 id="essential-structure">essential structure</h3>
 
 <p>Tree:</p>
@@ -76,7 +168,7 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TreeNode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="nx">preOrderTraversal</span><span class="p">(</span><span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// I should understand the concept first</span>
+  <span class="nx">traversal</span><span class="p">(</span><span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
     
   <span class="p">}</span>
 
@@ -110,59 +202,6 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-
-<h3 id="types-of-tree">types of tree</h3>
-
-<p>(should replace the image with own drawing after react P5)</p>
-
-<p>please add description in each types of tree</p>
-
-<ul>
-  <li>general tree: each node has 0 to many child node</li>
-</ul>
-
-<p><img src="/blog/assets/img/general_tree.png" class="w-1/2" alt="" />
-image source: https://www.geeksforgeeks.org/difference-between-general-tree-and-binary-tree/</p>
-
-<ul>
-  <li>binary tree: each node has at most 2 child modes</li>
-</ul>
-
-<p><img src="/blog/assets/img/binary_tree.png" class="w-1/2" alt="" />
-image source: https://en.wikipedia.org/wiki/Binary_tree</p>
-
-<ul>
-  <li>balanced tree</li>
-  <li>unbalanced tree</li>
-  <li>complete binary tee</li>
-  <li>full binary tree</li>
-  <li>perfect binary tree</li>
-</ul>
-
-<h3 id="types-of-traversal">types of traversal</h3>
-
-<p>Given a tree as follow:</p>
-
-<p><img src="/blog/assets/img/binary_tree.png" class="w-1/2" alt="" />
-image source: https://en.wikipedia.org/wiki/Binary_tree</p>
-
-<p>There are three actions we can do in current node</p>
-
-<ul>
-  <li>visit (return the value of current node)</li>
-  <li>left (traverse to the left node)</li>
-  <li>right (traverse to the right)</li>
-</ul>
-
-<p>After each traverse, redo it from begin</p>
-
-<ul>
-  <li>inorder traversals (L &gt; V &gt; R): 2 -&gt; 7 -&gt; 5 -&gt; 6 -&gt; 11 -&gt; 1 -&gt; 9 -&gt; 5 -&gt; 9</li>
-  <li>preorder traversals (V &gt; L &gt; R): 1 -&gt; 7 -&gt; 2 -&gt; 6 -&gt; 5 -&gt; 11 -&gt; 9 -&gt; 9 -&gt; 5</li>
-  <li>postorder traversals (L &gt; R &gt; V): 2 -&gt; 5 -&gt; 11 -&gt; 6 -&gt; 7 -&gt; 5 -&gt; 9 -&gt; 9 -&gt; 1</li>
-</ul>
-
-<p>Tips: for example, in inorder traversal, the tree with root 7 &gt; root 1 &gt; tree with root 9, so it will traverse the nodes of tree with root 7 first then root 1 then tree with root 9.</p>
 
 <h2 id="why">Why?</h2>
 
@@ -389,7 +428,55 @@ image source: https://en.wikipedia.org/wiki/Binary_tree</p>
 
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
+<p>An example of implementing a decision tree</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">DecisionTreeNode</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">question</span><span class="p">,</span> <span class="nx">yesNode</span><span class="p">,</span> <span class="nx">noNode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">question</span> <span class="o">=</span> <span class="nx">question</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span> <span class="o">=</span> <span class="nx">yesNode</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">noNode</span> <span class="o">=</span> <span class="nx">noNode</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">ask</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">question</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Enter yes or no:</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">yes</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span> <span class="k">instanceof</span> <span class="nx">DecisionTreeNode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">no</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">noNode</span> <span class="k">instanceof</span> <span class="nx">DecisionTreeNode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">noNode</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">noNode</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Invalid input. Please enter yes or no.</span><span class="dl">"</span><span class="p">);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
+  <span class="dl">"</span><span class="s2">Is it a mammal?</span><span class="dl">"</span><span class="p">,</span>
+  <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
+    <span class="dl">"</span><span class="s2">Does it have fur?</span><span class="dl">"</span><span class="p">,</span>
+    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a cat?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a cat!</span><span class="dl">"</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a whale?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a whale!</span><span class="dl">"</span><span class="p">)</span>
+  <span class="p">),</span>
+  <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
+    <span class="dl">"</span><span class="s2">Does it have feathers?</span><span class="dl">"</span><span class="p">,</span>
+    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a bird?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a bird!</span><span class="dl">"</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a snake?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a snake!</span><span class="dl">"</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">root</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Each node has a question, a yesNode branch and a noNode branch. The ask() method of the node prompts the user to answer the question and then follows the appropriate branch based on the answer. If the branch is another DecisionTreeNode, it recursively calls the ask() method on that node. If the branch is a leaf node, it simply returns the corresponding result.</p>
 
 <h2 id="reference">Reference</h2>
 

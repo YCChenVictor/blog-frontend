@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -97,6 +97,36 @@
 </code></pre></div></div>
 
 <p>This test describes the behavior of the add method in the Calculator class. It creates a new instance of the Calculator class and expects the result of calc.add(2, 3) to be equal to 5.</p>
+
+<h3 id="shared-example">shared example</h3>
+
+<p>Shared examples can help avoiding repetition and keep specs DRY (Don’t Repeat Yourself). Example:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Define a shared example</span>
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_examples</span> <span class="s2">"a collection object"</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="s2">"should have a size method"</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">).</span><span class="nf">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:size</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s2">"should have an empty? method"</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="p">).</span><span class="nf">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:empty?</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Use the shared example in a spec</span>
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">Array</span> <span class="k">do</span>
+  <span class="n">include_examples</span> <span class="s2">"a collection object"</span>
+
+  <span class="c1"># Add additional specs for the Array class</span>
+<span class="k">end</span>
+
+<span class="c1"># Use the shared example in another spec</span>
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">Hash</span> <span class="k">do</span>
+  <span class="n">include_examples</span> <span class="s2">"a collection object"</span>
+
+  <span class="c1"># Add additional specs for the Hash class</span>
+<span class="k">end</span>
+</code></pre></div></div>
 
 <h2 id="what">What?</h2>
 

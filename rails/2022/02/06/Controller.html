@@ -20,7 +20,7 @@
       
         <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
   <div class="titleImagePosition">
-    <a href="/blog/">
+    <a href="/blog/" class="!px-0 !py-0">
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
@@ -48,7 +48,7 @@
   <div id='sidebar' class='fixed py-16'></div>
   <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
 
-<div class='p-16 prose bg-gray-600'>
+<div class='p-16 prose bg-gray-400' id='article'>
   <div class='text-center'>
     
   </div>
@@ -64,14 +64,11 @@
 
 <h2 id="how">How</h2>
 
-<ul>
-  <li>corresponds controller with routes</li>
-  <li>generate default controller</li>
-  <li>generate customized controller</li>
-  <li>corresponds method in controller</li>
-</ul>
+<h3 id="create-one">Create one</h3>
 
-<h3 id="corresponding-routes">Corresponding Routes</h3>
+<ul>
+  <li>Corresponding Routes</li>
+</ul>
 
 <p>Given in <code class="language-plaintext highlighter-rouge">config/routes.rb</code>,</p>
 
@@ -84,7 +81,9 @@
 
 <p>Take a look at <code class="language-plaintext highlighter-rouge">get "/hello_world", to: "pages#hello".</code> This route means if user input the url <code class="language-plaintext highlighter-rouge">"/hello_world",</code> (which is a GET), it will activate method, hello in page controller.</p>
 
-<h3 id="generate-default-controller">generate default controller</h3>
+<ul>
+  <li>generate default controller</li>
+</ul>
 
 <p>run the following code in terminal</p>
 
@@ -99,12 +98,16 @@
 
 <p>As you can see, the convention of naming in rails: <code class="language-plaintext highlighter-rouge">pages_controller.rb</code> matches <code class="language-plaintext highlighter-rouge">PagesControllers</code>.</p>
 
-<h4 id="rollback">rollback</h4>
+<ul>
+  <li>rollback</li>
+</ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails destroy controller pages
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>rails destroy controller pages
 </code></pre></div></div>
 
-<h3 id="generate-customized-controller">generate customized controller</h3>
+<ul>
+  <li>generate customized controller</li>
+</ul>
 
 <p>generate controller with</p>
 
@@ -120,7 +123,9 @@
 <span class="n">config</span><span class="p">.</span><span class="nf">generators</span><span class="p">.</span><span class="nf">test_framework</span> <span class="ss">:rspec</span>
 </code></pre></div></div>
 
-<h3 id="corresponding-method-in-controller">Corresponding Method in Controller</h3>
+<ul>
+  <li>Corresponding Method in Controller</li>
+</ul>
 
 <p>In <code class="language-plaintext highlighter-rouge">app/controllers/pages_controller.rb</code>,</p>
 
@@ -132,6 +137,57 @@
 </code></pre></div></div>
 
 <p>Then input the site: http://127.0.0.1:3000/hello_world we can get a website with html: <code class="language-plaintext highlighter-rouge">&lt;h1&gt; Hello World! &lt;/h1&gt;</code></p>
+
+<h3 id="module-methods">module methods</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">redirect_to</code>
+    <ul>
+      <li>example
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">save</span>
+      <span class="n">redirect_to</span> <span class="n">root_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="s1">'User was successfully created.'</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:new</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+    
+  <span class="kp">private</span>
+    
+  <span class="k">def</span> <span class="nf">user_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:password</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">redirect_back</code>
+    <ul>
+      <li>example
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ProductsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@product</span> <span class="o">=</span> <span class="no">Product</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">product_params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="vi">@product</span><span class="p">.</span><span class="nf">save</span>
+      <span class="n">redirect_to</span> <span class="n">products_path</span><span class="p">,</span> <span class="ss">notice: </span><span class="s1">'Product was successfully created.'</span>
+    <span class="k">else</span>
+      <span class="n">redirect_back</span> <span class="ss">fallback_location: </span><span class="n">products_path</span><span class="p">,</span> <span class="ss">alert: </span><span class="s1">'Product creation failed.'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+    
+  <span class="kp">private</span>
+    
+  <span class="k">def</span> <span class="nf">product_params</span>
+    <span class="n">params</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="ss">:product</span><span class="p">).</span><span class="nf">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:price</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="reference">Reference</h2>
 
