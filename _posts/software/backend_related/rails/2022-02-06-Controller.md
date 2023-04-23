@@ -17,12 +17,9 @@ With controller, we can move all the logics to model and only show necessary inf
 
 ## How
 
-* corresponds controller with routes
-* generate default controller
-* generate customized controller
-* corresponds method in controller
+### Create one
 
-### Corresponding Routes
+* Corresponding Routes
 
 Given in `config/routes.rb`,
 
@@ -36,7 +33,7 @@ end
 
 Take a look at `get "/hello_world", to: "pages#hello".` This route means if user input the url `"/hello_world",` (which is a GET), it will activate method, hello in page controller.
 
-### generate default controller
+* generate default controller
 
 run the following code in terminal
 
@@ -52,13 +49,13 @@ Then there would be pages_controller.rb
 
 As you can see, the convention of naming in rails: `pages_controller.rb` matches `PagesControllers`.
 
-#### rollback
+  * rollback
+  
+  ```bash
+  $ rails destroy controller pages
+  ```
 
-```bash
-$ rails destroy controller pages
-```
-
-### generate customized controller
+* generate customized controller
 
 generate controller with
 
@@ -76,7 +73,7 @@ config.generators.template_engine = false
 config.generators.test_framework :rspec
 ```
 
-### Corresponding Method in Controller
+* Corresponding Method in Controller
 
 In `app/controllers/pages_controller.rb`,
 
@@ -89,6 +86,49 @@ end
 ```
 
 Then input the site: http://127.0.0.1:3000/hello_world we can get a website with html: `<h1> Hello World! </h1>`
+
+### module methods
+
+* `redirect_to`
+  * example
+    ```ruby
+    class UsersController < ApplicationController
+      def create
+        @user = User.new(user_params)
+        if @user.save
+          redirect_to root_path, notice: 'User was successfully created.'
+        else
+          render :new
+        end
+      end
+    
+      private
+    
+      def user_params
+        params.require(:user).permit(:name, :email, :password)
+      end
+    end
+    ```
+* `redirect_back`
+  * example
+    ```ruby
+    class ProductsController < ApplicationController
+      def create
+        @product = Product.new(product_params)
+        if @product.save
+          redirect_to products_path, notice: 'Product was successfully created.'
+        else
+          redirect_back fallback_location: products_path, alert: 'Product creation failed.'
+        end
+      end
+    
+      private
+    
+      def product_params
+        params.require(:product).permit(:name, :description, :price)
+      end
+    end
+    ```
 
 ## Reference
 

@@ -54,6 +54,37 @@ end
 
 This test describes the behavior of the add method in the Calculator class. It creates a new instance of the Calculator class and expects the result of calc.add(2, 3) to be equal to 5.
 
+### shared example
+
+Shared examples can help avoiding repetition and keep specs DRY (Don't Repeat Yourself). Example:
+
+```ruby
+# Define a shared example
+RSpec.shared_examples "a collection object" do
+  it "should have a size method" do
+    expect(subject).to respond_to(:size)
+  end
+
+  it "should have an empty? method" do
+    expect(subject).to respond_to(:empty?)
+  end
+end
+
+# Use the shared example in a spec
+RSpec.describe Array do
+  include_examples "a collection object"
+
+  # Add additional specs for the Array class
+end
+
+# Use the shared example in another spec
+RSpec.describe Hash do
+  include_examples "a collection object"
+
+  # Add additional specs for the Hash class
+end
+```
+
 ## What?
 
 I am going to demonstrate BDD with RSpec and Capybara to develop user login functions.

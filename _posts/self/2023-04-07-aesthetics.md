@@ -115,21 +115,24 @@ On the point of
     * Existentialism: Because of their individualistic and subjective nature.
   * (Me) Now I know the practical solutions: Incentivizing following universal rules and Discouraging creating chaos. But both of these solutions can trigger side effects according to other philosophies. As a result, the only way is to combine both => Promoting positive social norms
 
-### Promoting positive social norms
+### Promoting Positive Social Norms
 
-My definition of positive social norms is people should try their best to extend human society because if something cause problems, something will be eliminate eventually.
-  * breadth (region)
-    * Adaptability: Designs should be adaptable to changing environmental conditions.
-    * Resilience: Designs should be resilient to environmental hazards such as floods, storms, and earthquakes. This might involve designing structures that can withstand high winds or flooding, or developing systems that can continue to operate in the event of power outages or other disruptions.
-    * Resource efficiency: Designs should be resource-efficient and minimize waste. This might include designing structures that use renewable energy sources such as solar or wind power, or developing systems that conserve water and other resources.
-    * Mobility: Designs should promote mobility and enable people to move between regions or environments. This might include developing new transportation systems or designing structures that can be easily relocated.
-    * Connectivity: Designs should promote connectivity and enable people to communicate and collaborate across regions or environments. This might include developing new communication technologies or designing structures that facilitate social interaction and community building.
-  * depth (time)
-    * Sustainable and regenerative design: This involves designing systems and structures that minimize waste, reduce energy consumption, and use renewable resources wherever possible. It also involves designing for biodiversity, ecosystem services, and regenerative practices.
-    * Resilient infrastructure: This involves designing infrastructure that is resilient to natural disasters and other disruptions, and that can adapt to changing conditions and challenges over time. It also involves designing for redundancies, flexibility, and redundancy.
-    * Social and economic equity: This involves designing social and economic systems that are equitable and inclusive, and that promote access to basic needs such as food, shelter, education, and healthcare. It also involves designing for diversity, inclusion, and accessibility.
-    * Technological innovation: This involves designing and developing new technologies that can address current and future challenges facing human society, such as climate change, resource depletion, and environmental degradation.
-    * Participatory design: This involves involving diverse stakeholders and communities in the design process, and ensuring that their needs and perspectives are considered and incorporated into the design of systems and structures.
+My definition of positive social norms is people should try their best to extend human society because if something cause problems, something will be eliminate eventually, meaning I should try to increase humanity.
+
+#### Design Principle
+
+* breadth (region)
+  * Adaptability: Designs should be adaptable to changing environmental conditions.
+  * Resilience: Designs should be resilient to environmental hazards such as floods, storms, and earthquakes. This might involve designing structures that can withstand high winds or flooding, or developing systems that can continue to operate in the event of power outages or other disruptions.
+  * Resource efficiency: Designs should be resource-efficient and minimize waste. This might include designing structures that use renewable energy sources such as solar or wind power, or developing systems that conserve water and other resources.
+  * Mobility: Designs should promote mobility and enable people to move between regions or environments. This might include developing new transportation systems or designing structures that can be easily relocated.
+  * Connectivity: Designs should promote connectivity and enable people to communicate and collaborate across regions or environments. This might include developing new communication technologies or designing structures that facilitate social interaction and community building.
+* depth (time)
+  * Sustainable and regenerative design: This involves designing systems and structures that minimize waste, reduce energy consumption, and use renewable resources wherever possible. It also involves designing for biodiversity, ecosystem services, and regenerative practices.
+  * Resilient infrastructure: This involves designing infrastructure that is resilient to natural disasters and other disruptions, and that can adapt to changing conditions and challenges over time. It also involves designing for redundancies, flexibility, and redundancy.
+  * Social and economic equity: This involves designing social and economic systems that are equitable and inclusive, and that promote access to basic needs such as food, shelter, education, and healthcare. It also involves designing for diversity, inclusion, and accessibility.
+  * Technological innovation: This involves designing and developing new technologies that can address current and future challenges facing human society, such as climate change, resource depletion, and environmental degradation.
+  * Participatory design: This involves involving diverse stakeholders and communities in the design process, and ensuring that their needs and perspectives are considered and incorporated into the design of systems and structures.
 
 ## What?
 
@@ -140,17 +143,29 @@ My definition of positive social norms is people should try their best to extend
   * Observe and appreciate different types of art
   * Understand different styles and techniques to broaden artistic perspective
 * Practice art
-  * Practicing art
-    * Painting
-    * Drawing
-    * Sculpting
-    * [Music]
+  * [Sketch]({{site.baseurl}}/art/2022/08/21/sketch.html)
+  * [Origami]({{site.baseurl}}/art/2023/04/23/origami.html)
+  * [Music]({{site.baseurl}}/music/2023/04/11/music.html)
 * Experiment with design: Experiment with design principles, such as color, form, and composition, in your daily life. This can help you develop a better eye for aesthetics and recognize good design.
 * Explore nature: Nature is a great source of inspiration for aesthetics. Take the time to explore natural landscapes, observe the details, and appreciate the beauty of the natural world.
 * Engage with different cultures: Different cultures have different aesthetic values and norms. Engaging with different cultures and their art can broaden your understanding of aesthetics and help you appreciate the diversity of the world.
 
+### Increase Personal Humanity
 
-### website
+Based on the idea of humanity
+
+* Practice empathy and kindness: One of the simplest ways to increase humanity is to be kind to others and treat them with empathy and compassion. This can involve things like listening actively, offering a helping hand, and being supportive.
+* Volunteer and donate: Volunteering your time or donating to a worthy cause can have a big impact on your community and beyond. You can volunteer at a local shelter, soup kitchen, or other organization that helps those in need. You can also donate to charities that support causes you care about.
+* Educate yourself: Educating yourself on the issues facing the world today is an important step in increasing humanity. Read books, watch documentaries, and seek out diverse perspectives to gain a better understanding of the world around you.
+* Speak out against injustice: When you see injustice happening, speak out against it. This can involve writing letters to your elected officials, joining protests, and standing up for those who are marginalized.
+* Foster positive relationships
+  * Building positive relationships with the people
+  * Listening actively, being supportive, and showing appreciation for the people in your life
+  * Some experts recommend having at least three to five close relationships that are characterized by mutual support, trust, and intimacy
+    * I can use the five close relationships to evaluate myself
+  * At least, family, friends, coworkers
+
+### Website
 
 Based on the idea of promoting positive social norms
 

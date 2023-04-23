@@ -80,8 +80,6 @@ import Button from 'src/components/Button';
 
 give an example
 
-[test]({{site.baseurl}}/test/2021/06/14/xxx.html)
-
 <img src="{{site.baseurl}}/assets/img/xxx.png" alt="">
 
 ## Reference
