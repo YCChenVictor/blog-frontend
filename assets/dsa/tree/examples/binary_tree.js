@@ -62,6 +62,29 @@ class BinaryTree {
     return result
   }
 
+  levelorderTraversal() {
+    const queue = [this.root]
+    const result = []
+
+    if (!this.root) {
+      return
+    }
+
+    while (queue.length > 0) {
+      const node = queue.shift()
+      result.push(node.value)
+
+      if (node.left !== null) {
+        queue.push(node.left)
+      }
+      if (node.right !== null) {
+        queue.push(node.right)
+      }
+    }
+
+    return result
+  }
+
   insertNode(parentNode, newNode) {
     if(newNode.value < parentNode.value){
       if(parentNode.left === null) {

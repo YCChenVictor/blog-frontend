@@ -61,37 +61,7 @@ to be continued (extract)
 
 ### hash table
 
-to be continued (extract)
-
-The data flow:
-
-<div class="mermaid">
-graph LR
-  id1(value 1) --> id4(hash<br>function)
-  id2(value 2) --> id4(hash<br>function)
-  id3(value 3) --> id4(hash<br>function)
-
-  id4(hash<br>function) -- insert value 1 --> id5(key 0)
-  id4(hash<br>function) -- insert value 2 --> id7(key 1)
-  id4(hash<br>function) -- insert value 3 --> id7(key 2)
-  subgraph Buckets
-    id5(key 0)
-    id6(key 1)
-    id7(key 2)
-    id8(key 3)
-    ...
-  end
-
-  id5(key 0) --> id9(value 1)
-  id7(key 2) --> id10(value 2)
-  id10(value 2) --> id11(value 3)
-</div>
-
-The value will be calculated by certain method in hash function to get the key of buckets and then connects the value with linked list if the mapping key is the same.
-
-Given the length of buckets is N, meaning there are N keys, if we want to search an element, it will first pass the element into hash function to get the key for certain linked list and then search through the linked list.
-
-The time complexity = $$O(A + B)$$, where A is the length of bucket and B is the length of linked list. A is actually 1 because the magic of hash function and B is usually close to 1 if we making the collisions, meaning values map to same key, as low as possible. As a result, the time complexity is actually $$O(1)$$
+A hash table is a data structure that provides fast access to values based on a key. It uses a hash function to map keys to indices in an array, allowing for constant-time access to values, making it an efficient choice for many types of applications. For more information, please refer to [hash table]({{site.baseurl}}/dsa/2023/04/23/hash-table.html)
 
 ### dynamic programming
 

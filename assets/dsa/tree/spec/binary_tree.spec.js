@@ -70,5 +70,9 @@ describe('BinaryTree', () => {
 
   test('#postorderTraversal', () => { // L > R > V
     expect(testTree.postorderTraversal()).toEqual([3, 7, 5, 12, 17, 15, 10])
-  }) 
+  })
+
+  test('#levelorderTraversal', () => {
+    expect(testTree.levelorderTraversal()).toEqual([10, 5, 15, 3, 7, 12, 17])
+  })
 });
