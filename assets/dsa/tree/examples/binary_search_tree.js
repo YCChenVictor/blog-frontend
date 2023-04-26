@@ -1,6 +1,6 @@
-Node = require('./node.js')
+Node = require('./binary_tree_node.js')
 
-class BinaryTree {
+class BinarySearchTree {
   constructor() {
     this.root = null;
   }

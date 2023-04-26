@@ -1,4 +1,4 @@
-const BinaryTree = require('../examples/binary_tree.js');
+const BinaryTree = require('../examples/binary_search_tree.js');
 
 describe('BinaryTree', () => {
 //     10
