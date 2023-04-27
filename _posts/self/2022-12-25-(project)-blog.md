@@ -23,6 +23,8 @@ I need to structure my thoughts.
 
 ## How?
 
+* All the intro on each article should be done after the context is done
+* Learn the FFT in https://www.youtube.com/watch?v=2O3nm0Nvbi4
 * music, I can make video of the song 家，before audio and after audio and write an article and connect the youtube video on my blog
 * add static vs dynamic programming
 * rename all the overview article to the directory name, so that the graph can show the name instead of overview

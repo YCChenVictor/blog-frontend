@@ -53,11 +53,11 @@ A tree is a hierarchical data structure with nodes connected by edges, and a sin
 
 ### graphs
 
-[graph]({{site.baseurl}}/dsa/2023/03/19/graph.html)
+A graph is a visual representation of data that shows the relationship between different variables. It consists of nodes or vertices connected by edges or links that illustrate the connections or interactions between them. For more information, please refer to [graph]({{site.baseurl}}/dsa/2023/03/19/graph.html)
 
 ### tries
 
-to be continued (extract)
+A trie, also known as a prefix tree, is a data structure used to store and search for strings efficiently. It organizes strings by their common prefixes, allowing for fast retrieval and insertion operations. For more information, please refer to [tries]({{site.baseurl}}/dsa/2023/04/26/tries.html)
 
 ### hash table
 
