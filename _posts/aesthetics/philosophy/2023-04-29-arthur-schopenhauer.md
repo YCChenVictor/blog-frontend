@@ -2,7 +2,7 @@
 layout: post
 title:
 description: ''
-date: '2023-04-07'
+date: '2023-04-29'
 categories:
 note:
 mathjax:
@@ -10,7 +10,7 @@ mermaid:
 p5:
 threeJS:
 anchor:
-publish:
+publish: true
 ---
 
 ## Introduction

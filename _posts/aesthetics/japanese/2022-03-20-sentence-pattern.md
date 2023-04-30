@@ -1,6 +1,6 @@
 ---
 layout: post
-title: sentence pattern (Japanese)
+title:
 description:
 date: '2022-03-20'
 categories: japanese

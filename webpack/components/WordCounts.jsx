@@ -11,9 +11,12 @@ const WordCounts = () => {
     const words = text.trim().split(/\s+/);
     setCount(words.length)
   }, []);
+  const style = {
+    color: count > 1000 ? 'red' : 'black',
+  }
 
   return(
-    <div>
+    <div style={style}>
       word count: {count}
     </div>
   )
