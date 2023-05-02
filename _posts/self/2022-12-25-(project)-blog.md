@@ -23,6 +23,7 @@ I need to structure my thoughts.
 
 ## How?
 
+* `find . -type f -exec stat -f '%m %N' {} + | sort | head -n 10`
 * Use pomodoros, 25 mins on each article
 * I will learn medical at my 35
 * I should try to read those less read articles and try to refine them and should keep developing apps

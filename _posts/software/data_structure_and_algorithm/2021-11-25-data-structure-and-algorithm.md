@@ -41,11 +41,11 @@ A linked list is a linear data structure where elements are stored in a sequence
 
 ### Stack
 
-[stack]({{site.baseurl}}/dsa/2022/06/24/stack.html)
+A stack is an abstract data type that represents a collection of elements in a particular order. It follows the Last-In-First-Out (LIFO) principle, where the last element added to the stack will be the first one to be removed. For more information, please refer to [stack]({{site.baseurl}}/dsa/2022/06/24/stack.html)
 
 ### queue
 
-[queue]({{site.baseurl}}/dsa/2022/06/24/queue.html)
+A queue is a linear data structure that follows the First-In-First-Out (FIFO) principle, where the first element added to the queue is the first element to be removed. It is commonly used in computer science and everyday life for organizing tasks or processing requests in a sequential manner. For more information, please refer to [queue]({{site.baseurl}}/dsa/2022/06/24/queue.html)
 
 ### tree
 

@@ -1,10 +1,15 @@
 const Graph = require('../examples/graph.js');
 
 describe('Graph', () => {
+  // add before block to create adjacency list
+  // test init
+  // test remove vertex
+  // test remove edge
   test('#init', () => {
     testGraph = new Graph();
     [1, 2, 3, 4].forEach(node => testGraph.addVertex(node));
     [[1, 2], [1, 4], [2, 4]].forEach(edge => testGraph.addEdge(edge[0], edge[1]))
+    console.log(testGraph)
     expect(testGraph.getNeighbors(1)).toEqual([2, 4]);
     expect(testGraph.getNeighbors(2)).toEqual([1, 4]);
     expect(testGraph.getNeighbors(3)).toEqual([]);
