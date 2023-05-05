@@ -15,6 +15,12 @@ publish: true
 
 ## Introduction
 
+## Why?
+
+## How?
+
+### 
+
 This article explains the concept of Stoichiometry. After we balance chemical reaction, there are actually 9 ways of examples; for example, we know $$SO_2$$ + $$O_2$$ = $$SO_3$$.
 
 step 1: balance
@@ -40,53 +46,25 @@ graph LR
   id5(mode B) --22.4_L_B / 1_mole_B--> id8(volume B)
 </div>
 
-## Why?
-
-focus on why we need it
-
-## How?
-
-### particle A -> particle B
-
-TBC
-
-### particle A -> mass B
-
-TBC
-
-### particle A -> volumn B
-
-TBC
-
-### mass A -> particle B
-
-TNC
-
-### mass A -> mass B
-
-How many grams of $$SO_3$$ is produced if react 32 grams of $$O_2$$?
-
-Moles of 32 grams of $$O_2$$ = 32/16 = 2 -> 4 moles of $$SO_3$$ -> 4 * (32 + 16 * 3) = 320 g
-
-### mass A -> volumn B
-
-TBC
-
-### volumn A -> particle B
-
-TBC
-
-### volumn A -> mass B
-
-TBC
-
-### volumn A -> volumn B
-
-TBC
+* particle A -> particle B
+  * Question: How many moles of $$SO_3$$ is produced if react 5 moles of $$O_2$$?
+  * Answer: Because $$SO_3: O_2 = 2: 1$$, it will produce 10 moles of $$SO_3$$
+* particle A -> mass B
+  * Question: How many grams of $$SO_3$$ is produced if react 5 moles of $$O_2$$?
+  * Answer: Because $$SO_3: O_2 = 2: 1$$, it will produce 10 moles of $$SO_3$$, which is 400 grams
+* particle A -> volumn B
+* mass A -> particle B
+* mass A -> mass B
+  * How many grams of $$SO_3$$ is produced if react 32 grams of $$O_2$$?
+  * Moles of 32 grams of $$O_2$$ = 32/16 = 2 -> 4 moles of $$SO_3$$ -> 4 * (32 + 16 * 3) = 320 g
+* mass A -> volumn B
+* volumn A -> particle B
+* volumn A -> mass B
+* volumn A -> volumn B
 
 ## What?
 
-give exercises
+One real-world example of using stoichiometry is determining the amount of gasoline needed to fuel a car for a given distance. By knowing the chemical equation for combustion of gasoline (C8H18 + 25/2 O2 → 8 CO2 + 9 H2O), the mass of gasoline consumed can be calculated from the amount of carbon dioxide and water produced during combustion. This calculation can help to optimize fuel efficiency and reduce harmful emissions.
 
 ## Reference
 

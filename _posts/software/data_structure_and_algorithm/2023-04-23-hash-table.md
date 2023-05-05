@@ -19,11 +19,11 @@ quick explanation
 
 ## Why?
 
-focus on why we need it
+Hash tables provide fast and efficient storage and retrieval of key-value pairs.
 
 ## How?
 
-The data flow:
+For example, we create a hash table where items are linked list.
 
 <div class="mermaid">
 graph LR
@@ -47,11 +47,13 @@ graph LR
   id10(value 2) --> id11(value 3)
 </div>
 
-The value will be calculated by certain method in hash function to get the key of buckets and then connects the value with linked list if the mapping key is the same.
+The value will be calculated by self-defined method in hash function to get the key of buckets and then connects the value with linked list if the mapping key is the same.
 
 Given the length of buckets is N, meaning there are N keys, if we want to search an element, it will first pass the element into hash function to get the key for certain linked list and then search through the linked list.
 
-The time complexity = $$O(A + B)$$, where A is the length of bucket and B is the length of linked list. A is actually 1 because the magic of hash function and B is usually close to 1 if we making the collisions, meaning values map to same key, as low as possible. As a result, the time complexity is actually $$O(1)$$
+The time complexity = $$O(A + B)$$, where A is the length of bucket and B is the length of linked list.
+  * A is actually 1 because the keys are stored in array, so we can access the item in O(1). Please refer to [array]({{site.baseurl}}//dsa/2022/05/22/array.html) to see why read an element with given index is O(1).
+  * B is usually close to 1 if we making the collisions, meaning values map to same key, as low as possible. As a result, the time complexity is actually $$O(1)$$
 ## What?
 
 Real world example: counting the words of an article

@@ -61,7 +61,7 @@ A trie, also known as a prefix tree, is a data structure used to store and searc
 
 ### hash table
 
-A hash table is a data structure that provides fast access to values based on a key. It uses a hash function to map keys to indices in an array, allowing for constant-time access to values, making it an efficient choice for many types of applications. For more information, please refer to [hash table]({{site.baseurl}}/dsa/2023/04/23/hash-table.html)
+A hash table is a data structure that provides fast access to values based on a key. It uses a hash function to map keys to indices in an array, allowing for constant-time access to values, making it an efficient choice for many types of applications. For more information, please refer to [hash table]({{site.baseurl}}/dsa/2023/04/23/hash-table.html).
 
 ### dynamic programming
 

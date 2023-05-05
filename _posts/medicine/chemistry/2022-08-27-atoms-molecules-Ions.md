@@ -15,22 +15,22 @@ publish: true
 
 ## Introduction
 
-This article describes fundamental knowledge and skills in chemistry as follow:
+(to be continued)
 
 ## Why?
 
-focus on why we need it
+We need to learn about atoms, molecules, and ions because they form the fundamental building blocks of matter and understanding their properties and interactions is crucial for understanding the behavior of the physical world around us.
 
 ## How?
 
 ### fundamental laws
 
-* conservation of mass: mass is neither created nor destroyed in chemical reactions
-* definite proportion
-  * defination: chemical compound always contains its component elements in fixed ratio
+There are three laws:
+
+* Conservation of mass: The total mass of the reactants in a chemical reaction is always equal to the total mass of the products, and mass cannot be created nor destroyed during a chemical reaction, only rearranged.
+* Definite proportion: chemical compound always contains its component elements in fixed ratio
   * example: $$CO_2$$ has one C (6) and two O (8), so in X grams of $$CO_2$$, there must be X * 6/(6+8*2) grams of O and X * 8*2/(6+8*2) grams of O. The proportion of C/O must be 3/8.
-* multiple proportions
-  * defination: given two elements form more than one compound, the ratios of the masses of the second element which combine with a fixed mass of the first element will always be ratios of small whole numbers
+* Multiple proportions: given two elements form more than one compound, the ratios of the masses of the second element which combine with a fixed mass of the first element will always be ratios of small whole numbers
   * example: in $$CO$$ and $$CO_2$$, given one mass of C, the ratio of O in CO and $$CO_2$$ must be $$1/2$$
 
 ### Dalton’s atomic theory

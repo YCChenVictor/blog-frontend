@@ -16,9 +16,23 @@ class Graph {
     return this.adjacencyList[vertex];
   }
 
+  getVertices() {
+    return Object.keys(this.adjacencyList);
+  }
+
+  getEdges() {
+    return 
+  }
+
   removeEdge(vertex1, vertex2) {
-    this.adjacencyList.get(vertex1).pop(vertex2);
-    this.adjacencyList.get(vertex2).pop(vertex1);
+    let index2 = this.adjacencyList[vertex1].indexOf(vertex2)
+    let index1 = this.adjacencyList[vertex2].indexOf(vertex1)
+    if (index2 > -1) {
+      this.adjacencyList[vertex1].splice(index2, 1)
+    }
+    if (index1 > -1) {
+      this.adjacencyList[vertex2].splice(index1, 1)
+    }
   }
 
   removeVertex(vertex) {
