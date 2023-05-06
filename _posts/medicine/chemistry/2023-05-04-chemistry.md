@@ -29,7 +29,7 @@ Key Concepts to Build Your Chemistry Foundation
 
 #### From Atoms to Molecules
 
-Understand the fundamental principles of chemistry, including the structure of [atoms and molecules]({{site.baseurl}}/chemistry/2022/08/27/ch2-atoms-molecules-Ions.html), the periodic table, and chemical bonding. These concepts form the building blocks for more advanced topics in chemistry.
+Understand the fundamental principles of chemistry, including the structure of [atoms and molecules]({{site.baseurl}}/chemistry/2022/08/27/ch2-atoms-molecules-Ions.html), the periodic table, and chemical bonding, and the behavior of [gases]({{site.baseurl}}/chemistry/2022/10/23/gas.html). These concepts form the building blocks for more advanced topics in chemistry.
 
 #### Crunching the Numbers
 

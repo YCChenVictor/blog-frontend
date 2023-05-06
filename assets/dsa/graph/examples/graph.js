@@ -1,4 +1,6 @@
 class Graph {
+  // adjacency list form
+  // undirected edges
   constructor() {
     this.adjacencyList = {};
   }
@@ -21,7 +23,11 @@ class Graph {
   }
 
   getEdges() {
-    return 
+    edges = new Set() // use set
+    this.adjacencyList.forEach((key, item) => {
+      console.log(key)
+      console.log(item)
+    })
   }
 
   removeEdge(vertex1, vertex2) {

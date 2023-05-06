@@ -3,6 +3,7 @@ layout: post
 title: Aesthetics
 date: '2022-02-12'
 categories: art
+publish: true
 ---
 
 ## Introduction

@@ -23,87 +23,63 @@ Toefl
 
 ## How?
 
+### General Idea
+
 Steps to answer questions:
 
 * 3 reading passage, 30 questions, 54 minutes
-* draw template
-* analyze question's category
-* utilize answer strategy
-* technique
-  * skim: walk through passage and drop down conclusion note
-  * scan: directly find the keyword
+* Draw template
+* Analyze question's category
+* Utilize answer strategy
+* Technique
+  * Skim: walk through passage and drop down conclusion note
+  * Scan: directly find the keyword
+* Question Types: vocabulary
 
 ### Vocabulary
 
-#### Category of Vocabulary
-
-When the question asks the meaning of particular vocabulary
-
-#### Steps to solve Vocabulary
-
-* If this vocabulary is in subject of a sentence, check the prior sentence. If this vocabulary is in object of a sentence, check the laster sentence.
-* If this vocabulary is verb, check the effect in near sentences
-* Drop down key points of that checked sentence
-* Choose answer based on key points
-
-#### Example of Vocabulary Question
-
-For example, what's the closest meaning to the word, `abolished` in the following sentences
-
-In 1857, in return for a payment of 63 million kronor from other commercial nations, Denmark **abolished** the Sound toll dues the fees it had collected since 1497 for the use of the Sound. This, along with other policy shifts toward free trade, resulted in a significant increase in traffic through the Sound and in the port of Copenhagen.
-
-Because this is the verb, we check the effect: increase the traffic -> the fees must be lower -> A or D -> the meaning of abolish is end
+* Identification: when the question asks the meaning of particular vocabulary
+* Steps
+  * If this vocabulary is in subject of a sentence, check the prior sentence. If this vocabulary is in object of a sentence, check the later sentence.
+  * If this vocabulary is verb, check the effect in near sentences
+  * Drop down key points of that checked sentence and choose answer based on key points
+* Example
+  * Question: what's the closest meaning to the word, `abolished` in the following sentences: In 1857, in return for a payment of 63 million kronor from other commercial nations, Denmark **abolished** the Sound toll dues the fees it had collected since 1497 for the use of the Sound. This, along with other policy shifts toward free trade, resulted in a significant increase in traffic through the Sound and in the port of Copenhagen.
+  * Answer: Because this is the verb, we check the effect: increase the traffic -> the fees must be lower -> A or D -> the meaning of abolish is end
 
 ### Reference
 
-#### Category of Reference
-
-When pronoun
+Identification: when pronoun
 
 ### Lead Word/ Detail
 
-#### Category of Lead Word/ Detail
-
-* When a question starts from 'according to'
-* ends with 'which of the following'
-* mentioned number of paragraph specifically
-
-#### Steps to solve Lead Word/ Detail
-
-* Find keyword in question
-* Scan article to find the keyword
-* If find the keyword, write down the key point of that sentence containing the keyword
-* If no keyword in passage, drop the inference why author write this passage (usually on the first and last sentences)
-* choose the answer
-
-For example,
-
-Question
+* Identification
+  * When a question starts from 'according to'
+  * Ends with 'which of the following'
+  * Mentioned number of paragraph specifically
+* Steps
+  * Find keyword in question
+  * Scan article to find the keyword
+  * If find the keyword, write down the key point of that sentence containing the keyword
+  * If no keyword in passage, drop the inference why author write this passage (usually on the first and last sentences)
+  * choose the answer
+* Example
 
 ### Rhetorical Purpose
 
-#### Category of Rhetorical Purpose
-
-* The author discusses X in paragraph 2 in order to...
-* Why does the author mention X?
-* The author uses X as an example of
-* How is paragraph 3 organized?
-* How is paragraph 1 and 2 related?
-
-#### Steps to solve Rhetorical Purpose
-
-Mindset: academic articles all have structure of main idea and then details.
-
-* find where the key word in question is
-* determine whether this sentence is main or detail
-* If main, then the answer is in details and should summarize the details
-* If detail, then the answer is in main and should summarize the main
-
-#### Example of Rhetorical Purpose
-
-For example,
-
-TBC
+* Identification
+  * The author discusses X in paragraph 2 in order to...
+  * Why does the author mention X?
+  * The author uses X as an example of
+  * How is paragraph 3 organized?
+  * How is paragraph 1 and 2 related?
+* Steps
+  * Mindset: academic articles all have structure of main idea and then details
+  * find where the key word in question is
+  * determine whether this sentence is main or detail
+  * If main, then the answer is in details and should summarize the details
+  * If detail, then the answer is in main and should summarize the main
+* example
 
 ### Paraphrase
 

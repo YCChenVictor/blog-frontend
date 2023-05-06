@@ -9,11 +9,14 @@ describe('Graph', () => {
   })
 
   test('#init', () => {
-    console.log(testGraph)
     expect(testGraph.getNeighbors(1)).toEqual([2, 4]);
     expect(testGraph.getNeighbors(2)).toEqual([1, 4]);
     expect(testGraph.getNeighbors(3)).toEqual([]);
     expect(testGraph.getNeighbors(4)).toEqual([1, 2]);
+  })
+
+  test('#Get Edges', () => {
+    expect(testGraph.getEdges()).toEqual([1, 2], [1, 4], [2, 4]);
   })
 
   test('remove Edge', () => {

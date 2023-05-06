@@ -23,6 +23,8 @@ I need to structure my thoughts.
 
 ## How?
 
+* Remember to move the chords and lyrics to blog
+* The what section must have practical experience I had; for example, the result I get and the application I make
 * `find . -type f -exec stat -f '%m %N' {} + | sort | head -n 10`
 * Use pomodoros, 25 mins on each article
 * I will learn medical at my 35

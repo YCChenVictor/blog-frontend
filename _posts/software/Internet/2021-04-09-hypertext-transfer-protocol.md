@@ -10,7 +10,7 @@ publish: true
 
 ## Introduction
 
-HTTP is on application layer; With this layer, people use understandable logics to operate and achieve their goals; for example, users can use mouse to click a link on webpage in browsers, and then the client side will send requests which follows HTTP and walk through the layers below application layer to server. Given the informations sent from client, server side will parse these informations to decide the next move.
+HTTP is on application layer. With this layer, people use understandable logics to operate and achieve their goals; for example, users can use mouse to click a link on webpage in browsers, and then the client side will send requests which follows HTTP and walk through the layers below application layer to server. Given the informations sent from client, server side will parse these informations to decide the next move.
 
 The layers as follow:
 
@@ -27,18 +27,36 @@ HTTP (HyperText Transfer Protocol) defines the official way for machines to comm
 
 For example, a user uses browser and want to see news on website. Then the following steps occur:
 
-1. user input URL (uniform resource locator) in browsers
-2. browsers identify the specific server
-3. browsers send request to the specific server
+1. User input URL (uniform resource locator) in browsers
+2. Browsers identify the specific server
+3. Browsers send request to the specific server
 4. The specific server response data
 
 ### Input URL
 
-User knows the specific URL to locate the website and input it into web browser; for example, `http://www.example.com/index.html`. This URL means please use `http` to `GET` `index.html` file from `www.example.com` and it will send somthing below
+User knows the specific URL to locate the website and input it into web browser; for example, `http://www.example.com/index.html`. This URL means please use `http` to `GET` `index.html` file from `www.example.com`.
 
 ### Identify Specific Server
 
-The browsers will go to the internet try to get `www.example.com`. The way it uses to identify `www.example.com` is **through IP address** with [DNS](). DNS will map `www.example.com` to a specific IP address for browsers locate the specific server.
+The browsers will go to the internet try to get `www.example.com`. The way it uses to identify `www.example.com` is **through IP address** with DNS. DNS will map `www.example.com` to a specific IP address for browsers locate the specific server.
+
+#### DNS (Domain Name System)
+
+* Introduction
+
+It can find the IP address with the URL; for example, after we input the `www.example.com,` it will try to find the IP address like `74.125.20.113;` that is, DNS can map URL to a IP address to locate the server on the internet.
+
+* Why
+
+The numbers has no means for human being, so usually we may want a kind of phone book to check the numbers from website name (Domain Name). With Domain Name registered in the DNS, it is easier to memorize as human-being.
+
+* How
+  * Suppose the user now input the URL `www.example.com.` The URL represents `third-level-domain.second-level-domain.first-level-domain.` DNS searching procedure: `first-level-domain` -> `second-level-domain` -> `third-level-domain.`
+  * The searching procedure: local cache -> ISP cache -> name server
+    * Local cache: After we visit a website, the browsers will save the response in the local machine temporally; for example, <img src="{{site.baseurl}}/assets/img/local_cache.png" alt="" width=500> As you can see, there is url: `www.google.com` maps to ip: `172.217.164.100` with IPV4, the fourth version of communication protocol for IP layer. If it finds the mapping on local machine, it will not get ip address from the internet but directly get it on local machine.
+    * ISP cache: ISP (internet service provider) provides internet service via Satellite, DSL, Broadband Cable, Fiber-Optic Cable, or Wi-Fi Broadband. While it letting user connect to internet, during user browsing internet, it saves the url mapping IP; as a result, once other user also browses internet via the same route of ISP, although the user did not browse it before, DNS can still get the mapping accordingly.
+    * Name server: As mentioned above, DNS is going to search the IP address via `first-level-domain` -> `second-level-domain` -> `third-level-domain,` which is `Root-Name-Servers` -> `TLD-Name-Servers` -> `Host-Name-Servers`
+  * Prevent DNS Spoofing: With the method above, we send request to DNS for mapping url to IP address, meaning we can construct fake server to send malware website to a normal urls. To prevent it, we use cryptographic authentication to DNS data, the DNSSEC (Domain Name System Security Extensions)
 
 ### Browsers Send Data to The Specific Server
 
@@ -58,14 +76,14 @@ Connection: keep-alive
 
 An HTTP request from client side contains:
 
-* version type
-  * example: HTTP/1.0
-  * intention: let sender to tell receiver the format of this http message and the expected format of further http communication
+* Version type
+  * Example: HTTP/1.0
+  * Intention: let sender to tell receiver the format of this http message and the expected format of further http communication
 * URL
   * TBC
 * method
   * TBC
-* request headers: key informations (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields))
+* Request headers: key information (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields))
 * body (optional)
 
 ### The Specific Server Response data
@@ -96,18 +114,16 @@ Connection: close
 
 An HTTP response from server side contains:
 
-* status code
-  * TBC
-* response headers: key informations (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields))
+* Status code
+* Response headers: key information (refer to [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Response_fields))
 * body (optional)
 
-If fails, the browsers will return
+If it fails, the server will return
 
 ```bash
 HTTP/1.1 404 NOT FOUND
 ```
-
-meaning it cannot found `www.example.com` and return HTTP status, `404`
+Meaning it cannot found `www.example.com` and return HTTP status, `404`
 
 All the status:
 
