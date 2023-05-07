@@ -135,6 +135,15 @@ Client error responses (400–499)
 Server error responses (500–599)
 ```
 
+### Browser Rendering
+
+After your device get the response from other machine through HTTP, your device needs a mechanism to render the response data, the realization of this mechanism occurs in your browser. The data flow as follow:
+
+1. The response data: HTML, PDF, image, ...etc
+2. Browsers combined data from UI backend, JavaScript, and Networking (data from backend) and send it to rendering engine
+3. The rendering engine parse data and send it to browser engine
+4. Browser display data on UI with specifications maintained by W3C
+
 ## What?
 
 TBC
