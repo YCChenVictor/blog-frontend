@@ -27,10 +27,6 @@ focus on the mechanism
 
 ## What?
 
-give real world example
-
-<img src="{{site.baseurl}}/assets/img/xxx.png" alt="">
-
 ## Reference
 
 Why: asking for the reason or purpose behind something.

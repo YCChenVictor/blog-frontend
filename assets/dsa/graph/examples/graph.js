@@ -1,19 +1,51 @@
 class Graph {
+  // adjacency list form
+  // undirected edges
   constructor() {
-    this.vertices = new Map();
+    this.adjacencyList = {};
   }
 
   addVertex(vertex) {
-    this.vertices.set(vertex, []);
+    this.adjacencyList[vertex] = [];
   }
 
   addEdge(vertex1, vertex2) {
-    this.vertices.get(vertex1).push(vertex2);
-    this.vertices.get(vertex2).push(vertex1);
+    this.adjacencyList[vertex1].push(vertex2);
+    this.adjacencyList[vertex2].push(vertex1);
   }
 
   getNeighbors(vertex) {
-    return this.vertices.get(vertex);
+    return this.adjacencyList[vertex];
+  }
+
+  getVertices() {
+    return Object.keys(this.adjacencyList);
+  }
+
+  getEdges() {
+    edges = new Set() // use set
+    this.adjacencyList.forEach((key, item) => {
+      console.log(key)
+      console.log(item)
+    })
+  }
+
+  removeEdge(vertex1, vertex2) {
+    let index2 = this.adjacencyList[vertex1].indexOf(vertex2)
+    let index1 = this.adjacencyList[vertex2].indexOf(vertex1)
+    if (index2 > -1) {
+      this.adjacencyList[vertex1].splice(index2, 1)
+    }
+    if (index1 > -1) {
+      this.adjacencyList[vertex2].splice(index1, 1)
+    }
+  }
+
+  removeVertex(vertex) {
+    while (this.adjacencyList[vertex].length) {
+      neighborVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, neighborVertex)
+    }
   }
 
   depthFirstSearch(vertex, visited = new Set()) {

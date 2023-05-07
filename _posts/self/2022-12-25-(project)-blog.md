@@ -23,6 +23,15 @@ I need to structure my thoughts.
 
 ## How?
 
+* Remember to move the chords and lyrics to blog
+* The what section must have practical experience I had; for example, the result I get and the application I make
+* `find . -type f -exec stat -f '%m %N' {} + | sort | head -n 10`
+* Use pomodoros, 25 mins on each article
+* I will learn medical at my 35
+* I should try to read those less read articles and try to refine them and should keep developing apps
+* As you aware that you are doing some useless articles, I think you should try to synthesize two categories. That is, try to combine two big direction sections with two nodes and work on it and try to reduce unnecessary articles
+* All the intro on each article should be done after the context is done
+* Learn the FFT in https://www.youtube.com/watch?v=2O3nm0Nvbi4
 * music, I can make video of the song 家，before audio and after audio and write an article and connect the youtube video on my blog
 * add static vs dynamic programming
 * rename all the overview article to the directory name, so that the graph can show the name instead of overview

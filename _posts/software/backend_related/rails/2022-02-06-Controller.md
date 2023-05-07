@@ -129,6 +129,7 @@ Then input the site: http://127.0.0.1:3000/hello_world we can get a website with
       end
     end
     ```
+* `require`: params.require(:user) specifies that the :user parameter is required to be present in the parameters submitted in the HTTP request in the Ruby on Rails framework.
 
 ## Reference
 

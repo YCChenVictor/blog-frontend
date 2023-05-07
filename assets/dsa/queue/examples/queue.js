@@ -30,6 +30,8 @@ class Queue {
   }
 
   print() {
-    console.log(this.items.toString());
+    return this.items;
   }
 }
+
+module.exports = Queue

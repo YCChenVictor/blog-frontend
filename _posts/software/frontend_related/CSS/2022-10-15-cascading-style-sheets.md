@@ -356,13 +356,9 @@ li {
 }
 ```
 
-### Responsive Web Design
+### Responsive Web Design (RWD)
 
 Allows web pages to adjust their layout and content based on the size of the screen they are being viewed on.
-
-#### plain CSS
-
-to be continued
 
 #### tailwind
 
@@ -376,6 +372,9 @@ We can change the layout based on the width of screen
   </div>
 </div>
 ```
+
+* md:grid: This sets the display of the element to a grid for medium screens and above. This means that the content within the element will be laid out in a grid format for screens that are wider than the medium breakpoint.
+* lg:px-72: This sets the horizontal padding of the element to 72 units of the default spacing scale for large screens and above. This means that for screens that are wider than the large breakpoint, the horizontal padding will be much larger than it is for smaller screens.
 
 ### Condition
 

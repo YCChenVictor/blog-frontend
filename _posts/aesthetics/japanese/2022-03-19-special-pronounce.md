@@ -1,6 +1,6 @@
 ---
 layout: post
-title: pronounce (Japanese)
+title:
 description: ''
 date: '2022-03-19'
 categories: japanese

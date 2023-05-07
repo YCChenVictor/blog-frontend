@@ -25,29 +25,27 @@ function SidebarLayout() {
     setMenuItems(menuItemsDesired)
     setWindowWidth(windowWidth)
   }, [])
-  if (windowWidth >= 1440) {
-    return (
-      <div style={{ display: 'flex', height: '70vh' }} >
-        <ProSidebarProvider
+  return (
+    <div style={{ display: 'flex', height: '70vh' }} >
+      <ProSidebarProvider
+      >
+        <BrowserRouter
         >
-          <BrowserRouter
+          <Sidebar
+            backgroundColor="rgb(156 163 175)"
           >
-            <Sidebar
-              backgroundColor="rgb(156 163 175)"
+            <Menu
             >
-              <Menu
-              >
-                {menuItems}
-              </Menu>
-            </Sidebar>
-            <Routes>
-              <Route path="#why"/>
-            </Routes>
-          </BrowserRouter>
-        </ProSidebarProvider>
-      </div>
-    );
-  }
+              {menuItems}
+            </Menu>
+          </Sidebar>
+          <Routes>
+            <Route path="#why"/>
+          </Routes>
+        </BrowserRouter>
+      </ProSidebarProvider>
+    </div>
+  );
 }
 
 export default SidebarLayout;

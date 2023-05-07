@@ -1,6 +1,6 @@
 ---
 layout: post
-title: adverb interjection conjunction (Japanese)
+title:
 description: ''
 date: '2022-04-13'
 categories: japanese
