@@ -19,6 +19,11 @@ describe('Queue', () => {
     expect(testQueue.print()).toEqual([1, 74, 888, 62, 33, 0]);
   });
 
+  test('#dequeue', () => { // first in is 1
+    testQueue.dequeue();
+    expect(testQueue.print()).toEqual([74, 888, 62, 33]);
+  })
+
   test('#peek', () => {
     expect(testQueue.peek()).toEqual(1);
   });

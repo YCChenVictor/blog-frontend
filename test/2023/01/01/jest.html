@@ -45,10 +45,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -82,13 +83,45 @@
 
 <h3 id="node">node</h3>
 
-<p><a href="/blog/node/2023/01/20/spec.html">spec</a></p>
+<p>For more information, please refer to <a href="/blog/node/2023/01/20/spec.html">spec</a></p>
 
 <h3 id="react">react</h3>
 
 <h2 id="what">What?</h2>
 
-<p>give github url</p>
+<p>A real world example: (fetch data)</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// api.js</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">fetchData</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://example.com/api/data</span><span class="dl">'</span><span class="p">);</span>
+  <span class="k">return</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">fetchData</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>and the test would be</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// api.test.js</span>
+<span class="kd">const</span> <span class="nx">fetchData</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./api</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">fetchData</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">data</span><span class="p">;</span>
+
+  <span class="nx">beforeEach</span><span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetchData</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">returns an array of data</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">data</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">contains expected properties</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">toHaveProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">toHaveProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">toHaveProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">description</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div></div>
 
 <h2 id="reference">Reference</h2>
 

@@ -45,10 +45,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -56,7 +57,7 @@
     <h1 class='text-center mt-6 mb-6'>Spec</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>To use Jest to build specs in Node.js, you first need to install Jest and set up your testing environment. Once your environment is configured, you can write tests using Jest’s API and run them using the Jest CLI. Jest also provides powerful features like code coverage analysis, test debugging, and snapshot testing, which can help you write more effective and efficient tests for your Node.js applications.</p>
 
 <h2 id="why">Why?</h2>
 
@@ -95,7 +96,6 @@
 <p>Please follow <a href="/blog/test/2021/04/06/TDD.html#aaa-principle-maps-jest">jest AAA</a> to write test</p>
 
 <p>jest with node:</p>
-
 <ul>
   <li>wrap node related files in <code class="language-plaintext highlighter-rouge">./app</code></li>
   <li>set jest root directory</li>
@@ -142,10 +142,6 @@
 </code></pre></div></div>
 
 <h2 id="what">What?</h2>
-
-<p>give an example</p>
-
-<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
 
 <h2 id="reference">Reference</h2>
 

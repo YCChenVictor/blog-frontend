@@ -45,10 +45,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -234,30 +235,25 @@
 <h3 id="set">set</h3>
 
 <ul>
-  <li>create set</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mySet1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">();</span>
+  <li>Create set
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mySet1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">();</span>
 <span class="nx">mySet1</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mySet1</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>read set</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mySet1</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-</code></pre></div></div>
-
-<ul>
-  <li>add lots of elements</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mySet</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Read set
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mySet1</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Add lots of elements
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mySet</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
 <span class="kd">const</span> <span class="nx">newElements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
 <span class="nx">mySet</span><span class="p">.</span><span class="nx">add</span><span class="p">(...</span><span class="nx">newElements</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mySet</span><span class="p">);</span> <span class="c1">// Output: Set(6) { 1, 2, 3, 4, 5, 6 }</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+  <li>Add duplicated data will not have duplicated element in the set</li>
+</ul>
 
 <h3 id="map">map</h3>
 
@@ -293,9 +289,9 @@
 <ul>
   <li>example
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">object1</span> <span class="o">=</span> <span class="p">{</span>
-<span class="na">a</span><span class="p">:</span> <span class="dl">'</span><span class="s1">someString</span><span class="dl">'</span><span class="p">,</span>
-<span class="na">b</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
-<span class="na">c</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="na">a</span><span class="p">:</span> <span class="dl">'</span><span class="s1">someString</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">b</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+  <span class="na">c</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">};</span>
 </code></pre></div>    </div>
   </li>
@@ -309,9 +305,9 @@
   </li>
   <li>destructing
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span>
-<span class="na">firstName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
-<span class="na">lastName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Doe</span><span class="dl">'</span><span class="p">,</span>
-<span class="na">age</span><span class="p">:</span> <span class="mi">30</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Doe</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">30</span>
 <span class="p">};</span>
 <span class="c1">//</span>
 <span class="kd">const</span> <span class="p">{</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">age</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">person</span><span class="p">;</span>
@@ -319,6 +315,10 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">firstName</span><span class="p">);</span> <span class="c1">// Output: John</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lastName</span><span class="p">);</span> <span class="c1">// Output: Doe</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// Output: 30</span>
+</code></pre></div>    </div>
+  </li>
+  <li>loop
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">{})</span>
 </code></pre></div>    </div>
   </li>
   <li>check whether a value match an attributes: use <code class="language-plaintext highlighter-rouge">find</code> or <code class="language-plaintext highlighter-rouge">filter</code>; please refer to [methods]</li>

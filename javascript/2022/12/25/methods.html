@@ -45,10 +45,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -135,34 +136,34 @@
   <li>find()
     <ul>
       <li>It will return the first element only that match the condition</li>
-      <li>example</li>
-    </ul>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">people</span> <span class="o">=</span> <span class="p">[</span>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">people</span> <span class="o">=</span> <span class="p">[</span>
   <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">John</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">30</span> <span class="p">},</span>
   <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Jane</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">25</span> <span class="p">},</span>
   <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bob</span><span class="dl">'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">40</span> <span class="p">}</span>
 <span class="p">];</span>
-
+  
 <span class="kd">const</span> <span class="nx">person</span> <span class="o">=</span> <span class="nx">people</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">obj</span> <span class="o">=&gt;</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">age</span> <span class="o">===</span> <span class="mi">30</span><span class="p">);</span>
-
+  
 <span class="k">if</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Found </span><span class="p">${</span><span class="nx">person</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">, who is 30 years old`</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">No person found</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div>    </div>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>reduce()</li>
   <li>forEach()
     <ul>
-      <li>example</li>
-    </ul>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">];</span>
-  
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">];</span>
+    
 <span class="nx">array1</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">element</span><span class="p">));</span>
-</code></pre></div>    </div>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
   <li>indexOf()</li>
   <li>push()
@@ -177,20 +178,48 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myArray</span><span class="p">);</span> <span class="c1">// Output: ["apple", "banana", "orange"]</span>
 </code></pre></div>    </div>
   </li>
-  <li>pop()</li>
+  <li>pop()
+    <ul>
+      <li>It will remove the last element</li>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">banana</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">orange</span><span class="dl">'</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">lastFruit</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+  
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">lastFruit</span><span class="p">);</span> <span class="c1">// Output: 'orange'</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fruits</span><span class="p">);</span>    <span class="c1">// Output: ['apple', 'banana']</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
   <li>shift()</li>
   <li>unshift()</li>
   <li>flat()
     <ul>
-      <li>example</li>
-    </ul>
-
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">nestedArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]];</span>
-  
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">nestedArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]];</span>
+    
 <span class="kd">const</span> <span class="nx">flattenedArray</span> <span class="o">=</span> <span class="nx">nestedArray</span><span class="p">.</span><span class="nx">flat</span><span class="p">();</span>
-  
+    
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">flattenedArray</span><span class="p">);</span> <span class="c1">// Output: [1, 2, 3, 4, 5, 6]</span>
-</code></pre></div>    </div>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>splice()
+    <ul>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">banana</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">orange</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">grape</span><span class="dl">'</span><span class="p">];</span>
+
+<span class="c1">// Find the index of 'banana'</span>
+<span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">fruits</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="dl">'</span><span class="s1">banana</span><span class="dl">'</span><span class="p">);</span>
+    
+<span class="c1">// If 'banana' is found, remove it from the array</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">fruits</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -207,6 +236,9 @@
 <span class="kd">const</span> <span class="nx">endIndex</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">endStr</span><span class="p">,</span> <span class="nx">startIndex</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">startIndex</span><span class="p">,</span> <span class="nx">endIndex</span><span class="p">);</span>
 </code></pre></div>        </div>
+        <ul>
+          <li>The <code class="language-plaintext highlighter-rouge">startIndex</code> in <code class="language-plaintext highlighter-rouge">str.indexOf(endStr, startIndex);</code> will make endIndex to find string after <code class="language-plaintext highlighter-rouge">startIndex</code></li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -237,6 +269,33 @@
   <li>Object.seal()</li>
   <li>Object.entries(),</li>
 </ul>
+
+<h3 id="dom-methods">DOM Methods</h3>
+
+<ul>
+  <li>textContent</li>
+</ul>
+
+<p>To count the words of a DOM element in JavaScript, you can use the textContent property of the element to get the text content, and then count the words using the same approach as the previous examples. Here’s an example code snippet that demonstrates how to count the words of a DOM element in JavaScript:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">countWordsInDOMElement</span><span class="p">(</span><span class="nx">elementId</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">elementId</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">words</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">split</span><span class="p">(</span><span class="sr">/</span><span class="se">\s</span><span class="sr">+/</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">wordCountMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">word</span> <span class="k">of</span> <span class="nx">words</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">normalizedWord</span> <span class="o">=</span> <span class="nx">word</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">wordCountMap</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">normalizedWord</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">wordCountMap</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">normalizedWord</span><span class="p">,</span> <span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">wordCountMap</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In this code, the countWordsInDOMElement function takes an elementId parameter, which is the ID of the DOM element to be counted. It first gets the element using document.getElementById, and then gets the text content of the element using textContent. It then uses the same approach as the previous examples to count the words, and returns the word count as a Map object. If the element is not found, it returns null. Note that this code assumes that the text content of the element is not HTML-encoded; if it is, you may need to use a different approach to extract the text.</p>
 
 <h3 id="join">join</h3>
 

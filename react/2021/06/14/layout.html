@@ -45,10 +45,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -473,12 +474,31 @@
 
 <p>We can use concept of ternary to achieve it</p>
 
-<pre><code class="language-JSX">{false ? (
+<ul>
+  <li>Conditional rendering
+    <pre><code class="language-JSX">{false ? (
 &lt;button
   onClick={setTaskModalOpen}
   className="bg-white p-2"
 &gt;Create Task&lt;/button&gt;) : ('')}
 </code></pre>
+  </li>
+  <li>Conditional Style
+    <pre><code class="language-JSX">const MyComponent = ({ isHighlighted }) =&gt; {
+  const style = {
+    color: isHighlighted ? 'red' : 'black',
+    fontWeight: isHighlighted ? 'bold' : 'normal'
+  }
+  
+  return (
+    &lt;div style={style}&gt;
+      Hello World
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+  </li>
+</ul>
 
 <h2 id="what">What</h2>
 

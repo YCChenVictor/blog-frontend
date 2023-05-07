@@ -45,10 +45,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -63,52 +64,50 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
 
 <h2 id="why">Why?</h2>
 
-<p>To pass coding interview</p>
+<p>Learning about queues can be useful for understanding and implementing efficient algorithms for handling and managing data in various computer science applications, such as operating systems, networking, and data structures.</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="build-it">build it</h3>
+<h3 id="basic-form">Basic Form</h3>
 
 <ul>
-  <li>code example:</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Queue</span> <span class="p">{</span>
+  <li>code example:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Queue</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
   <span class="p">}</span>
-
+  
   <span class="nx">enqueue</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
   <span class="p">}</span>
-
+  
   <span class="nx">dequeue</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
       <span class="k">return</span> <span class="dl">"</span><span class="s2">Queue is empty</span><span class="dl">"</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
   <span class="p">}</span>
-
+  
   <span class="nx">peek</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">())</span> <span class="p">{</span>
       <span class="k">return</span> <span class="dl">"</span><span class="s2">Queue is empty</span><span class="dl">"</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
   <span class="p">}</span>
-
+  
   <span class="nx">isEmpty</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">}</span>
-
+  
   <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
   <span class="p">}</span>
-
+  
   <span class="nx">print</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
   <span class="p">}</span>
 <span class="p">}</span>
-
+  
 <span class="c1">// Example usage</span>
 <span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Queue</span><span class="p">();</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">());</span> <span class="c1">// true</span>
@@ -121,28 +120,31 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">());</span> <span class="c1">// 1</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">());</span> <span class="c1">// [2, 3]</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 2</span>
-</code></pre></div></div>
-
-<ul>
-  <li>create: O(1)
-    <ul>
-      <li>the enqueue method will concatenate item on the last without elements shifting</li>
-    </ul>
+</code></pre></div>    </div>
   </li>
-  <li>read: O(1)
+  <li>Time complexity
     <ul>
-      <li>reading the front element of the queue, then the time complexity of this operation is O(1)</li>
-      <li>accessing elements from the middle or end of a queue is not supported, which can result in a time complexity of O(n).</li>
-    </ul>
-  </li>
-  <li>update: O(n)
-    <ul>
-      <li>dequeuing an element from the front of the queue may require shifting all the remaining elements one position to the front of the queue, which takes O(n) time in the worst case. Then, enqueuing the modified element again requires O(1) time complexity. Therefore, the overall time complexity for updating an element in a queue is O(n).</li>
-    </ul>
-  </li>
-  <li>delete: O(1)
-    <ul>
-      <li>deleting an element from the front of a queue simply involves removing the first element of an array-based queue or the head node of a linked-list based queue, which can be done in constant time, regardless of the size of the queue.</li>
+      <li>Create an item: O(1)
+        <ul>
+          <li>the enqueue method will concatenate item on the last without elements shifting</li>
+        </ul>
+      </li>
+      <li>Read an item: O(1)
+        <ul>
+          <li>reading the front element of the queue, then the time complexity of this operation is O(1)</li>
+          <li>accessing elements from the middle or end of a queue is not supported, which can result in a time complexity of O(n).</li>
+        </ul>
+      </li>
+      <li>Update an item: O(n)
+        <ul>
+          <li>dequeuing an element from the front of the queue may require shifting all the remaining elements one position to the front of the queue, which takes O(n) time in the worst case. Then, enqueuing the modified element again requires O(1) time complexity. Therefore, the overall time complexity for updating an element in a queue is O(n).</li>
+        </ul>
+      </li>
+      <li>Delete an item: O(1)
+        <ul>
+          <li>deleting an element from the front of a queue simply involves removing the first element of an array-based queue or the head node of a linked-list based queue, which can be done in constant time, regardless of the size of the queue.</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>

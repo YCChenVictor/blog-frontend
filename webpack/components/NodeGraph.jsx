@@ -18,12 +18,30 @@ const NodeGraph = () => {
 
   useEffect(() => {
     forceRef.current.zoom(2, 300);
-    fetch('assets/data/nodeGraph.json')
+    fetch('service/nodeGraph.json')
       .then(response => response.json())
       .then(data => {
         const { nodes, links } = data;
+        nodes.map((node) => {
+          if (node['id'] == 1) {
+            node['val'] = 5
+          } else {
+            node['val'] = 1
+          }
+        })
         setNodes(nodes)
         setLinks(links)
+        setTimeout(function() { // Give it time to render
+          const linkLengthConstant = 20
+          forceRef.current.d3Force('link').distance((link) => {
+            if(link.source.id == 1) {
+              return linkLengthConstant
+            } else {
+              return linkLengthConstant * (link.source.val + link.target.val) 
+            }
+          });
+          forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400);
+        }, 1000)
       })
       .catch(error => console.error(error));
   }, []);

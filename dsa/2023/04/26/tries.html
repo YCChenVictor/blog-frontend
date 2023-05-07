@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
+  <div class="titleImagePosition">
+    <a href="/blog/" class="!px-0 !py-0">
+      <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
+    </a>
+  </div>
+  <div class="flex">
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="absolute right-16 flex md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+          <!-- dynamic menu based on navigation info in _config.yml -->
+          
+             <!-- don't show current page in menu -->
+              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
+                href="/blog/about">
+                About Me
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
+  <div class='text-center'>
+    
+  </div>
+  <div class='md:px-4 md:grid lg:px-72'>
+    <h1 class='text-center mt-6 mb-6'>Tries</h1>
+    <h2 id="introduction">Introduction</h2>
+
+<p>A trie is a data structure that is used to store and retrieve strings efficiently. It is also known as a prefix tree because it organizes strings by their common prefixes. A trie is a tree-like structure where each node represents a prefix of one or more strings.</p>
+
+<h2 id="why">Why?</h2>
+
+<p>Tries are a useful data structure for efficiently storing and searching for strings in a large dataset.</p>
+
+<h2 id="how">How?</h2>
+
+<h3 id="example">Example</h3>
+
+<p>Suppose we have a set of strings {bear, bell, bid, bull, stock, stop}. We can build a trie for this set of strings as follows:</p>
+
+<div class="mermaid">
+graph TB
+  r(root) --&gt; 1(b)
+  r(root) --&gt; 2(s)
+
+  1(b) --&gt; 3(e)
+  1(b) --&gt; 4(i)
+  1(b) --&gt; 5(u)
+  2(s) --&gt; 6(t)
+
+  3(e) --&gt; 7(a)
+  3(e) --&gt; 8(l)
+  4(i) --&gt; 9(d)
+  5(u) --&gt; 10(l)
+  6(t) --&gt; 11(o)
+
+  7(a) --&gt; 12(r)
+  8(l) --&gt; 13(l)
+  10(l) --&gt; 14(l)
+  11(o) --&gt; 15(c)
+  11(o) --&gt; 16(p)
+
+  15(c) --&gt; 17(k)
+</div>
+
+<p>and the code example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">TrieNode</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">children</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">isEndOfWord</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Trie</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TrieNode</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">insert</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">word</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">char</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">char</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TrieNode</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">char</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="nx">node</span><span class="p">.</span><span class="nx">isEndOfWord</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">search</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">word</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">char</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">char</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">isEndOfWord</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="what">What?</h2>
+
+<p>Real world example: Trie for melody</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">MelodyTrie</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="p">}</span>
+
+  <span class="nx">insert</span><span class="p">(</span><span class="nx">melody</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">melody</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">note</span> <span class="o">=</span> <span class="nx">melody</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="nx">node</span><span class="p">[</span><span class="nx">note</span><span class="p">]</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">note</span><span class="p">]</span> <span class="o">||</span> <span class="p">{};</span>
+      <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">note</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="nx">node</span><span class="p">.</span><span class="nx">isEnd</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">search</span><span class="p">(</span><span class="nx">melody</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">melody</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">note</span> <span class="o">=</span> <span class="nx">melody</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">[</span><span class="nx">note</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">note</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">!!</span><span class="nx">node</span><span class="p">.</span><span class="nx">isEnd</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">melodyTrie</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MelodyTrie</span><span class="p">();</span>
+
+<span class="nx">melodyTrie</span><span class="p">.</span><span class="nx">insert</span><span class="p">([</span><span class="dl">'</span><span class="s1">C4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">D4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">E4</span><span class="dl">'</span><span class="p">]);</span>
+<span class="nx">melodyTrie</span><span class="p">.</span><span class="nx">insert</span><span class="p">([</span><span class="dl">'</span><span class="s1">E4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">F4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">G4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">A4</span><span class="dl">'</span><span class="p">]);</span>
+<span class="nx">melodyTrie</span><span class="p">.</span><span class="nx">insert</span><span class="p">([</span><span class="dl">'</span><span class="s1">G4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">F4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">E4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">D4</span><span class="dl">'</span><span class="p">]);</span>
+<span class="nx">melodyTrie</span><span class="p">.</span><span class="nx">insert</span><span class="p">([</span><span class="dl">'</span><span class="s1">C4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">C4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">C4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">C4</span><span class="dl">'</span><span class="p">]);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">melodyTrie</span><span class="p">.</span><span class="nx">search</span><span class="p">([</span><span class="dl">'</span><span class="s1">C4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">D4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">E4</span><span class="dl">'</span><span class="p">]));</span> <span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">melodyTrie</span><span class="p">.</span><span class="nx">search</span><span class="p">([</span><span class="dl">'</span><span class="s1">C4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">D4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">E4</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">F4</span><span class="dl">'</span><span class="p">]));</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+    <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <br>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="scrollTopBtn"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
+</html>

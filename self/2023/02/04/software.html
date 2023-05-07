@@ -45,10 +45,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -56,22 +57,7 @@
     <h1 class='text-center mt-6 mb-6'>Software</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>Software is a set of instructions and data that tell a computer what to do</p>
-<ul>
-  <li>Application software: This includes software applications designed for specific purposes, such as word processors, spreadsheets, video editors, and games.</li>
-  <li>System software: This includes software that manages and controls the hardware and other components of a computer system, such as operating systems, device drivers, and utility programs.</li>
-  <li>Embedded software: This includes software that is integrated into devices and systems such as smartphones, automobiles, and medical equipment.</li>
-  <li>Web-based software: This includes software that is accessed through web browsers or other web-enabled devices, such as web applications, cloud-based software, and e-commerce platforms.
-    <ul>
-      <li>Web 3.0, also known as the “decentralized web” or “semantic web”, is an evolving concept that refers to a set of new technologies and applications that aim to build a more decentralized, secure, and user-centric web.</li>
-      <li>Some of the key features of Web 3.0 include decentralized data storage, decentralized identity, decentralized finance (DeFi), and decentralized applications (dApps) that run on blockchain-based platforms. Web 3.0 also aims to address some of the challenges and limitations of Web 2.0, such as issues related to data privacy, security, and ownership.</li>
-    </ul>
-  </li>
-  <li>Artificial intelligence and machine learning software: This includes software that uses algorithms and data to simulate human intelligence and behavior, such as natural language processing, computer vision, and predictive analytics.</li>
-  <li>Database software: This includes software that is used to store, manage, and manipulate large amounts of data, such as relational database management systems (RDBMS) and NoSQL databases.</li>
-  <li>Development tools: This includes software that is used to create, test, and debug other software, such as integrated development environments (IDEs), code editors, and compilers.</li>
-  <li>Security software: This includes software that is designed to protect computer systems and data from unauthorized access and other security threats, such as antivirus software, firewalls, and intrusion detection systems.</li>
-</ul>
+<p>Software refers to a set of instructions or programs that tell a computer what to do. It encompasses all the applications, programs, and data that run on digital devices, enabling them to perform various tasks and functions.</p>
 
 <h2 id="why">Why?</h2>
 
@@ -84,68 +70,29 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="concepts">concepts</h3>
+<p>Software is a set of instructions and data that tell a computer what to do</p>
 
+<h3 id="system-software">System software</h3>
+
+<p>This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to <a href="/blog/os/2023/04/02/overview.html">operating systems</a>.</p>
+
+<h3 id="application-software">Application software</h3>
+
+<p>This type of software is designed for specific tasks or applications, such as word processing, spreadsheet creation, email management, and graphic design. Examples include Microsoft Office, Adobe Creative Suite, and Google Chrome.</p>
 <ul>
-  <li><a href="/blog/dsa/2021/11/25/data-structure-and-algorithm.html">data structure and algorithm</a></li>
-  <li><a href="/blog/functional-programming/2022/12/10/overview.html">functional programming</a></li>
-</ul>
-
-<h3 id="operating-system">Operating System</h3>
-
-<ul>
-  <li><a href="/blog/os/2023/04/02/overview.html">overview</a></li>
-</ul>
-
-<h3 id="language">Language</h3>
-
-<ul>
-  <li><a href="/blog/javascript/2022/12/12/javascript.html">Javascript</a></li>
-</ul>
-
-<h3 id="web-backend">Web Backend</h3>
-
-<ul>
-  <li><a href="/blog/database/2022/08/12/database.html">Database</a></li>
-  <li><a href="/blog/api/2021/02/18/overview.html">API</a></li>
-  <li><a href="/blog/rails/2023/01/01/rails.html">Rails</a></li>
-  <li><a href="/blog/node/2022/12/30/node.html">Node</a></li>
-</ul>
-
-<h3 id="web-frontend">web frontend</h3>
-
-<ul>
-  <li><a href="/blog/html/2021/12/17/overview.html">HTML</a></li>
-  <li><a href="/blog/css/2022/10/15/overview.html">CSS</a></li>
-  <li><a href="/blog/react/2021/06/13/react.html">react</a>
+  <li>Web application
     <ul>
-      <li><a href="/blog/react/2021/06/17/hook.html">hook</a> (useState, useEffect)</li>
-      <li><a href="/blog/react/2021/06/14/layout.html">layout</a> for HTML &amp; CSS (sidebar)</li>
-      <li><a href="/blog/react/2022/09/14/api.html">API</a> (JWT)</li>
-      <li>other
-        <ul>
-          <li><a href="/blog/react/2023/02/18/node-graph.html">force graph</a></li>
-        </ul>
-      </li>
+      <li>Plan and Design: <a href="">Plan and design</a> the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.</li>
+      <li>Develop: Write the code for your web application, including the frontend (user interface) and the backend (server-side logic). This may involve using frameworks and tools such as <a href="/blog/react/2021/06/13/react.html">React</a>, <a href="">Vue.js</a>, Angular, <a href="/blog/node/2022/12/30/node.html">Node.js</a>, or <a href="/blog/rails/2023/01/01/rails.html">Ruby on Rails</a>, depending on your programming language of choice.</li>
+      <li>Deploy and Maintain: [Deploy] your web application to a web server and maintain it by regularly updating it with bug fixes and <a href="/blog/web-security/2022/08/30/web-security.html">security</a> patches. This may also involve <a href="">scaling</a> the application to handle increased traffic or integrating it with other systems or APIs.</li>
     </ul>
   </li>
+  <li>Non-web application</li>
 </ul>
 
-<h3 id="blockchain">blockchain</h3>
+<h3 id="embedded-software">Embedded software</h3>
 
-<h3 id="machine-learning">machine learning</h3>
-
-<h4 id="middleware">middleware</h4>
-
-<ul>
-  <li>intermediary between the client and the server and runs on the server</li>
-</ul>
-
-<h4 id="service">service</h4>
-
-<ul>
-  <li>self-contained units of functionality that can be used across multiple applications</li>
-</ul>
+<p>This type of software is designed to control and manage hardware devices and systems, and is often built into the devices themselves. Examples include the software that controls a car’s engine, a digital camera’s image processing, or a smart thermostat’s temperature control.</p>
 
 <h2 id="what">What?</h2>
 

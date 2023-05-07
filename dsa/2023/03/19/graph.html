@@ -54,10 +54,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -65,50 +66,11 @@
     <h1 class='text-center mt-6 mb-6'>Graph</h1>
     <h2 id="introduction">Introduction</h2>
 
-<ul>
-  <li>This article describes the concept of graph, non-linear data structure that consists of a collection of vertices (also known as nodes) connected by edges.</li>
-  <li>Vertices represent the objects or entities being modeled</li>
-  <li>Edges represent the relationships or connections between those objects. Edges can be directed or undirected, and can have weights or costs associated with them to represent the strength or importance of the relationship between vertices</li>
-  <li>Represented using various data structures, such as adjacency matrices, adjacency lists, and edge lists</li>
-  <li>Algorithms
-    <ul>
-      <li>traversal algorithms
-        <ul>
-          <li>depth-first search</li>
-          <li>breadth-first search</li>
-        </ul>
-      </li>
-      <li>shortest path algorithms
-        <ul>
-          <li>Dijkstra’s algorithm</li>
-          <li>Bellman-Ford algorithm</li>
-        </ul>
-      </li>
-      <li>minimum spanning tree algorithms
-        <ul>
-          <li>Prim’s algorithm</li>
-          <li>Kruskal’s algorithm</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
+<p>This article discusses the usefulness of graphs for visually representing relationships and connections between data points, as well as various applications of graph algorithms, including modeling real-world problems, analyzing software dependencies, and optimizing code. It also provides an overview of important graph terminology, such as vertices and edges, and presents code examples for implementing graph algorithms such as depth-first search and breadth-first search.</p>
 
 <h2 id="why">Why?</h2>
 
-<p>Solve complex problems and build robust and efficient software systems with following ideas:</p>
-
-<ul>
-  <li>Model real-world problems
-    <ul>
-      <li>social networks</li>
-      <li>transportation networks</li>
-      <li>biological networks</li>
-    </ul>
-  </li>
-  <li>Algorithms: breadth-first search, depth-first search, shortest path algorithms, and minimum spanning tree algorithms, used in a wide range of applications, from network routing to data analysis to machine learning</li>
-  <li>Analyze code and program dependencies. By understanding graph algorithms, you can better understand and optimize the structure and behavior of software systems.</li>
-</ul>
+<p>Graphs are useful for visually representing relationships and connections between data points, making it easier to identify patterns and insights.</p>
 
 <h2 id="how">How?</h2>
 
@@ -116,42 +78,142 @@
 
 <div class="mermaid">
 flowchart TD
-    id1((1)) --&gt; id2((2))
-    id4((4)) --&gt; id2((2))
-    id4((4)) --&gt; id3((3))
-    id1((1)) --&gt; id4((4))
-    id3((3)) --&gt; id1((1))
-    id2((2)) --&gt; id2((2))
+    id1((0)) --- id2((1))
+    id4((3)) --- id2((1))
+    id4((3)) --- id3((2))
+    id1((0)) --- id4((3))
+    id3((2)) --- id1((0))
+    id2((1)) --- id2((1))
 </div>
 
 <h3 id="terminology">terminology</h3>
 
 <ul>
-  <li>vertices: the nodes with naming, 1, 2, 3, 4</li>
-  <li>edges: the lines connect the vertices</li>
-  <li>self loop: the edge from a vertex to itself</li>
+  <li>Vertices
+    <ul>
+      <li>Concept: Represent the objects or entities being modeled</li>
+      <li>Example: The nodes with naming, 1, 2, 3, 4</li>
+    </ul>
+  </li>
+  <li>Edges
+    <ul>
+      <li>Concept: Edges represent the relationships or connections between those objects. Edges can be directed or undirected, and can have weights or costs associated with them to represent the strength or importance of the relationship between vertices</li>
+      <li>Example: The lines connect the vertices</li>
+    </ul>
+  </li>
+  <li>Representation
+    <ul>
+      <li>Represented using various data structures, such as adjacency matrices, adjacency lists, and edge lists</li>
+    </ul>
+  </li>
+  <li>Other
+    <ul>
+      <li>Self loop: the edge from a vertex to itself</li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="code-example">code example</h3>
+<h3 id="representation">Representation</h3>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Graph</span> <span class="p">{</span>
+<p>(to be continued)</p>
+
+<p>compare Adjacency matrices, Adjacency lists, and Edge lists</p>
+
+<p>I prefer adjacency lists</p>
+
+<p>refer to <a href="https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38">here</a></p>
+
+<h3 id="basic-form">Basic Form</h3>
+
+<p>Here will compose a class of adjacency lists</p>
+
+<ul>
+  <li>Basic structure (based on visualization)
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">graph</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">// adjacency lists</span>
+  <span class="mi">0</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+  <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+  <span class="mi">2</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+  <span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Code example
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Graph</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="p">();</span>
   <span class="p">}</span>
-
+  
   <span class="nx">addVertex</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">vertex</span><span class="p">,</span> <span class="p">[]);</span>
   <span class="p">}</span>
-
+  
   <span class="nx">addEdge</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">,</span> <span class="nx">vertex2</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">vertex2</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex2</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">);</span>
   <span class="p">}</span>
-
+  
   <span class="nx">getNeighbors</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex</span><span class="p">);</span>
   <span class="p">}</span>
 
+  <span class="nx">removeVertex</span><span class="p">()</span> <span class="p">{</span>
+      
+  <span class="p">}</span>
+
+  <span class="nx">removeEdge</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>spec
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">Graph</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#init</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testGraph</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Graph</span><span class="p">();</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">node</span> <span class="o">=&gt;</span> <span class="nx">testGraph</span><span class="p">.</span><span class="nx">addVertex</span><span class="p">(</span><span class="nx">node</span><span class="p">));</span>
+    <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">edge</span> <span class="o">=&gt;</span> <span class="nx">testGraph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="nx">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testGraph</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testGraph</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="mi">2</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testGraph</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="mi">3</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([]);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testGraph</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="mi">4</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Time complexity
+    <ul>
+      <li>Adding a vertex: O(1) (constant time)</li>
+      <li>Adding an edge: O(1) (constant time)</li>
+      <li>Removing a vertex: O(V + E) (linear time, where V is the number of vertices and E is the number of edges)</li>
+      <li>Removing an edge: O(1) (constant time)</li>
+      <li>Finding a vertex: O(V) (linear time)</li>
+      <li>Finding an edge: O(E) (linear time)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="traversal-algorithm">Traversal Algorithm</h3>
+
+<ul>
+  <li>code example
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Graph</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Map</span><span class="p">();</span>
+  <span class="p">}</span>
+  
+  <span class="nx">addVertex</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">set</span><span class="p">(</span><span class="nx">vertex</span><span class="p">,</span> <span class="p">[]);</span>
+  <span class="p">}</span>
+  
+  <span class="nx">addEdge</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">,</span> <span class="nx">vertex2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">vertex2</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex2</span><span class="p">).</span><span class="nx">push</span><span class="p">(</span><span class="nx">vertex1</span><span class="p">);</span>
+  <span class="p">}</span>
+  
+  <span class="nx">getNeighbors</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">vertex</span><span class="p">);</span>
+  <span class="p">}</span>
+  
   <span class="nx">depthFirstSearch</span><span class="p">(</span><span class="nx">vertex</span><span class="p">,</span> <span class="nx">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">())</span> <span class="p">{</span>
     <span class="nx">visited</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">vertex</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="nx">vertex</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">neighbor</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -161,15 +223,15 @@ flowchart TD
     <span class="p">})</span>
     <span class="k">return</span> <span class="nx">visited</span>
   <span class="p">}</span>
-  
+    
   <span class="nx">breadthFirstSearch</span><span class="p">(</span><span class="nx">startingVertex</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">[</span><span class="nx">startingVertex</span><span class="p">];</span>
     <span class="kd">const</span> <span class="nx">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">([</span><span class="nx">startingVertex</span><span class="p">]);</span>
-
+  
     <span class="k">while</span> <span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">const</span> <span class="nx">currentVertex</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
       <span class="kd">const</span> <span class="nx">neighbors</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="nx">currentVertex</span><span class="p">);</span>
-  
+    
       <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">neighbor</span> <span class="k">of</span> <span class="nx">neighbors</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">visited</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">neighbor</span><span class="p">))</span> <span class="p">{</span>
           <span class="nx">visited</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">neighbor</span><span class="p">);</span>
@@ -177,15 +239,14 @@ flowchart TD
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">}</span>
-    
+      
     <span class="k">return</span> <span class="nx">visited</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
-
+  
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Graph</span><span class="p">;</span>
-</code></pre></div></div>
-
-<ul>
+</code></pre></div>    </div>
+  </li>
   <li>DFS (depth first search)
     <ul>
       <li>Application
@@ -208,17 +269,22 @@ flowchart TD
       <li>Intuition: Have a look at this <a href="https://www.youtube.com/watch?v=oDqjPvD54Ss&amp;t=85s">video</a></li>
     </ul>
   </li>
-  <li>DFS vs BFS:
+  <li>DFS vs BFS
     <ul>
       <li>BFS: Preferred for finding the shortest path between two nodes or when you need to visit all nodes at a certain distance from a given node. BFS explores nodes in a breadth-first manner, which means that it will always visit nodes at a shorter distance before moving on to nodes at a greater distance. This property makes it well-suited for finding the shortest path.</li>
       <li>DFS: Preferred for exploring all nodes in a graph or when you need to detect cycles in a graph. DFS explores nodes in a depth-first manner, which means that it will always go as far as possible down one branch before backtracking and exploring other branches. This property makes it well-suited for exploring all nodes in a graph.</li>
     </ul>
   </li>
-  <li>spec</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Graph</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../examples/graph.js</span><span class="dl">'</span><span class="p">);</span>
-
+  <li>time complexity
+    <ul>
+      <li>Depth-first search: O(V + E) (linear time)</li>
+      <li>Breadth-first search: O(V + E) (linear time)</li>
+      <li>V? E?</li>
+    </ul>
+  </li>
+  <li>spec
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Graph</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../examples/graph.js</span><span class="dl">'</span><span class="p">);</span>
+  
 <span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">Graph</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#init</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">testGraph</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Graph</span><span class="p">();</span>
@@ -229,7 +295,7 @@ flowchart TD
     <span class="nx">expect</span><span class="p">(</span><span class="nx">testGraph</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="mi">3</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([]);</span>
     <span class="nx">expect</span><span class="p">(</span><span class="nx">testGraph</span><span class="p">.</span><span class="nx">getNeighbors</span><span class="p">(</span><span class="mi">4</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
   <span class="p">})</span>
-
+  
   <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">DFS</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">testGraph</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Graph</span><span class="p">();</span>
     <span class="nx">expectSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">([</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">D</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">E</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">F</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">]);</span>
@@ -237,7 +303,7 @@ flowchart TD
     <span class="p">[[</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">D</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">E</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">F</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="s1">E</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">F</span><span class="dl">'</span><span class="p">]].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">edge</span> <span class="o">=&gt;</span> <span class="nx">testGraph</span><span class="p">.</span><span class="nx">addEdge</span><span class="p">(</span><span class="nx">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
     <span class="nx">expect</span><span class="p">(</span><span class="nx">testGraph</span><span class="p">.</span><span class="nx">depthFirstSearch</span><span class="p">(</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">expectSet</span><span class="p">);</span>
   <span class="p">})</span>
-
+  
   <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">BFS</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">testGraph</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Graph</span><span class="p">();</span>
     <span class="nx">expectSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Set</span><span class="p">([</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">B</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">C</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">D</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">E</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">F</span><span class="dl">'</span><span class="p">]);</span>
@@ -246,19 +312,15 @@ flowchart TD
     <span class="nx">expect</span><span class="p">(</span><span class="nx">testGraph</span><span class="p">.</span><span class="nx">breadthFirstSearch</span><span class="p">(</span><span class="dl">'</span><span class="s1">A</span><span class="dl">'</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="nx">expectSet</span><span class="p">);</span>
   <span class="p">})</span>
 <span class="p">})</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="dijkstras-algorithm">Dijkstra’s algorithm</h3>
 
 <h3 id="time-complexity">time complexity</h3>
 
 <ul>
-  <li>Adding a vertex: O(1) (constant time)</li>
-  <li>Adding an edge: O(1) (constant time)</li>
-  <li>Removing a vertex: O(V + E) (linear time, where V is the number of vertices and E is the number of edges)</li>
-  <li>Removing an edge: O(1) (constant time)</li>
-  <li>Finding a vertex: O(V) (linear time)</li>
-  <li>Finding an edge: O(E) (linear time)</li>
-  <li>Depth-first search: O(V + E) (linear time)</li>
-  <li>Breadth-first search: O(V + E) (linear time)</li>
   <li>Shortest path (Dijkstra’s algorithm): O((V + E) * log V) (where V is the number of vertices and E is the number of edges)</li>
   <li>Minimum spanning tree (Prim’s algorithm): O((V + E) * log V) (where V is the number of vertices and E is the number of edges)</li>
 </ul>
@@ -277,6 +339,22 @@ flowchart TD
 <h2 id="todo">TODO</h2>
 
 <ul>
+  <li>Algorithms
+    <ul>
+      <li>shortest path algorithms
+        <ul>
+          <li>Dijkstra’s algorithm</li>
+          <li>Bellman-Ford algorithm</li>
+        </ul>
+      </li>
+      <li>minimum spanning tree algorithms
+        <ul>
+          <li>Prim’s algorithm</li>
+          <li>Kruskal’s algorithm</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
   <li>Graph traversal
     <ul>
       <li>shortest path between two nodes</li>

@@ -1,14 +1,34 @@
 const Graph = require('../examples/graph.js');
 
 describe('Graph', () => {
-  test('#init', () => {
+  let testGraph
+  beforeEach(() => {
     testGraph = new Graph();
     [1, 2, 3, 4].forEach(node => testGraph.addVertex(node));
     [[1, 2], [1, 4], [2, 4]].forEach(edge => testGraph.addEdge(edge[0], edge[1]))
+  })
+
+  test('#init', () => {
     expect(testGraph.getNeighbors(1)).toEqual([2, 4]);
     expect(testGraph.getNeighbors(2)).toEqual([1, 4]);
     expect(testGraph.getNeighbors(3)).toEqual([]);
     expect(testGraph.getNeighbors(4)).toEqual([1, 2]);
+  })
+
+  test('#Get Edges', () => {
+    expect(testGraph.getEdges()).toEqual([1, 2], [1, 4], [2, 4]);
+  })
+
+  test('remove Edge', () => {
+    testGraph.removeEdge(1, 2)
+    expect(testGraph.getNeighbors(1)).toEqual([4]);
+    expect(testGraph.getNeighbors(2)).toEqual([4]);
+  })
+
+  test('remove Vertex', () => {
+    testGraph.removeVertex(1)
+    expect(testGraph.getVertices()).toEqual([2, 3, 4]);
+    expect(testGraph.getEdges()).toEqual();
   })
 
   test('DFS', () => {

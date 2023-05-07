@@ -45,10 +45,11 @@
 
       
       
-  <div id='sidebar' class='fixed py-16'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed'></div>
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
 
-<div class='p-16 prose bg-gray-400' id='article'>
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
   <div class='text-center'>
     
   </div>
@@ -69,7 +70,7 @@
 
 <h2 id="how">How</h2>
 
-<h3 id="create-one">Create One</h3>
+<h3 id="create-model">Create Model</h3>
 
 <p>Define a Ruby class that inherits from the ActiveRecord::Base class. This class will represent a table in your database, and the properties of the class will map to columns in the table. Here is an example:</p>
 
@@ -82,34 +83,34 @@
 <p>Then we can interact with database with this model:</p>
 
 <ul>
-  <li>Creating a new record</li>
-</ul>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'John'</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'john@example.com'</span><span class="p">)</span>
+  <li>create
+    <ul>
+      <li>Create a new record
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'John'</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'john@example.com'</span><span class="p">)</span>
 <span class="n">user</span><span class="p">.</span><span class="nf">save</span>
-</code></pre></div></div>
-
-<p>In this example, we create a new User record by creating a new instance of the User class and setting its properties. We then call the save method on the instance to save it to the database.</p>
-
-<ul>
-  <li>Updating a record</li>
-</ul>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'John'</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>read
+    <ul>
+      <li>Query records
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">age: </span><span class="mi">18</span><span class="o">..</span><span class="mi">35</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>update
+    <ul>
+      <li>Update a record
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'John'</span><span class="p">)</span>
 <span class="n">user</span><span class="p">.</span><span class="nf">email</span> <span class="o">=</span> <span class="s1">'new_email@example.com'</span>
 <span class="n">user</span><span class="p">.</span><span class="nf">save</span>
-</code></pre></div></div>
-
-<p>In this example, we find an existing User record by querying the database for a record with a name of ‘John’. We then update the email property of the record and save the changes to the database.</p>
-
-<ul>
-  <li>Querying records</li>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
 </ul>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">age: </span><span class="mi">18</span><span class="o">..</span><span class="mi">35</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>In this example, we use the where method on the User class to query the database for all User records with an age between 18 and 35. The result of the query is a collection of User instances that match the criteria.</p>
 
 <h3 id="relation">relation</h3>
 
