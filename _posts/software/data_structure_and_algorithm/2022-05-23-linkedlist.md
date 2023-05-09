@@ -579,6 +579,10 @@ function parseSteps(answer) {
 }
 ```
 
+## TODO
+
+* linkedlist
+
 ## reference
 
 cracking the coding interview

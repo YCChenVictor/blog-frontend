@@ -15,16 +15,11 @@ publish: true
 
 ### Setup
 
-There should be a rails application with
+There should be a rails application with User model and table. Create a new Rails application using the rails new command or use an existing application. For more information, please refer to [rails]({{site.baseurl}}/rails/2023/01/01/rails.html).
 
-* User model
-* User table
+### Devise
 
-Create a new Rails application using the rails new command or use an existing application. For more information, please refer to [rails]({{site.baseurl}}/rails/2023/01/01/rails.html).
-
-### Implement authentication
-
-Rails provides a powerful authentication solution called Devise. You can add Devise to your application by following the installation instructions in the Devise documentation. Devise handles many authentication-related tasks such as user registration, login, and password reset.
+The powerful authentication solution for rails. You can add Devise to your application by following the installation instructions in the Devise documentation. Devise handles many authentication-related tasks such as user registration, login, and password reset. For more information, please refer to [devise]({{site.baseurl}}/rails/2021/03/19/Devise.html)
 
 ### Customize the views
 

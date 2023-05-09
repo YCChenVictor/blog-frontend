@@ -37,6 +37,44 @@ JavaScript is used in conjunction with popular web development frameworks like R
 
 ## How?
 
+### ES
+
+ES stands for ECMAScript, which is a standardized scripting language specification that is used to implement JavaScript. ECMAScript is maintained by the European Computer Manufacturers Association (ECMA) and is designed to be a cross-platform, vendor-neutral standard that can be used by multiple web browsers and other environments that support JavaScript.
+
+### Class Form
+
+After ECMAScript 2015 (ES6)
+
+```javascript
+// Parent class
+class ParentClass {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log('Hello, ' + this.name + '!');
+  }
+}
+
+// Child class
+class ChildClass extends ParentClass {
+  constructor(name, age) {
+    super(name);
+    this.age = age;
+  }
+
+  introduce() {
+    console.log('My name is ' + this.name + ' and I am ' + this.age + ' years old.');
+  }
+}
+
+// Usage
+const child = new ChildClass('Alice', 25);
+child.greet();      // Output: Hello, Alice!
+child.introduce();  // Output: My name is Alice and I am 25 years old.
+```
+
 ### Execution Order
 
 * Normally, from top to bottom
@@ -47,6 +85,8 @@ JavaScript is used in conjunction with popular web development frameworks like R
   * Secondly, any module-level statements, such as variable declarations or function definitions, will be processed. These statements can reference any imported modules, since the import statements have already been processed.
   * Finally, any top-level export statements will be processed. These statements determine which functions, objects, or variables from the module should be exposed to other modules that import it.
   * Modules are loaded and executed asynchronously, so the order in which they are loaded and executed may not correspond to the order in which they appear in the code. This can lead to issues with circular dependencies, where two or more modules depend on each other, but neither can be loaded until the other has been loaded. To avoid circular dependency issues, it's important to design module dependencies carefully and avoid circular references wherever possible.
+
+### 
 
 ### datatype
 
@@ -274,10 +314,6 @@ fetchData().then((data) => processData(data));
 ### AJAX
 
 [AJAX]({{site.baseurl}}/javascript/2021/06/19/AJAX.html)
-
-### ES
-
-ES stands for ECMAScript, which is a standardized scripting language specification that is used to implement JavaScript. ECMAScript is the official name for the scripting language that is commonly referred to as "JavaScript". ECMAScript is maintained by the European Computer Manufacturers Association (ECMA) and is designed to be a cross-platform, vendor-neutral standard that can be used by multiple web browsers and other environments that support JavaScript. Each new version of ECMAScript (ES6, ES7, ES8, etc.) introduces new features and updates to the language, which are implemented by web browsers and other environments to provide developers with new tools and capabilities for building modern web applications.
 
 ### JSON
 

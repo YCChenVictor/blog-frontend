@@ -69,7 +69,7 @@ A hash table is a data structure that provides fast access to values based on a 
 
 ### sorting
 
-[sorting]({{site.baseurl}}/dsa/2023/03/09/sorting.html)
+Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting]({{site.baseurl}}/dsa/2023/03/09/sorting.html).
 
 ## what
 
