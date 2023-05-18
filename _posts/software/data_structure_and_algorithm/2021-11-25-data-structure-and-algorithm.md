@@ -65,7 +65,7 @@ A hash table is a data structure that provides fast access to values based on a 
 
 ### dynamic programming
 
-[dynamic programming]({{site.baseurl}}/dsa/2023/03/24/dynamic-programming.html)
+Dynamic programming is often applied to problems with recursive sequences of sub-problems, such as graph shortest path and longest common subsequence, by solving each subproblem only once and efficiently addressing large-scale optimization problems. The concept involves breaking down optimization problems into smaller sub-problems, storing and reusing their solutions to avoid redundant computations. For more information, please refer to [dynamic programming]({{site.baseurl}}/dsa/2023/03/24/dynamic-programming.html)
 
 ### sorting
 
