@@ -40,110 +40,111 @@ Linked lists can dynamically grow and shrink in size during program execution, w
 ### Singly Linked List
 
 * coding example:
-
-```javascript
-// Define a Node class for the elements of the linked list
-class Node {
-  constructor(data, next = null) {
-    this.data = data;
-    this.next = next;
-  }
-}
-
-// Define the LinkedList class
-class LinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-    this.length = 0;
-  }
-
-  // Add a new element to the end of the list
-  prepand(value) {
-    const newNode = new Node(value);
-
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      newNode.next = this.head;
-      this.head = newNode;
+  ```javascript
+  // Define a Node class for the elements of the linked list
+  class Node {
+    constructor(data, next = null) {
+      this.data = data;
+      this.next = next;
     }
-    
-    this.length++;
   }
-
-  append(value) {
-    const newNode = new Node(value);
-
-    if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail.next = newNode;
-      this.tail = newNode;
+  
+  // Define the LinkedList class
+  class LinkedList {
+    constructor() {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
     }
-    
-    this.length++;
-  }
-
-  // Get an element at a specified index
-  get(index) {
-    if (index < 0 || index >= this.length) {
-      return null;
-    }
-    let current = this.head;
-    for (let i = 0; i < index; i++) {
-      current = current.next;
-    }
-    return current.data;
-  }
-
-  // Remove an element at a specified index
-  remove(index) {
-    if (index < 0 || index >= this.length) {
-      return null;
-    }
-    let current = this.head;
-    if (index === 0) {
-      this.head = current.next;
-      if (this.length === 1) {
-        this.tail = null;
+  
+    prepand(value) { // Add a new element to the head of the list
+      const newNode = new Node(value);
+  
+      if (!this.head) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        newNode.next = this.head;
+        this.head = newNode;
       }
-    } else {
-      let previous = null;
+
+      this.length++;
+    }
+  
+    append(value) { // Add a new element to the tail of the list
+      const newNode = new Node(value);
+  
+      if (!this.head) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        this.tail.next = newNode;
+        this.tail = newNode;
+      }
+      
+      this.length++;
+    }
+  
+    get(index) { // Get an element at a specified index, index starts from 0
+      if (index < 0 || index >= this.length) {
+        return null;
+      }
+      let current = this.head;
       for (let i = 0; i < index; i++) {
-        previous = current;
         current = current.next;
       }
-      previous.next = current.next;
-      if (index === this.length - 1) {
-        this.tail = previous;
-      }
+      return current.data;
     }
-    this.length--;
-    return current.data;
+
+    remove(index) { // Remove an element at a specified index
+      if (index < 0 || index >= this.length) {
+        return null;
+      }
+      let current = this.head;
+      if (index === 0) {
+        this.head = current.next;
+        if (this.length === 1) {
+          this.tail = null;
+        }
+      } else if (index === this.length - 1) {
+        this.tail = previous;
+      } else {
+        let previous = null;
+        for (let i = 0; i < index; i++) {
+          previous = current;
+          current = current.next;
+        }
+        previous.next = current.next;
+      }
+      this.length--;
+      return current.data;
+    }
+
+    insert()
   }
-}
-
-// Example usage
-const list = new LinkedList();
-list.add('a');
-list.add('b');
-list.add('c');
-console.log(list.get(1)); // Output: "b"
-list.remove(1);
-console.log(list.get(1)); // Output: "c"
-```
-
-* create an element: O(1)
-  * adding a new element to a LinkedList involves creating a new node and updating the head pointer to point to the new node, which can be done in constant time
-* read an element: O(n)
-  * In singly-linked list, the time complexity of read is O(n) in the worst case, where n is the length of the list Unlike an array, where elements are stored contiguously in memory and can be accessed in constant time using an index, in a linked list, we have to traverse the list from the head node to the desired index, which takes linear time proportional to the size of the list.
-* update an element: O(n)
-  * In a singly-linked list, the time complexity of update (i.e., modifying an element by index) is also O(n) in the worst case, where n is the length of the list. This is because like accessing an element, we need to traverse the list from the head node to the desired index to update it. Once we have reached the node, updating it takes constant time, i.e., O(1).
-* delete an element: O(n)
-  * In a singly-linked list, the time complexity of delete (i.e., removing an element by index) is also O(n) in the worst case, where n is the length of the list. This is because we need to traverse the list from the head node to the node immediately before the one we want to delete, which takes linear time proportional to the size of the list. Once we have found the node before the one we want to delete, we can remove the target node in constant time, i.e., O(1), by updating its predecessor's next pointer to skip over the target node.
+  
+  // Example usage
+  const list = new LinkedList();
+  list.add('a');
+  list.add('b');
+  list.add('c');
+  console.log(list.get(1)); // Output: "b"
+  list.remove(1);
+  console.log(list.get(1)); // Output: "c"
+  ```
+* Time complexity
+  * Create an element on head (prepand): O(1)
+    * There is no traverse in this operation, it will create a node and update the pointer, so time complexity is O(1)
+  * Create an element on head (append): O(1) (2023/05/18, TBC)
+    * 
+  * Insert an element:
+    * 
+  * Read an element: O(n)
+    * In singly-linked list, the time complexity of read is O(n) in the worst case, where n is the length of the list Unlike an array, where elements are stored contiguously in memory and can be accessed in constant time using an index, in a linked list, we have to traverse the list from the head node to the desired index, which takes linear time proportional to the size of the list.
+  * Update an element: O(n)
+    * In a singly-linked list, the time complexity of update (i.e., modifying an element by index) is also O(n) in the worst case, where n is the length of the list. This is because like accessing an element, we need to traverse the list from the head node to the desired index to update it. Once we have reached the node, updating it takes constant time, i.e., O(1).
+  * Delete an element: O(n)
+    * In a singly-linked list, the time complexity of delete (i.e., removing an element by index) is also O(n) in the worst case, where n is the length of the list. This is because we need to traverse the list from the head node to the node immediately before the one we want to delete, which takes linear time proportional to the size of the list. Once we have found the node before the one we want to delete, we can remove the target node in constant time, i.e., O(1), by updating its predecessor's next pointer to skip over the target node.
 
 * spec
 

@@ -37,7 +37,7 @@ It is a data structure in programming that stores a collection of elements. Thes
 
 ### Linkedlist
 
-A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linkedlist]({{site.baseurl}}/dsa/2022/05/23/linkedlist.html)
+A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linkedlist]({{site.baseurl}}/dsa/2022/05/23/linkedlist.html).
 
 ### Stack
 
