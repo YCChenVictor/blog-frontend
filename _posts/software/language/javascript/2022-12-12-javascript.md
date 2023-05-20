@@ -336,8 +336,10 @@ function MyService() {
 }
 ```
 
-### Document Object Model
+### Document Object Model (DOM)
 
+* Url
+  * Get current url: `window.location.href`
 * redirect
 * open new tab
   ```javascript
