@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-12-31'
 categories: node
-note: 把 task 的 login 貼過來
+note:
 mathjax:
 mermaid:
 p5:
@@ -15,17 +15,7 @@ publish: true
 
 ## Introduction
 
-This article describes how to implement sign up and log in with
-
-* express-session
-* passport (For login authentication)
-  * middleware for authentication
-  * multiple authentication strategies
-    * Local Authentication (username and password)
-    * OAuth (e.g. Facebook, Google)
-    * OpenID Connect
-  * improve the security
-* bcrypt (encode password and store it in database, so attackers still cannot attack even they access database)
+This article provides a step-by-step guide on implementing sign up and log in functionality in your Node.js application using express-session for session management and passport for login authentication. It covers the usage of middleware for authentication, supports multiple authentication strategies including Local Authentication, OAuth (e.g., Facebook, Google), and OpenID Connect, and demonstrates how to enhance security by utilizing bcrypt to encode and store passwords securely in the database, ensuring protection against potential attackers.
 
 ## Why?
 
@@ -33,82 +23,52 @@ Validate whether this user can use our product
 
 ## How?
 
-### server
+### Database
 
-* body-parser
-* express-session
-* passport
+Refer to [database]
+
+### Server
 
 ```javascript
 ...
-
-// parse body
-const bodyParser = require('body-parser')
-app.use(bodyParser.json())
-
-// session
+// session: used to manage and maintain session data, providing a way to store and retrieve user-specific information across multiple requests.
 const session = require('express-session');
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'any secret',
   resave: true,
   saveUninitialized: true,
 }));
 
-// passport
+// passport: used in Node.js applications with the 'passport' middleware to handle user authentication using username and password credentials stored locally.
 const passport = require('./middleware/passport.js');
 app.use(passport.initialize());
-
 ...
-
 module.exports = app
 ```
 
-### API
+### User Model
 
-* signup
-  * frontend post email and password
-  * backend encode password with bcrypt and store email and encoded password in database
-  * return jwt token
-* login
-  * frontend post email and password
-  * backend find user with email
-  * backend decode password
-  * return jwt token
+Given we setup the [model](2022-01-20-model) environment, create a file `models/user.js` with
 
 ```javascript
-const passport = require('../middleware/passport.js');
-const User = require('../database/models/user.js');
-const jwt = require('jsonwebtoken');
+'use strict';
 
-module.exports = (app) => {
-  app.post('/signup', async (req, res, next) => { // create
-    const email = req.body.params.username
-    const password = req.body.params.password
-    if (!email || !password) {
-      return res.status(401).json({ msg: 'Please enter all fields' });
-    }
+import Sequelize from 'sequelize';
+import sequelize from './index.js';
 
-    const user = await User.create({
-      email,
-      password
-    })
+const user = sequelize.define('user', {
+  email: {
+    type: Sequelize.STRING,
+  },
+  password: {
+    type: Sequelize.STRING
+  }
+})
 
-    const token = jwt.sign(user.email, 'secret_key');
-    res.json({ token: token });
-    res.end()
-  })
-
-  app.post(
-    '/login',
-    passport.authenticate('local'),
-    (req, res) => {
-      res.status(200).send({token: req.user.token});
-    }
-  );
-}
+export default user
 ```
 
-### passport middleware
+### Passport Middleware
 
 You can think `passport.js` as a middleware to check whether this user can enter the border of our app.
 
@@ -150,6 +110,59 @@ customizedPassport.deserializeUser(function(user, done) {
 
 module.exports = customizedPassport
 ```
+
+### API
+
+* user story
+  * signup
+    * frontend post email and password
+    * backend encode password with bcrypt and store email and encoded password in database
+    * return jwt token
+  * login
+    * frontend post email and password
+    * backend find user with email
+    * backend decode password
+    * return jwt token
+* code example
+  ```javascript
+  import passport from '../middleware/passport.js'
+  import User from '../database/models/user.js'
+  import jwt from 'jsonwebtoken'
+  
+  const userAPIs = (app) => {
+    app.post('/signup', async (req, res, next) => {
+      const { email, password } = req.body.params; // Destructure email and password from req.body.params
+  
+      if (!email || !password) {
+        return res.status(401).json({ msg: 'Please enter all fields' });
+      }
+  
+      try {
+        const user = await User.create({
+          email,
+          password
+        });
+  
+        const token = jwt.sign({ email: user.email }, 'secret_key'); // Wrap the payload in an object
+        res.json({ token });
+      } catch (error) {
+        // Handle error during user creation
+        console.error(error);
+        res.status(500).json({ msg: 'An error occurred' });
+      }
+    });
+  
+    app.post('/login', passport.authenticate('local'), (req, res) => {
+      res.status(200).json({ token: req.user.token });
+    });
+  };
+  
+  export default userAPIs
+  ```
+* QA
+  ```bash
+  curl -d '{"key": "item"}' -H "Content-Type: application/json" -X POST https://any_existed_url.com/
+  ```
 
 ### spec
 

@@ -77,18 +77,7 @@ refer to [rails API]({{site.baseurl}}/rails/2022/02/05/routes.html)
 
 ### curl
 
-Just place the basic commands here because I usually use postman.
-
-```bash
-# create
-curl -H "Content-Type: application/json" -d "{\"name\": \"John Doe\"}" localhost:8080/api/students
-
-# read
-
-# update
-
-# delete
-```
+refer to [terminal commands]
 
 ### Jenkins API
 
