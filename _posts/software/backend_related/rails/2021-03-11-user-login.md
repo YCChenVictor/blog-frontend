@@ -1,10 +1,55 @@
 ---
 layout: post
-title: (Rails) User Login System
+title: 
 date: '2021-03-11'
 categories: rails
 note: session logout 為何需要兩個 route?
+publish: true
 ---
+
+## Introduction
+
+(TBC)
+
+## How
+
+### Setup
+
+There should be a rails application with User model and table. Create a new Rails application using the rails new command or use an existing application. For more information, please refer to [rails]({{site.baseurl}}/rails/2023/01/01/rails.html).
+
+### Devise
+
+The powerful authentication solution for rails. You can add Devise to your application by following the installation instructions in the Devise documentation. Devise handles many authentication-related tasks such as user registration, login, and password reset. For more information, please refer to [devise]({{site.baseurl}}/rails/2021/03/19/Devise.html)
+
+### Customize the views
+
+Devise generates views for authentication, but you may want to customize them to match your application's design. You can generate the Devise views using the following command:
+
+Copy code
+rails generate devise:views
+This will create a set of views that you can modify to suit your needs.
+
+Create routes: Define the necessary routes for user authentication in your config/routes.rb file. Devise provides convenient helper methods to generate these routes. For example, you can add the following line to enable user authentication:
+
+ruby
+Copy code
+devise_for :users
+Create navigation links: Add links to the login and registration pages in your application's layout file (app/views/layouts/application.html.erb or similar). You can use Devise's helper methods to generate these links. For example:
+
+erb
+Copy code
+<% if user_signed_in? %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'Login', new_user_session_path %>
+  <%= link_to 'Register', new_user_registration_path %>
+<% end %>
+Protect routes: If you have certain pages that should only be accessible to authenticated users, you can use Devise's authenticate_user! method as a before_action in your controllers. For example:
+
+ruby
+Copy code
+before_action :authenticate_user!, only: [:secret_page]
+Test your authentication system: Write tests to ensure that your authentication system is working correctly. Rails provides a testing framework (usually RSpec or Minitest) where you can define tests for user login, registration, and other authentication-related features.
 
 ### Structure Explanation
 
@@ -415,6 +460,10 @@ This method:
 Notice, the method name is `create` ; however, this method does not create anything at all.
 
 Then it will redirect to individual webpage.
+
+## What
+
+Give real examples
 
 ### Reference
 

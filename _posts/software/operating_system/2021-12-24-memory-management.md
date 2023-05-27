@@ -54,6 +54,27 @@ why memory management important?
 
 ## How?
 
+### Memory
+
+watch the following video [Pointers and dynamic memory - stack vs heap](https://www.youtube.com/watch?v=_8-ht2AKyH4)
+
+In computer science, memory can be broadly classified into two main categories: stack memory and heap memory.
+* Stack Memory
+  * Stack memory is a region of memory that is automatically managed by the compiler or the runtime environment.
+It is used to store local variables, function parameters, and function call information.
+Memory allocation and deallocation on the stack are done in a Last-In-First-Out (LIFO) manner, resembling a stack of items.
+Stack memory is limited in size and typically has a fixed size set at the beginning of a program.
+The allocation and deallocation of stack memory are fast and deterministic.
+Stack memory is automatically freed when a function call or block of code completes.
+* Heap Memory
+* Heap memory is a region of memory used for dynamic memory allocation.
+It is manually managed by the programmer, who is responsible for allocating and deallocating memory explicitly.
+Heap memory is generally used for storing dynamically created objects, such as objects created using the new keyword in languages like C++ or Java.
+Memory allocation and deallocation on the heap can be done in any order and at any time during the program's execution.
+Heap memory is larger in size compared to the stack and can grow or shrink dynamically.
+The allocation and deallocation of heap memory are relatively slower and less deterministic compared to the stack.
+To summarize, stack memory is used for managing local variables and function calls, and its allocation and deallocation are automatic and fast. On the other hand, heap memory is used for dynamic memory allocation, and its management requires explicit allocation and deallocation by the programmer. Heap memory is larger, can grow or shrink dynamically, but its allocation and deallocation are slower and less deterministic compared to the stack.
+
 Six famous methods: Fixed Partitioning, Dynamic Partitioning, Simple Paging, Simple Segmentation, Virtual-Memory Paging and VirtualMemory Segmentation
 
 ### Fixed Partitioning
@@ -73,6 +94,10 @@ Six famous methods: Fixed Partitioning, Dynamic Partitioning, Simple Paging, Sim
 
 
 ## Reference
+
+[Pointers and dynamic memory - stack vs heap](https://www.youtube.com/watch?v=_8-ht2AKyH4)
+
+[Stack vs Heap Memory](https://www.youtube.com/watch?v=gRwfHzeS-GM)
 
 [memory management](https://whatis.techtarget.com/definition/memory-management)
 

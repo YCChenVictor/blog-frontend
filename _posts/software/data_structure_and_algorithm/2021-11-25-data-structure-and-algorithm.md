@@ -37,7 +37,7 @@ It is a data structure in programming that stores a collection of elements. Thes
 
 ### Linkedlist
 
-A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linkedlist]({{site.baseurl}}/dsa/2022/05/23/linkedlist.html)
+A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linkedlist]({{site.baseurl}}/dsa/2022/05/23/linkedlist.html).
 
 ### Stack
 
@@ -65,11 +65,11 @@ A hash table is a data structure that provides fast access to values based on a 
 
 ### dynamic programming
 
-[dynamic programming]({{site.baseurl}}/dsa/2023/03/24/dynamic-programming.html)
+Dynamic programming is often applied to problems with recursive sequences of sub-problems, such as graph shortest path and longest common subsequence, by solving each subproblem only once and efficiently addressing large-scale optimization problems. The concept involves breaking down optimization problems into smaller sub-problems, storing and reusing their solutions to avoid redundant computations. For more information, please refer to [dynamic programming]({{site.baseurl}}/dsa/2023/03/24/dynamic-programming.html)
 
 ### sorting
 
-[sorting]({{site.baseurl}}/dsa/2023/03/09/sorting.html)
+Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting]({{site.baseurl}}/dsa/2023/03/09/sorting.html).
 
 ## what
 

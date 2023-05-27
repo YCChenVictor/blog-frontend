@@ -404,9 +404,37 @@ and override them with `!`
 </a>
 ```
 
+### Other
+
+* table
+  ```CSS
+  table {
+  border-collapse: collapse;
+  width: 100%;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  ```
+* code section
+  ```CSS
+  code {
+    @apply bg-gray-300;
+    @apply border-gray-500;
+    @apply p-0.5;
+    @apply text-sm;
+    @apply font-mono;
+    @apply whitespace-pre-wrap;
+    @apply break-words;
+    @apply max-w-4xl;
+  }
+  ```
+
 ## What
 
-
+Please check blog
 
 ## Reference
 

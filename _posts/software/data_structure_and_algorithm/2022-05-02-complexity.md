@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-05-02'
 categories: DSA
-note: 'to be continued'
+note:
 mathjax: true
 mermaid: true
 p5:
@@ -15,14 +15,14 @@ publish: true
 
 ## Introduction
 
-Complexity is a measure of the resources required to solve a problem or execute an algorithm.
+Complexity is a measure of the maximum resources required to solve a problem or execute an algorithm.
 
 * Time complexity refers to the amount of time or number of operations required to solve a problem or execute an algorithm. The goal of analyzing time complexity is to identify algorithms that are efficient and can solve problems within a reasonable amount of time.
 * Space complexity refers to the amount of memory or storage space required to solve a problem or execute an algorithm. The goal of analyzing space complexity is to identify algorithms that are efficient in terms of memory usage.
 
 ## Why?
 
-Basic data structure and algorithm knowledge is useful for problem solving. With this concept, we can evalute solutions to a problem before diving in.
+With concept of complexity, we can evaluate solutions to a problem before diving in.
 
 ## How?
 
@@ -101,6 +101,13 @@ Based on the defination, we know that the big O of
 * $$2x + 100$$ is $$2x$$ and also $$x$$
 * $$2x^2 + x$$ is $$x^2$$ because of $$ \exists \ a, b > 0 \ s.t \ ax^2 < 2x^2 + x < bx^2 \forall \ x>0$$
 
+That is, all the constant number can be ignored.
+
+* $$O(x + a) = O(x)$$, where a is constant
+* $$O(x - a) = O(x)$$, where a is constant
+* $$O(ax) = O(x)$$, where a is constant
+* $$O(x/a) = O(x)$$, where a is constant
+
 ### time complexity
 
 * Again, we use the definition of industry
@@ -108,38 +115,11 @@ Based on the defination, we know that the big O of
 
 #### Amortized Time
 
-* Description: In some data structures, individual operations can take significantly longer than others
-  * For example, adding an element to an array can take O(n) time if the array needs to be resized, but most additions take constant time O(1)
-* Solution: Considers the average time taken by a sequence of operations, rather than just by one single operation
-  * Amortized time complexity analysis involves dividing the total time taken by a sequence of operations by the number of operations. This gives us the average time taken per operation, which is a more useful measure of the data structure's performance than the worst-case time complexity of a single operation.
-  * Accounting method, which involves assigning a cost to each operation and using the cost to pay for future operations. For example, in an array with dynamic resizing, we could assign a cost of 1 to each add operation, and use the extra time taken by the occasional resize operation to pay for the cost of the future operations.
-* Example: add element to array
-  * code
-    ```javascript
-    function addToArray(array, element) {
-      if (array.length === array.capacity) {
-        const newCapacity = array.capacity * 2;
-        const newArray = new Array(newCapacity);
-        for (let i = 0; i < array.length; i++) {
-          newArray[i] = array[i];
-        }
-        array = newArray;
-        array.capacity = newCapacity;
-      }
-      array[array.length] = element;
-    }
-    ```
-  * The cost of each add operation is O(1), and the cost of each resize operation is O(n).
-  * calculation
-    ```javascript
-    const array = { capacity: 2, length: 0 };
-    addToArray(array, 1); // O(1)
-    addToarray(array, 2); // O(1)
-    addToArray(array, 3); // O(1 + 2 * 1)
+In certain data structures, the time complexity of specific operations may vary significantly, such as an array resizing during element addition taking O(n) time, yet most additions are constant time O(1), leading us to evaluate the average time taken by a sequence of operations rather than a single operation.
 
-    // O(1 + 1 + 1 + 2 * 1) = O(5)
-    // 5/3 = 1.67 => amortized time = O(1.67) = O(1)
-    ```
+* Amortized time complexity analysis involves dividing the total time taken by a sequence of operations by the number of operations. This gives us the average time taken per operation, which is a more useful measure of the data structure's performance than the worst-case time complexity of a single operation.
+* Accounting method, which involves assigning a cost to each operation and using the cost to pay for future operations. For example, in an array with dynamic resizing, we could assign a cost of 1 to each add operation, and use the extra time taken by the occasional resize operation to pay for the cost of the future operations.
+* Example: (TBC)
 
 ### space complexity
 

@@ -10,73 +10,48 @@ mermaid:
 p5:
 threeJS:
 anchor:
-publish:
+publish: true
 ---
 
 ## Introduction
 
-* Application: Dynamic programming is often used in problems where the solution can be expressed as a recursive sequence of sub-problems, such as finding the shortest path in a graph or the longest common subsequence of two strings. By solving each subproblem only once and storing its solution, dynamic programming algorithms can often solve large-scale optimization problems efficiently.
-* Solution: Solve optimization problems by breaking them down into smaller, simpler sub-problems and solving each subproblem only once.
-* Concept: The key idea behind dynamic programming is to store the solutions to sub-problems and reuse them when needed, rather than repeatedly recomputing the solutions
+(TBC)
 
 ## Why?
 
-The main advantage of dynamic programming is that it can often solve large-scale optimization problems efficiently. By breaking the problem down into smaller sub-problems and solving each subproblem only once, dynamic programming can avoid the repeated computations that would be necessary if the problem were solved using a brute-force approach.
-
-Dynamic programming is used in a wide variety of fields, including computer science, mathematics, engineering, economics, and operations research. It is particularly useful in problems related to optimization, such as finding the shortest path in a graph, scheduling tasks, or maximizing profits.
+Dynamic programming offers an efficient solution to large-scale optimization problems by breaking them into smaller sub-problems and avoiding repetitive computations, making it applicable across various disciplines including computer science, mathematics, engineering, economics, and operations research.
 
 ## How?
 
 ### fibonacci
 
+* concept
+  ```bash
+  f(n) = f(n - 1) + f(n - 2)
+  ```
 * recursive
-
-```javascript
-function fibonacci(n) {
-  const memo = {};
-  function fibonacciHelper(n) {
-    console.log(n)
-    console.log(memo)
-    if (n <= 1) {
-      return n;
-    } else if (n in memo) {
-      return memo[n];
-    } else {
-      memo[n] = fibonacciHelper(n-1) + fibonacciHelper(n-2);
-      return memo[n];
+  ```javascript
+  function fibonacci(n) {
+    const memo = {};
+    function fibonacciHelper(n) {
+      if (n <= 1) {
+        return n;
+      } else if (n in memo) {
+        return memo[n];
+      } else {
+        memo[n] = fibonacciHelper(n-1) + fibonacciHelper(n-2);
+        return memo[n];
+      }
     }
-  }
-  return fibonacciHelper(n);
-}
-
-console.log(fibonacci(10)); // Output: 55
-```
-
-### Maximum sub-array sum
-
-* Please return the sub array that has biggest sum
-* iterative
-
-```javascript
-function maxSubArraySum(arr) {
-  const dp = [];
-  dp[0] = arr[0];
-  let maxSum = dp[0];
-  
-  for (let i = 1; i < arr.length; i++) {
-    dp[i] = Math.max(arr[i], dp[i - 1] + arr[i]);
-    maxSum = Math.max(maxSum, dp[i]);
+    return fibonacciHelper(n);
   }
   
-  return maxSum;
-}
+  console.log(fibonacci(10)); // Output: 55
+  ```
 
-// Example usage:
-const array = [1, -3, 2, 1, -1];
-const result = maxSubArraySum(array); // Returns 3
-```
+### 0/1 Knapsack problem
 
-By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.
+
 
 ## What?
 
@@ -170,10 +145,46 @@ console.log(`Max profit: ${maxProfit}`);
 console.log(`Solution: ${solution.map(task => task.name).join(', ')}`);
 ```
 
+## Other
+
+### Maximum sub-array sum
+
+* Please return the sub array that has biggest sum
+* iterative
+
+```javascript
+function maxSubArraySum(arr) {
+  const dp = [];
+  dp[0] = arr[0];
+  let maxSum = dp[0];
+  
+  for (let i = 1; i < arr.length; i++) {
+    dp[i] = Math.max(arr[i], dp[i - 1] + arr[i]);
+    maxSum = Math.max(maxSum, dp[i]);
+  }
+  
+  return maxSum;
+}
+
+// Example usage:
+const array = [1, -3, 2, 1, -1];
+const result = maxSubArraySum(array); // Returns 3
+```
+
+By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.
+
 ## TODO
 
 * dynamic programming
   * longest increasing subsequence
   * 0/1 knapsack problem
+  * Shortest path algorithms:
+  * Longest common subsequence
+  * Matrix chain multiplication
+  * Edit distance
 
 ## Reference
+
+[0/1 Knapsack Problem Dynamic Programming](https://www.youtube.com/watch?v=8LusJS5-AGo)
+
+[Knapsack Problem](https://web.ntnu.edu.tw/~algo/KnapsackProblem.html)

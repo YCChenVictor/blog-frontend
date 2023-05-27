@@ -11,17 +11,39 @@ publish: true
 
 This article describes the concept of validation in model of rails.
 
-Types of validation:
-
-* frontend: validate with javascript when user input data
-* backend: after data sending to server, before inserting to database, validate it
-* database: validation in database
-
 ## Why
 
 To prevent any malfunction in database, we do validation while data inserting.
 
 ## How
+
+### Types
+
+* frontend: validate with javascript when user input data
+* backend: after data sending to server, before inserting to database, validate it
+* database: validation in database
+
+### Methods
+
+* Built-in validation helpers
+  * presence: Validates that the specified attributes are not empty.
+  * uniqueness: Validates that the specified attributes are unique.
+  * length: Validates the length of the specified attributes.
+  * format: Validates that the specified attributes match a specified regular expression pattern.
+  * numericality: Validates that the specified attributes are numeric.
+* code example:
+  ```ruby
+  class User < ApplicationRecord
+    validates :name, presence: true, length: { minimum: 2 }
+    validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/ }
+    validates :age, numericality: { only_integer: true, greater_than: 0, less_than: 150 }
+  end
+  ```
+* If any of these validations fail, Rails will prevent the model from being saved to the database and add an error message to the corresponding attribute.
+* It's important to note that validations only apply when creating or updating records through Active Record. If you're updating records through SQL, validations won't be checked.
+* If you're performing bulk updates, such as with update_all, validations won't be checked either.
+
+### Source Code
 
 Actually the code is pretty straight forward. It will slice the attributes and loop through them to validate with validators.
 
@@ -51,11 +73,9 @@ def validates(*attributes)
 end
 ```
 
-### skip validation
+### Skip Validation
 
-How rails design skip validations? TBC
-
-### Not all method will be validated in model
+How rails design skip validations?
 
 for example, the methods: create, create!, save, save!, update, update!
 
@@ -82,9 +102,9 @@ a1 = Article.new
 a1.save
 ```
 
-Then
+Then it cannot be saved
 
-<img class='w-1/3' src="/assets/img//1__zKw5dFtttxNPnjIC22Y6TQ.png" alt="">
+<img class='w-1/3' src="{{site.baseurl}}/assets/img/a1_cannot_be_saved.png" alt="">
 
 Then we can check the error message with
 
@@ -94,11 +114,9 @@ a1.errors.full_messages
 
 It means we must assign title while creating article.
 
-<img class='w-1/2' src="/assets/img//1__nI1t__NAXWIweoRiZM8jWRA.png" alt="">
+<img class='w-1/2' src="{{site.baseurl}}/assets/img/a1_cannot_be_saved_full.png" alt="">
 
 ### example: customized validator
-
-TBC
 
 For example, if we want the article title to start with `ruby`,
 

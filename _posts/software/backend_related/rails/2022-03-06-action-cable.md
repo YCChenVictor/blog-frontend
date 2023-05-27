@@ -4,7 +4,7 @@ title:
 date: '2022-03-06'
 categories: rails
 note: going to connect to overview.md
-publish:
+publish: true
 ---
 
 ## Introduction

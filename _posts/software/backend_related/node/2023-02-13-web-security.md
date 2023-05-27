@@ -39,7 +39,7 @@ const cors = require('./middleware/cors.js');
 app.use(cors);
 
 // API
-const api = require('./api/api_summary.js');
+const api = require('./apis/api_summary.js');
 if (process.env.NODE_ENV === 'development') {
   app.listen(5000, () => {
     api(app)

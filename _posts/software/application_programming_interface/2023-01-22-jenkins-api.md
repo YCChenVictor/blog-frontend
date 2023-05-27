@@ -150,21 +150,18 @@ request(options, (error, response, body) => {
 
 ## What?
 
-give an example
-
-## Other
-
 TODO: try it in the future. The problem is I cannot create job through JSON with its API.
 
 ```javascript
 const axios = require('axios');
-const jenkinsCreateJob = require('../services/jenkinsCreateJob.js')
+const jenkinsCreateJob = require('../services/jenkinsCreateJob.js');
 
 module.exports = (app) => {
   app.post('/addTask', async (req, res) => {
     // post a job with config.xml
     // update build with DSL
   })
+
   app.post('/createJob', async (req, res) => { // create (this should be only create job and should add another api to update DSL)
     const pipeline = ''
 
