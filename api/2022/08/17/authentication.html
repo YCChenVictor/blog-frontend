@@ -65,7 +65,28 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="structure">Structure</h3>
+<h3 id="json-web-tokens-jwt">JSON Web Tokens (JWT)</h3>
+
+<p>JWT is a self-contained token that securely transmits information between parties as a JSON object. It consists of three parts: a header, a payload, and a signature.</p>
+<ul>
+  <li>Header contains information about the token</li>
+  <li>Payload contains the claims (user information, expiration time, etc.)</li>
+  <li>Signature ensures the integrity of the token. The server validates the token’s signature to verify its authenticity.</li>
+</ul>
+
+<p>The steps of JWT:</p>
+
+<ol>
+  <li>Claims: JWT consists of a set of claims encoded as a JSON object. These claims can include information about the user, such as the user’s name, ID, and roles.</li>
+  <li>Encoding: The JSON object is then Base64Url encoded to produce a compact string, which is the JWT.</li>
+  <li>Signature: To ensure that the information in the JWT has not been tampered with, a signature is generated using a secret key shared between the parties. The signature is calculated over the encoded JWT and is appended to it, separated by a period.</li>
+  <li>Transmission: The JWT is then sent from the client to the server in the <strong>Authorization</strong> header of an HTTP request, usually as a Bearer Token.</li>
+  <li>Verification: On the server, the signature is verified using the shared secret key, and if the signature is valid, the information in the JWT is trusted and can be used to perform authorized actions.</li>
+</ol>
+
+<h3 id="basic-authentication">Basic Authentication</h3>
+
+<p>Basic Authentication involves sending the API credentials (username and password) with every request. The credentials are encoded in Base64 and sent in the request headers. However, this method is not considered secure for APIs because the credentials are sent with every request and could be intercepted if the connection is not encrypted.</p>
 
 <p>Given we have the <a href="/blog/internet/2021/04/09/http.html">concept of HTTP</a>, client sent requests to server with key information in headers, including <code class="language-plaintext highlighter-rouge">Authorization</code> with form such as</p>
 
@@ -73,8 +94,6 @@
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">Basic</code> means the method of authentication and <code class="language-plaintext highlighter-rouge">QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code> is encoded on client side and going to be decoded on server side to check authorization.</p>
-
-<h3 id="basic">Basic</h3>
 
 <p>For example, given <code class="language-plaintext highlighter-rouge">username = Aladdin</code> and <code class="language-plaintext highlighter-rouge">password = open sesame</code>, the encoding of <code class="language-plaintext highlighter-rouge">Aladdin:open sesame</code> in Base64 is <code class="language-plaintext highlighter-rouge">YWxpY2U6c3VwZXJtYW4=</code> and client will send request with authorization in header:</p>
 
@@ -99,33 +118,17 @@ WWW-Authenticate: Basic <span class="nv">realm</span><span class="o">=</span><sp
   </li>
 </ul>
 
-<h3 id="digest">digest</h3>
+<h3 id="token-based-authentication">Token-Based Authentication</h3>
 
-<p>to be continued</p>
+<p>Token-based authentication involves exchanging credentials (username and password) for a token from the server. This token is then used to authenticate subsequent requests. Tokens can be stored on the client-side (e.g., local storage or cookies) and sent with each request in the headers. Tokens are typically long, randomly generated strings and can have an expiration time, providing better security.</p>
 
-<h3 id="oauth">OAuth</h3>
+<h3 id="other">other</h3>
 
-<p>to be continued</p>
+<p>API Keys:
+API keys are simple, unique strings that are used to authenticate requests. The API key is typically included in the request headers or as a query parameter. The server verifies the validity of the key before processing the request. API keys are easy to implement but provide a lower level of security as they can be compromised if not handled properly.</p>
 
-<h3 id="bearer">Bearer</h3>
-
-<p>to be continued</p>
-
-<h3 id="jwt">JWT</h3>
-
-<p>JSON Web Tokens (JWT) are a compact, URL-safe means of representing claims to be transferred between two parties. JWT is often used to authenticate users and pass information about them between systems, especially in stateless systems like single-page applications and RESTful APIs.</p>
-
-<p>The steps of JWT:</p>
-
-<ol>
-  <li>Claims: JWT consists of a set of claims encoded as a JSON object. These claims can include information about the user, such as the user’s name, ID, and roles.</li>
-  <li>Encoding: The JSON object is then Base64Url encoded to produce a compact string, which is the JWT.</li>
-  <li>Signature: To ensure that the information in the JWT has not been tampered with, a signature is generated using a secret key shared between the parties. The signature is calculated over the encoded JWT and is appended to it, separated by a period.</li>
-  <li>Transmission: The JWT is then sent from the client to the server in the <strong>Authorization</strong> header of an HTTP request, usually as a Bearer Token.</li>
-  <li>Verification: On the server, the signature is verified using the shared secret key, and if the signature is valid, the information in the JWT is trusted and can be used to perform authorized actions.</li>
-</ol>
-
-<p>In conclusion, JWT is a secure and efficient way of transmitting information between parties. The compact format and digital signature of JWT make it an ideal choice for authentication and authorization in modern web applications.</p>
+<p>OAuth 2.0:
+OAuth 2.0 is a widely adopted industry-standard protocol for authentication and authorization. It allows users to grant limited access to their resources on one website (called the “resource server”) to another website or application (called the “client”) without sharing their credentials. OAuth 2.0 involves obtaining an access token from the authorization server and using that token to make authenticated requests to the API.</p>
 
 <h2 id="what">What?</h2>
 

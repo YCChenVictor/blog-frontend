@@ -12,7 +12,9 @@ const NodeGraph = () => {
   };
 
   const handleNodeClick = (node) => {
-    const baseUrl = 'http://localhost:4000' // going to import from site.url
+    const url = window.location.href
+    const pathname = window.location.pathname
+    const baseUrl = url.replace(pathname, "");
     window.open(baseUrl + node.url, '_blank').focus();
   }
 
@@ -51,7 +53,7 @@ const NodeGraph = () => {
       <ForceGraph2D
         ref={forceRef}
         graphData={{ nodes, links }}
-        width={window.innerWidth}
+        width={document.getElementById("node-graph").offsetWidth - 48}
         height={650}
         nodeRelSize={5}
         linkDirectionalArrowRelPos={1}

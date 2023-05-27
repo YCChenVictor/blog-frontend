@@ -82,9 +82,26 @@
 <ul>
   <li>Web application
     <ul>
-      <li>Plan and Design: <a href="">Plan and design</a> the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.</li>
+      <li>Plan and Design: <a href="">Plan and design</a> the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.
+        <ul>
+          <li>Server-side rendering
+            <ul>
+              <li>Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility</li>
+              <li>Concept: Generates the HTML content on the server and sending it to the client’s web browser for display</li>
+              <li>Example: rails</li>
+            </ul>
+          </li>
+          <li>Client-side rendering with a separation of concerns
+            <ul>
+              <li>Advantage: This approach offers a more interactive and responsive user experience since the client can manipulate the DOM and fetch data asynchronously without full page reloads.</li>
+              <li>Concept: the server primarily serves static assets (HTML, CSS, JavaScript), and the web application is responsible for rendering the content dynamically on the client-side.</li>
+              <li>Example: React + Node</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
       <li>Develop: Write the code for your web application, including the frontend (user interface) and the backend (server-side logic). This may involve using frameworks and tools such as <a href="/blog/react/2021/06/13/react.html">React</a>, <a href="">Vue.js</a>, Angular, <a href="/blog/node/2022/12/30/node.html">Node.js</a>, or <a href="/blog/rails/2023/01/01/rails.html">Ruby on Rails</a>, depending on your programming language of choice.</li>
-      <li>Deploy and Maintain: [Deploy] your web application to a web server and maintain it by regularly updating it with bug fixes and <a href="/blog/web-security/2022/08/30/web-security.html">security</a> patches. This may also involve <a href="">scaling</a> the application to handle increased traffic or integrating it with other systems or APIs.</li>
+      <li>Deploy and Maintain: [Deploy] your web application to a web server and maintain it by regularly updating it with bug fixes and <a href="/blog/web-security/2022/08/30/web-security.html">security</a> patches. This may also involve <a href="">scaling</a> the application to handle increased traffic or integrating it with other systems or <a href="/blog/api/2021/02/18/application-programming-interface.html">APIs</a>.</li>
     </ul>
   </li>
   <li>Non-web application</li>
@@ -93,6 +110,92 @@
 <h3 id="embedded-software">Embedded software</h3>
 
 <p>This type of software is designed to control and manage hardware devices and systems, and is often built into the devices themselves. Examples include the software that controls a car’s engine, a digital camera’s image processing, or a smart thermostat’s temperature control.</p>
+
+<h3 id="concepts">Concepts</h3>
+
+<p><a href="/blog/dsa/2021/11/25/data-structure-and-algorithm.html">Data Structures and Algorithms (DSA)</a> are essential foundations in software development, providing the tools and techniques to organize and manipulate data efficiently, optimize code performance, and solve complex problems in a systematic and scalable manner. Mastery of DSA enables developers to design robust software solutions, improve algorithmic efficiency, and create optimized code for various applications and domains.</p>
+
+<h4 id="bit">Bit</h4>
+
+<p>Bit manipulation involves performing operations on individual bits within a binary representation of data.</p>
+
+<ul>
+  <li>Bitwise AND (&amp;)
+    <ul>
+      <li>This operation compares corresponding bits from two numbers and returns a new number where each bit is set if and only if the corresponding bits in both numbers are also set.</li>
+      <li>table
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 &amp; 0 <span class="o">=</span> 0
+0 &amp; 1 <span class="o">=</span> 0
+1 &amp; 0 <span class="o">=</span> 0
+1 &amp; 1 <span class="o">=</span> 1
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Bitwise OR (</td>
+          <td>)</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>This operation compares corresponding bits from two numbers and returns a new number where each bit is set if either of the corresponding bits in the input numbers is set.</li>
+      <li>table
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 | 0 <span class="o">=</span> 0
+0 | 1 <span class="o">=</span> 1
+1 | 0 <span class="o">=</span> 1
+1 | 1 <span class="o">=</span> 1
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Bitwise XOR (^):
+    <ul>
+      <li>This operation compares corresponding bits from two numbers and returns a new number where each bit is set if the corresponding bits in the input numbers are <strong>different</strong>.</li>
+      <li>table
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 ^ 0 <span class="o">=</span> 0
+0 ^ 1 <span class="o">=</span> 1
+1 ^ 0 <span class="o">=</span> 1
+1 ^ 1 <span class="o">=</span> 0
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Bitwise NOT (~):
+    <ul>
+      <li>This operation inverts all the bits of a number. It flips each 0 to 1 and each 1 to 0.</li>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">42</span> <span class="c1">// binary: 00101010</span>
+<span class="kd">let</span> <span class="nx">notX</span> <span class="o">=</span> <span class="o">~</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// binary: 11010101</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notX</span><span class="p">);</span>  <span class="c1">// Output: -43 (in decimal)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Left shift («)
+    <ul>
+      <li>This operation shifts the bits of a number to the left by a specified number of positions. It is equivalent to multiplying the number by 2 raised to the power of the shift amount. For example, x « n shifts the bits of x n positions to the left.</li>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>  <span class="c1">// binary: 00101010</span>
+<span class="kd">let</span> <span class="nx">shifted</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// binary: 10101000</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shifted</span><span class="p">);</span>  <span class="c1">// Output: 168 (in decimal)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Right shift (»): This operation shifts the bits of a number to the right by a specified number of positions. It is equivalent to dividing the number by 2 raised to the power of the shift amount. For example, x » n shifts the bits of x n positions to the right.</p>
+
+<p>Bit manipulation techniques:</p>
+
+<p>Setting a bit: To set a particular bit in a number, you can use the bitwise OR operator with a number that has only that bit set and all other bits cleared. For example, to set the 3rd bit of a number x, you can use the expression x |= (1 « 2), where 2 represents the 0-based index of the bit you want to set.
+Clearing a bit: To clear a particular bit in a number, you can use the bitwise AND operator with a number that has all bits set except for the bit you want to clear. For example, to clear the 4th bit of a number x, you can use the expression x &amp;= ~(1 « 3).
+Toggling a bit: To toggle a particular bit in a number (i.e., flip its value), you can use the bitwise XOR operator with a number that has only that bit set and all other bits cleared. For example, to toggle the 1st bit of a number x, you can use the expression x ^= (1 « 0).
+Checking if a bit is set: To check if a specific bit is set in a number, you</p>
 
 <h2 id="what">What?</h2>
 

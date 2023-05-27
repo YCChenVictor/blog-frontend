@@ -69,13 +69,7 @@
     <h1 class='text-center mt-6 mb-6'>tree</h1>
     <h2 id="introduction">Introduction</h2>
 
-<ul>
-  <li>A tree is composed of nodes.</li>
-  <li>Each tree has a root node.</li>
-  <li>Each node has zero or more child nodes.</li>
-  <li>The data stored in each node has any datatype.</li>
-  <li>Three type of traversals: inorder, preorder, postorder</li>
-</ul>
+<p>(To be continued)</p>
 
 <h3 id="types-of-tree">types of tree</h3>
 
@@ -113,12 +107,13 @@
     id6((9)) --&gt; id9((5))
     id6((9)) --&gt; STOP2[ ]
 </div>
+    <ul>
+      <li>Self-balancing binary search tree: Balance means that the tree remains relatively symmetric and prevents it from becoming skewed or heavily imbalanced.</li>
+      <li>Complete binary tree: Complete means that except last level, all levels’ node has 0 or 2 children.</li>
+      <li>Full binary tree: Full means every node has 0 or 2 children.</li>
+      <li>Perfect binary tree: Perfect means all nodes have two children and all leaves are at the same level</li>
+    </ul>
   </li>
-  <li>balanced tree</li>
-  <li>unbalanced tree</li>
-  <li>complete binary tee</li>
-  <li>full binary tree</li>
-  <li>perfect binary tree</li>
 </ul>
 
 <h3 id="types-of-traversal">types of traversal</h3>
@@ -147,7 +142,7 @@
 <ul>
   <li>visit (return the value of current node)</li>
   <li>left (traverse to the left node)</li>
-  <li>right (traverse to the right)</li>
+  <li>right (traverse to the right node)</li>
 </ul>
 
 <p>After each traverse, redo it from begin</p>
@@ -159,6 +154,14 @@
 </ul>
 
 <p>Tips: for example, in inorder traversal, the tree with root 7 &gt; root 1 &gt; tree with root 9, so it will traverse the nodes of tree with root 7 first then root 1 then tree with root 9.</p>
+
+<ul>
+  <li>A tree is composed of nodes.</li>
+  <li>Each tree has a root node.</li>
+  <li>Each node has zero or more child nodes.</li>
+  <li>The data stored in each node has any datatype.</li>
+  <li>Three type of traversals: inorder, preorder, postorder</li>
+</ul>
 
 <h3 id="essential-structure">essential structure</h3>
 
@@ -210,7 +213,116 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="binary-search-tree">binary search tree</h3>
+<h3 id="binary-tree">Binary Tree</h3>
+
+<ul>
+  <li>diagram (the number of left node is not necessary smaller than the right node)
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        5
+      /   <span class="se">\</span>
+     3     8
+    / <span class="se">\ </span>  / <span class="se">\</span>
+   2   4 7   9
+</code></pre></div>    </div>
+  </li>
+  <li>code example
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Node</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./node.js</span><span class="dl">'</span><span class="p">)</span>
+  
+<span class="kd">class</span> <span class="nx">BinaryTree</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="nx">addNode</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// will use recursive</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">insertNode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="nx">inorderTraversal</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// L &gt; V &gt; R</span>
+    <span class="c1">// traverse(5) -&gt; [traverse(3), push(5), traverse(8)] -&gt; [2] -&gt; [traverse(2), push(3), traverse(4)], push(5), [traverse(7), push(8), traverse(9)]</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
+  
+    <span class="kd">function</span> <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  
+    <span class="nx">traverse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="nx">preorderTraversal</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// V &gt; L &gt; R</span>
+    <span class="c1">// traverse(5) -&gt; [push(5), traverse(3), traverse(8)] -&gt; [push(5), push(3), traverse(2), traverse(4), push(8), traverse(7), traverse(9)]</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
+  
+    <span class="kd">function</span> <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  
+    <span class="nx">traverse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">result</span>
+  <span class="p">}</span>
+  
+  <span class="nx">postorderTraversal</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// L &gt; R &gt; V</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
+  
+    <span class="kd">function</span> <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
+        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
+        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  
+    <span class="nx">traverse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">result</span>
+  <span class="p">}</span>
+    
+  <span class="nx">levelorderTraversal</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">]</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+  
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+  
+    <span class="k">while</span> <span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span>
+      <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+  
+      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  
+    <span class="k">return</span> <span class="nx">result</span>
+  <span class="p">}</span>
+  
+  <span class="nx">insertNode</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">,</span> <span class="nx">newNode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// there is no specific insertion method for binary tree</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+  
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">BinaryTree</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="binary-search-tree">Binary Search Tree</h3>
+
+<p>TODO: inherit from BinaryTree</p>
 
 <p>A Binary Search Tree (BST) is a data structure consisting of nodes with a value and two pointers to other nodes, known as the left and right child nodes. The values are organized to facilitate efficient search and insertion operations. To search or insert a value, we move left or right depending on whether the value is less or greater than the current node’s value. The efficiency of a BST depends on the balance of the tree, with a well-balanced tree providing faster operations than a poorly balanced one.</p>
 
@@ -648,6 +760,8 @@ Kth Largest Element in a BST</p>
 <p><a href="https://www.geeksforgeeks.org/difference-between-binary-tree-and-binary-search-tree/">Difference between Binary Tree and Binary Search Tree</a></p>
 
 <p><a href="https://www.geeksforgeeks.org/top-50-tree-coding-problems-for-interviews/">Top 50 Tree Coding Problems for Interviews</a></p>
+
+<p><a href="https://cs.stackexchange.com/questions/32397/is-there-a-difference-between-perfect-full-and-complete-tree">Is there a difference between perfect, full and complete tree?</a></p>
 
   </div>
 </div>

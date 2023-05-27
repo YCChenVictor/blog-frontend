@@ -65,64 +65,44 @@
 
 <h2 id="how">How?</h2>
 
-<ul>
-  <li>internal API
-    <ul>
-      <li>create app and then design the routes in it</li>
-      <li>also needs special way to consume internally</li>
-    </ul>
-  </li>
-  <li>external API
-    <ul>
-      <li>use axios to CRUD</li>
-    </ul>
-  </li>
-</ul>
-
 <h3 id="internal-api">internal API</h3>
 
-<h4 id="structure">structure</h4>
-
-<p>concept: create a directory, <code class="language-plaintext highlighter-rouge">api/</code> with API going to be imported in <code class="language-plaintext highlighter-rouge">app.js</code></p>
-
-<p>For example, <code class="language-plaintext highlighter-rouge">api/summary.js</code></p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
+<ul>
+  <li>Structure
+    <ul>
+      <li>Create a directory, <code class="language-plaintext highlighter-rouge">api/</code> with API going to be imported in <code class="language-plaintext highlighter-rouge">app.js</code></li>
+      <li>For example, <code class="language-plaintext highlighter-rouge">api/summary.js</code>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">)</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">)</span>
   <span class="p">})</span>
 <span class="p">}</span>
-</code></pre></div></div>
-
-<p>in <code class="language-plaintext highlighter-rouge">app.js</code>,</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+</code></pre></div>        </div>
+      </li>
+      <li>Use it. In <code class="language-plaintext highlighter-rouge">app.js</code>,
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
 <span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">)</span>
 <span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./routes_summary.js</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
-
+    
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
   <span class="p">...</span>
 <span class="p">})</span>
 <span class="p">...</span>
-</code></pre></div></div>
-
-<h5 id="req">req</h5>
-
-<p>The way to get request params</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">req</span><span class="p">.</span><span class="nx">query</span>
-</code></pre></div></div>
-
-<h5 id="res">res</h5>
-
-<p>The way to get response</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
-</code></pre></div></div>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Authentication
+    <ul>
+      <li>After we build the <a href="">signup login</a>, we can give authentication for users</li>
+      <li>After the user login, the app will give user token and user can use this token to do CRUD of some restricted URLs</li>
+    </ul>
+  </li>
+</ul>
 
 <h4 id="rest">REST</h4>
 
@@ -180,11 +160,60 @@
   <span class="p">});</span>
 </code></pre></div></div>
 
+<h4 id="youtube">Youtube</h4>
+
+<ul>
+  <li>Purpose: I want to manage my account’s subscription in a mathematical way</li>
+  <li>Repo: https://github.com/googleapis/google-api-ruby-client</li>
+  <li>Documentation: https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps#node.js</li>
+  <li>Quota (refresh every day): https://console.cloud.google.com/apis/api/youtube.googleapis.com/quotas</li>
+  <li>Steps
+    <ul>
+      <li>Install required package: <code class="language-plaintext highlighter-rouge">npm install googleapis</code></li>
+      <li>Get the Key
+        <ul>
+          <li>Start a project in <a href="https://console.cloud.google.com/apis/library/youtube.googleapis.com?project=mineral-balm-313306">console.cloud</a></li>
+          <li>Get the key in <a href="https://console.cloud.google.com/apis/api/youtube.googleapis.com/credentials?project=mineral-balm-313306">Service Detail</a></li>
+          <li>Put it in <code class="language-plaintext highlighter-rouge">dotenv</code></li>
+        </ul>
+      </li>
+      <li>Init <code class="language-plaintext highlighter-rouge">youtube</code>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">google</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">googleapis</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">youtube</span> <span class="o">=</span> <span class="nx">google</span><span class="p">.</span><span class="nx">youtube</span><span class="p">({</span>
+  <span class="na">version</span><span class="p">:</span> <span class="dl">"</span><span class="s2">v3</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">auth</span><span class="p">:</span> <span class="nx">apiKey</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>        </div>
+      </li>
+      <li>Use API
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/search-with-googleapis</span><span class="dl">"</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">searchQuery</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">search_query</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">youtube</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">list</span><span class="p">({</span>
+      <span class="na">part</span><span class="p">:</span> <span class="dl">"</span><span class="s2">snippet</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">q</span><span class="p">:</span> <span class="nx">searchQuery</span><span class="p">,</span>
+    <span class="p">});</span>
+
+    <span class="kd">const</span> <span class="nx">titles</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">snippet</span><span class="p">.</span><span class="nx">title</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">titles</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">next</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>        </div>
+        <ul>
+          <li>Test it with: <code class="language-plaintext highlighter-rouge">curl http://localhost:5000/search-youtube-with-googleapis</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
-
-<p><img src="/blog/assets/img/xxx.png" alt="" /></p>
+<ul>
+  <li>blog</li>
+</ul>
 
 <h2 id="reference">Reference</h2>
 

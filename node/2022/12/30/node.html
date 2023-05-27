@@ -62,65 +62,109 @@
 <h2 id="why">Why?</h2>
 
 <ul>
-  <li>node: real-time, high-performance, and scalable network applications.</li>
-  <li>rails: convention -&gt; easier to code &amp; build app quicker</li>
+  <li>Node: real-time, high-performance, and scalable network applications.</li>
+  <li>Rails: convention -&gt; easier to code &amp; build app quicker</li>
 </ul>
 
 <h2 id="how">How?</h2>
 
 <h3 id="init">init</h3>
 
-<p>(1) install dependencies:</p>
-
 <ul>
-  <li>for production
+  <li>Install dependencies
     <ul>
-      <li>node ()</li>
-      <li>pg (connect postgreSQL database)</li>
-      <li>dotenv</li>
-      <li>axios (executes get and post)</li>
-      <li>bcrypt (encode password and store it in database, so attackers still cannot attack even they access database)</li>
+      <li>Code
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>express pg dotenv axios bcrypt
+npm <span class="nb">install </span>nodemon debug <span class="nt">--save-dev</span>
+</code></pre></div>        </div>
+      </li>
+      <li>Explanation
+        <ul>
+          <li>express:</li>
+          <li>pg: the package to connect to a PostgreSQL database</li>
+          <li>dotenv: allows you to load environment variables from a .env file</li>
+          <li>axios: a popular package for making HTTP requests, including GET and POST</li>
+          <li>bcrypt: a library for hashing and salting passwords</li>
+          <li>Development &amp; test
+            <ul>
+              <li>nodemon: a development utility that automatically restarts the server whenever changes are made to the code</li>
+              <li>debug: a package that provides a simple debugging utility</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
-  <li>for development &amp; test
-    <ul>
-      <li>nodemon</li>
-      <li>debug</li>
-    </ul>
-  </li>
-</ul>
-
-<p>(2) initialize:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>my-project
+  <li>Initialize
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>my-project
 <span class="nb">cd </span>my-project
 npm init <span class="nt">-y</span>
-</code></pre></div></div>
-
-<p>(3) git:</p>
-
-<p>add <code class="language-plaintext highlighter-rouge">.gitignore</code></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Dependency directories</span>
+</code></pre></div>    </div>
+  </li>
+  <li>add <code class="language-plaintext highlighter-rouge">.gitignore</code> with
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Dependency directories</span>
 node_modules/
-
+  
 <span class="c"># Optional npm cache directory</span>
 .npm
-
+  
 <span class="c"># dotenv environment variables file</span>
 .env
-</code></pre></div></div>
-
-<p>(4) env:</p>
-
-<p>In <code class="language-plaintext highlighter-rouge">.env</code>, we can add environment variables we want; for example, how to connect development database …etc</p>
-
-<p>We can call it with <code class="language-plaintext highlighter-rouge">process.env.xxx</code></p>
-
-<p>(5) server</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">NODE_ENV</span><span class="o">=</span>development npx nodemon server.js
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+  <li>env: In <code class="language-plaintext highlighter-rouge">./.env</code>, we can add environment variables we want; for example, how to connect development database …etc
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">xxx</span>
+</code></pre></div>    </div>
+  </li>
+  <li>ES (import &amp; export): <a href="/blog/javascript/2023/04/06/import-export.html">import and export</a></li>
+  <li>Add <code class="language-plaintext highlighter-rouge">server.js</code>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// init</span>
+<span class="k">import</span> <span class="nx">express</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">express</span><span class="dl">'</span>
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+  
+<span class="c1">// parse body</span>
+<span class="k">import</span> <span class="nx">bodyParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">body-parser</span><span class="dl">'</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  
+<span class="c1">// passport</span>
+<span class="k">import</span> <span class="nx">passport</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./middleware/passport.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">());</span>
+  
+<span class="c1">// cors</span>
+<span class="k">import</span> <span class="nx">cors</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./middleware/cors.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">);</span>
+  
+<span class="c1">// API</span>
+<span class="k">import</span> <span class="nx">api</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./apis/api_summary.js</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">development</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">test</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// TODO for production</span>
+<span class="p">}</span>
+  
+<span class="k">export</span> <span class="k">default</span> <span class="nx">app</span>
+</code></pre></div>    </div>
+  </li>
+  <li>package.json
+    <pre><code class="language-JSON">"scripts": {
+  "test": "NODE_ENV=test jest",
+  "dev": "NODE_ENV=development npx nodemon server.js",
+  "debug": "npx nodemon --inspect-brk server.js"
+},
+</code></pre>
+  </li>
+  <li>server
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">NODE_ENV</span><span class="o">=</span>development npx nodemon server.js
+</code></pre></div>    </div>
+  </li>
+  <li>test it with curl: <code class="language-plaintext highlighter-rouge">curl http://localhost:5000/</code></li>
+</ul>
 
 <h3 id="structure">structure</h3>
 
@@ -149,67 +193,9 @@ node_modules/
   </li>
 </ul>
 
-<h4 id="import-and-export">Import and Export</h4>
+<h3 id="api">API</h3>
 
-<p>Whether to use import or require() in Node.js project depends on the version of Node.js and personal preference for code style and syntax, with import being advantageous for newer versions of Node.js, while require() may be preferred for backwards compatibility and certain package compatibility. For more information, please refer to <a href="/blog/javascript/2023/04/06/import-export.html">import and export</a></p>
-
-<h4 id="absolute-path">absolute path</h4>
-
-<p>TBC</p>
-
-<h3 id="server">server</h3>
-
-<p>(1) server.js</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// init</span>
-<span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
-
-<span class="c1">// parse body</span>
-<span class="kd">const</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">body-parser</span><span class="dl">'</span><span class="p">)</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-
-<span class="c1">// passport</span>
-<span class="kd">const</span> <span class="nx">passport</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./middleware/passport.js</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">passport</span><span class="p">.</span><span class="nx">initialize</span><span class="p">());</span>
-
-<span class="c1">// CSRF</span>
-<span class="kd">const</span> <span class="nx">cors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./middleware/cors.js</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">);</span>
-
-<span class="c1">// API</span>
-<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./api/api_summary.js</span><span class="dl">'</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">development</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">test</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">api</span><span class="p">(</span><span class="nx">app</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="c1">// TODO for production</span>
-<span class="p">}</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span>
-</code></pre></div></div>
-
-<ul>
-  <li><a href="/blog/node/2022/12/31/sign-up-and-login.html">passport for sign up and login</a></li>
-</ul>
-
-<p>(2) <code class="language-plaintext highlighter-rouge">package.json</code></p>
-
-<pre><code class="language-JSON">"scripts": {
-  "test": "NODE_ENV=test jest",
-  "dev": "NODE_ENV=development npx nodemon server.js",
-  "debug": "npx nodemon --inspect-brk server.js"
-},
-</code></pre>
-
-<ul>
-  <li>test it with curl: <code class="language-plaintext highlighter-rouge">curl http://localhost:5000/</code></li>
-</ul>
+<p>The API of Node.js provides a comprehensive set of functions and modules that enable developers to build scalable and efficient network applications. It offers features such as file system operations, networking capabilities, event-driven programming, and support for various protocols, making it a powerful tool for server-side development. For more information, please refer to <a href="/blog/node/2022/01/26/api.html">API</a></p>
 
 <h3 id="database">Database</h3>
 
@@ -222,10 +208,6 @@ node_modules/
 <h3 id="model">Model</h3>
 
 <p>Various libraries and frameworks such as Mongoose, Sequelize, or Bookshelf can be used to implement models in Node.js, providing an ORM layer for interacting with databases and managing data models. For more information, please refer to <a href="/blog/node/2022/01/20/model.html">model</a></p>
-
-<h3 id="api">API</h3>
-
-<p><a href="/blog/node/2022/01/26/api.html">API</a></p>
 
 <h3 id="spec">spec</h3>
 
@@ -298,7 +280,15 @@ node xxx.js <span class="c"># for plain script</span>
 
 <h2 id="what">What?</h2>
 
-<p>TBC</p>
+<ul>
+  <li><a href="/blog/node/2022/12/31/sign-up-and-login.html">passport for sign up and login</a></li>
+</ul>
+
+<h2 id="other">Other</h2>
+
+<h4 id="import-and-export">Import and Export</h4>
+
+<p>Whether to use import or require() in Node.js project depends on the version of Node.js and personal preference for code style and syntax, with import being advantageous for newer versions of Node.js, while require() may be preferred for backwards compatibility and certain package compatibility.</p>
 
 <h2 id="reference">Reference</h2>
 

@@ -57,26 +57,186 @@
     <h1 class='text-center mt-6 mb-6'>Api Mode</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>This article describes how to build api with rails. Please refer to xxx for the concept of api. The steps:</p>
+<p>This article describes how to build api with rails. Please refer to <a href="/blog/api/2021/02/18/application-programming-interface.html">API</a> for the concept of api.</p>
 
-<ul>
-  <li>start project</li>
-  <li>API for internal data</li>
-  <li>API for external data</li>
-  <li>CORS (TBC)</li>
-</ul>
+<p>(TBC)</p>
 
 <h2 id="why">Why?</h2>
 
-<p>With API mode, we can seperate backend and frontend.</p>
+<p>Rails API is a popular choice for building web APIs due to its efficient development workflow, convention over configuration principles, and seamless integration with the broader Rails ecosystem.</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="start-project">start project</h3>
-
-<p>Create project with</p>
+<h3 id="init">Init</h3>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails new Project_Name <span class="nt">--api</span>
+</code></pre></div></div>
+
+<h3 id="parse">Parse</h3>
+
+<p>The standard way</p>
+
+<ul>
+  <li>Make an API request: Use a library like HTTParty, Faraday, or the built-in Net::HTTP module to send a request to the API and retrieve the response.
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'httparty'</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s1">'https://api.example.com/data'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Parse the response: Once you have the response, you need to parse it to extract the relevant data.
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'json'</span>
+  
+<span class="n">json_data</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Parsing XML:
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'nokogiri'</span>
+  
+<span class="n">xml_data</span> <span class="o">=</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">XML</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="api-for-external-data">API for external data</h3>
+
+<h4 id="youtube-api">Youtube API</h4>
+
+<ul>
+  <li>Purpose: I want to manage my account’s subscription in a mathematical way</li>
+  <li>Repo: https://github.com/googleapis/google-api-ruby-client</li>
+  <li>Documentation: https://developers.google.com/youtube/v3/guides/auth/server-side-web-apps#ruby</li>
+  <li>Quota (refresh every day): https://console.cloud.google.com/apis/api/youtube.googleapis.com/quotas</li>
+  <li>Get public information with API key
+    <ul>
+      <li>Get the Key
+        <ul>
+          <li>Start a project in console.cloud</li>
+          <li>In library section, search for “YouTube Data API v3,” and enable it</li>
+          <li>Create credential (for my usage, public data is enough)</li>
+          <li>Put credential in rails
+            <ul>
+              <li>Add <code class="language-plaintext highlighter-rouge">config/credentials.yml.enc</code> to <code class="language-plaintext highlighter-rouge">.gitignore</code></li>
+              <li>Generate credentials file
+                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails credentials:edit
+</code></pre></div>                </div>
+              </li>
+              <li>Put the key in generated file, <code class="language-plaintext highlighter-rouge">config/credentials.yml.enc</code>
+                <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>youtube_key
+</code></pre></div>                </div>
+              </li>
+              <li>Access the code
+                <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">api_key</span> <span class="o">=</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">credentials</span><span class="p">.</span><span class="nf">my_api_key</span>
+</code></pre></div>                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Install library for API (search library in https://rubygems.org/)
+        <ul>
+          <li>Gem
+            <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'google-apis-youtube_v3'</span>
+</code></pre></div>            </div>
+          </li>
+          <li>Create a init method with
+            <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># frozen_string_literal: true</span>
+
+<span class="k">module</span> <span class="nn">YoutubeV3</span>
+  <span class="c1"># Controller responsible for CRUD yotube channels.</span>
+  <span class="k">class</span> <span class="nc">ChannelsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+    <span class="n">before_action</span> <span class="ss">:initialize_youtube</span>
+      
+    <span class="o">...</span>
+      
+    <span class="kp">private</span>
+    <span class="k">def</span> <span class="nf">initialize_youtube</span>
+      <span class="vi">@youtube</span> <span class="o">=</span> <span class="no">Google</span><span class="o">::</span><span class="no">Apis</span><span class="o">::</span><span class="no">YoutubeV3</span><span class="o">::</span><span class="no">YouTubeService</span><span class="p">.</span><span class="nf">new</span>
+      <span class="vi">@youtube</span><span class="p">.</span><span class="nf">key</span> <span class="o">=</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">credentials</span><span class="p">.</span><span class="nf">youtube</span><span class="p">.</span><span class="nf">api_key</span>
+      <span class="vi">@youtube</span><span class="p">.</span><span class="nf">client_options</span><span class="p">.</span><span class="nf">application_name</span> <span class="o">=</span> <span class="s1">'Youtube API'</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>test methods (you can check methods in https://github.com/googleapis/google-api-ruby-client)
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># frozen_string_literal: true</span>
+
+<span class="k">module</span> <span class="nn">YoutubeV3</span>
+  <span class="c1"># Controller responsible for CRUD yotube channels.</span>
+  <span class="k">class</span> <span class="nc">ChannelsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+    <span class="n">before_action</span> <span class="ss">:initialize_youtube</span>
+    
+    <span class="k">def</span> <span class="nf">index</span>
+      <span class="vi">@youtube</span><span class="p">.</span><span class="nf">list_channels</span><span class="p">(</span><span class="s1">'snippt'</span><span class="p">)</span>
+    <span class="k">end</span>
+    
+    <span class="kp">private</span>
+    <span class="o">...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Get private account information with OAuth (TBC)</li>
+</ul>
+
+<h4 id="twitter-api">Twitter API</h4>
+
+<p>(TBC)</p>
+
+<p>Try to connect twitter api with gem, twitter</p>
+
+<ul>
+  <li>settings</li>
+</ul>
+
+<p>Please get the credentials by following the step by step in <a href="https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api">Getting started</a> from twitter</p>
+
+<ul>
+  <li>We can regenerate them in developer portal.</li>
+</ul>
+
+<p>We also need to defind callback URLs in <a href="https://developer.twitter.com/en/portal/projects/1576728701168803843/apps/25623084/auth-settings">auth settings</a></p>
+
+<ul>
+  <li>omniauth</li>
+</ul>
+
+<p>Add gems</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'omniauth-twitter'</span> <span class="c1"># to connect twitter api</span>
+<span class="n">gem</span> <span class="s1">'omniauth-rails_csrf_protection'</span> <span class="c1"># fix authenticity error</span>
+</code></pre></div></div>
+
+<p>Create <code class="language-plaintext highlighter-rouge">initializers/omniauth.rb</code> with</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">OmniAuth</span><span class="o">::</span><span class="no">Builder</span> <span class="k">do</span>
+  <span class="n">provider</span> <span class="ss">:twitter</span><span class="p">,</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'TWITTER_KEY'</span><span class="p">],</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'TWITTER_SECRET'</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>In <code class="language-plaintext highlighter-rouge">config/application.rb</code>,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># For Omniauth</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">session_store</span> <span class="ss">:cookie_store</span><span class="p">,</span> <span class="ss">key: </span><span class="s1">'_world_session_#{Rails.env}'</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Cookies</span> <span class="c1"># Required for all session management</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="n">config</span><span class="p">.</span><span class="nf">session_store</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="nf">session_options</span>
+</code></pre></div></div>
+
+<p>By inspecting <code class="language-plaintext highlighter-rouge">gem 'omniauth-rails_csrf_protection'</code>, <code class="language-plaintext highlighter-rouge">InvalidAuthenticityToken</code> raised by <code class="language-plaintext highlighter-rouge">rails_csrf_protection</code> -&gt; <code class="language-plaintext highlighter-rouge">verified_request? = false</code> -&gt; <code class="language-plaintext highlighter-rouge">authenticity_token or session[:_csrf_token]</code> is not equal to X-CSRF-Token in HTTP header</p>
+
+<p>So when render landing page, we give csrf token as follow:</p>
+
+<p>In frontend, (take react as example)</p>
+
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:3000</span><span class="dl">'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">})</span>
+<span class="p">});</span>
+<span class="p">...</span>
 </code></pre></div></div>
 
 <h3 id="api-for-internal-data">API for internal data</h3>
@@ -112,6 +272,19 @@ rails db:migrate
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">PostsController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
   <span class="k">def</span> <span class="nf">index</span>
     <span class="n">render</span> <span class="ss">json: </span><span class="no">Post</span><span class="p">.</span><span class="nf">all</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<h4 id="error-handling">error handling</h4>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
+  <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">save</span>
+    <span class="n">render</span> <span class="ss">json: </span><span class="vi">@user</span>
+  <span class="k">else</span>
+    <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">errors: </span><span class="vi">@user</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">full_messages</span> <span class="p">},</span> <span class="ss">status: :unprocessable_entity</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>
@@ -262,78 +435,35 @@ rails db:migrate
 
 <p>GET /posts</p>
 
-<h3 id="api-for-external-data">API for external data</h3>
+<h3 id="cors">CORS</h3>
 
-<p>Try to connect twitter api with gem, twitter</p>
+<p>In Ruby on Rails, CORS (Cross-Origin Resource Sharing) can be implemented through middleware to allow controlled access to resources from different origins, enhancing the security and interoperability of Rails applications.</p>
 
 <ul>
-  <li>settings</li>
-  <li>omniauth</li>
-  <li>CORS</li>
-  <li>api</li>
-  <li>test get and post</li>
-</ul>
+  <li>add gem: <code class="language-plaintext highlighter-rouge">gem 'rack-cors'</code> and <code class="language-plaintext highlighter-rouge">bundle install</code></li>
+  <li>In <code class="language-plaintext highlighter-rouge">config/initializers/cors.rb</code>
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">action_controller</span><span class="p">.</span><span class="nf">forgery_protection_origin_check</span> <span class="o">=</span> <span class="kp">false</span>
 
-<h3 id="error-handling">error handling</h3>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create</span>
-  <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>
-
-  <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">save</span>
-    <span class="n">render</span> <span class="ss">json: </span><span class="vi">@user</span>
-  <span class="k">else</span>
-    <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">errors: </span><span class="vi">@user</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">full_messages</span> <span class="p">},</span> <span class="ss">status: :unprocessable_entity</span>
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">hosts</span> <span class="o">&lt;&lt;</span> <span class="sr">/[a-z0-9]+\.c9users\.io/</span>
+  
+<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">insert_before</span> <span class="mi">0</span><span class="p">,</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cors</span> <span class="k">do</span>
+  <span class="n">allow</span> <span class="k">do</span>
+    <span class="n">origins</span> <span class="s1">'*'</span>
+    <span class="n">resource</span> <span class="s1">'*'</span><span class="p">,</span>
+      <span class="ss">headers: :any</span><span class="p">,</span>
+      <span class="ss">methods: </span><span class="p">[</span><span class="ss">:get</span><span class="p">,</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:put</span><span class="p">,</span> <span class="ss">:patch</span><span class="p">,</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:options</span><span class="p">,</span> <span class="ss">:head</span><span class="p">]</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div></div>
-
-<h4 id="settings">settings</h4>
-
-<p>Please get the credentials by following the step by step in <a href="https://developer.twitter.com/en/docs/twitter-api/getting-started/getting-access-to-the-twitter-api">Getting started</a> from twitter</p>
-
-<ul>
-  <li>We can regenerate them in developer portal.</li>
+</code></pre></div>    </div>
+    <ul>
+      <li>This configuration allows requests from any origin (‘<em>’) and specifies the allowed HTTP methods (:get, :post, etc.). Adjust the configuration according to your specific needs, including specifying specific origins instead of ‘</em>’ if desired.</li>
+    </ul>
+  </li>
 </ul>
 
-<p>We also need to defind callback URLs in <a href="https://developer.twitter.com/en/portal/projects/1576728701168803843/apps/25623084/auth-settings">auth settings</a></p>
+<h3 id="csrf">CSRF</h3>
 
-<h4 id="omniauth">omniauth</h4>
-
-<p>Add gems</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s1">'omniauth-twitter'</span> <span class="c1"># to connect twitter api</span>
-<span class="n">gem</span> <span class="s1">'omniauth-rails_csrf_protection'</span> <span class="c1"># fix authenticity error</span>
-</code></pre></div></div>
-
-<p>Create <code class="language-plaintext highlighter-rouge">initializers/omniauth.rb</code> with</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">OmniAuth</span><span class="o">::</span><span class="no">Builder</span> <span class="k">do</span>
-  <span class="n">provider</span> <span class="ss">:twitter</span><span class="p">,</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'TWITTER_KEY'</span><span class="p">],</span> <span class="no">ENV</span><span class="p">[</span><span class="s1">'TWITTER_SECRET'</span><span class="p">]</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<p>In <code class="language-plaintext highlighter-rouge">config/application.rb</code>,</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># For Omniauth</span>
-<span class="n">config</span><span class="p">.</span><span class="nf">session_store</span> <span class="ss">:cookie_store</span><span class="p">,</span> <span class="ss">key: </span><span class="s1">'_world_session_#{Rails.env}'</span>
-<span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Cookies</span> <span class="c1"># Required for all session management</span>
-<span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="n">config</span><span class="p">.</span><span class="nf">session_store</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="nf">session_options</span>
-</code></pre></div></div>
-
-<p>By inspecting <code class="language-plaintext highlighter-rouge">gem 'omniauth-rails_csrf_protection'</code>, <code class="language-plaintext highlighter-rouge">InvalidAuthenticityToken</code> raised by <code class="language-plaintext highlighter-rouge">rails_csrf_protection</code> -&gt; <code class="language-plaintext highlighter-rouge">verified_request? = false</code> -&gt; <code class="language-plaintext highlighter-rouge">authenticity_token or session[:_csrf_token]</code> is not equal to X-CSRF-Token in HTTP header</p>
-
-<p>So when render landing page, we give csrf token as follow:</p>
-
-<p>In frontend, (take react as example)</p>
-
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span>
-<span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:3000</span><span class="dl">'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">})</span>
-<span class="p">});</span>
-<span class="p">...</span>
-</code></pre></div></div>
-
-<p>In backend,</p>
+<p>(TBC)</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># controllers/application_controller.rb</span>
 <span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
@@ -360,72 +490,21 @@ rails db:migrate
 <span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Cookies</span>
 <span class="n">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">use</span> <span class="no">ActionDispatch</span><span class="o">::</span><span class="no">Session</span><span class="o">::</span><span class="no">CookieStore</span>
 
-<span class="c1"># initializers/cors.rb</span>
-<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">action_controller</span><span class="p">.</span><span class="nf">forgery_protection_origin_check</span> <span class="o">=</span> <span class="kp">false</span>
-
-<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">hosts</span> <span class="o">&lt;&lt;</span> <span class="sr">/[a-z0-9]+\.c9users\.io/</span>
-
-<span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">middleware</span><span class="p">.</span><span class="nf">insert_before</span> <span class="mi">0</span><span class="p">,</span> <span class="no">Rack</span><span class="o">::</span><span class="no">Cors</span> <span class="k">do</span>
-  <span class="n">allow</span> <span class="k">do</span>
-    <span class="n">origins</span> <span class="s1">'*'</span>
-    <span class="n">resource</span> <span class="s1">'*'</span><span class="p">,</span>
-      <span class="ss">headers: :any</span><span class="p">,</span>
-      <span class="ss">methods: </span><span class="p">[</span><span class="ss">:get</span><span class="p">,</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">:put</span><span class="p">,</span> <span class="ss">:patch</span><span class="p">,</span> <span class="ss">:delete</span><span class="p">,</span> <span class="ss">:options</span><span class="p">,</span> <span class="ss">:head</span><span class="p">]</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
 <span class="c1"># routes.rb</span>
 <span class="n">root</span> <span class="ss">to: </span><span class="s2">"application#cookie"</span>
 </code></pre></div></div>
 
-<p>The result,</p>
+<h3 id="deploy">deploy</h3>
 
-<p><img src="/assets/img/csrf-token.png" alt="" /></p>
-
-<h4 id="cors">CORS</h4>
-
-<h5 id="what-is-cors">What is CORS?</h5>
-
-<p>TBC</p>
-
-<h5 id="solution">solution</h5>
-
-<p>In rails 6, we can solve CORS as follow:</p>
-
-<ol>
-  <li>uncomment <code class="language-plaintext highlighter-rouge">gem 'rack-cors'</code> in <code class="language-plaintext highlighter-rouge">Gemfile.rb</code> and then <code class="language-plaintext highlighter-rouge">bundle install</code></li>
-  <li>go to <code class="language-plaintext highlighter-rouge">config/initializers</code> and uncomment code in <code class="language-plaintext highlighter-rouge">cors.rb</code></li>
-  <li>set <code class="language-plaintext highlighter-rouge">origins 'example.com'</code> to <code class="language-plaintext highlighter-rouge">origins '*'</code></li>
-</ol>
-
-<p>Now, test it with postman, TBC</p>
-
-<h4 id="api">api</h4>
-
-<p>add gem <code class="language-plaintext highlighter-rouge">gem 'twitter'</code></p>
+<ul>
+  <li>Deal with config/master.key to setup RAILS_MASTER_KEY for credentials</li>
+</ul>
 
 <h2 id="what">What</h2>
 
-<p>There will be two examples:</p>
-
 <ul>
-  <li>API for internal data</li>
-  <li>API for external data</li>
+  <li>blog/youtube, to get recommendation of top channels for my interest topics</li>
 </ul>
-
-<h3 id="example-of-api-for-internal-data">Example of API for internal data</h3>
-
-<p>(TBC), should put deployed bcakend API for demo.</p>
-
-<p>Put how to post and get with postman settings</p>
-
-<h3 id="example-of-api-for-external-data">Example of API for external data</h3>
-
-<p>(TBC), should put deployed bcakend API for demo.</p>
-
-<h3 id="interlude-render-jbuilder">interlude (render, Jbuilder)</h3>
-
-<p>(TBC)</p>
 
 <h3 id="reference">Reference</h3>
 

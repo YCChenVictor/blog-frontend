@@ -54,8 +54,52 @@
     
   </div>
   <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(Rails) User Login System</h1>
-    <h3 id="structure-explanation">Structure Explanation</h3>
+    <h1 class='text-center mt-6 mb-6'>User Login</h1>
+    <h2 id="introduction">Introduction</h2>
+
+<p>(TBC)</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="setup">Setup</h3>
+
+<p>There should be a rails application with User model and table. Create a new Rails application using the rails new command or use an existing application. For more information, please refer to <a href="/blog/rails/2023/01/01/rails.html">rails</a>.</p>
+
+<h3 id="devise">Devise</h3>
+
+<p>The powerful authentication solution for rails. You can add Devise to your application by following the installation instructions in the Devise documentation. Devise handles many authentication-related tasks such as user registration, login, and password reset. For more information, please refer to <a href="/blog/rails/2021/03/19/Devise.html">devise</a></p>
+
+<h3 id="customize-the-views">Customize the views</h3>
+
+<p>Devise generates views for authentication, but you may want to customize them to match your application’s design. You can generate the Devise views using the following command:</p>
+
+<p>Copy code
+rails generate devise:views
+This will create a set of views that you can modify to suit your needs.</p>
+
+<p>Create routes: Define the necessary routes for user authentication in your config/routes.rb file. Devise provides convenient helper methods to generate these routes. For example, you can add the following line to enable user authentication:</p>
+
+<p>ruby
+Copy code
+devise_for :users
+Create navigation links: Add links to the login and registration pages in your application’s layout file (app/views/layouts/application.html.erb or similar). You can use Devise’s helper methods to generate these links. For example:</p>
+
+<p>erb
+Copy code
+&lt;% if user_signed_in? %&gt;
+  &lt;%= link_to ‘Logout’, destroy_user_session_path, method: :delete %&gt;
+&lt;% else %&gt;
+  &lt;%= link_to ‘Login’, new_user_session_path %&gt;
+  &lt;%= link_to ‘Register’, new_user_registration_path %&gt;
+&lt;% end %&gt;
+Protect routes: If you have certain pages that should only be accessible to authenticated users, you can use Devise’s authenticate_user! method as a before_action in your controllers. For example:</p>
+
+<p>ruby
+Copy code
+before_action :authenticate_user!, only: [:secret_page]
+Test your authentication system: Write tests to ensure that your authentication system is working correctly. Rails provides a testing framework (usually RSpec or Minitest) where you can define tests for user login, registration, and other authentication-related features.</p>
+
+<h3 id="structure-explanation">Structure Explanation</h3>
 
 <p>The structure would be MVC. There are going to have Sign Up page, Login Page, Profile Page.</p>
 
@@ -434,6 +478,10 @@ end
 <p>Notice, the method name is <code class="language-plaintext highlighter-rouge">create</code> ; however, this method does not create anything at all.</p>
 
 <p>Then it will redirect to individual webpage.</p>
+
+<h2 id="what">What</h2>
+
+<p>Give real examples</p>
 
 <h3 id="reference">Reference</h3>
 

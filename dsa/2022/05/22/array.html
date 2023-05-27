@@ -119,6 +119,40 @@
 
 <p>Because the algorithm of string is just like arrayList, so I will put string algorithm in arrayList.</p>
 
+<h3 id="binary-tree">Binary Tree</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">high</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="nx">low</span> <span class="o">&lt;=</span> <span class="nx">high</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">mid</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">low</span> <span class="o">+</span> <span class="nx">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">midValue</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">mid</span><span class="p">];</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">midValue</span> <span class="o">===</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">mid</span><span class="p">;</span> <span class="c1">// Target found, return the index</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">midValue</span> <span class="o">&lt;</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">low</span> <span class="o">=</span> <span class="nx">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Target is in the right half of the remaining array</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">high</span> <span class="o">=</span> <span class="nx">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// Target is in the left half of the remaining array</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// Target not found</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage example:</span>
+<span class="kd">const</span> <span class="nx">sortedArray</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">91</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">targetValue</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">resultIndex</span> <span class="o">=</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">sortedArray</span><span class="p">,</span> <span class="nx">targetValue</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">resultIndex</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Target value </span><span class="p">${</span><span class="nx">targetValue</span><span class="p">}</span><span class="s2"> found at index </span><span class="p">${</span><span class="nx">resultIndex</span><span class="p">}</span><span class="s2">.`</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Target value </span><span class="p">${</span><span class="nx">targetValue</span><span class="p">}</span><span class="s2"> not found in the array.`</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
 <h3 id="urlify">URLify</h3>
 
 <ul>

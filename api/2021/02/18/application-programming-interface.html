@@ -54,10 +54,10 @@
     
   </div>
   <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Overview</h1>
+    <h1 class='text-center mt-6 mb-6'>Application Programming Interface</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>Application programming interface is set of rules to interact with software.</p>
+<p>An API (Application Programming Interface) is a set of rules and protocols that allows different software applications to communicate and interact with each other. It defines the methods, data formats, and rules for exchanging information between applications.</p>
 
 <h2 id="why">Why</h2>
 
@@ -65,32 +65,59 @@
 
 <h2 id="how">How</h2>
 
-<p>The concept of CRUD (create, read, update, delete) maps to POST, GET, PATCH/PUT, DELETE in <a href="/blog/internet/2021/03/29/overview.html">HTTP</a>.</p>
+<h3 id="web-apis">Web APIs</h3>
+
+<ul>
+  <li>Explanation: These APIs are designed to enable communication between different web-based applications. They allow developers to access and manipulate resources and data over the internet using standardized protocols such as HTTP (Hypertext Transfer Protocol).</li>
+  <li>Example: One famous example of a Web API is the Twitter API, which allows developers to access and interact with Twitter’s platform, retrieve tweets, post new tweets, and perform various operations related to Twitter data and functionality.</li>
+  <li>Usage: When you make a request to an API, you’re asking for specific information or action. The request typically includes an HTTP method (GET, POST, PUT, DELETE, etc.), a URL (Uniform Resource Locator) specifying the resource or action, and any necessary parameters or data. The API server processes the request and sends back a response, which includes the requested data or information.
+    <ul>
+      <li>The concept of CRUD (create, read, update, delete) maps to POST, GET, PATCH/PUT, DELETE in <a href="/blog/internet/2021/04/09/hypertext-transfer-protocol.html">HTTP</a>.</li>
+    </ul>
+  </li>
+  <li>Format: APIs often use specific data formats for representing and exchanging information, with the most common formats being JSON and XML. JSON is lightweight, human-readable, and machine-parsable, while XML offers greater flexibility and extensibility despite being more verbose.
+    <ul>
+      <li><a href="/blog/api/2022/08/16/json-api.html">JSON API</a> is a specific set of conventions and guidelines for designing APIs that use JSON as the data format.</li>
+    </ul>
+  </li>
+  <li>Authentication: APIs often require <a href="/blog/api/2022/08/17/authentication.html">authentication</a> to ensure that only authorized users or applications can access certain resources or perform specific actions. Common authentication methods include API keys, OAuth, and token-based authentication.</li>
+</ul>
+
+<h3 id="libraryapis">Library/APIs</h3>
+
+<ul>
+  <li>These are collections of pre-written functions and methods that provide specific functionalities and can be used by developers within their applications.</li>
+  <li>Example: Axios is a popular library API in JavaScript that simplifies making HTTP requests and handling responses, allowing developers to easily communicate with web servers and retrieve data.</li>
+  <li>Usage: (TBC)</li>
+  <li>Format: (TBC)</li>
+</ul>
+
+<h3 id="operating-system-apis">Operating System APIs</h3>
+
+<ul>
+  <li>Explanation: Operating systems provide APIs that allow developers to interact with the underlying system resources and services.</li>
+  <li>Example: Windows API or POSIX API for Unix-like systems.</li>
+  <li>Usage: (TBC)</li>
+  <li>Format: (TBC)</li>
+</ul>
 
 <h3 id="restful-api">RESTful API</h3>
 
-<p>For example,</p>
+<p>Let’s say we want to build a task management interface following RESTful API (this interface is not necessary related to web). Then the design will be as follow:</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">GET</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="k">new</span> <span class="c1">// (Create Show) Show the place to create task</span>
-
 <span class="nx">POST</span> <span class="o">/</span><span class="nx">tasks</span> <span class="c1">// (Create) Add a new task to the list</span>
-
 <span class="nx">GET</span> <span class="o">/</span><span class="nx">tasks</span> <span class="c1">// (Read list) Retrieve a list of all tasks</span>
-
 <span class="nx">GET</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="c1">// (Read one) Retrieve a task with the specified ID</span>
-
 <span class="nx">GET</span> <span class="o">/</span><span class="nx">records</span><span class="o">/</span><span class="p">:</span><span class="nx">id</span><span class="o">/</span><span class="nx">edit</span> <span class="c1">// (Update Show) Show the place to update task</span>
-
 <span class="nx">PUT</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="c1">// (Update a task) Update a task with the specified ID</span>
-
 <span class="nx">PATCH</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="c1">// (Update a task partially) Update a task with the specified ID</span>
-
 <span class="nx">DELETE</span> <span class="o">/</span><span class="nx">tasks</span><span class="o">/</span><span class="p">{</span><span class="nx">id</span><span class="p">}</span> <span class="c1">// (Destroy one) Delete a task with the specified ID</span>
 </code></pre></div></div>
 
-<p>The URL structure follows the RESTful pattern of using a noun (in this case, “tasks”) to represent a resource and the HTTP method (GET, POST, PUT, DELETE) to specify the action to be taken on that resource.</p>
+<p>The URL structure follows the RESTful pattern of using a noun (in this case, “tasks”) to represent a resource and the HTTP method (GET, POST, PUT, DELETE) to specify the action to be taken on that resource. For more information, please refer to <a href="/blog/api/2023/01/22/restful.html">concept of REST</a>.</p>
 
-<p>refer to <a href="/blog/api/2023/01/22/restful.html">concept of REST</a></p>
+<h2 id="what">What</h2>
 
 <h3 id="node">node</h3>
 
@@ -109,45 +136,13 @@
 
 <p>refer to <a href="/blog/rails/2022/02/05/routes.html">rails API</a></p>
 
-<h3 id="frontend-vs-backend">frontend vs backend</h3>
-
-<p>If you need to make the API requests private, then put it on backend. Always create frontend first because UI/UX is more important.</p>
-
-<h2 id="what">What</h2>
-
 <h3 id="curl">curl</h3>
 
-<p>Just place the basic commands here because I usually use postman.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># create</span>
-curl <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="nt">-d</span> <span class="s2">"{</span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">John Doe</span><span class="se">\"</span><span class="s2">}"</span> localhost:8080/api/students
-
-<span class="c"># read</span>
-
-<span class="c"># update</span>
-
-<span class="c"># delete</span>
-</code></pre></div></div>
-
-<h3 id="postman">Postman</h3>
-
-<h4 id="get">GET</h4>
-
-<h4 id="post">POST</h4>
-
-<p><a href="https://www.tutorialspoint.com/postman/postman_post_requests.htm">Create a POST Request</a></p>
-
-<h4 id="jwt">JWT</h4>
-
-<p>I think we can have more JWT designs here.</p>
+<p>refer to [terminal commands]</p>
 
 <h3 id="jenkins-api">Jenkins API</h3>
 
 <p><a href="/blog/api/2022/09/12/jenkins-api.html">Jenkins API</a> with node</p>
-
-<h3 id="circleci-api">CircleCI API</h3>
-
-<p>[CircleCI API] with node</p>
 
 <h2 id="references">references</h2>
 

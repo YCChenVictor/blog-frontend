@@ -57,27 +57,11 @@
     <h1 class='text-center mt-6 mb-6'>Rails</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>This article is going to build a website quickly</p>
+<p>Ruby on Rails is an open-source web application framework in Ruby that follows the Model-View-Controller (MVC) architectural pattern, providing a structured approach to building web applications with separate components for data and logic (Model), user interface (View), and user input handling (Controller).</p>
 
-<ul>
-  <li>Open-source web application framework in the Ruby</li>
-  <li>Follows the Model-View-Controller (MVC) architectural pattern
-    <ul>
-      <li>Model, representing the data and logic of the application</li>
-      <li>View, providing the user interface</li>
-      <li>Controller, handling user input and interacts with the model and view</li>
-    </ul>
-  </li>
-  <li>Make programming web applications easier by providing a set of conventions and abstractions that eliminate much of the repetitive work involved in building web applications from scratch
-    <ul>
-      <li>ORM (Object-Relational Mapping) system for interacting with databases</li>
-      <li>Routing system for handling incoming requests</li>
-      <li>Testing framework for writing automated tests</li>
-    </ul>
-  </li>
-  <li>Convention over configuration, which means that it comes with sensible defaults and assumptions that can be overridden if necessary, but in general, makes it easier for developers to get started quickly and focus on building their application logic rather than configuring the framework</li>
-  <li>Rails has a large and active community of developers and contributors, which means that there are many resources available for learning and troubleshooting, as well as a wide range of third-party plugins and libraries that can be used to extend its functionality.</li>
-</ul>
+<p>It simplifies web application development by offering conventions and abstractions, eliminating repetitive tasks, such as interacting with databases through its Object-Relational Mapping (ORM) system, handling incoming requests with a routing system, and facilitating automated testing with a built-in testing framework.</p>
+
+<p>With a large and active community of developers and contributors, Ruby on Rails offers abundant learning resources, troubleshooting support, and a wide range of third-party plugins and libraries that can be easily integrated to enhance and extend the framework’s functionality.</p>
 
 <h2 id="why">Why?</h2>
 
@@ -86,7 +70,7 @@
   <li>Rapid Development: Rails is designed to make development fast and easy, with features like scaffolding, which generates boilerplate code for you.</li>
   <li>Rails community: has created a vast ecosystem of gems (libraries) that can be easily integrated into your application.</li>
   <li>Full-stack framework: Rails is a full-stack framework that includes an ORM (ActiveRecord) for database access, routing, middleware, and a view layer (ActionView) for rendering HTML. This means that you can build a complete web application using just Rails.</li>
-  <li>Mature framework: Rails has been around since 2004 and has a large community of developers contributing to its development. This means that it has a large number of plugins, tools, and resources available, as well as a large pool of experienced developers who can help you troubleshoot issues.</li>
+  <li>Mature framework: Built since 2004, meaning it has a large number of plugins, tools, and resources available, as well as a large pool of experienced developers who can help you troubleshoot issues.</li>
   <li>Ruby language: Rails is built on the Ruby programming language, which is known for its simplicity and readability</li>
 </ul>
 
@@ -102,14 +86,16 @@
   </li>
   <li>build project: <code class="language-plaintext highlighter-rouge">bundle install</code></li>
   <li>start project: <code class="language-plaintext highlighter-rouge">rails new app_name</code></li>
-  <li>start server: <code class="language-plaintext highlighter-rouge">rails s</code></li>
+  <li>start server: <code class="language-plaintext highlighter-rouge">rails s</code>
+<img src="/blog/assets/img/rails_server_start.png" alt="rails_server_start" /></li>
+  <li>open browsers and input <code class="language-plaintext highlighter-rouge">http://localhost:3000</code>
+<img src="/blog/assets/img/rails_start_page.png" alt="rails_start_page" /></li>
+  <li>initializer
+    <ul>
+      <li>When application starts, it goes through an initialization process, walking through the initializer files in <code class="language-plaintext highlighter-rouge">config/initializers</code>.</li>
+    </ul>
+  </li>
 </ul>
-
-<p><img src="/blog/assets/img/rails_server_start.png" alt="rails_server_start" /></p>
-
-<p>open browsers and input <code class="language-plaintext highlighter-rouge">http://localhost:3000</code></p>
-
-<p><img src="/blog/assets/img/rails_start_page.png" alt="rails_start_page" /></p>
 
 <h3 id="scaffold">scaffold</h3>
 
@@ -123,88 +109,11 @@
 
 <h3 id="routes">routes</h3>
 
-<p>With scaffold, it will help us add code as follow:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
-  <span class="n">resources</span> <span class="ss">:users</span>
-  <span class="c1"># For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<ul>
-  <li>RESTful API: REST means Representational State Transfer. The benefit of RESTful API is unity. All coders have the consensus to write it in the same form; for example, given <code class="language-plaintext highlighter-rouge">resources :users</code> and input <code class="language-plaintext highlighter-rouge">rails routes</code>, the routes:</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Prefix</th>
-      <th style="text-align: center">Verb</th>
-      <th style="text-align: center">URI Pattern</th>
-      <th>Controller#Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">users</td>
-      <td style="text-align: center">GET</td>
-      <td style="text-align: center">/users(.:format)</td>
-      <td>users#index</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center">POST</td>
-      <td style="text-align: center">/users(.:format)</td>
-      <td>users#create</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">new_user</td>
-      <td style="text-align: center">GET</td>
-      <td style="text-align: center">/users/new(.:format)</td>
-      <td>users#new</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">edit_user</td>
-      <td style="text-align: center">GET</td>
-      <td style="text-align: center">/users/:id/edit(.:format)</td>
-      <td>users#edit</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">user</td>
-      <td style="text-align: center">GET</td>
-      <td style="text-align: center">/users/:id(.:format)</td>
-      <td>users#show</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center">PATCH</td>
-      <td style="text-align: center">/users/:id(.:format)</td>
-      <td>users#update</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center">PUT</td>
-      <td style="text-align: center">/users/:id(.:format)</td>
-      <td>users#update</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"> </td>
-      <td style="text-align: center">DELETE</td>
-      <td style="text-align: center">/users/:id(.:format)</td>
-      <td>users#destroy</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>As you can see, there are four verbs following RESTful, <code class="language-plaintext highlighter-rouge">GET</code>, <code class="language-plaintext highlighter-rouge">POST</code>, <code class="language-plaintext highlighter-rouge">PATCH</code>, <code class="language-plaintext highlighter-rouge">DELETE</code>, directed to the CRUD methods of controller and the controller call the corresponding CRUD methods to database. Actually, <code class="language-plaintext highlighter-rouge">GET</code> maps READ, <code class="language-plaintext highlighter-rouge">POST</code> maps CREATE, <code class="language-plaintext highlighter-rouge">PATCH</code> maps UPDATE, <code class="language-plaintext highlighter-rouge">DELETE</code> maps DESTROY.</p>
-
-<p>For more information, please refer to <a href="/blog/rails/2022/02/05/Routes.html">routes</a></p>
+<p>Rails routes serve as the backbone of a Ruby on Rails application, providing a mapping between incoming HTTP requests and the corresponding controller actions. By defining routes in the config/routes.rb file, developers can determine how URLs are structured, which controllers handle the requests, and what actions are executed, enabling the seamless navigation and interaction within the application. For more information, please refer to <a href="/blog/rails/2022/02/05/Routes.html">routes</a>.</p>
 
 <h3 id="model">model</h3>
 
-<p>Models are in <code class="language-plaintext highlighter-rouge">app/models</code>. file name: <code class="language-plaintext highlighter-rouge">user.rb</code> maps class <code class="language-plaintext highlighter-rouge">User</code> and maps table <code class="language-plaintext highlighter-rouge">users</code>.</p>
-
-<p>For more information, please refer to <a href="/blog/rails/2021/03/02/model.html">model</a></p>
+<p>Models are in <code class="language-plaintext highlighter-rouge">app/models</code>. file name: <code class="language-plaintext highlighter-rouge">user.rb</code> maps class <code class="language-plaintext highlighter-rouge">User</code> and maps table <code class="language-plaintext highlighter-rouge">users</code>. For more information, please refer to <a href="/blog/rails/2021/03/02/model.html">model</a></p>
 
 <h3 id="view">view</h3>
 
@@ -242,6 +151,14 @@
 
 <p><a href="/blog/rails/2023/03/28/database.html">database</a></p>
 
+<h3 id="mailer">mailer</h3>
+
+<p>Action Mailer is a powerful framework in Ruby on Rails that allows application to send emails effortlessly. With its intuitive interface and support for templates, app can easily generate and customize email content, making it an essential tool for adding email functionality. For more information, please refer to <a href="/blog/rails/2021/03/19/mailer.html">mailer</a>.</p>
+
+<h3 id="channel">Channel</h3>
+
+<p>Rails includes Action Cable as a built-in feature to provide real-time communication capabilities in web applications. It allows for bi-directional communication between the server and the client, enabling real-time updates and notifications. For more information, please refer to <a href="/blog/rails/2022/03/06/action-cable.html">action cable</a></p>
+
 <h3 id="rspec-and-capybara">rspec and capybara</h3>
 
 <p>We can also use rspec and capybara to compose test for this app (to be continued)</p>
@@ -256,9 +173,30 @@
 
 <p>For more information, please refer to <a href="/blog/test/2021/04/06/test-driven-development.html">test driven development</a></p>
 
+<h3 id="debugger">debugger</h3>
+
+<ul>
+  <li>Add gem
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">'byebug'</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+  <li>use it
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">some_action</span>
+  <span class="c1"># ...</span>
+  <span class="n">byebug</span>  <span class="c1"># Add this line to set a breakpoint</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
 <h2 id="what">What?</h2>
 
-<p>give a real world example</p>
+<h3 id="user-login">User Login</h3>
+
+<p><a href="/blog/rails/2021/03/11/user-login.html">user login</a></p>
 
 <h2 id="reference">Reference</h2>
 

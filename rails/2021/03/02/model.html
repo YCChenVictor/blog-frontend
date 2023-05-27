@@ -114,75 +114,11 @@
 
 <h3 id="relation">relation</h3>
 
-<ul>
-  <li>belongs_to: Used to define a one-to-many relationship between two tables</li>
-  <li>has_many: Used to define a one-to-many relationship between two tables</li>
-  <li>has_one: Used to define a one-to-one relationship between two tables</li>
-  <li>example: We have a User model, a Profile model, and a Post model. Each user has one profile, and each user can have many posts. Each post belongs to a user.</li>
-</ul>
-
-<p>To define these associations,</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-  <span class="n">has_one</span> <span class="ss">:profile</span>
-  <span class="n">has_many</span> <span class="ss">:posts</span>
-<span class="k">end</span>
-
-<span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-  <span class="n">belongs_to</span> <span class="ss">:user</span>
-<span class="k">end</span>
-
-<span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-  <span class="n">belongs_to</span> <span class="ss">:user</span>
-  <span class="n">has_one</span> <span class="ss">:profile</span><span class="p">,</span> <span class="ss">through: :user</span> <span class="c1"># because user has one profile and also has many posts</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<p>This tells Rails that each User has one Profile, and that each User can have many Posts. It also tells Rails that each Profile belongs to a User, and that each Post belongs to a User. By default, Rails assumes that the posts table has a foreign key called user_id that references the id column of the users table.</p>
-
-<p>Access related data:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-<span class="vi">@profile</span> <span class="o">=</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">profile</span>
-
-<span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-<span class="vi">@posts</span> <span class="o">=</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">posts</span>
-
-<span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-<span class="vi">@user</span> <span class="o">=</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">user</span>
-
-<span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
-<span class="vi">@profile</span> <span class="o">=</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">profile</span>
-</code></pre></div></div>
+<p>Relations in Rails models establish associations between different model classes, enabling developers to define and navigate the relationships between data entities. These relationships can be expressed through various types such as one-to-one, one-to-many, and many-to-many, allowing for efficient querying, data retrieval, and manipulation within the Rails framework. For more information, please refer to <a href="/blog/rails/2021/03/03/relation.html">relation</a></p>
 
 <h3 id="validation">validation</h3>
 
-<ul>
-  <li>Validations help ensure that the data is accurate, consistent, and secure.</li>
-  <li>Built-in validation helpers
-    <ul>
-      <li>presence: Validates that the specified attributes are not empty.</li>
-      <li>uniqueness: Validates that the specified attributes are unique.</li>
-      <li>length: Validates the length of the specified attributes.</li>
-      <li>format: Validates that the specified attributes match a specified regular expression pattern.</li>
-      <li>numericality: Validates that the specified attributes are numeric.</li>
-    </ul>
-  </li>
-  <li>code example:</li>
-</ul>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">length: </span><span class="p">{</span> <span class="ss">minimum: </span><span class="mi">2</span> <span class="p">}</span>
-  <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">uniqueness: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">format: </span><span class="p">{</span> <span class="ss">with: </span><span class="sr">/\A[^@\s]+@[^@\s]+\z/</span> <span class="p">}</span>
-  <span class="n">validates</span> <span class="ss">:age</span><span class="p">,</span> <span class="ss">numericality: </span><span class="p">{</span> <span class="ss">only_integer: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">greater_than: </span><span class="mi">0</span><span class="p">,</span> <span class="ss">less_than: </span><span class="mi">150</span> <span class="p">}</span>
-<span class="k">end</span>
-</code></pre></div></div>
-
-<ul>
-  <li>If any of these validations fail, Rails will prevent the model from being saved to the database and add an error message to the corresponding attribute.</li>
-  <li>It’s important to note that validations only apply when creating or updating records through Active Record. If you’re updating records through SQL, validations won’t be checked.</li>
-  <li>If you’re performing bulk updates, such as with update_all, validations won’t be checked either.</li>
-</ul>
+<p>Validation in Rails models ensures the accuracy and validity of data. By defining validation rules, such as presence, uniqueness, or format constraints, you can maintain data integrity and provide meaningful error messages to users. For more information, please refer to <a href="/blog/rails/2021/03/03/relation.html">validation</a>.</p>
 
 <h3 id="callback">callback</h3>
 
@@ -216,6 +152,7 @@
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
   <span class="n">before_save</span> <span class="ss">:normalize_name</span>
+  <span class="n">before_create</span> <span class="ss">:encrypt_email</span>
   <span class="n">after_create</span> <span class="ss">:send_welcome_email</span>
 
   <span class="kp">private</span>
@@ -226,6 +163,10 @@
 
   <span class="k">def</span> <span class="nf">send_welcome_email</span>
     <span class="no">UserMailer</span><span class="p">.</span><span class="nf">welcome_email</span><span class="p">(</span><span class="nb">self</span><span class="p">).</span><span class="nf">deliver_now</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">encrypt_email</span>  
+    <span class="nb">self</span><span class="p">.</span><span class="nf">email</span> <span class="o">=</span> <span class="no">Digest</span><span class="o">::</span><span class="no">MD5</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>  
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div></div>

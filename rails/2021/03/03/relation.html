@@ -5,7 +5,16 @@
 
     
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
     <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
@@ -54,64 +63,155 @@
     
   </div>
   <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(Rails Elementary 6) Relation in Model</h1>
-    <p>There are three types of relation: one-to-one, one-to-many, many-to-many</p>
+    <h1 class='text-center mt-6 mb-6'>Relation</h1>
+    <h2 id="introduction">Introduction</h2>
+
+<p>(TBC)</p>
+
+<h2 id="why">Why</h2>
+
+<p>(TBC)</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="types-of-associations">Types of Associations</h3>
+
+<p>Rails provides several types of associations to represent different relationships between models, such as belongs_to, has_many, has_one, and has_and_belongs_to_many. It’s crucial to grasp the purpose and usage of each association type to establish correct and efficient relationships between models.</p>
+
+<ul>
+  <li>belongs_to: Used to define a one-to-many relationship between two tables</li>
+  <li>has_many: Used to define a one-to-many relationship between two tables</li>
+  <li>has_one: Used to define a one-to-one relationship between two tables</li>
+  <li>example: We have a User model, a Profile model, and a Post model. Each user has one profile, and each user can have many posts. Each post belongs to a user.</li>
+</ul>
+
+<p>To define these associations,</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">has_one</span> <span class="ss">:profile</span>
+  <span class="n">has_many</span> <span class="ss">:posts</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Profile</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">has_one</span> <span class="ss">:profile</span><span class="p">,</span> <span class="ss">through: :user</span> <span class="c1"># because user has one profile and also has many posts</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>This tells Rails that each User has one Profile, and that each User can have many Posts. It also tells Rails that each Profile belongs to a User, and that each Post belongs to a User. By default, Rails assumes that the posts table has a foreign key called user_id that references the id column of the users table.</p>
+
+<p>Access related data:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+<span class="vi">@profile</span> <span class="o">=</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">profile</span>
+
+<span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+<span class="vi">@posts</span> <span class="o">=</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">posts</span>
+
+<span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+<span class="vi">@user</span> <span class="o">=</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">user</span>
+
+<span class="vi">@post</span> <span class="o">=</span> <span class="no">Post</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+<span class="vi">@profile</span> <span class="o">=</span> <span class="vi">@post</span><span class="p">.</span><span class="nf">profile</span>
+</code></pre></div></div>
+
+<h3 id="declaring-associations">Declaring Associations</h3>
+
+<p>Associations are declared within Rails model classes using appropriate methods provided by ActiveRecord, the ORM (Object-Relational Mapping) layer in Rails. By utilizing these methods, you can define the relationships between models and specify options like foreign keys, dependent actions, and eager loading behaviors.</p>
+
+<h3 id="querying-and-manipulating-related-data">Querying and Manipulating Related Data</h3>
+
+<p>Once associations are set up, you can leverage them to query and manipulate related data effectively. Rails provides methods like includes, joins, and eager loading associations to optimize database queries and minimize the number of database hits. Additionally, understanding methods like build, create, and destroy helps in creating and managing related records conveniently.</p>
+
+<h2 id="what">What</h2>
 
 <p>For example, if we want to build an online store system. The relations:</p>
 
-<ol>
-  <li>one-to-one: every uwser can create one store</li>
-  <li>one-to-many: a store can sell many products</li>
-  <li>many-to-many: Each store can sell many products and each product can be sold in many stores</li>
-</ol>
+<ul>
+  <li>One-to-one: every user can create one store</li>
+  <li>One-to-many: a store can sell many products</li>
+  <li>Many-to-many: Each store can sell many products and each product can be sold in many stores</li>
+</ul>
 
 <h3 id="one-to-one">one-to-one</h3>
 
-<p>Let’s build <code class="language-plaintext highlighter-rouge">User</code> model</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g model User name email tel
-</code></pre></div></div>
-<p>Then build <code class="language-plaintext highlighter-rouge">Store</code> model</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g model Store title tel address user_id:integer
-</code></pre></div></div>
-<p>You can also use</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g model Store title tel address user:references
-</code></pre></div></div>
-<p><code class="language-plaintext highlighter-rouge">user_id:integer</code> makes <code class="language-plaintext highlighter-rouge">Store</code> to have foreign key matching id in User database.
-<img src="/assets/img/1__UcS6Mtj0CLEY5dsfGnY5TA.png" alt="" />
-Then</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails db:migrate
-</code></pre></div></div>
-<p>Before setting relation in model, if we directly create <code class="language-plaintext highlighter-rouge">user</code> and <code class="language-plaintext highlighter-rouge">store</code> and build relation as follow:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user1 = User.new(name: "aaa")
+<ul>
+  <li>Visualization
+    <div class="mermaid">
+classDiagram
+  direction LR
+  class User{
+    -id : int
+    -name : string
+    -email: string
+    -tel: int
+  }
+  class Store{
+    -id : int
+    -title: string
+    -address: string
+    -tel: int
+    -user_id: int
+  }
+  User "1" --o "1" Store : has_one
+</div>
+  </li>
+  <li>Generate <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Store</code> model
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g model User name email tel
+rails g model Store title tel address user_id:integer
+<span class="c"># or</span>
+rails g model Store title tel address user:references
+
+rails db:migrate
+</code></pre></div>    </div>
+    <p><code class="language-plaintext highlighter-rouge">user_id:integer</code> makes <code class="language-plaintext highlighter-rouge">Store</code> to have foreign key matching id in User database.</p>
+  </li>
+  <li>Before setting relation in model, if we directly create <code class="language-plaintext highlighter-rouge">user</code> and <code class="language-plaintext highlighter-rouge">store</code> and build relation as follow:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user1 = User.new(name: "aaa")
 store1 = Store.new(title: "aaa")
 user1.store = store1
-</code></pre></div></div>
-<p>Then the following error occurs:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NoMethodError (undefined method `store=' for #&lt;User:0x00000001212dada8&gt;)
-</code></pre></div></div>
-<p>,meaning the user does not have the method to set relation with store, setting relation up as follow</p>
-
-<p>In user model,</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class User &lt; ApplicationRecord  
+</code></pre></div>    </div>
+    <ul>
+      <li>Error
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NoMethodError (undefined method `store=' for #&lt;User:0x00000001212dada8&gt;)
+</code></pre></div>        </div>
+        <p>,meaning the user does not have the method to set relation with store, setting relation up as follow</p>
+      </li>
+    </ul>
+  </li>
+  <li>Solve errors
+    <ul>
+      <li>In user model,
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class User &lt; ApplicationRecord  
   has_one :store  
 end
-</code></pre></div></div>
-<p>In store model,</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Store &lt; ApplicationRecord  
+</code></pre></div>        </div>
+      </li>
+      <li>In store model,
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Store &lt; ApplicationRecord  
   belongs_to :user  
 end
-</code></pre></div></div>
-<p>Then we can use model to manipulate database with model as follow</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user1.store = store1
+</code></pre></div>        </div>
+      </li>
+      <li>Then we can use model to manipulate database with model as follow
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user1.store = store1
 or
 store1.user = user1
-</code></pre></div></div>
-<h4 id="save-it"><strong>save it</strong></h4>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user1.save
-</code></pre></div></div>
-<p><img src="/assets/img/1__4____gMZvS0GRwn01ADm__BGA.png" alt="" /></p>
 
-<p>As you can see, there are two <code class="language-plaintext highlighter-rouge">INSERT</code>. One for <code class="language-plaintext highlighter-rouge">user1</code> and one for <code class="language-plaintext highlighter-rouge">store1</code> because there is relation set up above.</p>
+user1.save
+</code></pre></div>        </div>
+        <p><img src="/blog/assets/img/1__4____gMZvS0GRwn01ADm__BGA.png" alt="" /></p>
+        <ul>
+          <li>As you can see, there are two <code class="language-plaintext highlighter-rouge">INSERT</code>. One for <code class="language-plaintext highlighter-rouge">user1</code> and one for <code class="language-plaintext highlighter-rouge">store1</code> because there is relation set up above.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="one-to-many">one-to-many</h3>
 
@@ -155,7 +255,7 @@ product2 = Product.new(name: "bbb", price: 200)
 <h3 id="many-to-many">many-to-many</h3>
 
 <h4 id="create-warehouse-for-the-following-relation"><strong>Create WareHouse for the following relation</strong></h4>
-<p><img src="/assets/img/1__skqUNFZZ2K721CheqeKqUw.png" alt="" /></p>
+<p><img src="/blog/assets/img/1__skqUNFZZ2K721CheqeKqUw.png" alt="" /></p>
 
 <p>Then through warehouse, store and product have the many-to-many relation</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g model WareHouse store:references product:references

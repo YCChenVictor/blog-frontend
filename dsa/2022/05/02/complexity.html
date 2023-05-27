@@ -73,7 +73,7 @@
     <h1 class='text-center mt-6 mb-6'>Complexity</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>Complexity is a measure of the resources required to solve a problem or execute an algorithm.</p>
+<p>Complexity is a measure of the maximum resources required to solve a problem or execute an algorithm.</p>
 
 <ul>
   <li>Time complexity refers to the amount of time or number of operations required to solve a problem or execute an algorithm. The goal of analyzing time complexity is to identify algorithms that are efficient and can solve problems within a reasonable amount of time.</li>
@@ -82,7 +82,7 @@
 
 <h2 id="why">Why?</h2>
 
-<p>Basic data structure and algorithm knowledge is useful for problem solving. With this concept, we can evalute solutions to a problem before diving in.</p>
+<p>With concept of complexity, we can evaluate solutions to a problem before diving in.</p>
 
 <h2 id="how">How?</h2>
 
@@ -163,6 +163,15 @@
   <li>\(2x^2 + x\) is \(x^2\) because of \(\exists \ a, b &gt; 0 \ s.t \ ax^2 &lt; 2x^2 + x &lt; bx^2 \forall \ x&gt;0\)</li>
 </ul>
 
+<p>That is, all the constant number can be ignored.</p>
+
+<ul>
+  <li>\(O(x + a) = O(x)\), where a is constant</li>
+  <li>\(O(x - a) = O(x)\), where a is constant</li>
+  <li>\(O(ax) = O(x)\), where a is constant</li>
+  <li>\(O(x/a) = O(x)\), where a is constant</li>
+</ul>
+
 <h3 id="time-complexity">time complexity</h3>
 
 <ul>
@@ -172,48 +181,12 @@
 
 <h4 id="amortized-time">Amortized Time</h4>
 
-<ul>
-  <li>Description: In some data structures, individual operations can take significantly longer than others
-    <ul>
-      <li>For example, adding an element to an array can take O(n) time if the array needs to be resized, but most additions take constant time O(1)</li>
-    </ul>
-  </li>
-  <li>Solution: Considers the average time taken by a sequence of operations, rather than just by one single operation
-    <ul>
-      <li>Amortized time complexity analysis involves dividing the total time taken by a sequence of operations by the number of operations. This gives us the average time taken per operation, which is a more useful measure of the data structure’s performance than the worst-case time complexity of a single operation.</li>
-      <li>Accounting method, which involves assigning a cost to each operation and using the cost to pay for future operations. For example, in an array with dynamic resizing, we could assign a cost of 1 to each add operation, and use the extra time taken by the occasional resize operation to pay for the cost of the future operations.</li>
-    </ul>
-  </li>
-  <li>Example: add element to array
-    <ul>
-      <li>code
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">addToArray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="nx">array</span><span class="p">.</span><span class="nx">capacity</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">newCapacity</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">capacity</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="kd">const</span> <span class="nx">newArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">newCapacity</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">newArray</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-    <span class="p">}</span>
-    <span class="nx">array</span> <span class="o">=</span> <span class="nx">newArray</span><span class="p">;</span>
-    <span class="nx">array</span><span class="p">.</span><span class="nx">capacity</span> <span class="o">=</span> <span class="nx">newCapacity</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="nx">array</span><span class="p">[</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>        </div>
-      </li>
-      <li>The cost of each add operation is O(1), and the cost of each resize operation is O(n).</li>
-      <li>calculation
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">{</span> <span class="na">capacity</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">length</span><span class="p">:</span> <span class="mi">0</span> <span class="p">};</span>
-<span class="nx">addToArray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// O(1)</span>
-<span class="nx">addToarray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// O(1)</span>
-<span class="nx">addToArray</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// O(1 + 2 * 1)</span>
+<p>In certain data structures, the time complexity of specific operations may vary significantly, such as an array resizing during element addition taking O(n) time, yet most additions are constant time O(1), leading us to evaluate the average time taken by a sequence of operations rather than a single operation.</p>
 
-<span class="c1">// O(1 + 1 + 1 + 2 * 1) = O(5)</span>
-<span class="c1">// 5/3 = 1.67 =&gt; amortized time = O(1.67) = O(1)</span>
-</code></pre></div>        </div>
-      </li>
-    </ul>
-  </li>
+<ul>
+  <li>Amortized time complexity analysis involves dividing the total time taken by a sequence of operations by the number of operations. This gives us the average time taken per operation, which is a more useful measure of the data structure’s performance than the worst-case time complexity of a single operation.</li>
+  <li>Accounting method, which involves assigning a cost to each operation and using the cost to pay for future operations. For example, in an array with dynamic resizing, we could assign a cost of 1 to each add operation, and use the extra time taken by the occasional resize operation to pay for the cost of the future operations.</li>
+  <li>Example: (TBC)</li>
 </ul>
 
 <h3 id="space-complexity">space complexity</h3>

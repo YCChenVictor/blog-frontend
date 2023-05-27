@@ -453,11 +453,22 @@ video {
   line-height: 1.25rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
+  max-width: 56rem;
 }
   p {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
 
 *, ::before, ::after {
   --tw-border-spacing-x: 0;

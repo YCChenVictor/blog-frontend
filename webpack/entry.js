@@ -5,6 +5,7 @@ import Category from './components/Category.jsx';
 import NodeGraph from './components/NodeGraph.jsx';
 import SearchBar from './components/SearchBar.jsx';
 import WordCounts from './components/WordCounts.jsx';
+import Youtube from './components/Youtube.jsx';
 
 const sidebar = document.getElementById('sidebar')
 const burgerSidebar = document.getElementById('burger-sidebar')
@@ -12,6 +13,13 @@ const category = document.getElementById('category')
 const nodeGraph = document.getElementById('node-graph')
 const searchBar = document.getElementById('search-bar')
 const wordCounts = document.getElementById('word-count')
+const youtube = document.getElementById('youtube')
+
+if (youtube !== null) {
+  createRoot(youtube).render(
+    <Youtube />
+  )
+}
 
 if (sidebar !== null) {
   createRoot(sidebar).render(

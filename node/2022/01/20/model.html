@@ -74,29 +74,24 @@
 
 <h3 id="sequelize">sequelize</h3>
 
-<p>To create a user model,</p>
+<p>Create <code class="language-plaintext highlighter-rouge">./model/base.js</code> with <code class="language-plaintext highlighter-rouge">sequelize</code> as follow:</p>
 
-<p>create <code class="language-plaintext highlighter-rouge">./model/index.js</code> with <code class="language-plaintext highlighter-rouge">sequelize</code> as follow:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">dotenv/config</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Sequelize</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">sequelize</span><span class="dl">'</span><span class="p">;</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">dotenv</span><span class="dl">'</span><span class="p">).</span><span class="nx">config</span><span class="p">()</span>
-
-<span class="kd">const</span> <span class="nx">Sequelize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">sequelize</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">sequelize</span>
+<span class="kd">let</span> <span class="nx">sequelize</span><span class="p">;</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">development</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DEV_DATABASE_URL</span><span class="p">)</span>
+  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DEV_DATABASE_URL</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">test</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">TEST_DATABASE_URL</span><span class="p">)</span>
+  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">TEST_DATABASE_URL</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_URL</span><span class="p">)</span>
+  <span class="nx">sequelize</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Sequelize</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_URL</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">sequelize</span><span class="p">;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">sequelize</span><span class="p">;</span>
 </code></pre></div></div>
 
-<p>and then in <code class="language-plaintext highlighter-rouge">./model/user.js</code></p>
+<p>and then we can define models; for example, in <code class="language-plaintext highlighter-rouge">./model/user.js</code></p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
 <span class="kd">const</span> <span class="nx">Sequelize</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">sequelize</span><span class="dl">'</span><span class="p">);</span>

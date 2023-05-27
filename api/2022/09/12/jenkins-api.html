@@ -194,20 +194,17 @@
 
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
-
-<h2 id="other">Other</h2>
-
 <p>TODO: try it in the future. The problem is I cannot create job through JSON with its API.</p>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">const</span> <span class="nx">jenkinsCreateJob</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../services/jenkinsCreateJob.js</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">jenkinsCreateJob</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../services/jenkinsCreateJob.js</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">app</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/addTask</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="c1">// post a job with config.xml</span>
     <span class="c1">// update build with DSL</span>
   <span class="p">})</span>
+
   <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/createJob</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="c1">// create (this should be only create job and should add another api to update DSL)</span>
     <span class="kd">const</span> <span class="nx">pipeline</span> <span class="o">=</span> <span class="dl">''</span>
 

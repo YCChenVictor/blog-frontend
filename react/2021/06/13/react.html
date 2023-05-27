@@ -66,7 +66,7 @@
     <h1 class='text-center mt-6 mb-6'>React</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>React is an open-source JavaScript library used for building user interfaces or UI components.</p>
+<p>React is an open-source <a href="/blog/javascript/2022/12/12/javascript.html">javascript</a> library used for building user interfaces or UI components.</p>
 
 <h2 id="why">Why?</h2>
 
@@ -284,6 +284,33 @@ npm start
 <h3 id="sign-up-and-login-mechanism">sign up and login mechanism</h3>
 
 <p><a href="/blog/react/2021/10/15/sign-up-and-login.html">sign up and login mechanism</a></p>
+
+<h3 id="youtube-videos">Youtube Videos</h3>
+
+<p>To embed videos in a React application, you can use the &lt;iframe&gt; HTML element along with the appropriate video embed code provided by the video hosting platform (such as YouTube or Vimeo).</p>
+
+<ul>
+  <li>create component to put videoUrl in iframe
+    <pre><code class="language-JSX">import React from 'react';
+  
+const VideoPlayer = ({ videoUrl }) =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;iframe
+        src={videoUrl}
+        width="560"
+        height="315"
+        frameBorder="0"
+        allowFullScreen
+      &gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+  );
+};
+  
+export default VideoPlayer;
+</code></pre>
+  </li>
+</ul>
 
 <h2 id="reference">Reference</h2>
 

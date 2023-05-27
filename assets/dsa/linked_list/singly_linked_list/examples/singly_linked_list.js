@@ -11,8 +11,6 @@ class LinkedList {
 
   constructor() {
     this.head = null;
-    this.tail = null;
-    this.length = 0;
   }
 
   // Create
@@ -21,7 +19,6 @@ class LinkedList {
 
     if (!this.head) {
       this.head = newNode;
-      this.tail = newNode;
     } else {
       newNode.next = this.head;
       this.head = newNode;
@@ -31,17 +28,15 @@ class LinkedList {
   }
 
   append(value) {
+    let tail
     const newNode = new Node(value);
 
     if (!this.head) {
       this.head = newNode;
-      this.tail = newNode;
     } else {
-      this.tail.next = newNode;
-      this.tail = newNode;
+      tail = this.traverseTo('last')
+      tail.next = newNode;
     }
-    
-    this.length++;
   }
 
   insert(position, value) {
@@ -51,7 +46,7 @@ class LinkedList {
       this.append(value);
     } else {
       const newNode = new Node(value);
-      const leader = this.traverseToIndex(position - 1);
+      const leader = this.traverseTo(position - 1);
       const nextNode = leader.next;
 
       leader.next = newNode;
@@ -61,14 +56,21 @@ class LinkedList {
   }
     
   // Read
-  traverseToIndex(index) {
+  traverseTo(index) {
     let currentNode = this.head;
-
-    for (let i = 0; i < index; i++) {
-      currentNode = currentNode.next;
+    
+    if (index === 'last') {
+      index = Infinity
     }
 
-    return currentNode;
+    for (let i = 0; i < index; i++) {
+      if (currentNode.next !== null) {
+        currentNode = currentNode.next;
+      } else {
+        return currentNode
+      }
+    }
+    return currentNode
   }
 
   printList() {
@@ -85,7 +87,7 @@ class LinkedList {
 
   // Update
   update(position, value) {
-    const target = this.traverseToIndex(position - 1);
+    const target = this.traverseTo(position - 1);
     target.value = value
   }
 
@@ -93,13 +95,11 @@ class LinkedList {
   remove(position) {
     if (position === 1) {
       this.head = this.head.next;
-      this.length--;
     } else {
-      const leader = this.traverseToIndex(position - 1);
-      const unwantedNode = leader.next;
+      const unwantedNode = this.traverseTo(position - 1);
+      const leader = this.traverseTo(position - 2);
 
       leader.next = unwantedNode.next;
-      this.length--;
     }
   }
 }

@@ -10,6 +10,7 @@ describe('LinkedList', () => {
     }
   });
 
+  // create
   test('#prepand', () => {
     testLinkedList.prepand(0);
     expect(testLinkedList.printList()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
@@ -24,12 +25,23 @@ describe('LinkedList', () => {
     testLinkedList.insert(2, 1000);
     expect(testLinkedList.printList()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
   });
-  
-  test('#update', () => {
-    // TODO
+
+  // read
+  test('#traverse', () => {
+    expect(testLinkedList.traverseTo(2).value).toEqual(888);
+  })
+
+  test('#printList', () => {
+    expect(testLinkedList.printList()).toEqual([33, 62, 888, 74, 1]);
   })
   
-  test('#delete', () => {
-    // TODO
+  test('#update', () => {
+    testLinkedList.update(3, 4)
+    expect(testLinkedList.printList()).toEqual([33, 62, 4, 74, 1]);
+  })
+  
+  test('#remove', () => {
+    testLinkedList.remove(3)
+    expect(testLinkedList.printList()).toEqual([33, 62, 74, 1]);
   })
 });

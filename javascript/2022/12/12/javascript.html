@@ -92,6 +92,43 @@
 
 <h2 id="how">How?</h2>
 
+<h3 id="es">ES</h3>
+
+<p>ES stands for ECMAScript, which is a standardized scripting language specification that is used to implement JavaScript. ECMAScript is maintained by the European Computer Manufacturers Association (ECMA) and is designed to be a cross-platform, vendor-neutral standard that can be used by multiple web browsers and other environments that support JavaScript.</p>
+
+<h3 id="class-form">Class Form</h3>
+
+<p>After ECMAScript 2015 (ES6)</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Parent class</span>
+<span class="kd">class</span> <span class="nx">ParentClass</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">greet</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello, </span><span class="dl">'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">!</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Child class</span>
+<span class="kd">class</span> <span class="nx">ChildClass</span> <span class="kd">extends</span> <span class="nx">ParentClass</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">introduce</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">My name is </span><span class="dl">'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> and I am </span><span class="dl">'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> years old.</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage</span>
+<span class="kd">const</span> <span class="nx">child</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ChildClass</span><span class="p">(</span><span class="dl">'</span><span class="s1">Alice</span><span class="dl">'</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="nx">child</span><span class="p">.</span><span class="nx">greet</span><span class="p">();</span>      <span class="c1">// Output: Hello, Alice!</span>
+<span class="nx">child</span><span class="p">.</span><span class="nx">introduce</span><span class="p">();</span>  <span class="c1">// Output: My name is Alice and I am 25 years old.</span>
+</code></pre></div></div>
+
 <h3 id="execution-order">Execution Order</h3>
 
 <ul>
@@ -107,6 +144,8 @@
     </ul>
   </li>
 </ul>
+
+<p>###</p>
 
 <h3 id="datatype">datatype</h3>
 
@@ -356,10 +395,6 @@
 
 <p><a href="/blog/javascript/2021/06/19/AJAX.html">AJAX</a></p>
 
-<h3 id="es">ES</h3>
-
-<p>ES stands for ECMAScript, which is a standardized scripting language specification that is used to implement JavaScript. ECMAScript is the official name for the scripting language that is commonly referred to as “JavaScript”. ECMAScript is maintained by the European Computer Manufacturers Association (ECMA) and is designed to be a cross-platform, vendor-neutral standard that can be used by multiple web browsers and other environments that support JavaScript. Each new version of ECMAScript (ES6, ES7, ES8, etc.) introduces new features and updates to the language, which are implemented by web browsers and other environments to provide developers with new tools and capabilities for building modern web applications.</p>
-
 <h3 id="json">JSON</h3>
 
 <h3 id="import-and-export">Import and Export</h3>
@@ -380,9 +415,14 @@
 <span class="p">}</span>
 </code></pre></div></div>
 
-<h3 id="document-object-model">Document Object Model</h3>
+<h3 id="document-object-model-dom">Document Object Model (DOM)</h3>
 
 <ul>
+  <li>Url
+    <ul>
+      <li>Get current url: <code class="language-plaintext highlighter-rouge">window.location.href</code></li>
+    </ul>
+  </li>
   <li>redirect</li>
   <li>open new tab
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="dl">'</span><span class="s1">_blank</span><span class="dl">'</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>

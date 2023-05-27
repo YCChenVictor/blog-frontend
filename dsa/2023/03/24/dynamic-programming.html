@@ -57,31 +57,25 @@
     <h1 class='text-center mt-6 mb-6'>Dynamic Programming</h1>
     <h2 id="introduction">Introduction</h2>
 
-<ul>
-  <li>Application: Dynamic programming is often used in problems where the solution can be expressed as a recursive sequence of sub-problems, such as finding the shortest path in a graph or the longest common subsequence of two strings. By solving each subproblem only once and storing its solution, dynamic programming algorithms can often solve large-scale optimization problems efficiently.</li>
-  <li>Solution: Solve optimization problems by breaking them down into smaller, simpler sub-problems and solving each subproblem only once.</li>
-  <li>Concept: The key idea behind dynamic programming is to store the solutions to sub-problems and reuse them when needed, rather than repeatedly recomputing the solutions</li>
-</ul>
+<p>(TBC)</p>
 
 <h2 id="why">Why?</h2>
 
-<p>The main advantage of dynamic programming is that it can often solve large-scale optimization problems efficiently. By breaking the problem down into smaller sub-problems and solving each subproblem only once, dynamic programming can avoid the repeated computations that would be necessary if the problem were solved using a brute-force approach.</p>
-
-<p>Dynamic programming is used in a wide variety of fields, including computer science, mathematics, engineering, economics, and operations research. It is particularly useful in problems related to optimization, such as finding the shortest path in a graph, scheduling tasks, or maximizing profits.</p>
+<p>Dynamic programming offers an efficient solution to large-scale optimization problems by breaking them into smaller sub-problems and avoiding repetitive computations, making it applicable across various disciplines including computer science, mathematics, engineering, economics, and operations research.</p>
 
 <h2 id="how">How?</h2>
 
 <h3 id="fibonacci">fibonacci</h3>
 
 <ul>
-  <li>recursive</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <li>concept
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>f<span class="o">(</span>n<span class="o">)</span> <span class="o">=</span> f<span class="o">(</span>n - 1<span class="o">)</span> + f<span class="o">(</span>n - 2<span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>recursive
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fibonacci</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">memo</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">function</span> <span class="nx">fibonacciHelper</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">memo</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="nx">n</span><span class="p">;</span>
     <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="k">in</span> <span class="nx">memo</span><span class="p">)</span> <span class="p">{</span>
@@ -93,36 +87,13 @@
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">fibonacciHelper</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
 <span class="p">}</span>
-
+  
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span> <span class="c1">// Output: 55</span>
-</code></pre></div></div>
-
-<h3 id="maximum-sub-array-sum">Maximum sub-array sum</h3>
-
-<ul>
-  <li>Please return the sub array that has biggest sum</li>
-  <li>iterative</li>
+</code></pre></div>    </div>
+  </li>
 </ul>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">maxSubArraySum</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">dp</span> <span class="o">=</span> <span class="p">[];</span>
-  <span class="nx">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-  <span class="kd">let</span> <span class="nx">maxSum</span> <span class="o">=</span> <span class="nx">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-  
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-    <span class="nx">maxSum</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">maxSum</span><span class="p">,</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-  <span class="p">}</span>
-  
-  <span class="k">return</span> <span class="nx">maxSum</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// Example usage:</span>
-<span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">maxSubArraySum</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span> <span class="c1">// Returns 3</span>
-</code></pre></div></div>
-
-<p>By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.</p>
+<h3 id="01-knapsack-problem">0/1 Knapsack problem</h3>
 
 <h2 id="what">What?</h2>
 
@@ -217,6 +188,35 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Solution: </span><span class="p">${</span><span class="nx">solution</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">task</span> <span class="o">=&gt;</span> <span class="nx">task</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
 </code></pre></div></div>
 
+<h2 id="other">Other</h2>
+
+<h3 id="maximum-sub-array-sum">Maximum sub-array sum</h3>
+
+<ul>
+  <li>Please return the sub array that has biggest sum</li>
+  <li>iterative</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">maxSubArraySum</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">dp</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nx">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="kd">let</span> <span class="nx">maxSum</span> <span class="o">=</span> <span class="nx">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="nx">maxSum</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">maxSum</span><span class="p">,</span> <span class="nx">dp</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="nx">maxSum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Example usage:</span>
+<span class="kd">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">maxSubArraySum</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span> <span class="c1">// Returns 3</span>
+</code></pre></div></div>
+
+<p>By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.</p>
+
 <h2 id="todo">TODO</h2>
 
 <ul>
@@ -224,11 +224,19 @@
     <ul>
       <li>longest increasing subsequence</li>
       <li>0/1 knapsack problem</li>
+      <li>Shortest path algorithms:</li>
+      <li>Longest common subsequence</li>
+      <li>Matrix chain multiplication</li>
+      <li>Edit distance</li>
     </ul>
   </li>
 </ul>
 
 <h2 id="reference">Reference</h2>
+
+<p><a href="https://www.youtube.com/watch?v=8LusJS5-AGo">0/1 Knapsack Problem Dynamic Programming</a></p>
+
+<p><a href="https://web.ntnu.edu.tw/~algo/KnapsackProblem.html">Knapsack Problem</a></p>
 
   </div>
 </div>

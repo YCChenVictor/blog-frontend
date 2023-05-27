@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
+  <div class="titleImagePosition">
+    <a href="/blog/" class="!px-0 !py-0">
+      <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
+    </a>
+  </div>
+  <div class="flex">
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="absolute right-16 flex md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+          <!-- dynamic menu based on navigation info in _config.yml -->
+          
+             <!-- don't show current page in menu -->
+              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
+                href="/blog/about">
+                About Me
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
+  <div class='text-center'>
+    
+  </div>
+  <div class='md:px-4 md:grid lg:px-72'>
+    <h1 class='text-center mt-6 mb-6'>Mailer</h1>
+    <h2 id="introduction">Introduction</h2>
+
+<p>(TBC)</p>
+
+<h2 id="why">Why</h2>
+
+<p>We need mailer in Rails to efficiently send emails, such as welcome messages, notifications, password resets, and other important communications, to users and stakeholders.</p>
+
+<h2 id="how">How</h2>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>Configure the SMTP settings for email provider. For example, to use <a href="https://www.mailgun.com/">Mailgun</a>, we can add the following configuration:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span>  
+  <span class="o">...</span>
+  <span class="c1"># add the following SMTP setup  </span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">delivery_method</span> <span class="o">=</span> <span class="ss">:smtp</span>  
+  <span class="n">config</span><span class="p">.</span><span class="nf">action_mailer</span><span class="p">.</span><span class="nf">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>  
+    <span class="ss">address: </span><span class="s1">'smtp.mailgun.org'</span><span class="p">,</span>  
+    <span class="ss">port: </span><span class="mi">587</span><span class="p">,</span>  
+    <span class="ss">domain: </span><span class="s1">'any_domain_name'</span><span class="p">,</span>  
+    <span class="ss">user_name: </span><span class="s1">'user_name_from_mailgun'</span><span class="p">,</span>  
+    <span class="ss">password: </span><span class="s1">'password_from_mailgun'</span><span class="p">,</span>  
+    <span class="ss">authentication: </span><span class="s1">'plain'</span><span class="p">,</span>  
+    <span class="ss">enable_starttls_auto: </span><span class="kp">true</span>  
+  <span class="p">}</span>  
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>in <code class="language-plaintext highlighter-rouge">config/environments/development.rb</code>.</p>
+
+<h3 id="generate-mailer">Generate Mailer</h3>
+
+<p>In rails project, generate mailer with</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails g mailer Contact
+</code></pre></div></div>
+<p>and then rails will create following files: (The concept of mailer is similar to controller and view)</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">app/mailers/application_mailer.rb</code>
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ApplicationMailer</span> <span class="o">&lt;</span> <span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span>  
+  <span class="n">default</span> <span class="ss">from: </span><span class="s1">'from@example.com'</span>
+  <span class="n">layout</span> <span class="s1">'mailer'</span>  
+<span class="k">end</span>
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">default from: 'from@example.com'</code> means by default, the mail will be sent by from@example.com</li>
+      <li><code class="language-plaintext highlighter-rouge">layout 'mailer'</code> means by default, it will find the template, <code class="language-plaintext highlighter-rouge">mailer.html.erb</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">contact_mailer.rb</code>
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ContactMailer</span> <span class="o">&lt;</span> <span class="no">ApplicationMailer</span>  
+<span class="k">end</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>Just like how controller connect to views, the method name in mailer is by default the same as the html file name; for example, we create following method in <code class="language-plaintext highlighter-rouge">contact_mailer.rb</code>
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ContactMailer</span> <span class="o">&lt;</span> <span class="no">ApplicationMailer</span>  
+  <span class="k">def</span> <span class="nf">say_hello_to</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>  
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>  
+    <span class="n">mail</span> <span class="ss">to: </span><span class="vi">@user</span><span class="p">.</span><span class="nf">email</span><span class="p">,</span> <span class="n">subject</span><span class="ss">:"Hello!!"</span>  
+  <span class="k">end</span>  
+<span class="k">end</span>
+</code></pre></div>        </div>
+        <ul>
+          <li>The method will try to find <code class="language-plaintext highlighter-rouge">say_hello_to.html.erb</code> in <code class="language-plaintext highlighter-rouge">views/contact_mailer</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">app/views/layouts/mailer.html.erb</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mailer.text.erb</code></li>
+  <li><code class="language-plaintext highlighter-rouge">app/views/contact_mailer</code>
+    <ul>
+      <li>We create <code class="language-plaintext highlighter-rouge">views/contact_mailer/say_hello_to.html.erb</code> with
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="sx">%= @user.name %&gt;,Hello:
+Have a nice day!~
+</span></code></pre></div>        </div>
+        <ul>
+          <li>The text in this file will be the context of the email that the system is going to send</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="send-mail">Send Mail</h3>
+
+<p>For example, If we want to send mail every time we create a user, we should add the following in the method, <code class="language-plaintext highlighter-rouge">create</code> of user controller</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>  
+  <span class="o">...</span>
+
+  <span class="k">def</span> <span class="nf">create</span>  
+    <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">user_params</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="vi">@user</span><span class="p">.</span><span class="nf">save</span>  
+      <span class="no">ContactMailer</span><span class="p">.</span><span class="nf">say_hello_to</span><span class="p">(</span><span class="vi">@user</span><span class="p">).</span><span class="nf">deliver_now</span>  
+      <span class="n">redirect_to</span> <span class="vi">@user</span><span class="p">,</span> <span class="ss">notice: </span><span class="s1">'User was successfully created.'</span>  
+    <span class="k">else</span>  
+      <span class="n">render</span> <span class="ss">:new</span>  
+    <span class="k">end</span>  
+  <span class="k">end</span>
+  <span class="o">...</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ConcactMailer.say_hello_to(@user).deliver_now</code> means it call the method to send say hello after creating user and the mail is the input mail in user creating method.</p>
+
+<h3 id="result">Result</h3>
+
+<p>Then we can test the effects on <a href="https://support.cloudways.com/configure-mailgun-smtp/">mailgun dashboard</a>. <img src="/blog/assets/img/1__tjoMode96kMVQdhLZlhYXA.png" alt="" /> For more information related to smtp, please refer to <a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">smtp</a>.</p>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="https://railsbook.tw/">railsbook</a></p>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+    <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <br>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="scrollTopBtn"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
+</html>
