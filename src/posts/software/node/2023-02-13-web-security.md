@@ -15,11 +15,11 @@ publish: true
 
 ## Introduction
 
-This article describes how node deal with web security.
+This article describes how node deal with web security issues.
 
 ## Why?
 
-Please refer to [here]({{site.baseurl}}/web-security/2022/08/30/overview.html) to see why we need to deal with web security.
+Please refer to [here]({{site.baseurl}}/web-security/2022/08/30/overview.html) to see why we need to deal with web security issues.
 
 ## How?
 
@@ -34,23 +34,11 @@ const app = express()
 
 ...
 
-// cors
-const cors = require('./middleware/cors.js');
+// CORS
+import cors from './middleware/cors.js';
 app.use(cors);
 
-// API
-const api = require('./apis/api_summary.js');
-if (process.env.NODE_ENV === 'development') {
-  app.listen(5000, () => {
-    api(app)
-  })
-} else if (process.env.NODE_ENV === 'test') {
-  app.listen(8080, () => {
-    api(app)
-  })
-} else {
-  // TODO for production
-}
+...
 
 module.exports = app
 ```
@@ -58,7 +46,7 @@ module.exports = app
 and the middleware
 
 ```javascript
-cors = (req, res, next) => {
+export default function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   // Request methods you wish to allow
@@ -70,8 +58,6 @@ cors = (req, res, next) => {
   // Pass to next layer of middleware
   next();
 }
-
-module.exports = cors
 ```
 
 * we define resources of node can only be requested by localhost:3000
