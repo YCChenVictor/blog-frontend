@@ -113,7 +113,7 @@ This article describes how to setup baseline node app.
 
 ### structure
 
-This is what I prefer
+The structure I prefer
 
 * node app
   * test
@@ -140,13 +140,17 @@ The API of Node.js provides a comprehensive set of functions and modules that en
 
 Set up a database and models for a node project using PG and Sequelize. The process involves creating a database, installing Sequelize, configuring it using a .sequelizerc file and a config.js file, generating a migration file for the models, and migrating the database. For more information, please refer to [database]({{site.baseurl}}/node/2022/12/30/database.html).
 
+### Model
+
+Various libraries and frameworks such as Mongoose, Sequelize, or Bookshelf can be used to implement models in Node.js, providing an ORM layer for interacting with databases and managing data models. For more information, please refer to [model]({{site.baseurl}}/node/2022/01/20/model.html)
+
 ### Service
 
 In Node.js, a service module can be a self-contained piece of code that performs a specific task or set of tasks, such as communicating with an external API, handling database interactions, or performing complex business logic. For more information, please refer to [service]()
 
-### Model
+### API
 
-Various libraries and frameworks such as Mongoose, Sequelize, or Bookshelf can be used to implement models in Node.js, providing an ORM layer for interacting with databases and managing data models. For more information, please refer to [model]({{site.baseurl}}/node/2022/01/20/model.html)
+The API of Node.js provides a comprehensive set of functions and modules that enable developers to build scalable and efficient network applications. It offers features such as file system operations, networking capabilities, event-driven programming, and support for various protocols, making it a powerful tool for server-side development. For more information, please refer to [API]({{site.baseurl}}/node/2022/01/26/api.html)
 
 ### spec
 
