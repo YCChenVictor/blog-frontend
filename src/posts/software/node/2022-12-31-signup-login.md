@@ -53,8 +53,8 @@ Given we setup the [model](2022-01-20-model) environment, create a file `models/
 ```javascript
 'use strict';
 
-import Sequelize from 'sequelize';
-import sequelize from './index.js';
+const Sequelize = require('sequelize');
+const sequelize = require('./index.js');
 
 const user = sequelize.define('user', {
   email: {
@@ -65,7 +65,7 @@ const user = sequelize.define('user', {
   }
 })
 
-export default user
+module.export = user
 ```
 
 ### Passport Middleware
