@@ -18,7 +18,6 @@ export default function LoginModal(props) {
     }).then((data) => {
       localStorage.setItem('logged in', data.token);
       // close modal
-      window.location.href = '/task_list';
       alert('login successfully')
     }).catch(error => {
       console.log(error)
