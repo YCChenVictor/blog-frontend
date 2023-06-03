@@ -15,7 +15,7 @@ publish: true
 
 ## Introduction
 
-This article describes how to solve problems related to data structure and alogrithm.
+This article describes how to solve problems related to data structure and algorithm.
 
 ## Why?
 
@@ -23,7 +23,7 @@ To pass coding interview
 
 ## How?
 
-1. Read or listen to the question and ask all the necessary informations, use as little hint as possible
+1. Read or listen to the question and ask all the necessary information, use as little hint as possible
 2. Brainstorm to think about all the cases, including edge case
 3. Come up with a brute force solution and write it **on paper**
 4. Optimize the brute force **on paper**

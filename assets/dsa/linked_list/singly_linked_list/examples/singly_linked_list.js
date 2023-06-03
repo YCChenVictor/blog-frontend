@@ -23,8 +23,6 @@ class LinkedList {
       newNode.next = this.head;
       this.head = newNode;
     }
-    
-    this.length++;
   }
 
   append(value) {
@@ -42,8 +40,6 @@ class LinkedList {
   insert(position, value) {
     if (position === 1) {
       this.prepend(value);
-    } else if (position >= this.length) {
-      this.append(value);
     } else {
       const newNode = new Node(value);
       const leader = this.traverseTo(position - 1);
@@ -51,7 +47,6 @@ class LinkedList {
 
       leader.next = newNode;
       newNode.next = nextNode;
-      this.length++;
     }
   }
     
