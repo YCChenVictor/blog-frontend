@@ -571,7 +571,65 @@ When solving linkedlist problems, always think of recursive.
   }
   ```
 
-To be continued (more questions)
+### Partition
+
+(2023/06/03, TBC)
+
+* Problem: Given a number, all nodes with value less than this number will be moved to left and all nodes with value larger than this number will be moved to right.
+* Example: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 => 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+* Edge Case:
+  * If there is only one node, then return linkedlist
+* Time complexity: We need to traverse all nodes at least once to compare the values, so the time complexity is at least O(n).
+* Code example:
+  ```javascript
+  function Partition(linkedlist, value) {
+    let node = linkedlist.head
+    let leftPartition = new LinkedList()
+    let rightPartition = new LinkedList()
+
+    while(node) {
+      if node.value < value {
+        leftPartition.prepand(node)
+      } else {
+        rightPartition.prepand(node)
+      }
+    }
+
+    leftPartition.printList()
+    rightPartition.printList()
+  }
+  ```
+* Test:
+  ```javascript
+  const { Partition } = require('../examples/partition.js');
+  const LinkedList = require('../examples/singly_linked_list.js');
+
+  describe('Partition', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new LinkedList();
+      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+      for(let i = 0; i < values.length; i++){
+        testLinkedList.append(values[i]);
+      }
+    });
+  
+    test('#', () => {
+      const result = Partition(testLinkedList, 5)
+      // 1, 4, 3, 2, 4, 3
+      // 6, 7, 8
+      expect(result.printList()).toEqual([1, 4, 3, 2, 4, 3, 6, 7, 8]);
+    });
+  });
+  ```
+
+### Sum List
+
+### Palindrome
+
+### Intersection
+
+### Loop Detection
 
 ## What
 
