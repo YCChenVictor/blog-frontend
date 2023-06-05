@@ -26,12 +26,48 @@ Learning QuickSort not only equips you with a fast sorting algorithm but also en
 
 ### Divide and Conquer Technique
 
-This technique breaks down a problem into smaller subproblems and solving them independently. For example,
+Two steps:
+* Figure out the base case. This should be the simplest possible case.
+* Divide or decrease your problem until it becomes the base case.
 
+For example, given a quadrilateral with length, 1680 and width, 640 and we want to find the largest square to divide it evenly.
 
+```
+                1680
+   ---------------------------------
+  |                                 |
+  |                                 | 640
+  |                                 |
+  |                                 |
+   ---------------------------------
+```
 
+Step one: the base case, The length is twice the width.
 
-Euclid’s algorithm
+```
+         160
+   ---------------
+  |       |       | 
+  |       |       | 80
+   ---------------
+
+```
+
+Step two: By Euclid’s algorithm, solving the largest square in 640 X 400 is the same in 1680 X 640
+
+```
+        640          640       400
+   ---------------------------------
+  |            |             |      |
+  |            |             |      | 640
+  |            |             |      |
+  |            |             |      |
+   ---------------------------------
+```
+
+However, 640 X 400 is not the base case, so keep doing the recursive process -> 640 X 400 => 400 X 240 => 240 X 160 => 160 X 80 and then we find the base case, **160 X 80**.
+
+With above D & C process, we found that 80 X 80 is the largest possible square to divide the quadrilateral evenly.
 
 ### Efficiency
 
@@ -97,6 +133,4 @@ By learning QuickSort, you expand your problem-solving toolkit. When faced with 
 
 ## Reference
 
-Why: asking for the reason or purpose behind something.
-How: asking for the method or process of doing something.
-What: asking for information about a specific thing or object.
+grokking-algorithms-illustrated-programmers-curious
