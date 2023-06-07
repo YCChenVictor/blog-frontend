@@ -16,7 +16,7 @@ publish: true
 
 ## Introduction
 
-TBC
+QuickSort is an efficient sorting algorithm with an average runtime of O(n log n). By using a random pivot, it reduces the chances of encountering worst-case scenarios and outperforms other sorting algorithms due to a smaller constant factor. Learning QuickSort enhances algorithmic thinking skills and expands problem-solving abilities, providing an elegant and efficient solution to the sorting problem and introducing the Divide and Conquer technique for a structured approach to various problems.
 
 ## Why?
 
@@ -87,11 +87,15 @@ The simplest possible case is an array only has one element or no element as fol
 For example, if we want to sort an array: [3, 5, 2, 1, 4], we can try to divide this array until it becomes the base case as follow: (We choose the far-left one  as pivot)
 
 ```javascript
-quickSort([3, 5, 2, 1, 4]) = 
+// Always choose the far-left one as pivot
 
-quickSort([2, 1]) + <3> +  quickSort([5, 4]) = // step 1, O(n)
+quickSort([3, 5, 2, 1, 4]) = // step 1, O(n)
 
-[1, 2] + <3> + [4, 5] =
+quickSort([2, 1]) + <3> +  quickSort([5, 4]) = // step 2, O(n)
+
+(quickSort([1]) + <2> + []) + <3> + ([4] + quickSort([5]) + []) = // step 3, O(n)
+
+[1] + <2> + [] + <3> + [4] + [5] + [] =
 
 [1, 2, 3, 4, 5]
 ```
@@ -99,42 +103,79 @@ quickSort([2, 1]) + <3> +  quickSort([5, 4]) = // step 1, O(n)
 and we can also always choose the middle element as pivot
 
 ```javascript
-quickSort([3, 5, 2, 1, 4]) = 
+// always choose the middle one as pivot
 
-quickSort([1]) + <2> + quickSort([3, 5, 4]) = // step 1, O(n)
+quickSort([3, 5, 2, 1, 4]) = // step 1, O(n)
 
-[1] + <2> + (quickSort([3, 4]) + <5> + []) = // step 2, O(n)
+quickSort([1]) + <2> + quickSort([3, 5, 4]) = // step 2, O(n)
 
-[1] + <2> + [3, 4] + <5> + [] =
+[1] + <2> + (quickSort([3, 4]) + <5> + []) = // step 3, O(n)
+
+[1] + <2> + <3> + quickSort([4]) + <5> + [] = // step 4, O(n)
+
+[1] + <2> + <3> + [4] + <5> + [] =
 
 [1, 2, 3, 4, 5]
 ```
 
-As you can see, the choice of pivot affects the time complexity and there is no best way to choose the pivot; for example, given a sorted array, `[1, 2, 3, 4, 5]`, and we do the same sorting methods again as follow:
+As you can see, the choice of pivot affects the time complexity. In above examples, choosing middle element as pivot has worse time complexity and there is no best way to choose the pivot; for example, given a sorted array, `[1, 2, 3, 4, 5]`, and we do the same sorting methods again as follow:
 
 ```javascript
-quickSort([1, 2, 3, 4, 5]) =
+// always choose the far-left one as pivot and time complexity = O(n^2)
+
+quickSort([1, 2, 3, 4, 5]) = // step 1, O(n)
+
+[] + <1> + quickSort([2, 3, 4, 5]) = // step 2, O(n)
+
+<1> + ([] + <2> + quickSort([3, 4, 5])) = // step 3, O(n)
+
+<1> + <2> + ([] + <3> + quickSort([4, 5])) = // step 4, O(n)
+
+<1> + <2> + <3> + <4> + quickSort([5]) = // step 5, O(n)
+
+[1, 2, 3, 4, 5]
+
+// always choose the middle one as pivot
+
+quickSort([1, 2, 3, 4, 5]) = // step 1, O(n)
+
+quickSort([1, 2]) + <3> + quickSort([4, 5]) = // step 2, O(n)
+
+([] + <1> + quickSort([2])) + <3> + ([] + <4> + quickSort([5])) = // step 3, O(n)
+
+[] + <1> + [2] + <3> + [] + <4> + [5] =
+
+[1, 2, 3, 4, 5]
 ```
+
+As you can see, now choosing middle one as pivot has less time complexity.
 
 ## What?
 
+Based on last section, we can now compose the code of quick sort as follow:
+
+```javascript
+function quicksort(array) {
+  if (array.length < 2) {
+    return array;
+  } else {
+    var pivot = array[0];
+    var less = array.slice(1).filter(function(i) { return i <= pivot; });
+    var greater = array.slice(1).filter(function(i) { return i > pivot; });
+    return quicksort(less).concat([pivot]).concat(quicksort(greater));
+  }
+}
+
+console.log(quicksort([10, 5, 2, 3]));
+```
+
+### Time complexity
+
+TBC
+
 ## Other
 
-### Efficiency
-
-QuickSort has an average runtime of O(n log n), which means it can sort a list of elements efficiently. Comparing it to other sorting algorithms, like Merge Sort, QuickSort typically performs better due to a smaller constant factor. This makes QuickSort a valuable algorithm to learn when efficiency is a concern.
-
-### Pivot Selection
-
-QuickSort uses a random element as the pivot, which adds an element of randomness to the algorithm. This randomness contributes to the efficiency of QuickSort and makes it less likely to encounter worst-case scenarios compared to other sorting algorithms.
-
-### Algorithmic Thinking
-
-Learning QuickSort allows you to enhance your algorithmic thinking skills. It presents you with an elegant and efficient solution to the sorting problem and helps you understand how to design algorithms that solve specific types of problems.
-
-### Problem Solving
-
-By learning QuickSort, you expand your problem-solving toolkit. When faced with a new problem, you can now consider if the Divide and Conquer technique, similar to QuickSort, can be applied to solve it. This broader perspective enables you to approach a wide range of problems with a more structured and efficient mindset.
+(TBC)
 
 * code example
   ```javascript
