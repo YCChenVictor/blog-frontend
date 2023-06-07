@@ -573,8 +573,6 @@ When solving linkedlist problems, always think of recursive.
 
 ### Partition
 
-(2023/06/03, TBC)
-
 * Problem: Given a number, all nodes with value less than this number will be moved to left and all nodes with value larger than this number will be moved to right.
 * Example: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 => 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 * Edge Case:

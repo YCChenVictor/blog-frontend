@@ -69,6 +69,57 @@ However, 640 X 400 is not the base case, so keep doing the recursive process -> 
 
 With above D & C process, we found that 80 X 80 is the largest possible square to divide the quadrilateral evenly.
 
+### Quick Sort
+
+With D & C in mind, we can start to probe quick sort. We want to sort an array and again, we follow the two steps of D & C; that is:
+
+1. Figure out the base case. This should be the simplest possible case.
+2. Divide or decrease your problem until it becomes the base case.
+
+The simplest possible case is an array only has one element or no element as follow:
+
+```javascript
+[] // empty array
+// or
+[20] // array with only one element
+```
+
+For example, if we want to sort an array: [3, 5, 2, 1, 4], we can try to divide this array until it becomes the base case as follow: (We choose the far-left one  as pivot)
+
+```javascript
+quickSort([3, 5, 2, 1, 4]) = 
+
+quickSort([2, 1]) + <3> +  quickSort([5, 4]) = // step 1, O(n)
+
+[1, 2] + <3> + [4, 5] =
+
+[1, 2, 3, 4, 5]
+```
+
+and we can also always choose the middle element as pivot
+
+```javascript
+quickSort([3, 5, 2, 1, 4]) = 
+
+quickSort([1]) + <2> + quickSort([3, 5, 4]) = // step 1, O(n)
+
+[1] + <2> + (quickSort([3, 4]) + <5> + []) = // step 2, O(n)
+
+[1] + <2> + [3, 4] + <5> + [] =
+
+[1, 2, 3, 4, 5]
+```
+
+As you can see, the choice of pivot affects the time complexity and there is no best way to choose the pivot; for example, given a sorted array, `[1, 2, 3, 4, 5]`, and we do the same sorting methods again as follow:
+
+```javascript
+quickSort([1, 2, 3, 4, 5]) =
+```
+
+## What?
+
+## Other
+
 ### Efficiency
 
 QuickSort has an average runtime of O(n log n), which means it can sort a list of elements efficiently. Comparing it to other sorting algorithms, like Merge Sort, QuickSort typically performs better due to a smaller constant factor. This makes QuickSort a valuable algorithm to learn when efficiency is a concern.
@@ -84,10 +135,6 @@ Learning QuickSort allows you to enhance your algorithmic thinking skills. It pr
 ### Problem Solving
 
 By learning QuickSort, you expand your problem-solving toolkit. When faced with a new problem, you can now consider if the Divide and Conquer technique, similar to QuickSort, can be applied to solve it. This broader perspective enables you to approach a wide range of problems with a more structured and efficient mindset.
-
-## What?
-
-## Other
 
 * code example
   ```javascript
