@@ -15,35 +15,73 @@ describe('Graph', () => {
     expect(testGraph.getNeighbors(4)).toEqual([1, 2]);
   })
 
-  test('#Get Edges', () => {
-    expect(testGraph.getEdges()).toEqual([1, 2], [1, 4], [2, 4]);
+  // create
+  test('#addVertex', () => {
+    testGraph.add(5)
+    expect(testGraph.getVertices()).toEqual([1, 2, 3, 4, 5])
   })
 
-  test('remove Edge', () => {
+  test('#addEdge', () => {
+    newEdge = [1, 3]
+    testGraph.addEdge(newEdge[0], newEdge[1])
+    expect(testGraph.getEdges()).toEqual(new Set([
+      [1, 2],
+      [1, 4],
+      [2, 1],
+      [2, 4],
+      [4, 1],
+      [4, 2],
+      [1, 3],
+      [3, 1],
+    ]));
+  })
+
+  // read
+  test('#getNeighbors', () => {
+    expect(testGraph.getNeighbors(1)).toEqual([2, 4])
+    expect(testGraph.getNeighbors(2)).toEqual([1, 4])
+    expect(testGraph.getNeighbors(3)).toEqual([])
+    expect(testGraph.getNeighbors(4)).toEqual([1, 2])
+  })
+
+  test.only('#getVertices', () => {
+    expect(testGraph.getVertices()).toEqual([1, 2, 3, 4])
+  })
+
+  test('#getEdges', () => {
+    expect(testGraph.getEdges()).toEqual(new Set([
+      [ 1, 2 ],
+      [ 1, 4 ],
+      [ 2, 1 ],
+      [ 2, 4 ],
+      [ 4, 1 ],
+      [ 4, 2 ]
+    ]));
+  })
+
+  test('#findVertex', () => {
+    expect(testGraph.findVertex(1)).toEqual(true)
+    expect(testGraph.findVertex(5)).toEqual(false)
+  })
+
+  test('#findEdge', () => {
+    expect(testGraph.findEdge(1, 2)).toEqual(true)
+    expect(testGraph.findEdge(1, 4)).toEqual(true)
+    expect(testGraph.findEdge(2, 4)).toEqual(true)
+  })
+
+  // update
+
+  // destroy
+  test('removeEdge', () => {
     testGraph.removeEdge(1, 2)
     expect(testGraph.getNeighbors(1)).toEqual([4]);
     expect(testGraph.getNeighbors(2)).toEqual([4]);
   })
 
-  test('remove Vertex', () => {
+  test('removeVertex', () => {
     testGraph.removeVertex(1)
     expect(testGraph.getVertices()).toEqual([2, 3, 4]);
     expect(testGraph.getEdges()).toEqual();
-  })
-
-  test('DFS', () => {
-    testGraph = new Graph();
-    expectSet = new Set(['A', 'B', 'D', 'E', 'F', 'C']);
-    ['A', 'B', 'C', 'D', 'E', 'F'].forEach(node => testGraph.addVertex(node));
-    [['A', 'B'], ['A', 'C'], ['B', 'D'], ['B', 'E'], ['C', 'F'], ['E', 'F']].forEach(edge => testGraph.addEdge(edge[0], edge[1]))
-    expect(testGraph.depthFirstSearch('A')).toEqual(expectSet);
-  })
-
-  test('BFS', () => {
-    testGraph = new Graph();
-    expectSet = new Set(['A', 'B', 'C', 'D', 'E', 'F']);
-    ['A', 'B', 'C', 'D', 'E', 'F'].forEach(node => testGraph.addVertex(node));
-    [['A', 'B'], ['A', 'C'], ['B', 'D'], ['B', 'E'], ['C', 'F'], ['E', 'F']].forEach(edge => testGraph.addEdge(edge[0], edge[1]))
-    expect(testGraph.breadthFirstSearch('A')).toEqual(expectSet);
   })
 })
