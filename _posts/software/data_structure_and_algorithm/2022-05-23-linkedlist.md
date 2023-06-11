@@ -3,7 +3,7 @@ layout: post
 title:
 date: '2022-05-23'
 categories: DSA
-note:
+note: just finish the cracking coding interview examples first
 mathjax: true
 mermaid: true
 publish: true
@@ -66,8 +66,6 @@ Linked lists can dynamically grow and shrink in size during program execution, w
         newNode.next = this.head;
         this.head = newNode;
       }
-      
-      this.length++;
     }
   
     append(value) {
@@ -85,8 +83,6 @@ Linked lists can dynamically grow and shrink in size during program execution, w
     insert(position, value) {
       if (position === 1) {
         this.prepend(value);
-      } else if (position >= this.length) {
-        this.append(value);
       } else {
         const newNode = new Node(value);
         const leader = this.traverseTo(position - 1);
@@ -94,7 +90,6 @@ Linked lists can dynamically grow and shrink in size during program execution, w
   
         leader.next = newNode;
         newNode.next = nextNode;
-        this.length++;
       }
     }
       
@@ -152,14 +147,14 @@ Linked lists can dynamically grow and shrink in size during program execution, w
 * Time complexity
   * Create an element on head (prepand): O(1)
     * There is no traverse in this operation, it will create a node and update the pointer, so time complexity is O(1)
-  * Insert an element: (2023/05/24, TBC)
-    * 
+  * Insert an element: O(n)
+    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one and then insert a node.
   * Read an element: O(n)
-    * In singly-linked list, the time complexity of read is O(n) in the worst case, where n is the length of the list Unlike an array, where elements are stored contiguously in memory and can be accessed in constant time using an index, in a linked list, we have to traverse the list from the head node to the desired index, which takes linear time proportional to the size of the list.
+    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one.
   * Update an element: O(n)
-    * In a singly-linked list, the time complexity of update (i.e., modifying an element by index) is also O(n) in the worst case, where n is the length of the list. This is because like accessing an element, we need to traverse the list from the head node to the desired index to update it. Once we have reached the node, updating it takes constant time, i.e., O(1).
+    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one and then update the node.
   * Delete an element: O(n)
-    * In a singly-linked list, the time complexity of delete (i.e., removing an element by index) is also O(n) in the worst case, where n is the length of the list. This is because we need to traverse the list from the head node to the node immediately before the one we want to delete, which takes linear time proportional to the size of the list. Once we have found the node before the one we want to delete, we can remove the target node in constant time, i.e., O(1), by updating its predecessor's next pointer to skip over the target node.
+    * It will traverse n nodes to find the target nodes, where n is the number of nodes linked before the target one and then do operations to remove the node.
 * spec
   ```javascript
   const LinkedList = require('../examples/singly_linked_list.js');
@@ -199,11 +194,13 @@ Linked lists can dynamically grow and shrink in size during program execution, w
       expect(testLinkedList.printList()).toEqual([33, 62, 888, 74, 1]);
     })
     
+    // update
     test('#update', () => {
       testLinkedList.update(3, 4)
       expect(testLinkedList.printList()).toEqual([33, 62, 4, 74, 1]);
     })
     
+    // destroy
     test('#remove', () => {
       testLinkedList.remove(3)
       expect(testLinkedList.printList()).toEqual([33, 62, 74, 1]);
@@ -213,144 +210,139 @@ Linked lists can dynamically grow and shrink in size during program execution, w
 
 ### Doubly Linked List
 
-```javascript
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.prev = null;
-    this.next = null;
-  }
-}
-  
-class DoublyLinkedList {
-  constructor() {
-    this.head = null;
-    this.tail = null;
-  }
-  
-  // create
-  append(data) { // create a node on the tail
-    const newNode = new Node(data);
-    if (this.head === null) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail.next = newNode;
-      newNode.prev = this.tail;
-      this.tail = newNode;
+* coding example:
+  ```javascript
+  class Node {
+    constructor(data) {
+      this.data = data;
+      this.prev = null;
+      this.next = null;
     }
-  }
-  
-  prepend(data) { // create a node on the head
-    const newNode = new Node(data);
-    if (this.head === null) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.head.prev = newNode;
-      newNode.next = this.head;
-      this.head = newNode;
-    }
-  }
-  
-  insert(position, data) { // create a node on particular position
-    const newNode = new Node(data);
-    if (this.head === null) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else if (position > this.length) {
-      this.append(data)
-    } else {
-      const nodeOnPosition = this.traverseToIndex(position - 1);
-      newNode.next = nodeOnPosition;
-      newNode.prev = nodeOnPosition.prev;
-      newNode.prev.next = newNode;
-    }
-  }
-  
-  // read
-  value() { // return the value of node in particular position
-  }
-
-  values() { // return values from head
-    let current_node = this.head;
-    const result = [];
-    while (current_node !== null) {
-      result.push(current_node.data);
-      current_node = current_node.next;
-    }
-    return result
-  }
-
-  reverseValues() { // return values from tail
-    let current_node = this.tail;
-    const result = [];
-    while (current_node !== null) {
-      result.push(current_node.data);
-      current_node = current_node.prev;
-    }
-    return result
-  }
-
-  // traverse
-  traverseToIndex(index) {
-    let currentNode = this.head;
-
-    for (let i = 0; i < index; i++) {
-      currentNode = currentNode.next;
-    }
-
-    return currentNode;
-  }
-  
-  // update
-  update(position, value) { // update the value on particular position
-  
   }
     
-  // delete
-  remove(position) { // remove the node on particular position
-    if (this.head === null) {
-      return;
-    }
-    if (this.head === this.tail && this.head.data === data) {
+  class DoublyLinkedList {
+    constructor() {
       this.head = null;
       this.tail = null;
-      return;
     }
-    if (this.head.data === data) {
-      this.head = this.head.next;
-      this.head.prev = null;
-      return;
+    
+    // create
+    append(data) { // create a node on the tail
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        this.tail.next = newNode;
+        newNode.prev = this.tail;
+        this.tail = newNode;
+      }
     }
-    let current_node = this.head.next;
-    while (current_node !== null && current_node.data !== data) {
-      current_node = current_node.next;
+    
+    prepend(data) { // create a node on the head
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        this.head.prev = newNode;
+        newNode.next = this.head;
+        this.head = newNode;
+      }
     }
-    if (current_node === null) {
-      return;
+    
+    insert(position, data) { // create a node on particular position
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else if (position > this.length) {
+        this.append(data)
+      } else {
+        const nodeOnPosition = this.traverseToIndex(position - 1);
+        newNode.next = nodeOnPosition;
+        newNode.prev = nodeOnPosition.prev;
+        newNode.prev.next = newNode;
+      }
     }
-    if (current_node === this.tail) {
-      this.tail = this.tail.prev;
-      this.tail.next = null;
-      return;
+    
+    // read
+    value() { // return the value of node in particular position
     }
-    current_node.prev.next = current_node.next;
-    current_node.next.prev = current_node.prev;
+  
+    values() { // return values from head
+      let current_node = this.head;
+      const result = [];
+      while (current_node !== null) {
+        result.push(current_node.data);
+        current_node = current_node.next;
+      }
+      return result
+    }
+  
+    reverseValues() { // return values from tail
+      let current_node = this.tail;
+      const result = [];
+      while (current_node !== null) {
+        result.push(current_node.data);
+        current_node = current_node.prev;
+      }
+      return result
+    }
+  
+    // traverse
+    traverseToIndex(index) {
+      let currentNode = this.head;
+  
+      for (let i = 0; i < index; i++) {
+        currentNode = currentNode.next;
+      }
+  
+      return currentNode;
+    }
+    
+    // update
+    update(position, value) { // update the value on particular position
+    
+    }
+      
+    // delete
+    remove(position) { // remove the node on particular position
+      if (this.head === null) {
+        return;
+      }
+      if (this.head === this.tail && this.head.data === data) {
+        this.head = null;
+        this.tail = null;
+        return;
+      }
+      if (this.head.data === data) {
+        this.head = this.head.next;
+        this.head.prev = null;
+        return;
+      }
+      let current_node = this.head.next;
+      while (current_node !== null && current_node.data !== data) {
+        current_node = current_node.next;
+      }
+      if (current_node === null) {
+        return;
+      }
+      if (current_node === this.tail) {
+        this.tail = this.tail.prev;
+        this.tail.next = null;
+        return;
+      }
+      current_node.prev.next = current_node.next;
+      current_node.next.prev = current_node.prev;
+    }
   }
-}
-
-module.exports = DoublyLinkedList
-```
-
-why we need doubly?
-
-Traversal in both directions: In a singly linked list, you can only traverse the list in one direction, from the head to the tail. With a doubly linked list, you can traverse the list in both directions, which can be very useful in certain applications.
-
-Insertion and deletion at any position: In a singly linked list, if you want to insert a node between two nodes, you need to modify the pointers of the previous node to point to the new node, and the new node to point to the next node. With a doubly linked list, you can simply update the pointers of the neighboring nodes to insert a node in between them. Similarly, when deleting a node from a doubly linked list, you can easily update the pointers of the neighboring nodes to remove the node.
-
-Tail traversal: In a singly linked list, if you want to add a new node at the end of the list, you need to traverse the entire list to reach the tail node. With a doubly linked list, you can keep a reference to the tail node and easily add new nodes at the end of the list.
-
+  
+  module.exports = DoublyLinkedList
+  ```
+* why we need doubly?
+  * Traversal in both directions
+  * (?) Insertion and deletion at any position: In a singly linked list, if you want to insert a node between two nodes, you need to modify the pointers of the previous node to point to the new node, and the new node to point to the next node. With a doubly linked list, you can simply update the pointers of the neighboring nodes to insert a node in between them. Similarly, when deleting a node from a doubly linked list, you can easily update the pointers of the neighboring nodes to remove the node.
 * Spec
   ```javascript
   const DoublyLinkedList = require('../examples/doubly_linked_list.js');
@@ -396,144 +388,246 @@ Tail traversal: In a singly linked list, if you want to add a new node at the en
 
 ## What
 
-When solving linklist porblems, always think of recursive.
+When solving linkedlist problems, always think of recursive.
 
 ### runner technique
 
-two pointers iterates through a linkedlist at the same time.
+* Concept: two pointers iterates through a linkedlist at the same time.
+* Detecting Cycles
+  ```javascript
+  function hasCycle(head) {
+    let slow = head;
+    let fast = head;
+  
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next;
+      fast = fast.next.next;
+  
+      if (slow === fast) {
+        return true;
+      }
+    }
+  
+    return false;
+  }
+  ```
+* Finding the Middle Node
+  ```javascript
+  function findMiddle(head) {
+    let slow = head;
+    let fast = head;
+  
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+  
+    return slow;
+  }
+  ```
 
 ### Remove Dups
 
-* problem: Write code to remove duplicates from an unsorted linked list; for example, a linkedlist = [1, 4, 6, 3, 2, 7, 4, 8, 3] -> [1, 4, 6, 3, 2, 7, 8]
-
-* brute force:
-
-It's trivial, so I just skip to the result
-
-* code example:
-
-```javascript
-function removeDup(linkedList) {
-  // skip brute force, we must at least loop through all node, so the time complexity = O(n), space complexity = O(n)
-  set = new Set();
-  let currentNode = linkedList.head
-  let previousNode = null
-
-  for (let i = 0; i < linkedList.length; i++) {
-    if (!set.has(currentNode.value)) {
-      set.add(currentNode.value)
-    } else {
-      previousNode.next = currentNode.next
+* Problem: Write code to remove duplicates from an unsorted linked list
+* Information:
+  * Example: from [1, 4, 6, 3, 2, 7, 4, 8, 3] to [1, 4, 6, 3, 2, 7, 8]
+  * You can remove any duplicate nodes you want as long as the result are all unique values
+* Edge cases: Only one node in this linkedlist
+* Brute force: compare each node with the rest linked nodes
+* Best time complexity: Because we need to traverse all the nodes to read their values at least once, the time complexity will be at least O(n).
+* Code example
+  ```javascript
+  function removeDup(linkedList) {
+    set = new Set();
+    let currentNode = linkedList.head
+    let previousNode = null
+  
+    while (currentNode !== null) {
+      if (!set.has(currentNode.value)) {
+        set.add(currentNode.value)
+      } else {
+        previousNode.next = currentNode.next
+      }
+      previousNode = currentNode
+      currentNode = currentNode.next
     }
-    previousNode = currentNode
-    currentNode = currentNode.next
+  
+    return linkedList.printList()
   }
-
-  return linkedList.printList()
-}
-```
-
+  ```
 * test
-
-```javascript
-describe('RemoveDup', () => {
-  let testLinkedList;
-  beforeEach(() => {
-    testLinkedList = new LinkedList();
-    const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
-    for(let i = 0; i < values.length; i++){
-      testLinkedList.append(values[i]);
-    }
+  ```javascript
+  const { removeDup } = require('../examples/remove_dup.js');
+  const LinkedList = require('../examples/singly_linked_list.js');
+  
+  describe('RemoveDup', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new LinkedList();
+      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+      for(let i = 0; i < values.length; i++){
+        testLinkedList.append(values[i]);
+      }
+    });
+  
+    test('#', () => {
+      const result = removeDup(testLinkedList)
+      expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
+    });
   });
-
-  test('#', () => {
-    const result = removeDup(testLinkedList)
-    expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
-  });
-});
-```
-
-#### temporary buffer not allowed
-
-to be continued
+  ```
+* Temporary buffer not allowed (TBC)
 
 ### Return Kth to Last
 
-Implementation:
-
-```javascript
-function returnKthToLast (linkedList, k) {
-  let counter = 0;
-  let node = this.head;
-  while (node) {
-    if (counter === k) {
-      return node;
+* Problem: Implement an algorithm to find the kth to last element of a singly linked list.
+* Information:
+  * Example: If a linkedlist is 1 <- 4 <- 6 <- 3 <- 2 <- 7 <- 8, then returnKthToLast(linkedList, 3) will be 6 <- 3 <- 2 <- 7 <- 8
+  * It should return a node because the node of a linkedlist will show all the following node values. 
+* Code example:
+  ```javascript
+  function returnKthToLast (linkedList, k) {
+    let counter = 1; // The first element is 1th
+    let node = linkedList.head;
+    while (node) {
+      if (counter === k) {
+        return node;
+      }
+      counter++;
+      node = node.next;
     }
-    counter++;
-    node = node.next;
+    return null;
   }
-  return null;
-}
-```
-
-Test:
-
-```javascript
-let linkedList = new LinkedList();
-const values = [1, 2, 3, 4, 449, 12];
-for(let i = 0; i < values.length; i++){
-  linkedList.insertAtBegin(values[i]);
-}
-
-let node = returnKthToLast(linkedList, 0); // 12, 449, 4, 3, 2, 1
-let node = returnKthToLast(linkedList, 1); // 449, 4, 3, 2, 1
-let node = returnKthToLast(linkedList, 2); // 4, 3, 2, 1
-while (node !== null) {
-  console.log(node.value);
-  node = node.next;
-}
-```
+  
+  module.exports = {
+    returnKthToLast: returnKthToLast
+  };
+  ```
+* Test:
+  ```javascript
+  const { removeDup } = require('../examples/remove_dup.js');
+  const LinkedList = require('../examples/singly_linked_list.js');
+  
+  describe('RemoveDup', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new LinkedList();
+      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+      for(let i = 0; i < values.length; i++){
+        testLinkedList.append(values[i]);
+      }
+    });
+  
+    test('#', () => {
+      const result = removeDup(testLinkedList)
+      expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
+    });
+  });
+  ```
 
 ### Delete Middle Node
 
-Implementation:
+* Problem: Implement an algorithm to delete a node in the middle.
+* Example:
+  * a -> b -> c -> d -> e -> f => a -> b -> d -> e -> f
+  * a -> b -> c -> d -> e => a -> b -> d -> e
+* Edge Case:
+  * If the linkedlist has only one node, then nothing will be removed from the list.
+* Time complexity: We must need to traverse at least once to know the length, so the time complexity is at least O(n).
+* Code example:
+  ```javascript
+  function deleteMiddleNode(linkedList) {
+    let fast = linkedList.head;
+    let slow = linkedList.head;
 
-```javascript
-function deleteMiddleNode (linkedList) {
-  let nodeFaster = linkedList.head;
-  let nodeSlower = linkedList.head;
-  let preNode = null;
-  while (nodeFaster) {
-    if (!nodeFaster.next?.next || !nodeFaster.next) {
-      preNode.next = preNode.next.next;
-      return linkedList.head
+    if (fast.next === null) {
+      return
     }
-    preNode = nodeSlower;
-    nodeSlower = nodeSlower.next;
-    nodeFaster = nodeFaster.next.next;
+
+    while (fast) {
+      fast = fast.next.next
+      preNode = slow
+      slow = slow.next
+      if (fast.next === null) {
+        preNode.next = slow.next
+        return
+      }
+    }
+    return linkedList;
   }
-  return null;
-}
-```
+  ```
+* Test:
+  ```javascript
+  let linkedList = new LinkedList();
+  const values = [1, 2, 3, 5, 4, 449, 12];
+  for(let i = 0; i < values.length; i++){
+    linkedList.insertAtBegin(values[i]); // return 12 <- 449 <- 4 <- 3 <- 2 <- 1
+  }
+  
+  let node = deleteMiddleNode(linkedList);
+  while (node !== null) {
+    console.log(node.value);
+    node = node.next;
+  }
+  ```
 
-Test:
+### Partition
 
-```javascript
-let linkedList = new LinkedList();
-// const values = [1, 2, 3, 4, 449, 12]; // return 12, 449, 3, 2, 1
-const values = [1, 2, 3, 5, 4, 449, 12]; // return 12, 449, 4, 3, 2, 1
-for(let i = 0; i < values.length; i++){
-  linkedList.insertAtBegin(values[i]);
-}
+* Problem: Given a number, all nodes with value less than this number will be moved to left and all nodes with value larger than this number will be moved to right.
+* Example: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 => 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+* Edge Case:
+  * If there is only one node, then return linkedlist
+* Time complexity: We need to traverse all nodes at least once to compare the values, so the time complexity is at least O(n).
+* Code example:
+  ```javascript
+  function Partition(linkedlist, value) {
+    let node = linkedlist.head
+    let leftPartition = new LinkedList()
+    let rightPartition = new LinkedList()
 
-let node = deleteMiddleNode(linkedList);
-while (node !== null) {
-  console.log(node.value);
-  node = node.next;
-}
-```
+    while(node) {
+      if node.value < value {
+        leftPartition.prepand(node)
+      } else {
+        rightPartition.prepand(node)
+      }
+    }
 
-To be continued (more questions)
+    leftPartition.printList()
+    rightPartition.printList()
+  }
+  ```
+* Test:
+  ```javascript
+  const { Partition } = require('../examples/partition.js');
+  const LinkedList = require('../examples/singly_linked_list.js');
+
+  describe('Partition', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new LinkedList();
+      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+      for(let i = 0; i < values.length; i++){
+        testLinkedList.append(values[i]);
+      }
+    });
+  
+    test('#', () => {
+      const result = Partition(testLinkedList, 5)
+      // 1, 4, 3, 2, 4, 3
+      // 6, 7, 8
+      expect(result.printList()).toEqual([1, 4, 3, 2, 4, 3, 6, 7, 8]);
+    });
+  });
+  ```
+
+### Sum List
+
+### Palindrome
+
+### Intersection
+
+### Loop Detection
 
 ## What
 
@@ -611,10 +705,6 @@ function parseSteps(answer) {
   return steps.map(step => step.trim()).filter(step => step !== '');
 }
 ```
-
-## TODO
-
-* linkedlist
 
 ## reference
 
