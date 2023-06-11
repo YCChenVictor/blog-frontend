@@ -177,9 +177,41 @@ console.log(quicksort([10, 5, 2, 3]));
 
 Quick sort is O(n * log(n)) on average but O(n^2) on worst case. Although both quick sort and merge sort are O(n * log(n)), quick sort is still faster than merge sort because of the const of quick sort is smaller than merge sort.
 
+We can express time complexity of quick sort as follow:
+
+$$T(n) = T(k) + T(n-k-1) + O(n)$$
+
+where n is the number of elements, k is the number of element in left partition, n-k-1 is the number of element in right partition, and n is the time complexity on this round comparison. (We need to compare the values to the pivot so that we can put elements on left or right partition.) 
+
 #### O(n * log(n)) on average
 
 
+In the above section, we found that the choice of pivot affects the time complexity. Given an array [3, 1, 4, 2], let's find out all the possibilities of the sorting.
+
+<div class="mermaid">
+graph TB
+  A1(3) --> A2(1, 2)
+  A1(3) --> A3(4)
+</div>
+
+<div class="mermaid">
+graph TB
+  A1(1) --> A2(3, 4, 2)
+  A2(3, 4, 2) --> A3(4)
+  A2(3, 4, 2) --> A3(4)
+</div>
+
+<div class="mermaid">
+graph TB
+  A1(4) --> A2(1, 2)
+  A1(4) --> A3(4)
+</div>
+
+<div class="mermaid">
+graph TB
+  A1(2) --> A2(1, 2)
+  A1(2) --> A3(4)
+</div>
 
 #### O(n^2) on worst case
 
@@ -188,3 +220,5 @@ Quick sort is O(n * log(n)) on average but O(n^2) on worst case. Although both q
 ## Reference
 
 grokking-algorithms-illustrated-programmers-curious
+
+[An Overview of QuickSort Algorithm](https://towardsdatascience.com/an-overview-of-quicksort-algorithm-b9144e314a72)

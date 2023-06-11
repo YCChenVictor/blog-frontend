@@ -1,3 +1,5 @@
+const Graph = require('./graph.js')
+
 class GraphTraversal extends Graph {
   depthFirstSearch(vertex, visited = new Set()) {
     visited.add(vertex);
