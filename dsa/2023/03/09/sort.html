@@ -69,7 +69,7 @@
     
   </div>
   <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Sorting</h1>
+    <h1 class='text-center mt-6 mb-6'>Sort</h1>
     <h2 id="introduction">Introduction</h2>
 
 <p>(TBC)</p>
@@ -272,51 +272,7 @@
 
 <h3 id="quick-sort">Quick Sort</h3>
 
-<p>Quick sort is a widely used sorting algorithm that follows the divide-and-conquer approach. It works by selecting a pivot element from the array and partitioning the other elements into two subarrays, according to whether they are less than or greater than the pivot. The process is then recursively applied to the subarrays until the entire array is sorted.</p>
-
-<ul>
-  <li>code example
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">quickSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">right</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">pivotIndex</span> <span class="o">=</span> <span class="nx">partition</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">);</span>
-    <span class="nx">quickSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">pivotIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="nx">quickSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">pivotIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">right</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
-<span class="p">}</span>
-  
-<span class="kd">function</span> <span class="nx">partition</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">left</span><span class="p">,</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">pivot</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">right</span><span class="p">];</span> <span class="c1">// Choosing the rightmost element as the pivot</span>
-  <span class="kd">let</span> <span class="nx">partitionIndex</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span>
-    
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">left</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">right</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">pivot</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">partitionIndex</span><span class="p">);</span>
-      <span class="nx">partitionIndex</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span>
-  <span class="p">}</span>
-    
-  <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">partitionIndex</span><span class="p">,</span> <span class="nx">right</span><span class="p">);</span> <span class="c1">// Placing the pivot element in its correct position</span>
-  <span class="k">return</span> <span class="nx">partitionIndex</span><span class="p">;</span>
-<span class="p">}</span>
-  
-<span class="kd">function</span> <span class="nx">swap</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">])</span>
-  <span class="kd">const</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-  <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
-  <span class="nx">arr</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">;</span>
-<span class="p">}</span>
-  
-<span class="c1">// Example usage:</span>
-<span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
-<span class="kd">const</span> <span class="nx">sortedArr</span> <span class="o">=</span> <span class="nx">quickSort</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sortedArr</span><span class="p">);</span> <span class="c1">// Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Visualization: <a href="https://www.youtube.com/watch?v=Vtckgz38QHs">Learn Quick Sort in 13 minutes</a></li>
-  <li>Time complexity</li>
-</ul>
+<p>Quick sort is a widely used sorting algorithm that follows the divide-and-conquer approach. It works by selecting a pivot element from the array and partitioning the other elements into two subarrays, according to whether they are less than or greater than the pivot. The process is then recursively applied to the subarrays until the entire array is sorted. For more information, please refer to <a href="/blog/dsa/2023/06/02/quick-sort.html">quick sort</a></p>
 
 <h2 id="what">What?</h2>
 

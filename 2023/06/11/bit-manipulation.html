@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    
+
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/blog/assets/css/main.css">
+    <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </head>
+
+  <body class="font-mono list-disc bg-gray-700">
+    <div class="pt-8 bg-gray-700">
+      
+        <nav class="flex flex-wrap items-center justify-center px-2 py-4 mb-6">
+  <div class="titleImagePosition">
+    <a href="/blog/" class="!px-0 !py-0">
+      <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
+    </a>
+  </div>
+  <div class="flex">
+    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
+      <div class="absolute right-16 flex md:block" id="navbar">
+        <div class="flex flex-col md:flex-row mr-auto w-full">
+          <!-- dynamic menu based on navigation info in _config.yml -->
+          
+             <!-- don't show current page in menu -->
+              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
+                href="/blog/about">
+                About Me
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+      
+      
+  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+
+<div class='prose bg-gray-400' id='article'>
+  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
+  <div class='text-center'>
+    
+  </div>
+  <div class='md:px-4 md:grid lg:px-72'>
+    <h1 class='text-center mt-6 mb-6'>Bit Manipulation</h1>
+    <h2 id="introduction">Introduction</h2>
+
+<p>TBC</p>
+
+<h2 id="why">Why?</h2>
+
+<p>Learning bit manipulation is valuable as it enables programmers to perform efficient bitwise operations, optimize code for performance, and tackle algorithmic problems involving binary data structures more effectively.</p>
+
+<h2 id="how">How?</h2>
+
+<p>Performing operations on individual bits within a binary representation of data.</p>
+
+<ul>
+  <li>Bitwise AND (&amp;)
+    <ul>
+      <li>This operation compares corresponding bits from two numbers and returns a new number where each bit is set if and only if the corresponding bits in both numbers are also set.</li>
+      <li>table
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 &amp; 0 <span class="o">=</span> 0
+0 &amp; 1 <span class="o">=</span> 0
+1 &amp; 0 <span class="o">=</span> 0
+1 &amp; 1 <span class="o">=</span> 1
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Bitwise OR (</td>
+          <td>)</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>This operation compares corresponding bits from two numbers and returns a new number where each bit is set if either of the corresponding bits in the input numbers is set.</li>
+      <li>table
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 | 0 <span class="o">=</span> 0
+0 | 1 <span class="o">=</span> 1
+1 | 0 <span class="o">=</span> 1
+1 | 1 <span class="o">=</span> 1
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Bitwise XOR (^):
+    <ul>
+      <li>XOR means exclusive OR</li>
+      <li>This operation compares corresponding bits from two numbers and returns a new number where each bit is set if the corresponding bits in the input numbers are <strong>different</strong>.</li>
+      <li>table
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 ^ 0 <span class="o">=</span> 0
+0 ^ 1 <span class="o">=</span> 1 <span class="c"># 0 and 1 are different</span>
+1 ^ 0 <span class="o">=</span> 1 <span class="c"># 1 and 0 are different</span>
+1 ^ 1 <span class="o">=</span> 0
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Bitwise NOT (~):
+    <ul>
+      <li>This operation inverts all the bits of a number. It flips each 0 to 1 and each 1 to 0.</li>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">42</span> <span class="c1">// binary: 00101010</span>
+<span class="kd">let</span> <span class="nx">notX</span> <span class="o">=</span> <span class="o">~</span><span class="nx">x</span><span class="p">;</span> <span class="c1">// binary: 11010101</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notX</span><span class="p">);</span>  <span class="c1">// Output: -43 (in decimal)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Left shift («)
+    <ul>
+      <li>This operation shifts the bits of a number to the left by a specified number of positions. It is equivalent to multiplying the number by 2 raised to the power of the shift amount. For example, x « n shifts the bits of x n positions to the left.</li>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>  <span class="c1">// binary: 00101010</span>
+<span class="kd">let</span> <span class="nx">shifted</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// binary: 10101000</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shifted</span><span class="p">);</span>  <span class="c1">// Output: 168 (in decimal)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Right shift (»):
+    <ul>
+      <li>This operation shifts the bits of a number to the right by a specified number of positions. It is equivalent to dividing the number by 2 raised to the power of the shift amount. For example, x » n shifts the bits of x n positions to the right.</li>
+      <li>example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span> <span class="c1">// binary: 00101010</span>
+<span class="kd">let</span> <span class="nx">shifted</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// binary: 10001010</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">shifted</span><span class="p">);</span> <span class="c1">// 10</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Unsigned right shift
+    <ul>
+      <li>Symbolized by ‘»&gt;’, shifts the bits of the left operand to the right by a specified number of positions, filling the vacant bits with zeros.</li>
+      <li>Example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">num</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">// binary: 1010</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">num</span> <span class="o">&gt;&gt;&gt;</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// 0010 (remove 2 bits in right)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>  <span class="c1">// Output: 2</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="insertion">Insertion</h3>
+
+<ul>
+  <li>Problem: You are given two 32-bit numbers, N and M, and two bit positions, i and j. Write a method to insert M into N such that M starts at bit j and ends at bit i. You can assume that the bits j through i have enough space to fit all of M. That is, if M = 10011, you can assume that there are at least 5 bits between j and i. You would not, for example, have j = 3 and i = 2, because M could not fully fit between bit 3 and bit 2.</li>
+  <li>Information:
+    <ul>
+      <li>Example:
+        <ul>
+          <li>Input:  N = 10000000000 M = 10011, i = 2, j = 6</li>
+          <li>Output: N = 10001001100</li>
+        </ul>
+      </li>
+      <li>Edge: TBC</li>
+      <li>Least time complexity: TBC</li>
+    </ul>
+  </li>
+  <li>Code example: I will just get the sub numbers from N (0~1 and 7~) and connect them with M
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Insertion</span> <span class="p">(</span><span class="nx">N</span><span class="p">,</span> <span class="nx">M</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">N_string</span> <span class="o">=</span> <span class="nx">N</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+  <span class="nx">M_string</span> <span class="o">=</span> <span class="nx">M</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+  <span class="nx">result</span> <span class="o">=</span> <span class="dl">''</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">s</span><span class="p">;</span> <span class="nx">s</span> <span class="o">&lt;</span> <span class="nx">j</span><span class="p">;</span> <span class="nx">s</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">+=</span> <span class="nx">N_string</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="nx">result</span> <span class="o">+=</span> <span class="nx">M_string</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">s</span><span class="p">;</span> <span class="nx">s</span> <span class="o">&lt;</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">s</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">+=</span> <span class="nx">N_string</span><span class="p">[</span><span class="nx">s</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Spec:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">Insertion</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">Insertion</span><span class="p">(</span><span class="mi">10000000000</span><span class="p">,</span> <span class="mi">10011</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">10001001100</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="binary-to-string">Binary to String</h3>
+
+<p>TBC</p>
+
+<h3 id="flip-bit-to-win">Flip Bit to Win</h3>
+
+<p>TBC</p>
+
+<h3 id="next-number">Next Number</h3>
+
+<p>TBC</p>
+
+<h3 id="debugger">Debugger</h3>
+
+<p>TBC</p>
+
+<h3 id="conversion">Conversion</h3>
+
+<p>TBC</p>
+
+<h3 id="pairwiseswap">PairwiseSwap</h3>
+
+<p>TBC</p>
+
+<h3 id="draw-line">Draw Line</h3>
+
+<p>TBC</p>
+
+<h2 id="what">What?</h2>
+
+<p>Give a real world application</p>
+
+<h2 id="reference">Reference</h2>
+
+  </div>
+</div>
+
+<footer class="relative px-4 pt-4 pb-4">
+    <!-- footer msg -->
+  <div class="flex flex-wrap items-center justify-center">
+    <br>
+  </div>
+</footer>
+
+      <button
+        type="button"
+        data-mdb-ripple="true"
+        data-mdb-ripple-color="light"
+        class="scrollTopBtn"
+        id="btn-back-to-top"
+      >
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" class="w-4 h-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+      </button>
+    </div>
+  </body>
+
+  <script>
+    /* Function for getting the current year in the footer */
+    (function () {
+      if (document.getElementById("get-current-year")) {
+        document.getElementById(
+          "get-current-year"
+        ).innerHTML = new Date().getFullYear();
+      }
+    })();
+    /* Function for opening navbar on mobile */
+    function toggleNavbar(collapseID) {
+        document.getElementById(collapseID).classList.toggle("hidden");
+        document.getElementById(collapseID).classList.toggle("block");
+      }
+    /* Function for dropdowns */
+    function openDropdown(event, dropdownID) {
+      let element = event.target;
+      while (element.nodeName !== "A") {
+        element = element.parentNode;
+      }
+      document.getElementById(dropdownID).classList.toggle("hidden");
+      document.getElementById(dropdownID).classList.toggle("block");
+    }
+
+    // Get the button
+    let myButton = document.getElementById("btn-back-to-top");
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        myButton.style.display = "block";
+      } else {
+        myButton.style.display = "none";
+      }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    myButton.addEventListener("click", backToTop);
+    function backToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+  <script type="text/javascript" src="/blog/assets/javascript/bundle.js" charset="utf-8"></script>
+</html>

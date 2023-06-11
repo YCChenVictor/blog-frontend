@@ -10,7 +10,7 @@ describe('QueueViaStacks', () => {
     }
   });
 
-  test('#FIFO', () => { // TBC
+  test('#FIFO', () => {
     expect(testQueueViaStacks.dequeue()).toEqual(1)
   })
 });

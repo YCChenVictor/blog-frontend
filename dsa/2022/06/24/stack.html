@@ -3,10 +3,7 @@
   <head>
     
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
-
-<script src='/implement_p5.js'></script>
-
+    
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -62,8 +59,30 @@
 
 <p>This article describes how to solve problems related to stack data structure.</p>
 
-<p><img src="/blog/assets/img/stack.png" alt="" />
-image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|   Element   |
+|-------------|
+|     Item1   |
+|     Item2   |
+|     Item3   |
+|     Item4   |
+
+<span class="c"># Pushed Item</span>
+|   Element   |
+|-------------|
+|     Item0   |
+|     Item1   |
+|     Item2   |
+|     Item3   |
+|     Item4   |
+
+<span class="c"># Pop Item</span>
+|   Element   |
+|-------------|
+|     Item1   |
+|     Item2   |
+|     Item3   |
+|     Item4   |
+</code></pre></div></div>
 
 <h2 id="why">Why?</h2>
 
@@ -72,7 +91,7 @@ image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
 <h2 id="how">How?</h2>
 
 <ul>
-  <li>coding example:
+  <li>Coding example:
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Stack</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[];</span>
@@ -166,77 +185,209 @@ image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
 <span class="p">});</span>
 </code></pre></div>    </div>
   </li>
-  <li>Create an item: O(1)
+  <li>Time complexity
     <ul>
-      <li>Simply add an item on the stack.</li>
-    </ul>
-  </li>
-  <li>Read an item: O(1)
-    <ul>
-      <li>We can only access the top, so the time complexity of this operation is O(1), which is constant time complexity.</li>
-    </ul>
-  </li>
-  <li>Update an item: O(1)
-    <ul>
-      <li>Again, we can only access the top, so the time complexity of this operation is O(1).</li>
-    </ul>
-  </li>
-  <li>Delete an item: O(1)
-    <ul>
-      <li>Again, we can only access the top, so the time complexity of this operation is O(1).</li>
+      <li>Create an item: O(1)
+        <ul>
+          <li>Simply add an item on the stack.</li>
+        </ul>
+      </li>
+      <li>Read an item: O(1)
+        <ul>
+          <li>We can only access the top, so the time complexity of this operation is O(1), which is constant time complexity.</li>
+        </ul>
+      </li>
+      <li>Update an item: O(1)
+        <ul>
+          <li>Again, we can only access the top, so the time complexity of this operation is O(1).</li>
+        </ul>
+      </li>
+      <li>Delete an item: O(1)
+        <ul>
+          <li>Again, we can only access the top, so the time complexity of this operation is O(1).</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
 
 <h3 id="three-in-one">Three in One</h3>
 
-<p>Question: please use a single array to implement three stacks</p>
 <ul>
+  <li>Problem: Use a single array to implement three stacks</li>
+  <li>Example:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// array length = 15</span>
+<span class="p">[</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="kc">null</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span>
+<span class="p">]</span>
+
+<span class="c1">// push(3, 4)</span>
+<span class="p">[</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="kc">null</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span> <span class="c1">// it will push 3 to the third sub-array</span>
+<span class="p">]</span>
+
+<span class="c1">// pop(3)</span>
+<span class="p">[</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="kc">null</span>
+  <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span>
+  <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span> <span class="c1">// it will pop out the element in third sub array</span>
+<span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
   <li>Implement (just divide array into three portion)
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">threeStacksInOneArray</span> <span class="p">{</span> <span class="c1">// divide array equally</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">threeStacksInOneArray</span> <span class="p">{</span>
+  <span class="c1">// divide array equally</span>
+  <span class="c1">// all start from 1, whichStack and position</span>
   <span class="kd">constructor</span><span class="p">(</span><span class="nx">arrayLength</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">arrayLength</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">starts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">arrayLength</span> <span class="o">/</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">arrayLength</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">ends</span> <span class="o">=</span> <span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">arrayLength</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">arrayLength</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">arrayLength</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addAts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">arrayLength</span> <span class="o">/</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">arrayLength</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
   <span class="p">}</span>
-  
+
   <span class="nx">push</span><span class="p">(</span><span class="nx">whichStack</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`push value to </span><span class="p">${</span><span class="nx">whichStack</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">th stack`</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">ends</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">addAts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">ends</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">])</span> <span class="p">{</span>
       <span class="k">return</span> <span class="s2">`no more space for </span><span class="p">${</span><span class="nx">whichStack</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">th stack`</span>
     <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">value</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">addAts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">value</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addAts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
   <span class="p">}</span>
-  
+
   <span class="nx">pop</span><span class="p">(</span><span class="nx">whichStack</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`pop value from </span><span class="p">${</span><span class="nx">whichStack</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">th stack`</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">ends</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">addAts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">ends</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">])</span> <span class="p">{</span>
       <span class="k">return</span> <span class="s2">`no more value to pop in </span><span class="p">${</span><span class="nx">whichStack</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">th stack`</span>
     <span class="p">}</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">addAts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addAts</span><span class="p">[</span><span class="nx">whichStack</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+  <span class="p">}</span>
+
+  <span class="nx">peek</span><span class="p">(</span><span class="nx">whichStack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">addAts</span><span class="p">[</span><span class="nx">whichStack</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">isEmpty</span><span class="p">(</span><span class="nx">whichStack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="kd">const</span> <span class="nx">end</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ends</span><span class="p">[</span><span class="nx">whichStack</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="kd">const</span> <span class="nx">subStack</span> <span class="o">=</span> <span class="p">[]</span>
+  
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">start</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">end</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">subStack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+  
+    <span class="k">return</span> <span class="nx">subStack</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">element</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">element</span> <span class="o">===</span> <span class="kc">null</span><span class="p">;</span> <span class="p">})</span>
+  <span class="p">}</span>
+
+  <span class="nx">size</span><span class="p">(</span><span class="nx">whichStack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="kd">const</span> <span class="nx">end</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ends</span><span class="p">[</span><span class="nx">whichStack</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span>
+  
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">start</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">end</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  
+    <span class="k">return</span> <span class="nx">result</span>
   <span class="p">}</span>
   
-  <span class="c1">// other to be continued</span>
-<span class="p">}</span>
+  <span class="nx">print</span><span class="p">(</span><span class="nx">whichStack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">start</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">whichStack</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="kd">const</span> <span class="nx">end</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ends</span><span class="p">[</span><span class="nx">whichStack</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="kd">const</span> <span class="nx">subStack</span> <span class="o">=</span> <span class="p">[]</span>
   
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">start</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">end</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">subStack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+  
+    <span class="k">return</span> <span class="nx">subStack</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">threeStacksInOneArray</span><span class="p">;</span>
 </code></pre></div>    </div>
   </li>
   <li>spec
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ThreeStackInOneArray</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../examples/three_stacks_in_one_array.js</span><span class="dl">'</span><span class="p">);</span>
-  
+
 <span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">ThreeStackInOneArray</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">with item</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">testStack</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">totalLength</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">],</span>
+  <span class="p">]</span>
+  <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testStack</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThreeStackInOneArray</span><span class="p">(</span><span class="nx">totalLength</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">testStack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#init</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">elements</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span>
+      <span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="p">])</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">addAts</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">])</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">ends</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">16</span><span class="p">])</span>
+  <span class="p">})</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#push</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testStack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">elements</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span>
+      <span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="p">]);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">addAts</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">])</span>
+  <span class="p">});</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#pop</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testStack</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">elements</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span>
+      <span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="p">]);</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">addAts</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">])</span>
+  <span class="p">})</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#peek</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">peek</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">74</span><span class="p">)</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">peek</span><span class="p">(</span><span class="mi">2</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">peek</span><span class="p">(</span><span class="mi">3</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">44</span><span class="p">)</span>
+  <span class="p">})</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#size</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span><span class="mi">2</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span><span class="mi">3</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="p">})</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#print</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">])</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">])</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="mi">3</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">])</span>
+  <span class="p">})</span>
+  
+  <span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">with empty sub stack</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">testStack</span><span class="p">;</span>
     <span class="kd">let</span> <span class="nx">totalLength</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
     <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span>
       <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">],</span>
       <span class="p">[</span><span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">],</span>
-      <span class="p">[</span><span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">],</span>
+      <span class="p">[],</span>
     <span class="p">]</span>
-    <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="c1">// create the stack example I need</span>
+    <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
       <span class="nx">testStack</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ThreeStackInOneArray</span><span class="p">(</span><span class="nx">totalLength</span><span class="p">);</span>
       <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -245,44 +396,19 @@ image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
       <span class="p">}</span>
     <span class="p">});</span>
   
-    <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#init</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">elements</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span>
-        <span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="p">])</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">starts</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">])</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">ends</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">16</span><span class="p">])</span>
+    <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#isEmpty</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="mi">2</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="mi">3</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
     <span class="p">})</span>
-  
-    <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#push</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">testStack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">elements</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span>
-        <span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="p">]);</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">starts</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">])</span>
-    <span class="p">});</span>
-  
-    <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#pop</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">testStack</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">elements</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span>
-        <span class="mi">1</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-        <span class="mi">83</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="p">]);</span>
-      <span class="nx">expect</span><span class="p">(</span><span class="nx">testStack</span><span class="p">.</span><span class="nx">starts</span><span class="p">).</span><span class="nx">toEqual</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">])</span>
-    <span class="p">})</span>
-  <span class="p">})</span>
-  
-  <span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">no item</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="p">})</span>
 <span class="p">});</span>
 </code></pre></div>    </div>
   </li>
-  <li>generalize
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">KStacksInOneArray</span> <span class="p">{</span>
+  <li>Generalize (TBC)
+    <ul>
+      <li>Code example
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">KStacksInOneArray</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// k means number of stacks and n means length of array</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">k</span> <span class="o">=</span> <span class="nx">k</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">elements</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">n</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
@@ -299,7 +425,7 @@ image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">}</span>
-  
+    
   <span class="nx">push</span><span class="p">(</span><span class="nx">kth</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// kth = 0 -&gt; first stack in array ...</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">kth</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">no stack</span><span class="dl">'</span><span class="p">)</span>
@@ -312,7 +438,7 @@ image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
     <span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">kth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">value</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">kth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
   <span class="p">}</span>
-  
+    
   <span class="nx">pop</span><span class="p">(</span><span class="nx">kth</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">kth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">elements</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">starts</span><span class="p">[</span><span class="nx">kth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="kc">null</span><span class="p">))</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">no elements</span><span class="dl">'</span><span class="p">)</span>
@@ -323,19 +449,71 @@ image source: https://www.geeksforgeeks.org/stack-data-structure/</p>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>    </div>
-  </li>
-  <li>spec (to be continued)</li>
-  <li>usage
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">test</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KStacksInOneArray</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">);</span>
+</code></pre></div>        </div>
+      </li>
+      <li>spec (TBC)</li>
+      <li>usage
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">test</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">KStacksInOneArray</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">);</span>
 <span class="nx">test</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 <span class="nx">test</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">starts</span><span class="p">)</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">elements</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+      <li>more general: The first approach did not use the space in array efficiently because we cannot put more data into an full stack even if there are space in other stacks. (TBC)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="stack-min">Stack Min</h3>
+
+<ul>
+  <li>Problem: How would you design a stack which, in addition to push and pop, has a function min which returns the minimum element? Push, pop and min should ail operate in 0 ( 1 ) time.</li>
+  <li>Example: Stack [3, 1, 9, 8] =&gt; return 1</li>
+  <li>Edge Case: Seems no</li>
+  <li>Code example:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">StackMin</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">min</span>
+  <span class="p">}</span>
+
+  <span class="nx">push</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+      
+  <span class="p">}</span>
+
+  <span class="nx">pop</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+
+  <span class="nx">min</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-  <li>more general: The first approach did not use the space in array efficiently because we cannot put more data into an full stack even if there are space in other stacks. (to be continued)</li>
+  <li>Test:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">StackMin</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">testStack</span><span class="p">;</span>
+  <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testStack</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stack</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">74</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">888</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">33</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="nx">testStack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#min</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
 </ul>
+
+<h3 id="stack-of-plates">Stack of Plates</h3>
+
+<h3 id="sort-stack">Sort Stack</h3>
 
 <h2 id="what">What</h2>
 

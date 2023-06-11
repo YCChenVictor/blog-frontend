@@ -59,8 +59,30 @@
 
 <p>A queue implements FIFO ordering.</p>
 
-<p><img src="/blog/assets/img/queue.png" alt="" />
-image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># init</span>
+|   Order   |
+|-----------|
+|   Order1  |
+|   Order2  |
+|   Order3  |
+|   Order4  |
+
+<span class="c"># push</span>
+|   Order   |
+|-----------|
+|   Order1  |
+|   Order2  |
+|   Order3  |
+|   Order4  |
+|   Order5  |
+
+<span class="c"># pop</span>
+|   Order   |
+|-----------|
+|   Order2  |
+|   Order3  |
+|   Order4  |
+</code></pre></div></div>
 
 <h2 id="why">Why?</h2>
 
@@ -107,42 +129,28 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
   <span class="p">}</span>
 <span class="p">}</span>
-  
-<span class="c1">// Example usage</span>
-<span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Queue</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">());</span> <span class="c1">// true</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// [1, 2, 3]</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 3</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">peek</span><span class="p">());</span> <span class="c1">// 1</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">());</span> <span class="c1">// 1</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">print</span><span class="p">());</span> <span class="c1">// [2, 3]</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">size</span><span class="p">());</span> <span class="c1">// 2</span>
 </code></pre></div>    </div>
   </li>
   <li>Time complexity
     <ul>
       <li>Create an item: O(1)
         <ul>
-          <li>the enqueue method will concatenate item on the last without elements shifting</li>
+          <li>The enqueue method will concatenate item on the last without shifting elements.</li>
         </ul>
       </li>
       <li>Read an item: O(1)
         <ul>
-          <li>reading the front element of the queue, then the time complexity of this operation is O(1)</li>
-          <li>accessing elements from the middle or end of a queue is not supported, which can result in a time complexity of O(n).</li>
+          <li>Read the front element of the queue.</li>
         </ul>
       </li>
       <li>Update an item: O(n)
         <ul>
-          <li>dequeuing an element from the front of the queue may require shifting all the remaining elements one position to the front of the queue, which takes O(n) time in the worst case. Then, enqueuing the modified element again requires O(1) time complexity. Therefore, the overall time complexity for updating an element in a queue is O(n).</li>
+          <li>It is not normal to have update operation in queue. We achieve by dequeuing the elements and then enqueuing back. As a result, the time complexity i s O(n) on worst case.</li>
         </ul>
       </li>
       <li>Delete an item: O(1)
         <ul>
-          <li>deleting an element from the front of a queue simply involves removing the first element of an array-based queue or the head node of a linked-list based queue, which can be done in constant time, regardless of the size of the queue.</li>
+          <li>Queue follows FIFO, so it is O(1).</li>
         </ul>
       </li>
     </ul>
@@ -151,49 +159,36 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
 
 <h3 id="queue-via-stacks">Queue via Stacks</h3>
 
-<p>Question: implement a MyQueue class which implements a queue using two stacks.</p>
-
-<p>This question is to test how to implement FIFO with two LIFO, so we only need to test whether it can FIFO.</p>
-
 <ul>
-  <li>coding example:</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Stack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../../stack/examples/stack.js</span><span class="dl">'</span><span class="p">)</span>
-
+  <li>Problem: implement a MyQueue class which implements a queue using two stacks.</li>
+  <li>Information: We just need to accomplish the FIFO effect with two LIFO.</li>
+  <li>coding example:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Stack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../../stack/examples/stack.js</span><span class="dl">'</span><span class="p">)</span>
+  
 <span class="kd">class</span> <span class="nx">QueueViaStacks</span> <span class="p">{</span> <span class="c1">// FIFO</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stack</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">stackTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stack</span><span class="p">();</span>
   <span class="p">}</span>
-
+  
   <span class="nx">enqueue</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
   <span class="p">}</span>
-
+  
   <span class="nx">dequeue</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="dl">'</span><span class="s1">no element</span><span class="dl">'</span>
-    <span class="p">}</span>
-
     <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">stackTwo</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stackOne</span><span class="p">.</span><span class="nx">pop</span><span class="p">())</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">stackTwo</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
   <span class="p">}</span>
 <span class="p">}</span>
-
+  
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">QueueViaStacks</span>
-</code></pre></div></div>
-
-<ul>
-  <li>jest</li>
-</ul>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">QueueViaStacks</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../examples/queue_via_stacks.js</span><span class="dl">'</span><span class="p">);</span>
-
+</code></pre></div>    </div>
+  </li>
+  <li>jest
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">QueueViaStacks</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../examples/queue_via_stacks.js</span><span class="dl">'</span><span class="p">);</span>
+  
 <span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">QueueViaStacks</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kd">let</span> <span class="nx">testQueueViaStacks</span><span class="p">;</span>
   <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -203,12 +198,174 @@ image source: https://www.geeksforgeeks.org/queue-data-structure/</p>
       <span class="nx">testQueueViaStacks</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
     <span class="p">}</span>
   <span class="p">});</span>
-
+  
   <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#FIFO</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="c1">// TBC</span>
     <span class="nx">expect</span><span class="p">(</span><span class="nx">testQueueViaStacks</span><span class="p">.</span><span class="nx">dequeue</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
   <span class="p">})</span>
 <span class="p">});</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="animal-shelter">Animal Shelter</h3>
+
+<ul>
+  <li>Problem:
+    <ul>
+      <li>Shelter has dogs and cats</li>
+      <li>People can only adopt the oldest animal based on arrival time</li>
+      <li>People can choose type (dog or cat)</li>
+      <li>You can use linkedlist</li>
+      <li>Methods: Enqueue, DequeueAny, DequeueDog, and DequeueCat</li>
+    </ul>
+  </li>
+  <li>Example:
+    <ul>
+      <li>[‘d1’, ‘d2’, ‘c1’, ‘c2’, ‘d3’, ‘c3’] ==DequeueAny=&gt; [‘d2’, ‘c1’, ‘c2’, ‘d3’, ‘c3’]</li>
+      <li>[‘d1’, ‘d2’, ‘c1’, ‘c2’, ‘d3’, ‘c3’] ==DequeueDog=&gt; [‘d2’, ‘c1’, ‘c2’,’d3’, ‘c3’]</li>
+      <li>[‘d1’, ‘d2’, ‘c1’, ‘c2’, ‘d3’, ‘c3’] ==DequeueCat=&gt; [‘d1’, ‘d2’, ‘c2’, ‘d3’, ‘c3’]</li>
+    </ul>
+  </li>
+  <li>Code example:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Node</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">next</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">AnimalShelter</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="nx">enqueue</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">lastNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">traverseToLast</span><span class="p">()</span>
+      <span class="nx">lastNode</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="nx">dequeueAny</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">next</span>
+  <span class="p">}</span>
+  
+  <span class="nx">dequeueDog</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">currentNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span>
+    <span class="kd">let</span> <span class="nx">preNode</span>
+  
+    <span class="k">if</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">dog</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">next</span>
+      <span class="k">return</span> <span class="nx">currentNode</span>
+    <span class="p">}</span>
+  
+    <span class="k">while</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">type</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">dog</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">preNode</span> <span class="o">=</span> <span class="nx">currentNode</span>
+      <span class="nx">currentNode</span> <span class="o">=</span> <span class="nx">currentNode</span><span class="p">.</span><span class="nx">next</span>
+    <span class="p">}</span>
+  
+    <span class="nx">preNode</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">currentNode</span><span class="p">.</span><span class="nx">next</span>
+  
+    <span class="k">return</span> <span class="nx">currentNode</span>
+  <span class="p">}</span>
+  
+  <span class="nx">dequeueCat</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">currentNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span>
+    <span class="kd">let</span> <span class="nx">preNode</span>
+        
+    <span class="k">if</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">cat</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">next</span>
+      <span class="k">return</span> <span class="nx">currentNode</span>
+    <span class="p">}</span>
+  
+    <span class="k">while</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">type</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">cat</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">preNode</span> <span class="o">=</span> <span class="nx">currentNode</span>
+      <span class="nx">currentNode</span> <span class="o">=</span> <span class="nx">currentNode</span><span class="p">.</span><span class="nx">next</span>
+    <span class="p">}</span>
+  
+    <span class="nx">preNode</span><span class="p">.</span><span class="nx">next</span> <span class="o">=</span> <span class="nx">currentNode</span><span class="p">.</span><span class="nx">next</span>
+  
+    <span class="k">return</span> <span class="nx">currentNode</span>
+  <span class="p">}</span>
+  
+  <span class="nx">dequeueAny</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">head</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">next</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span>
+  <span class="p">}</span>
+  
+  <span class="nx">printList</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="kd">let</span> <span class="nx">currentNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span>
+  
+    <span class="k">while</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+      <span class="nx">currentNode</span> <span class="o">=</span> <span class="nx">currentNode</span><span class="p">.</span><span class="nx">next</span>
+    <span class="p">}</span>
+  
+    <span class="k">return</span> <span class="nx">result</span>
+  <span class="p">}</span>
+  
+  <span class="nx">traverseToLast</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">currentNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">head</span><span class="p">;</span>
+  
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="kc">Infinity</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">next</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">currentNode</span> <span class="o">=</span> <span class="nx">currentNode</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">currentNode</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">currentNode</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">AnimalShelter</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Test:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">AnimalShelter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../examples/animal_shelter.js</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">AnimalShelter</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">beforeEach</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testAnimalShelter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AnimalShelter</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">d1</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">dog</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">d2</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">dog</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">c1</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">cat</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">c2</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">cat</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">d3</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">dog</span><span class="dl">'</span><span class="p">},</span>
+      <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="dl">'</span><span class="s1">c3</span><span class="dl">'</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="dl">'</span><span class="s1">cat</span><span class="dl">'</span><span class="p">},</span>
+    <span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+      <span class="nx">testAnimalShelter</span><span class="p">.</span><span class="nx">enqueue</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">],</span> <span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="dl">'</span><span class="s1">type</span><span class="dl">'</span><span class="p">]);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#enqueue</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testAnimalShelter</span><span class="p">.</span><span class="nx">printList</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">([</span><span class="dl">'</span><span class="s1">d1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">d2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">d3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c3</span><span class="dl">'</span><span class="p">])</span>
+  <span class="p">});</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#dequeueAny</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testAnimalShelter</span><span class="p">.</span><span class="nx">dequeueAny</span><span class="p">()</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testAnimalShelter</span><span class="p">.</span><span class="nx">printList</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">([</span><span class="dl">'</span><span class="s1">d2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">d3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c3</span><span class="dl">'</span><span class="p">])</span>
+  <span class="p">})</span>
+    
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#dequeueCat</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testAnimalShelter</span><span class="p">.</span><span class="nx">dequeueCat</span><span class="p">()</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testAnimalShelter</span><span class="p">.</span><span class="nx">printList</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">([</span><span class="dl">'</span><span class="s1">d1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">d2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">d3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c3</span><span class="dl">'</span><span class="p">])</span>
+  <span class="p">})</span>
+  
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">#dequeueDog</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">testAnimalShelter</span><span class="p">.</span><span class="nx">dequeueDog</span><span class="p">()</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testAnimalShelter</span><span class="p">.</span><span class="nx">printList</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">([</span><span class="dl">'</span><span class="s1">d2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c2</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">d3</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c3</span><span class="dl">'</span><span class="p">])</span>
+  <span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <h2 id="what">What</h2>
 

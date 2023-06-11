@@ -58,7 +58,7 @@ describe('BinaryTree', () => {
         }
       }
     })
-  })
+  })//
 
   test('#inorderTraversal', () => { // L > V > R
     expect(testTree.inorderTraversal()).toEqual([3, 5, 7, 10, 12, 15, 17])

@@ -69,12 +69,10 @@
     <h1 class='text-center mt-6 mb-6'>tree</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>(To be continued)</p>
-
 <h3 id="types-of-tree">types of tree</h3>
 
 <ul>
-  <li>general tree: each node has 0 to many child node
+  <li>General tree: each node has 0 to many child node
     <div class="mermaid">
   graph TD
     id1((A)) --&gt; id2((B))
@@ -90,7 +88,7 @@
     id8((H)) --&gt; id10((J))
 </div>
   </li>
-  <li>binary tree: each node has at most 2 child modes
+  <li>Binary tree: each node has at most 2 child modes
     <div class="mermaid">
   graph TD
     id1((1)) --&gt; id2((7))
@@ -140,55 +138,43 @@
 <p>There are three actions we can do in current node</p>
 
 <ul>
-  <li>visit (return the value of current node)</li>
-  <li>left (traverse to the left node)</li>
-  <li>right (traverse to the right node)</li>
+  <li>Visit (return the value of current node)</li>
+  <li>Left (traverse to the left node)</li>
+  <li>Right (traverse to the right node)</li>
 </ul>
 
 <p>After each traverse, redo it from begin</p>
 
 <ul>
-  <li>inorder traversals (L &gt; V &gt; R): 2 -&gt; 7 -&gt; 5 -&gt; 6 -&gt; 11 -&gt; 1 -&gt; 9 -&gt; 5 -&gt; 9</li>
-  <li>preorder traversals (V &gt; L &gt; R): 1 -&gt; 7 -&gt; 2 -&gt; 6 -&gt; 5 -&gt; 11 -&gt; 9 -&gt; 9 -&gt; 5</li>
-  <li>postorder traversals (L &gt; R &gt; V): 2 -&gt; 5 -&gt; 11 -&gt; 6 -&gt; 7 -&gt; 5 -&gt; 9 -&gt; 9 -&gt; 1</li>
+  <li>Inorder traversals (L &gt; V &gt; R): 2 -&gt; 7 -&gt; 5 -&gt; 6 -&gt; 11 -&gt; 1 -&gt; 9 -&gt; 5 -&gt; 9</li>
+  <li>Preorder traversals (V &gt; L &gt; R): 1 -&gt; 7 -&gt; 2 -&gt; 6 -&gt; 5 -&gt; 11 -&gt; 9 -&gt; 9 -&gt; 5</li>
+  <li>Postorder traversals (L &gt; R &gt; V): 2 -&gt; 5 -&gt; 11 -&gt; 6 -&gt; 7 -&gt; 5 -&gt; 9 -&gt; 9 -&gt; 1</li>
 </ul>
 
-<p>Tips: for example, in inorder traversal, the tree with root 7 &gt; root 1 &gt; tree with root 9, so it will traverse the nodes of tree with root 7 first then root 1 then tree with root 9.</p>
-
-<ul>
-  <li>A tree is composed of nodes.</li>
-  <li>Each tree has a root node.</li>
-  <li>Each node has zero or more child nodes.</li>
-  <li>The data stored in each node has any datatype.</li>
-  <li>Three type of traversals: inorder, preorder, postorder</li>
-</ul>
+<p>Tips: For example, in inorder traversal, on the first loop, it will traverse tree with root 7, and then return 1, and then traverse tree with root 9, and in the step of traversing tree with root 7 and tree with root 9, it will follow the same logic.</p>
 
 <h3 id="essential-structure">essential structure</h3>
 
-<p>Tree:</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Tree</span> <span class="p">{</span>
+<ul>
+  <li>Tree:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Tree</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TreeNode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
   <span class="p">}</span>
-
+  
   <span class="nx">traversal</span><span class="p">(</span><span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
-    
   <span class="p">}</span>
-
+  
   <span class="nx">insert</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// we can only insert node as leaf</span>
-    
   <span class="p">}</span>
-
+  
   <span class="nx">remove</span><span class="p">()</span> <span class="p">{</span>
-
   <span class="p">}</span>
-
+  
   <span class="nx">find</span><span class="p">()</span> <span class="p">{</span>
-
   <span class="p">}</span>
 <span class="p">}</span>
-
+  
 <span class="kd">class</span> <span class="nx">TreeNode</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">key</span> <span class="o">=</span> <span class="nx">key</span><span class="p">;</span>
@@ -196,27 +182,27 @@
     <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">children</span> <span class="o">=</span> <span class="p">[];</span>
   <span class="p">}</span>
-
+  
   <span class="kd">get</span> <span class="nx">isLeaf</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">children</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
   <span class="p">}</span>
-
+  
   <span class="kd">get</span> <span class="nx">hasChildren</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+</ul>
 
 <h2 id="why">Why?</h2>
 
-<p>To pass coding interview</p>
+<p>Learning tree data structures is essential for organizing and efficiently accessing hierarchical data, such as file systems, organizational structures, and decision-making processes.</p>
 
 <h2 id="how">How?</h2>
 
 <h3 id="binary-tree">Binary Tree</h3>
 
 <ul>
-  <li>diagram (the number of left node is not necessary smaller than the right node)
+  <li>Diagram (the number of left node is not necessary smaller than the right node)
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        5
       /   <span class="se">\</span>
      3     8
@@ -225,7 +211,15 @@
 </code></pre></div>    </div>
   </li>
   <li>code example
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Node</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./node.js</span><span class="dl">'</span><span class="p">)</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">BinaryTreeNode</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">key</span> <span class="o">=</span> <span class="nx">key</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="kc">null</span>
+  <span class="p">}</span>
+<span class="p">}</span>
   
 <span class="kd">class</span> <span class="nx">BinaryTree</span> <span class="p">{</span>
   <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
@@ -234,14 +228,14 @@
   
   <span class="nx">addNode</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// will use recursive</span>
     <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BinaryTreeNode</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">insertNode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">insertNode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="k">new</span> <span class="nx">BinaryTreeNode</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span>
     <span class="p">}</span>
   <span class="p">}</span>
   
   <span class="nx">inorderTraversal</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// L &gt; V &gt; R</span>
-    <span class="c1">// traverse(5) -&gt; [traverse(3), push(5), traverse(8)] -&gt; [2] -&gt; [traverse(2), push(3), traverse(4)], push(5), [traverse(7), push(8), traverse(9)]</span>
+    <span class="c1">// traverse(5) -&gt; [traverse(3), push(5), traverse(8)] -&gt; [traverse(2), push(3), traverse(4)], push(5), [traverse(7), push(8), traverse(9)] -&gt; [2, 3, 4, 5, 7, 8, 9]</span>
     <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
   
     <span class="kd">function</span> <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
@@ -273,6 +267,7 @@
   <span class="p">}</span>
   
   <span class="nx">postorderTraversal</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// L &gt; R &gt; V</span>
+    <span class="c1">// traverse(5) -&gt; [traverse(3), traverse(8), 5] -&gt; [traverse(3), traverse(8), 5] -&gt; [traverse(2), traverse(4), 3, traverse(7), traverse(9), 8, 5] -&gt; [2, 4, 3, 7, 9, 8, 5]</span>
     <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
   
     <span class="kd">function</span> <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
@@ -288,6 +283,7 @@
   <span class="p">}</span>
     
   <span class="nx">levelorderTraversal</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// [5, 3, 8, 2, 4, 7, 9]</span>
     <span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">]</span>
     <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
   
@@ -322,8 +318,6 @@
 
 <h3 id="binary-search-tree">Binary Search Tree</h3>
 
-<p>TODO: inherit from BinaryTree</p>
-
 <p>A Binary Search Tree (BST) is a data structure consisting of nodes with a value and two pointers to other nodes, known as the left and right child nodes. The values are organized to facilitate efficient search and insertion operations. To search or insert a value, we move left or right depending on whether the value is less or greater than the current node’s value. The efficiency of a BST depends on the balance of the tree, with a well-balanced tree providing faster operations than a poorly balanced one.</p>
 
 <ul>
@@ -336,11 +330,12 @@
 </code></pre></div>    </div>
   </li>
   <li>code example
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Node</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./node.js</span><span class="dl">'</span><span class="p">)</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">BinaryTree</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./binary_tree.js</span><span class="dl">'</span><span class="p">)</span>
+<span class="nx">Node</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">./binary_tree_node.js</span><span class="dl">'</span><span class="p">)</span>
   
-<span class="kd">class</span> <span class="nx">BinarySearchTree</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">class</span> <span class="nx">BinarySearchTree</span> <span class="kd">extends</span> <span class="nx">BinaryTree</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">root</span><span class="p">);</span>
   <span class="p">}</span>
   
   <span class="nx">addNode</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// will use recursive</span>
@@ -353,76 +348,6 @@
   
   <span class="nx">search</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">searchNode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-  <span class="p">}</span>
-  
-  <span class="nx">inorderTraversal</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// L &gt; V &gt; R</span>
-    <span class="c1">// traverse(5) -&gt; [traverse(3), push(5), traverse(8)] -&gt; [2] -&gt; [traverse(2), push(3), traverse(4)], push(5), [traverse(7), push(8), traverse(9)]</span>
-    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
-  
-    <span class="kd">function</span> <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
-        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  
-    <span class="nx">traverse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
-  <span class="p">}</span>
-  
-  <span class="nx">preorderTraversal</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// V &gt; L &gt; R</span>
-    <span class="c1">// traverse(5) -&gt; [push(5), traverse(3), traverse(8)] -&gt; [push(5), push(3), traverse(2), traverse(4), push(8), traverse(7), traverse(9)]</span>
-    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
-  
-    <span class="kd">function</span> <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
-        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  
-    <span class="nx">traverse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">result</span>
-  <span class="p">}</span>
-  
-  <span class="nx">postorderTraversal</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// L &gt; R &gt; V</span>
-    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
-  
-    <span class="kd">function</span> <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">);</span>
-        <span class="nx">traverse</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
-        <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  
-    <span class="nx">traverse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">result</span>
-  <span class="p">}</span>
-    
-  <span class="nx">levelorderTraversal</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">]</span>
-    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[]</span>
-  
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span>
-    <span class="p">}</span>
-  
-    <span class="k">while</span> <span class="p">(</span><span class="nx">queue</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">shift</span><span class="p">()</span>
-      <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-  
-      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">left</span><span class="p">)</span>
-      <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">right</span><span class="p">)</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  
-    <span class="k">return</span> <span class="nx">result</span>
   <span class="p">}</span>
   
   <span class="nx">insertNode</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">,</span> <span class="nx">newNode</span><span class="p">)</span> <span class="p">{</span>
@@ -454,29 +379,15 @@
   <span class="p">}</span>
 <span class="p">}</span>
   
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">BinaryTree</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">BinarySearchTree</span>
 </code></pre></div>    </div>
   </li>
   <li>Time complexity of CRUD
     <ul>
-      <li>create
+      <li>Create a node: O(1)
         <ul>
-          <li>create a tree: O(n)
-            <ul>
-              <li>When creating a tree, each node needs to be created and added to the appropriate location in the tree. To create a node, the algorithm needs to allocate memory for the node and set its value and pointers to its children (if any). This takes a constant amount of time per node. Therefore, creating n nodes in the tree takes O(n) time.</li>
-            </ul>
-          </li>
-          <li>create a node: O(1)
-            <ul>
-              <li>When creating a new node in a tree, the algorithm needs to allocate memory for the node and set its value and pointers to its children (if any). These operations take a constant amount of time, independent of the size of the tree.</li>
-              <li>Inserting a new node into a binary tree requires finding the correct position for the new node in the tree. In the worst case, this involves traversing the height of the tree, which has a time complexity of O(log n) for a balanced binary tree and O(n) for an unbalanced binary tree.
-                <ul>
-                  <li>O(log n) for a balanced binary tree</li>
-                  <li>O(n) for an unbalanced binary tree</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+          <li>When creating a new node in a tree, the algorithm needs to allocate memory for the node and set its value and pointers to its children (if any). These operations take a constant amount of time, independent of the size of the tree.</li>
+          <li>Inserting a new node into a binary tree requires finding the correct position for the new node in the tree. In the worst case, this involves traversing the height of the tree, which has a time complexity of O(log n) for a balanced binary tree and O(n) for an unbalanced binary tree.</li>
         </ul>
       </li>
       <li>read: O(n)
@@ -582,60 +493,6 @@
   </li>
 </ul>
 
-<h2 id="what">What?</h2>
-
-<h3 id="real-world-example">real world example</h3>
-
-<p>A real world example of implementing a decision tree</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">DecisionTreeNode</span> <span class="p">{</span>
-  <span class="kd">constructor</span><span class="p">(</span><span class="nx">question</span><span class="p">,</span> <span class="nx">yesNode</span><span class="p">,</span> <span class="nx">noNode</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">question</span> <span class="o">=</span> <span class="nx">question</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span> <span class="o">=</span> <span class="nx">yesNode</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">noNode</span> <span class="o">=</span> <span class="nx">noNode</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="nx">ask</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">question</span><span class="p">);</span>
-    <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Enter yes or no:</span><span class="dl">"</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">yes</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span> <span class="k">instanceof</span> <span class="nx">DecisionTreeNode</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">no</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">noNode</span> <span class="k">instanceof</span> <span class="nx">DecisionTreeNode</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">noNode</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">noNode</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Invalid input. Please enter yes or no.</span><span class="dl">"</span><span class="p">);</span>
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
-  <span class="dl">"</span><span class="s2">Is it a mammal?</span><span class="dl">"</span><span class="p">,</span>
-  <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
-    <span class="dl">"</span><span class="s2">Does it have fur?</span><span class="dl">"</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a cat?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a cat!</span><span class="dl">"</span><span class="p">),</span>
-    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a whale?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a whale!</span><span class="dl">"</span><span class="p">)</span>
-  <span class="p">),</span>
-  <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
-    <span class="dl">"</span><span class="s2">Does it have feathers?</span><span class="dl">"</span><span class="p">,</span>
-    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a bird?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a bird!</span><span class="dl">"</span><span class="p">),</span>
-    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a snake?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a snake!</span><span class="dl">"</span><span class="p">)</span>
-  <span class="p">)</span>
-<span class="p">);</span>
-
-<span class="nx">root</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
-</code></pre></div></div>
-
-<p>Each node has a question, a yesNode branch and a noNode branch. The ask() method of the node prompts the user to answer the question and then follows the appropriate branch based on the answer. If the branch is another DecisionTreeNode, it recursively calls the ask() method on that node. If the branch is a leaf node, it simply returns the corresponding result.</p>
-
 <h3 id="height-of-binary-tree">Height of Binary Tree</h3>
 
 <p>Given a binary tree, return the height; for example</p>
@@ -729,19 +586,159 @@ Output: 3
   </li>
 </ul>
 
-<p>Determine if two trees are identical
-Mirror tree
-Symmetric Tree
-Diameter of tree
-Checked for Balanced tree
-Children Sum Parent
-Check for BST
-Array to BST
-Largest value in each level of binary tree
-Maximum GCD of siblings of a binary tree
-Zigzag Tree Traversal
-Inorder Successor in BST
-Kth Largest Element in a BST</p>
+<h3 id="minimal-tree">Minimal Tree</h3>
+
+<ul>
+  <li>Problem: Given a sorted (increasing order) array with unique integer elements, write an algorithm to create a binary search tree with minimal height.</li>
+  <li>Information
+    <ul>
+      <li>Example: [1, 2, 3, 4, 5, 6]
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      1
+    /   <span class="se">\</span>
+   2     3
+  / <span class="se">\ </span>  / <span class="se">\</span>
+ 4   5 6   
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Time complexity: O(n) since we must need to traverse the nodes once</li>
+  <li>Code example:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">MinimalTree</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="nx">addNode</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">currentNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// will use recursive</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Node</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">currentNode</span><span class="p">.</span><span class="nx">left</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">currentNode</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">addNode</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">currentNode</span><span class="p">.</span><span class="nx">right</span> <span class="o">=</span> <span class="nx">addNode</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">height</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="nx">currentNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span>
+    <span class="k">while</span><span class="p">(</span><span class="nx">currentNode</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">result</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="nx">currentNode</span> <span class="o">=</span> <span class="nx">currentNode</span><span class="p">.</span><span class="nx">left</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">result</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+  
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">MinimalTree</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Spec:
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">minimal tree</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">6 elements</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">testTree</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MinimalTree</span><span class="p">()</span>
+    <span class="kd">let</span> <span class="nx">currentNode</span> <span class="o">=</span> <span class="kc">null</span>
+    <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+    <span class="nx">values</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">testTree</span><span class="p">.</span><span class="nx">addNode</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+    <span class="p">})</span>
+
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">testTree</span><span class="p">.</span><span class="nx">height</span><span class="p">()).</span><span class="nx">toEqual</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="list-of-depths">List of Depths</h3>
+
+<h3 id="check-balanced">Check Balanced</h3>
+
+<h3 id="validate-bst">Validate BST</h3>
+
+<h3 id="successor">Successor</h3>
+
+<h3 id="first-common-ancestor">First Common Ancestor</h3>
+
+<h3 id="bst-sequences">BST Sequences</h3>
+
+<h3 id="check-subtree">Check Subtree</h3>
+
+<h3 id="random-node">Random Node</h3>
+
+<h3 id="paths-with-sum">Paths with Sum</h3>
+
+<h2 id="what">What?</h2>
+
+<h3 id="real-world-example">real world example</h3>
+
+<p>A real world example of implementing a decision tree</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">DecisionTreeNode</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">question</span><span class="p">,</span> <span class="nx">yesNode</span><span class="p">,</span> <span class="nx">noNode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">question</span> <span class="o">=</span> <span class="nx">question</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span> <span class="o">=</span> <span class="nx">yesNode</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">noNode</span> <span class="o">=</span> <span class="nx">noNode</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">ask</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">question</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Enter yes or no:</span><span class="dl">"</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">yes</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span> <span class="k">instanceof</span> <span class="nx">DecisionTreeNode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">yesNode</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">no</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">noNode</span> <span class="k">instanceof</span> <span class="nx">DecisionTreeNode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">noNode</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">noNode</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Invalid input. Please enter yes or no.</span><span class="dl">"</span><span class="p">);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
+  <span class="dl">"</span><span class="s2">Is it a mammal?</span><span class="dl">"</span><span class="p">,</span>
+  <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
+    <span class="dl">"</span><span class="s2">Does it have fur?</span><span class="dl">"</span><span class="p">,</span>
+    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a cat?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a cat!</span><span class="dl">"</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a whale?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a whale!</span><span class="dl">"</span><span class="p">)</span>
+  <span class="p">),</span>
+  <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span>
+    <span class="dl">"</span><span class="s2">Does it have feathers?</span><span class="dl">"</span><span class="p">,</span>
+    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a bird?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a bird!</span><span class="dl">"</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nx">DecisionTreeNode</span><span class="p">(</span><span class="dl">"</span><span class="s2">Is it a snake?</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">It's a snake!</span><span class="dl">"</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">root</span><span class="p">.</span><span class="nx">ask</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Each node has a question, a yesNode branch and a noNode branch. The ask() method of the node prompts the user to answer the question and then follows the appropriate branch based on the answer. If the branch is another DecisionTreeNode, it recursively calls the ask() method on that node. If the branch is a leaf node, it simply returns the corresponding result.</p>
+
+<h2 id="todo">TODO</h2>
+
+<ul>
+  <li>Determine if two trees are identical</li>
+  <li>Mirror tree</li>
+  <li>Symmetric Tree</li>
+  <li>Diameter of tree</li>
+  <li>Checked for Balanced tree</li>
+  <li>Children Sum Parent</li>
+  <li>Check for BST</li>
+  <li>Array to BST</li>
+  <li>Largest value in each level of binary tree</li>
+  <li>Maximum GCD of siblings of a binary tree</li>
+  <li>Zigzag Tree Traversal</li>
+  <li>Inorder Successor in BST</li>
+  <li>Kth Largest Element in a BST</li>
+</ul>
 
 <h2 id="reference">Reference</h2>
 
