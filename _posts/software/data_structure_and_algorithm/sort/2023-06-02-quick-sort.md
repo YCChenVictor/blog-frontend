@@ -5,7 +5,7 @@ description: ''
 date: '2023-06-02'
 categories: DSA
 note:
-mathjax:
+mathjax: true
 mermaid: true
 p5:
 threeJS:
@@ -16,7 +16,7 @@ publish: true
 
 ## Introduction
 
-QuickSort is an efficient sorting algorithm with an average runtime of **O(n * log(n))**. By using a **random pivot**, it reduces the chances of encountering worst-case scenarios and outperforms other sorting algorithms due to a smaller constant factor. Learning QuickSort enhances algorithmic thinking skills and expands problem-solving abilities, providing an elegant and efficient solution to the sorting problem and introducing the **Divide and Conquer** technique for a structured approach to various problems.
+QuickSort is an efficient sorting algorithm with an average runtime of **O(n * log(n))**. By using a **random pivot**, it reduces the chances of encountering worst-case scenarios and outperforms other sorting algorithms due to a **smaller constant factor**. Learning QuickSort enhances algorithmic thinking skills and expands problem-solving abilities, providing an elegant and efficient solution to the sorting problem and introducing the **Divide and Conquer** technique for a structured approach to various problems.
 
 ## Why?
 
@@ -27,8 +27,8 @@ Learning QuickSort not only equips you with a fast sorting algorithm but also en
 ### Divide and Conquer Technique
 
 Two steps:
-* Figure out the base case. This should be the simplest possible case.
-* Divide or decrease your problem until it becomes the base case.
+* Figure out the **base case**. This should be the simplest possible case.
+* **Divide** or decrease your problem until it becomes the base case.
 
 For example, given a quadrilateral with length, 1680 and width, 640 and we want to find the largest square to divide it evenly.
 
@@ -160,10 +160,10 @@ Based on last section, we can now compose the code of quick sort as follow:
 
 ```javascript
 function quicksort(array) {
-  if (array.length < 2) {
+  if (array.length < 2) { // base case
     return array;
   } else {
-    var pivot = array[0]; // always choose far-left as pivot
+    var pivot = array[0]; // always choose far-left as pivot (can also randomly choose)
     var less = array.slice(1).filter(function(i) { return i <= pivot; });
     var greater = array.slice(1).filter(function(i) { return i > pivot; });
     return quicksort(less).concat([pivot]).concat(quicksort(greater));
@@ -175,47 +175,62 @@ console.log(quicksort([10, 5, 2, 3]));
 
 ### Time complexity
 
-Quick sort is O(n * log(n)) on average but O(n^2) on worst case. Although both quick sort and merge sort are O(n * log(n)), quick sort is still faster than merge sort because of the const of quick sort is smaller than merge sort.
-
 We can express time complexity of quick sort as follow:
 
 $$T(n) = T(k) + T(n-k-1) + O(n)$$
 
-where n is the number of elements, k is the number of element in left partition, n-k-1 is the number of element in right partition, and n is the time complexity on this round comparison. (We need to compare the values to the pivot so that we can put elements on left or right partition.) 
-
-#### O(n * log(n)) on average
-
-
-In the above section, we found that the choice of pivot affects the time complexity. Given an array [3, 1, 4, 2], let's find out all the possibilities of the sorting.
-
-<div class="mermaid">
-graph TB
-  A1(3) --> A2(1, 2)
-  A1(3) --> A3(4)
-</div>
-
-<div class="mermaid">
-graph TB
-  A1(1) --> A2(3, 4, 2)
-  A2(3, 4, 2) --> A3(4)
-  A2(3, 4, 2) --> A3(4)
-</div>
-
-<div class="mermaid">
-graph TB
-  A1(4) --> A2(1, 2)
-  A1(4) --> A3(4)
-</div>
-
-<div class="mermaid">
-graph TB
-  A1(2) --> A2(1, 2)
-  A1(2) --> A3(4)
-</div>
+where
+  * n is the number of elements
+  * k is the number of element in left partition
+  * n-k-1 is the number of element in right partition
+  * O(n) is the time complexity on this round comparison. (We need to compare the values to the pivot so that we can put elements on left or right partition.) 
 
 #### O(n^2) on worst case
 
-#### When will quick sort faster than merge sort?
+As shown above and if we always choose far-left element as pivot, we will have time complexity as follow:
+
+$$T(n) = T(1) + T(n-2) + O(n)$$
+
+$$T(n) = T(1) + T(1) + T(n-3) + O(n)$$
+
+... 
+
+$$T(n) = T(1) + T(1) + ... T(1) + O(n)$$
+
+and we have time complexity of $$O(n^2)$$
+
+#### O(n * log(n)) on average
+
+Suppose we randomly choose elements as pivot, then as shown above, we have certain chance to decrease the number of rounds. In best situation (each round the pivot divide elements equally), we only need to go through $$log_2n$$ rounds. And in other cases, we still can go through only $$log_an$$ rounds. As a result the time complexity on average is O(n * log(n)).
+
+$$T(n) = T(k) + T(n-k-1) + O(n)$$
+
+$$T(n) = [T(m) + T(k-m-1) + O(k)] + [T(l) + T(n-k-l-1) + O(n-k-1)] + O(n)$$ =
+
+$$T(n) = [T(m) + T(k-m-1)] + [T(l) + T(n-k-l-1)] + 2 * O(n)$$
+
+...
+
+The number of layers is $$log_an$$ and we have time complexity of $$O(n * log n)$$
+
+#### Why quick sort is often faster than merge sort?
+
+There are several reasons: (by GPT)
+
+* Constant Factors:
+  * When both algorithms have **the same O times, constant matters**. QuickSort tends to have smaller constant factors compared to Merge Sort. The partitioning step in QuickSort is usually faster than the merging step in Merge Sort, leading to a lower constant factor and faster overall performance.
+
+* Cache Performance: (skip)
+  * QuickSort exhibits better cache performance due to its tendency to access elements in a localized manner. During partitioning, the elements are rearranged in-place, which improves memory locality. This locality of reference can result in fewer cache misses and better utilization of the CPU cache, leading to improved overall performance.
+
+* In-Place Sorting: (skip)
+  * QuickSort is an in-place sorting algorithm, meaning it does not require additional memory proportional to the input size. In contrast, Merge Sort requires additional memory for merging the sorted subarrays, which can lead to higher memory usage and potential overhead in certain scenarios.
+
+* Tail Recursion Optimization: (skip)
+  * QuickSort can often be optimized using tail recursion elimination. This optimization allows the compiler or interpreter to replace the recursive call with a loop, reducing the overhead of function calls and stack operations.
+
+* Randomized Pivot Selection: (skip)
+  * A common optimization technique for QuickSort involves using randomized pivot selection. By randomly selecting the pivot element, the probability of encountering worst-case scenarios is reduced, improving the average-case performance.
 
 ## Reference
 
