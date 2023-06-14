@@ -23,6 +23,18 @@ Dynamic programming offers an efficient solution to large-scale optimization pro
 
 ## How?
 
+### Steps
+
+(2023/06/12) remember to put already-generated GPT example here
+
+* 
+
+### Recursive vs. Iterative Solutions
+
+All recursive algorithms can be implemented iteratively. If the recursive solution takes too much memory, we can consider solve it iteratively.
+
+* Example: (TBC)
+
 ### fibonacci
 
 * concept
