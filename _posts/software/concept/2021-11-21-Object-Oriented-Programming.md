@@ -11,6 +11,8 @@ publish: true
 
 ## Introduction
 
+(TBC)
+
 * Use objects to represent and manipulate data
 * Objects are instances of classes that encapsulate data and methods (functions) that operate on that data
 * Principles
