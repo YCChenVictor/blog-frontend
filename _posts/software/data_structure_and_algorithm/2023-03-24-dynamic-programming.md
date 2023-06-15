@@ -25,23 +25,91 @@ Dynamic programming offers an efficient solution to large-scale optimization pro
 
 ### Steps
 
-(2023/06/12) remember to put already-generated GPT example here
+For example, given an integer array, [1, -2, 3, 4, -1, 2, 1, -5, 4], find the continuous sub array which has the largest sum.
 
-* 
+* Identify the optimal substructure
+  * Concept: Given the full array, try to destruct it to sub array, so that we can have the relation of $$F(array) = M(F(sub array), xxx)$$
+  * Example:
+    * i = 0, the continuos sub array = [1]
+    * i = 1, the continuous sub array = [1, -2], [-2]
+    * i = 3, the continuous sub array = [1, -2, 3], [-2, 3], [3]
+    * i = 4, the continuous sub array = [1, -2, 3, 4], [-2, 3, 4], [3, 4], [4]
+    * ...
+    * As you can see, max sub array of a given array can be finding the max sub array of the sub array (removing last element) and adds-on element to the sub arrays of last set.
+* Formulate the recurrence relation
+  * Concept: Given last step, we can try to formulate it.
+  * Example: $$F(array[0..i]) = max(array[i], F(array[0..i-1]) + array[i])$$
+* Define the base case
+  * $$F(array[0]) = array[0]$$
+* Design the dynamic programming algorithm
+  * Concept: Try to write pseudocode first
+  * pseudocode
+    ```javascript
+    function xxx(array) {
+      result = 0
+      F = []
+      F[0] = array[0]
+      for (i in 0~len(array) - 1) {
+        F[i] = max(array[i], F[i - 1] + array[i])
+        result = max(result, F[i])
+      }
+
+      return result
+    }
+    ```
+* Implement the algorithm
+  ```javascript
+  function maxSubArraySum(arr) {
+    const dp = [];
+    dp[0] = arr[0];
+    let maxSum = dp[0];
+    
+    for (let i = 1; i < arr.length; i++) {
+      dp[i] = Math.max(arr[i], dp[i - 1] + arr[i]);
+      maxSum = Math.max(maxSum, dp[i]);
+    }
+    
+    return maxSum;
+  }
+  
+  // Example usage:
+  const array = [1, -2, 3, 4, -1, 2, 1, -5, 4];
+  const result = maxSubArraySum(array);
+  ```
+* Analyze the time and space complexity
+  * Since it will only loop through all element once, the time complexity is O(n)
 
 ### Recursive vs. Iterative Solutions
 
 All recursive algorithms can be implemented iteratively. If the recursive solution takes too much memory, we can consider solve it iteratively.
 
-* Example: (TBC)
+For example, we can calculate `factorial` with recursive and iterative method as follow:
+
+```javascript
+function factorialRecursive(n) {
+  if(n == 1) {
+    return 0
+  } else {
+    return n * factorialRecursive(n - 1)
+  }
+}
+
+function factorialIterative(n) {
+  result = 1
+  for (let i = 1; i <= n; i ++) {
+    result = result * i
+  }
+  return result
+}
+```
 
 ### fibonacci
 
-* concept
+* Concept
   ```bash
   f(n) = f(n - 1) + f(n - 2)
   ```
-* recursive
+* Recursive
   ```javascript
   function fibonacci(n) {
     const memo = {};
@@ -60,10 +128,69 @@ All recursive algorithms can be implemented iteratively. If the recursive soluti
   
   console.log(fibonacci(10)); // Output: 55
   ```
+* Time complexity: O(n) because with memo, I only need to know f(n), ... f(1)
+
+### Triple Step
+
+* Problem: A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3 steps at a time, implement a method to count how many possible ways the child can run up the stairs.
+* Concept (important dynamic programming concept): When the child hops on 5, we can guess this child hop 1, hop 2, or hop 3
+  * hop 1 => must hop to 4 before => the ways(4)
+  * hop 2 => must hop to 3 before => the ways(3)
+  * hop 3 => must hop to 2 before => the ways(2)
+  * As a result, we can conclude that ways(n) = ways(n-1) + ways(n-2) + ways(n-3)
+* Solution:
+  ```javascript
+  function childHop(n) {
+    if (n == 1) {
+      // [1]
+      return 1
+    } else if (n == 2) {
+      // [1, 1], [2]
+      return 2
+    } else if (n == 3) {
+      // [1, 1, 1], [2, 1], [1, 2], [3]
+      return 4
+    } else {
+      return childHop(n - 3) + childHop(n-2) + childHop(n-1)
+    }
+  }
+
+  // childHop(5) = 13
+  ```
+* Test
+  ```javascript
+  // TBC
+  ```
+
+### Robot in a Grid
+
+### Robot in a Grid
+
+### Power Set
+
+### Recursive Multiply
+
+### Towers of Hanoi
+
+### Permutations without Dups
+
+### Permutations with Dups
+
+### Parens
+
+### Paint Fill
+
+### Coins
+
+### Eight Queens
+
+### Stack of Boxes
+
+### Boolean Evaluation
 
 ### 0/1 Knapsack problem
 
-
+TBC
 
 ## What?
 
@@ -156,34 +283,6 @@ const { maxProfit, solution } = allocateResources(tasks, time);
 console.log(`Max profit: ${maxProfit}`);
 console.log(`Solution: ${solution.map(task => task.name).join(', ')}`);
 ```
-
-## Other
-
-### Maximum sub-array sum
-
-* Please return the sub array that has biggest sum
-* iterative
-
-```javascript
-function maxSubArraySum(arr) {
-  const dp = [];
-  dp[0] = arr[0];
-  let maxSum = dp[0];
-  
-  for (let i = 1; i < arr.length; i++) {
-    dp[i] = Math.max(arr[i], dp[i - 1] + arr[i]);
-    maxSum = Math.max(maxSum, dp[i]);
-  }
-  
-  return maxSum;
-}
-
-// Example usage:
-const array = [1, -3, 2, 1, -1];
-const result = maxSubArraySum(array); // Returns 3
-```
-
-By storing the solutions to the subproblems, dynamic programming can avoid redundant calculations and improve the overall efficiency of the algorithm.
 
 ## TODO
 
