@@ -72,9 +72,9 @@ Writing and managing device drivers.
 
 Authentication, access control, and security policies.
 
-### Distributed operating systems
+### Distribute Systems
 
-Distributed systems, remote procedure calls, and distributed file systems.
+A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed systems]()
 
 ### Real-time operating systems
 

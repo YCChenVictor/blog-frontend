@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2023-06-14'
 categories:
-note:
+note: in the Design An Algorithm section, we should have an example first
 publish: true
 mathjax:
 mermaidJS:
@@ -66,7 +66,20 @@ For example, let's design TinyURL
 
 ### Design An Algorithm
 
-(2023/06/15)
+Sometimes we do not need to re-design a system but we want to solve an algorithm.
+
+* Step 1: Ask Questions, try to find out the input and output of this function.
+* Step 2: Make Believe, assume there is no limitations first, so that we can find the general solutions.
+* Step 3: Get Real, try to write down pseudocode first and even start compose the functions.
+* Step 4: Solve Problems, during step 3, there will be more problems occurs and keep iterating.
+
+### Key concepts
+
+#### Horizontal Scaling
+
+
+
+#### Vertical Scaling
 
 ## What?
 
