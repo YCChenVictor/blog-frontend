@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2023-06-14'
 categories:
-note: in the Design An Algorithm section, we should have an example first
+note: in the Design An Algorithm section, we should have an example first. Remember to connect the sections with other articles
 publish: true
 mathjax:
 mermaidJS:
@@ -77,9 +77,36 @@ Sometimes we do not need to re-design a system but we want to solve an algorithm
 
 #### Horizontal Scaling
 
-
+TBC, connect with the articles
 
 #### Vertical Scaling
+
+### Considerations
+
+* Failures
+  * Concept: Systems are prone to failures, and it's crucial to plan for them. Identify potential points of failure in your system and design appropriate measures to handle them.
+  * Example
+    * Redundancy
+    * Fault tolerance
+    * Error handling
+    * Disaster recovery strategies.
+* Availability and Reliability
+  * Concept: Availability refers to the percentage of time a system is operational and accessible to users. Reliability is the probability that the system will remain operational over a specified period.
+  * Example
+    * Load balancing
+    * Clustering
+    * Monitoring
+    * Automated failover
+* Read-heavy vs. Write-heavy
+  * Concept: Depending on whether your system is more read-heavy or write-heavy, you can design strategies such as queuing writes for write-intensive applications or utilizing caching mechanisms for read-intensive applications to optimize performance and mitigate potential failures.
+* Security
+  * Security threats pose significant risks to a system. Identify potential security vulnerabilities and design appropriate security measures to protect your system. This can include authentication mechanisms, access controls, encryption, input validation, and robust error handling to prevent attacks like injection, cross-site scripting, and data breaches.
+* Scalability: Design your system to handle increased workload and accommodate future growth. Consider horizontal scaling (adding more machines) and vertical scaling (increasing the resources of existing machines). Use technologies like load balancing, distributed architectures, and database sharding to ensure scalability.
+* Performance: Optimize your system for efficient and responsive performance. Consider factors like response times, throughput, latency, and resource utilization. Use techniques such as caching, indexing, query optimization, and efficient algorithms to enhance performance.
+* Data Storage and Persistence: Determine the appropriate data storage mechanisms based on your system requirements. Consider factors like data volume, access patterns, data consistency, and durability. Choose between relational databases, NoSQL databases, file systems, caching solutions, or a combination of these based on your specific needs.
+* Interoperability and Integration: If your system needs to interact with external systems or services, design it to be interoperable and easily integrable. Use standard protocols, APIs, and well-defined interfaces to enable seamless communication and data exchange between different components or systems.
+* Maintainability: Plan for long-term maintenance and ease of system management. Follow best practices like modular design, clean code principles, documentation, version control, and automated testing. Design your system to be easily diagnosable and upgradeable.
+* Cost-effectiveness: Consider the cost implications of your system design decisions. Evaluate the trade-offs between performance, scalability, and cost. Optimize resource utilization, consider cloud services or open-source alternatives, and assess the total cost of ownership (TCO) over the system's lifecycle.
 
 ## What?
 
