@@ -15,6 +15,8 @@ publish: true
 
 ## Introduction
 
+(2023/06/19)
+
 This article tries to clarify the concepts related to test
 
 ## Why?
