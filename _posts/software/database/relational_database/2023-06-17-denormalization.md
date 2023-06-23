@@ -37,4 +37,6 @@ Denormalization is used to optimize query performance by reducing the number of 
 
 ## What?
 
+Try to find a big database example because there must be some slow queries and need to reduce the joins.
+
 ## Reference
