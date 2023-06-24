@@ -1,42 +1,81 @@
 ---
 layout: post
-title: process management
+title:
 description: ''
 date: '2021-12-24'
 categories: OS
-note: 要不斷的精簡與昇華文章
-mermaid: true
+note:
+mermaidJS: true
 publish: true
 ---
 
 ## Introduction
 
-* A process is an instance of a program that is executing on a computer. Each process has its own memory space and runs independently of other processes.
-* Process management involves creating, scheduling, and managing processes to ensure that they run efficiently and don't interfere with each other.
-* Process management also manages the state of each process, including whether it is running, blocked, or waiting for input. In addition, the process management system is responsible for terminating processes when they are no longer needed.
-* One of the key functions of process management is CPU scheduling, which involves determining which process should be executed next. The scheduler allocates the CPU to the most deserving process, based on a set of predefined criteria, such as priority or time slice.
-* By managing processes properly, the operating system can ensure that resources are used efficiently and that processes run smoothly.
+TBC
 
 ## Why?
 
-* Understanding operating systems: Processes are a fundamental concept in operating systems
-* Writing efficient code: By managing processes properly, you can improve system performance and reduce resource utilization.
-* Improving system stability: By managing processes properly, you can prevent crashes and other issues that can affect system stability.
-* Developing concurrent systems: Allows multiple tasks to execute simultaneously. You can design and implement systems that make efficient use of system resources and improve system performance.
-* Understanding process management can help you identify issues and debug code more effectively.
+Understanding operating systems and properly managing processes allows for efficient code, improved system stability, concurrent system development, and effective issue identification and debugging.
 
 ## How?
 
-### PCB data structure
+<div class="mermaid">
+  graph TD
+    id1(program) --compiled--> id2(binary form)
+    id2(binary form) --loaded--> id3(memory)
+  
+    id3(memory) --decompose--> id4(process 1)
+    id3(memory) --decompose--> id5(process 2)
+    id3(memory) --...decompose--> id6(...other processes)
+    
+    id4(process 1) --decompose--> id7(thread 1)
+    id4(process 1) --decompose--> id8(thread 2)
+    id4(process 1) --...decompose--> id9(...other threads)
+</div>
+
+### Flow of process
+
+* Process Creation
+  * Allocating resources: OS sets up address space, allocates memory, and creates a page table.
+  * Initializing data structures: Process control block (PCB) is initialized with process details.
+  * Setting up the environment: OS prepares initial program counter, stack pointer, and registers.
+* Process Scheduling
+  * Determines process execution order on the CPU.
+  * Scheduler selects processes from the ready queue based on a scheduling algorithm.
+  * Goal: Optimize CPU utilization, minimize response time, ensure fairness in resource allocation.
+* Process Synchronization:
+  * Essential for shared resource access and task cooperation.
+  * Uses synchronization mechanisms (locks, semaphores, mutexes) to prevent conflicts.
+  * Avoids race conditions, deadlocks, and data inconsistencies.
+* Process Termination:
+  * Occurs when a process finishes execution or is forcibly terminated.
+  * Resources are released (memory, files, system resources).
+  * Process control block is updated and associated data structures are deallocated.
+* Process States, PCB, and Context Switching:
+  * Processes exist in states like running, ready, blocked, or terminated.
+  * PCB contains process information (state, priority, registers).
+  * Context switching saves and restores process state for multitasking and concurrent execution.
+
+### Process vs Thread
+
+* Threads share the same resources of the process they belongs to, such as memory and files in the same process
+* Processes take their own part of memory and cannot share memory with other process
+* Communication between threads is faster than processes
+* Threads are scheduled by the operating system, but they are not self-contained like processes.
+
+### Concurrency
+
+To boost user experience, we use concurrent execution of tasks to delegate works which will stuck the system to other machine, so that the system can still work smoothly and all heavy works can still be done. For more information, please refer to [concurrency]({{site.baseurl}}/mindset/2022/05/07/concurrency.html)
+
+### Process Control Block (PCB)
 
 The PCB is a critical component of process management in modern operating systems, allowing the operating system to manage and control multiple processes concurrently and efficiently. By maintaining a separate PCB for each process, the operating system can track and manage each process individually, ensuring that each process runs safely and efficiently.
 
-With the help of PCB (Process Control Block), OS can manage tasks such as creation, scheduling, termination, deadlock.
+With the help of PCB, OS can manage tasks such as creation, scheduling, termination, deadlock.
 
-* A Process Control Block (PCB) is a data structure used by the operating system to manage and control the execution of a process. It contains information about the state of a process, including its process ID, memory allocation, CPU usage, and other important parameters.
+* When a process is created, the operating system allocates a PCB for that process and stores the relevant information about the process in that PCB. As the process runs, the operating system updates the PCB to reflect changes in the process state, memory allocation, CPU usage, and other parameters. It contains information about the state of a process, including its process ID, memory allocation, CPU usage, and other important parameters.
 * The PCB is created when a process is initiated and is updated by the operating system as the process executes.
 * The PCB is also used by the operating system to switch between processes and manage the scheduling of the CPU.
-* When a process is created, the operating system allocates a PCB for that process and stores the relevant information about the process in that PCB. As the process runs, the operating system updates the PCB to reflect changes in the process state, memory allocation, CPU usage, and other parameters.
 
 How PCB flows:
 
@@ -53,36 +92,6 @@ graph TB
 
   id3(running) --exit--> id4(terminated)
 </div>
-
-### Flow
-
-* Process creation (the process of creating a new process in an operating system)
-  * Allocating resources: Sets up a new address space for the process, including allocating memory and creating a page table to map the process's virtual address space to physical memory
-  * Initializing data structures: Initializes the process control block (PCB), which is a data structure that contains information about the process, including its process ID, state, and resource usage.
-  * Setting up the necessary environment
-  * Typically created by a parent process, which may pass parameters to the child process or inherit some of its own properties. For example, a new process may inherit the file descriptors of its parent, allowing it to read and write to the same files.
-* process scheduling
-* process synchronization
-* process termination
-* process states, process control blocks, and context switching.
-
-### CPU scheduling algorithms
-
-CPU scheduling is a critical part of process management, and you should understand the different CPU scheduling algorithms such as Round Robin, FCFS, SJF, and Priority Scheduling. You should also learn about their advantages and disadvantages.
-
-### Memory Management
-
-Learn about memory allocation, fragmentation, and virtual memory.
-
-### OS Simulation Tools
-
-Process Explorer allows us to see the running processes and their resource utilization.
-
-### Thread
-
-* A lightweight execution unit that exists within a process
-* A process can have multiple threads, and each thread can perform a different task, but they all share the same resources of the process, such as memory and files.
-* Threads are scheduled by the operating system, but they are not self-contained like processes.
 
 ### Issues
 
@@ -126,8 +135,6 @@ Process Explorer allows us to see the running processes and their resource utili
     * Circular Wait can be effective, but it requires careful resource allocation and ordering to prevent deadlocks.
     * Techniques like lock-free programming, transactional memory, and message passing can be more complex to implement but can offer higher performance and scalability. * Deadlock detection algorithms and resource allocation policies can also be effective in detecting and resolving deadlocks in a system.
 
-article in clean code
-
 #### Race Conditions
 
 * Description: A race condition occurs when two or more processes access a shared resource concurrently, and the outcome depends on the order of execution
@@ -137,6 +144,7 @@ article in clean code
 
 * Description: Priority inversion is a situation where a low-priority process holds a resource that a high-priority process needs, leading to a delay in the high-priority process's execution. This problem is particularly prevalent in real-time systems.
 * Solution: To prevent priority inversion, you can use techniques like priority inheritance, priority ceiling, and preemptive scheduling. These techniques ensure that high-priority processes get access to the resources they need without being delayed by low-priority processes.
+
 #### Process Synchronization
 
 * Processes may need to synchronize their activities to ensure correct and consistent behavior. Synchronization problems can arise when processes access shared resources, communicate with each other, or perform parallel computations.
@@ -155,10 +163,6 @@ article in clean code
 ## What?
 
 Give me a real world example
-
-### Javascript
-
-
 
 ## Reference
 

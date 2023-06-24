@@ -15,13 +15,11 @@ publish: true
 
 ## Introduction
 
-Aesthetics is a branch of philosophy that deals with the nature of beauty and taste, as well as the creation and appreciation of art. It is a complex and multifaceted field that encompasses a wide range of ideas and perspectives, including cultural, historical, and philosophical approaches.
-
-(Me) To clarify, this article is to define the aesthetics. As a result, it must be confined to human-beings' objective and subjective aspects, meaning it is not any higher dimensional solution but a temporary escape from the sufferings.
+Aesthetics, being a human-centered discipline, focuses on both objective and subjective elements of beauty, serving as a temporary refuge from the hardships of existence rather than a transcendental solution in higher dimensions. It explores diverse cultural, historical, and philosophical viewpoints, enriching our understanding of art and its appreciation.
 
 ## Why?
 
-Studying aesthetics can enhance appreciation and understanding of diverse forms of art, sharpen critical thinking skills, foster personal growth and self-expression, and provide insight into different cultures and historical contexts.
+Through the pursuit of aesthetic excellence in art, individuals seek to bridge gaps, fostering understanding and appreciation by effectively expressing ideas, emotions, and concepts, ultimately enriching our collective experience and connection to the world.
 
 ## How?
 
@@ -44,64 +42,31 @@ The basic steps for aesthetics is as follow
 
 ### Philosophy Approach
 
-Aesthetics in philosophy is concerned with the study of beauty, art, and taste, and aims to develop a philosophical understanding of these concepts. Philosophers of aesthetics explore questions such as what makes something beautiful, how we should evaluate works of art, and whether aesthetic experiences have inherent value. For more information, please refer to [philosophy approach]({{site.baseurl}}/philosophy/2023/04/29/philosophy-approach.html)
+Aesthetic experiences encompass various aspects, such as listening to music in different settings, adorning personal items with stickers, appreciating the beauty of a sunset, savoring the first bite of a meal, and emotionally investing in characters portrayed in movies or novels, all of which aim to capture the essence of beauty and convey personal perspectives.
+
+Originating from Alexander Gottlieb Baumgarten, aesthetics emerged as a field that defines the qualities of good art by exploring notions of taste and its connection to beauty.
+
+According to Plato, art serves as an imitation of ordinary life, portraying objects and events from our everyday existence.
+
+In contrast to merely depicting external appearances, Aristotle believed that the purpose of art lies in conveying the profound significance and intrinsic essence of things, underscoring the importance of engaging deeply with the universe to truly appreciate and connect with its gifts, urging us to move beyond superficial understanding and explore the depths of our inner world and the vastness of the universe through meaningful experiences.
+
+To truly experience the gifts bestowed by the universe, one must engage with them firsthand through activities such as travel, immersion in nature, reading to gain different perspectives, and delving into spiritual or introspective practices to explore the depths of one's inner world.
+
+Authenticity and genuine emotions are crucial in expressing one's feelings towards the world and nature, tapping into the true desires and passions that lie within. It involves discovering one's [central ideas]({{site.baseurl}}/aesthetics/2023/04/29/central-ideas.html) and contemplating how to blend them with the gifts received from the universe.
+
+The process of mingling these experiences and emotions can be documented and expressed through various [creative outlets]({{site.baseurl}}/aesthetics/2023/04/29/creative-outlets.html), such as writing, drawing, music, cooking, and more, allowing for a deeper exploration and expression of one's unique aesthetic journey.
 
 ## What?
 
-Based on last section, I concluded we should try to **increase humanity** to boost aesthetics.
+Try to find central ideas and create outlets
 
-### Increase Personal Aesthetics
+### Find central ideas
 
-Explore different types of art by visiting museums and exhibitions, and practice various forms of art like sketching and music to develop your skills and perspective. Experiment with design principles and broaden your aesthetic understanding by engaging with nature and diverse cultures. For more information, please refer to [personal aesthetics]({{site.baseurl}}/aesthetics/2023/04/29/personal-aesthetics.html)
+Finding the central ideas of oneself involves introspection, self-reflection, and exploration of one's core values, beliefs, passions, and goals, leading to a clearer understanding of personal identity, purpose, and direction in life. This process of self-discovery enables individuals to make conscious choices aligned with their authentic selves and cultivate a sense of fulfillment and well-being. For more information, please refer to [central ideas]({{site.baseurl}}/aesthetics/2023/04/29/central-ideas.html)
 
-### Increase Personal Humanity
+### Create outlets
 
-The practice of humanity can lead to greater understanding and acceptance of diverse perspectives and experiences, and ultimately, to a more harmonious and peaceful global community. By prioritizing humanity in our interactions and decisions, we can create a better world for ourselves and future generations. For more information, please refer to [personal humanity]({{site.baseurl}}/aesthetics/2023/04/29/personal-humanity.html)
-
-### Design
-
-* User-centered design: User-centered design principles prioritize the needs, goals, and preferences of end-users, resulting in more useful, usable, and enjoyable products and services, as well as increased accessibility, inclusivity, and satisfaction for users, particularly those with disabilities or special needs.
-* Sustainable design: Incorporating sustainable design principles into the design process can reduce the negative impact of products and services on the environment, improve the long-term viability of natural resources, minimize waste and pollution, and maximize efficiency, durability, and recyclability.
-* Ethical design: Through ethical design principles, designers can ensure that their products and services promote social justice, fairness, and transparency by considering the ethical implications of design decisions, avoiding harm, exploitation, and discrimination, and promoting trust, respect, and accountability.
-* Emotional design: Designers can enhance people's well-being, happiness, and satisfaction by creating products and services that evoke positive emotions and experiences, using emotional design principles that improve aesthetic appeal, usability, and memorability, while fostering positive brand identity and loyalty.
-* Universal design: Designers can promote social inclusion, diversity, and equity by designing accessible and usable products and environments for all people, regardless of their age, gender, culture, or abilities, using universal design principles that minimize physical and social barriers, while maximizing flexibility, adaptability, and usability for all users.
-
-## other
-## Introduction
-
-Aesthetic experiences include listening to music in any place, stickers on my laptop, feelings when looking at sunset, savoring the first bite of meal, emotionally investing in the characters in movie or noval.
-
-Aesthetic was invented by Alexander Gottlieb Baumgarten. He defined what a good art is by studying good and bad taste, linking good taste with beauty.
-
-Art imitates the objects and events of ordinary life. - Plato
-
-The aim of art is to represent not the outward appearance of things, but their inward significance. - Aristotle
-
-## Why?
-
-Given we have various art (we do not define why we need art here) -> Aesthetic defines good taste of art -> It should be accepted by people but not tawdry -> just like one to many -> ... -> the combination of one person's sensories and universe
-
-## How?
-
-1. Truely feel the gift from universe
-2. express the feelings with your own prespective
-3. mingle them
-
-### gift from universe
-
-You need to touch it. The ways would be traveling to know through nature, reading to know through other people's eye, religious beliefs to explore inner world.
-
-### the feelings
-
-The feelings should be true part of yourself. The feelings towards nature. The true feelings. Express the true desire. Try to know the deepest desire of your own. What is my central idea? What am I going to mingle with the gift from universe?
-
-### mingle them
-
-Document them, through writing, drawing, music, cooking, ...etc
-
-## What?
-
-give an example
+Creating art outlets provides a means for individuals to express their creativity, emotions, and ideas in a tangible and cathartic manner, allowing for self-expression, personal growth, and exploration of new possibilities. Art outlets also serve as platforms for connecting with others, sharing perspectives, and fostering a sense of community, encouraging collaboration and appreciation of diverse artistic expressions. For more information, please refer to [creative outlets]({{site.baseurl}}/aesthetics/2023/04/29/creative-outlets.html)
 
 ## Reference
 
