@@ -11,6 +11,16 @@ publish: true
 
 ## Introduction
 
+Japanese sentence patterns, known as "文型" (bunkei), are fundamental structures that determine the order and arrangement of words, phrases, and particles, enabling learners to express a wide range of ideas and convey nuanced meanings in the language. Mastering these patterns is essential for constructing grammatically correct and meaningful sentences in Japanese and developing fluency in the language.
+
+## Why?
+
+Learning sentence patterns in Japanese is essential as they provide the foundation for constructing coherent and accurate sentences, allowing effective communication and expression in the language.
+
+## How & What
+
+(2023 06 24)
+
 Categorized sentence patterns listed below and only show the necessary part of speech.
 
 * pure noun
@@ -45,12 +55,6 @@ Categorized sentence patterns listed below and only show the necessary part of s
   * A(noun) は B (noun) を C(verb, remove ます) に D(destination) へ E(verb)
   * A(noun) は B (verb, remove ます) なから、C(verb)
 * Wh- question
-
-## Why?
-
-In order to make my sentences meaningful and effective.
-
-## How & What
 
 ### A の B
 

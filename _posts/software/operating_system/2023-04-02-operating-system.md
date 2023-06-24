@@ -15,28 +15,11 @@ publish: true
 
 ## Introduction
 
-* A software program that manages the hardware and software resources of a computer system
-  * hardware resources: CPU, memory, and I/O devices
-  * software resources: files, databases, and network connections
-* Interface between computer applications and the computer hardware
-* Responsible for managing the computer's memory, processing power, storage, input/output devices, and other resources.
-* Types
-  * desktop operating systems
-    * Microsoft Windows
-    * macOS
-    * Linux
-  * server operating systems
-  * mobile operating systems
-    * Android
-    * iOS
-  * embedded operating systems
+TBC
 
 ## Why?
 
-* To understand how computers work at a low level for computer engineering, software development, and information technology
-* To develop efficient and effective software applications that work well with the underlying operating system
-* To managing computer systems, including servers, networks, and other infrastructure 
-* To Enhance security that protect computer systems from external threats, including viruses and hackers
+Understanding low-level computer operations is essential for computer engineering, software development, and information technology professionals to develop efficient software applications, manage computer systems, and enhance security against external threats.
 
 ## How?
 
@@ -72,9 +55,9 @@ Writing and managing device drivers.
 
 Authentication, access control, and security policies.
 
-### Distributed operating systems
+### Distribute Systems
 
-Distributed systems, remote procedure calls, and distributed file systems.
+A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed systems]()
 
 ### Real-time operating systems
 

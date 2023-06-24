@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-11-19'
 categories: english
-note:
+note: Remember to get the materials back from sk2
 mathjax:
 mermaid:
 p5:
@@ -15,11 +15,11 @@ publish: true
 
 ## Introduction
 
-This article describes the concept and techniques of reading
+This article describes the concept and techniques of reading.
 
 ## Why?
 
-Toefl
+Completing the TOEFL reading section can improve your reading comprehension skills, expand your vocabulary, and develop critical thinking abilities necessary for academic and professional success in English-speaking environments.
 
 ## How?
 
@@ -34,7 +34,16 @@ Steps to answer questions:
 * Technique
   * Skim: walk through passage and drop down conclusion note
   * Scan: directly find the keyword
-* Question Types: vocabulary
+* Question Types
+  * Vocabulary
+  * Reference
+  * Lead Word/ Detail
+  * Rhetorical Purpose
+  * Paraphrase
+  * Sentence Insertion
+  * EXCEPT/NOT/LEAST
+  * Inference
+  * Summary
 
 ### Vocabulary
 

@@ -6,11 +6,11 @@ date: ''
 categories:
 note:
 mathjax:
-publish:
 mermaidJS:
 p5JS:
 chartJS:
 threeJS:
+publish:
 ---
 
 ## Introduction

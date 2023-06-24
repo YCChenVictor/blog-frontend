@@ -15,15 +15,15 @@ publish: true
 
 ## Introduction
 
-quick explanation
+TBC
 
 ## Why?
 
-focus on why we need it
+Finding central ideas is essential because it helps us gain clarity and focus in our thoughts and actions, enabling us to make informed decisions, set meaningful goals, and navigate through life with a sense of purpose and direction.
 
 ## How?
 
-Based on the idea of humanity
+My central idea is increasing humanity because I am human.
 
 * Practice empathy and kindness: Being kind, empathetic, and compassionate towards others is a simple yet effective way to promote humanity, whether it's by actively listening, providing assistance, or being a source of support.
 * Volunteer and donate: By volunteering or donating to a worthwhile organization, such as a local shelter, soup kitchen, or charity that aligns with your values, you can make a significant impact not only in your community but also in the larger world.
@@ -35,11 +35,19 @@ Based on the idea of humanity
 
 ### Practice Empathy and Kindness
 
-Actually, I feel good to support my family in any kind of form. I feel good to smile at strangers. I feel good to help my colleague to solve problems and give them minor services. I think I should try to be good to those once hurt me and I will try to do it.
+* Actively listen to others
+* Try to understand their perspective
+* Show genuine interest
+* Avoid judgment
+* Perform random acts of kindness
+* Engage in volunteer work
+* Reflect on your actions
+* Broaden understanding of different experiences
 
 ### Volunteer and Donate
 
-I feel good when I do volunteering to those in need. I will go to clean the beach with volunteers and will keep doing volunteers in the future. I also feel good to donate my money to help foreign children.
+* Volunteer
+* Donate
 
 ### Educate Yourself
 

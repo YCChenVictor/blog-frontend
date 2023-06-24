@@ -13,6 +13,16 @@ publish: true
 
 ## Introduction
 
+TBC
+
+## Why?
+
+Learning Japanese adjectives is crucial for expressing emotions, describing objects or people, and adding depth and richness to your language skills, enabling you to communicate more effectively and accurately in various contexts.
+
+## How? & What?
+
+(2023 06 24)
+
 * ends with な
 * ends with い
 * adjective + の
@@ -20,12 +30,6 @@ publish: true
 * X は A が adjective です
   * when X != A but A is related to X
   * when use adjective to express verb
-
-## Why?
-
-There are lots of sentence pattern issue related to adjective.
-
-## How? & What?
 
 There are two common type of adjective, ending with な and ending with い.
 

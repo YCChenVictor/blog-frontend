@@ -13,13 +13,15 @@ publish: true
 
 ## Introduction
 
-This article list the collections of adverb, interjection, conjunction.
+Adverbs modify verbs, adjectives, and other adverbs in Japanese, providing crucial information about time, place, manner, degree, and more. Interjections convey emotions, while conjunctions connect words, phrases, or clauses, facilitating smooth communication in Japanese.
 
 ## Why?
 
-I am still thinking about it.
+Learning adverbs, interjections, and conjunctions in Japanese enhances communication by enabling precise expression of nuances, conveying emotions, and facilitating the smooth flow of ideas.
 
 ## How? & What?
+
+(2023 06 24)
 
 ### degree of adjective
 

@@ -4,44 +4,35 @@ title:
 description: ''
 date: '2022-03-19'
 categories: japanese
-note: I need to give examples for the how after every review
+note:
 mermaid:
 publish: true
 ---
 
 ## Introduction
 
-* tempo
-* long vowels
-* 促音
-* loanwords
-* special pronounce of unit numbers
-* tone
+When learning Japanese, it is important to grasp concepts such as tempo for understanding the rhythm of spoken words, and to master the pronunciation of long vowels which can significantly alter the meaning of words. Additionally, familiarizing oneself with sokuon (促音) or geminate consonants, correctly pronouncing loanwords, understanding the special pronunciation of unit numbers, and being aware of tone variations are all crucial aspects of language acquisition in Japanese.
 
 ## Why?
 
-To make sure Japanese knows what we are talking about.
+Learning the special pronunciations in Japanese, such as those of long vowels, 促音 (sokuon), loanwords, unit numbers, and tone variations, allows for accurate and nuanced communication, ensuring a deeper understanding and more authentic usage of the language.
 
-## How & What
+## How
 
-### tempo
+* Tempo
+  * Concept: The number of tempos = The number of kana (仮名)
+  * Example: The number of tempo of 図書館（としょかん）is 4
+* Long vowels
+* Katakana (片仮名)
+  * Example: びール (びいる)
+* Hiragana (平仮名)
+  * Example: お母さん (おかあさん)
+* Special long vowels
+  * pronounce 時計 (とけい) as とけえ
+  * pronounce 空港（くうこう）as くうこお
+* 
 
-The number of tempos = The number of 仮名; for example, the number of tempo of 図書館（としょかん）is 4
-
-### long vowels
-
-#### 片仮名
-
-For example, we pronounce びール as びいる.
-
-#### 平仮名
-
-お母さん 唸作 おかあさん。
-
-也有特殊的長音，例如：
-
-1. 時計 (とけい) 唸作 とけえ
-2. 空港（くうこう）唸作 くうこお
+(TBC, 2023/06/24)
 
 ### 促音
 

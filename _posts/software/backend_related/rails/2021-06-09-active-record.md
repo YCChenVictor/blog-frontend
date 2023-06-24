@@ -22,7 +22,7 @@ publish: true
 
 ## Why
 
-Active Record is a specific implementation of [ORM]({{site.baseurl}}//rails/2022/01/13/object-relational-mapping.html) that maps database tables to objects. It allows developers to work with database records as if they were objects, with each record represented by a single instance of a class. Active Record handles the persistence of the objects to the database and provides methods for querying and updating the data.
+Active Record is a specific implementation of [ORM]({{site.baseurl}}/rails/2022/01/13/object-relational-mapping.html) that maps database tables to objects. It allows developers to work with database records as if they were objects, with each record represented by a single instance of a class. Active Record handles the persistence of the objects to the database and provides methods for querying and updating the data.
 
 ## How
 
