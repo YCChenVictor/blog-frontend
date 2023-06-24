@@ -65,7 +65,7 @@
 
 <h2 id="how">How?</h2>
 
-<p>(2023/06/14) Just read textbook, please</p>
+<h3 id="design-whole-system">Design Whole System</h3>
 
 <p>For example, let’s design TinyURL</p>
 
@@ -78,7 +78,130 @@
       <li>User accounts and link management</li>
     </ul>
   </li>
-  <li></li>
+  <li>Step 2: Make Reasonable Assumptions
+    <ul>
+      <li>Based on step 1, given each requirement, we need to think about Feasibility, Impact Analysis, Scalability and Extensibility</li>
+      <li>Feasibility
+        <ul>
+          <li>technical constraints</li>
+          <li>resource availability</li>
+          <li>time constraints</li>
+        </ul>
+      </li>
+      <li>Impact Analysis
+        <ul>
+          <li>functionality</li>
+          <li>performance</li>
+          <li>security</li>
+          <li>user experience</li>
+        </ul>
+      </li>
+      <li>Scalability and Extensibility
+        <ul>
+          <li>increasing user load</li>
+          <li>additional features</li>
+          <li>integration with new technologies</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Step 3: Draw the Major Components (on whiteboard)
+    <ul>
+      <li>Frontend
+        <ul>
+          <li>User Interface: The UI component serves as the visual gateway for users to interact with the system, enabling them to input URLs, access analytics, manage links, and perform various actions through pages, forms, buttons, and other interface elements.</li>
+          <li>URL Shortening Form: The URL Shortening Form component captures user-inputted long URLs, validating and handling potential errors, before forwarding the data to the backend for processing.</li>
+          <li>Analytics Dashboard: The analytics dashboard component presents visually appealing and user-friendly statistics and insights, including click counts, referral sources, and geographical data, for the shortened URLs.</li>
+          <li>User Account Management: The User Account Management component facilitates user registration, login, and account management functionalities, providing forms for actions such as registration, login, password reset, and profile management.</li>
+        </ul>
+      </li>
+      <li>Backend
+        <ul>
+          <li>API: The backend exposes APIs that define the contract for request and response formats, allowing seamless communication and interaction between the frontend and backend components of the system.</li>
+          <li>URL Shortening Service: The URL Shortening Service component generates unique and concise aliases (TinyURLs) for long URLs received from the frontend, utilizing algorithms or mapping mechanisms to create and store mappings between the TinyURLs and their corresponding original URLs.</li>
+          <li>Analytics Engine: The Analytics Engine component processes and aggregates data on URL clicks, referral sources, and other metrics, storing the information to generate reports and provide valuable analytics insights, while the User Management System component handles user account management, authentication, authorization, and tasks such as registration, login, password management, and link ownership.</li>
+          <li>Database: The Database component efficiently stores and retrieves the required data for the system, encompassing tables or collections that hold information such as URLs, analytics data, user accounts, and link management.</li>
+          <li>External Services Integration: The backend may need to integrate with external services, such as geolocation services for gathering geographical data or third-party authentication services for user account management.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Step 4: Identify the Key Issues
+    <ul>
+      <li>Based on information in step 2 and step 3, determine the priorities and know which bottleneck should be solved first; for example, the frontend and backend for user to input URL has the highest priority and the boss actually care security more than performance, so although we know cache the urls on frontend will be faster, we still let user to query them because we do not want to store the urls on frontend for hackers.</li>
+    </ul>
+  </li>
+  <li>Step 5: Redesign for the Key Issues
+    <ul>
+      <li>After step 4, we should adjust our design; for example, some components take too much time but is not that important, so we can remove it currently from the major components.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="design-an-algorithm">Design An Algorithm</h3>
+
+<p>Sometimes we do not need to re-design a system but we want to solve an algorithm.</p>
+
+<ul>
+  <li>Step 1: Ask Questions, try to find out the input and output of this function.</li>
+  <li>Step 2: Make Believe, assume there is no limitations first, so that we can find the general solutions.</li>
+  <li>Step 3: Get Real, try to write down pseudocode first and even start compose the functions.</li>
+  <li>Step 4: Solve Problems, during step 3, there will be more problems occurs and keep iterating.</li>
+</ul>
+
+<h3 id="key-concepts">Key concepts</h3>
+
+<h4 id="horizontal-scaling">Horizontal Scaling</h4>
+
+<p>TBC, connect with the articles</p>
+
+<h4 id="vertical-scaling">Vertical Scaling</h4>
+
+<h3 id="considerations">Considerations</h3>
+
+<ul>
+  <li>Failures
+    <ul>
+      <li>Concept: Systems are prone to failures, and it’s crucial to plan for them. Identify potential points of failure in your system and design appropriate measures to handle them.</li>
+      <li>Example
+        <ul>
+          <li>Redundancy</li>
+          <li>Fault tolerance</li>
+          <li>Error handling</li>
+          <li>Disaster recovery strategies.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Availability and Reliability
+    <ul>
+      <li>Concept: Availability refers to the percentage of time a system is operational and accessible to users. Reliability is the probability that the system will remain operational over a specified period.</li>
+      <li>Example
+        <ul>
+          <li>Load balancing</li>
+          <li>Clustering</li>
+          <li>Monitoring</li>
+          <li>Automated failover</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Read-heavy vs. Write-heavy
+    <ul>
+      <li>Concept: Depending on whether your system is more read-heavy or write-heavy, you can design strategies such as queuing writes for write-intensive applications or utilizing caching mechanisms for read-intensive applications to optimize performance and mitigate potential failures.</li>
+    </ul>
+  </li>
+  <li>Security
+    <ul>
+      <li>Security threats pose significant risks to a system. Identify potential security vulnerabilities and design appropriate security measures to protect your system. This can include authentication mechanisms, access controls, encryption, input validation, and robust error handling to prevent attacks like injection, cross-site scripting, and data breaches.</li>
+    </ul>
+  </li>
+  <li>Scalability: Design your system to handle increased workload and accommodate future growth. Consider horizontal scaling (adding more machines) and vertical scaling (increasing the resources of existing machines). Use technologies like load balancing, distributed architectures, and database sharding to ensure scalability.</li>
+  <li>Performance: Optimize your system for efficient and responsive performance. Consider factors like response times, throughput, latency, and resource utilization. Use techniques such as caching, indexing, query optimization, and efficient algorithms to enhance performance.</li>
+  <li>Data Storage and Persistence: Determine the appropriate data storage mechanisms based on your system requirements. Consider factors like data volume, access patterns, data consistency, and durability. Choose between relational databases, NoSQL databases, file systems, caching solutions, or a combination of these based on your specific needs.</li>
+  <li>Interoperability and Integration: If your system needs to interact with external systems or services, design it to be interoperable and easily integrable. Use standard protocols, APIs, and well-defined interfaces to enable seamless communication and data exchange between different components or systems.</li>
+  <li>Maintainability: Plan for long-term maintenance and ease of system management. Follow best practices like modular design, clean code principles, documentation, version control, and automated testing. Design your system to be easily diagnosable and upgradeable.</li>
+  <li>Cost-effectiveness: Consider the cost implications of your system design decisions. Evaluate the trade-offs between performance, scalability, and cost. Optimize resource utilization, consider cloud services or open-source alternatives, and assess the total cost of ownership (TCO) over the system’s lifecycle.</li>
 </ul>
 
 <h2 id="what">What?</h2>

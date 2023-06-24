@@ -57,148 +57,108 @@
     <h1 class='text-center mt-6 mb-6'>Database</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>There are several topics in rails related to database:</p>
-
-<ul>
-  <li>Database migrations: Manage changes to the database schema. Migrations are written in Ruby and allow you to make changes to the database schema while keeping track of the changes over time.</li>
-  <li>Associations: Allow you to define relationships between different database tables. For example, a user may have many blog posts, and each blog post belongs to a user.</li>
-  <li>Querying: Rails provides a query interface called ActiveRecord::Relation, which allows you to build and execute database queries. This interface is based on a fluent API, which makes it easy to chain query methods and build complex queries.
-    <ul>
-      <li>Indexing: Indexes are used to speed up database queries by creating a data structure that allows for fast lookups. In Rails, you can create indexes on specific columns in your database tables to optimize query performance.</li>
-    </ul>
-  </li>
-  <li>Validations: Validations allow you to define constraints on the data stored in your database. For example, you can validate that a user’s email address is unique or that a password meets certain complexity requirements.</li>
-</ul>
+<p>TBC</p>
 
 <h2 id="why">Why?</h2>
 
-<p>Because web application framework relies heavily on databases to store and manage application data.</p>
-
-<ul>
-  <li>Databases play a critical role in storing, managing, and retrieving data that is used by web applications. They provide a structured way to store and organize data, allowing web applications to scale and handle large amounts of data efficiently.</li>
-  <li>Learning how to work with databases in Ruby on Rails is essential for building effective web applications that can handle large amounts of data and scale to meet the needs of users. A strong understanding of database concepts and best practices will enable developers to design and build robust, reliable, and scalable Rails applications.</li>
-</ul>
+<p>Because web application frameworks rely heavily on databases to store and manage application data, understanding how to effectively work with databases is crucial for building scalable and reliable web applications in Ruby on Rails. Please refer to <a href="/blog/database/2022/08/12/database.html">database</a> for more information.</p>
 
 <h2 id="how">How?</h2>
 
 <h3 id="migration">Migration</h3>
 
-<h4 id="create">Create</h4>
-
 <ul>
-  <li>create_table - creates a new database table</li>
-</ul>
-
-<p>To add model, <code class="language-plaintext highlighter-rouge">Article</code> with columns: title, content, is_online</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g model Article title content:text is_online:boolean
-</code></pre></div></div>
-
-<ul>
-  <li>To remove invoke while generating, <code class="language-plaintext highlighter-rouge">--no-helper --no-assets --no-controller-specs --no-view-specs</code> or</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># application.rb</span>
+  <li>Create migration
+    <ul>
+      <li>Example: To add model, <code class="language-plaintext highlighter-rouge">Article</code> with columns: title, content, is_online
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails g model Article title content:text is_online:boolean
+</code></pre></div>        </div>
+      </li>
+      <li>To remove invoke while generating, <code class="language-plaintext highlighter-rouge">--no-helper --no-assets --no-controller-specs --no-view-specs</code> or
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># application.rb</span>
 config.generators.assets <span class="o">=</span> <span class="nb">false
 </span>config.generators.helper <span class="o">=</span> <span class="nb">false</span>
-</code></pre></div></div>
-
-<p>Then in db/migrate, timestamp_create_articles.rb:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CreateArticles</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.1</span><span class="p">]</span>  
+</code></pre></div>        </div>
+      </li>
+      <li>Then in db/migrate, timestamp_create_articles.rb:
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CreateArticles</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.1</span><span class="p">]</span>  
   <span class="k">def</span> <span class="nf">change</span>  
     <span class="n">create_table</span> <span class="ss">:articles</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>  
       <span class="n">t</span><span class="p">.</span><span class="nf">string</span> <span class="ss">:title</span>  
       <span class="n">t</span><span class="p">.</span><span class="nf">text</span> <span class="ss">:content</span>  
       <span class="n">t</span><span class="p">.</span><span class="nf">boolean</span> <span class="ss">:is_online</span>  
-        
+            
       <span class="n">t</span><span class="p">.</span><span class="nf">timestamps</span>  
     <span class="k">end</span>  
   <span class="k">end</span>  
 <span class="k">end</span>
-</code></pre></div></div>
-
-<ul>
-  <li>timestamp for recording <code class="language-plaintext highlighter-rouge">:created_at, :updated_at</code></li>
-</ul>
-
-<h4 id="update">Update</h4>
-
-<ul>
-  <li>rename_table - renames an existing database table</li>
-  <li>add_column - adds a new column to an existing database table</li>
-  <li>remove_column - removes a column from an existing database table</li>
-  <li>rename_column - renames a column in an existing database table</li>
-  <li>change_column - changes the data type or options of a column in an existing database table</li>
-  <li>add_index - adds a new index to a database table</li>
-  <li>remove_index - removes an existing index from a database table</li>
-  <li>add_reference - adds a foreign key reference to an existing database table</li>
-  <li>remove_reference - removes a foreign key reference from an existing database table</li>
-  <li>change_table - allows you to make multiple changes to an existing database table in a single migration</li>
-  <li>reversible - creates a reversible migration that can be rolled back</li>
-  <li>up - defines the changes to be made to the database schema when the migration is run</li>
-  <li>down - defines how to revert the changes made by the migration</li>
-</ul>
-
-<p>A typical migration file:</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AddAgeToUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.0</span><span class="p">]</span>
+</code></pre></div>        </div>
+        <ul>
+          <li>timestamp for recording <code class="language-plaintext highlighter-rouge">:created_at, :updated_at</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Update migration
+    <ul>
+      <li>methods
+        <ul>
+          <li>rename_table - renames an existing database table</li>
+          <li>add_column - adds a new column to an existing database table</li>
+          <li>remove_column - removes a column from an existing database table</li>
+          <li>rename_column - renames a column in an existing database table</li>
+          <li>change_column - changes the data type or options of a column in an existing database table</li>
+          <li>add_index - adds a new index to a database table</li>
+          <li>remove_index - removes an existing index from a database table</li>
+          <li>add_reference - adds a foreign key reference to an existing database table</li>
+          <li>remove_reference - removes a foreign key reference from an existing database table</li>
+          <li>change_table - allows you to make multiple changes to an existing database table in a single migration</li>
+          <li>reversible - creates a reversible migration that can be rolled back</li>
+          <li>up - defines the changes to be made to the database schema when the migration is run</li>
+          <li>down - defines how to revert the changes made by the migration</li>
+        </ul>
+      </li>
+      <li>A typical migration file
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AddAgeToUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="p">[</span><span class="mf">6.0</span><span class="p">]</span>
   <span class="k">def</span> <span class="nf">up</span>
     <span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:age</span><span class="p">,</span> <span class="ss">:integer</span>
   <span class="k">end</span>
-
+    
   <span class="k">def</span> <span class="nf">down</span>
     <span class="n">remove_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:age</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div></div>
-
-<ul>
-  <li>Ruby file that contains two methods: up and down
-    <ul>
-      <li>Up method is used to define the changes you want to make to the database schema</li>
-      <li>Down method is used to define how to undo those changes</li>
+</code></pre></div>        </div>
+        <ul>
+          <li>Ruby file that contains two methods: up and down
+            <ul>
+              <li>Up method is used to define the changes you want to make to the database schema</li>
+              <li>Down method is used to define how to undo those changes</li>
+            </ul>
+          </li>
+          <li>Migration is like version control of database</li>
+          <li>Any changes related to database schema will be recorded in migrations with Ruby DSL * The summary of the changes of migration is in <code class="language-plaintext highlighter-rouge">schema.rb</code></li>
+        </ul>
+      </li>
     </ul>
   </li>
-  <li>Migration is like version control of database</li>
-  <li>Any changes related to database schema will be recorded in migrations with Ruby DSL * The summary of the changes of migration is in <code class="language-plaintext highlighter-rouge">schema.rb</code></li>
+  <li>Delete migration
+    <ul>
+      <li>To delete migration files,
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails d migration MigrationName
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Run migration
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:migrate
+</code></pre></div>    </div>
+  </li>
+  <li>Undo migration
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:rollback <span class="nv">STEP</span><span class="o">=</span>3
+</code></pre></div>    </div>
+  </li>
 </ul>
-
-<p>To run migration:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:migrate
-</code></pre></div></div>
-
-<p>To undo:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails db:rollback <span class="nv">STEP</span><span class="o">=</span>3
-</code></pre></div></div>
-
-<p>However, the Rollback method is not recommended. We should use another migration to modify database to what we want; for example, if we want to <strong>add a column</strong> to an existed table, we can add another generate migration</p>
-
-<h4 id="delete">Delete</h4>
-
-<ul>
-  <li>drop_table - drops an existing database table</li>
-</ul>
-
-<p>To delete migration files,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rails d migration MigrationName
-</code></pre></div></div>
-
-<p>Notice! please do it only before <code class="language-plaintext highlighter-rouge">db:migrate</code></p>
-
-<h4 id="other">Other</h4>
-
-<ul>
-  <li>execute - executes a custom SQL statement</li>
-</ul>
-
-<p>If we want to know which migration ever be executed</p>
-
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">rails</span> <span class="n">db</span><span class="ss">:migrate:status</span>
-</code></pre></div></div>
 
 <h3 id="associations">Associations</h3>
 
@@ -222,12 +182,12 @@ config.generators.assets <span class="o">=</span> <span class="nb">false
 
 <p>Remember to declare <code class="language-plaintext highlighter-rouge">has_many</code> and <code class="language-plaintext highlighter-rouge">belongs_to</code> on <code class="language-plaintext highlighter-rouge">User</code> and <code class="language-plaintext highlighter-rouge">Post</code></p>
 
-<h3 id="querying">querying</h3>
+<h3 id="querying">Querying</h3>
 
+<p>Time is money, how to query fast plays key role</p>
 <ul>
-  <li>Time is money, how to query fast plays key role</li>
   <li>In rails, we use active record to query and it uses ORM</li>
-  <li><a href="/blog/rails/2021/06/10/active-record.html">active record</a>
+  <li><a href="/blog/rails/2021/06/10/active-record.html">Active record</a>
     <ul>
       <li>scopes: help you DRY up your code and make it more readable by abstracting away common conditions</li>
       <li>associations: methods like has_many, belongs_to, and has_and_belongs_to_many to define associations, and then use these associations in your queries</li>
@@ -239,7 +199,7 @@ config.generators.assets <span class="o">=</span> <span class="nb">false
   <li>Debugging queries: Rails provides several tools to help you debug queries, including the to_sql method, which lets you see the SQL generated by your Active Record queries, and the explain method, which shows you the execution plan for a query.</li>
 </ul>
 
-<h4 id="performance">performance</h4>
+<h4 id="performance">Performance</h4>
 
 <ul>
   <li>Avoid N+1 queries: One of the most common performance issues in Rails is the N+1 query problem. This occurs when you load a collection of records, and then load a related association for each record individually. To avoid this problem, use the includes method to eagerly load associations; for example, instead of doing:</li>
@@ -349,6 +309,8 @@ katie@example.com    | 6
 <p>These are just a few tips to help you optimize the performance of your queries in Rails. There are many other factors to consider, such as database tuning, query optimization, and server configuration. It’s important to carefully monitor and profile your application to identify performance bottlenecks and make informed decisions about how to optimize your queries.</p>
 
 <h4 id="sub-query">sub query</h4>
+
+<p>TBC</p>
 
 <h3 id="schema">Schema</h3>
 

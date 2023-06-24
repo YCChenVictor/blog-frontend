@@ -61,176 +61,159 @@
 
 <h2 id="why">Why?</h2>
 
-<ul>
-  <li>Robust feature set: PostgreSQL has a comprehensive feature set that supports advanced data types, indexes, stored procedures, triggers, and more.</li>
-  <li>Scalability: PostgreSQL is designed to scale horizontally, meaning that you can add more resources to the system as your data and processing needs grow.</li>
-  <li>Strong reliability: PostgreSQL is known for its strong reliability and stability.</li>
-  <li>Open source</li>
-  <li>Active community</li>
-  <li>Strong security: PostgreSQL has a strong focus on security, with features such as role-based access control, data encryption, and secure communication protocols built in.</li>
-</ul>
+<p>MySQL is a popular choice for learning due to its robust feature set, scalability, strong reliability, open-source nature, active community, and strong security measures, making it a versatile and trusted database management system.</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="init">init</h3>
-
-<p>use homebrew:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>postgresql
-</code></pre></div></div>
-
-<p>start server:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services start postgresql
-</code></pre></div></div>
-
-<p>and check it with</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services list
-</code></pre></div></div>
-
-<p>debug the logs</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail</span> <span class="nt">-n</span> 50 /usr/local/var/log/postgresql@14.log
-</code></pre></div></div>
-
-<h3 id="connect">Connect</h3>
-
-<h4 id="password">Password</h4>
-
-<p>In <code class="language-plaintext highlighter-rouge">~/pgpass.conf</code></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">hostname</span>:port:database:username:password
-</code></pre></div></div>
-
-<p>and permissions set to 0600</p>
-
-<h4 id="in-terminal">In Terminal</h4>
-
 <ul>
-  <li>input when we did not setup hostname, port, database, username, password
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql <span class="nt">-h</span> &lt;host&gt; <span class="nt">-p</span> &lt;port&gt; <span class="nt">-U</span> &lt;username&gt; &lt;database&gt;
-</code></pre></div>    </div>
+  <li>Init
+    <ul>
+      <li>Install
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>postgresql
+</code></pre></div>        </div>
+      </li>
+      <li>Start server
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services start postgresql
+</code></pre></div>        </div>
+      </li>
+      <li>List services
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew services list
+</code></pre></div>        </div>
+      </li>
+      <li>Debug
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail</span> <span class="nt">-n</span> 50 /usr/local/var/log/postgresql@14.log
+</code></pre></div>        </div>
+      </li>
+    </ul>
   </li>
-  <li>input when we already setup hostname, port, database, username, password
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql postgres
-</code></pre></div>    </div>
-  </li>
-  <li>remove process</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-ef</span> | <span class="nb">grep </span>postmaster | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span>
-<span class="nb">kill</span> &lt;the_pid_you_just_got&gt;
-</code></pre></div></div>
-
-<h4 id="with-docker">With Docker</h4>
-
-<p><a href="/blog/docker/2022/01/09/docker.html#run">connect docker</a></p>
-
-<p>and then</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> my_db <span class="se">\</span>
+  <li>Connect
+    <ul>
+      <li>Stepup for apps: In <code class="language-plaintext highlighter-rouge">~/pgpass.conf</code>, add the following and permissions set to 0600
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">hostname</span>:port:database:username:password
+</code></pre></div>        </div>
+      </li>
+      <li>Terminal
+        <ul>
+          <li>input when we did not setup hostname, port, database, username, password
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql <span class="nt">-h</span> &lt;host&gt; <span class="nt">-p</span> &lt;port&gt; <span class="nt">-U</span> &lt;username&gt; &lt;database&gt;
+</code></pre></div>            </div>
+          </li>
+          <li>input when we already setup hostname, port, database, username, password
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>psql postgres
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>Docker
+        <ul>
+          <li><a href="/blog/docker/2022/01/09/docker.html#run">Docker</a></li>
+          <li>Init
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--name</span> my_db <span class="se">\</span>
     <span class="nt">-e</span> <span class="nv">POSTGRESQL_PORT</span><span class="o">=</span>5432 <span class="se">\</span>
     <span class="nt">-e</span> <span class="nv">POSTGRESQL_DB</span><span class="o">=</span>my_db <span class="se">\</span>
     <span class="nt">-e</span> <span class="nv">POSTGRESQL_USER</span><span class="o">=</span>postgres <span class="se">\</span>
     <span class="nt">-e</span> <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>test1234 <span class="se">\</span>
     <span class="nt">-d</span> postgres
-</code></pre></div></div>
-
-<ul>
-  <li>remember to create desired database first</li>
-  <li>remember to change desired <code class="language-plaintext highlighter-rouge">my_db</code>, <code class="language-plaintext highlighter-rouge">postgres</code> and <code class="language-plaintext highlighter-rouge">test1234</code>, which will match <code class="language-plaintext highlighter-rouge">DEV_DATABASE_URL</code> below</li>
-</ul>
-
-<h3 id="database">database</h3>
-
-<p>create:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE &lt;database_name&gt;<span class="p">;</span>
-</code></pre></div></div>
-
-<p>show:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\l</span>
-</code></pre></div></div>
-
-<p>use:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\c</span> &lt;database_name&gt;<span class="p">;</span>
-</code></pre></div></div>
-
-<p>delete:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DROP DATABASE &lt;database name&gt;<span class="p">;</span>
-</code></pre></div></div>
-
-<h3 id="table">table</h3>
-
-<p>Create:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
-
-<p>or with</p>
-
-<ul>
-  <li><a href="">node migration</a></li>
-  <li><a href="">rails migration</a></li>
-</ul>
-
-<p>Show:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\d</span>t
-</code></pre></div></div>
-
-<h3 id="user">user</h3>
-
-<p>Show</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\d</span>u
-</code></pre></div></div>
-
-<h3 id="crud-of-row">CRUD of row</h3>
-
-<p>CREATE</p>
-
-<pre><code class="language-SQL">-- general
+</code></pre></div>            </div>
+            <ul>
+              <li>remember to create desired database first</li>
+              <li>remember to change desired <code class="language-plaintext highlighter-rouge">my_db</code>, <code class="language-plaintext highlighter-rouge">postgres</code> and <code class="language-plaintext highlighter-rouge">test1234</code></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>remove process
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps <span class="nt">-ef</span> | <span class="nb">grep </span>postmaster | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span>
+<span class="nb">kill</span> &lt;the_pid_you_just_got&gt;
+</code></pre></div>        </div>
+      </li>
+      <li>Show users
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\d</span>u
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Database
+    <ul>
+      <li>create
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE DATABASE &lt;database_name&gt;<span class="p">;</span>
+</code></pre></div>        </div>
+      </li>
+      <li>Read
+        <ul>
+          <li>Show all databases
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\l</span>
+</code></pre></div>            </div>
+          </li>
+          <li>Use database
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\c</span> &lt;database_name&gt;<span class="p">;</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>Update</li>
+      <li>Destroy
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DROP DATABASE &lt;database name&gt;<span class="p">;</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Table
+    <ul>
+      <li>Create
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div>        </div>
+      </li>
+      <li>Read
+        <ul>
+          <li>Show all tables
+            <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\d</span>t
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Record (row)
+    <ul>
+      <li>Create
+        <pre><code class="language-SQL">-- general
 INSERT INTO table (variable1, variable2, variable3) VALUES (value1, value2, value3);
-
+    
 -- example
 INSERT INTO users (username, password, email) VALUES ('john', '123456', 'john@example.com');
 </code></pre>
-
-<p>READ</p>
-
-<pre><code class="language-SQL">-- general
+      </li>
+      <li>Read
+        <pre><code class="language-SQL">-- general
 SELECT * FROM table WHERE variable1 = value1;
-
+    
 -- example
 SELECT * FROM users WHERE username = 'john';
 </code></pre>
-
-<p>UPDATE</p>
-
-<pre><code class="language-SQL">-- general
+      </li>
+      <li>Update
+        <pre><code class="language-SQL">-- general
 UPDATE table SET variable1 = value1 WHERE variable2 = value2;
-
+    
 -- example
 UPDATE users SET password = '654321' WHERE username = 'john';
 </code></pre>
-
-<p>DELETE</p>
-
-<pre><code class="language-SQL">-- general
+      </li>
+      <li>Destroy
+        <pre><code class="language-SQL">-- general
 DELETE FROM table WHERE variable1 = value1;
-
+    
 -- example
 DELETE FROM users WHERE username = 'john';
 </code></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="what">What?</h2>
 
-<p>give an example</p>
+<p>Please give the structure example of blog.</p>
 
 <h2 id="reference">Reference</h2>
 

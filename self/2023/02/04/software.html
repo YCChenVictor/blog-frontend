@@ -82,7 +82,7 @@
 <ul>
   <li>Web application
     <ul>
-      <li>Plan and Design: <a href="">Plan and design</a> the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.
+      <li>Plan and Design: Plan and design the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.
         <ul>
           <li>Server-side rendering
             <ul>
@@ -94,14 +94,43 @@
           <li>Client-side rendering with a separation of concerns
             <ul>
               <li>Advantage: This approach offers a more interactive and responsive user experience since the client can manipulate the DOM and fetch data asynchronously without full page reloads.</li>
-              <li>Concept: the server primarily serves static assets (HTML, CSS, JavaScript), and the web application is responsible for rendering the content dynamically on the client-side.</li>
+              <li>Concept: the server primarily serves static assets (HTML, CSS, JavaScript), and the web application is responsible for rendering the content dynamically on the client-side with backend <a href="/blog/api/2021/02/18/application-programming-interface.html">APIs</a>.</li>
               <li>Example: React + Node</li>
             </ul>
           </li>
         </ul>
       </li>
-      <li>Develop: Write the code for your web application, including the frontend (user interface) and the backend (server-side logic). This may involve using frameworks and tools such as <a href="/blog/react/2021/06/13/react.html">React</a>, <a href="">Vue.js</a>, Angular, <a href="/blog/node/2022/12/30/node.html">Node.js</a>, or <a href="/blog/rails/2023/01/01/rails.html">Ruby on Rails</a>, depending on your programming language of choice.</li>
-      <li>Deploy and Maintain: [Deploy] your web application to a web server and maintain it by regularly updating it with bug fixes and <a href="/blog/web-security/2022/08/30/web-security.html">security</a> patches. This may also involve <a href="">scaling</a> the application to handle increased traffic or integrating it with other systems or <a href="/blog/api/2021/02/18/application-programming-interface.html">APIs</a>.</li>
+      <li>Develop: Write the code for your web application, including the frontend (user interface) and the backend (server-side logic).
+        <ul>
+          <li>Frontend
+            <ul>
+              <li>Framework: <a href="/blog/react/2021/06/13/react.html">React</a>, Vue.js, Angular</li>
+              <li>Test: [Jest]</li>
+            </ul>
+          </li>
+          <li>Backend
+            <ul>
+              <li>Framework: <a href="/blog/node/2022/12/30/node.html">Node.js</a>, or <a href="/blog/rails/2023/01/01/rails.html">Ruby on Rails</a></li>
+              <li>Test: [Jest], [Rspec]</li>
+            </ul>
+          </li>
+          <li>Package:
+            <ul>
+              <li>Javascript: [Yarn]</li>
+              <li>Ruby: [Gem]</li>
+            </ul>
+          </li>
+          <li>Concept: TDD, BDD</li>
+        </ul>
+      </li>
+      <li>Deploy and Maintain
+        <ul>
+          <li><a href="">Deploy</a> your web application to a web server</li>
+          <li>Maintain it by regularly updating it with bug fixes and <a href="/blog/web-security/2022/08/30/web-security.html">security</a> patches</li>
+          <li><a href="">scale up</a> the application to handle increased traffic or integrating it with other systems.</li>
+          <li><a href="/blog/test/2022/09/02/quality-assurance.html">Quality Assurance</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>Non-web application</li>
@@ -125,7 +154,7 @@
 
 <p>Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to <a href="">object oriented design</a></p>
 
-<h3 id="system-design">System Design</h3>
+<h4 id="system-design">System Design</h4>
 
 <p>System design involves creating a blueprint for the structure and organization of a software system, considering factors such as architecture, modules, interfaces, and data flow. It aims to transform requirements into an efficient and scalable solution that meets the desired goals and objectives of the system. For more information, please refer to <a href="">system design</a></p>
 

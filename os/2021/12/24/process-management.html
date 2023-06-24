@@ -63,40 +63,94 @@
     
   </div>
   <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>process management</h1>
+    <h1 class='text-center mt-6 mb-6'>Process Management</h1>
     <h2 id="introduction">Introduction</h2>
 
-<ul>
-  <li>A process is an instance of a program that is executing on a computer. Each process has its own memory space and runs independently of other processes.</li>
-  <li>Process management involves creating, scheduling, and managing processes to ensure that they run efficiently and don’t interfere with each other.</li>
-  <li>Process management also manages the state of each process, including whether it is running, blocked, or waiting for input. In addition, the process management system is responsible for terminating processes when they are no longer needed.</li>
-  <li>One of the key functions of process management is CPU scheduling, which involves determining which process should be executed next. The scheduler allocates the CPU to the most deserving process, based on a set of predefined criteria, such as priority or time slice.</li>
-  <li>By managing processes properly, the operating system can ensure that resources are used efficiently and that processes run smoothly.</li>
-</ul>
+<p>TBC</p>
 
 <h2 id="why">Why?</h2>
 
-<ul>
-  <li>Understanding operating systems: Processes are a fundamental concept in operating systems</li>
-  <li>Writing efficient code: By managing processes properly, you can improve system performance and reduce resource utilization.</li>
-  <li>Improving system stability: By managing processes properly, you can prevent crashes and other issues that can affect system stability.</li>
-  <li>Developing concurrent systems: Allows multiple tasks to execute simultaneously. You can design and implement systems that make efficient use of system resources and improve system performance.</li>
-  <li>Understanding process management can help you identify issues and debug code more effectively.</li>
-</ul>
+<p>Understanding operating systems and properly managing processes allows for efficient code, improved system stability, concurrent system development, and effective issue identification and debugging.</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="pcb-data-structure">PCB data structure</h3>
+<div class="mermaid">
+  graph TD
+    id1(program) --compiled--&gt; id2(binary form)
+    id2(binary form) --loaded--&gt; id3(memory)
+  
+    id3(memory) --decompose--&gt; id4(process 1)
+    id3(memory) --decompose--&gt; id5(process 2)
+    id3(memory) --...decompose--&gt; id6(...other processes)
+    
+    id4(process 1) --decompose--&gt; id7(thread 1)
+    id4(process 1) --decompose--&gt; id8(thread 2)
+    id4(process 1) --...decompose--&gt; id9(...other threads)
+</div>
+
+<h3 id="flow-of-process">Flow of process</h3>
+
+<ul>
+  <li>Process Creation
+    <ul>
+      <li>Allocating resources: OS sets up address space, allocates memory, and creates a page table.</li>
+      <li>Initializing data structures: Process control block (PCB) is initialized with process details.</li>
+      <li>Setting up the environment: OS prepares initial program counter, stack pointer, and registers.</li>
+    </ul>
+  </li>
+  <li>Process Scheduling
+    <ul>
+      <li>Determines process execution order on the CPU.</li>
+      <li>Scheduler selects processes from the ready queue based on a scheduling algorithm.</li>
+      <li>Goal: Optimize CPU utilization, minimize response time, ensure fairness in resource allocation.</li>
+    </ul>
+  </li>
+  <li>Process Synchronization:
+    <ul>
+      <li>Essential for shared resource access and task cooperation.</li>
+      <li>Uses synchronization mechanisms (locks, semaphores, mutexes) to prevent conflicts.</li>
+      <li>Avoids race conditions, deadlocks, and data inconsistencies.</li>
+    </ul>
+  </li>
+  <li>Process Termination:
+    <ul>
+      <li>Occurs when a process finishes execution or is forcibly terminated.</li>
+      <li>Resources are released (memory, files, system resources).</li>
+      <li>Process control block is updated and associated data structures are deallocated.</li>
+    </ul>
+  </li>
+  <li>Process States, PCB, and Context Switching:
+    <ul>
+      <li>Processes exist in states like running, ready, blocked, or terminated.</li>
+      <li>PCB contains process information (state, priority, registers).</li>
+      <li>Context switching saves and restores process state for multitasking and concurrent execution.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="process-vs-thread">Process vs Thread</h3>
+
+<ul>
+  <li>Threads share the same resources of the process they belongs to, such as memory and files in the same process</li>
+  <li>Processes take their own part of memory and cannot share memory with other process</li>
+  <li>Communication between threads is faster than processes</li>
+  <li>Threads are scheduled by the operating system, but they are not self-contained like processes.</li>
+</ul>
+
+<h3 id="concurrency">Concurrency</h3>
+
+<p>To boost user experience, we use concurrent execution of tasks to delegate works which will stuck the system to other machine, so that the system can still work smoothly and all heavy works can still be done. For more information, please refer to <a href="/blog/mindset/2022/05/07/concurrency.html">concurrency</a></p>
+
+<h3 id="process-control-block-pcb">Process Control Block (PCB)</h3>
 
 <p>The PCB is a critical component of process management in modern operating systems, allowing the operating system to manage and control multiple processes concurrently and efficiently. By maintaining a separate PCB for each process, the operating system can track and manage each process individually, ensuring that each process runs safely and efficiently.</p>
 
-<p>With the help of PCB (Process Control Block), OS can manage tasks such as creation, scheduling, termination, deadlock.</p>
+<p>With the help of PCB, OS can manage tasks such as creation, scheduling, termination, deadlock.</p>
 
 <ul>
-  <li>A Process Control Block (PCB) is a data structure used by the operating system to manage and control the execution of a process. It contains information about the state of a process, including its process ID, memory allocation, CPU usage, and other important parameters.</li>
+  <li>When a process is created, the operating system allocates a PCB for that process and stores the relevant information about the process in that PCB. As the process runs, the operating system updates the PCB to reflect changes in the process state, memory allocation, CPU usage, and other parameters. It contains information about the state of a process, including its process ID, memory allocation, CPU usage, and other important parameters.</li>
   <li>The PCB is created when a process is initiated and is updated by the operating system as the process executes.</li>
   <li>The PCB is also used by the operating system to switch between processes and manage the scheduling of the CPU.</li>
-  <li>When a process is created, the operating system allocates a PCB for that process and stores the relevant information about the process in that PCB. As the process runs, the operating system updates the PCB to reflect changes in the process state, memory allocation, CPU usage, and other parameters.</li>
 </ul>
 
 <p>How PCB flows:</p>
@@ -114,43 +168,6 @@ graph TB
 
   id3(running) --exit--&gt; id4(terminated)
 </div>
-
-<h3 id="flow">Flow</h3>
-
-<ul>
-  <li>Process creation (the process of creating a new process in an operating system)
-    <ul>
-      <li>Allocating resources: Sets up a new address space for the process, including allocating memory and creating a page table to map the process’s virtual address space to physical memory</li>
-      <li>Initializing data structures: Initializes the process control block (PCB), which is a data structure that contains information about the process, including its process ID, state, and resource usage.</li>
-      <li>Setting up the necessary environment</li>
-      <li>Typically created by a parent process, which may pass parameters to the child process or inherit some of its own properties. For example, a new process may inherit the file descriptors of its parent, allowing it to read and write to the same files.</li>
-    </ul>
-  </li>
-  <li>process scheduling</li>
-  <li>process synchronization</li>
-  <li>process termination</li>
-  <li>process states, process control blocks, and context switching.</li>
-</ul>
-
-<h3 id="cpu-scheduling-algorithms">CPU scheduling algorithms</h3>
-
-<p>CPU scheduling is a critical part of process management, and you should understand the different CPU scheduling algorithms such as Round Robin, FCFS, SJF, and Priority Scheduling. You should also learn about their advantages and disadvantages.</p>
-
-<h3 id="memory-management">Memory Management</h3>
-
-<p>Learn about memory allocation, fragmentation, and virtual memory.</p>
-
-<h3 id="os-simulation-tools">OS Simulation Tools</h3>
-
-<p>Process Explorer allows us to see the running processes and their resource utilization.</p>
-
-<h3 id="thread">Thread</h3>
-
-<ul>
-  <li>A lightweight execution unit that exists within a process</li>
-  <li>A process can have multiple threads, and each thread can perform a different task, but they all share the same resources of the process, such as memory and files.</li>
-  <li>Threads are scheduled by the operating system, but they are not self-contained like processes.</li>
-</ul>
 
 <h3 id="issues">Issues</h3>
 
@@ -207,8 +224,6 @@ graph TB
   </li>
 </ul>
 
-<p>article in clean code</p>
-
 <h4 id="race-conditions">Race Conditions</h4>
 
 <ul>
@@ -220,9 +235,12 @@ graph TB
 
 <ul>
   <li>Description: Priority inversion is a situation where a low-priority process holds a resource that a high-priority process needs, leading to a delay in the high-priority process’s execution. This problem is particularly prevalent in real-time systems.</li>
-  <li>Solution: To prevent priority inversion, you can use techniques like priority inheritance, priority ceiling, and preemptive scheduling. These techniques ensure that high-priority processes get access to the resources they need without being delayed by low-priority processes.
-    <h4 id="process-synchronization">Process Synchronization</h4>
-  </li>
+  <li>Solution: To prevent priority inversion, you can use techniques like priority inheritance, priority ceiling, and preemptive scheduling. These techniques ensure that high-priority processes get access to the resources they need without being delayed by low-priority processes.</li>
+</ul>
+
+<h4 id="process-synchronization">Process Synchronization</h4>
+
+<ul>
   <li>Processes may need to synchronize their activities to ensure correct and consistent behavior. Synchronization problems can arise when processes access shared resources, communicate with each other, or perform parallel computations.</li>
   <li>Solution:</li>
 </ul>
@@ -244,8 +262,6 @@ graph TB
 <h2 id="what">What?</h2>
 
 <p>Give me a real world example</p>
-
-<h3 id="javascript">Javascript</h3>
 
 <h2 id="reference">Reference</h2>
 

@@ -5,16 +5,7 @@
 
     
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
-<script>
-  const config = {
-    theme: 'neutral',
-    startOnLoad:true,
-    htmlLabels:true,
-  };
-  mermaid.initialize(config);
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
     <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
@@ -63,72 +54,45 @@
     
   </div>
   <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>thread and concurrency</h1>
+    <h1 class='text-center mt-6 mb-6'>Denormalization</h1>
     <h2 id="introduction">Introduction</h2>
 
-<p>The structure of this article:</p>
+<p>TBC</p>
+
+<h2 id="why">Why?</h2>
+
+<p>Denormalization is used to optimize query performance by reducing the number of joins and improving data retrieval speed, especially in read-heavy database systems.</p>
+
+<h2 id="how">How?</h2>
 
 <ul>
-  <li><strong>Thread</strong>: the smallest unit of program for CPU to execute.</li>
-  <li><strong>Concurrency</strong>: lets CPU perform multiple threads at the same time.</li>
-  <li><strong>Process</strong>: the program that has been loaded into memory along with registers (how to execute this process) and a program counter (what’s the next process)
+  <li>Purpose: Optimize query performance</li>
+  <li>Concept: Reduce the need for joining multiple tables</li>
+  <li>Example
     <ul>
-      <li>register may hold an instruction, a storage address, or other kind of data needed by the process (refer to <a href="https://www.youtube.com/watch?v=fpnE6UAfbtU">here</a>)</li>
-      <li>program counter (instruction pointer), a special type of register, storing the address of the instruction to be executed next</li>
+      <li>Two table: customers and orders.</li>
+      <li>In normalized database, typically having a separate table for customer information and another table for order details, with a foreign key relationship between them.</li>
+      <li>Normalized structure
+        <ul>
+          <li>Customers table (customer_id, customer_name, customer_address)</li>
+          <li>Orders table (order_id, order_date, customer_id, total_amount)</li>
+        </ul>
+      </li>
+      <li>Denormalized structure (duplicate some customer information in the orders table to avoid joins and improve query performance)
+        <ul>
+          <li>Orders table (order_id, order_date, customer_id, total_amount, customer_name, customer_address)</li>
+          <li>By duplicating the customer name and address in the orders table, you eliminate the need to join the tables to retrieve customer details when querying orders, which can result in faster and more efficient queries.</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
 
-<p>The flow:</p>
-
-<div class="mermaid">
-graph TD
-  id1(program) --compiled--&gt; id2(binary form)
-  id2(binary form) --loaded--&gt; id3(memory)
-
-  id3(memory) --decompose--&gt; id4(process 1)
-  id3(memory) --decompose--&gt; id5(process 2)
-  id3(memory) --...decompose--&gt; id6(...other processes)
-  
-  id4(process 1) --decompose--&gt; id7(thread 1)
-  id4(process 1) --decompose--&gt; id8(thread 2)
-  id4(process 1) --...decompose--&gt; id9(...other threads)
-
-</div>
-
-<ul>
-  <li>threads share memory in the same process</li>
-  <li>processes take their own part of memory and cannot share memory with other process</li>
-  <li>communication between threads is faster than processes</li>
-</ul>
-
-<h2 id="why">Why?</h2>
-
-<p>Concurrency decreases waiting time and response time and increase resource utilization and efficiency.</p>
-
-<h2 id="how">How?</h2>
-
-<h3 id="decrease-waiting-time">decrease waiting time</h3>
-
-<h3 id="decrease-response-time">decrease response time</h3>
-
-<h3 id="increase-resource-utilization">increase resource utilization</h3>
-
-<h3 id="increase-efficiency">increase efficiency</h3>
-
 <h2 id="what">What?</h2>
 
+<p>Try to find a big database example because there must be some slow queries and need to reduce the joins.</p>
+
 <h2 id="reference">Reference</h2>
-
-<p><a href="https://www.computerhope.com/jargon/t/thread.htm">Thread</a></p>
-
-<p><a href="https://en.wikipedia.org/wiki/Thread_(computing)">Thread (computing)</a></p>
-
-<p><a href="https://www.educative.io/blog/multithreading-and-concurrency-fundamentals">Multithreading and concurrency fundamentals</a></p>
-
-<p><a href="https://www.backblaze.com/blog/whats-the-diff-programs-processes-and-threads/">What’s the Diff: Programs, Processes, and Threads</a></p>
-
-<p><a href="https://www.youtube.com/watch?v=fpnE6UAfbtU">Registers and RAM: Crash Course Computer Science #6</a></p>
 
   </div>
 </div>
