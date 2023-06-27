@@ -29,7 +29,7 @@ I need to structure my thoughts.
 * Start to build backend and connect ChatGPT API
 * Remember to move the chords and lyrics to blog
 * The what section must have practical experience I had; for example, the result I get and the application I make
-* `find . -type f -exec stat -f '%m %N' {} + | sort | head -n 10`
+* In `_posts`, `find . -type f -exec stat -f '%m %N' {} + | sort | head -n 10`
 * Use pomodoros, 25 mins on each article
 * I will learn medical at my 35
 * I should try to read those less read articles and try to refine them and should keep developing apps

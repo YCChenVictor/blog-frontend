@@ -11,7 +11,7 @@ publish: true
 
 ## Introduction
 
-Before we dive into it, please understand concept of [complexity]({{site.baseurl}}/dsa/2022/05/02/complexity.html). Data structures describe how data can be organized, stored, and manipulated. Algorithms are procedures for solving problems such as searching for information, sorting data, processing graphs, performing calculations, and many other tasks.
+TBC
 
 ## Why
 
