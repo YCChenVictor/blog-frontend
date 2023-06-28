@@ -5,41 +5,30 @@ date: '2022-05-23'
 categories: DSA
 note: just finish the cracking coding interview examples first
 mathjax: true
-mermaid: true
+mermaidJS: true
 publish: true
 ---
 
 ## Introduction
 
-This article describes the concepts related to linkedlist. Not like arraylist, the nodes in linkedlist are not serial, so we need to store pointers pointing the neighbor of each node in this linkedlist and use these pointers to traverse the nodes to find targeted node. There are two types: singly linked list and doubly linked list.
-
-* singly linked list: pointer points the next node in each node
-<div class="mermaid">
-graph LR
-  id1((A)) --> id2((B))
-  id2((B)) --> id3((C))
-  id3((C)) --> id4((...))
-</div>
-* doubly linked list: pointer points the next and previous nodes in each node
-<div class="mermaid">
-graph LR
-  id1((A)) --> id2((B))
-  id2((B)) --> id1((A))
-  id2((B)) --> id3((C))
-  id3((C)) --> id2((B))
-  id3((C)) --> id4((...))
-  id4((...)) --> id3((C))
-</div>
+(TBC)
 
 ## why
 
-Linked lists can dynamically grow and shrink in size during program execution, whereas the size of an array is fixed at the time of creation. Additionally, inserting or deleting elements in a linked list is relatively efficient, whereas in an array these operations can be expensive if the array is large.
+Learning linked lists is valuable because they provide a flexible and efficient data structure for dynamic memory allocation and manipulation, enabling dynamic resizing and efficient insertion, deletion, and traversal operations compared to fixed-size arrays.
 
 ## How
 
 ### Singly Linked List
 
-* coding example:
+* Graph
+  <div class="mermaid">
+    graph LR
+      id1((A)) --> id2((B))
+      id2((B)) --> id3((C))
+      id3((C)) --> id4((...))
+  </div>
+* Code
   ```javascript
   class Node {
     constructor(value, next = null) {
@@ -49,15 +38,12 @@ Linked lists can dynamically grow and shrink in size during program execution, w
   }
   
   class LinkedList {
-    // index starts from 0
-    // position starts from 1
-  
     constructor() {
       this.head = null;
     }
-  
+
     // Create
-    prepand(value) {
+    prepend(value) {
       const newNode = new Node(value);
   
       if (!this.head) {
@@ -69,46 +55,55 @@ Linked lists can dynamically grow and shrink in size during program execution, w
     }
   
     append(value) {
-      let tail
       const newNode = new Node(value);
   
       if (!this.head) {
         this.head = newNode;
       } else {
-        tail = this.traverseTo('last')
+        let tail = this.traverseTo(this.size() - 1);
         tail.next = newNode;
       }
     }
   
-    insert(position, value) {
-      if (position === 1) {
+    insert(index, value) {
+      if (index === 0) {
         this.prepend(value);
+      } else if (index >= this.size()) {
+        this.append(value);
       } else {
         const newNode = new Node(value);
-        const leader = this.traverseTo(position - 1);
+        const leader = this.traverseTo(index - 1);
         const nextNode = leader.next;
   
         leader.next = newNode;
         newNode.next = nextNode;
       }
     }
-      
+  
     // Read
     traverseTo(index) {
       let currentNode = this.head;
-      
-      if (index === 'last') {
-        index = Infinity
-      }
   
       for (let i = 0; i < index; i++) {
         if (currentNode.next !== null) {
           currentNode = currentNode.next;
         } else {
-          return currentNode
+          break; // Exit loop if end of the list is reached
         }
       }
-      return currentNode
+      return currentNode;
+    }
+  
+    size() {
+      let count = 0;
+      let currentNode = this.head;
+  
+      while (currentNode !== null) {
+        count++;
+        currentNode = currentNode.next;
+      }
+  
+      return count;
     }
   
     printList() {
@@ -124,42 +119,45 @@ Linked lists can dynamically grow and shrink in size during program execution, w
     }
   
     // Update
-    update(position, value) {
-      const target = this.traverseTo(position - 1);
-      target.value = value
+    update(index, value) {
+      if (index < 0 || index >= this.size()) {
+        throw new Error('Index out of bounds');
+      }
+  
+      const target = this.traverseTo(index);
+      target.value = value;
     }
   
-    // Delete    
-    remove(position) {
-      if (position === 1) {
+    // Delete
+    remove(index) {
+      if (index < 0 || index >= this.size()) {
+        throw new Error('Index out of bounds');
+      }
+  
+      if (index === 0) {
         this.head = this.head.next;
       } else {
-        const unwantedNode = this.traverseTo(position - 1);
-        const leader = this.traverseTo(position - 2);
+        const leader = this.traverseTo(index - 1);
+        const unwantedNode = leader.next;
   
         leader.next = unwantedNode.next;
       }
     }
   }
-  
+
   module.exports = LinkedList;
   ```
 * Time complexity
-  * Create an element on head (prepand): O(1)
-    * There is no traverse in this operation, it will create a node and update the pointer, so time complexity is O(1)
-  * Insert an element: O(n)
-    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one and then insert a node.
-  * Read an element: O(n)
-    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one.
-  * Update an element: O(n)
-    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one and then update the node.
-  * Delete an element: O(n)
-    * It will traverse n nodes to find the target nodes, where n is the number of nodes linked before the target one and then do operations to remove the node.
-* spec
+  * Create an element on head (prepend): O(1) - Creating a new node and updating the head pointer can be done in constant time without any traversal.
+  * Insert an element: O(n) - Traversing to the target position to insert the element takes time proportional to the number of nodes linked before that position.
+  * Read an element: O(n) - Traversing to the target position to read the element takes time proportional to the number of nodes linked before that position.
+  * Update an element: O(n) - Traversing to the target position to update the element takes time proportional to the number of nodes linked before that position.
+  * Delete an element: O(n) - Traversing to the target position to delete the element takes time proportional to the number of nodes linked before that position.
+* spec (2023-06-28)
   ```javascript
   const LinkedList = require('../examples/singly_linked_list.js');
   
-  describe('LinkedList', () => {
+  describe('SinglyLinkedList', () => {
     let testLinkedList;
     beforeEach(() => {
       testLinkedList = new LinkedList();
@@ -204,184 +202,6 @@ Linked lists can dynamically grow and shrink in size during program execution, w
     test('#remove', () => {
       testLinkedList.remove(3)
       expect(testLinkedList.printList()).toEqual([33, 62, 74, 1]);
-    })
-  });
-  ```
-
-### Doubly Linked List
-
-* coding example:
-  ```javascript
-  class Node {
-    constructor(data) {
-      this.data = data;
-      this.prev = null;
-      this.next = null;
-    }
-  }
-    
-  class DoublyLinkedList {
-    constructor() {
-      this.head = null;
-      this.tail = null;
-    }
-    
-    // create
-    append(data) { // create a node on the tail
-      const newNode = new Node(data);
-      if (this.head === null) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        this.tail.next = newNode;
-        newNode.prev = this.tail;
-        this.tail = newNode;
-      }
-    }
-    
-    prepend(data) { // create a node on the head
-      const newNode = new Node(data);
-      if (this.head === null) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        this.head.prev = newNode;
-        newNode.next = this.head;
-        this.head = newNode;
-      }
-    }
-    
-    insert(position, data) { // create a node on particular position
-      const newNode = new Node(data);
-      if (this.head === null) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else if (position > this.length) {
-        this.append(data)
-      } else {
-        const nodeOnPosition = this.traverseToIndex(position - 1);
-        newNode.next = nodeOnPosition;
-        newNode.prev = nodeOnPosition.prev;
-        newNode.prev.next = newNode;
-      }
-    }
-    
-    // read
-    value() { // return the value of node in particular position
-    }
-  
-    values() { // return values from head
-      let current_node = this.head;
-      const result = [];
-      while (current_node !== null) {
-        result.push(current_node.data);
-        current_node = current_node.next;
-      }
-      return result
-    }
-  
-    reverseValues() { // return values from tail
-      let current_node = this.tail;
-      const result = [];
-      while (current_node !== null) {
-        result.push(current_node.data);
-        current_node = current_node.prev;
-      }
-      return result
-    }
-  
-    // traverse
-    traverseToIndex(index) {
-      let currentNode = this.head;
-  
-      for (let i = 0; i < index; i++) {
-        currentNode = currentNode.next;
-      }
-  
-      return currentNode;
-    }
-    
-    // update
-    update(position, value) { // update the value on particular position
-    
-    }
-      
-    // delete
-    remove(position) { // remove the node on particular position
-      if (this.head === null) {
-        return;
-      }
-      if (this.head === this.tail && this.head.data === data) {
-        this.head = null;
-        this.tail = null;
-        return;
-      }
-      if (this.head.data === data) {
-        this.head = this.head.next;
-        this.head.prev = null;
-        return;
-      }
-      let current_node = this.head.next;
-      while (current_node !== null && current_node.data !== data) {
-        current_node = current_node.next;
-      }
-      if (current_node === null) {
-        return;
-      }
-      if (current_node === this.tail) {
-        this.tail = this.tail.prev;
-        this.tail.next = null;
-        return;
-      }
-      current_node.prev.next = current_node.next;
-      current_node.next.prev = current_node.prev;
-    }
-  }
-  
-  module.exports = DoublyLinkedList
-  ```
-* why we need doubly?
-  * Traversal in both directions
-  * (?) Insertion and deletion at any position: In a singly linked list, if you want to insert a node between two nodes, you need to modify the pointers of the previous node to point to the new node, and the new node to point to the next node. With a doubly linked list, you can simply update the pointers of the neighboring nodes to insert a node in between them. Similarly, when deleting a node from a doubly linked list, you can easily update the pointers of the neighboring nodes to remove the node.
-* Spec
-  ```javascript
-  const DoublyLinkedList = require('../examples/doubly_linked_list.js');
-
-  describe('DoublyLinkedList', () => {
-    let testLinkedList;
-    beforeEach(() => {
-      testLinkedList = new DoublyLinkedList();
-      const values = [1, 74, 888, 62, 33];
-      for(let i = 0; i < values.length; i++){ // 33 <- 62 <- 888 <- 74 <- 1
-        testLinkedList.prepend(values[i]);
-      }
-    });
-  
-    test('#prepend', () => { // 0 <- 33 <- 62 <- 888 <- 74 <- 1
-      testLinkedList.prepend(0);
-      expect(testLinkedList.values()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
-      expect(testLinkedList.reverseValues()).toEqual([ 1, 74, 888, 62, 33, 0 ]);
-    });
-  
-    test('#append', () => { // 33 <- 62 <- 888 <- 74 <- 1 <- 0
-      testLinkedList.append(0);
-      expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
-      expect(testLinkedList.reverseValues()).toEqual([ 0, 1, 74, 888, 62, 33 ]);
-    });
-  
-    test('#insert', () => { // 33 <- 1000 <- 62 <- 888 <- 74 <- 1
-      testLinkedList.insert(2, 1000);
-      expect(testLinkedList.values()).toEqual([ 33, 1000, 62, 888, 74, 1 ]);
-    });
-    
-    test('#update', () => {
-      testLinkedList.update(2, 1000);
-      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
-    })
-  
-    test('#delete', () => {
-      testLinkedList.update(2, 1000);
-      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
     })
   });
   ```
@@ -705,6 +525,196 @@ function parseSteps(answer) {
   return steps.map(step => step.trim()).filter(step => step !== '');
 }
 ```
+
+## Other
+
+### Doubly Linked List
+
+* Graph
+  <div class="mermaid">
+    graph LR
+      id1((A)) --> id2((B))
+      id2((B)) --> id1((A))
+      id2((B)) --> id3((C))
+      id3((C)) --> id2((B))
+      id3((C)) --> id4((...))
+      id4((...)) --> id3((C))
+  </div>
+* coding example:
+  ```javascript
+  class Node {
+    constructor(data) {
+      this.data = data;
+      this.prev = null;
+      this.next = null;
+    }
+  }
+    
+  class DoublyLinkedList {
+    constructor() {
+      this.head = null;
+      this.tail = null;
+    }
+    
+    // create
+    append(data) { // create a node on the tail
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        this.tail.next = newNode;
+        newNode.prev = this.tail;
+        this.tail = newNode;
+      }
+    }
+    
+    prepend(data) { // create a node on the head
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        this.head.prev = newNode;
+        newNode.next = this.head;
+        this.head = newNode;
+      }
+    }
+    
+    insert(position, data) { // create a node on particular position
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else if (position > this.length) {
+        this.append(data)
+      } else {
+        const nodeOnPosition = this.traverseToIndex(position - 1);
+        newNode.next = nodeOnPosition;
+        newNode.prev = nodeOnPosition.prev;
+        newNode.prev.next = newNode;
+      }
+    }
+    
+    // read
+    value() { // return the value of node in particular position
+    }
+  
+    values() { // return values from head
+      let current_node = this.head;
+      const result = [];
+      while (current_node !== null) {
+        result.push(current_node.data);
+        current_node = current_node.next;
+      }
+      return result
+    }
+  
+    reverseValues() { // return values from tail
+      let current_node = this.tail;
+      const result = [];
+      while (current_node !== null) {
+        result.push(current_node.data);
+        current_node = current_node.prev;
+      }
+      return result
+    }
+  
+    // traverse
+    traverseToIndex(index) {
+      let currentNode = this.head;
+  
+      for (let i = 0; i < index; i++) {
+        currentNode = currentNode.next;
+      }
+  
+      return currentNode;
+    }
+    
+    // update
+    update(position, value) { // update the value on particular position
+    
+    }
+      
+    // delete
+    remove(position) { // remove the node on particular position
+      if (this.head === null) {
+        return;
+      }
+      if (this.head === this.tail && this.head.data === data) {
+        this.head = null;
+        this.tail = null;
+        return;
+      }
+      if (this.head.data === data) {
+        this.head = this.head.next;
+        this.head.prev = null;
+        return;
+      }
+      let current_node = this.head.next;
+      while (current_node !== null && current_node.data !== data) {
+        current_node = current_node.next;
+      }
+      if (current_node === null) {
+        return;
+      }
+      if (current_node === this.tail) {
+        this.tail = this.tail.prev;
+        this.tail.next = null;
+        return;
+      }
+      current_node.prev.next = current_node.next;
+      current_node.next.prev = current_node.prev;
+    }
+  }
+  
+  module.exports = DoublyLinkedList
+  ```
+* why we need doubly?
+  * Traversal in both directions
+  * (?) Insertion and deletion at any position: In a singly linked list, if you want to insert a node between two nodes, you need to modify the pointers of the previous node to point to the new node, and the new node to point to the next node. With a doubly linked list, you can simply update the pointers of the neighboring nodes to insert a node in between them. Similarly, when deleting a node from a doubly linked list, you can easily update the pointers of the neighboring nodes to remove the node.
+* Spec
+  ```javascript
+  const DoublyLinkedList = require('../examples/doubly_linked_list.js');
+
+  describe('DoublyLinkedList', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new DoublyLinkedList();
+      const values = [1, 74, 888, 62, 33];
+      for(let i = 0; i < values.length; i++){ // 33 <- 62 <- 888 <- 74 <- 1
+        testLinkedList.prepend(values[i]);
+      }
+    });
+  
+    test('#prepend', () => { // 0 <- 33 <- 62 <- 888 <- 74 <- 1
+      testLinkedList.prepend(0);
+      expect(testLinkedList.values()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
+      expect(testLinkedList.reverseValues()).toEqual([ 1, 74, 888, 62, 33, 0 ]);
+    });
+  
+    test('#append', () => { // 33 <- 62 <- 888 <- 74 <- 1 <- 0
+      testLinkedList.append(0);
+      expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
+      expect(testLinkedList.reverseValues()).toEqual([ 0, 1, 74, 888, 62, 33 ]);
+    });
+  
+    test('#insert', () => { // 33 <- 1000 <- 62 <- 888 <- 74 <- 1
+      testLinkedList.insert(2, 1000);
+      expect(testLinkedList.values()).toEqual([ 33, 1000, 62, 888, 74, 1 ]);
+    });
+    
+    test('#update', () => {
+      testLinkedList.update(2, 1000);
+      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
+    })
+  
+    test('#delete', () => {
+      testLinkedList.update(2, 1000);
+      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
+    })
+  });
+  ```
 
 ## reference
 

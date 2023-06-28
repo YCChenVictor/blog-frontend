@@ -6,8 +6,8 @@ date: '2022-05-02'
 categories: DSA
 note:
 mathjax: true
-mermaid: true
 p5:
+mermaidJS: true
 threeJS:
 chartJS: true
 publish: true
@@ -117,16 +117,18 @@ In certain data structures, the time complexity of specific operations may vary 
 
 * Amortized time complexity analysis involves dividing the total time taken by a sequence of operations by the number of operations. This gives us the average time taken per operation, which is a more useful measure of the data structure's performance than the worst-case time complexity of a single operation.
 * Accounting method, which involves assigning a cost to each operation and using the cost to pay for future operations. For example, in an array with dynamic resizing, we could assign a cost of 1 to each add operation, and use the extra time taken by the occasional resize operation to pay for the cost of the future operations.
-* Example: (TBC)
+* Example: Array Resizing
+  * Suppose we init an array with space of 4 and when we add the fifth element, we need to resize the array, going to have O(n) complexity.
+  * After the resizing, we can have another four space for the 5~8 element. That is, the time complexity of this space adding process, O(n) should actually be added to the next 5~8 element adding.
+  * If we divide O(n) to the next 4 elements, then the amortized time complexity will be O(1).
 
 ### space complexity
 
-* we use the definition of industry
-* space complexity = O(n) means it needs at most n elements of space to get things done
+The meaning of `Space complexity = O(n)` is that the space taken by the algorithm increases proportionally with the size of the input.
 
-## What?
+### Conceptual Example
 
-### two liner iteration
+#### Two Liner Iteration
 
 * code
   ```javascript
@@ -137,14 +139,14 @@ In certain data structures, the time complexity of specific operations may vary 
     console.log(arrayB[i])
   }
   ```
-* time complexity = O(A + B)
+* Time complexity = O(A + B)
   * Picks A elements from arrayA, each pick = O(1)
   * Picks B elements from arrayB, each pick = O(1)
-* space complexity = O(1)
+* Space complexity = O(1)
   * Only need a space for i => O(1)
 
 
-### Iteration in An Iteration
+#### Iteration in An Iteration
 
 * code
   ```javascript
@@ -160,26 +162,29 @@ In certain data structures, the time complexity of specific operations may vary 
 * Space complexity = O(2) = O(1)
   * The space required by i and j is constant
 
-### recursive binary search
+#### Recursive Binary Search
 
 * code
   ```javascript
-  function binarySearch (array, target) {
-    let middleIndex = Math.floor(array.length / 2)
+  function binarySearch(array, target) {
+    let low = 0;
+    let high = array.length - 1;
   
-    if (array[middleIndex] === target) {
-      return true
+    while (low <= high) {
+      let middle = Math.floor((low + high) / 2);
+      
+      if (array[middle] === target) {
+        return true;
+      }
+      
+      if (target < array[middle]) {
+        high = middle - 1;
+      } else {
+        low = middle + 1;
+      }
     }
-  
-    if(array.length === 1) {
-      return false
-    }
-  
-    if (target > array[middleIndex]) {
-      return binarySearch (array.slice(middleIndex, array.length), target)
-    } else if (target < array[middleIndex]) {
-      return binarySearch (array.slice(0, middleIndex), target)
-    }
+    
+    return false;
   }
   ```
 * time complexity = O(log N)
@@ -188,7 +193,7 @@ In certain data structures, the time complexity of specific operations may vary 
 * Space complexity = O(log N) for middleIndex
   * Again, given the elements in an array is 16, at most need to work through 5 elements. Because it is recursive, before we find the answer, all the binarySearch will be store in stack and wait the final binarySearch to return answer. Because each binarySearch need one middleIndex, O(1) and it will also be 5 steps, so the space complexity is also O(log N)
 
-### recursive, like fibonacci series
+#### Recursive, Fibonacci Series
 
 * code
   ```javascript
@@ -220,6 +225,34 @@ In certain data structures, the time complexity of specific operations may vary 
   * Given every function will request two functions, the time complexity = O(1 + 2 + 4 + ... + 2^(n-1)) = O(2^n - 1) = O(2^n)
 * space complexity = $$O(N)$$
   * The data we need to store is f(1), f(2), ... f(n), meaning the space complexity = O(n)
+
+## What?
+
+### Product of A and B
+
+* code
+  ```javascript
+  function product(a, b) {
+    let sum = 0
+    for (i = 0; i < b; i ++) {
+      sum += a
+    }
+    return sum
+  }
+  ```
+* Time complexity: it will add a for b times, so the time complexity will be O(b)
+
+### Power of b on a
+
+(TBC)
+
+### A % B
+
+(TBC)
+
+### Integer Division
+
+(TBC)
 
 ## Reference
 
