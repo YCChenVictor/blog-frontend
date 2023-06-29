@@ -153,23 +153,22 @@ Learning linked lists is valuable because they provide a flexible and efficient 
   * Read an element: O(n) - Traversing to the target position to read the element takes time proportional to the number of nodes linked before that position.
   * Update an element: O(n) - Traversing to the target position to update the element takes time proportional to the number of nodes linked before that position.
   * Delete an element: O(n) - Traversing to the target position to delete the element takes time proportional to the number of nodes linked before that position.
-* spec (2023-06-28)
+* spec
   ```javascript
-  const LinkedList = require('../examples/singly_linked_list.js');
-  
+  const SinglyLinkedList = require('../examples/singly_linked_list.js');
+
   describe('SinglyLinkedList', () => {
     let testLinkedList;
     beforeEach(() => {
-      testLinkedList = new LinkedList();
+      testLinkedList = new SinglyLinkedList();
       const values = [1, 74, 888, 62, 33];
       for(let i = 0; i < values.length; i++){
-        testLinkedList.prepand(values[i]);
+        testLinkedList.prepend(values[i]);
       }
     });
   
-    // create
-    test('#prepand', () => {
-      testLinkedList.prepand(0);
+    test('#prepend', () => {
+      testLinkedList.prepend(0);
       expect(testLinkedList.printList()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
     });
   
@@ -183,7 +182,6 @@ Learning linked lists is valuable because they provide a flexible and efficient 
       expect(testLinkedList.printList()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
     });
   
-    // read
     test('#traverse', () => {
       expect(testLinkedList.traverseTo(2).value).toEqual(888);
     })
@@ -192,27 +190,25 @@ Learning linked lists is valuable because they provide a flexible and efficient 
       expect(testLinkedList.printList()).toEqual([33, 62, 888, 74, 1]);
     })
     
-    // update
     test('#update', () => {
       testLinkedList.update(3, 4)
-      expect(testLinkedList.printList()).toEqual([33, 62, 4, 74, 1]);
+      expect(testLinkedList.printList()).toEqual([33, 62, 888, 4, 1]);
     })
     
-    // destroy
     test('#remove', () => {
       testLinkedList.remove(3)
-      expect(testLinkedList.printList()).toEqual([33, 62, 74, 1]);
+      expect(testLinkedList.printList()).toEqual([33, 62, 888, 1]);
     })
   });
   ```
 
 ## What
 
-When solving linkedlist problems, always think of recursive.
+When solving linked list problems, think of recursive.
 
 ### runner technique
 
-* Concept: two pointers iterates through a linkedlist at the same time.
+* Concept: two pointers iterates through a linked list at the same time.
 * Detecting Cycles
   ```javascript
   function hasCycle(head) {
@@ -252,7 +248,7 @@ When solving linkedlist problems, always think of recursive.
 * Information:
   * Example: from [1, 4, 6, 3, 2, 7, 4, 8, 3] to [1, 4, 6, 3, 2, 7, 8]
   * You can remove any duplicate nodes you want as long as the result are all unique values
-* Edge cases: Only one node in this linkedlist
+* Edge cases: Only one node in this linked list
 * Brute force: compare each node with the rest linked nodes
 * Best time complexity: Because we need to traverse all the nodes to read their values at least once, the time complexity will be at least O(n).
 * Code example
@@ -302,8 +298,8 @@ When solving linkedlist problems, always think of recursive.
 
 * Problem: Implement an algorithm to find the kth to last element of a singly linked list.
 * Information:
-  * Example: If a linkedlist is 1 <- 4 <- 6 <- 3 <- 2 <- 7 <- 8, then returnKthToLast(linkedList, 3) will be 6 <- 3 <- 2 <- 7 <- 8
-  * It should return a node because the node of a linkedlist will show all the following node values. 
+  * Example: If a linked list is 1 <- 4 <- 6 <- 3 <- 2 <- 7 <- 8, then returnKthToLast(linkedList, 3) will be 6 <- 3 <- 2 <- 7 <- 8
+  * It should return a node because the node of a linked list will show all the following node values. 
 * Code example:
   ```javascript
   function returnKthToLast (linkedList, k) {
@@ -352,7 +348,7 @@ When solving linkedlist problems, always think of recursive.
   * a -> b -> c -> d -> e -> f => a -> b -> d -> e -> f
   * a -> b -> c -> d -> e => a -> b -> d -> e
 * Edge Case:
-  * If the linkedlist has only one node, then nothing will be removed from the list.
+  * If the linked list has only one node, then nothing will be removed from the list.
 * Time complexity: We must need to traverse at least once to know the length, so the time complexity is at least O(n).
 * Code example:
   ```javascript
@@ -442,6 +438,41 @@ When solving linkedlist problems, always think of recursive.
   ```
 
 ### Sum List
+
+* Problem: Two numbers are presented as linked list; for example, 671 as 6 -> 7 -> 1. Please write an algorithm for the sum of these two numbers; input: (6 -> 7 -> 1), (3 -> 5) and output: (7 -> 0 -> 6). p.s 671 + 35 = 706
+* Time Complexity: I think the least time complexity is O(A + B), where A is the number of nodes of first linked list and B is the number of nodes of second linked list.
+* Code
+  ```javascript
+  function sumList(A, B) {
+    numberOfA = getNumber(A)
+    numberOfB = getNumber(B)
+
+    totalNumber = numberOfA + numberOfB
+    base = 10
+    result = new LinkedList()
+    while (totalNumber % base !== totalNumber) {
+      result.append(totalNumber % base)
+      base = base * 10
+    }
+
+    return total
+
+    function getNumber(node) {
+      number = 0
+      currentNode = node.head
+      base = 1
+
+      while (currentNode != null) {
+        number += currentNode.value * base
+        currentNode = currentNode.next
+        base = base * 10
+      }
+      
+      return number
+    }
+  }
+  ```
+* Test:
 
 ### Palindrome
 
