@@ -444,12 +444,12 @@ When solving linked list problems, think of recursive.
 * Code
   ```javascript
   function sumList(A, B) {
-    numberOfA = getNumber(A)
-    numberOfB = getNumber(B)
+    const numberOfA = getNumber(A)
+    const numberOfB = getNumber(B)
 
-    totalNumber = numberOfA + numberOfB
-    base = 10
-    result = new LinkedList()
+    let base = 10
+    const totalNumber = numberOfA + numberOfB
+    const result = new LinkedList()
     while (totalNumber % base !== totalNumber) {
       result.append(totalNumber % base)
       base = base * 10
@@ -458,9 +458,9 @@ When solving linked list problems, think of recursive.
     return total
 
     function getNumber(node) {
-      number = 0
-      currentNode = node.head
-      base = 1
+      let number = 0
+      let base = 1
+      const currentNode = node.head
 
       while (currentNode != null) {
         number += currentNode.value * base

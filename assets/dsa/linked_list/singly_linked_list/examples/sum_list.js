@@ -1,28 +1,36 @@
-function sumList(A, B) {
-  numberOfA = getNumber(A)
-  numberOfB = getNumber(B)
+const LinkedList = require('./singly_linked_list.js')
 
-  totalNumber = numberOfA + numberOfB
-  base = 10
-  result = new LinkedList()
-  while (totalNumber % base !== totalNumber) {
-    result.append(totalNumber % base)
-    base = base * 10
+function sumList(A, B) {
+  const numberOfA = getNumber(A)
+  const numberOfB = getNumber(B)
+
+  let restNumber = numberOfA + numberOfB
+  const result = new LinkedList()
+  while (restNumber !== 0) {
+    result.prepend(restNumber % 10)
+    restNumber = Math.floor(restNumber / 10)
   }
 
-  return total
+  return result
 
   function getNumber(node) {
-    number = 0
-    currentNode = node.head
-    base = 1
+    let currentNode = node.head
+    let number = 0
+    const values = []
 
     while (currentNode != null) {
-      number += currentNode.value * base
+      values.unshift(currentNode.value)
       currentNode = currentNode.next
-      base = base * 10
+    }
+
+    for(let i = 0; i < values.length; i++) {
+      number += values[i] * 10 ** i
     }
     
     return number
   }
+}
+
+module.exports = {
+  sumList: sumList
 }
