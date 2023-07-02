@@ -11,7 +11,7 @@ publish: true
 
 ## Introduction
 
-(TBC)
+This article explores the benefits and usage of linked lists, specifically focusing on singly and doubly linked lists. It provides code examples and explanations for implementation, along with techniques for efficient manipulation and problem-solving in linked lists.
 
 ## why
 
@@ -202,9 +202,193 @@ Learning linked lists is valuable because they provide a flexible and efficient 
   });
   ```
 
-## What
+### Doubly Linked List
 
-When solving linked list problems, think of recursive.
+* Graph
+  <div class="mermaid">
+    graph LR
+      id1((A)) --> id2((B))
+      id2((B)) --> id1((A))
+      id2((B)) --> id3((C))
+      id3((C)) --> id2((B))
+      id3((C)) --> id4((...))
+      id4((...)) --> id3((C))
+  </div>
+* coding example:
+  ```javascript
+  class Node {
+    constructor(data) {
+      this.data = data;
+      this.prev = null;
+      this.next = null;
+    }
+  }
+    
+  class DoublyLinkedList {
+    constructor() {
+      this.head = null;
+      this.tail = null;
+    }
+    
+    // create
+    append(data) { // create a node on the tail
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        this.tail.next = newNode;
+        newNode.prev = this.tail;
+        this.tail = newNode;
+      }
+    }
+    
+    prepend(data) { // create a node on the head
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        this.head.prev = newNode;
+        newNode.next = this.head;
+        this.head = newNode;
+      }
+    }
+    
+    insert(position, data) { // create a node on particular position
+      const newNode = new Node(data);
+      if (this.head === null) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else if (position > this.length) {
+        this.append(data)
+      } else {
+        const nodeOnPosition = this.traverseToIndex(position - 1);
+        newNode.next = nodeOnPosition;
+        newNode.prev = nodeOnPosition.prev;
+        newNode.prev.next = newNode;
+      }
+    }
+    
+    // read
+    value() { // return the value of node in particular position
+    }
+  
+    values() { // return values from head
+      let current_node = this.head;
+      const result = [];
+      while (current_node !== null) {
+        result.push(current_node.data);
+        current_node = current_node.next;
+      }
+      return result
+    }
+  
+    reverseValues() { // return values from tail
+      let current_node = this.tail;
+      const result = [];
+      while (current_node !== null) {
+        result.push(current_node.data);
+        current_node = current_node.prev;
+      }
+      return result
+    }
+  
+    // traverse
+    traverseToIndex(index) {
+      let currentNode = this.head;
+  
+      for (let i = 0; i < index; i++) {
+        currentNode = currentNode.next;
+      }
+  
+      return currentNode;
+    }
+    
+    // update
+    update(position, value) { // update the value on particular position
+    
+    }
+      
+    // delete
+    remove(position) { // remove the node on particular position
+      if (this.head === null) {
+        return;
+      }
+      if (this.head === this.tail && this.head.data === data) {
+        this.head = null;
+        this.tail = null;
+        return;
+      }
+      if (this.head.data === data) {
+        this.head = this.head.next;
+        this.head.prev = null;
+        return;
+      }
+      let current_node = this.head.next;
+      while (current_node !== null && current_node.data !== data) {
+        current_node = current_node.next;
+      }
+      if (current_node === null) {
+        return;
+      }
+      if (current_node === this.tail) {
+        this.tail = this.tail.prev;
+        this.tail.next = null;
+        return;
+      }
+      current_node.prev.next = current_node.next;
+      current_node.next.prev = current_node.prev;
+    }
+  }
+  
+  module.exports = DoublyLinkedList
+  ```
+* why we need doubly?
+  * Traversal in both directions
+  * (?) Insertion and deletion at any position: In a singly linked list, if you want to insert a node between two nodes, you need to modify the pointers of the previous node to point to the new node, and the new node to point to the next node. With a doubly linked list, you can simply update the pointers of the neighboring nodes to insert a node in between them. Similarly, when deleting a node from a doubly linked list, you can easily update the pointers of the neighboring nodes to remove the node.
+* Spec
+  ```javascript
+  const DoublyLinkedList = require('../examples/doubly_linked_list.js');
+
+  describe('DoublyLinkedList', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new DoublyLinkedList();
+      const values = [1, 74, 888, 62, 33];
+      for(let i = 0; i < values.length; i++){ // 33 <- 62 <- 888 <- 74 <- 1
+        testLinkedList.prepend(values[i]);
+      }
+    });
+  
+    test('#prepend', () => { // 0 <- 33 <- 62 <- 888 <- 74 <- 1
+      testLinkedList.prepend(0);
+      expect(testLinkedList.values()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
+      expect(testLinkedList.reverseValues()).toEqual([ 1, 74, 888, 62, 33, 0 ]);
+    });
+  
+    test('#append', () => { // 33 <- 62 <- 888 <- 74 <- 1 <- 0
+      testLinkedList.append(0);
+      expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
+      expect(testLinkedList.reverseValues()).toEqual([ 0, 1, 74, 888, 62, 33 ]);
+    });
+  
+    test('#insert', () => { // 33 <- 1000 <- 62 <- 888 <- 74 <- 1
+      testLinkedList.insert(2, 1000);
+      expect(testLinkedList.values()).toEqual([ 33, 1000, 62, 888, 74, 1 ]);
+    });
+    
+    test('#update', () => {
+      testLinkedList.update(2, 1000);
+      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
+    })
+  
+    test('#delete', () => {
+      testLinkedList.update(2, 1000);
+      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
+    })
+  });
+  ```
 
 ### runner technique
 
@@ -443,36 +627,66 @@ When solving linked list problems, think of recursive.
 * Time Complexity: I think the least time complexity is O(A + B), where A is the number of nodes of first linked list and B is the number of nodes of second linked list.
 * Code
   ```javascript
+  const LinkedList = require('./singly_linked_list.js')
+
   function sumList(A, B) {
     const numberOfA = getNumber(A)
     const numberOfB = getNumber(B)
-
-    let base = 10
-    const totalNumber = numberOfA + numberOfB
+  
+    let restNumber = numberOfA + numberOfB
     const result = new LinkedList()
-    while (totalNumber % base !== totalNumber) {
-      result.append(totalNumber % base)
-      base = base * 10
+    while (restNumber !== 0) {
+      result.prepend(restNumber % 10)
+      restNumber = Math.floor(restNumber / 10)
     }
-
-    return total
-
+  
+    return result
+  
     function getNumber(node) {
+      let currentNode = node.head
       let number = 0
-      let base = 1
-      const currentNode = node.head
-
+      const values = []
+  
       while (currentNode != null) {
-        number += currentNode.value * base
+        values.unshift(currentNode.value)
         currentNode = currentNode.next
-        base = base * 10
+      }
+  
+      for(let i = 0; i < values.length; i++) {
+        number += values[i] * 10 ** i
       }
       
       return number
     }
   }
+  
+  module.exports = {
+    sumList: sumList
+  }
   ```
 * Test:
+  ```javascript
+  const { sumList } = require('../examples/sum_list.js')
+  const LinkedList = require('../examples/singly_linked_list.js')
+  
+  describe('sum list', () => {
+    const linkedListA = new LinkedList()
+    const linkedListB = new LinkedList()
+    beforeEach(() => {
+      const numberOfA = [6, 1, 7] // 6 is head
+      const numberOfB = [5, 9, 2] // 2 is head
+      for(let i = 0 ;i < numberOfA.length; i++) {
+        linkedListA.append(numberOfA[i])
+      }
+      for(let i = 0 ;i < numberOfB.length; i++) {
+        linkedListB.append(numberOfB[i])
+      }
+    })
+    test('return desired linked list', () => {
+      expect(sumList(linkedListA, linkedListB).printList()).toEqual([1, 2, 0, 9])
+    })
+  })
+  ```
 
 ### Palindrome
 
@@ -556,196 +770,6 @@ function parseSteps(answer) {
   return steps.map(step => step.trim()).filter(step => step !== '');
 }
 ```
-
-## Other
-
-### Doubly Linked List
-
-* Graph
-  <div class="mermaid">
-    graph LR
-      id1((A)) --> id2((B))
-      id2((B)) --> id1((A))
-      id2((B)) --> id3((C))
-      id3((C)) --> id2((B))
-      id3((C)) --> id4((...))
-      id4((...)) --> id3((C))
-  </div>
-* coding example:
-  ```javascript
-  class Node {
-    constructor(data) {
-      this.data = data;
-      this.prev = null;
-      this.next = null;
-    }
-  }
-    
-  class DoublyLinkedList {
-    constructor() {
-      this.head = null;
-      this.tail = null;
-    }
-    
-    // create
-    append(data) { // create a node on the tail
-      const newNode = new Node(data);
-      if (this.head === null) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        this.tail.next = newNode;
-        newNode.prev = this.tail;
-        this.tail = newNode;
-      }
-    }
-    
-    prepend(data) { // create a node on the head
-      const newNode = new Node(data);
-      if (this.head === null) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        this.head.prev = newNode;
-        newNode.next = this.head;
-        this.head = newNode;
-      }
-    }
-    
-    insert(position, data) { // create a node on particular position
-      const newNode = new Node(data);
-      if (this.head === null) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else if (position > this.length) {
-        this.append(data)
-      } else {
-        const nodeOnPosition = this.traverseToIndex(position - 1);
-        newNode.next = nodeOnPosition;
-        newNode.prev = nodeOnPosition.prev;
-        newNode.prev.next = newNode;
-      }
-    }
-    
-    // read
-    value() { // return the value of node in particular position
-    }
-  
-    values() { // return values from head
-      let current_node = this.head;
-      const result = [];
-      while (current_node !== null) {
-        result.push(current_node.data);
-        current_node = current_node.next;
-      }
-      return result
-    }
-  
-    reverseValues() { // return values from tail
-      let current_node = this.tail;
-      const result = [];
-      while (current_node !== null) {
-        result.push(current_node.data);
-        current_node = current_node.prev;
-      }
-      return result
-    }
-  
-    // traverse
-    traverseToIndex(index) {
-      let currentNode = this.head;
-  
-      for (let i = 0; i < index; i++) {
-        currentNode = currentNode.next;
-      }
-  
-      return currentNode;
-    }
-    
-    // update
-    update(position, value) { // update the value on particular position
-    
-    }
-      
-    // delete
-    remove(position) { // remove the node on particular position
-      if (this.head === null) {
-        return;
-      }
-      if (this.head === this.tail && this.head.data === data) {
-        this.head = null;
-        this.tail = null;
-        return;
-      }
-      if (this.head.data === data) {
-        this.head = this.head.next;
-        this.head.prev = null;
-        return;
-      }
-      let current_node = this.head.next;
-      while (current_node !== null && current_node.data !== data) {
-        current_node = current_node.next;
-      }
-      if (current_node === null) {
-        return;
-      }
-      if (current_node === this.tail) {
-        this.tail = this.tail.prev;
-        this.tail.next = null;
-        return;
-      }
-      current_node.prev.next = current_node.next;
-      current_node.next.prev = current_node.prev;
-    }
-  }
-  
-  module.exports = DoublyLinkedList
-  ```
-* why we need doubly?
-  * Traversal in both directions
-  * (?) Insertion and deletion at any position: In a singly linked list, if you want to insert a node between two nodes, you need to modify the pointers of the previous node to point to the new node, and the new node to point to the next node. With a doubly linked list, you can simply update the pointers of the neighboring nodes to insert a node in between them. Similarly, when deleting a node from a doubly linked list, you can easily update the pointers of the neighboring nodes to remove the node.
-* Spec
-  ```javascript
-  const DoublyLinkedList = require('../examples/doubly_linked_list.js');
-
-  describe('DoublyLinkedList', () => {
-    let testLinkedList;
-    beforeEach(() => {
-      testLinkedList = new DoublyLinkedList();
-      const values = [1, 74, 888, 62, 33];
-      for(let i = 0; i < values.length; i++){ // 33 <- 62 <- 888 <- 74 <- 1
-        testLinkedList.prepend(values[i]);
-      }
-    });
-  
-    test('#prepend', () => { // 0 <- 33 <- 62 <- 888 <- 74 <- 1
-      testLinkedList.prepend(0);
-      expect(testLinkedList.values()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
-      expect(testLinkedList.reverseValues()).toEqual([ 1, 74, 888, 62, 33, 0 ]);
-    });
-  
-    test('#append', () => { // 33 <- 62 <- 888 <- 74 <- 1 <- 0
-      testLinkedList.append(0);
-      expect(testLinkedList.values()).toEqual([ 33, 62, 888, 74, 1, 0 ]);
-      expect(testLinkedList.reverseValues()).toEqual([ 0, 1, 74, 888, 62, 33 ]);
-    });
-  
-    test('#insert', () => { // 33 <- 1000 <- 62 <- 888 <- 74 <- 1
-      testLinkedList.insert(2, 1000);
-      expect(testLinkedList.values()).toEqual([ 33, 1000, 62, 888, 74, 1 ]);
-    });
-    
-    test('#update', () => {
-      testLinkedList.update(2, 1000);
-      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
-    })
-  
-    test('#delete', () => {
-      testLinkedList.update(2, 1000);
-      expect(testLinkedList.printList()).toEqual([ 33, 1000, 888, 74, 1 ]);
-    })
-  });
-  ```
 
 ## reference
 

@@ -10,21 +10,12 @@ mermaid:
 p5:
 threeJS:
 anchor:
-publish: true
+publish:
 ---
 
 ## Introduction
 
-JavaScript is used in conjunction with popular web development frameworks like React, Angular, and Vue.js on the client-side to build complex and interactive web applications. On the server-side, JavaScript is used with Node.js to build web applications using popular frameworks like Express.js and NestJS, which provide a robust and scalable platform for building server-side logic.
-
-* Object-oriented language
-  * Using objects to represent data and functionality
-  * This allows developers to create reusable code that can be organized into modules and classes, making it easier to maintain and update large codebase
-* Client-side
-  * Interact with the Document Object Model (DOM) of a web page, which allows developers to manipulate the content and structure of a page in real-time without requiring a full page refresh
-* Server-side
-  * NodeJS
-  * Allows developers to use JavaScript to build full-stack web applications that can handle both client-side and server-side logic.
+(TBC)
 
 ## Why?
 
@@ -37,9 +28,30 @@ JavaScript is used in conjunction with popular web development frameworks like R
 
 ## How?
 
-### ES
+JavaScript is used in conjunction with popular web development frameworks like React, Angular, and Vue.js on the client-side to build complex and interactive web applications. On the server-side, JavaScript is used with Node.js to build web applications using popular frameworks like Express.js and NestJS, which provide a robust and scalable platform for building server-side logic.
 
-ES stands for ECMAScript, which is a standardized scripting language specification that is used to implement JavaScript. ECMAScript is maintained by the European Computer Manufacturers Association (ECMA) and is designed to be a cross-platform, vendor-neutral standard that can be used by multiple web browsers and other environments that support JavaScript.
+* Object-oriented language
+  * Using objects to represent data and functionality
+  * This allows developers to create reusable code that can be organized into modules and classes, making it easier to maintain and update large codebase
+* Client-side
+  * Interact with the Document Object Model (DOM) of a web page, which allows developers to manipulate the content and structure of a page in real-time without requiring a full page refresh
+* Server-side
+  * NodeJS
+  * Allows developers to use JavaScript to build full-stack web applications that can handle both client-side and server-side logic.
+
+### Forms
+
+* Functional Form
+  * In the functional form, objects are created using functions and closures.
+  * Object behavior is defined using nested functions within the constructor function or by attaching functions to the object's prototype.
+  * The this keyword refers to the object being created or the object instance that the method is called on.
+  * This approach allows for encapsulation and private variables through the use of closures.
+* Class Form
+  * The class form was introduced in ECMAScript 2015 (ES6) as a syntactical sugar on top of the functional approach.
+  * Classes provide a more formal and structured way of defining objects with shared behavior and state.
+  * Objects are created using the new keyword followed by the class name.
+  * Object behavior is defined using methods within the class definition.
+The this keyword also refers to the object instance that the method is called on.
 
 ### Class Form
 
@@ -74,6 +86,69 @@ const child = new ChildClass('Alice', 25);
 child.greet();      // Output: Hello, Alice!
 child.introduce();  // Output: My name is Alice and I am 25 years old.
 ```
+
+### Function
+
+* Arrow vs normal function
+  * Syntax: Arrow functions have a more concise syntax compared to normal functions. They can be written in a single line without using the "return" keyword.
+    ```javascript
+    // Normal function
+    function add(a, b) {
+      return a + b;
+    }
+  
+    // Arrow function
+    const add = (a, b) => a + b;
+    ```
+  * Binding of "this": In arrow functions, the "this" keyword refers to the enclosing context, while in normal functions, the value of "this" is determined by how the function is called.
+    ```javascript
+    const person = {
+      name: "John",
+      sayHello: function() {
+        console.log("Hello, my name is " + this.name);
+      },
+      sayHelloArrow: () => {
+        console.log("Hello, my name is " + this.name);
+      }
+    };
+    
+    person.sayHello(); // output: Hello, my name is John
+    person.sayHelloArrow(); // output: Hello, my name is undefined
+    ```
+    * In the above example, the value of "this" in the arrow function "sayHelloArrow" refers to the global context, which does not have a "name" property.
+  * Use of "arguments": Normal functions have access to a special variable called "arguments", which contains all the arguments passed to the function. Arrow functions do not have access to "arguments".
+    ```javascript
+    function sum() {
+      let total = 0;
+      for(let i=0; i<arguments.length; i++) {
+        total += arguments[i];
+      }
+      return total;
+    }
+    
+    const sumArrow = (...args) => args.reduce((total, num) => total + num, 0);
+    
+    console.log(sum(1, 2, 3, 4)); // output: 10
+    console.log(sumArrow(1, 2, 3, 4)); // output: 10
+    ```
+    * In the above example, the normal function "sum" uses the "arguments" variable to calculate the sum of all the arguments passed to it. The arrow function "sumArrow" uses the spread operator to convert the arguments into an array and then uses the "reduce" method to calculate the sum.
+* Protected methods in class
+  ```javascript
+  class MyClass {
+    constructor() {
+      this._protectedProperty = 'foo';
+    }
+  
+    _protectedMethod() {
+      console.log('This method is protected');
+    }
+  
+    publicMethod() {
+      console.log('This is a public method');
+      this._protectedMethod(); // call the protected method from within the class
+    }
+  }
+  ```
 
 ### Execution Order
 
@@ -175,70 +250,6 @@ for (let i = 0; i < 10; i++) {
   console.log(i);
 }
 ```
-
-### Function
-
-* Arrow vs normal function
-  * Syntax: Arrow functions have a more concise syntax compared to normal functions. They can be written in a single line without using the "return" keyword.
-    ```javascript
-    // Normal function
-    function add(a, b) {
-      return a + b;
-    }
-  
-    // Arrow function
-    const add = (a, b) => a + b;
-    ```
-  * Binding of "this": In arrow functions, the "this" keyword refers to the enclosing context, while in normal functions, the value of "this" is determined by how the function is called.
-    ```javascript
-    const person = {
-      name: "John",
-      sayHello: function() {
-        console.log("Hello, my name is " + this.name);
-      },
-      sayHelloArrow: () => {
-        console.log("Hello, my name is " + this.name);
-      }
-    };
-    
-    person.sayHello(); // output: Hello, my name is John
-    person.sayHelloArrow(); // output: Hello, my name is undefined
-    ```
-    * In the above example, the value of "this" in the arrow function "sayHelloArrow" refers to the global context, which does not have a "name" property.
-  * Use of "arguments": Normal functions have access to a special variable called "arguments", which contains all the arguments passed to the function. Arrow functions do not have access to "arguments".
-    ```javascript
-    function sum() {
-      let total = 0;
-      for(let i=0; i<arguments.length; i++) {
-        total += arguments[i];
-      }
-      return total;
-    }
-    
-    const sumArrow = (...args) => args.reduce((total, num) => total + num, 0);
-    
-    console.log(sum(1, 2, 3, 4)); // output: 10
-    console.log(sumArrow(1, 2, 3, 4)); // output: 10
-    ```
-    * In the above example, the normal function "sum" uses the "arguments" variable to calculate the sum of all the arguments passed to it. The arrow function "sumArrow" uses the spread operator to convert the arguments into an array and then uses the "reduce" method to calculate the sum.
-* protected methods in class
-  ```javascript
-  class MyClass {
-    constructor() {
-      this._protectedProperty = 'foo';
-    }
-  
-    _protectedMethod() {
-      console.log('This method is protected');
-    }
-  
-    publicMethod() {
-      console.log('This is a public method');
-      this._protectedMethod(); // call the protected method from within the class
-    }
-  }
-  ```
-* arrow
 
 ### OOP
 

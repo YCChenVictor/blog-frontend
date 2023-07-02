@@ -15,21 +15,27 @@ TBC
 
 ## Why
 
-To solve problem in a more efficient way, making no more space to improve both the time complexity and space complexity. For more information, please refer to [problem solving]({{site.baseurl}}/dsa/2023/03/08/solve-problem.html)
+To solve problem in a more efficient way, making no more space to improve both the time complexity and space complexity. For more information, please refer to [problem solving]({{site.baseurl}}/dsa/2023/03/08/solve-problem.html).
 
 ## How
 
 We can decompose all the programming logics into four actions: create, read, update, delete. The time complexity of CRUD an element in specific data structure is as follow:
 
 |  | Create | Read | Update | Delete |
-| array list | O(1) - O(n) | O(1) | O(1) | O(1) - O(n) |
+|---|--------|------|--------|--------|
+| array | O(1) or O(n) | O(1) | O(1) | O(1) - O(n) |
+| hash table | O(1) | O(1) | O(1) | O(1) |
 | linked list | O(1) | O(n) | O(n) | O(n) |
 | stack | O(1) | O(1) | O(1) | O(1) |
 | queue | O(1) | O(1) | O(n) | O(1) |
-| trees |
-| graph |
+| trees | O(1) | O(n) | O(n) | O(n) |
+| graph | O(1) | O(V+E) | O(1) | O(V+E) |
+| tries | O(m) | O(m) | O(m) | O(m) |
 
-* index starts from 0: By using zero-based indexing, the calculation of the memory address of an element is simplified. The address of the first element in the array is simply the starting address of the array, with no offset required. The address of the second element is the starting address plus the size of one element, the address of the third element is the starting address plus the size of two elements, and so on. This simple arithmetic works nicely with the way memory is allocated and addresses are calculated.
+* "n" refers to the number of total elements in the data structure currently.
+* "m" refers to the length of the key being inserted or searched in the trie.
+* "V" refers to the number of vertices (nodes) in the graph.
+* "E" refers to the number of edges in the graph.
 
 ### Array
 
@@ -37,7 +43,7 @@ It is a data structure in programming that stores a collection of elements. Thes
 
 ### Linkedlist
 
-A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linkedlist]({{site.baseurl}}/dsa/2022/05/23/linkedlist.html).
+A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linkedlist]({{site.baseurl}}/dsa/2022/05/23/linked-list.html).
 
 ### Stack
 
@@ -49,7 +55,7 @@ A queue is a linear data structure that follows the First-In-First-Out (FIFO) pr
 
 ### tree
 
-A tree is a hierarchical data structure with nodes connected by edges, and a single root node at the top. It is used in computer science to represent data with a hierarchical structure, and various algorithms have been developed to manipulate and process tree structures efficiently. For more information, please refer to [tree]({{site.baseurl}}/dsa/2022/06/26/tree.html)
+A tree is a hierarchical data structure with nodes connected by edges, and a single root node at the top. It is used in computer science to represent data with a hierarchical structure, and various algorithms have been developed to manipulate and process tree structures efficiently. For more information, please refer to [tree]({{site.baseurl}}/dsa/2022/06/26/tree.html).
 
 ### graphs
 
