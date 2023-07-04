@@ -19,11 +19,11 @@ quick explanation
 
 ## Why?
 
-focus on why we need it
+JWT (JSON Web Token) are used as a secure and compact means of transmitting and verifying claims or information between parties, enabling stateless authentication and authorization in distributed systems.
 
 ## How?
 
-### Use Case
+### Concept
 
 <div class="mermaid">
   graph LR
@@ -37,33 +37,15 @@ focus on why we need it
     secured_website(Secured Website) -- validate? == no --> no_page((No Page))
 </div>
 
-### Generate
+In the context of the provided graph, JWT serves as a **secure token** that facilitates the reliable exchange of **user information** between two parties involved.
+* User information: We called it claims; for example, the user's name, ID, roles, or any other relevant data.
+* Secure token (2023/07/04)
+  * Encoding: The JSON object is then Base64Url encoded to produce a compact string, which forms the JWT. This encoding ensures that the JWT can be easily transmitted across different systems without any loss of data.
+  * Signature: To ensure the integrity of the JWT and to prevent tampering, a signature is generated. The signature is created using a secret key that is shared between the parties involved. It is calculated over the encoded JWT and appended to it, separated by a period.
+* Transmission: The JWT is typically sent from the client to the server in the Authorization header of an HTTP request. It is commonly transmitted as a Bearer Token, meaning it is prefixed with the word "Bearer" followed by a space, before the actual JWT.
+* Verification: On the server-side, the received JWT's signature is verified using the shared secret key. If the signature is valid, it signifies that the JWT has not been tampered with during transmission. The information contained within the JWT can then be trusted and used to perform authorized actions.
 
-JWT is a **self-contained token** format that securely transmits information between parties as a **JSON object**, consisting of a **header**, a **payload containing claims**, and a **signature for integrity verification**.
-
-<div class="mermaid">
-  graph LR
-    user(User) -- email, password --> sign_up_or_login_page[Sign Up or Login Page]
-    sign_up_or_login_page[Landing Page] -- email, password --> jwt_service_create[JWT Creation Service]
-    jwt_service_create[JWT Creation Service] -- JWT --> user(User)
-    user(User) -- JWT --> secured_website(Secured Website)
-    secured_website(Secured Website) -- JWT --> jwt_service_validate[JWT Validation Service]
-    jwt_service_validate[JWT Validation Service] -- validate? --> secured_website(Secured Website)
-    secured_website(Secured Website) -- validate? == yes --> show_page((Show Page))
-    secured_website(Secured Website) -- validate? == no --> no_page((No Page))
-</div>
-
-The steps of JWT:
-
-1. Claims: JWT consists of a set of claims encoded as a JSON object. These claims can include information about the user, such as the user's name, ID, and roles.
-2. Encoding: The JSON object is then Base64Url encoded to produce a compact string, which is the JWT.
-3. Signature: To ensure that the information in the JWT has not been tampered with, a signature is generated using a secret key shared between the parties. The signature is calculated over the encoded JWT and is appended to it, separated by a period.
-4. Transmission: The JWT is then sent from the client to the server in the **Authorization** header of an HTTP request, usually as a Bearer Token.
-5. Verification: On the server, the signature is verified using the shared secret key, and if the signature is valid, the information in the JWT is trusted and can be used to perform authorized actions.
-
-## What?
-
-### Scenario
+### Example
 
 Let's consider an e-commerce website where users can place orders, and there are different levels of access and privileges for customers and administrators.
 
@@ -91,6 +73,10 @@ Meanwhile, a user named Bob, who is an administrator, wants to access the admin 
 Bob's client application includes his JWT with the appropriate administrator privileges in the Authorization header of the HTTP request.
 The server validates Bob's JWT, verifies his identity and authorization level, and allows him access to the admin panel.
 Based on the claims in Bob's JWT, the server presents relevant information and functionality for managing products and orders.
+
+## What?
+
+### Scenario
 
 ### In React + Node
 
