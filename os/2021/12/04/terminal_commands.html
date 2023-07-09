@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,168 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>terminal usage</h1>
-    <h2 id="introduction">Introduction</h2>
-
-<p>This article describes how to use terminal efficiently.</p>
-
-<h2 id="why">Why?</h2>
-
-<p>learning by doing and read articles online</p>
-
-<h2 id="how">How?</h2>
-
-<h3 id="basic-command">basic command</h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">mkdir</code>, create directory
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">mkdir test</code> will create a test directory in current directory</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">touch</code>, create file
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">touch test</code> will create a file called test in current directory</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">cp</code>, copy file a file and create a new one
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">cp test test1</code> will copy <code class="language-plaintext highlighter-rouge">test</code> and saved as <code class="language-plaintext highlighter-rouge">test1</code> in current directory</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">mv</code>, move file to specific directory
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">mv test coding</code> will move <code class="language-plaintext highlighter-rouge">test</code> to directory, <code class="language-plaintext highlighter-rouge">coding</code></li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">rm</code>, remove file
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">rm test</code> will remove <code class="language-plaintext highlighter-rouge">test</code> in current directory</li>
-      <li><code class="language-plaintext highlighter-rouge">rm -r test</code> will remove directory, <code class="language-plaintext highlighter-rouge">test</code></li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">grep</code>, search specific text in specific text file
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">grep word example.txt</code> will search text, <code class="language-plaintext highlighter-rouge">word</code> in <code class="language-plaintext highlighter-rouge">example.txt</code> file</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">less</code>, view the content of a file in one page
-    <ul>
-      <li>(to be continued)</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">cat</code>, view multiple files at the same time
-    <ul>
-      <li>(to be continued)</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">awk</code> (to be continued)</li>
-  <li><code class="language-plaintext highlighter-rouge">tr</code> (to be continued)</li>
-  <li><code class="language-plaintext highlighter-rouge">sed</code> (to be continued)</li>
-  <li><code class="language-plaintext highlighter-rouge">tail</code>, show the last lines of a file
-    <ul>
-      <li>(to be continued)</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">head</code>, show the first lines of a file
-    <ul>
-      <li>(to be continued)</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">find</code>, find a files in computer
-    <ul>
-      <li>(to be continued)</li>
-    </ul>
-  </li>
-</ul>
-
-<p>pwd, ls, cd (try to get the list in what section)</p>
-
-<h3 id="internet">internet</h3>
-
-<h4 id="curl-data-transferring-between-servers">curl: data transferring between servers</h4>
-
-<ul>
-  <li>HTTP GET: <code class="language-plaintext highlighter-rouge">curl https://any_existed_url.com/</code></li>
-  <li>HTTP GET HEADER: <code class="language-plaintext highlighter-rouge">curl -I https://any_existed_url.com/</code></li>
-  <li>HTTP POST JSON: <code class="language-plaintext highlighter-rouge">curl -d '{"key": "item"}' -H "Content-Type: application/json" -X POST https://any_existed_url.com/</code></li>
-  <li>HTTP PUT JSON: <code class="language-plaintext highlighter-rouge">curl -d '{"key": "item"}' -H "Content-Type: application/json" -X PUT https://any_existed_url.com/</code>
-…</li>
-</ul>
-
-<h4 id="wget-for-file-downlaoding-from-internet">wget: for file downlaoding from internet</h4>
-
-<h4 id="ssh-for-opening-an-encrypted-secure-shell-connection">ssh: for opening an encrypted secure shell connection</h4>
-
-<h3 id="update">update</h3>
-
-<h3 id="delete">delete</h3>
-
-<p>kill: for terminating a process</p>
-
-<h2 id="what">What?</h2>
-
-<h3 id="get-texts">get texts</h3>
-
-<p>To get all wordings in <code class="language-plaintext highlighter-rouge">&lt;h1&gt;</code> tag of <a href="https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line">this</a>,</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># get the texts from the website (curl)</span>
-<span class="c"># parse the texts besides &lt;h1&gt; (awk)</span>
-</code></pre></div></div>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="https://en.wikipedia.org/wiki/Grep">grep</a></p>
-
-<p><a href="https://noootown.com/awk-useful-usage/">awk</a></p>
-
-<p><a href="https://phoenixnap.com/kb/wget-command-with-examples">wget</a></p>
-
-<p><a href="https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Command_line">Command line crash course</a></p>
-
-<p><a href="https://flaviocopes.com/http-curl/">The curl guide to HTTP requests</a></p>
-
-<p><a href="https://maker.pro/linux/tutorial/basic-linux-commands-for-beginners">Basic Linux Commands for Beginners</a></p>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,95 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(React) tensorFlowJS</h1>
-    <h2 id="introduction">Introduction</h2>
-
-<h2 id="why">Why</h2>
-<p>skip</p>
-
-<h2 id="how">How</h2>
-
-<h3 id="install--load">install &amp; load</h3>
-<p>I am going to load an image recognition model from <a href="https://www.tensorflow.org/js/models">pre-trained tensorflow models</a> in a react App.</p>
-
-<p>A. Installation</p>
-
-<p>In project directory,</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i @tensorflow/tfjs
-npm i @tensorflow-models/mobilenet
-</code></pre></div></div>
-<p>Then in <code class="language-plaintext highlighter-rouge">package.json</code></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"@tensorflow-models/mobilenet": "^1.0.0",
-"@tensorflow/tfjs": "^1.7.4",
-</code></pre></div></div>
-
-<p>B. create a file (optional) such as <code class="language-plaintext highlighter-rouge">imageTf.js</code> and import it</p>
-
-<p>C. Import them
-and then import them with</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import * as tf from "@tensorflow/tfjs"
-import * as net from "@tensorflow-models/mobilenet"
-</code></pre></div></div>
-<p>Then create a function to initialize <code class="language-plaintext highlighter-rouge">mobilenet</code></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const runMobileNet = async () =&gt; {
-  const model = await mobilenet.load();
-  console.log(model)
-}
-</code></pre></div></div>
-<p>Then in your console, after the model loaded,
-<img src="/assets/img/mobileNet_console.png" /></p>
-
-<p>D. Train the model</p>
-
-<h2 id="what">What</h2>
-<p>pratical example: <a href="https://github.com/YCChenVictor/my_teachable_machine"><strong>my teachable machine</strong></a></p>
-
-<h2 id="reference">Reference</h2>
-<p><a href="https://www.youtube.com/watch?v=7lXYGDVHUNw">Real Time AI Face Landmark Detection in 20 Minutes with Tensorflow.JS and React</a></p>
-
-<p><a href="https://github.com/tensorflow/tfjs-models/blob/master/mobilenet/README.md">MobileNet</a></p>
-
-<p><a href="https://www.pluralsight.com/guides/how-to-send-state-of-current-component-as-a-parameter-to-another-external-method-using-react">How to Send State of Current Component as a Parameter to Another External Method Using React</a></p>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

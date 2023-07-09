@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,150 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(Vue 2) Components</h1>
-    <h2 id="introduction">Introduction</h2>
-
-<p>skip</p>
-
-<h2 id="why">Why?</h2>
-
-<p>With the concpet of components, we can build a larger and maintainable App with the concept of not duplicate components.</p>
-
-<h2 id="how">How?</h2>
-
-<h3 id="basic-example-of-login-form">basic example of login form</h3>
-
-<h4 id="template-of-login-form">template of login form</h4>
-
-<p>We are going to build an App with two inputs sections using the same component and one component for logic form. The basic concept of Vue:</p>
-
-<ol>
-  <li>create app with <code class="language-plaintext highlighter-rouge">app=Vue.createApp</code></li>
-  <li>create components for app with <code class="language-plaintext highlighter-rouge">app.component</code></li>
-  <li>put the components in <code class="language-plaintext highlighter-rouge">&lt;div id="app"&gt;</code> and use data and methods to manipulate it</li>
-  <li>and of course, use style to change the layout</li>
-</ol>
-
-<p>as follow</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;style&gt;</span>
-    <span class="o">...</span>
-    <span class="nt">input</span> <span class="p">{</span>
-        <span class="nl">margin</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
-        <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="nt">&lt;/style&gt;</span>
-...
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span> <span class="na">v-cloak</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;login-form</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-...
-<span class="nt">&lt;script&gt;</span>
-    <span class="p">...</span>
-    <span class="nx">app</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">login-form</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">template</span><span class="p">:</span><span class="s2">`
-            &lt;h1&gt;  &lt;/h1&gt;
-            &lt;div&gt;
-                &lt;input type='email' /&gt;
-                &lt;input type='password' /&gt;
-            &lt;/div&gt;
-        `</span><span class="p">,</span>
-        <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Login</span><span class="dl">'</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">})</span>
-    <span class="p">...</span>
-<span class="nt">&lt;/script&gt;</span>
-</code></pre></div></div>
-
-<h4 id="function-to-post-email-and-password">function to post email and password</h4>
-
-<ol>
-  <li>turn <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> into <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code></li>
-  <li>add <code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> in <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code></li>
-  <li>add function to eventlistener, <code class="language-plaintext highlighter-rouge">@submit</code> in <code class="language-plaintext highlighter-rouge">&lt;form&gt;</code></li>
-  <li>add method, <code class="language-plaintext highlighter-rouge">&lt;handleSubmit&gt;</code> for <code class="language-plaintext highlighter-rouge">&lt;@submit&gt;</code></li>
-  <li>prevent the original behavior of <code class="language-plaintext highlighter-rouge">&lt;button&gt;</code> to avoid page refreshing</li>
-  <li>add <code class="language-plaintext highlighter-rouge">v-model</code> and parameters in the <code class="language-plaintext highlighter-rouge">return</code> of <code class="language-plaintext highlighter-rouge">data()</code> to catch the inputs</li>
-</ol>
-
-<p>then the script would be like</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-    <span class="p">...</span>
-    <span class="nx">app</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">login-form</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
-        <span class="na">template</span><span class="p">:</span><span class="s2">`
-            &lt;h1&gt;  &lt;/h1&gt;
-            &lt;form @submit.prevent="handleSubmit"&gt;
-                &lt;input type='email' v-model="email" /&gt;
-                &lt;input type='password' v-model="password" /&gt;
-                &lt;button&gt; login &lt;/button&gt;
-            &lt;/form&gt;
-        `</span><span class="p">,</span>
-        <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Login</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">email</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
-                <span class="na">password</span><span class="p">:</span> <span class="dl">''</span>
-            <span class="p">}</span>
-        <span class="p">},</span>
-        <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nx">handleSubmit</span><span class="p">()</span> <span class="p">{</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">password</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">})</span>
-    <span class="p">...</span>
-<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span></code></pre></div></div>
-
-<h2 id="what">What?</h2>
-
-<p>give an example</p>
-
-<h2 id="reference">Reference</h2>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

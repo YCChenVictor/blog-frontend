@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,135 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Tailwind</h1>
-    <h3 id="introduction">Introduction</h3>
-
-<p>Tailwind &gt; bootstrap</p>
-
-<h3 id="why">Why</h3>
-
-<p>Customizable inline style coding</p>
-
-<h3 id="how">How</h3>
-
-<h4 id="create-a-newproject">Create a new project</h4>
-
-<p>$ rails new tailwind</p>
-
-<h4 id="install">Install </h4>
-
-<p>In the rails project, install it</p>
-
-<p>$ yarn add tailwindcss@npm:@tailwindcss/postcss7-compat postcss@\^7 autoprefixer@\^9</p>
-
-<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__eUx____cnroz__us__kG96WH6w.png" alt="" /></p>
-
-<h4 id="configuration-file">configuration file</h4>
-
-<p>Create it</p>
-
-<p>npx tailwindcss init</p>
-
-<p>It will create a file <code class="language-plaintext highlighter-rouge">tailwind.config.js</code></p>
-
-<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__W2lQk58DFJAubB0NPk8AeA.png" alt="" /></p>
-
-<p>For convenience, let’s move <code class="language-plaintext highlighter-rouge">tailwind.config.js</code> under javascript folder: <code class="language-plaintext highlighter-rouge">app/javascript/stylesheets</code></p>
-
-<h4 id="include-tailwind-toproject">Include tailwind to project</h4>
-
-<ol>
-  <li>To import tailwind style, create <code class="language-plaintext highlighter-rouge">application.scss</code> in <code class="language-plaintext highlighter-rouge">app/javascript/stylesheets</code> and input following code</li>
-</ol>
-
-<p>/* app/javascript/stylesheets/application.scss */ <br />
-@import “tailwindcss/base”; <br />
-@import “tailwindcss/components”;</p>
-
-<p>/* Add any custom CSS here */ <br />
-@import “tailwindcss/utilities”;</p>
-
-<p>2. Import the stylesheet in <code class="language-plaintext highlighter-rouge">app/javascript/packs/application.js</code> </p>
-
-<p>…<br />
-import “stylesheets”<br />
-…</p>
-
-<p>3. add <code class="language-plaintext highlighter-rouge">&lt;%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;</code> to <code class="language-plaintext highlighter-rouge">application.html.erb</code> as follow:</p>
-
-<p>…<br />
-&lt;%= stylesheet_link_tag ‘application’, media: ‘all’, ‘data-turbolinks-track’: ‘reload’ %&gt;</p>
-
-<p>&lt;%= stylesheet_pack_tag ‘application’, media: ‘all’, ‘data-turbolinks-track’: ‘reload’ %&gt;</p>
-
-<p>&lt;%= javascript_pack_tag ‘application’, ‘data-turbolinks-track’: ‘reload’ %&gt;<br />
-…</p>
-
-<p>4. add <code class="language-plaintext highlighter-rouge">require("tailwindcss")("./app/javascript/stylesheets/tailwind.config.js")</code> in <code class="language-plaintext highlighter-rouge">postcss.config.js</code> as follow</p>
-
-<p>module.exports = {<br />
-  plugins: [<br />
-    require(“tailwindcss”)(“./app/javascript/stylesheets/tailwind.config.js”),<br />
-  …</p>
-
-<h4 id="purge">purge</h4>
-
-<p>skip</p>
-
-<h3 id="what">What</h3>
-
-<p>這邊要寫常用的 syntax</p>
-
-<h3 id="reference">Reference</h3>
-
-<p><a href="https://web-crunch.com/posts/how-to-install-tailwind-css-2-using-ruby-on-rails" title="https://web-crunch.com/posts/how-to-install-tailwind-css-2-using-ruby-on-rails"><strong>How to install Tailwind CSS v2.0 using Ruby on Rails</strong><br />
-_This is an updated guide for installing Tailwind CSS v2.0. Tailwind CSS just launched a new design and big update that…_web-crunch.com</a><a href="https://web-crunch.com/posts/how-to-install-tailwind-css-2-using-ruby-on-rails"></a></p>
-
-<p><a href="https://tailwindcss.com/docs/configuration" title="https://tailwindcss.com/docs/configuration"><strong>Configuration - Tailwind CSS</strong><br />
-_Because Tailwind is a framework for building bespoke user interfaces, it has been designed from the ground up with…_tailwindcss.com</a><a href="https://tailwindcss.com/docs/configuration"></a></p>
-
-<p><a href="https://tailwindcss.com/docs/installation" title="https://tailwindcss.com/docs/installation"><strong>Installation - Tailwind CSS</strong><br />
-_Learn how to get Tailwind CSS up and running in your project._tailwindcss.com</a><a href="https://tailwindcss.com/docs/installation"></a></p>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

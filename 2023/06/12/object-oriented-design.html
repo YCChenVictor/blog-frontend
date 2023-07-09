@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,172 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Object Oriented Design</h1>
-    <h2 id="introduction">Introduction</h2>
-
-<p>(TBC)</p>
-
-<p>This article describes the steps to design software in an object oriented manner. Please refer to <a href="">object oriented programming</a> for more knowledge.</p>
-
-<h2 id="why">Why?</h2>
-
-<p>TBC</p>
-
-<h2 id="how">How?</h2>
-
-<ul>
-  <li>Identify and understand the requirements
-    <ul>
-      <li>Purpose:</li>
-      <li>Approach: Begin by gathering the requirements for the system or application you are designing. This involves understanding the problem domain, user needs, and any specific functional or non-functional requirements.</li>
-      <li>Example: Suppose the requirements for the library management system include the ability to add books, track book availability, manage borrowing and returning of books, and maintain a catalog of library members.</li>
-    </ul>
-  </li>
-  <li>Identify the main objects
-    <ul>
-      <li>Purpose:</li>
-      <li>Approach: Based on the requirements, identify the main objects or entities that will be part of the system. These objects should represent real-world entities or concepts relevant to the problem domain.</li>
-      <li>Example: Book: Represents a book with attributes such as title, author, ISBN, and availability status. Member: Represents a library member with attributes such as name, membership number, and a list of borrowed books. Library: Represents the library itself, responsible for managing books, members, and their interactions.</li>
-    </ul>
-  </li>
-  <li>Define class hierarchies and relationships
-    <ul>
-      <li>Purpose: Define the relationships between the identified objects</li>
-      <li>Approach: Establish relationships between the identified objects by defining class hierarchies, associations, aggregations, or compositions. This step involves organizing objects into classes and determining how they interact and collaborate with each other.</li>
-      <li>Example: Book class may have attributes like title, author, ISBN, and availability status. Member class may have attributes like name, membership number, and a list of borrowed books. Library class may have methods to add books, track availability, manage borrowing and returning of books, and maintain a catalog of members.</li>
-    </ul>
-  </li>
-  <li>Define object behaviors and methods
-    <ul>
-      <li>Purpose: Determine the behavior and functionality of each class/object</li>
-      <li>Approach: This involves identifying the attributes (data) and methods (functions) associated with each class. Methods define the operations or actions that can be performed by the objects.</li>
-      <li>Example: Book class may have methods like <code class="language-plaintext highlighter-rouge">checkAvailability()</code> to check if the book is available and <code class="language-plaintext highlighter-rouge">reserve()</code> to reserve a book for a member. Member class may have methods like <code class="language-plaintext highlighter-rouge">borrowBook()</code> to borrow a book and <code class="language-plaintext highlighter-rouge">returnBook()</code> to return a book. Library class may have methods like <code class="language-plaintext highlighter-rouge">addBook()</code> to add a book to the library, <code class="language-plaintext highlighter-rouge">trackAvailability()</code> to track the availability of books, <code class="language-plaintext highlighter-rouge">issueBook()</code> to issue a book to a member, and <code class="language-plaintext highlighter-rouge">returnBook()</code> to process the return of a book.</li>
-    </ul>
-  </li>
-  <li>Refine the design
-    <ul>
-      <li>Purpose: Determine the behavior and functionality of each class/object</li>
-      <li>Approach: Review and refine the design by considering principles such as encapsulation, inheritance, polymorphism, and other object-oriented design principles. Ensure that the design is modular, extensible, and adheres to best practices.</li>
-      <li>Example: For example, we may use encapsulation to make the attributes of the Book and Member classes private and provide getter and setter methods to access and modify them</li>
-    </ul>
-  </li>
-  <li>Implement the design
-    <ul>
-      <li>Purpose:</li>
-      <li>Approach: Translate the design into actual code using a programming language. Follow the design principles and guidelines to implement the classes, their relationships, and their behaviors.</li>
-      <li>Example: Translate the design into actual code using a programming language of your choice. Implement the classes, their relationships, and their methods based on the design.</li>
-    </ul>
-  </li>
-  <li>Test and iterate
-    <ul>
-      <li>Purpose:</li>
-      <li>Approach: Test the implemented system to verify its correctness, functionality, and performance. Iterate as necessary to fix any bugs, address design issues, and improve the overall quality of the system.</li>
-      <li>Example:</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="design-patterns">Design Patterns</h3>
-
-<p>For more information, please refer to <a href="2022-01-30-design-pattern">design pattern</a></p>
-
-<h3 id="deck-of-cards">Deck of Cards</h3>
-
-<p>TBC</p>
-
-<h3 id="call-center">Call Center</h3>
-
-<p>TBC</p>
-
-<h3 id="jukebox">Jukebox</h3>
-
-<p>TBC</p>
-
-<h3 id="jukebox-1">Jukebox</h3>
-
-<p>TBC</p>
-
-<h3 id="online-book-reader">Online Book Reader</h3>
-
-<p>TBC</p>
-
-<h3 id="jigsaw">Jigsaw</h3>
-
-<p>TBC</p>
-
-<h3 id="jigsaw-1">Jigsaw</h3>
-
-<p>TBC</p>
-
-<h3 id="othello">Othello</h3>
-
-<p>TBC</p>
-
-<h3 id="circular-array">Circular Array</h3>
-
-<p>TBC</p>
-
-<h3 id="minesweeper">Minesweeper</h3>
-
-<p>TBC</p>
-
-<h3 id="file-system">File System</h3>
-
-<p>TBC</p>
-
-<h3 id="hash-table">Hash Table</h3>
-
-<p>TBC</p>
-
-<h2 id="what">What?</h2>
-
-<p>Given the example in how section, we can try to develop the software.</p>
-
-<h2 id="reference">Reference</h2>
-
-<p>Why: asking for the reason or purpose behind something.
-How: asking for the method or process of doing something.
-What: asking for information about a specific thing or object.</p>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

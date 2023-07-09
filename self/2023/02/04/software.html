@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,38 +22,23 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
+    <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+    <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Software</h1>
-    <h2 id="introduction">Introduction</h2>
+  <div class='prose bg-gray-400' id='article'>
+    <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
+    <div class='text-center'>
+      
+    </div>
+    <div class='md:px-4 md:grid lg:px-72'>
+      <h1 class='text-center mt-6 mb-6'>Software</h1>
+      <h2 id="introduction">Introduction</h2>
 
 <p>Software refers to a set of instructions or programs that tell a computer what to do. It encompasses all the applications, programs, and data that run on digital devices, enabling them to perform various tasks and functions.</p>
 
@@ -70,77 +53,13 @@
 
 <h2 id="how">How?</h2>
 
-<p>Software is a set of instructions and data that tell a computer what to do</p>
-
-<h3 id="system-software">System software</h3>
-
-<p>This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to <a href="/blog/os/2023/04/02/overview.html">operating systems</a>.</p>
-
-<h3 id="application-software">Application software</h3>
-
-<p>This type of software is designed for specific tasks or applications, such as word processing, spreadsheet creation, email management, and graphic design. Examples include Microsoft Office, Adobe Creative Suite, and Google Chrome.</p>
-<ul>
-  <li>Web application
-    <ul>
-      <li>Plan and Design: Plan and design the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.
-        <ul>
-          <li>Server-side rendering
-            <ul>
-              <li>Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility</li>
-              <li>Concept: Generates the HTML content on the server and sending it to the client’s web browser for display</li>
-              <li>Example: rails</li>
-            </ul>
-          </li>
-          <li>Client-side rendering with a separation of concerns
-            <ul>
-              <li>Advantage: This approach offers a more interactive and responsive user experience since the client can manipulate the DOM and fetch data asynchronously without full page reloads.</li>
-              <li>Concept: the server primarily serves static assets (HTML, CSS, JavaScript), and the web application is responsible for rendering the content dynamically on the client-side with backend <a href="/blog/api/2021/02/18/application-programming-interface.html">APIs</a>.</li>
-              <li>Example: React + Node</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>Develop: Write the code for your web application, including the frontend (user interface) and the backend (server-side logic).
-        <ul>
-          <li>Frontend
-            <ul>
-              <li>Framework: <a href="/blog/react/2021/06/13/react.html">React</a>, Vue.js, Angular</li>
-              <li>Test: [Jest]</li>
-            </ul>
-          </li>
-          <li>Backend
-            <ul>
-              <li>Framework: <a href="/blog/node/2022/12/30/node.html">Node.js</a>, or <a href="/blog/rails/2023/01/01/rails.html">Ruby on Rails</a></li>
-              <li>Test: [Jest], [Rspec]</li>
-            </ul>
-          </li>
-          <li>Package:
-            <ul>
-              <li>Javascript: <a href="/blog/package/2023/02/03/package.html">Npm &amp; Yarn</a></li>
-              <li>Ruby: [Gem]</li>
-            </ul>
-          </li>
-          <li>Concept: TDD, BDD</li>
-        </ul>
-      </li>
-      <li>Deploy and Maintain
-        <ul>
-          <li><a href="">Deploy</a> your web application to a web server</li>
-          <li>Maintain it by regularly updating it with bug fixes and <a href="/blog/web-security/2022/08/30/web-security.html">security</a> patches</li>
-          <li><a href="">scale up</a> the application to handle increased traffic or integrating it with other systems.</li>
-          <li><a href="/blog/test/2022/09/02/quality-assurance.html">Quality Assurance</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Non-web application</li>
-</ul>
-
-<h3 id="embedded-software">Embedded software</h3>
-
-<p>This type of software is designed to control and manage hardware devices and systems, and is often built into the devices themselves. Examples include the software that controls a car’s engine, a digital camera’s image processing, or a smart thermostat’s temperature control.</p>
+<p>Software is a set of instructions and data that tell a computer what to do.</p>
 
 <h3 id="concepts">Concepts</h3>
+
+<h4 id="complexity">Complexity</h4>
+
+<p>Complexity is a fundamental characteristic of systems, phenomena, and processes that exhibit intricate interconnections, dependencies, and behaviors. It involves the study and understanding of intricate patterns, emergent properties, and nonlinear dynamics, challenging traditional reductionist approaches and requiring holistic perspectives to unravel its multifaceted nature. For more information, please refer to <a href="/blog/dsa/2022/05/02/complexity.html">complexity</a>.</p>
 
 <h4 id="data-structures-and-algorithms">Data Structures and Algorithms</h4>
 
@@ -158,6 +77,81 @@
 
 <p>System design involves creating a blueprint for the structure and organization of a software system, considering factors such as architecture, modules, interfaces, and data flow. It aims to transform requirements into an efficient and scalable solution that meets the desired goals and objectives of the system. For more information, please refer to <a href="">system design</a></p>
 
+<h4 id="development">Development</h4>
+
+<ul>
+  <li>Concept: TDD, BDD</li>
+</ul>
+
+<h3 id="system-software">System software</h3>
+
+<p>This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to <a href="/blog/os/2023/04/02/overview.html">operating systems</a>.</p>
+
+<h3 id="web-application-software">Web Application software</h3>
+
+<p>This type of software is designed for specific tasks or applications, such as word processing, spreadsheet creation, email management, and graphic design. Examples include Microsoft Office, Adobe Creative Suite, and Google Chrome.</p>
+
+<h4 id="plan-and-design">Plan and Design</h4>
+
+<p>Plan and design the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.</p>
+<ul>
+  <li>Server-side rendering
+    <ul>
+      <li>Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility</li>
+      <li>Concept: Generates the HTML content on the server and sending it to the client’s web browser for display</li>
+      <li>Example: rails</li>
+    </ul>
+  </li>
+  <li>Client-side rendering with a separation of concerns
+    <ul>
+      <li>Advantage: This approach offers a more interactive and responsive user experience since the client can manipulate the DOM and fetch data asynchronously without full page reloads.</li>
+      <li>Concept: The frontend is the user-facing part of an application responsible for displaying and interacting with the interface, the backend handles data processing and logic, and Token-based authentication and authorization mechanisms ensure secure data transmission between the frontend and backend by utilizing tokens as digital credentials for validating user identity and permissions.</li>
+      <li>Example: React + Node</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="develop">Develop</h4>
+
+<p>Write the code for your web application, including the frontend (user interface) and the backend (server-side logic).</p>
+
+<h4 id="frontend">Frontend</h4>
+
+<ul>
+  <li>React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to <a href="/blog/react/2021/06/13/react.html">React</a>.</li>
+  <li>Vue</li>
+  <li>Angular</li>
+  <li>Test: [Jest]</li>
+</ul>
+
+<h4 id="backend">Backend</h4>
+
+<ul>
+  <li>Framework: <a href="/blog/node/2022/12/30/node.html">Node.js</a>, or <a href="/blog/rails/2023/01/01/rails.html">Ruby on Rails</a></li>
+  <li>Test: [Jest], [Rspec]</li>
+  <li><a href="/blog/token_based_authentication/2022/08/17/authentication.html">Token-based authentication and authorization mechanisms</a>: Token-based authentication and authorization mechanisms provide a secure and efficient means of verifying user identity and permissions in web applications and APIs. By utilizing tokens as digital credentials, these mechanisms enhance web security, enable stateless and scalable architectures, and ensure secure data transmission between the frontend and backend.</li>
+</ul>
+
+<h4 id="package">Package</h4>
+
+<ul>
+  <li>Javascript: <a href="/blog/package/2023/02/03/package.html">Npm &amp; Yarn</a></li>
+  <li>Ruby: [Gem]</li>
+</ul>
+
+<h4 id="deploy-and-maintain">Deploy and Maintain</h4>
+
+<ul>
+  <li><a href="">Deploy</a> your web application to a web server</li>
+  <li>Maintain it by regularly updating it with bug fixes and <a href="/blog/web-security/2022/08/30/web-security.html">security</a> patches</li>
+  <li><a href="">scale up</a> the application to handle increased traffic or integrating it with other systems.</li>
+  <li><a href="/blog/test/2022/09/02/quality-assurance.html">Quality Assurance</a></li>
+</ul>
+
+<h3 id="embedded-software">Embedded software</h3>
+
+<p>This type of software is designed to control and manage hardware devices and systems, and is often built into the devices themselves. Examples include the software that controls a car’s engine, a digital camera’s image processing, or a smart thermostat’s temperature control.</p>
+
 <h2 id="what">What?</h2>
 
 <ul>
@@ -167,15 +161,16 @@
 
 <h2 id="reference">Reference</h2>
 
+    </div>
   </div>
-</div>
 
-<footer class="relative px-4 pt-4 pb-4">
+  <footer class="relative px-4 pt-4 pb-4">
     <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
     <br>
   </div>
 </footer>
+
 
       <button
         type="button"

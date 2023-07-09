@@ -3,9 +3,16 @@
   <head>
     
 
-    
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
     <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
@@ -24,48 +31,31 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
+    <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+    <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Tries</h1>
-    <h2 id="introduction">Introduction</h2>
+  <div class='prose bg-gray-400' id='article'>
+    <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
+    <div class='text-center'>
+      
+    </div>
+    <div class='md:px-4 md:grid lg:px-72'>
+      <h1 class='text-center mt-6 mb-6'>Tries</h1>
+      <h2 id="introduction">Introduction</h2>
 
-<p>A trie is a data structure that is used to store and retrieve strings efficiently. It is also known as a prefix tree because it organizes strings by their common prefixes. A trie is a tree-like structure where each node represents a prefix of one or more strings.</p>
+<p>(TBC)</p>
 
 <h2 id="why">Why?</h2>
 
 <p>Tries are a useful data structure for efficiently storing and searching for strings in a large dataset.</p>
 
 <h2 id="how">How?</h2>
-
-<h3 id="example">Example</h3>
 
 <p>Suppose we have a set of strings {bear, bell, bid, bull, stock, stop}. We can build a trie for this set of strings as follows:</p>
 
@@ -108,6 +98,7 @@ graph TB
     <span class="k">this</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TrieNode</span><span class="p">();</span>
   <span class="p">}</span>
 
+  <span class="c1">// Create</span>
   <span class="nx">insert</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -120,6 +111,7 @@ graph TB
     <span class="nx">node</span><span class="p">.</span><span class="nx">isEndOfWord</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
 
+  <span class="c1">// Read</span>
   <span class="nx">search</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -131,7 +123,29 @@ graph TB
     <span class="p">}</span>
     <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">isEndOfWord</span><span class="p">;</span>
   <span class="p">}</span>
+
+  <span class="c1">// Delete</span>
+  <span class="k">delete</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">search</span><span class="p">(</span><span class="nx">word</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">word</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// (2023/07/02)</span>
+        <span class="p">}</span>
+        <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">word</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="nx">node</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="nx">char</span><span class="p">];</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
+</code></pre></div></div>
+<ul>
+  <li>Tries are not design for frequent updates</li>
+</ul>
+
+<p>and the spec</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 </code></pre></div></div>
 
 <h2 id="what">What?</h2>
@@ -179,15 +193,16 @@ graph TB
 
 <h2 id="reference">Reference</h2>
 
+    </div>
   </div>
-</div>
 
-<footer class="relative px-4 pt-4 pb-4">
+  <footer class="relative px-4 pt-4 pb-4">
     <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
     <br>
   </div>
 </footer>
+
 
       <button
         type="button"

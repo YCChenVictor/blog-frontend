@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,70 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(Javascript_4) Closure</h1>
-    <h2 id="introduction">Introduction</h2>
-<p>Usually, in other programming language, we cannot access variables outside a function, but in javascript, we can. This characteristic called closure.</p>
-
-<h2 id="why">Why</h2>
-<p>The CSS is a kind of closure.</p>
-
-<h2 id="how">How</h2>
-<p>For example, think about the following code</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function outerFunction(outerVariable) {
-  return function innerFunction(innerVariable) {
-    console.log('Outer Variable: ' + outerVariable)
-    console.log('Inner Variable: ' + innerVariable)
-  }
-}
-
-const newFunction = outerFunction('outside')
-newFunction('inside')
-</code></pre></div></div>
-
-<h2 id="what">What</h2>
-
-<h2 id="reference">Reference</h2>
-<p><a href="https://www.youtube.com/watch?v=3a0I8ICR1Vg"><strong>Learn Closures In 7 Minutes</strong></a></p>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

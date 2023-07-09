@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,162 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(JavaScript ˙) JQuery</h1>
-    <h2 id="summary--why">Summary &amp; Why</h2>
-
-<ol>
-  <li>JQuery simplifies JavaScript programming.</li>
-  <li>features:
-    <ul>
-      <li>HTML/DOM/CSS manipulation</li>
-      <li>HTML event methods</li>
-      <li>Effects and animations</li>
-      <li>AJAX</li>
-      <li>Utilities</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="how--what">How &amp; What</h2>
-
-<h3 id="htmldomcss-manipulation">HTML/DOM/CSS manipulation</h3>
-
-<p>skip</p>
-
-<h3 id="html-event-methods">HTML event methods</h3>
-
-<p>skip</p>
-
-<h3 id="effects-and-animations">Effects and animations</h3>
-
-<p>skip</p>
-
-<h3 id="ajax">AJAX</h3>
-
-<p>Take AJAX in <a href="https://ycchenvictor.github.io/javascript/2021/06/29/Javascript-6-Ajax.html">this article</a> as example, the before setting without JQuery would be as follow:</p>
-
-<h4 id="indexhtml">index.html</h4>
-
-<pre><code class="language-HTML">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;script src="main.js"&gt;&lt;/script&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div class="post-title"&gt;
-      &lt;h2&gt; Loading... &lt;/h2&gt;
-    &lt;/div&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<h4 id="mainjs">main.js</h4>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">DOMContentLoaded</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://jsonplaceholder.typicode.com/posts</span><span class="dl">'</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">request</span> <span class="o">=&gt;</span> <span class="nx">request</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">posts</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">firstPost</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-      <span class="kd">const</span> <span class="nx">postTitleA</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.post-title</span><span class="dl">'</span><span class="p">);</span>
-      <span class="nx">postTitleA</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">firstPost</span><span class="p">.</span><span class="nx">title</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.post-title</span><span class="dl">'</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span><span class="nx">firstPost</span><span class="p">.</span><span class="nx">title</span>
-  <span class="p">})</span>
-<span class="p">})</span>
-</code></pre></div></div>
-
-<p>Then, import JQuery with CDN in <code class="language-plaintext highlighter-rouge">index.html</code> as follow:</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"module"</span> <span class="na">src=</span><span class="s">"//code.jquery.com/jquery-1.11.0.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</code></pre></div></div>
-
-<p>and add <code class="language-plaintext highlighter-rouge">type="module"</code> in <code class="language-plaintext highlighter-rouge">index.html</code> as follow</p>
-
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"module"</span> <span class="na">src=</span><span class="s">"main.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-...
-</code></pre></div></div>
-
-<p><strong>Notice</strong> We need a localhost to avoid CROS -&gt; I use Sinatra</p>
-
-<h4 id="create-backend">create backend</h4>
-
-<p>Just follow the steps in <a href="https://github.com/sinatra/sinatra"><strong>Sinatra</strong></a></p>
-
-<p>Then we have the following file structure:</p>
-
-<p><img src="/assets/img/JQery_file_structure.png" /></p>
-
-<p>Then the main.js file would be as follow</p>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-        <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://jsonplaceholder.typicode.com/posts</span><span class="dl">'</span><span class="p">,</span>
-        <span class="na">processResults</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="na">results</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
-            <span class="p">};</span>
-        <span class="p">},</span>
-        <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">);</span>
-          <span class="p">}</span>
-    <span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">posts</span><span class="p">){</span>
-        <span class="kd">const</span> <span class="nx">firstPost</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-        <span class="kd">const</span> <span class="nx">postTitleA</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.post-title</span><span class="dl">'</span><span class="p">);</span>
-        <span class="nx">postTitleA</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">firstPost</span><span class="p">.</span><span class="nx">title</span>
-        <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.post-title</span><span class="dl">'</span><span class="p">).</span><span class="nx">textContent</span> <span class="o">=</span><span class="nx">firstPost</span><span class="p">.</span><span class="nx">title</span>
-    <span class="p">})</span>
-<span class="p">})</span>
-</code></pre></div></div>
-
-<h3 id="utilities">Utilities</h3>
-
-<p>skip</p>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="https://jquery.com/"><strong>JQuery</strong></a>
-<a href="https://github.com/sinatra/sinatra"><strong>Sinatra</strong></a></p>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,71 +22,47 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
+    <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+    <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>stack</h1>
-    <h2 id="introduction">Introduction</h2>
+  <div class='prose bg-gray-400' id='article'>
+    <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
+    <div class='text-center'>
+      
+    </div>
+    <div class='md:px-4 md:grid lg:px-72'>
+      <h1 class='text-center mt-6 mb-6'>stack</h1>
+      <h2 id="introduction">Introduction</h2>
 
-<p>This article describes how to solve problems related to stack data structure.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|   Element   |
-|-------------|
-|     Item1   |
-|     Item2   |
-|     Item3   |
-|     Item4   |
-
-<span class="c"># Pushed Item</span>
-|   Element   |
-|-------------|
-|     Item0   |
-|     Item1   |
-|     Item2   |
-|     Item3   |
-|     Item4   |
-
-<span class="c"># Pop Item</span>
-|   Element   |
-|-------------|
-|     Item1   |
-|     Item2   |
-|     Item3   |
-|     Item4   |
-</code></pre></div></div>
+<p>(TBC)</p>
 
 <h2 id="why">Why?</h2>
 
-<p>Stacks are a fundamental data structure for efficient data storage and retrieval, and essential for software development and algorithm design.</p>
+<p>Learning about stacks is essential for understanding how function calls and recursion work in programming languages, as well as for organizing and managing data efficiently.</p>
 
 <h2 id="how">How?</h2>
+
+<p>Visualization:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|   Stack 1   |   Stack 2   |   Stack 3   |
+| <span class="o">(</span>Original<span class="o">)</span>  |    <span class="o">(</span>Pop<span class="o">)</span>    |    <span class="o">(</span>Push<span class="o">)</span>   |
+|-------------|-------------|-------------|
+|   Element   |   Element   |   Element   |
+|-------------|-------------|-------------|
+|             |             |     Item0   |
+|     Item1   |             |     Item1   |
+|     Item2   |     Item2   |     Item2   |
+|     Item3   |     Item3   |     Item3   |
+|     Item4   |     Item4   |     Item4   |
+</code></pre></div></div>
+
+<p>Stack uses mechanism of first in last out (FILO), we can only add or pop the top element.</p>
 
 <ul>
   <li>Coding example:
@@ -128,14 +102,14 @@
 <span class="c1">// Example usage</span>
 <span class="kd">const</span> <span class="nx">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Stack</span><span class="p">();</span>
 <span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
-<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">peek</span><span class="p">());</span> <span class="c1">// Output: 30</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">pop</span><span class="p">());</span> <span class="c1">// Output: 30</span>
-<span class="nx">stack</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// Output: [10, 20]</span>
+<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">stack</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span> <span class="mi">25</span> <span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">peek</span><span class="p">());</span> <span class="c1">// Output: 10</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stack</span><span class="p">.</span><span class="nx">pop</span><span class="p">());</span> <span class="c1">// Output: 10</span>
+<span class="nx">stack</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">// Output: ['hello', { name: "John", age: 25 }]</span>
 </code></pre></div>    </div>
   </li>
-  <li>spec
+  <li>spec (2023/07/04)
     <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Stack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">../examples/stack.js</span><span class="dl">'</span><span class="p">);</span>
   
 <span class="nx">describe</span><span class="p">(</span><span class="dl">'</span><span class="s1">Stack</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -525,15 +499,16 @@
 
 <p><a href="https://www.youtube.com/watch?v=TKzVzobAI8E">Three In One: How to Implement 3 Stacks Using 1 Array</a></p>
 
+    </div>
   </div>
-</div>
 
-<footer class="relative px-4 pt-4 pb-4">
+  <footer class="relative px-4 pt-4 pb-4">
     <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
     <br>
   </div>
 </footer>
+
 
       <button
         type="button"

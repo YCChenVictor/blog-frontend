@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,172 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(project) Task</h1>
-    <h2 id="introduction">Introduction</h2>
-
-<p>This project decentralize and automate the tasks.</p>
-
-<h2 id="why">Why?</h2>
-
-<p>I just try to implement AI and blockchain to tasks. Currently on software development.</p>
-
-<h2 id="how">How?</h2>
-
-<h3 id="user-stories">User Stories</h3>
-
-<ul>
-  <li>(V) As a member, I want to redirect my tasks immediately after I login, so that I can check the status of my tasks</li>
-  <li>(V) As a member, after I login, I want to create tasks, so that I can create my own MVP
-    <ul>
-      <li>Create button</li>
-      <li>No need login and sing up</li>
-    </ul>
-  </li>
-  <li>As an entrepreneur who need to create an app, I want AI to create a really quick MVP for me on desktop, so that I can start sell it and build traction.
-    <ul>
-      <li>AI to create MVP
-        <ul>
-          <li>Input: purpose =&gt; add a new column purpose to task =&gt; create frontend first =&gt; create backend to post request to GPT</li>
-          <li>Output: decomposed unit tests</li>
-        </ul>
-      </li>
-      <li>Sell it
-        <ul>
-          <li>Input:</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="developer">Developer</h3>
-
-<p>Two role: task giver and task receiver</p>
-
-<ul>
-  <li>landing page
-    <ul>
-      <li>login mechanism</li>
-      <li>list out the tasks, each tasks should have a spec to test</li>
-      <li>button to create a task</li>
-    </ul>
-  </li>
-  <li>task acquirer can upload their masterpiece and try to pass the specs</li>
-  <li>Once the specs complete, the transactions complete automatically by blockchain</li>
-</ul>
-
-<h3 id="frontend">frontend</h3>
-
-<p>Please refer to <code class="language-plaintext highlighter-rouge">package.json</code> to find how to start the project</p>
-
-<h3 id="backend">backend</h3>
-
-<h2 id="what">What?</h2>
-
-<h3 id="project">project</h3>
-
-<p>put official url</p>
-
-<h3 id="postman">postman</h3>
-
-<ul>
-  <li>new collection for task</li>
-  <li>setup environment</li>
-  <li>setup APIs</li>
-</ul>
-
-<p>my localhost:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">variable</th>
-      <th style="text-align: left">value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">host</td>
-      <td style="text-align: left">http://localhost:3000</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>my requests:</p>
-
-<p>GET /
-POST /sign_up
-POST /login</p>
-
-<h3 id="todo">TODO</h3>
-
-<ul>
-  <li>Add</li>
-  <li>Connect ChatGPT in backend</li>
-  <li>ask simple question -&gt; split this question into steps -&gt; connect these steps with linked list -&gt; build spec -&gt; use the spec to build app -&gt; wrap as one commit</li>
-  <li>(frontend) deal with the sidebar problem make it cleaner</li>
-  <li>(frontend) list tasks (the design can follow JIRA)</li>
-  <li>(backend: create-task-api) create frontend to create job: once login -&gt; click create job -&gt; redirect to Jenkins (should create service to translate DSL to xml in the future) -&gt; create job</li>
-  <li>(backend) add spec for login and sign up</li>
-  <li>(frontend) close modal once signup and login info posted</li>
-  <li>understand how to create job on jenkins’ UI</li>
-  <li>create frontend to create job: once login -&gt; click create job -&gt; redirect to Jenkins (should create service to translate DSL to xml in the future) -&gt; create job</li>
-  <li>create frontend to upload commit to be test by the job</li>
-  <li>post back the test result from jenkins</li>
-  <li>once solved a contract should make the deal immediately</li>
-  <li>let user to create task with spec</li>
-  <li>add frontend to post API login</li>
-  <li>add bcrypt for password</li>
-  <li>add JWT mechanism to do session</li>
-  <li>let user to upload commit to pass spec</li>
-  <li>connect blockchain for contract, once the commit pass spec, they get money</li>
-  <li>connect chatGPT to create spec and solution for us</li>
-  <li>add mock database for jest</li>
-  <li>after phase one, deploy it on fly</li>
-  <li>add linter</li>
-</ul>
-
-<h2 id="reference">Reference</h2>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

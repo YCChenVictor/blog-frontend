@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,122 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Distributed System</h1>
-    <h2 id="introduction">Introduction</h2>
-
-<p>TBC</p>
-
-<h2 id="why">Why?</h2>
-
-<p>Learning distributed systems is essential for understanding how to design, build, and manage robust and scalable applications that can handle the complexities of modern distributed environments.</p>
-
-<h2 id="how">How?</h2>
-
-<h3 id="distributed-computing-models">Distributed Computing Models</h3>
-
-<ul>
-  <li>client-server architecture</li>
-  <li>peer-to-peer networks</li>
-  <li>distributed file systems</li>
-</ul>
-
-<h3 id="distributed-data-storage">Distributed Data Storage</h3>
-
-<p>Understanding distributed data storage systems, including distributed databases, key-value stores, and distributed file systems.</p>
-
-<h3 id="distributed-algorithms">Distributed Algorithms</h3>
-
-<p>Studying algorithms and protocols specifically designed for distributed systems, such as leader election, mutual exclusion, and distributed locking.</p>
-
-<h3 id="distributed-file-systems">Distributed File Systems</h3>
-
-<p>Learning about distributed file systems like Hadoop Distributed File System (HDFS) or Google File System (GFS), including their architecture, data replication, and fault tolerance mechanisms.</p>
-
-<h3 id="communication-and-coordination">Communication and Coordination</h3>
-
-<p>Learning about message passing, remote procedure calls (RPC), distributed transactions, and consensus protocols for coordinating actions across multiple nodes.</p>
-
-<h3 id="fault-tolerance-and-replication">Fault Tolerance and Replication</h3>
-
-<p>Exploring techniques for fault tolerance, replication, and consistency in distributed systems, including approaches like replication, redundancy, and distributed consensus algorithms.</p>
-
-<h3 id="horizontally-and-vertically-scalability">Horizontally and Vertically Scalability</h3>
-
-<p>Horizontal scalability refers to the ability to increase the capacity of a system by adding more machines or nodes in a distributed manner, allowing for distributed processing and workload distribution. In contrast, vertical scalability involves increasing the resources of an individual machine or node, such as CPU, memory, or storage capacity, to handle increased workload and user demand. For more information, please refer to <a href="">Horizontally and Vertically Scalability</a></p>
-
-<h3 id="load-balancer">Load Balancer</h3>
-
-<p>A load balancer is a critical component in computer networks and web infrastructure that evenly distributes incoming network traffic across multiple servers or resources. It helps optimize performance, improve reliability, and prevent overload by efficiently managing the workload across the system. For more information, please refer to <a href="">Load Balancer</a></p>
-
-<h3 id="elastic-resource-management">elastic resource management</h3>
-
-<h3 id="distributed-security">Distributed Security</h3>
-
-<p>Understanding security challenges in distributed systems, including authentication, access control, data privacy, and distributed security protocols.</p>
-
-<h3 id="cloud-computing-and-virtualization">Cloud Computing and Virtualization</h3>
-
-<p>Exploring the concepts of cloud computing, virtualization technologies, and how they enable scalable and flexible distributed systems.</p>
-
-<h3 id="case-studies-and-real-world-examples">Case Studies and Real-World Examples</h3>
-
-<p>Examining real-world distributed systems like Google’s Bigtable, Apache Kafka, or Amazon DynamoDB to gain insights into the design and architecture of large-scale distributed applications.</p>
-
-<h2 id="what">What?</h2>
-
-<h2 id="other">Other</h2>
-
-<ul>
-  <li>MapReduce (going to integrate this to above sections)
-    <ul>
-      <li>Purpose: Enable efficient processing and analysis of large-scale data by dividing tasks into parallelizable units, thereby leveraging the computing power of distributed systems and facilitating scalability, fault tolerance, and high-performance data processing.</li>
-      <li>Concept: A programming model where data is divided, processed, and combined in parallel across multiple nodes, consisting of a map phase to process data and generate intermediate results, followed by a reduce phase to aggregate and produce the final output.</li>
-      <li>Calculate the total sales amount for each product in a large dataset of customer transactions by mapping each transaction to key-value pairs of product and sales amount, and then reducing the intermediate results by summing the sales amounts for each product to obtain the final total. The trick here is that we can calculate the sub results at the same time in parallel.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="reference">Reference</h2>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

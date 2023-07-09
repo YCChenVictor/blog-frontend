@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,165 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(Rails) Action View</h1>
-    <h2 id="introduction">Introduction</h2>
-
-<p>Action View templates are written with embedded Ruby in tags <strong>mingled</strong> with HTML. Action View responsible for compiling the response from action controller, communicating with the database and performing CRUD actions. There are also action view helpers for creating neat templates for views.</p>
-
-<h2 id="why">Why</h2>
-
-<p>With Action View, we can use more maintainable and readable method to produce HTML files. Action View gives us a more structured way to write HTML files for websites.</p>
-
-<h2 id="structures">Structures</h2>
-
-<p>There are three components: <strong>templates, partials, layouts</strong>. If we directly use <code class="language-plaintext highlighter-rouge">scaffold</code> command in rails to generate an <code class="language-plaintext highlighter-rouge">article</code> class.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rails generate scaffold article
-</code></pre></div></div>
-
-<p>Then the structure of view will be</p>
-
-<p><img src="/assets/img/1__i__PlmVyHz7AafRauDSnL__g.png" alt="" width="400" /></p>
-
-<h3 id="templates">Templates</h3>
-
-<p>As you can see, there are templates for <code class="language-plaintext highlighter-rouge">index.html.erb</code>(Listing and Options for Reading or <strong>Deleting</strong>), <code class="language-plaintext highlighter-rouge">edit.html.erb</code>(<strong>Updating</strong>), <code class="language-plaintext highlighter-rouge">new.html.erb</code>(<strong>Creating</strong>), <code class="language-plaintext highlighter-rouge">show.html.erb</code>(<strong>Reading</strong>). There is no template for Deleting, but in the <code class="language-plaintext highlighter-rouge">index.html.erb</code> file, we can see the following code</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %&gt;
-</code></pre></div></div>
-
-<p>and the html produced:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/articles/1"&gt;Destroy&lt;/a&gt;
-</code></pre></div></div>
-
-<p>The <code class="language-plaintext highlighter-rouge">data: { confirm:'xxx' }</code> will send data to browser and pops up while deleting.</p>
-
-<p>There are also other file type: <a href="https://guides.rubyonrails.org/action_view_overview.html#builder">Builder</a> (generating XML) and <a href="https://guides.rubyonrails.org/action_view_overview.html#jbuilder">Jbuilder</a> (generating JSON), letting us to communicate with other device in other date types.</p>
-
-<h3 id="partials">Partials</h3>
-
-<p>In the structure, there is <code class="language-plaintext highlighter-rouge">_form.html.erb</code> and the Punctuation Marks <code class="language-plaintext highlighter-rouge">_</code> means we can render it in other html file; for example, in <code class="language-plaintext highlighter-rouge">edit.html.erb</code> , add</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= render "product", product: @product %&gt;
-</code></pre></div></div>
-
-<p>Then, the html in the <code class="language-plaintext highlighter-rouge">_form.html.erb</code> will be inserted into the file, <code class="language-plaintext highlighter-rouge">edit.html.erb</code> and all the <code class="language-plaintext highlighter-rouge">product</code> in <code class="language-plaintext highlighter-rouge">_form.html.erb</code> will be <code class="language-plaintext highlighter-rouge">@product</code> .</p>
-
-<h3 id="layouts">Layouts</h3>
-
-<p>There is also a layout directory and the files are application and mailer. These files will be the whole setting for html files.</p>
-
-<h3 id="partial-layoutsskip"><a href="https://guides.rubyonrails.org/action_view_overview.html#partial-layouts">Partial Layouts</a> (skip)</h3>
-
-<h2 id="helper">Helper</h2>
-
-<p>In rails, with above template structure, we can use functions to output HTML. With these functions, we can have more secure, maintainable, neat coding structure to build HTML files. Please refer to <a href="https://guides.rubyonrails.org/action_view_helpers.html"><strong>Action View Helpers - Ruby on Rails Guides</strong></a> for further information.</p>
-
-<h3 id="form_for-form_tag-and-form_with">form_for, form_tag, and form_with</h3>
-
-<p>In rails, we can use <code class="language-plaintext highlighter-rouge">form_for</code> or <code class="language-plaintext highlighter-rouge">form_tag</code> to do so. The key difference between these two methods is <code class="language-plaintext highlighter-rouge">form_tag</code> does not need model; as a result, if you only want user to input data but not to store it, <code class="language-plaintext highlighter-rouge">form_tag</code> is your good choose.</p>
-
-<h4 id="form_for">form_for</h4>
-
-<p>for example, in a blog project, for user to add an article, the code would be as follow</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= form_for :article do |f| %&gt;
-  title: &lt;%= f.text_field :first_name %&gt;&lt;br /&gt;
-  body:  &lt;%= f.text_field :last_name %&gt;&lt;br /&gt;
-  &lt;%= f.submit %&gt;
-&lt;% end %&gt;
-</code></pre></div></div>
-
-<p><strong>:remote</strong>: if we want the <code class="language-plaintext highlighter-rouge">submit</code> button to be AJAX, we can set it to true and rails will use UJS to handle this button.</p>
-
-<h4 id="form_tag">form_tag</h4>
-
-<p>For example, if we just want to do some search, we may only want user to input text they want to search and submit to do the action; as a result, the coding would be (skip)</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%=
-</code></pre></div></div>
-
-<p>and result would be</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;form
-</code></pre></div></div>
-
-<h4 id="form_with">form_with</h4>
-
-<p>For example, if we want to create following webpage,
-<img src="/assets/img/1__7sztKeUKGjawNyZtJp71mA.png" alt="" /></p>
-
-<p>the coding will be as follow:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= form_with url: "/search", method: :get do |form| %&gt;  &lt;%= form.label :query, "Search for:" %&gt;  &lt;%= form.text_field :query %&gt;  &lt;%= form.submit "Search" %&gt;&lt;% end %&gt;
-</code></pre></div></div>
-
-<p>As you can see, the <code class="language-plaintext highlighter-rouge">form_with</code> method require us to input <code class="language-plaintext highlighter-rouge">url</code> and <code class="language-plaintext highlighter-rouge">:get</code> method and the url:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;form action="/search" accept-charset="UTF-8" method="get"&gt;  
-  &lt;label for="query"&gt;Search for:&lt;/label&gt;  
-  &lt;input type="text" name="query" id="query"&gt;  
-  &lt;input type="submit" name="commit" value="Search" data-disable-with="Search"&gt;  
-&lt;/form&gt;
-</code></pre></div></div>
-
-<h3 id="how-data-flow-from-view-to-controller">How data flow from view to controller?</h3>
-<p>Please use <code class="language-plaintext highlighter-rouge">byebug</code> and check <code class="language-plaintext highlighter-rouge">params</code> in rails server. Then the following message:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ActionController::Parameters {"comment"=&gt;{"body"=&gt;"q"}, "commit"=&gt;"Create Comment", "controller"=&gt;"comments", "action"=&gt;"create", "product_id"=&gt;"1"} permitted: false
-</code></pre></div></div>
-<p>skipped</p>
-
-<h3 id="self-defined-helperskip">Self-defined Helper (skip)</h3>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="https://guides.rubyonrails.org/action_view_overview.html"><strong>Action View Overview - Ruby on Rails Guides</strong></a></p>
-
-<p><a href="https://guides.rubyonrails.org/action_view_helpers.html"><strong>Action View Helpers - Ruby on Rails Guides</strong></a></p>
-
-<p><a href="https://ihower.tw/rails/actionview-helpers.html"><strong>Action View - Helpers 方法</strong></a></p>
-
-<p><a href="https://www.w3schools.com/html/html_forms.asp" title="https://www.w3schools.com/html/html_forms.asp"><strong>HTML Forms</strong></a><a href="https://www.w3schools.com/html/html_forms.asp"></a></p>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

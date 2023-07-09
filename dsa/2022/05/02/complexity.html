@@ -3,14 +3,21 @@
   <head>
     
 
-    
-
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     TeX: { equationNumbers: { autoNumber: "AMS" } }
   });
 </script>
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -31,45 +38,25 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
+    <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+    <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Complexity</h1>
-    <h2 id="introduction">Introduction</h2>
+  <div class='prose bg-gray-400' id='article'>
+    <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
+    <div class='text-center'>
+      
+    </div>
+    <div class='md:px-4 md:grid lg:px-72'>
+      <h1 class='text-center mt-6 mb-6'>Complexity</h1>
+      <h2 id="introduction">Introduction</h2>
 
-<p>Complexity is a measure of the maximum resources required to solve a problem or execute an algorithm.</p>
-
-<ul>
-  <li>Time complexity refers to the amount of time or number of operations required to solve a problem or execute an algorithm. The goal of analyzing time complexity is to identify algorithms that are efficient and can solve problems within a reasonable amount of time.</li>
-  <li>Space complexity refers to the amount of memory or storage space required to solve a problem or execute an algorithm. The goal of analyzing space complexity is to identify algorithms that are efficient in terms of memory usage.</li>
-</ul>
+<p>TBC</p>
 
 <h2 id="why">Why?</h2>
 
@@ -77,21 +64,23 @@
 
 <h2 id="how">How?</h2>
 
-<h3 id="concept">concept</h3>
+<h3 id="math-concept">Math Concept</h3>
 
-<p>Complexity describes the relationship between the cost we care and the size of input; for example, the total time to create x books may be as follow:</p>
+<p>Complexity quantifies the maximum resources, such as time and space, needed to solve a problem or execute an algorithm. It provides insights into the relationship between resource usage and input size, aiding in the identification of efficient algorithms for optimal problem-solving; for example, the total time to create x books may be as follow:</p>
 
 \[Time(n) = 4n^3 + 4n^2 + 3\]
 
 <p>However, in real world problems, precise function to describe the total time of producing n amount of books does not exist at all, so we use <strong>asymptotic notations</strong>.</p>
 
-<h4 id="asymptotic-notations">asymptotic notations</h4>
+<h4 id="asymptotic-notations">Asymptotic Notations</h4>
 
-<p>There are notations such as big-O (\(O\)), big-theta (\(\Theta\)), big-omega (\(\Omega\)); please check the defination in academia online by yourself. Here we focus on the defination of industry. The defination of \(O\) in industry is the same as the defination of \(\Theta\) in academia; that is</p>
+<p>There are commonly used notations in computer science, such as big-O (O), big-theta (Θ), and big-omega (Ω), which are used to describe and analyze the time or space complexity of algorithms. For more detailed definitions and explanations of these notations, I recommend referring to reputable academic sources available online.</p>
+
+<p>Here we focus on the defination of industry. The defination of \(O\) in industry is the same as the defination of \(\Theta\) in academia; that is</p>
 
 \[\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 &gt; 0 \ \ \ \forall n &gt; n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \}\]
 
-<p>given we have some knowledege with set theory. Then f(n) is an element of \(\Theta\) of g(n), which is what industry care about (\(O\), big-O); for example, \(2x + 100\) is an element of \(\Theta(x)\); then we can use \(x\) to describe the complexity of \(2x + 100\). The following plot demostrates that \(2x + 100\) is wrapped by \(3x\) and \(x\) after \(x &gt; 100\)</p>
+<p>Then f(n) is an element of \(\Theta\) of g(n), which is what industry care about (\(O\), big-O); for example, \(2x + 100\) is an element of \(\Theta(x)\); then we can use \(x\) to describe the complexity of \(2x + 100\). The following plot demostrates that \(2x + 100\) is wrapped by \(3x\) and \(x\) after \(x &gt; 100\)</p>
 
 <canvas id="big-o-graph" width="400" height="200" class="bg-white"></canvas>
 
@@ -145,13 +134,13 @@
 	});
 </script>
 
-<h4 id="notation-simplification">notation simplification</h4>
+<h4 id="notation-simplification">Notation Simplification</h4>
 
 <p>Based on the defination, we know that the big O of</p>
 
 <ul>
   <li>\(2x + 100\) is \(2x\) and also \(x\)</li>
-  <li>\(2x^2 + x\) is \(x^2\) because of \(\exists \ a, b &gt; 0 \ s.t \ ax^2 &lt; 2x^2 + x &lt; bx^2 \forall \ x&gt;0\)</li>
+  <li>\(2x^2 + x\) is \(x^2\) because of \(\exists \ a, b &gt; 0 \ s.t \ ax^2 &lt; 2x^2 + x &lt; bx^2 \ \forall x&gt;0\)</li>
 </ul>
 
 <p>That is, all the constant number can be ignored.</p>
@@ -163,12 +152,9 @@
   <li>\(O(x/a) = O(x)\), where a is constant</li>
 </ul>
 
-<h3 id="time-complexity">time complexity</h3>
+<h3 id="time-complexity">Time Complexity</h3>
 
-<ul>
-  <li>Again, we use the definition of industry</li>
-  <li><code class="language-plaintext highlighter-rouge">Time complexity = O(n)</code> means <strong>at most</strong> n elements <strong>involved</strong> to get things done</li>
-</ul>
+<p>Recap, the definition of big-O (O) in industry is the same as big-theta (Θ) in academia. The meaning of <code class="language-plaintext highlighter-rouge">Time complexity = O(n)</code> is that the time taken by the algorithm increases proportionally with the size of the input.</p>
 
 <h4 id="amortized-time">Amortized Time</h4>
 
@@ -177,19 +163,22 @@
 <ul>
   <li>Amortized time complexity analysis involves dividing the total time taken by a sequence of operations by the number of operations. This gives us the average time taken per operation, which is a more useful measure of the data structure’s performance than the worst-case time complexity of a single operation.</li>
   <li>Accounting method, which involves assigning a cost to each operation and using the cost to pay for future operations. For example, in an array with dynamic resizing, we could assign a cost of 1 to each add operation, and use the extra time taken by the occasional resize operation to pay for the cost of the future operations.</li>
-  <li>Example: (TBC)</li>
+  <li>Example: Array Resizing
+    <ul>
+      <li>Suppose we init an array with space of 4 and when we add the fifth element, we need to resize the array, going to have O(n) complexity.</li>
+      <li>After the resizing, we can have another four space for the 5~8 element. That is, the time complexity of this space adding process, O(n) should actually be added to the next 5~8 element adding.</li>
+      <li>If we divide O(n) to the next 4 elements, then the amortized time complexity will be O(1).</li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="space-complexity">space complexity</h3>
 
-<ul>
-  <li>we use the definition of industry</li>
-  <li>space complexity = O(n) means it needs at most n elements of space to get things done</li>
-</ul>
+<p>The meaning of <code class="language-plaintext highlighter-rouge">Space complexity = O(n)</code> is that the space taken by the algorithm increases proportionally with the size of the input.</p>
 
-<h2 id="what">What?</h2>
+<h3 id="conceptual-example">Conceptual Example</h3>
 
-<h3 id="two-liner-iteration">two liner iteration</h3>
+<h4 id="two-liner-iteration">Two Liner Iteration</h4>
 
 <ul>
   <li>code
@@ -201,20 +190,20 @@
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-  <li>time complexity = O(A + B)
+  <li>Time complexity = O(A + B)
     <ul>
       <li>Picks A elements from arrayA, each pick = O(1)</li>
       <li>Picks B elements from arrayB, each pick = O(1)</li>
     </ul>
   </li>
-  <li>space complexity = O(1)
+  <li>Space complexity = O(1)
     <ul>
       <li>Only need a space for i =&gt; O(1)</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="iteration-in-an-iteration">Iteration in An Iteration</h3>
+<h4 id="iteration-in-an-iteration">Iteration in An Iteration</h4>
 
 <ul>
   <li>code
@@ -238,26 +227,29 @@
   </li>
 </ul>
 
-<h3 id="recursive-binary-search">recursive binary search</h3>
+<h4 id="recursive-binary-search">Recursive Binary Search</h4>
 
 <ul>
   <li>code
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">binarySearch</span> <span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">middleIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">high</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
   
-  <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">middleIndex</span><span class="p">]</span> <span class="o">===</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">low</span> <span class="o">&lt;=</span> <span class="nx">high</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">middle</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">((</span><span class="nx">low</span> <span class="o">+</span> <span class="nx">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+      
+    <span class="k">if</span> <span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">middle</span><span class="p">]</span> <span class="o">===</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+      
+    <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">middle</span><span class="p">])</span> <span class="p">{</span>
+      <span class="nx">high</span> <span class="o">=</span> <span class="nx">middle</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">low</span> <span class="o">=</span> <span class="nx">middle</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-  
-  <span class="k">if</span><span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">false</span>
-  <span class="p">}</span>
-  
-  <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&gt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">middleIndex</span><span class="p">])</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">binarySearch</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">middleIndex</span><span class="p">,</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">),</span> <span class="nx">target</span><span class="p">)</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">[</span><span class="nx">middleIndex</span><span class="p">])</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">binarySearch</span> <span class="p">(</span><span class="nx">array</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">middleIndex</span><span class="p">),</span> <span class="nx">target</span><span class="p">)</span>
-  <span class="p">}</span>
+    
+  <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
@@ -274,7 +266,7 @@
   </li>
 </ul>
 
-<h3 id="recursive-like-fibonacci-series">recursive, like fibonacci series</h3>
+<h4 id="recursive-fibonacci-series">Recursive, Fibonacci Series</h4>
 
 <ul>
   <li>code
@@ -316,19 +308,50 @@ graph TD
   </li>
 </ul>
 
+<h2 id="what">What?</h2>
+
+<h3 id="product-of-a-and-b">Product of A and B</h3>
+
+<ul>
+  <li>code
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">product</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">b</span><span class="p">;</span> <span class="nx">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">a</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">sum</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Time complexity: it will add a for b times, so the time complexity will be O(b)</li>
+</ul>
+
+<h3 id="power-of-b-on-a">Power of b on a</h3>
+
+<p>(TBC)</p>
+
+<h3 id="a--b">A % B</h3>
+
+<p>(TBC)</p>
+
+<h3 id="integer-division">Integer Division</h3>
+
+<p>(TBC)</p>
+
 <h2 id="reference">Reference</h2>
 
 <p>cracking the coding interview</p>
 
+    </div>
   </div>
-</div>
 
-<footer class="relative px-4 pt-4 pb-4">
+  <footer class="relative px-4 pt-4 pb-4">
     <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
     <br>
   </div>
 </footer>
+
 
       <button
         type="button"

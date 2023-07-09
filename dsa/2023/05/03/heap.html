@@ -3,9 +3,16 @@
   <head>
     
 
-    
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.1.6/mermaid.min.js"></script>
+<script>
+  const config = {
+    theme: 'neutral',
+    startOnLoad:true,
+    htmlLabels:true,
+  };
+  mermaid.initialize(config);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
     <script src="https://kit.fontawesome.com/f9271f6bdd.js" crossorigin="anonymous"></script>
@@ -24,84 +31,63 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
+    <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
+    <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>Heap</h1>
-    <h2 id="introduction">Introduction</h2>
+  <div class='prose bg-gray-400' id='article'>
+    <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
+    <div class='text-center'>
+      
+    </div>
+    <div class='md:px-4 md:grid lg:px-72'>
+      <h1 class='text-center mt-6 mb-6'>Heap</h1>
+      <h2 id="introduction">Introduction</h2>
+
+<p>TBC</p>
 
 <h2 id="why">Why?</h2>
 
-<p>focus on why we need it</p>
+<p>Heaps are necessary because they provide an efficient way to manage <strong>priority-based</strong> operations, such as retrieving the minimum or maximum element, which is valuable in various applications like scheduling, graph algorithms, and priority queues.</p>
 
 <h2 id="how">How?</h2>
 
-<h3 id="visualization">Visualization</h3>
+<h3 id="max-heap">Max Heap</h3>
 
 <ul>
-  <li>Max Heap
+  <li>Definition: A max heap is a complete binary tree where the value of each node is greater than or equal to the values of its child nodes, with the maximum value located at the root node.</li>
+  <li>Visualization
     <div class="mermaid">
   graph TD
-    id1((21)) --&gt; id2((17))
-    id1((21)) --&gt; id3((15))
-    
-    id2((17)) --&gt; id4((14))
-    id2((17)) --&gt; id5((9))
-    
-    id4((14)) --&gt; id6((8))
-    id4((14)) --&gt; id7((5))
-  
-    id5((9)) --&gt; id8((1))
-    id5((9)) --&gt; STOP1[ ]
-  
-    id3((15)) --&gt; id9((12))
-    id3((15)) --&gt; id10((13))
+  B((20)) --&gt; C((18))
+  B((20)) --&gt; D((15))
+  C((18)) --&gt; E((10))
+  C((18)) --&gt; F((12))
+  D((15)) --&gt; G((8))
+  D((15)) --&gt; H((7))
+  E((10)) --&gt; I((5))
+  E((10)) --&gt; J((6))
 </div>
   </li>
-  <li>Min Heap
+</ul>
+
+<h3 id="min-heap">Min Heap</h3>
+
+<ul>
+  <li>Definition: (2023/07/09)</li>
+  <li>Visualization
     <div class="mermaid">
   graph TD
-    id1((1)) --&gt; id2((5))
-    id1((1)) --&gt; id3((8))
-    
-    id2((5)) --&gt; id4((14))
-    id2((5)) --&gt; id5((9))
-    
-    id4((14)) --&gt; id6((17))
-    id4((14)) --&gt; id7((15))
-  
-    id5((9)) --&gt; id8((21))
-    id5((9)) --&gt; STOP1[ ]
-  
-    id3((8)) --&gt; id9((12))
-    id3((8)) --&gt; id10((13))
+  B((10)) --&gt; C((15))
+  B((10)) --&gt; D((20))
+  C((15)) --&gt; E((18))
+  C((15)) --&gt; F((17))
+  D((20)) --&gt; G((25))
 </div>
   </li>
 </ul>
@@ -114,15 +100,16 @@
 
 <p><a href="https://www.youtube.com/watch?v=0wPlzMU-k00">Heaps in 3 minutes — Intro</a></p>
 
+    </div>
   </div>
-</div>
 
-<footer class="relative px-4 pt-4 pb-4">
+  <footer class="relative px-4 pt-4 pb-4">
     <!-- footer msg -->
   <div class="flex flex-wrap items-center justify-center">
     <br>
   </div>
 </footer>
+
 
       <button
         type="button"

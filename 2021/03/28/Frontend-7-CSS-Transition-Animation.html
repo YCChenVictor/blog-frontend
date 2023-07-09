@@ -3,8 +3,6 @@
   <head>
     
 
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" href="/blog/assets/css/main.css">
@@ -24,134 +22,12 @@
       <img class="titleImage" src="/blog/assets/img/title.jpeg" alt="author profile image">
     </a>
   </div>
-  <div class="flex">
-    <div class="container px-4 mx-auto flex flex-wrap items-center justify-center">
-      <div class="absolute right-16 flex md:block" id="navbar">
-        <div class="flex flex-col md:flex-row mr-auto w-full">
-          <!-- dynamic menu based on navigation info in _config.yml -->
-          
-             <!-- don't show current page in menu -->
-              <a class="text-sm text-gray-500 hover:text-gray-900 px-3 py-2 mx-auto uppercase"
-                href="/blog/about">
-                About Me
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-  </div>
 </nav>
 
       
       
-  <div id='sidebar' class='fixed py-16 hidden lg:block'></div>
-  <div id='burger-sidebar' class='pt-24 pl-4 fixed hidden md:block'></div>
+  <h1 class='text-center mt-6 mb-6'>WIP</h1>
 
-<div class='prose bg-gray-400' id='article'>
-  <div id='word-count' class='pt-4 pl-8 fixed'>words: 80</div>
-  <div class='text-center'>
-    
-  </div>
-  <div class='md:px-4 md:grid lg:px-72'>
-    <h1 class='text-center mt-6 mb-6'>(CSS_7) Transition & Animation</h1>
-    <h3 id="transition">Transition</h3>
-
-<p>Suppose we have the following setting:</p>
-
-<p><a href="#" class="btn">send</a></p>
-
-<p>with CSS</p>
-
-<p>.btn{<br />
-        display: inline-block;<br />
-        padding: 10px 20px;<br />
-        background-color: red;<br />
-        color: black;<br />
- }<br />
- .btn:hover{<br />
-        background-color: green;<br />
- }</p>
-
-<p>Then the color before and after mouse touching</p>
-
-<p>before:</p>
-
-<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__pvuq71JaMUo6r__pMGx9CRA.png" alt="" /></p>
-
-<p>after:</p>
-
-<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__b4JMDilP6Fvev6__kJZAJdw.png" alt="" /></p>
-
-<p>If we want to have the effect that the color of the button gradually become green from red, then we should add <code class="language-plaintext highlighter-rouge">transition</code> in the <code class="language-plaintext highlighter-rouge">.btn</code> as follow</p>
-
-<p>.btn{<br />
-        display: inline-block;<br />
-        padding: 10px 20px;<br />
-        background-color: red;<br />
-        color: black;<br />
-        transition: all 1s 0s ease;<br />
- }<br />
-.btn:hover{<br />
-        background-color: green;<br />
- }</p>
-
-<p>The order of the arguments of <code class="language-plaintext highlighter-rouge">transition</code> :</p>
-
-<p>transition: <code class="language-plaintext highlighter-rouge">&lt;property&gt; &lt;duration&gt; &lt;delay&gt; &lt;time-function&gt;;</code></p>
-
-<p>meaning it is going to wait <code class="language-plaintext highlighter-rouge">&lt;delay&gt;</code> to let the specific <code class="language-plaintext highlighter-rouge">&lt;property&gt;</code> in <code class="language-plaintext highlighter-rouge">.btn:hover</code> to have effect and the duration time is <code class="language-plaintext highlighter-rouge">&lt;duration&gt;</code> . The <code class="language-plaintext highlighter-rouge">&lt;time-function&gt;</code> is how the interval of duration time set up.</p>
-
-<h3 id="animation">Animation</h3>
-
-<p>Suppose we have the following setting:</p>
-
-<div class="box"></div>
-
-<p>with CSS</p>
-
-<p>.box{<br />
-     width: 200px;<br />
-     height: 200px;<br />
-     border-radius: 50%;<br />
-     background-color: red;<br />
-    }</p>
-
-<p>Then the layout would be</p>
-
-<p><img src="/Users/chenyongzhe/coding/practice_not_for_github/javascript_practice/medium-to-markdown/medium-export/posts/md_1623056197395/img/1__XqJJR8297T__pitz50BJ2XA.png" alt="" /></p>
-
-<p>If we add the frame, the script of the animation as follow</p>
-
-<p>.box{<br />
-     width: 200px;<br />
-     height: 200px;<br />
-     border-radius: 50%;<br />
-     background-color: red;<br />
-     animation: identifier 2s 2s;<br />
-    }</p>
-
-<p><a href="http://twitter.com/keyframes" title="Twitter profile for @keyframes">@keyframes</a> identifier {<br />
-     0% {border-radius: 50%; }<br />
-     100% {border-radius: 0%; }<br />
-    }</p>
-
-<p>There would be animation.</p>
-
-<h3 id="reference">Reference</h3>
-
-<p><a href="https://ithelp.ithome.com.tw/users/20112550/ironman/2072" title="https://ithelp.ithome.com.tw/users/20112550/ironman/2072"><strong>金魚都能懂的網頁設計入門 - 金魚都能懂了你還怕學不會嗎 :: 2019 iT 邦幫忙鐵人賽</strong><br />
-_金魚都能懂了，你還怕你學不會嗎？ 太多人在學習網頁的路上遭遇到挫折與失敗，這次Amos想利用自身的經驗來分享網頁設計入門的一些眉角，挑戰自己連續發文外，也…_ithelp.ithome.com.tw</a><a href="https://ithelp.ithome.com.tw/users/20112550/ironman/2072"></a></p>
-
-  </div>
-</div>
-
-<footer class="relative px-4 pt-4 pb-4">
-    <!-- footer msg -->
-  <div class="flex flex-wrap items-center justify-center">
-    <br>
-  </div>
-</footer>
 
       <button
         type="button"

@@ -4,17 +4,14 @@ class Node {
     this.next = next;
   }
 }
-  
-class LinkedList {
-  // index starts from 0
-  // position starts from 1
 
+class LinkedList {
   constructor() {
     this.head = null;
   }
 
   // Create
-  prepand(value) {
+  prepend(value) {
     const newNode = new Node(value);
 
     if (!this.head) {
@@ -26,46 +23,55 @@ class LinkedList {
   }
 
   append(value) {
-    let tail
     const newNode = new Node(value);
 
     if (!this.head) {
       this.head = newNode;
     } else {
-      tail = this.traverseTo('last')
+      let tail = this.traverseTo(this.size() - 1);
       tail.next = newNode;
     }
   }
 
-  insert(position, value) {
-    if (position === 1) {
+  insert(index, value) {
+    if (index === 0) {
       this.prepend(value);
+    } else if (index >= this.size()) {
+      this.append(value);
     } else {
       const newNode = new Node(value);
-      const leader = this.traverseTo(position - 1);
+      const leader = this.traverseTo(index - 1);
       const nextNode = leader.next;
 
       leader.next = newNode;
       newNode.next = nextNode;
     }
   }
-    
+
   // Read
   traverseTo(index) {
     let currentNode = this.head;
-    
-    if (index === 'last') {
-      index = Infinity
-    }
 
     for (let i = 0; i < index; i++) {
       if (currentNode.next !== null) {
         currentNode = currentNode.next;
       } else {
-        return currentNode
+        break; // Exit loop if end of the list is reached
       }
     }
-    return currentNode
+    return currentNode;
+  }
+
+  size() {
+    let count = 0;
+    let currentNode = this.head;
+
+    while (currentNode !== null) {
+      count++;
+      currentNode = currentNode.next;
+    }
+
+    return count;
   }
 
   printList() {
@@ -81,18 +87,26 @@ class LinkedList {
   }
 
   // Update
-  update(position, value) {
-    const target = this.traverseTo(position - 1);
-    target.value = value
+  update(index, value) {
+    if (index < 0 || index >= this.size()) {
+      throw new Error('Index out of bounds');
+    }
+
+    const target = this.traverseTo(index);
+    target.value = value;
   }
 
-  // Delete    
-  remove(position) {
-    if (position === 1) {
+  // Delete
+  remove(index) {
+    if (index < 0 || index >= this.size()) {
+      throw new Error('Index out of bounds');
+    }
+
+    if (index === 0) {
       this.head = this.head.next;
     } else {
-      const unwantedNode = this.traverseTo(position - 1);
-      const leader = this.traverseTo(position - 2);
+      const leader = this.traverseTo(index - 1);
+      const unwantedNode = leader.next;
 
       leader.next = unwantedNode.next;
     }
