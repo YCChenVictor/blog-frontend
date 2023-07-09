@@ -3,8 +3,8 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const randomColor = require('randomcolor');
 
-const domain = 'http://localhost:4000'
-const queue = ['http://localhost:4000/blog/self/2023/02/04/software.html'];
+const domain = 'http://localhost:3000'
+const queue = ['http://localhost:3000/blog/self/software'];
 const visited = new Set();
 const structure = {};
 
@@ -49,7 +49,7 @@ function storeAsFile(result) {
   const jsonString = JSON.stringify(result);
 
   // Write the JSON data to a file
-  fs.writeFile('./data/nodeGraph.json', jsonString, function (err) {
+  fs.writeFile('../src/data/nodeGraph.json', jsonString, function (err) {
     if (err) throw err;
     console.log('Saved!');
   });
