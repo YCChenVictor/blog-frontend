@@ -4,7 +4,7 @@ const fs = require('fs');
 const randomColor = require('randomcolor');
 
 const domain = 'http://localhost:4000'
-const queue = ['http://localhost:4000/blog/about'];
+const queue = ['http://localhost:4000/blog/self/2023/02/04/software.html'];
 const visited = new Set();
 const structure = {};
 
@@ -49,13 +49,14 @@ function storeAsFile(result) {
   const jsonString = JSON.stringify(result);
 
   // Write the JSON data to a file
-  fs.writeFile('nodeGraph.json', jsonString, function (err) {
+  fs.writeFile('./data/nodeGraph.json', jsonString, function (err) {
     if (err) throw err;
     console.log('Saved!');
   });
 }
 
 function desiredFormat(structure) {
+  console.log(structure)
   let nodes
   let links
   nodes = Object.keys(structure).map((value, index) => {
@@ -103,7 +104,6 @@ function desiredFormat(structure) {
     nodes.map((node) => {
       node.color = colors[groups.indexOf(node.group)]
     })
-    console.log(nodes)
     return nodes
   }
 
@@ -112,6 +112,5 @@ function desiredFormat(structure) {
 
 // currently, just store the result as a JSON file in frontend.
 crawl(queue, visited, domain).then((structure) => {
-  // console.log(structure)
   storeAsFile(desiredFormat(structure))
 })

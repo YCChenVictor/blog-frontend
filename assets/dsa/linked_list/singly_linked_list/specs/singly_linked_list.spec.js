@@ -1,18 +1,17 @@
-const LinkedList = require('../examples/singly_linked_list.js');
+const SinglyLinkedList = require('../examples/singly_linked_list.js');
 
-describe('LinkedList', () => {
+describe('SinglyLinkedList', () => {
   let testLinkedList;
   beforeEach(() => {
-    testLinkedList = new LinkedList();
+    testLinkedList = new SinglyLinkedList();
     const values = [1, 74, 888, 62, 33];
     for(let i = 0; i < values.length; i++){
-      testLinkedList.prepand(values[i]);
+      testLinkedList.prepend(values[i]);
     }
   });
 
-  // create
-  test('#prepand', () => {
-    testLinkedList.prepand(0);
+  test('#prepend', () => {
+    testLinkedList.prepend(0);
     expect(testLinkedList.printList()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
   });
 
@@ -26,7 +25,6 @@ describe('LinkedList', () => {
     expect(testLinkedList.printList()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
   });
 
-  // read
   test('#traverse', () => {
     expect(testLinkedList.traverseTo(2).value).toEqual(888);
   })
@@ -37,11 +35,11 @@ describe('LinkedList', () => {
   
   test('#update', () => {
     testLinkedList.update(3, 4)
-    expect(testLinkedList.printList()).toEqual([33, 62, 4, 74, 1]);
+    expect(testLinkedList.printList()).toEqual([33, 62, 888, 4, 1]);
   })
   
   test('#remove', () => {
     testLinkedList.remove(3)
-    expect(testLinkedList.printList()).toEqual([33, 62, 74, 1]);
+    expect(testLinkedList.printList()).toEqual([33, 62, 888, 1]);
   })
 });

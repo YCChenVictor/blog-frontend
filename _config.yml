@@ -17,10 +17,6 @@ author-image: head.jpeg # file must be in the /assets/img/ folder
 # navigation menu
 show-nav-menu: true
 
-nav-menu:
-  - text: About Me
-    permalink: about
-
 # use false to turn off any social media links
 twitter: false
 facebook: false

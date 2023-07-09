@@ -5,41 +5,30 @@ date: '2022-05-23'
 categories: DSA
 note: just finish the cracking coding interview examples first
 mathjax: true
-mermaid: true
+mermaidJS: true
 publish: true
 ---
 
 ## Introduction
 
-This article describes the concepts related to linkedlist. Not like arraylist, the nodes in linkedlist are not serial, so we need to store pointers pointing the neighbor of each node in this linkedlist and use these pointers to traverse the nodes to find targeted node. There are two types: singly linked list and doubly linked list.
-
-* singly linked list: pointer points the next node in each node
-<div class="mermaid">
-graph LR
-  id1((A)) --> id2((B))
-  id2((B)) --> id3((C))
-  id3((C)) --> id4((...))
-</div>
-* doubly linked list: pointer points the next and previous nodes in each node
-<div class="mermaid">
-graph LR
-  id1((A)) --> id2((B))
-  id2((B)) --> id1((A))
-  id2((B)) --> id3((C))
-  id3((C)) --> id2((B))
-  id3((C)) --> id4((...))
-  id4((...)) --> id3((C))
-</div>
+This article explores the benefits and usage of linked lists, specifically focusing on singly and doubly linked lists. It provides code examples and explanations for implementation, along with techniques for efficient manipulation and problem-solving in linked lists.
 
 ## why
 
-Linked lists can dynamically grow and shrink in size during program execution, whereas the size of an array is fixed at the time of creation. Additionally, inserting or deleting elements in a linked list is relatively efficient, whereas in an array these operations can be expensive if the array is large.
+Learning linked lists is valuable because they provide a flexible and efficient data structure for dynamic memory allocation and manipulation, enabling dynamic resizing and efficient insertion, deletion, and traversal operations compared to fixed-size arrays.
 
 ## How
 
 ### Singly Linked List
 
-* coding example:
+* Graph
+  <div class="mermaid">
+    graph LR
+      id1((A)) --> id2((B))
+      id2((B)) --> id3((C))
+      id3((C)) --> id4((...))
+  </div>
+* Code
   ```javascript
   class Node {
     constructor(value, next = null) {
@@ -49,15 +38,12 @@ Linked lists can dynamically grow and shrink in size during program execution, w
   }
   
   class LinkedList {
-    // index starts from 0
-    // position starts from 1
-  
     constructor() {
       this.head = null;
     }
-  
+
     // Create
-    prepand(value) {
+    prepend(value) {
       const newNode = new Node(value);
   
       if (!this.head) {
@@ -69,46 +55,55 @@ Linked lists can dynamically grow and shrink in size during program execution, w
     }
   
     append(value) {
-      let tail
       const newNode = new Node(value);
   
       if (!this.head) {
         this.head = newNode;
       } else {
-        tail = this.traverseTo('last')
+        let tail = this.traverseTo(this.size() - 1);
         tail.next = newNode;
       }
     }
   
-    insert(position, value) {
-      if (position === 1) {
+    insert(index, value) {
+      if (index === 0) {
         this.prepend(value);
+      } else if (index >= this.size()) {
+        this.append(value);
       } else {
         const newNode = new Node(value);
-        const leader = this.traverseTo(position - 1);
+        const leader = this.traverseTo(index - 1);
         const nextNode = leader.next;
   
         leader.next = newNode;
         newNode.next = nextNode;
       }
     }
-      
+  
     // Read
     traverseTo(index) {
       let currentNode = this.head;
-      
-      if (index === 'last') {
-        index = Infinity
-      }
   
       for (let i = 0; i < index; i++) {
         if (currentNode.next !== null) {
           currentNode = currentNode.next;
         } else {
-          return currentNode
+          break; // Exit loop if end of the list is reached
         }
       }
-      return currentNode
+      return currentNode;
+    }
+  
+    size() {
+      let count = 0;
+      let currentNode = this.head;
+  
+      while (currentNode !== null) {
+        count++;
+        currentNode = currentNode.next;
+      }
+  
+      return count;
     }
   
     printList() {
@@ -124,54 +119,56 @@ Linked lists can dynamically grow and shrink in size during program execution, w
     }
   
     // Update
-    update(position, value) {
-      const target = this.traverseTo(position - 1);
-      target.value = value
+    update(index, value) {
+      if (index < 0 || index >= this.size()) {
+        throw new Error('Index out of bounds');
+      }
+  
+      const target = this.traverseTo(index);
+      target.value = value;
     }
   
-    // Delete    
-    remove(position) {
-      if (position === 1) {
+    // Delete
+    remove(index) {
+      if (index < 0 || index >= this.size()) {
+        throw new Error('Index out of bounds');
+      }
+  
+      if (index === 0) {
         this.head = this.head.next;
       } else {
-        const unwantedNode = this.traverseTo(position - 1);
-        const leader = this.traverseTo(position - 2);
+        const leader = this.traverseTo(index - 1);
+        const unwantedNode = leader.next;
   
         leader.next = unwantedNode.next;
       }
     }
   }
-  
+
   module.exports = LinkedList;
   ```
 * Time complexity
-  * Create an element on head (prepand): O(1)
-    * There is no traverse in this operation, it will create a node and update the pointer, so time complexity is O(1)
-  * Insert an element: O(n)
-    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one and then insert a node.
-  * Read an element: O(n)
-    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one.
-  * Update an element: O(n)
-    * It will traverse n nodes to find the correct position, where n is the number of nodes linked before the target one and then update the node.
-  * Delete an element: O(n)
-    * It will traverse n nodes to find the target nodes, where n is the number of nodes linked before the target one and then do operations to remove the node.
+  * Create an element on head (prepend): O(1) - Creating a new node and updating the head pointer can be done in constant time without any traversal.
+  * Insert an element: O(n) - Traversing to the target position to insert the element takes time proportional to the number of nodes linked before that position.
+  * Read an element: O(n) - Traversing to the target position to read the element takes time proportional to the number of nodes linked before that position.
+  * Update an element: O(n) - Traversing to the target position to update the element takes time proportional to the number of nodes linked before that position.
+  * Delete an element: O(n) - Traversing to the target position to delete the element takes time proportional to the number of nodes linked before that position.
 * spec
   ```javascript
-  const LinkedList = require('../examples/singly_linked_list.js');
-  
-  describe('LinkedList', () => {
+  const SinglyLinkedList = require('../examples/singly_linked_list.js');
+
+  describe('SinglyLinkedList', () => {
     let testLinkedList;
     beforeEach(() => {
-      testLinkedList = new LinkedList();
+      testLinkedList = new SinglyLinkedList();
       const values = [1, 74, 888, 62, 33];
       for(let i = 0; i < values.length; i++){
-        testLinkedList.prepand(values[i]);
+        testLinkedList.prepend(values[i]);
       }
     });
   
-    // create
-    test('#prepand', () => {
-      testLinkedList.prepand(0);
+    test('#prepend', () => {
+      testLinkedList.prepend(0);
       expect(testLinkedList.printList()).toEqual([ 0, 33, 62, 888, 74, 1 ]);
     });
   
@@ -185,7 +182,6 @@ Linked lists can dynamically grow and shrink in size during program execution, w
       expect(testLinkedList.printList()).toEqual([ 33, 62, 1000, 888, 74, 1 ]);
     });
   
-    // read
     test('#traverse', () => {
       expect(testLinkedList.traverseTo(2).value).toEqual(888);
     })
@@ -194,22 +190,30 @@ Linked lists can dynamically grow and shrink in size during program execution, w
       expect(testLinkedList.printList()).toEqual([33, 62, 888, 74, 1]);
     })
     
-    // update
     test('#update', () => {
       testLinkedList.update(3, 4)
-      expect(testLinkedList.printList()).toEqual([33, 62, 4, 74, 1]);
+      expect(testLinkedList.printList()).toEqual([33, 62, 888, 4, 1]);
     })
     
-    // destroy
     test('#remove', () => {
       testLinkedList.remove(3)
-      expect(testLinkedList.printList()).toEqual([33, 62, 74, 1]);
+      expect(testLinkedList.printList()).toEqual([33, 62, 888, 1]);
     })
   });
   ```
 
 ### Doubly Linked List
 
+* Graph
+  <div class="mermaid">
+    graph LR
+      id1((A)) --> id2((B))
+      id2((B)) --> id1((A))
+      id2((B)) --> id3((C))
+      id3((C)) --> id2((B))
+      id3((C)) --> id4((...))
+      id4((...)) --> id3((C))
+  </div>
 * coding example:
   ```javascript
   class Node {
@@ -386,13 +390,9 @@ Linked lists can dynamically grow and shrink in size during program execution, w
   });
   ```
 
-## What
-
-When solving linkedlist problems, always think of recursive.
-
 ### runner technique
 
-* Concept: two pointers iterates through a linkedlist at the same time.
+* Concept: two pointers iterates through a linked list at the same time.
 * Detecting Cycles
   ```javascript
   function hasCycle(head) {
@@ -432,7 +432,7 @@ When solving linkedlist problems, always think of recursive.
 * Information:
   * Example: from [1, 4, 6, 3, 2, 7, 4, 8, 3] to [1, 4, 6, 3, 2, 7, 8]
   * You can remove any duplicate nodes you want as long as the result are all unique values
-* Edge cases: Only one node in this linkedlist
+* Edge cases: Only one node in this linked list
 * Brute force: compare each node with the rest linked nodes
 * Best time complexity: Because we need to traverse all the nodes to read their values at least once, the time complexity will be at least O(n).
 * Code example
@@ -482,8 +482,8 @@ When solving linkedlist problems, always think of recursive.
 
 * Problem: Implement an algorithm to find the kth to last element of a singly linked list.
 * Information:
-  * Example: If a linkedlist is 1 <- 4 <- 6 <- 3 <- 2 <- 7 <- 8, then returnKthToLast(linkedList, 3) will be 6 <- 3 <- 2 <- 7 <- 8
-  * It should return a node because the node of a linkedlist will show all the following node values. 
+  * Example: If a linked list is 1 <- 4 <- 6 <- 3 <- 2 <- 7 <- 8, then returnKthToLast(linkedList, 3) will be 6 <- 3 <- 2 <- 7 <- 8
+  * It should return a node because the node of a linked list will show all the following node values. 
 * Code example:
   ```javascript
   function returnKthToLast (linkedList, k) {
@@ -532,7 +532,7 @@ When solving linkedlist problems, always think of recursive.
   * a -> b -> c -> d -> e -> f => a -> b -> d -> e -> f
   * a -> b -> c -> d -> e => a -> b -> d -> e
 * Edge Case:
-  * If the linkedlist has only one node, then nothing will be removed from the list.
+  * If the linked list has only one node, then nothing will be removed from the list.
 * Time complexity: We must need to traverse at least once to know the length, so the time complexity is at least O(n).
 * Code example:
   ```javascript
@@ -622,6 +622,71 @@ When solving linkedlist problems, always think of recursive.
   ```
 
 ### Sum List
+
+* Problem: Two numbers are presented as linked list; for example, 671 as 6 -> 7 -> 1. Please write an algorithm for the sum of these two numbers; input: (6 -> 7 -> 1), (3 -> 5) and output: (7 -> 0 -> 6). p.s 671 + 35 = 706
+* Time Complexity: I think the least time complexity is O(A + B), where A is the number of nodes of first linked list and B is the number of nodes of second linked list.
+* Code
+  ```javascript
+  const LinkedList = require('./singly_linked_list.js')
+
+  function sumList(A, B) {
+    const numberOfA = getNumber(A)
+    const numberOfB = getNumber(B)
+  
+    let restNumber = numberOfA + numberOfB
+    const result = new LinkedList()
+    while (restNumber !== 0) {
+      result.prepend(restNumber % 10)
+      restNumber = Math.floor(restNumber / 10)
+    }
+  
+    return result
+  
+    function getNumber(node) {
+      let currentNode = node.head
+      let number = 0
+      const values = []
+  
+      while (currentNode != null) {
+        values.unshift(currentNode.value)
+        currentNode = currentNode.next
+      }
+  
+      for(let i = 0; i < values.length; i++) {
+        number += values[i] * 10 ** i
+      }
+      
+      return number
+    }
+  }
+  
+  module.exports = {
+    sumList: sumList
+  }
+  ```
+* Test:
+  ```javascript
+  const { sumList } = require('../examples/sum_list.js')
+  const LinkedList = require('../examples/singly_linked_list.js')
+  
+  describe('sum list', () => {
+    const linkedListA = new LinkedList()
+    const linkedListB = new LinkedList()
+    beforeEach(() => {
+      const numberOfA = [6, 1, 7] // 6 is head
+      const numberOfB = [5, 9, 2] // 2 is head
+      for(let i = 0 ;i < numberOfA.length; i++) {
+        linkedListA.append(numberOfA[i])
+      }
+      for(let i = 0 ;i < numberOfB.length; i++) {
+        linkedListB.append(numberOfB[i])
+      }
+    })
+    test('return desired linked list', () => {
+      expect(sumList(linkedListA, linkedListB).printList()).toEqual([1, 2, 0, 9])
+    })
+  })
+  ```
 
 ### Palindrome
 
