@@ -13,6 +13,7 @@ function SidebarLayout() {
     const titles = queriedTitles.map(
       item => ({id: item.id, tag: item.tagName.match(/\d+/)[0], position: queriedTitles.indexOf(item)})
     )
+    console.log(titles)
     const menuItemsDesired = titles.map((title) => (<MenuItem
       rootStyles={{
         'font-size': 48 / title.tag + 'px',

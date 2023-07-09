@@ -13,7 +13,7 @@ function storeAsFile(result) {
   const jsonString = JSON.stringify(result);
 
   // Write the JSON data to a file
-  fs.writeFile('searchBar.json', jsonString, function (err) {
+  fs.writeFile('./data/searchBar.json', jsonString, function (err) {
     if (err) throw err;
     console.log('Saved!');
   });

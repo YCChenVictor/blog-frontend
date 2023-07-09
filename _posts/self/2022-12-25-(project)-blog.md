@@ -23,13 +23,14 @@ I need to structure my thoughts.
 
 ## How?
 
+* Add an appendix directory to store the examples in each article
 * I think the node graph need to have colors as grouped
 * Because I there is going to be other mechanism, I need devise
 * Actually, I can try to use rails to build backend, since blog is static sites with not that much UI/UX requirements
 * Start to build backend and connect ChatGPT API
 * Remember to move the chords and lyrics to blog
 * The what section must have practical experience I had; for example, the result I get and the application I make
-* `find . -type f -exec stat -f '%m %N' {} + | sort | head -n 10`
+* In `_posts`, `find . -type f -exec stat -f '%m %N' {} + | sort | head -n 10`
 * Use pomodoros, 25 mins on each article
 * I will learn medical at my 35
 * I should try to read those less read articles and try to refine them and should keep developing apps
