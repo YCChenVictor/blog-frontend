@@ -7,7 +7,6 @@ categories: design-pattern
 note: 圖片存錯了，要再畫一次
 mathjax:
 mermaid: true
-p5: true
 publish: true
 ---
 

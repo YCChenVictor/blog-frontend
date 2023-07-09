@@ -7,7 +7,6 @@ categories: organic-chemistry
 note: 之後有空把 p5 多個顏色，p5 的 structure 應該用 class 來抓 component，不應該是用 id，不過應該先了解 class 在前端 component 的意義是什麼，平常日的 computer day 可以來做；還要修 mathjax
 mathjax: true
 mermaid: true
-p5: true
 threeJS:
 anchor:
 publish: true

@@ -7,7 +7,6 @@ categories: aesthetics
 note:
 mathjax:
 mermaid:
-p5:
 threeJS:
 anchor:
 publish: true
