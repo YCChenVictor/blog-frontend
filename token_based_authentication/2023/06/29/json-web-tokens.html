@@ -49,7 +49,7 @@
       <h1 class='text-center mt-6 mb-6'>Json Web Tokens</h1>
       <h2 id="introduction">Introduction</h2>
 
-<p>quick explanation</p>
+<p>This article explains the concept of JSON Web Tokens (JWT) and demonstrates their implementation using Ruby on Rails and Vue.js. It covers the process of creating and verifying JWTs, highlighting their role in secure authentication and authorization in distributed systems.</p>
 
 <h2 id="why">Why?</h2>
 
@@ -83,7 +83,7 @@
   <li>Reliable Exchange: The JWT is commonly transmitted as a <strong>Bearer Token</strong> in the Authorization header of an HTTP request, prefixed with the word “Bearer” followed by a space, before the actual JWT.</li>
 </ul>
 
-<h3 id="pseudocode-in-ruby">Pseudocode in Ruby</h3>
+<h3 id="pseudocode-of-jwt-in-ruby">Pseudocode of JWT in Ruby</h3>
 
 <h4 id="use-case">Use case</h4>
 
@@ -162,16 +162,21 @@
 
 <h2 id="what">What</h2>
 
-<p>(TBC, 2023/07/09)</p>
-
 <h3 id="rails--vue">Rails + Vue</h3>
+
+<p>In rails, we usually use the gem, <code class="language-plaintext highlighter-rouge">jwt</code> to do the trick.</p>
 
 <h4 id="rails">Rails</h4>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SessionsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+<h5 id="create-jwt">Create JWT</h5>
+
+<ul>
+  <li>Concept: After user input username and password, frontend will post it to backend and if the password is matched, the backend create JWT and return to the frontend.</li>
+  <li>Code example
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SessionsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">create</span>
     <span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">username: </span><span class="n">params</span><span class="p">[</span><span class="ss">:username</span><span class="p">])</span>
-
+  
     <span class="k">if</span> <span class="n">user</span> <span class="o">&amp;&amp;</span> <span class="n">user</span><span class="p">.</span><span class="nf">authenticate</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:password</span><span class="p">])</span>
       <span class="c1"># Generate a JWT token</span>
       <span class="n">token</span> <span class="o">=</span> <span class="no">JWT</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span>
@@ -179,31 +184,82 @@
           <span class="ss">user_id: </span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span>
           <span class="c1"># more claims</span>
         <span class="p">},</span>
-        <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">secrets</span><span class="p">.</span><span class="nf">secret_key_base</span><span class="p">,</span> <span class="c1"># </span>
+        <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">secrets</span><span class="p">.</span><span class="nf">secret_key_base</span><span class="p">,</span> <span class="c1"># For signature</span>
         <span class="s1">'HS256'</span>
       <span class="p">)</span>
-
+  
       <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">token: </span><span class="n">token</span> <span class="p">}</span>
     <span class="k">else</span>
       <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">error: </span><span class="s1">'Invalid credentials'</span> <span class="p">},</span> <span class="ss">status: :unauthorized</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="verify-jwt">Verify JWT</h4>
+
+<ul>
+  <li>Concept: Define the method to authorize the JWT in base controller and if we need to protect a method, we write the before_action for that method and the <code class="language-plaintext highlighter-rouge">authorize_request</code> method will do the JWT decode.</li>
+  <li>Code Example
+    <ul>
+      <li>Protected Controller
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ProtectedController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:authorize_request</span>
+    
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">message: </span><span class="s1">'Protected endpoint accessed successfully'</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>        </div>
+      </li>
+      <li>The code to verify JWT in <code class="language-plaintext highlighter-rouge">ApplicationController</code>
+        <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">API</span>
+  <span class="kp">private</span>
+    
+  <span class="k">def</span> <span class="nf">authorize_request</span>
+    <span class="n">authorization_header</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">headers</span><span class="p">[</span><span class="s1">'Authorization'</span><span class="p">]</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">authorization_header</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span><span class="o">&amp;</span><span class="p">.</span><span class="nf">last</span>
+    
+    <span class="k">begin</span>
+      <span class="n">decoded_token</span> <span class="o">=</span> <span class="no">JWT</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span>
+        <span class="n">token</span><span class="p">,</span>
+        <span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">secrets</span><span class="p">.</span><span class="nf">secret_key_base</span><span class="p">,</span>
+        <span class="kp">true</span><span class="p">,</span>
+        <span class="ss">algorithm: </span><span class="s1">'HS256'</span>
+      <span class="p">)</span>
+      <span class="n">user_id</span> <span class="o">=</span> <span class="n">decoded_token</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'user_id'</span><span class="p">]</span>
+      <span class="vi">@current_user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">id: </span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">rescue</span> <span class="no">JWT</span><span class="o">::</span><span class="no">DecodeError</span><span class="p">,</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">RecordNotFound</span>
+      <span class="n">render</span> <span class="ss">json: </span><span class="p">{</span> <span class="ss">error: </span><span class="s1">'Unauthorized'</span> <span class="p">},</span> <span class="ss">status: :unauthorized</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h4 id="vue">Vue</h4>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
+<h5 id="get-jwt-when-login">Get JWT when login</h5>
+
+<ul>
+  <li>Purpose: After the user input the password and username, we store the JWT from backend in local storage.</li>
+  <li>Code example
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nx">form</span> <span class="p">@</span><span class="nd">submit</span><span class="p">.</span><span class="nx">prevent</span><span class="o">=</span><span class="dl">"</span><span class="s2">handleLogin</span><span class="dl">"</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="nx">v</span><span class="o">-</span><span class="nx">model</span><span class="o">=</span><span class="dl">"</span><span class="s2">username</span><span class="dl">"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="dl">"</span><span class="s2">Username</span><span class="dl">"</span> <span class="o">/&gt;</span>
     <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">password</span><span class="dl">"</span> <span class="nx">v</span><span class="o">-</span><span class="nx">model</span><span class="o">=</span><span class="dl">"</span><span class="s2">password</span><span class="dl">"</span> <span class="nx">placeholder</span><span class="o">=</span><span class="dl">"</span><span class="s2">Password</span><span class="dl">"</span> <span class="o">/&gt;</span>
     <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Login</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
 </span>  <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
 </span><span class="o">&lt;</span><span class="sr">/template</span><span class="err">&gt;
-</span>
+</span>  
 <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
 <span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">;</span>
-
+  
 <span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
   <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
@@ -214,14 +270,14 @@
   <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
     <span class="k">async</span> <span class="nx">handleLogin</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">try</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">http://localhost:3000/login</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/login</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
           <span class="na">username</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
           <span class="na">password</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
         <span class="p">});</span>
-
+  
         <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">;</span>
-        <span class="c1">// Store the token in local storage or session storage for later use</span>
-
+        <span class="c1">// Store the token in "local storage" or session storage for later use</span>
+  
         <span class="c1">// Redirect the user to a protected route or perform other actions</span>
       <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
@@ -231,9 +287,79 @@
   <span class="p">},</span>
 <span class="p">};</span>
 <span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
-</span></code></pre></div></div>
+</span></code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="use-jwt">Use JWT</h4>
+
+<ul>
+  <li>Purpose: We create a <code class="language-plaintext highlighter-rouge">api.js</code> as a base to setup JWT for all other protected component. With JWT in header, the controller for this protected component can get JWT and do verification.</li>
+  <li>Code example
+    <ul>
+      <li>base component, <code class="language-plaintext highlighter-rouge">api.js</code>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">;</span>
+    
+<span class="kd">const</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">axios</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+  <span class="na">baseURL</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://your-api-url.com</span><span class="dl">'</span><span class="p">,</span>
+<span class="p">});</span>
+    
+<span class="c1">// Add an interceptor to include the JWT token in the request headers</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">use</span><span class="p">((</span><span class="nx">config</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">config</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="nx">common</span><span class="p">[</span><span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">token</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
+<span class="p">});</span>
+    
+<span class="k">export</span> <span class="k">default</span> <span class="nx">api</span><span class="p">;</span>
+</code></pre></div>        </div>
+      </li>
+      <li>Protected Component
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Protected</span> <span class="nx">Component</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">button</span> <span class="p">@</span><span class="nd">click</span><span class="o">=</span><span class="dl">"</span><span class="s2">accessProtectedEndpoint</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">Access</span> <span class="nx">Protected</span> <span class="nx">Endpoint</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">v</span><span class="o">-</span><span class="k">if</span><span class="o">=</span><span class="dl">"</span><span class="s2">message</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">v</span><span class="o">-</span><span class="k">if</span><span class="o">=</span><span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="o">&gt;&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/template</span><span class="err">&gt;
+</span>    
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="k">import</span> <span class="nx">api</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./api</span><span class="dl">'</span><span class="p">;</span>
+    
+<span class="k">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="na">message</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+      <span class="na">error</span><span class="p">:</span> <span class="dl">''</span><span class="p">,</span>
+    <span class="p">};</span>
+  <span class="p">},</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="k">async</span> <span class="nx">accessProtectedEndpoint</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">api</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/protected</span><span class="dl">'</span><span class="p">);</span>
+    
+        <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span> <span class="p">?</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">error</span> <span class="p">:</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="reference">Reference</h2>
+
+<p>Myself + ChatGPT</p>
 
     </div>
   </div>
