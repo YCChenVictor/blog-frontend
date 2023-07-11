@@ -79,7 +79,7 @@
 <h3 id="min-heap">Min Heap</h3>
 
 <ul>
-  <li>Definition: (2023/07/09)</li>
+  <li>Definition:</li>
   <li>Visualization
     <div class="mermaid">
   graph TD
@@ -88,11 +88,36 @@
   C((15)) --&gt; E((18))
   C((15)) --&gt; F((17))
   D((20)) --&gt; G((25))
+  D((20)) --&gt; H((30))
 </div>
   </li>
 </ul>
 
-<h3 id="basic-form">Basic Form</h3>
+<h3 id="basic-structure">Basic Structure</h3>
+
+<p>Although heap is a complete binary tree, we usually use array to construct heap because of efficient memory usage, sequential access, cache efficiency, simplicity of indexing, and improved space efficiency.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Heap</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">heap</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+
+  <span class="nx">insert</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ... insert implementation</span>
+  <span class="p">}</span>
+
+  <span class="k">delete</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ... delete implementation</span>
+  <span class="p">}</span>
+
+  <span class="nx">heapify</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ... heapify implementation</span>
+  <span class="p">}</span>
+
+  <span class="c1">// ... other heap-related methods</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
 
 <h2 id="what">What?</h2>
 
