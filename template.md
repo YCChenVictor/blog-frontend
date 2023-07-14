@@ -7,7 +7,6 @@ categories:
 note:
 mathjax:
 mermaidJS:
-p5JS:
 chartJS:
 threeJS:
 publish:
