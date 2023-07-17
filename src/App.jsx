@@ -4,7 +4,7 @@ import WebDevelopment from './components/WebDevelopment.jsx';
 import AuthorProfile from './components/AuthorProfile.jsx';
 import titleImg from './assets/img/title.jpeg'
 import Article from './components/Article.jsx'
-import settings from './data/settings.json'
+import settings from './data/articleSettings.json'
 
 const Layout = () => {
   const desiredRoutes = Object.entries(settings).map(([key, value], index) => (
@@ -25,14 +25,14 @@ const Layout = () => {
           </div>
           <div className="ml-auto">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              <Link to="/blog/web_development">Web Development</Link>
+              <Link to="/blog/software_engineering">Software Engineering</Link>
             </button>
           </div>
         </nav>
         <div>
           <Routes>
             <Route path="/blog" element={<AuthorProfile />}/>
-            <Route path="/blog/web_development" element={<WebDevelopment />}/>
+            <Route path="/blog/software_engineering" element={<WebDevelopment />}/>
             {desiredRoutes}
           </Routes>
         </div>

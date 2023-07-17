@@ -53,6 +53,7 @@ const Article = ({filePath}) => {
       )}
       <div className='bg-gray-400 pl-24 sm:pl-24 md:pl-24 lg:pl-36 xl:pl-72 2xl:pxl-72'>
         <ReactMarkdown
+          children={`${process.env.NODE_ENV}`}
           components={{
             h2: ({ node, ...props }) => (
               <h2 id={generateSlug(props.children[0])} {...props}></h2>

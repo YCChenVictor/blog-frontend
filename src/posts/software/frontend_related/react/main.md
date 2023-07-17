@@ -42,6 +42,51 @@ Learning React is valuable for developers as it equips them with a powerful and 
 * Naming
   * File: There is no strict convention for naming files in React, but camel case is more commonly used for component files while snake case is more commonly used for non-component modules or helper functions.
 
+### Environment
+
+Use `process.env` to get environment variable; for example,
+
+```javascript
+import React from 'react';
+
+function App() {
+  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+  // Use the environment variables in your component logic
+  // ...
+
+  return (
+    <div>
+      {/* Render your component */}
+    </div>
+  );
+}
+
+export default App;
+```
+
+And use `process.env.NODE_ENV` to know current environment; for example,
+
+```javascript
+import React from 'react';
+
+function App() {
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  // Use the environment variable in your component logic
+  // ...
+
+  return (
+    <div>
+      {/* Render your component */}
+    </div>
+  );
+}
+
+export default App;
+```
+
 ### Component
 
 In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to [component]({{site.baseurl}}/react/2023/01/27/component.html).
