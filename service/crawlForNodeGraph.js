@@ -32,7 +32,7 @@ function crawl(queue, visited, domain) { // Promise in this function
                 queue.push(absoluteUrl);
               }
             });
-            parentNode = url.replace(domain, "")
+            const parentNode = url.replace(domain, "")
             structure[parentNode] = childNodes;
             resolve(crawl(queue, visited, domain)); // resolve with calling this function again
           }
