@@ -87,6 +87,24 @@ function App() {
 export default App;
 ```
 
+### Deploy
+
+* install `gh-pages`
+  ```bash
+  npm install gh-pages --save-dev
+  ```
+* In `package.json`, add
+  ```JSON
+  "scripts": {
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build",
+  }
+  ```
+* In directory, run
+  ```bash
+  npm run deploy
+  ```
+
 ### Component
 
 In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to [component]({{site.baseurl}}/react/2023/01/27/component.html).
