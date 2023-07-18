@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[61658],{61658:function(e,t,a){e.exports=a.p+"static/media/2023-03-08-solve-problem.7a6d66e5951432a61978.md"}}]);
