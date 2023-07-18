@@ -49,13 +49,20 @@
   p {
     @apply my-4;
   }
+}
+
+.markdown {
   table {
     border-collapse: collapse;
-    width: 100%;
   }
-  th, td {
+
+  th,
+  td {
+    padding: 6px 13px;
     border: 1px solid black;
-    padding: 8px;
-    text-align: left;
+  }
+
+  p {
+    line-height: 1.5;
   }
 }

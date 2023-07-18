@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from "remark-gfm";
 import SidebarLayout from './SidebarLayout.jsx'
-import { marked } from "marked";
+import { marked } from "marked"
 
 const Article = ({filePath}) => {
-  console.log(filePath)
-  const [markdownContent, setMarkdownContent] = useState('');
-  const [rawTitles, setRawTitles] = useState([]);
+  const [markdownContent, setMarkdownContent] = useState('')
+  const [rawTitles, setRawTitles] = useState([])
+  const category = filePath.split("/")[1]
+  let articleName = filePath.split("/")[2].split('.')[0]
+  articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1)
 
   useEffect(() => { // try to dynamic import from filePath
     const importFileAndFetchContent = async () => {
-    const fileModule = await import(`../${filePath}`);
-    const response = await fetch(fileModule.default);
-    const text = await response.text();
+    const fileModule = await import(`../${filePath}`)
+    const response = await fetch(fileModule.default)
+    const text = await response.text()
 
-    const parsedHTML = marked.parse(text);
-    const container = document.createElement('div');
-    container.innerHTML = parsedHTML;
+    const parsedHTML = marked.parse(text)
+    const container = document.createElement('div')
+    container.innerHTML = parsedHTML
 
     const tags = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6')).map((tag) => ({
       content: tag.textContent,
@@ -55,6 +58,9 @@ const Article = ({filePath}) => {
         <ReactMarkdown
           children={`${process.env.NODE_ENV}`}
           components={{
+            h1: () => (
+              <h1 className="text-center">{`(${category}) ${articleName}`}</h1>
+            ),
             h2: ({ node, ...props }) => (
               <h2 id={generateSlug(props.children[0])} {...props}></h2>
             ),
@@ -65,6 +71,7 @@ const Article = ({filePath}) => {
               <h4 id={generateSlug(props.children[0])} {...props}></h4>
             ),
           }}
+          remarkPlugins={[remarkGfm]}
         >
           {markdownContent}
         </ReactMarkdown>

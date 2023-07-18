@@ -1,6 +1,7 @@
 {
   "main": "index.js",
   "name": "react-try",
+  "homepage": "http://ycchenvictor.github.io/blog/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "react-router-dom": "^6.14.1",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
+    "remark-gfm": "^3.0.1",
     "request": "^2.88.2",
     "web-vitals": "^2.1.4"
   },
