@@ -3,8 +3,8 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const randomColor = require('randomcolor');
 
-const domain = 'http://localhost:4000'
-const queue = ['http://localhost:4000/blog/self/2023/02/04/software.html'];
+const domain = 'http://localhost:3000'
+const queue = ['http://localhost:3000/blog/self/software'];
 const visited = new Set();
 const structure = {};
 
@@ -32,7 +32,7 @@ function crawl(queue, visited, domain) { // Promise in this function
                 queue.push(absoluteUrl);
               }
             });
-            parentNode = url.replace(domain, "")
+            const parentNode = url.replace(domain, "")
             structure[parentNode] = childNodes;
             resolve(crawl(queue, visited, domain)); // resolve with calling this function again
           }
@@ -49,7 +49,7 @@ function storeAsFile(result) {
   const jsonString = JSON.stringify(result);
 
   // Write the JSON data to a file
-  fs.writeFile('./data/nodeGraph.json', jsonString, function (err) {
+  fs.writeFile('../src/data/nodeGraph.json', jsonString, function (err) {
     if (err) throw err;
     console.log('Saved!');
   });
