@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[4692],{4692:function(e,t,a){e.exports=a.p+"static/media/2022-01-11-design-overview.228d253d33a7733654fa.md"}}]);

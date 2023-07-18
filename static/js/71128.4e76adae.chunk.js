@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[71128],{71128:function(e,t,c){e.exports=c.p+"static/media/2023-04-30-the-tale-of-genji.5c52c93965bb8694d49e.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[2343],{2343:function(e,t,a){e.exports=a.p+"static/media/electron_shell.2aa78683a1e0acde219b.png"}}]);

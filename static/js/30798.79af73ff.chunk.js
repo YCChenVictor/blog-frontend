@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[30798],{30798:function(e,c,t){e.exports=t.p+"static/media/2022-08-13-concept.31d6cfe0d16ae931b73c.md"}}]);

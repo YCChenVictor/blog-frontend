@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[1391],{1391:function(c,t,e){c.exports=e.p+"static/media/2023-01-05-grokking-simplicity-ch7.e031da9d0af9a0cc8122.md"}}]);

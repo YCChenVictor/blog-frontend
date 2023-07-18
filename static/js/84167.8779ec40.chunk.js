@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[84167],{84167:function(t,e,c){t.exports=c.p+"static/media/2022-04-06-factory-method.d7702610fcd0e01af304.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[86591],{86591:function(e,t,c){e.exports=c.p+"static/media/2023-04-07-minimalism.dc62e13ed16370b62eca.md"}}]);

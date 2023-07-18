@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[20173],{20173:function(t,c,e){t.exports=e.p+"static/media/2023-01-20-structure.a172db2ba464387cc542.md"}}]);

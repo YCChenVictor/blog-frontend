@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[27898],{27898:function(e,t,c){e.exports=c.p+"static/media/2023-05-01-body-temperature.a396e7be8c8f8ee219c7.md"}}]);

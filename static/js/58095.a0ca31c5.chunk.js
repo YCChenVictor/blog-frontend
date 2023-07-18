@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[58095],{58095:function(e,r,t){e.exports=t.p+"static/media/reduce_share_resource_result.7e6425f7d760c119a6d5.png"}}]);

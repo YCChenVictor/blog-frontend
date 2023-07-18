@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[41046],{41046:function(e,t,a){e.exports=a.p+"static/media/2022-01-30-design-pattern.0ab4460a0a2f7830ec11.md"}}]);

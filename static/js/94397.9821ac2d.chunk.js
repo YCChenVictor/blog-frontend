@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[94397],{94397:function(e,t,c){e.exports=c.p+"static/media/2022-03-19-pronounce.57592f32a6fff7701751.md"}}]);

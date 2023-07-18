@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[44843],{44843:function(e,t,a){e.exports=a.p+"static/media/2021-03-19-Template.d791f73dd2f8a0c71078.md"}}]);

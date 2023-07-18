@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[58164],{58164:function(t,e,a){t.exports=a.p+"static/media/2022-12-25-datatype.69d9713d7c896d960ef2.md"}}]);

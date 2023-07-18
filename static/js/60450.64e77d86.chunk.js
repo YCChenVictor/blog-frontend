@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[60450],{60450:function(e,t,s){e.exports=s.p+"static/media/2022-08-27-atoms-molecules-Ions.9e88ed04702a5df67cf1.md"}}]);

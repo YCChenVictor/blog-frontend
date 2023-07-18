@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[32037],{32037:function(c,e,t){c.exports=t.p+"static/media/IROHA_mapping.144b5c85c63696e26c55.png"}}]);

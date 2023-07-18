@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[67092],{67092:function(t,a,e){t.exports=e.p+"static/media/2023-03-26-childhood-trauma-on-adult-mental-health.973d26ba76fcab7146b7.md"}}]);

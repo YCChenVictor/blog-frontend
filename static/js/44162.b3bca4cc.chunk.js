@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[44162],{44162:function(e,t,c){e.exports=c.p+"static/media/2023-04-07-aesthetics.6dc1d628c221eeb71210.md"}}]);

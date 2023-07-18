@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[10283],{10283:function(e,t,a){e.exports=a.p+"static/media/2022-12-05-(independent)-advertisement.b3251f3d7b4ac3959ba2.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[13368],{13368:function(t,e,a){t.exports=a.p+"static/media/2023-01-22-restful.d50bf78766a876f4923a.md"}}]);

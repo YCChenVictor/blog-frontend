@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[28230],{28230:function(e,t,c){e.exports=c.p+"static/media/2022-12-19-(independent)-decorate-romm.935558208865061f1bfd.md"}}]);

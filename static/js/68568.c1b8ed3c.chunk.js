@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[68568],{68568:function(e,a,t){e.exports=t.p+"static/media/2021-12-24-process-management.f9a20b1f1aca36f02ee3.md"}}]);

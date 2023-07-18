@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[6100],{6100:function(a,e,t){a.exports=t.p+"static/media/2021-03-17-relational-algebra.d0269034a3571c73c35c.md"}}]);

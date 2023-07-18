@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[66253],{66253:function(e,t,a){e.exports=a.p+"static/media/2023-04-29-central-ideas.dda07f4749d4f8a11385.md"}}]);

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[85176],{85176:function(r,e,t){t.r(e);t(72791);var a=t(80184);e.default=function(r){var e=r.videoUrl;return(0,a.jsx)("div",{children:(0,a.jsx)("iframe",{src:e,width:"560",height:"315",frameBorder:"0",allowFullScreen:!0})})}}}]);
+//# sourceMappingURL=85176.17a0efed.chunk.js.map

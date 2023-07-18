@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[93362],{93362:function(t,e,c){t.exports=c.p+"static/media/2021-06-14-layout.9697757bc9b1057bbf7d.md"}}]);

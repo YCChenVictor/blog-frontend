@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[45546],{45546:function(t,e,c){t.exports=c.p+"static/media/factory_method_concept.ac38e7889353d351488b.png"}}]);

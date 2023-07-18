@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[13924],{13924:function(e,t,c){e.exports=c.p+"static/media/2022-01-13-object-relational-mapping.3ba1e3c5ef981bc8233c.md"}}]);

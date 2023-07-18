@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[72742],{72742:function(e,t,c){e.exports=c.p+"static/media/2021-06-23-bind.39b1af3b28fb20c72eb3.md"}}]);

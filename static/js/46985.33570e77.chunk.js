@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[46985],{46985:function(e,t,c){e.exports=c.p+"static/media/2022-02-07-clean-code.2dbf3b92ded514414001.md"}}]);

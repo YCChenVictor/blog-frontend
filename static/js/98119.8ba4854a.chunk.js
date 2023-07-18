@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[98119],{98119:function(e,c,t){e.exports=t.p+"static/media/2021-12-24-memory-management.cac5ec25e66d2cdec0b1.md"}}]);

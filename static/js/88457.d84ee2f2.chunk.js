@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[88457],{88457:function(e,t,a){e.exports=a.p+"static/media/2022-01-30-research-market.a5b95e3e407d3c6811f4.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[34561],{34561:function(e,t,a){e.exports=a.p+"static/media/2021-03-02-model.395e4e0a0a38e739a901.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[86412],{86412:function(e,c,t){e.exports=t.p+"static/media/basic_concepts.ef7aee08cdbf29408525.md"}}]);

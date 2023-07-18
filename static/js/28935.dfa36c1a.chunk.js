@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[28935],{28935:function(e,t,c){e.exports=c.p+"static/media/2021-06-29-Tailwind.fe941f0fe6de9e683bce.md"}}]);

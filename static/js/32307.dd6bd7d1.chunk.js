@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[32307],{32307:function(e,t,c){e.exports=c.p+"static/media/2022-12-25-(project)-blog.6d1ace8ab72794bf9fdc.md"}}]);

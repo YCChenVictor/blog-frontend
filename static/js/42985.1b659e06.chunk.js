@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[42985],{42985:function(e,c,t){e.exports=t.p+"static/media/2022-08-26-code-review.61d1e46c324d799c87f6.md"}}]);

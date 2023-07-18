@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[51672],{51672:function(t,e,c){t.exports=c.p+"static/media/software.0c6515f889658c1bfa44.md"}}]);

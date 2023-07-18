@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[27247],{27247:function(e,t,c){e.exports=c.p+"static/media/2022-08-13-capitalism.72e6dbe792ece96935e7.md"}}]);

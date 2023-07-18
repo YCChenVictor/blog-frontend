@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[16841],{16841:function(t,a,e){t.exports=e.p+"static/media/2021-02-15-Ruby-3--Method-and-Block.6fbc85846a08bd8aa5b0.md"}}]);

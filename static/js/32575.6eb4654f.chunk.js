@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[32575],{32575:function(t,e,a){t.exports=a.p+"static/media/2022-03-22-strategy.1ade145a6f51d0526652.md"}}]);

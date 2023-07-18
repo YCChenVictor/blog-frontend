@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[67940],{67940:function(e,t,c){e.exports=c.p+"static/media/electronegativity.cbcb5c0b97088e913689.png"}}]);

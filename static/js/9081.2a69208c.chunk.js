@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[9081],{9081:function(e,t,c){e.exports=c.p+"static/media/cat.476701661f346335e1e8.glb"}}]);

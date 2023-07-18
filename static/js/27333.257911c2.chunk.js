@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[27333],{27333:function(e,c,t){e.exports=t.p+"static/media/concept_of_border.9d83e571ac90c5f2f413.png"}}]);

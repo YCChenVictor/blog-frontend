@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[83423],{83423:function(c,e,t){c.exports=t.p+"static/media/2022-08-21-ch1-basic-concept.b3e0329c07ac6341d86b.md"}}]);

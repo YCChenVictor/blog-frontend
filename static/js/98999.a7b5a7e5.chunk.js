@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[98999],{98999:function(e,t,c){e.exports=c.p+"static/media/rule_of_naming_model.e2d6ed91c09890f7cb30.png"}}]);

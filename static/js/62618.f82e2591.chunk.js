@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[62618],{62618:function(e,t,c){e.exports=c.p+"static/media/2021-03-25-Frontend-4--CSS-Box-Sizing---Reset.bb7eb7b3f3dc7d2b8a0f.md"}}]);

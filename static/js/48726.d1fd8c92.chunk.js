@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[48726],{48726:function(e,t,a){e.exports=a.p+"static/media/2022-01-04-ORM.29e13a4c23022b6a59f6.md"}}]);

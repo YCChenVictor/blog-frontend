@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[4282],{4282:function(e,t,c){e.exports=c.p+"static/media/2022-03-20-sentence-pattern.7f43869bc960bccd3caf.md"}}]);

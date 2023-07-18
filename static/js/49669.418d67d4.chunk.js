@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[49669],{49669:function(c,e,t){c.exports=t.p+"static/media/2023-03-17-psychology.c953cffc1ce511e965ed.md"}}]);

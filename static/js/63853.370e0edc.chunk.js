@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[63853],{63853:function(e,t,c){e.exports=c.p+"static/media/IROHA_replicate.8a46e4d6ca4932fcbd31.png"}}]);

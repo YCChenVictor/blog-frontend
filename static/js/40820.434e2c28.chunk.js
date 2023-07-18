@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[40820],{40820:function(e,t,c){e.exports=c.p+"static/media/2023-01-28-why.d3b6d11e35ddc6959f6d.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[36555],{36555:function(a,t,c){a.exports=c.p+"static/media/2022-12-10-separating-actions-calculations-data.9019c723708dbbdacc57.md"}}]);

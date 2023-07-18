@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[86114],{86114:function(c,e,t){c.exports=t.p+"static/media/2022-10-23-gas.96161cb5e8c10237c506.md"}}]);

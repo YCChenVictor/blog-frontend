@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[98968],{98968:function(e,t,s){e.exports=s.p+"static/media/2021-12-04-how-os-works.aeb860d8989f107b4630.md"}}]);

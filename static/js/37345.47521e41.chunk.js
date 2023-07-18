@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[37345],{37345:function(t,s,e){t.exports=e.p+"static/media/distinguish_coupons.4931dd989d27fdfaf322.png"}}]);

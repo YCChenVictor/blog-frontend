@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[62610],{62610:function(e,t,c){e.exports=c.p+"static/media/2023-05-04-chemistry.0a17529d6e69d19fd61b.md"}}]);

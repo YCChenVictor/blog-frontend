@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[63932],{63932:function(e,t,c){e.exports=c.p+"static/media/2023-04-01-developmental-psychology.3c5b5eb8817103805f69.md"}}]);

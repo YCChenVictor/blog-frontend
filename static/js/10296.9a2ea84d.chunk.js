@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[10296],{10296:function(e,t,c){e.exports=c.p+"static/media/2023-04-23-economics.36b7180511d3ae128893.md"}}]);

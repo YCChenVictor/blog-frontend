@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[16692],{16692:function(e,t,a){e.exports=a.p+"static/media/2022-09-06-types-of-reaction.ada5e3dbbf9d55db6807.md"}}]);

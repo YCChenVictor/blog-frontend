@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[82366],{82366:function(t,e,a){t.exports=a.p+"static/media/1993-09-01-(project)-task.7f0dda17a89a13ed21db.md"}}]);

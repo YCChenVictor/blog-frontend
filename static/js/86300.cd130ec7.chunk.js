@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[86300],{86300:function(t,e,a){t.exports=a.p+"static/media/2022-12-04-(integration)-rchaeologist-in-Britain.eab5c72afa59e970f6c8.md"}}]);

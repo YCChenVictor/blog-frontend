@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[24890],{24890:function(e,c,t){e.exports=t.p+"static/media/2022-03-27-clean-code-ch7.c4504f3475f13e899f1e.md"}}]);

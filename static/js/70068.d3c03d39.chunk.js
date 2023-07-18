@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[70068],{70068:function(e,t,c){e.exports=c.p+"static/media/2022-04-10-framework.d2e1806763fef0739cf5.md"}}]);

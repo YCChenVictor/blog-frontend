@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[96739],{96739:function(e,t,c){e.exports=c.p+"static/media/2021-03-25-Frontend-2--CSS-Float.783d7646b8efe9673c51.md"}}]);

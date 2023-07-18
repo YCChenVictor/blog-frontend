@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[89618],{89618:function(e,t,c){e.exports=c.p+"static/media/2023-04-21-routes.84b6097766860561e25c.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[99954],{99954:function(e,t,c){e.exports=c.p+"static/media/2021-03-20-Python-1--before-Python-Coding.53f14c6ee1ace73dcc5b.md"}}]);

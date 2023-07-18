@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[7497],{7497:function(e,t,a){e.exports=a.p+"static/media/ganache_initial_ten_token.62caf47745096de0c825.png"}}]);

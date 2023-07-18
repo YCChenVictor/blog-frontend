@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[12509],{12509:function(e,t,a){e.exports=a.p+"static/media/2023-04-23-origami.612514a90b6d7edd43a9.md"}}]);

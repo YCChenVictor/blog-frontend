@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[14787],{14787:function(e,c,t){e.exports=t.p+"static/media/2022-02-20-clean-code-ch2.b822e5909c46d3c22e61.md"}}]);

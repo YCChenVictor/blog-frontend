@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[90116],{90116:function(c,t,e){c.exports=e.p+"static/media/2022-02-06-Controller.1c4141f51150fc15c8c2.md"}}]);

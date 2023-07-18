@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[56249],{56249:function(e,t,a){e.exports=a.p+"static/media/2023-02-06-(independent)-take-risk.92aa2465f1430ea624b6.md"}}]);

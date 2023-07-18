@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[78913],{78913:function(e,t,c){e.exports=c.p+"static/media/2022-01-01-Vue-2-Components.977525c1e5af9990e55e.md"}}]);

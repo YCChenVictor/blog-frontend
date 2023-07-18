@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[75230],{75230:function(a,c,e){a.exports=e.p+"static/media/2022-08-11-basic-usage.6a3a80c123a102781d6c.md"}}]);

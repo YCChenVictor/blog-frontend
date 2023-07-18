@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[38471],{38471:function(t,e,a){t.exports=a.p+"static/media/2021-12-04-terminal_commands.50211af47f291b276b7d.md"}}]);

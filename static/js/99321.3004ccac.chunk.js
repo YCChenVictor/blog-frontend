@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[99321],{99321:function(e,t,c){e.exports=c.p+"static/media/2022-04-19-verb.44a279710cb455f2ceaf.md"}}]);

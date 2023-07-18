@@ -1,0 +1,176 @@
+---
+layout: post
+title:
+description: ''
+date: '2021-04-06T12:13:45.562Z'
+note:
+categories: test
+publish: true
+---
+
+## Introduction
+
+TDD is a software development process by writing test first and then keeping testing the software until all required function developed. The steps:
+
+* turn business logic into specifications
+* decompose specifications into functions (MVC)
+* define all desired input and output of each function
+* write test first for every function
+* given the tests, compose codebase to realize business logic
+
+## Why
+
+TDD reduces bugs and increase the quality of code, making software to be more maintainable and understandable. With no test, there would be more manual test in the future and it would be hard to update the version.
+
+## How?
+
+### AAA principle (Arrange -> Act -> Assert)
+
+> The basic principle to build spec is AAA principle.
+> **arrange:** describe the environment before action begin
+> **act:** execute the unit function that we want to test
+> **assert:** check whether the result is what we want
+
+#### AAA principle maps Rspec
+
+```ruby
+RSpec.describe "the_summary", type: :feature do
+
+  context "arrange" do
+    it "assertion" do
+      "act"
+    end
+  end
+end
+```
+
+[rspec](link to rspec and capybara)
+
+#### AAA principle maps Jest
+
+```javascript
+describe('Test sum', () => {
+  test('adds 1 + 2 to equal 3', () => { // arrange
+    const a = 1;
+    const b = 2;
+    it('should add them correctly', () => { // assert
+      expect(a + b).toBe(3); // act
+    });
+  })
+})
+```
+
+[jest]({{site.baseurl}}/test/2023/01/01/jest.html)
+
+## What?
+
+### Practical example
+
+For example, a woodcutter go into a forest (**arrange** the environment) -> the woodcutter use the axe to cut the wood (**act** the function) -> and the woodcutter should get the woods (**assert** the result). If the woodcutter does not like the result, woodcutter should modify the **act**.
+
+### Generate Specification
+
+In terminal, create a directory, model, and test as follow
+
+#### directory & rspec installing
+
+```bash
+mkdir woodcutter
+cd woodcutter
+gem install rspec
+```
+
+#### model & rspec
+
+```bash
+touch woodcutter.rb
+mkdir spec
+cd spec
+touch woodcutter_spec.rb
+```
+
+In `woodcutter_spec.rb`,
+
+```ruby
+require_relative '../woodcutter'
+
+describe Woodcutter do
+  context "after woodcutter enter the forest" do
+    it "get a wood" do
+      woodcutter = Woodcutter.new(true, 0)
+      woodcutter.cut
+      expect(woodcutter.woods).to be 1
+    end
+  end
+end
+```
+
+In the params of `new`, true means the woodcutter now is in forest and 0 means the number of wood the cutter has.
+
+After the spec (or test) done, different steps trigger on different mindset. Given, the TDD or BDD mindset, we should run the `woodcutter_spec.rb` multiple times until the `woodcutter.rb` achieves the demand in `woodcutter_spec.rb`
+
+### Build the feature
+
+#### Execute RSpec iteratively
+
+```bash
+rspec woodcutter_spec.rb
+```
+
+Given the errors from RSpec, I can gradully build the feature as follow.
+
+1. NameError: uninitialized constant Woodcutter => create `Woodcutter` in `woodcutter.rb`
+
+2. ArgumentError: wrong number of arguments (given 1, expected 0) => create `initialize` method in `Woodcutter` with params, `in_forest` & `init_count`
+
+3. NoMethodError: undefined method 'cut' => create `cut` method
+
+4. NoMethodError: undefined method 'woods' => create `woods` method
+
+5. expected #<Integer:3> => 1, got #<NilClass:8> => nil => add the `@quantity` in `initialize`, `cut`, and `woods` as follow
+
+   1. `@quantity = init_count` in `initialize`
+
+   2. `@quantity += 1` in `cut`
+
+   3. `@quantity` in `woods`
+
+Then the whole class:
+
+```ruby
+class Woodcutter
+  def initialize(in_forest, init_count)
+    @quantity = init_count
+  end
+
+  def cut
+    @quantity += 1
+  end
+
+  def woods
+    @quantity
+  end
+end
+```
+
+#### Environment
+
+We should add another class for woodcutter to walk into the forest and add `before` block to setup the environment.
+
+skip
+
+### Reference
+
+[**Learn TDD in Rails Learn TDD**](https://learntdd.in/rails/)
+
+[**Ruby on Rails 實戰聖經**](https://ihower.tw/rails/testing.html)
+
+[https://en.wikipedia.org/wiki/Test-driven_development](https://en.wikipedia.org/wiki/Test-driven_development)
+
+[**Hello Testing - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天**](https://ithelp.ithome.com.tw/articles/10185338)
+
+[**What are the different kinds of Rails tests and when should I use each? - Code with Jason**](https://www.codewithjason.com/different-kinds-rails-tests-use/)
+
+[**teamcapybara/capybara**](https://github.com/teamcapybara/capybara#using-capybara-with-rspec)
+
+[**rspec/rspec-rails**](https://github.com/rspec/rspec-rails)

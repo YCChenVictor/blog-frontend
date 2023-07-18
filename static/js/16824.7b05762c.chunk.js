@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[16824],{16824:function(t,a,e){t.exports=e.p+"static/media/react_basic_layout.8b3a66a462c96ff014ef.png"}}]);

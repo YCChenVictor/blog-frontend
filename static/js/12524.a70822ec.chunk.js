@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[12524],{12524:function(e,t,a){e.exports=a.p+"static/media/2022-01-20-model.d0dea2230cd22d1a0419.md"}}]);

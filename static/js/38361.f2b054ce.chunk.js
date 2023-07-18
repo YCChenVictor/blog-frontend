@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[38361],{38361:function(t,e,a){t.exports=a.p+"static/media/2023-06-16-horizontally-vertically-scalability.c7012eb35f9d904a2e69.md"}}]);

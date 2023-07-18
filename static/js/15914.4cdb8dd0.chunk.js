@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[15914],{15914:function(e,t,a){e.exports=a.p+"static/media/2021-06-19-AJAX.11d2da082df6af0eec24.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[72646],{72646:function(e,c,t){e.exports=t.p+"static/media/2023-06-12-object-oriented-design.7c372c5a4cdedc456174.md"}}]);

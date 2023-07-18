@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[83752],{83752:function(t,c,e){t.exports=e.p+"static/media/2022-02-05-Routes.0f6cd00a075c9c069f60.md"}}]);

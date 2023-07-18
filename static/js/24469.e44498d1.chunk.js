@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[24469],{24469:function(e,t,a){e.exports=a.p+"static/media/main_character.e0169472164296600203.jpeg"}}]);

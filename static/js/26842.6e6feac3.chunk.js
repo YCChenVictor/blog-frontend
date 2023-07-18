@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[26842],{26842:function(a,t,e){a.exports=e.p+"static/media/fruits_and_bowl.87554abe2a5adab7893d.png"}}]);

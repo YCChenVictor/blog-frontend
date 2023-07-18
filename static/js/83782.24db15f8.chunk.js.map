@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/83782.24db15f8.chunk.js","mappings":"6IAOA,UALc,WACZ,OACEA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,qBAET,C","sources":["components/Hello.jsx"],"sourcesContent":["import React from 'react';\n\nconst Hello = () => {\n  return (\n    <div>Hey, y’all!!</div>\n  )  \n}\nexport default Hello;\n"],"names":["_jsx","children"],"sourceRoot":""}

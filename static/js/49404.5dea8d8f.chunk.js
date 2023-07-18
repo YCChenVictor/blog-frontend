@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[49404],{49404:function(e,t,c){e.exports=c.p+"static/media/1993-09-01-create-world.725189198b80b3b7c4d5.md"}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[97013],{97013:function(e,t,c){e.exports=c.p+"static/media/2022-08-21-sketch.8e1f126d771756d9eff4.md"}}]);

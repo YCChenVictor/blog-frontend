@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[20880],{20880:function(t,e,c){t.exports=c.p+"static/media/2023-05-06-song-writing.80c666408d20646492a5.md"}}]);

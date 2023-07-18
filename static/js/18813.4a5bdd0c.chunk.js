@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[18813],{18813:function(e,t,s){e.exports=s.p+"static/media/2022-11-21-(independent)-support-artists.56f0a85facc1ed1e385e.md"}}]);

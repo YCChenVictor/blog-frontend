@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[83782],{83782:function(e,r,t){t.r(r);t(72791);var c=t(80184);r.default=function(){return(0,c.jsx)("div",{children:"Hey, y\u2019all!!"})}}}]);
+//# sourceMappingURL=83782.24db15f8.chunk.js.map

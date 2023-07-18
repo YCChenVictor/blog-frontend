@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[21740],{21740:function(c,e,t){c.exports=t.p+"static/media/grocery_shopping_ACD.cc653ad57718290e63cd.png"}}]);

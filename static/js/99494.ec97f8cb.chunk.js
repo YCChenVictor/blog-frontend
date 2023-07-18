@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[99494],{99494:function(e,t,c){e.exports=c.p+"static/media/2021-12-24-interprocess-communication.40b4538d18b82e8add80.md"}}]);

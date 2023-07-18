@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[8395],{8395:function(e,t,c){e.exports=c.p+"static/media/2022-05-01-threeJS-character.d63d6877ca90e522eac4.md"}}]);

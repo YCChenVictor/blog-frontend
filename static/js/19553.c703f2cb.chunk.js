@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[19553],{19553:function(e,s,t){e.exports=t.p+"static/media/minima-social-icons.f26296b391e094e9a947.svg"}}]);

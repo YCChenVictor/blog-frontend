@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[71137],{71137:function(e,t,c){e.exports=c.p+"static/media/2022-03-13-head.1118835378ec1d39740c.md"}}]);

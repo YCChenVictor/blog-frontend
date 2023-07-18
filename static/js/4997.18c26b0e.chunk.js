@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[4997],{4997:function(e,t,s){e.exports=s.p+"static/media/dining_philosophers.bf99fe039d63e7c21656.png"}}]);

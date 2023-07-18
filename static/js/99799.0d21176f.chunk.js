@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[99799],{99799:function(e,t,c){e.exports=c.p+"static/media/2021-12-13-efficiency.989806739efda993590b.md"}}]);

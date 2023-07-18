@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[99903],{99903:function(t,e,a){t.exports=a.p+"static/media/2022-09-12-startup.a6328c4e298e9a773a55.md"}}]);

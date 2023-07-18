@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[27829],{27829:function(e,t,s){e.exports=s.p+"static/media/2023-04-02-operating-system.459f504b5971dee3c71d.md"}}]);

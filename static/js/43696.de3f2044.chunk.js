@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[43696],{43696:function(e,t,s){e.exports=s.p+"static/media/2021-03-28-Frontend-6--CSS-Relative---Absolute.d8f9622d57996b39bd60.md"}}]);

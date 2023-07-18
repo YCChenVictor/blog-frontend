@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_try=self.webpackChunkreact_try||[]).push([[72282],{72282:function(e,t,c){e.exports=c.p+"static/media/2021-03-26-Frontend-5--CSS-Flex---Fixed.546146c2b7acb7d7eb3b.md"}}]);
