@@ -95,6 +95,9 @@ export default App;
   ```
 * In `package.json`, add
   ```JSON
+  ...
+  "homepage": "http://{github-username}.github.io/{repo-name}",
+  ...
   "scripts": {
     "predeploy" : "npm run build",
     "deploy" : "gh-pages -d build",
