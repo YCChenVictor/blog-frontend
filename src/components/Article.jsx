@@ -58,7 +58,6 @@ const Article = ({filePath}) => {
       )}
       <div className='bg-gray-400 pr-8 pl-24 sm:pr-8 sm:pl-24 md:pr-8 md:pl-24 lg:pr-8 lg:pl-36 xl:pr-8 xl:pl-72 2xl:pr-8 2xl:pl-72'>
         <ReactMarkdown
-          children={`${process.env.NODE_ENV}`}
           components={{
             h1: () => (
               <h1 className="text-center">{`(${category}) ${articleName}`}</h1>

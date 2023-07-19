@@ -289,6 +289,9 @@ To embed videos in a React application, you can use the <iframe> HTML element al
 * In `ReactMarkdown`, add `code`
 * RenderCode
   ```
+* MermaidJS
+  ```javascript
+  
   ```
 
 #### Other
@@ -317,3 +320,7 @@ To embed videos in a React application, you can use the <iframe> HTML element al
 [markdown to jsx](https://www.google.com/search?q=how+to+load+markdown+file+inreact&oq=how+to+load+markdown+file+inreact&aqs=chrome..69i57j33i10i160l3j33i22i29i30.10981j0j7&sourceid=chrome&ie=UTF-8#kpvalbx=_rc-vZNq5B4bz-Qa_oorIAQ_31)
 
 [Using Dynamic Anchor Links in React Markdown](https://spin.atomicobject.com/2022/11/17/dynamic-anchor-tags/)
+
+[react-markdown的使用](https://www.cnblogs.com/mbbk/p/react-markdown.html)
+
+[How to Integrate Next, React, Mermaid, and Markdown](https://www.andynanopoulos.com/blog/how-to-integrate-next-react-mermaid-markdown)
