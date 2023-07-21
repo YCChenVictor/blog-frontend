@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import SidebarLayout from './SidebarLayout.jsx'
 import { marked } from "marked"
 import RenderImage from "./RenderImage.jsx"
+import RenderCode from "./RenderCode.jsx"
 
 const Article = ({filePath}) => {
   const [markdownContent, setMarkdownContent] = useState('')
@@ -75,7 +76,8 @@ const Article = ({filePath}) => {
               RenderImage(props)
             ),
             code: ({ node, ...props }) => (
-              console.log(node) // going to add code block
+              RenderCode(props)
+
             )
           }}
           remarkPlugins={[remarkGfm]}

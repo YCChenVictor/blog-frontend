@@ -261,6 +261,21 @@ To embed videos in a React application, you can use the <iframe> HTML element al
   export default RenderImage
   ```
 
+##### Code Block
+
+* Install package
+  ```bash
+  npm i react-syntax-highlighter
+  ```
+* In the md file, add a code block
+  ```
+  This is a code block
+  ```
+* In `ReactMarkdown`, add `code`
+* RenderCode
+  ```
+  ```
+
 #### Other
 
 * [react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) for icon

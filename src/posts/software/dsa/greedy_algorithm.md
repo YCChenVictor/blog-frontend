@@ -26,6 +26,8 @@ which means,
 
 #### brute force
 
+The time complexity is O(2^n)
+
 ```ruby
 data = [
   '1' => ['ID', 'NT', 'UT'],
