@@ -2,3 +2,11 @@
   command = "npm run build"
   publish="/build"
   base = ""
+
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 301
+  force = false
+  query = {path = ":path"}
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}
