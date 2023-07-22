@@ -28,5 +28,16 @@
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": true
+  },
+  "4": {
+    "url": "software/dsa/greedy_algorithm",
+    "specialTitle": null,
+    "date": "2023-07-20",
+    "categories": "DSA",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
   }
 }
