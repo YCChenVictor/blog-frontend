@@ -108,6 +108,8 @@ export default App;
   npm run deploy
   ```
 
+Note: If you cannot deploy successfully, just build it and then push it to gh-pages branch. Or use Netlify.
+
 ### Component
 
 In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to [component]({{site.baseurl}}/react/2023/01/27/component.html).
