@@ -1,7 +1,7 @@
 {
   "main": "index.js",
   "name": "react-try",
-  "homepage": "http://ycchenvictor.github.io/blog/",
+  "homepage": "https://ycchenvictor.github.io/blog/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
