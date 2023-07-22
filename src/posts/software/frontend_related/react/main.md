@@ -89,6 +89,8 @@ export default App;
 
 ### Deploy
 
+#### Github
+
 * install `gh-pages`
   ```bash
   npm install gh-pages --save-dev
@@ -109,6 +111,17 @@ export default App;
   ```
 
 Note: If you cannot deploy successfully, just build it and then push it to gh-pages branch. Or use Netlify.
+
+#### Netlify
+
+* install
+  ```bash
+  npm install netlify-cli -g
+  ```
+* deploy
+  ```bash
+  netlify deploy
+  ```
 
 ### Component
 
