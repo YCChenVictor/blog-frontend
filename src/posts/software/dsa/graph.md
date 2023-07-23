@@ -50,7 +50,7 @@ Graph with undirected graph
     * Each vertex is associated with a list of vertices it is connected to.
     * For example, vertex 0 is connected to vertices 1 and 3.
   * Edge lists
-    ```
+    ```bash
     [(0, 1), (0, 3), (1, 1), (2, 0), (3, 1), (3, 2)]
     ```
     * Each tuple represents an edge between two vertices.
