@@ -5,6 +5,8 @@ import AuthorProfile from './components/AuthorProfile.jsx';
 import titleImg from './assets/img/title.jpeg'
 import Article from './components/Article.jsx'
 import settings from './data/articleSettings.json'
+import ArticleList from './components/ArticleList.jsx'
+import articleSettings from './data/articleSettings.json'
 
 const Layout = () => {
   const desiredRoutes = Object.entries(settings).map(([key, value], index) => (
@@ -26,6 +28,7 @@ const Layout = () => {
           <Routes>
             <Route path="/blog" element={<AuthorProfile />}/>
             <Route path="/blog/software_engineering" element={<WebDevelopment />}/>
+            <Route path="/blog/article_list" element={<ArticleList articleSettings={articleSettings} />}/>
             {desiredRoutes}
           </Routes>
         </div>

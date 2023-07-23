@@ -4,7 +4,7 @@ const fs = require('fs');
 const randomColor = require('randomcolor');
 
 const domain = 'http://localhost:3000'
-const queue = ['http://localhost:3000/blog/self/software'];
+const queue = ['http://localhost:3000/blog/software/main'];
 const visited = new Set();
 const structure = {};
 

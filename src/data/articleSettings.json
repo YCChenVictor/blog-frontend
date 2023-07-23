@@ -9,7 +9,7 @@
     "publish": true
   },
   "2": {
-    "url": "software/data_structure_and_algorithm/main",
+    "url": "software/dsa/main",
     "specialTitle": null,
     "date": "2021-11-25",
     "categories": "DSA",
