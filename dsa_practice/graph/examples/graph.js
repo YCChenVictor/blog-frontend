@@ -34,7 +34,8 @@ class Graph {
   }
 
   findVertex(vertex) {
-    return Object.keys(this.adjacencyList).has(vertex)
+    const vertices = Object.keys(this.adjacencyList)
+    return vertices.indexOf(vertex) !== -1
   }
 
   findEdge(vertex1, vertex2) {
@@ -59,9 +60,10 @@ class Graph {
 
   removeVertex(vertex) {
     while (this.adjacencyList[vertex].length) {
-      neighborVertex = this.adjacencyList[vertex].pop();
+      const neighborVertex = this.adjacencyList[vertex].pop();
       this.removeEdge(vertex, neighborVertex)
     }
+    delete this.adjacencyList[vertex.toString()]
   }
 }
 
