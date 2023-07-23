@@ -42,7 +42,8 @@ class Graph {
   }
 
   // update
-  // There will be no update methods for vertex and edge because in this class there is no attributes for both of them.
+  // There will be no update methods for vertex and edge because in this
+  // class there is no attributes for both of them.
 
   // destroy
   removeEdge(vertex1, vertex2) {
