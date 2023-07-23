@@ -287,11 +287,63 @@ To embed videos in a React application, you can use the <iframe> HTML element al
   This is a code block
   ```
 * In `ReactMarkdown`, add `code`
+  ```jsx
+  ...
+  <ReactMarkdown
+    components={{
+      ...
+      code: ({ node, ...props }) => (
+        RenderCode(props)
+      )
+    }}
+    ...
+  >
+    {markdownContent}
+  </ReactMarkdown>
+  ```
 * RenderCode
+  ```
+
+  ```
+
+##### Mermaid
+
+The concept is turn it into svg first and then render the svg.
+
+* In `ReactMarkdown`, add code
+  ```jsx
+  <ReactMarkdown
+    components={{
+      ...
+      code: ({ node, ...props }) => {
+        if (props.className === 'language-mermaid') {
+          return RenderMermaid(props)
+        } else {
+          return RenderCode(props)
+        }
+      }
+    }}
+    ...
+  >
+    {markdownContent}
+  </ReactMarkdown>
   ```
 * MermaidJS
   ```javascript
-  
+  const RenderMermaid = (props) => {
+    const markId = useRef(`mark${Math.floor((Math.random() * 100000) + 1)}`)
+    const [svg, setSvg] = useState('')
+    useEffect(() => {
+      const renderMermaid = async () => {
+        const svg = await mermaid.render(markId.current, props.children[0])
+        setSvg(svg.svg)
+      }
+      renderMermaid()
+    }, [])
+    return (
+      <div dangerouslySetInnerHTML={{ __html: svg }}></div>
+    )
+  }
   ```
 
 #### Other

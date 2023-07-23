@@ -5,14 +5,27 @@ import SidebarLayout from './SidebarLayout.jsx'
 import { marked } from "marked"
 import RenderImage from "./RenderImage.jsx"
 import RenderCode from "./RenderCode.jsx"
+import RenderMermaid from "./RenderMermaid.jsx"
+import mermaid from 'mermaid'
 
-const Article = ({filePath}) => {
+const Article = ({setting}) => {
+  const filePath = `posts/${setting['url']}.md`
   const [markdownContent, setMarkdownContent] = useState('')
   const [rawTitles, setRawTitles] = useState([])
   const length = filePath.split("/").length
   const category = filePath.split("/")[length - 2]
   let articleName = filePath.split("/")[length - 1].split('.')[0]
   articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1)
+
+  if (setting.useMermaidJS) {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'monospace',
+    });
+    mermaid.contentLoaded();
+  }
 
   useEffect(() => { // try to dynamic import from filePath
     const importFileAndFetchContent = async () => {
@@ -74,10 +87,13 @@ const Article = ({filePath}) => {
             img: ({ node, ...props }) => (
               RenderImage(props)
             ),
-            code: ({ node, ...props }) => (
-              RenderCode(props)
-
-            )
+            code: ({ node, ...props }) => {
+              if (props.className === 'language-mermaid') {
+                return RenderMermaid(props)
+              } else {
+                return RenderCode(props)
+              }
+            }
           }}
           remarkPlugins={[remarkGfm]}
         >

@@ -14,15 +14,15 @@ Graphs are valuable tools for visually representing the relationships and connec
 
 Graph with undirected graph
 
-<div class="mermaid">
-  flowchart TD
-    id0((0)) --- id1((1))
-    id3((3)) --- id1((1))
-    id3((3)) --- id2((2))
-    id0((0)) --- id3((3))
-    id2((2)) --- id0((0))
-    id1((1)) --- id1((1))
-</div>
+```mermaid
+flowchart TD
+  id0((0)) --- id1((1))
+  id3((3)) --- id1((1))
+  id3((3)) --- id2((2))
+  id0((0)) --- id3((3))
+  id2((2)) --- id0((0))
+  id1((1)) --- id1((1))
+```
 
 * Vertices (Represent the objects or entities being modeled)
   * Based on the nodes in the flowchart, the vertices can be represented by the numbers 0, 1, 2, and 3.

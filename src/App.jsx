@@ -11,7 +11,7 @@ const Layout = () => {
     <Route
       key={index}
       path={`blog/${value['url']}`}
-      element={<Article filePath={`posts/${value['url']}.md`} />}
+      element={<Article setting={value} />}
     />
   ))
   return (
