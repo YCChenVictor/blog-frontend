@@ -242,7 +242,7 @@ Here we are going to use adjacency list to build the class of undirected graph.
 
 I am going to use following graph to build traversal algorithms
 
-<div class="mermaid">
+```mermaid
 flowchart LR
     a((A)) --- b((B))
     a((A)) --- c((C))
@@ -251,7 +251,7 @@ flowchart LR
     c((C)) --- f((F))
     e((E)) --- f((F))
     g((G))
-</div>
+```
 
 #### DFS (depth first search)
 

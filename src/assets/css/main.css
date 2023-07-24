@@ -21,7 +21,7 @@
   h6 {
   }
   a {
-    @apply text-gray-200 hover:text-black px-0.5 py-0.5 lg:py-1 mx-auto;
+    @apply text-gray-200 hover:text-black mx-auto;
   }
   ul {
     @apply list-disc;
