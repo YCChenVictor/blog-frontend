@@ -34,6 +34,10 @@ focus on why we need it
 
 ```
 
+#### Skip
+
+Add [skip ci], in the commit message.
+
 ## What?
 
 give an example

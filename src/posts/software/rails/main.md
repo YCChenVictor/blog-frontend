@@ -44,6 +44,10 @@ rails g scaffold User name:string email:string tel:string
 
 As you can see, there are files for `active_record`, `resource_route`, `scaffold_controller`, `test_unit`, `assets`, `scss`.
 
+### Config
+
+We can run the file in `config/initializer` through `bundle exec filename`
+
 ### routes
 
 Rails routes serve as the backbone of a Ruby on Rails application, providing a mapping between incoming HTTP requests and the corresponding controller actions. By defining routes in the config/routes.rb file, developers can determine how URLs are structured, which controllers handle the requests, and what actions are executed, enabling the seamless navigation and interaction within the application. For more information, please refer to [routes]({{site.baseurl}}/rails/2022/02/05/Routes.html).

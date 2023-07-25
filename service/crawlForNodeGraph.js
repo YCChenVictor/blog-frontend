@@ -9,7 +9,7 @@ const visited = new Set();
 const structure = {};
 
 // I am going to use DFS concept to solve this graph like problem. Start from a single webpage: https://ycchenvictor.github.io/blog/
-
+// This way can only be used in physical DOM. For virtual DOM, we need to create a backend server to do scraper such as puppeteer
 function crawl(queue, visited, domain) { // Promise in this function
   const childNodes = [];
   let url = queue.shift();
