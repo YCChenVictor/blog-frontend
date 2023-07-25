@@ -1,68 +1,67 @@
 # title
 
-## Introduction
+## Abstract
 
 TBC
 
-## Why?
+## Purpose
 
 Graphs are valuable tools for visually representing the relationships and connections among data points, enabling us to easily discern patterns and gain insightful observations.
 
-## How?
+## Concept
 
 ### Basic Concept
 
-Graph with undirected graph
+Let's look at following undirected graph. There are vertices and edges and we are going to research how to use data structure to represent it.
 
-<div class="mermaid">
-  flowchart TD
-    id0((0)) --- id1((1))
-    id3((3)) --- id1((1))
-    id3((3)) --- id2((2))
-    id0((0)) --- id3((3))
-    id2((2)) --- id0((0))
-    id1((1)) --- id1((1))
-</div>
+```mermaid
+flowchart TD
+  id0((0)) --- id1((1))
+  id3((3)) --- id1((1))
+  id3((3)) --- id2((2))
+  id0((0)) --- id3((3))
+  id2((2)) --- id0((0))
+  id1((1)) --- id1((1))
+```
 
-* Vertices (Represent the objects or entities being modeled)
-  * Based on the nodes in the flowchart, the vertices can be represented by the numbers 0, 1, 2, and 3.
-* Edges (Represent the relationships or connections between those objects)
-  * Based on the connections between the nodes in the flowchart, the edges can be considered as directed edges connecting the vertices.
-* Representation
-  * Adjacency matrices and adjacency lists are commonly used to represent graphs. Edge lists can also be used, although they are less common for dense graphs.
-  * Adjacency matrices (undirected edges)
-    ```bash
-       | 0 | 1 | 2 | 3 |
-    ---------------------
-    0  | 0 | 1 | 1 | 1 |
-    1  | 1 | 1 | 0 | 1 |
-    2  | 1 | 0 | 0 | 1 |
-    3  | 1 | 1 | 1 | 0 |
-    ```
-    * The value 1 represents the presence of an edge between two vertices. If the edge is undirected, there will be 1 in both intersected cells. (2023/07/04)
-  * Adjacency lists (What I prefer, refer to [here](https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38))
-    ```bash
-    0: [1, 3]
-    1: [1]
-    2: [0]
-    3: [1, 2]
-    ```
-    * Each vertex is associated with a list of vertices it is connected to.
-    * For example, vertex 0 is connected to vertices 1 and 3.
-  * Edge lists
-    ```
-    [(0, 1), (0, 3), (1, 1), (2, 0), (3, 1), (3, 2)]
-    ```
-    * Each tuple represents an edge between two vertices.
-    * For example, there is an edge from vertex 0 to vertex 1, from vertex 0 to vertex 3, and so on.
-* Other
-  * Self loop: the edge from a vertex to itself
+* Vertices: Based on the nodes in the flowchart, the vertices can be represented by the numbers 0, 1, 2, and 3.
+* Edges: Based on the connections between the nodes in the flowchart, the edges can be considered as undirected edges connecting the vertices.
+
+#### Representation
+
+There are three ways: adjacency matrices, adjacency lists, edge lists.
+
+* Adjacency matrices of undirected edges
+  ```bash
+     | 0 | 1 | 2 | 3 |
+  ---------------------
+  0  | 0 | 1 | 1 | 1 |
+  1  | 1 | 1 | 0 | 1 |
+  2  | 1 | 0 | 0 | 1 |
+  3  | 1 | 1 | 1 | 0 |
+  ```
+  * The value 1 represents the presence of an edge between two vertices. If the edge is undirected, there will be 1 in both intersected cells.
+* Adjacency lists (what I prefer, please refer to [here](https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38))
+  ```bash
+  0: [1, 3]
+  1: [1]
+  2: [0]
+  3: [1, 2]
+  ```
+  * Each vertex is associated with a list of vertices it is connected to.
+  * For example, vertex 0 is connected to vertices 1 and 3.
+* Edge lists
+  ```bash
+  [(0, 1), (0, 3), (1, 1), (2, 0), (3, 1), (3, 2)]
+  ```
+  * Each tuple represents an edge between two vertices.
+  * For example, there is an edge from vertex 0 to vertex 1, from vertex 0 to vertex 3, and so on.
 
 ### Basic Form
 
-Here will compose a class of adjacency lists 
+Here we are going to use adjacency list to build the class of undirected graph.
 
-* Basic structure (based on visualization)
+* Basic data structure of the graph above
   ```javascript
   const graph = { // adjacency lists
     0: [1, 2],
@@ -81,17 +80,17 @@ Here will compose a class of adjacency lists
       this.adjacencyList = {};
     }
 
-    // create
+    // Create
     addVertex(vertex) {
       this.adjacencyList[vertex] = [];
     }
   
-    addEdge(vertex1, vertex2) {
+    addEdge(vertex1, vertex2) { // push both side because it is undirected
       this.adjacencyList[vertex1].push(vertex2);
       this.adjacencyList[vertex2].push(vertex1);
     }
 
-    // read
+    // Read
     getNeighbors(vertex) {
       return this.adjacencyList[vertex];
     }
@@ -100,8 +99,8 @@ Here will compose a class of adjacency lists
       return Object.keys(this.adjacencyList);
     }
 
-    getEdges() {
-      const edges = new Set() // use set
+    getEdges() { // It will return Set of arrays
+      const edges = new Set()
       for (let [vertexOne, vertexTwos] of Object.entries(this.adjacencyList)) {
         vertexTwos.forEach((vertexTwo) => {edges.add([parseInt(vertexOne), vertexTwo])})
       }
@@ -116,10 +115,10 @@ Here will compose a class of adjacency lists
       return this.vertices.get(vertex1).has(vertex2) && this.vertices.get(vertex2).has(vertex1)
     }
 
-    // update
+    // Update
     // There will be no update methods for vertex and edge because in this class there is no attributes for both of them.
   
-    // destroy
+    // Destroy
     removeEdge(vertex1, vertex2) {
       let index2 = this.adjacencyList[vertex1].indexOf(vertex2)
       let index1 = this.adjacencyList[vertex2].indexOf(vertex1)
@@ -243,7 +242,7 @@ Here will compose a class of adjacency lists
 
 I am going to use following graph to build traversal algorithms
 
-<div class="mermaid">
+```mermaid
 flowchart LR
     a((A)) --- b((B))
     a((A)) --- c((C))
@@ -252,7 +251,7 @@ flowchart LR
     c((C)) --- f((F))
     e((E)) --- f((F))
     g((G))
-</div>
+```
 
 #### DFS (depth first search)
 

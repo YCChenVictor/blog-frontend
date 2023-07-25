@@ -50,26 +50,33 @@ So please refer to [model]({{site.baseurl}}/rails/2021/03/02/model.html) for mor
 
 ### methods
 
-find is a method provided by the ActiveRecord module in Ruby on Rails that retrieves a single record from the database based on its primary key. For example, if you have a model called User and you want to retrieve the user with an ID of 1, you can call User.find(1) and Rails will retrieve the corresponding record from the users table in the database. If the record is not found, find will raise an ActiveRecord::RecordNotFound exception.
+* `find` is a method provided by the ActiveRecord module in Ruby on Rails that retrieves a single record from the database based on its primary key. For example, if you have a model called User and you want to retrieve the user with an ID of 1, you can call User.find(1) and Rails will retrieve the corresponding record from the users table in the database. If the record is not found, find will raise an ActiveRecord::RecordNotFound exception.
+* `find_by` is similar to find, but it retrieves a single record based on a specific attribute value, rather than the primary key. For example, if you want to retrieve the user with an email address of "johndoe@example.com", you can call User.find_by(email: 'johndoe@example.com') and Rails will retrieve the corresponding record from the users table. If the record is not found, find_by will return nil.
+  * The main difference is that find(1) will raise an ActiveRecord::RecordNotFound exception if the record is not found, while find_by(id: 1) will simply return nil. This means that if you are certain that the record with a primary key of 1 exists in the database, you can use find(1) to retrieve it and raise an exception if it is not found. On the other hand, if you are not sure if the record exists, or if you don't want your application to crash if the record is not found, you can use find_by(id: 1) to retrieve it and handle the nil return value accordingly.
+* `where`: The where method is used to retrieve a collection of records that match a set of conditions. For example, User.where(active: true) would retrieve all users that have the active attribute set to true.
+* `order`: The order method is used to specify the order in which records are retrieved. For example, User.order(:name) would retrieve all users ordered by their name attribute in ascending order.
+* `limit and offset`: The limit and offset methods are used to retrieve a subset of records from the database. For example, User.limit(10).offset(5) would retrieve 10 users starting from the 6th user.
+* `select`: The select method is used to retrieve only specific columns from the database. For example, User.select(:name, :email) would retrieve only the name and email columns for all users.
+* `joins`: The joins method is used to retrieve records from multiple tables based on a relationship. For example, User.joins(:posts) would retrieve all users who have at least one post.
+* `includes`: The includes method is used to retrieve records from multiple tables while preloading associated records to avoid N+1 queries. For example, User.includes(:posts) would retrieve all users and their associated posts in a single query.
+* `with_lock`
+  * Purpose: Prevents conflicts from multiple processes or threads attempting to modify the same record simultaneously
+  * Concept:
+    ```ruby
+    ```
+  * Example:
+    ```ruby
+    # Assume we have a model named 'Product'
+    product = Product.find(1)
 
-find_by is similar to find, but it retrieves a single record based on a specific attribute value, rather than the primary key. For example, if you want to retrieve the user with an email address of "johndoe@example.com", you can call User.find_by(email: 'johndoe@example.com') and Rails will retrieve the corresponding record from the users table. If the record is not found, find_by will return nil.
-
-The main difference is that find(1) will raise an ActiveRecord::RecordNotFound exception if the record is not found, while find_by(id: 1) will simply return nil. This means that if you are certain that the record with a primary key of 1 exists in the database, you can use find(1) to retrieve it and raise an exception if it is not found. On the other hand, if you are not sure if the record exists, or if you don't want your application to crash if the record is not found, you can use find_by(id: 1) to retrieve it and handle the nil return value accordingly.
-
-where: The where method is used to retrieve a collection of records that match a set of conditions. For example, User.where(active: true) would retrieve all users that have the active attribute set to true.
-
-order: The order method is used to specify the order in which records are retrieved. For example, User.order(:name) would retrieve all users ordered by their name attribute in ascending order.
-
-limit and offset: The limit and offset methods are used to retrieve a subset of records from the database. For example, User.limit(10).offset(5) would retrieve 10 users starting from the 6th user.
-
-select: The select method is used to retrieve only specific columns from the database. For example, User.select(:name, :email) would retrieve only the name and email columns for all users.
-
-joins: The joins method is used to retrieve records from multiple tables based on a relationship. For example, User.joins(:posts) would retrieve all users who have at least one post.
-
-includes: The includes method is used to retrieve records from multiple tables while preloading associated records to avoid N+1 queries. For example, User.includes(:posts) would retrieve all users and their associated posts in a single query.
-
-These are just a few examples of the methods provided by the ActiveRecord module in Rails for querying the database.
-
+    # Suppose we want to update the inventory count of the product while ensuring exclusive access.
+    product.with_lock do
+      product.update(inventory_count: product.inventory_count - 1)
+    end
+    # The above code will ensure that only one process at a time can update the 'product' record with the given ID, preventing inventory count conflicts.
+    ```
+* `update_attribute` can update column without validation
+* `exist?`: `Model.exist?(xxx_id: id)`
 
 ### Validation
 

@@ -34,7 +34,8 @@ class Graph {
   }
 
   findVertex(vertex) {
-    return Object.keys(this.adjacencyList).has(vertex)
+    const vertices = Object.keys(this.adjacencyList)
+    return vertices.indexOf(vertex) !== -1
   }
 
   findEdge(vertex1, vertex2) {
@@ -42,7 +43,8 @@ class Graph {
   }
 
   // update
-  // There will be no update methods for vertex and edge because in this class there is no attributes for both of them.
+  // There will be no update methods for vertex and edge because in this
+  // class there is no attributes for both of them.
 
   // destroy
   removeEdge(vertex1, vertex2) {
@@ -58,9 +60,10 @@ class Graph {
 
   removeVertex(vertex) {
     while (this.adjacencyList[vertex].length) {
-      neighborVertex = this.adjacencyList[vertex].pop();
+      const neighborVertex = this.adjacencyList[vertex].pop();
       this.removeEdge(vertex, neighborVertex)
     }
+    delete this.adjacencyList[vertex.toString()]
   }
 }
 

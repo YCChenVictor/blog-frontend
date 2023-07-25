@@ -17,12 +17,12 @@ describe('Graph', () => {
 
   // create
   test('#addVertex', () => {
-    testGraph.add(5)
+    testGraph.addVertex(5)
     expect(testGraph.getVertices()).toEqual([1, 2, 3, 4, 5])
   })
 
   test('#addEdge', () => {
-    newEdge = [1, 3]
+    const newEdge = [1, 3]
     testGraph.addEdge(newEdge[0], newEdge[1])
     expect(testGraph.getEdges()).toEqual(new Set([
       [1, 2],
@@ -44,7 +44,7 @@ describe('Graph', () => {
     expect(testGraph.getNeighbors(4)).toEqual([1, 2])
   })
 
-  test.only('#getVertices', () => {
+  test('#getVertices', () => {
     expect(testGraph.getVertices()).toEqual([1, 2, 3, 4])
   })
 
@@ -60,14 +60,15 @@ describe('Graph', () => {
   })
 
   test('#findVertex', () => {
-    expect(testGraph.findVertex(1)).toEqual(true)
-    expect(testGraph.findVertex(5)).toEqual(false)
+    expect(testGraph.findVertex('1')).toEqual(true)
+    expect(testGraph.findVertex('5')).toEqual(false)
   })
 
   test('#findEdge', () => {
     expect(testGraph.findEdge(1, 2)).toEqual(true)
     expect(testGraph.findEdge(1, 4)).toEqual(true)
     expect(testGraph.findEdge(2, 4)).toEqual(true)
+    expect(testGraph.findEdge(3, 4)).toEqual(false)
   })
 
   // update
@@ -82,6 +83,9 @@ describe('Graph', () => {
   test('removeVertex', () => {
     testGraph.removeVertex(1)
     expect(testGraph.getVertices()).toEqual([2, 3, 4]);
-    expect(testGraph.getEdges()).toEqual();
+    expect(testGraph.getEdges()).toEqual(new Set([
+      [2, 4],
+      [4, 2],
+    ]));
   })
 })

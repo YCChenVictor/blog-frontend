@@ -3,7 +3,7 @@ import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 import { HashLink } from 'react-router-hash-link';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
-const SidebarLayout = ({rawTitles}) => {
+const SidebarLayout = ({height, rawTitles}) => {
   const [isExpand, setIsExapand] = useState(true);
   const titles = rawTitles.map((item) => ({
     content: item.content,
@@ -28,7 +28,7 @@ const SidebarLayout = ({rawTitles}) => {
   }, [])
 
   return (
-    <div style={{ display: 'flex', height: '70vh' }} >
+    <div style={{ display: 'flex', height: height }} >
       <Sidebar
         backgroundColor="rgb(156 163 175)"
         collapsed={isExpand}

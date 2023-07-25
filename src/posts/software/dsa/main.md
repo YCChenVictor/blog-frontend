@@ -46,7 +46,7 @@ A tree is a hierarchical data structure with nodes connected by edges, and a sin
 
 ### Graph
 
-A graph is a visual representation of data that shows the relationship between different variables. It consists of nodes or vertices connected by edges or links that illustrate the connections or interactions between them. For more information, please refer to [graph](/blog/dsa/graph).
+A graph is a visual representation of data that shows the relationship between different variables. It consists of nodes or vertices connected by edges or links that illustrate the connections or interactions between them. For more information, please refer to [graph](/blog/software/dsa/graph).
 
 ### Stack
 

@@ -4,7 +4,7 @@ title:
 description: ''
 date: '2022-08-31'
 categories: test
-note:
+note: separate rspec and capybara
 mathjax:
 mermaid:
 p5:
@@ -84,6 +84,10 @@ RSpec.describe Hash do
   # Add additional specs for the Hash class
 end
 ```
+
+### methods
+
+* expect raise no errors: `expect { object.do_something }.not_to raise_error`
 
 ## What?
 

@@ -9,7 +9,7 @@
     "publish": true
   },
   "2": {
-    "url": "software/data_structure_and_algorithm/main",
+    "url": "software/dsa/main",
     "specialTitle": null,
     "date": "2021-11-25",
     "categories": "DSA",
@@ -34,6 +34,28 @@
     "specialTitle": null,
     "date": "2023-07-20",
     "categories": "DSA",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
+  },
+  "5": {
+    "url": "software/rails/main",
+    "specialTitle": null,
+    "date": "2023-01-01",
+    "categories": "rails",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
+  },
+  "6": {
+    "url": "software/rails/database",
+    "specialTitle": null,
+    "date": "2023-01-01",
+    "categories": "rails",
     "note": null,
     "useMathjax": false,
     "useThreeJS": false,
