@@ -274,6 +274,46 @@ end
 
 When you run migrations in your Rails application, they are used to modify the database schema. Each migration corresponds to a specific change to the schema, such as adding a new table or column, renaming a table, or modifying a column's data type. When you run rails db:migrate, Rails applies all of the migrations that haven't been run yet to bring your database schema up to date with your application's current state.
 
+### Built commands
+
+* Find all commands
+  ```bash
+  bin/rails help | grep db:
+  ```
+* All commands
+  ```bash
+  db:create # Create database of particular env
+  db:drop # Drop the database of particular env
+  db:encryption:init
+  db:environment:set # Fixes the EnvironmentMismatchError or NoEnvironmentInSchemaError
+  db:fixtures:load
+  db:migrate # Do migration
+  db:migrate:down
+  db:migrate:redo
+  db:migrate:status
+  db:migrate:up
+  db:mysql:backup
+  db:mysql:make_ref_sql_for_development
+  db:mysql:make_ref_sql_for_test
+  db:mysql:renew_reference_sql
+  db:mysql:restore
+  db:mysql:setup
+  db:mysql:update_ref_sql
+  db:prepare
+  db:reset
+  db:rollback
+  db:schema:cache:clear
+  db:schema:cache:dump
+  db:schema:dump
+  db:schema:load
+  db:seed
+  db:seed:replant
+  db:setup
+  db:system:change
+  db:update_ref_sql
+  db:version
+  ```
+
 ## What?
 
 I ame going to have real world example in querying

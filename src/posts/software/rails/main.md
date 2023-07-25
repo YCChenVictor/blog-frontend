@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-01-01'
-categories: rails
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# title
 
 ## Introduction
 
@@ -49,9 +36,10 @@ With a large and active community of developers and contributors, Ruby on Rails 
 
 Scaffold in rails is a quick way to create MVC structure; for example, if you want to create a MVC structure with database, user (name:string, email:string, tel:string), in the directory of the project,
 
-``` bash
+```bash
 rails g scaffold User name:string email:string tel:string
 ```
+
 <img src="{{site.baseurl}}/assets/img/files_created_by_scaffold.png" alt="">
 
 As you can see, there are files for `active_record`, `resource_route`, `scaffold_controller`, `test_unit`, `assets`, `scss`.

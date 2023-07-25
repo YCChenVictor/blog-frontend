@@ -39,5 +39,27 @@
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": true
+  },
+  "5": {
+    "url": "software/rails/main",
+    "specialTitle": null,
+    "date": "2023-01-01",
+    "categories": "rails",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
+  },
+  "6": {
+    "url": "software/rails/database",
+    "specialTitle": null,
+    "date": "2023-01-01",
+    "categories": "rails",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
   }
 }
