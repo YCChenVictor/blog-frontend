@@ -17,14 +17,14 @@ const Layout = () => {
     />
   ))
   return (
-    <div className="bg-gray-700">
+    <div className="bg-gray-700 relative">
       <Router>
-        <nav>
+        <nav className="sticky top-0">
           <a href="/blog" className="m-0 p-0">
             <img className="p-4 w-24 rounded-full" src={titleImg} alt="title" />
           </a>
         </nav>
-        <div>
+        <div className="sticky top-0">
           <Routes>
             <Route path="/blog" element={<AuthorProfile />}/>
             <Route path="/blog/software" element={<Software />}/>

@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-10-15'
-categories: CSS
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# title
 
 ## Introduction
 
@@ -19,7 +6,7 @@ This article describes the concept of CSS, Cascading Style Sheets. It is a style
 
 ## Why
 
-The evolution: Directly write the style we want into HTML markups -> Use markup, `<style>` and there are three grammars: selector, property, value -> Write a CSS file independently.
+The evolution: Directly write the style we want into HTML markups -> Use markup, <style> and there are three grammars: selector, property, value -> Write a CSS file independently.
 
 ## How
 
@@ -41,7 +28,7 @@ However, if we want multiple `<p>` to be green, then we have to specify style in
 
 The effect:
 
-<img class='' src="{{site.baseurl}}/assets/img/concept_of_style.png" alt="">
+![concept of style](assets/img/concept_of_style)
 
 ### size
 

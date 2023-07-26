@@ -61,7 +61,7 @@ const Article = ({setting}) => {
   return (
     <div className='bg-gray-400 flex'>
       {rawTitles.length > 0 ? (
-        <div className='py-8'>
+        <div className='sticky top-0'>
           <SidebarLayout
             rawTitles={rawTitles}
           />
