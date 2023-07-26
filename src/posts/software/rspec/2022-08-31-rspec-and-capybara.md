@@ -88,6 +88,8 @@ end
 ### methods
 
 * expect raise no errors: `expect { object.do_something }.not_to raise_error`
+* `skip: true` can skip all tests
+* `focus: true` can only do this test of this described class
 
 ## What?
 

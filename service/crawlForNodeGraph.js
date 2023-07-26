@@ -86,11 +86,11 @@ function desiredFormat(structure) {
   }).flat().filter(obj => obj !== undefined)
 
   function getIdFromNodeName(url) {
-    result = nodes.find(node => node.url === url)
+    const result = nodes.find(node => node.url === url)
     if(result) {
       return result['id']
     } else {
-      null
+      return null
     }
   }
 
