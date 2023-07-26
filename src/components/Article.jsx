@@ -61,7 +61,7 @@ const Article = ({setting}) => {
   return (
     <div className='bg-gray-400 flex'>
       {rawTitles.length > 0 ? (
-        <div className='py-8 fixed'>
+        <div className='py-8'>
           <SidebarLayout
             rawTitles={rawTitles}
           />
@@ -69,7 +69,7 @@ const Article = ({setting}) => {
       ) : (
         <div>Loading...</div>
       )}
-      <div className='bg-gray-400 pr-8 pl-24 sm:pr-8 sm:pl-24 md:pr-8 md:pl-24 lg:pr-8 lg:pl-36 xl:pr-8 xl:pl-72 2xl:pr-8 2xl:pl-72'>
+      <div className='bg-gray-400 pr-8 pl-24 sm:p-8 md:p-8 lg:p-8 xl:p-8 2xl:p-8'>
         <ReactMarkdown
           components={{
             h1: () => (
