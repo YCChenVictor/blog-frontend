@@ -61,5 +61,16 @@
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": true
+  },
+  "7": {
+    "url": "software/dsa/complexity",
+    "specialTitle": null,
+    "date": "2022-05-02",
+    "categories": "DSA",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
   }
 }

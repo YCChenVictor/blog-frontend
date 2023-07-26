@@ -2,7 +2,7 @@
 
 ## Abstract
 
-TBC
+This article explores the purpose and concept of using graphs to visually represent data relationships and presents methods to represent undirected graphs. It also includes code examples for implementing an undirected graph class and traversal algorithms like DFS and BFS.
 
 ## Purpose
 
@@ -255,28 +255,33 @@ flowchart LR
 
 #### DFS (depth first search)
 
-* Application
-  * Find paths between two vertices
-  * Detect cycles in a graph
-  * Determine whether a graph is bipartite
-* Solution:
-  1. Choose a starting vertex in the graph.
-  2. Visit the starting vertex and mark it as visited.
-  3. Choose an unvisited neighbor of the current vertex.
-  4. Move to the chosen neighbor and repeat steps 2 and 3 recursively.
-  5. If there are no unvisited neighbors, backtrack to the previous vertex and choose the next unvisited neighbor (if any).
-  6. Repeat steps 2-5 until all vertices have been visited or the desired condition is met.
-* Example:
-  * A -> B -> D -- backtrack to B -> E -> F -> C -> G, so the result will be [A, B, D, E, F, C, G]
-  * Intuition: Have a look at this [video](https://www.youtube.com/watch?v=7fujbpJ0LB4)
+##### Purpose
+
+* Find paths between two vertices
+* Detect cycles in a graph
+* Determine whether a graph is bipartite
+
+##### Concept
+
+1. Choose a starting vertex in the graph.
+2. Visit the starting vertex and mark it as visited.
+3. Choose an unvisited neighbor of the current vertex.
+4. Move to the chosen neighbor and repeat steps 2 and 3 recursively.
+5. If there are no unvisited neighbors, backtrack to the previous vertex and choose the next unvisited neighbor (if any).
+6. Repeat steps 2-5 until all vertices have been visited or the desired condition is met.
+
+##### Example
+
+* Given the graph above, A -> B -> D -- backtrack to B -> E -> F -> C, so the result will be [A, B, D, E, F, C, G] (Intuition: [video](https://www.youtube.com/watch?v=7fujbpJ0LB4))
 * Time complexity: O(V + E)
-* Code Example:
+  * Intuition: You need to add V nodes into set, which is O(V) and you need to loop through all neighbors, which is O(E)
+* Code Example
   ```javascript
   class GraphTraversal extends Graph {
-    depthFirstSearch(vertex, visited = new Set()) {
-      visited.add(vertex);
-      this.getNeighbors(vertex).forEach(neighbor => {
-        if(!visited.has(neighbor)) {
+    depthFirstSearch(startVertex, visited = new Set()) {
+      visited.add(startVertex);
+      this.getNeighbors(startVertex).forEach(neighbor => { // O(E)
+        if(!visited.has(neighbor)) { // O(V)
           this.depthFirstSearch(neighbor, visited)
         }
       })
@@ -307,23 +312,42 @@ flowchart LR
 
 #### BFS (breath first search)
   
-* Application:
-  * Find the shortest path between two nodes in an unweighted graph
-  * Find all the nodes that are at a certain distance from a given node
-  * Check for the existence of a path between two nodes in a graph
-* Solution:
-  1. Choose a starting vertex in the graph.
-  2. Enqueue the starting vertex into a queue and mark it as visited.
-  3. While the queue is not empty, perform the following steps:
-    a. Dequeue a vertex from the front of the queue.
-    b. Visit the dequeued vertex.
-  4. For each unvisited neighbor of the visited vertex, do the following:
-    a. Enqueue the neighbor into the queue.
-    b. Mark the neighbor as visited.
-  5. Repeat steps 3 and 4 until the queue becomes empty.
-* Example:
-  * Start ---- queue: [A] ----> A ---- Enqueue B and C (queue: [B, C]) ----> B ---- Enqueue D and E (queue: [C, D, E]) ----> C ---- Enqueue F (queue: [D, E, F]) ----> D -> E -> F -> G, so the result will be [A, B, C, D, E, F, G]
-  * Intuition: Have a look at this [video](https://www.youtube.com/watch?v=oDqjPvD54Ss&t=85s)
+##### Purpose
+
+* Find the shortest path between two nodes in an unweighted graph
+* Find all the nodes that are at a certain distance from a given node
+* Check for the existence of a path between two nodes in a graph
+
+##### Solution
+
+1. Choose a starting vertex in the graph.
+2. Enqueue the starting vertex into a queue and mark it as visited.
+3. While the queue is not empty, perform the following steps:
+    * Dequeue a vertex from the front of the queue.
+    * Visit the dequeued vertex.
+4. For each unvisited neighbor of the visited vertex, do the following:
+    * Enqueue the unvisited neighbor into the queue.
+    * Mark the neighbor as visited.
+5. Repeat steps 3 and 4 until the queue becomes empty.
+
+##### Example
+
+Given the graph above
+
+* The queue and visited
+  ```javascript
+  {queue: [A], visited: []}
+  {queue: [], visited: [A]}
+  {queue: [B, C], visited: [A]}
+  {queue: [C], visited: [A, B]}
+  {queue: [C, D, E], visited: [A, B]}
+  {queue: [D, E], visited: [A, B, C]}
+  {queue: [D, E, F], visited: [A, B, C]}
+  {queue: [E, F], visited: [A, B, C, D]}
+  {queue: [F], visited: [A, B, C, D, E]}
+  {queue: [F], visited: [A, B, C, D, E, F]}
+  ```
+* Intuition: [video](https://www.youtube.com/watch?v=oDqjPvD54Ss&t=85s)
 * Time complexity: O(V + E)
   * Given the result in example section, we can see that it will enqueue all nodes to visited array once and enqueue all nodes with edges to other nodes and not visited once, making the complexity to be V + E
 * code example
@@ -374,21 +398,9 @@ flowchart LR
 
 #### DFS vs BFS
 
-* Memory efficiency: DFS > BFS because DFS do not need to another queue to store nodes going to visit.
-* Detecting cycles: DFS > BFS because DFS will go deeper first, which if there is cycle in a graph, it will return to a visited node on a route first, compared to BFS.
+* Memory efficiency: DFS > BFS because DFS do not need another queue to store nodes going to be visited.
+* Detecting cycles: DFS > BFS because DFS will go deeper first, which will return to a visited node on a route first, compared to BFS.
 * Find shortest path: DFS < BFS because BFS does level-by-level exploration. When we find a target nodes, we can stop the exploration and return the path from a node to target node.
-
-### Route Between Nodes
-
-TBC
-
-### Build Order
-
-TBC
-
-### Dijkstra's algorithm
-
-TBC
 
 ## What?
 
@@ -399,19 +411,6 @@ TBC
 * Use a depth-first search algorithm to explore all possible paths from the starting cell to the exit cell. We can mark each cell as visited as we explore the maze and keep track of the shortest path we've found so far. Once we reach the exit cell, we compare the length of the path we've found to the shortest path so far and update it if the new path is shorter.
 * This approach can be optimized using techniques such as backtracking and memoization to avoid exploring paths that cannot lead to the shortest path.
 * Code example:
-
-## TODO
-
-* Algorithms
-  * shortest path algorithms
-    * Dijkstra's algorithm
-    * Bellman-Ford algorithm
-  * minimum spanning tree algorithms
-    * Prim's algorithm
-    * Kruskal's algorithm
-* Graph traversal
-  * shortest path between two nodes
-  * detecting cycles in a graph
 
 ## Reference
 
