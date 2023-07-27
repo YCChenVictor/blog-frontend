@@ -166,6 +166,10 @@ The layout:
 
 <img class='' src="/assets/img/concept_of_float.png" alt="">
 
+### z-index
+
+z-index is used for controlling the stacking order of elements that overlap each other in the z-axis
+
 ### Display
 
 We can categorize the objects in html into inline and block. The easiest way to distinguish the difference is that one block will fill all the horizontal area while inline would not.

@@ -170,7 +170,7 @@ end
 
 ### build feature
 
-run all spec with `bundle exec rspec` or specific spec with `bundle exec rspec spec/features/user_login_spec.rb` and keep building the features until no errors pop up.
+run all spec with `bundle exec rspec` or specific spec with `bundle exec rspec spec/features/user_login_spec.rb` and keep building the features until no errors pop up.b
 
 ## Reference
 
