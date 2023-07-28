@@ -240,6 +240,99 @@ const Article = () => {
 }
 ```
 
+### Component interactions
+
+#### On the same level
+
+Say we want the width of a component to listen to another component's width
+
+```jsx
+import React, { useEffect, useRef, useState } from 'react';
+
+const ParentComponent = () => {
+  const [componentAWidth, setComponentAWidth] = useState(0);
+
+  const updateComponentAWidth = (width) => {
+    setComponentAWidth(width);
+  };
+
+  const componentARef = useRef(null);
+
+  useEffect(() => {
+    // Get the width of ComponentA and call the updateComponentAWidth function
+    if (componentARef.current) {
+      const width = componentARef.current.clientWidth;
+      updateComponentAWidth(width);
+    }
+  }, []);
+
+  const componentBStyle = {
+    width: `${componentAWidth}px`, // Set the width of ComponentB based on ComponentA's width
+    /* Add any other styles you desire */
+  };
+
+  return (
+    <div>
+      <div ref={componentARef}>
+        {/* Your ComponentA content */}
+      </div>
+      <div style={componentBStyle}>
+        {/* Your ComponentB content */}
+      </div>
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+#### On different level
+
+Say if there is an operation in child component, then we want parent component to do actions accordingly
+
+* Parent: Pass the method to child component
+  ```jsx
+  // ParentComponent.js
+  import React from 'react';
+  import ChildComponent from './ChildComponent';
+  
+  const ParentComponent = () => {
+    const handleDataFromChild = (data) => {
+      console.log('Data received from child:', data);
+      // Do whatever you want with the data received from the child
+    };
+  
+    return (
+      <div>
+        <ChildComponent onEmitData={handleDataFromChild} />
+      </div>
+    );
+  };
+  
+  export default ParentComponent;
+  ```
+* Child: Use the method passed form parent component
+  ```jsx
+  // ChildComponent.js
+  import React from 'react';
+  
+  const ChildComponent = ({ onEmitData }) => {
+    const handleEmit = () => {
+      const dataToSend = 'Hello from child!';
+      // Call the callback function with the data to emit it to the parent
+      onEmitData(dataToSend);
+    };
+  
+    return (
+      <div>
+        <button onClick={handleEmit}>Emit Data to Parent</button>
+      </div>
+    );
+  };
+  
+  export default ChildComponent;
+  ```
+
 ## What?
 
 TBC

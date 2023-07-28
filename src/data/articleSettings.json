@@ -72,5 +72,16 @@
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": true
+  },
+  "8": {
+    "url": "software/css/main",
+    "specialTitle": null,
+    "date": "2022-10-15",
+    "categories": "css",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
   }
 }

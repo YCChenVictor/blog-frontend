@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from "remark-gfm";
 import SidebarLayout from './SidebarLayout.jsx'
@@ -12,6 +12,10 @@ const Article = ({setting}) => {
   const filePath = `posts/${setting['url']}.md`
   const [markdownContent, setMarkdownContent] = useState('')
   const [rawTitles, setRawTitles] = useState([])
+  const [articleLeftPaddingWidth, setArticleLeftPaddingWidth] = useState('')
+
+  const componentSidebarRef = useRef(null);
+
   const length = filePath.split("/").length
   const category = filePath.split("/")[length - 2]
   let articleName = filePath.split("/")[length - 1].split('.')[0]
@@ -27,23 +31,31 @@ const Article = ({setting}) => {
     mermaid.contentLoaded();
   }
 
+  const updateArticleWidth = async () => {
+    const sidebarWidth = componentSidebarRef.current.clientWidth
+    setArticleLeftPaddingWidth(sidebarWidth)
+  }
+
   useEffect(() => { // try to dynamic import from filePath
     const importFileAndFetchContent = async () => {
       const fileModule = await import(`../${filePath}`)
       const response = await fetch(fileModule.default)
       const text = await response.text()
+      setMarkdownContent(text);
 
       const parsedHTML = marked.parse(text)
       const container = document.createElement('div')
       container.innerHTML = parsedHTML
-
       const tags = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6')).map((tag) => ({
         content: tag.textContent,
         tagName: tag.tagName,
       }));
-
       setRawTitles(tags);
-      setMarkdownContent(text);
+
+      setTimeout(() => {
+        updateArticleWidth()
+      }, 250);
+      window.addEventListener('resize', updateArticleWidth);
     }
     importFileAndFetchContent()
   }, []);
@@ -59,17 +71,22 @@ const Article = ({setting}) => {
   };
 
   return (
-    <div className='bg-gray-400 flex'>
-      {rawTitles.length > 0 ? (
-        <div className='py-8'>
+    <div className='bg-gray-400 flex pt-10'>
+      <div className='fixed' ref={componentSidebarRef}>
+        {rawTitles.length > 0 ? (
           <SidebarLayout
+            onToggleExpand={updateArticleWidth}
+            height={window.innerHeight}
             rawTitles={rawTitles}
           />
-        </div>
-      ) : (
-        <div>Loading...</div>
-      )}
-      <div className='bg-gray-400 pr-8 pl-24 sm:p-8 md:p-8 lg:p-8 xl:p-8 2xl:p-8'>
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+      <div style={{
+        paddingLeft: `${articleLeftPaddingWidth + 16}px`,
+        }}
+      >
         <ReactMarkdown
           components={{
             h1: () => (

@@ -19,12 +19,14 @@ const Layout = () => {
   return (
     <div className="bg-gray-700">
       <Router>
-        <nav>
-          <a href="/blog" className="m-0 p-0">
-            <img className="p-4 w-24 rounded-full" src={titleImg} alt="title" />
-          </a>
+        <nav className="pb-20">
+          <ul className="fixed z-10 bg-gray-700 w-full">
+            <a href="/blog" className="m-0 p-0">
+              <img className="p-4 w-24 rounded-full" src={titleImg} alt="title" />
+            </a>
+          </ul>
         </nav>
-        <div>
+        <div className="">
           <Routes>
             <Route path="/blog" element={<AuthorProfile />}/>
             <Route path="/blog/software" element={<Software />}/>
