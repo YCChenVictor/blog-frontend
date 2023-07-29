@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Software from './components/Software.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Articles from './components/Articles.jsx';
 import AuthorProfile from './components/AuthorProfile.jsx';
 import titleImg from './assets/img/title.jpeg'
 import Article from './components/Article.jsx'
@@ -29,7 +29,8 @@ const Layout = () => {
         <div className="">
           <Routes>
             <Route path="/blog" element={<AuthorProfile />}/>
-            <Route path="/blog/software" element={<Software />}/>
+            <Route path="/blog/software" element={<Articles category={'software'} />}/>
+            <Route path="/blog/medicine" element={<Articles category={'medicine'} />}/>
             <Route path="/blog/article_list" element={<ArticleList articleSettings={articleSettings} />}/>
             {desiredRoutes}
           </Routes>

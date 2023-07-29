@@ -7,18 +7,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const AuthorProfile = () => {
-  const [isExpand, setIsExapand] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   return (
     <div className="prose bg-gray-400 p-4 flex">
       <Sidebar
         backgroundColor="rgb(156 163 175)"
-        collapsed={isExpand}
+        collapsed={!isCollapsed}
       >
         <Menu>
           <MenuItem
               icon={<MenuOutlinedIcon />}
               onClick={() => {
-                setIsExapand(!isExpand)
+                setIsCollapsed(!isCollapsed)
               }}
               style={{ textAlign: "center" }}
             >

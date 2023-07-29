@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import ForceGraph2D from "react-force-graph-2d";
-import nodeData from '../data/nodeGraph.json'
 
-const NodeGraph = () => {
+const NodeGraph = ({category}) => {
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
   const forceRef = useRef();
-  const borderStyle = {
-    border: "1px solid black",
-    borderRadius: "10px",
-    padding: "10px"
-  };
 
   const handleNodeClick = (node) => {
     const url = window.location.href
@@ -20,33 +14,48 @@ const NodeGraph = () => {
   }
 
   useEffect(() => {
-    console.log(nodeData)
     forceRef.current.zoom(2, 300);
-    const { nodes, links } = nodeData;
-    nodes.map((node) => {
-      if (node['id'] == 1) {
-        node['val'] = 5
-      } else {
-        node['val'] = 1
+    const fetchData = async () => {
+      const nodeData = await import(`../data/${category}/nodeGraph.json`)
+      const { nodes, links } = nodeData;
+
+      if (nodes === undefined || links === undefined) {
+        return false
       }
-    })
-    setNodes(nodes)
-    setLinks(links)
-    setTimeout(function() { // Give it time to render
-      const linkLengthConstant = 20
-      forceRef.current.d3Force('link').distance((link) => {
-        if(link.source.id == 1) {
-          return linkLengthConstant
+      nodes.map((node) => { // refine this size modification
+        if (node['id'] === 1) {
+          return node['val'] = 5
         } else {
-          return linkLengthConstant * (link.source.val + link.target.val) 
+          return node['val'] = 1
         }
-      });
-      forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400);
-    }, 1000)
+      })
+      setNodes(nodes)
+      setLinks(links)
+      return true
+    }
+    fetchData().then((success) => {
+      if(!success) return
+      setTimeout(function() { // Give it time to render
+        const linkLengthConstant = 20
+        forceRef.current.d3Force('link').distance((link) => {
+          if(link.source.id === 1) {
+            return linkLengthConstant
+          } else {
+            return linkLengthConstant * (link.source.val + link.target.val) 
+          }
+        });
+        // forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400); // fix it later
+      }, 500)
+    })
   }, []);
 
   return(
-    <div style={borderStyle}>
+    <div style={{
+        border: "1px solid black",
+        borderRadius: "10px",
+        padding: "10px"
+      }}
+    >
       <ForceGraph2D
         ref={forceRef}
         graphData={{ nodes, links }}
@@ -63,7 +72,7 @@ const NodeGraph = () => {
         enableZoomPanInteraction={true} // Enable zooming
         onNodeClick={handleNodeClick} // redirect to the page when click node
         nodeCanvasObjectMode={() => "after"}
-        nodeCanvasObject={(node, ctx, globalScale) => {
+        nodeCanvasObject={(node, ctx) => {
           ctx.textAlign = "center";
           ctx.font = `5px Sans-Serif`;
           ctx.fillStyle = "black";
