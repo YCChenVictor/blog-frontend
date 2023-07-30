@@ -13,6 +13,30 @@ const NodeGraph = ({category}) => {
     window.open(baseUrl + node.url, '_blank').focus();
   }
 
+  const generateNodes = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const { nodes, links } = await response.json();
+
+      nodes.map((node) => { // refine this size modification
+        if (node['id'] === 1) {
+          return node['val'] = 5
+        } else {
+          return node['val'] = 1
+        }
+      })
+      setNodes(nodes)
+      setLinks(links)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
   useEffect(() => {
     forceRef.current.zoom(2, 300);
     const fetchData = async () => {
@@ -56,6 +80,12 @@ const NodeGraph = ({category}) => {
         padding: "10px"
       }}
     >
+      <button
+        onClick={generateNodes}
+        className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+      >
+        Draw Again
+      </button>
       <ForceGraph2D
         ref={forceRef}
         graphData={{ nodes, links }}
