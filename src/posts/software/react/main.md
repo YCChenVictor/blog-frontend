@@ -118,6 +118,10 @@ Note: If you cannot deploy successfully, just build it and then push it to gh-pa
   ```bash
   npm install netlify-cli -g
   ```
+* build
+  ```bash
+  npm run build
+  ```
 * deploy
   ```bash
   netlify deploy

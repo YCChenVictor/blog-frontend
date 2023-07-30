@@ -83,5 +83,27 @@
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": true
+  },
+  "9": {
+    "url": "medicine/main",
+    "specialTitle": null,
+    "date": "2023-07-22",
+    "categories": "medicine",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
+  },
+  "10": {
+    "url": "medicine/biology",
+    "specialTitle": null,
+    "date": "2023-07-29",
+    "categories": "medicine",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
   }
 }
