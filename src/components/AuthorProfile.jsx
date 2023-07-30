@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const AuthorProfile = () => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(true)
+
   return (
     <div className="prose bg-gray-400 p-4 flex">
       <Sidebar
@@ -29,13 +30,19 @@ const AuthorProfile = () => {
             key={1}
             component={<Link to="/blog/software" />}
           >
-            {'software'}
+            {'Software'}
           </MenuItem>
           <MenuItem
             key={2}
             component={<Link to="/blog/medicine" />}
           >
-            {'medicine'}
+            {'Medicine'}
+          </MenuItem>
+          <MenuItem
+            key={3}
+            component={<Link to="/blog/aesthetics" />}
+          >
+            {'Aesthetics'}
           </MenuItem>
         </Menu>
       </Sidebar>

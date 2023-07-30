@@ -13,9 +13,10 @@ const NodeGraph = ({category}) => {
     window.open(baseUrl + node.url, '_blank').focus();
   }
 
-  const generateNodes = async () => {
+  const generateNodes = async (category) => {
+    const url = `http://localhost:5000/node-graph?category=${category}`
     try {
-      const response = await fetch('http://localhost:5000/');
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error('Failed to fetch data');
@@ -81,7 +82,7 @@ const NodeGraph = ({category}) => {
       }}
     >
       <button
-        onClick={generateNodes}
+        onClick={() => generateNodes(category)}
         className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
       >
         Draw Again
