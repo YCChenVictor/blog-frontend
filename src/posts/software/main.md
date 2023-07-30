@@ -67,10 +67,7 @@ Write the code for your web application, including the frontend (user interface)
 
 #### Frontend
 
-* React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to [React]({{site.baseurl}}/react/2021/06/13/react.html).
-* Vue
-* Angular
-* Test: [Jest]
+* React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to [React](/blog/software/react/main).
 
 #### Backend
 

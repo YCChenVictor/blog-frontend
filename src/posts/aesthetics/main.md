@@ -1,16 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-04-29'
-categories: aesthetics
-note:
-mathjax:
-mermaid:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 

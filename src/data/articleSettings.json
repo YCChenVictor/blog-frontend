@@ -128,5 +128,17 @@
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": true
+  },
+  "13": {
+    "url": "aesthetics/main",
+    "date": "2023-04-29",
+    "categories": "aesthetics",
+    "publish": true
+  },
+  "14": {
+    "url": "software/react/main",
+    "date": "2021-06-13",
+    "categories": "react",
+    "publish": true
   }
 }

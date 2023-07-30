@@ -287,7 +287,7 @@ To embed videos in a React application, you can use the <iframe> HTML element al
   npm i react-syntax-highlighter
   ```
 * In the md file, add a code block
-  ```
+  ```bash
   This is a code block
   ```
 * In `ReactMarkdown`, add `code`
@@ -306,9 +306,6 @@ To embed videos in a React application, you can use the <iframe> HTML element al
   </ReactMarkdown>
   ```
 * RenderCode
-  ```
-
-  ```
 
 ##### Mermaid
 

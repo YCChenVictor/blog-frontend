@@ -65,7 +65,7 @@ Although heap is a complete binary tree, we usually use array to construct heap 
   ```
 * Spec
   ```javascript
-  describe('Max Heap', () => {
+  describe('Min Heap', () => {
     let heap = new MaxHeap([5, 7, 10, 20, 9, 15])
     
     test('insert', () => {
@@ -134,19 +134,39 @@ Although heap is a complete binary tree, we usually use array to construct heap 
   
     // ... other heap-related methods
   }
-  
   ```
 * Spec
   ```javascript
   describe('Max Heap', () => {
-    let init = new MaxHeap([5, 7, 10, 20, 9, 15])
+    let heap = new MaxHeap([5, 7, 10, 20, 9, 15])
     
     test('insert', () => {
-      let result = init.insert(3)
-      expect(result.print()).toEqual([3, 5, 10, 20, 7, 15, 9])
+      heap.insert(3)
+      expect(heap.values).toEqual([3, 5, 10, 20, 7, 15, 9])
     })
 
-    test('delete')
+    test('findMin', () => {
+      expect(heap.findMin()).toEqual(5)
+    })
+
+    test('update', () => {
+      heap.update(3, 2)
+      // [5, 7, 10, 20, 9, 15]
+      // [5, 3, 10, 20, 9, 15]
+      // [3, 5, 10, 20, 9, 15]
+      expect(heap.values).toEqual([3, 5, 10, 20, 9, 15])
+    })
+
+    test('delete', () => {
+      heap.delete()
+      expect(heap.values).toEqual([7, 10, 20, 9, 15])
+    })
+
+    test('heapify', () => {
+      let randomHeap = newMax([10, 20, 5, 15, 9, 7])
+      randomHeap.heapify()
+      expect(randomHeap.values).toEqual([5, 7, 10, 20, 9, 15])
+    })
   })
   ```
 
