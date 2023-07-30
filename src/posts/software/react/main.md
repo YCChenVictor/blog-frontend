@@ -1,25 +1,14 @@
----
-layout: post
-title:
-description: ''
-date: '2021-06-13'
-categories: react
-note: what section 要放實際專案，把 CRUD 拉出來
-mathjax:
-mermaid: true
-p5:
-publish: true
----
+# Title
 
-## Introduction
+## Abstract
 
 TBC
 
-## Why?
+## Purpose
 
 Learning React is valuable for developers as it equips them with a powerful and widely-used JavaScript library, enabling the creation of efficient, modular, and interactive user interfaces that are in high demand across the web development industry.
 
-## How?
+## Concept
 
 ### start a project
 
@@ -86,6 +75,60 @@ function App() {
 
 export default App;
 ```
+
+### Package
+
+* Update npm/yarn
+* Remove unused package manually: walk through `package.json` and just remove the lines
+* Detect bundle size of packages
+  * Install `webpack-bundle-analyzer`
+    ```bash
+    npm install --save-dev webpack-bundle-analyzer
+    # or
+    yarn add --dev webpack-bundle-analyzer
+    ```
+  * Modify `webpack.config.js`
+    ```javascript
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+    module.exports = {
+      // ...your existing webpack configuration...
+      plugins: [
+        new BundleAnalyzerPlugin(),
+        // ...other plugins...
+      ],
+    };
+    ```
+* ESLint can detect unused imports
+  * Install
+    ```bash
+    npm install --save-dev eslint-plugin-unused-imports
+    # or
+    yarn add --dev eslint-plugin-unused-imports
+    ```
+  * config (.eslintrc)
+    ```JSON
+    {
+      "plugins": ["unused-imports"],
+      "rules": {
+        "unused-imports/no-unused-imports": "error"
+      }
+    }
+    ```
+* Enable tree shaking in webpack configuration. It can detect installed but unused packages.
+  * If we use react, then this is already enabled.
+  * For example, if you use a utility library like Lodash but only utilize a couple of methods from it, tree-shaking will ensure that only those specific methods are included in the bundle, not the entire library.
+  * However, if you have installed packages via npm or yarn but haven't imported or used any of their exports in your code, the tree-shaking process won't automatically remove those packages from your node_modules directory.
+* Use `depcheck`
+  * Install
+    ```bash
+    npm install -g depcheck
+    ```
+  * Use it
+    ```
+    depcheck
+    ```
+  * Then you can upm uninstall the unused package it lists
 
 ### Deploy
 
