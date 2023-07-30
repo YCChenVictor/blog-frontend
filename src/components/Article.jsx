@@ -7,6 +7,7 @@ import RenderImage from "./RenderImage.jsx"
 import RenderCode from "./RenderCode.jsx"
 import RenderMermaid from "./RenderMermaid.jsx"
 import mermaid from 'mermaid'
+import RenderTable from "./RenderTable.jsx"
 
 const Article = ({setting}) => {
   const filePath = `posts/${setting['url']}.md`
@@ -33,6 +34,7 @@ const Article = ({setting}) => {
 
   const updateArticleWidth = async () => {
     const sidebarWidth = componentSidebarRef.current.clientWidth
+    console.log(sidebarWidth)
     setArticleLeftPaddingWidth(sidebarWidth)
   }
 
@@ -54,7 +56,7 @@ const Article = ({setting}) => {
 
       setTimeout(() => {
         updateArticleWidth()
-      }, 250);
+      }, 500);
       window.addEventListener('resize', updateArticleWidth);
     }
     importFileAndFetchContent()
@@ -110,6 +112,13 @@ const Article = ({setting}) => {
               } else {
                 return RenderCode(props)
               }
+            },
+            table: ({node, ...props}) => {
+              return (
+                <div className='p-2'>
+                  <table className='border w-full' {...props}></table>
+                </div>
+              )
             }
           }}
           remarkPlugins={[remarkGfm]}

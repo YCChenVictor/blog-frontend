@@ -16,7 +16,8 @@
     "note": null,
     "useMathjax": true,
     "useThreeJS": true,
-    "publish": true
+    "publish": true,
+    "TODO": "bit Manipulation, memory (stack vs. heap)"
   },
   "3": {
     "url": "software/dsa/graph",
@@ -100,6 +101,28 @@
     "specialTitle": null,
     "date": "2023-07-29",
     "categories": "medicine",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
+  },
+  "11": {
+    "url": "software/dsa/solve-problem",
+    "specialTitle": null,
+    "date": "2023-03-08",
+    "categories": "DSA",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
+  },
+  "12": {
+    "url": "software/dsa/heap",
+    "specialTitle": null,
+    "date": "2023-05-03",
+    "categories": "DSA",
     "note": null,
     "useMathjax": false,
     "useThreeJS": false,

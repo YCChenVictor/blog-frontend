@@ -1,32 +1,36 @@
-# Data Structure and Algorithm
+# Title
 
-## Introduction
+## Abstract
 
-TBC
+This document aims to solve a specific problem in a more efficient manner by analyzing and comparing the time complexity of CRUD operations on various data structures. It provides a concise overview of each data structure's time complexity for create, read, update, and delete actions, helping programmers make informed decisions on data structure selection.
 
-## Why
+## Purpose
 
-To solve problem in a more efficient way, making no more space to improve both the time complexity and space complexity. For more information, please refer to [problem solving]({{site.baseurl}}/dsa/2023/03/08/solve-problem.html).
+To [solve problem] in a more efficient way, making no more space to improve both the [time complexity and space complexity].
 
-## How
+## Concept
 
-We can decompose all the programming logics into four actions: create, read, update, delete. The time complexity of CRUD an element in specific data structure is as follow: (The order is based on popularity)
+We can decompose all the programming logics into four actions: create, read, update, delete. The **time complexity** of CRUD an element in specific data structure is as follow: (The order is based on popularity)
 
 |  | Create | Read | Update | Delete |
-|---|--------|------|--------|--------|
-| Arrays | O(1) or O(n) | O(1) | O(1) | O(1) - O(n) |
+|:-:|:-:|:-:|:-:|:-:|
+| Arrays | O(1) - O(n) | O(1) | O(1) | O(1) - O(n) |
 | Linked Lists | O(1) | O(n) | O(n) | O(n) |
 | Hash Tables | O(1) | O(1) | O(1) | O(1) |
 | Trees | O(1) | O(n) | O(n) | O(n) |
-| Graphs | O(1) | O(V+E) | O(1) | O(V+E) |
+| Graphs | O(1) | O(v+e) | O(1) | O(v+e) |
 | Stacks | O(1) | O(1) | O(1) | O(1) |
 | Queues | O(1) | O(1) | O(n) | O(1) |
 | Heaps | O(1) | O(n) | O(log n) | O(log n) |
+| Tries |
 
-* "n" refers to the number of total elements in the data structure currently.
-* "m" refers to the length of the key being inserted or searched in the trie.
-* "V" refers to the number of vertices (nodes) in the graph.
-* "E" refers to the number of edges in the graph.
+* Explanation:
+  * "n" refers to the number of total elements in the data structure currently
+  * "v" refers to the number of vertices (nodes) in the graph
+  * "e" refers to the number of edges in the graph
+* Please refer to following sections to see why
+
+## Example
 
 ### Array
 
@@ -34,7 +38,7 @@ It is a data structure in programming that stores a collection of elements. Thes
 
 ### Linked list
 
-A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linkedlist]({{site.baseurl}}/dsa/2022/05/23/linked-list.html).
+A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linked list]({{site.baseurl}}/dsa/2022/05/23/linked-list.html).
 
 ### Hash Table
 
@@ -58,7 +62,7 @@ A queue is a linear data structure that follows the First-In-First-Out (FIFO) pr
 
 ### Heap
 
-A heap is a specialized tree-based data structure that satisfies the heap property, where the value of each node is greater than or equal to (in a max heap) or less than or equal to (in a min heap) the values of its child nodes. Heaps are commonly used for efficient priority queue operations and serve as a foundation for algorithms like heap sort and finding the kth largest/smallest element. For more information, please refer to [heap]({{site.baseurl}}/dsa/2023/05/03/heap.html).
+A heap is a specialized tree-based data structure that satisfies the heap property, where the value of each node is greater than or equal to (in a max heap) or less than or equal to (in a min heap) the values of its child nodes. Heaps are commonly used for efficient priority queue operations and serve as a foundation for algorithms like heap sort and finding the kth largest/smallest element. For more information, please refer to [heap](/blog/software/dsa/heap).
 
 ### Tries
 
@@ -66,24 +70,13 @@ A trie, also known as a prefix tree, is a data structure used to store and searc
 
 ### Dynamic Programming
 
-Dynamic programming is often applied to problems with recursive sequences of sub-problems, such as graph shortest path and longest common subsequence, by solving each subproblem only once and efficiently addressing large-scale optimization problems. The concept involves breaking down optimization problems into smaller sub-problems, storing and reusing their solutions to avoid redundant computations. For more information, please refer to [dynamic programming]({{site.baseurl}}/dsa/2023/03/24/dynamic-programming.html)
+Dynamic programming is often applied to problems with recursive sequences of sub-problems, such as graph shortest path and longest common subsequence, by solving each subproblem only once and efficiently addressing large-scale optimization problems. The concept involves breaking down optimization problems into smaller sub-problems, storing and reusing their solutions to avoid redundant computations. For more information, please refer to [dynamic programming]({{site.baseurl}}/dsa/2023/03/24/dynamic-programming.html).
 
 ### Sorting
 
 Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting]({{site.baseurl}}/dsa/2023/03/09/sorting.html).
 
-## what
-
-Try to give real world example
-
-## TODO
-
-* key concepts (according to cracking the coding interview)
-  * bit Manipulation
-  * memory (stack vs. heap)
-
 ## reference
 
-cracking the coding interview
-
-[**The top data structures you should know for your next coding interview**](https://www.freecodecamp.org/news/the-top-data-structures-you-should-know-for-your-next-coding-interview-36af0831f5e3/)
+* [cracking the coding interview](https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850)
+* [The top data structures you should know for your next coding interview](https://www.freecodecamp.org/news/the-top-data-structures-you-should-know-for-your-next-coding-interview-36af0831f5e3/)

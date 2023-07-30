@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-03-08'
-categories: DSA
-note:
-mathjax: true
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 
@@ -43,7 +30,7 @@ For example, print all positive integer solutions to the equation $$a^3 + b^3 = 
 
 Something like this
 
-<img src="{{site.baseurl}}/assets/img/on_paper.png" alt="">
+<!-- <img src="{{site.baseurl}}/assets/img/on_paper.png" alt=""> -->
 
 ### brute force
 
@@ -66,73 +53,60 @@ The time complexity is $$O(N^4)$$
 
 ### BUD (Bottlenecks, Unnecessary work, Duplicated work)
 
-* unnecessary work
-
-We should always observe any unnecessary work first because it is truly not part of the problem we are going to solve. In the brute force above the loop in `d` is an unnecessary work and should be remove as follow:
-
-```javascript
-result = []
-for (a in [1..1000]) {
-  for (b in [1..1000]) {
-    for (c in [1..1000]) {
-      d = (a^3 + b^3 - c^3)^(1/3)
-      if (a^3 + b^3 = c^3 + d^3) {
-        result.append([a, b, c, d])
+* unnecessary work: We should always observe any unnecessary work first because it is truly not part of the problem we are going to solve. In the brute force above the loop in `d` is an unnecessary work and should be remove as follow:
+  ```javascript
+  result = []
+  for (a in [1..1000]) {
+    for (b in [1..1000]) {
+      for (c in [1..1000]) {
+        d = (a^3 + b^3 - c^3)^(1/3)
+        if (a^3 + b^3 = c^3 + d^3) {
+          result.append([a, b, c, d])
+        }
       }
     }
   }
-}
-```
-
-Then the time complexity will decrease to $$O(N^3)$$
-
+  ```
+  * Then the time complexity will decrease to $$O(N^3)$$
 * Bottlenecks
-
-Then we start to solve the problem. When we talk about bottleneck, it means the place having the highest time complexity. To solve it, we usually have two approaches: cost some space or sort it.
-
-The easiest way to use space for solving problem is the concept of hash table. We can store the data in the upper loops and use this data in the later loop. For example, we can decrease the time complexity with following approach:
-
-```javascript
-result = []
-hash_table = {}
-for (a in [1..1000]) {
-  for (b in [1..1000]) {
-    hash_table[a^3 + b^3] << [a, b]
-  }
-}
-
-for (c in [1..1000]) {
-  for (d in [1..1000]) {
-    if (c^3 + d^3 exist in hash_table) {
-      result.append([hash_table[c^3 + d^3], [c, d]])
+  * Then we start to solve the problem. When we talk about bottleneck, it means the place having the highest time complexity. To solve it, we usually have two approaches: cost some space or sort it.
+  * The easiest way to use space for solving problem is the concept of hash table. We can store the data in the upper loops and use this data in the later loop. For example, we can decrease the time complexity with following approach:
+  ```javascript
+  result = []
+  hash_table = {}
+  for (a in [1..1000]) {
+    for (b in [1..1000]) {
+      hash_table[a^3 + b^3] << [a, b]
     }
   }
-}
-```
-
-Given a, b, c, d will all loop through 1 to 1000, the time complexity = $$O(2N^2) = O(N^2)$$
-
+  
+  for (c in [1..1000]) {
+    for (d in [1..1000]) {
+      if (c^3 + d^3 exist in hash_table) {
+        result.append([hash_table[c^3 + d^3], [c, d]])
+      }
+    }
+  }
+  ```
+  * Given a, b, c, d will all loop through 1 to 1000, the time complexity = $$O(2N^2) = O(N^2)$$
 * Duplicated work
-
-Although the complexity is already in $$O(N^2)$$; however, it is actually $$O(2N^2)$$ and the first nested for loops are the same as the second nested for loops, which is duplicated work. We can simplify it further with
-
-```javascript
-result = []
-hash_table = {}
-for (a in [1..1000]) {
-  for (b in [1..1000]) {
-    hash_table[a^3 + b^3] << [a, b]
+  * Although the complexity is already in $$O(N^2)$$; however, it is actually $$O(2N^2)$$ and the first nested for loops are the same as the second nested for loops, which is duplicated work. We can simplify it further with
+  ```javascript
+  result = []
+  hash_table = {}
+  for (a in [1..1000]) {
+    for (b in [1..1000]) {
+      hash_table[a^3 + b^3] << [a, b]
+    }
   }
-}
-
-for element in hash_table {
-  if (count(element) > 1) {
-    result << select(element, 2) // select two out of this element
+  
+  for element in hash_table {
+    if (count(element) > 1) {
+      result << select(element, 2) // select two out of this element
+    }
   }
-}
-```
-
-Then the time complexity = $$O(N^2 + AB)$$, where A is the number of elements in hash table and B is the number of items in each element, meaning $$A, B < N$$. Then time complexity = $$O(N^2)$$
+  ```
+  * Then the time complexity = $$O(N^2 + AB)$$, where A is the number of elements in hash table and B is the number of items in each element, meaning $$A, B < N$$. Then time complexity = $$O(N^2)$$
 
 ### just think of the real world example
 
