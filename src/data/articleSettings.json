@@ -140,5 +140,11 @@
     "date": "2021-06-13",
     "categories": "react",
     "publish": true
+  },
+  "15": {
+    "url": "aesthetics/music/main",
+    "data": "2023-04-11",
+    "category": "music",
+    "publish": true
   }
 }

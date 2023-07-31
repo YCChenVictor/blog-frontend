@@ -77,6 +77,18 @@ So please refer to [model]({{site.baseurl}}/rails/2021/03/02/model.html) for mor
     ```
 * `update_attribute` can update column without validation
 * `exist?`: `Model.exist?(xxx_id: id)`
+* `reload`
+  ```ruby
+  # Fetch the post from the database
+  post = Post.find(1)
+  
+  # ... some other code that might modify the record ...
+  
+  # Reload the post to get the most up-to-date data from the database
+  post.reload
+  ```
+  * Effect: Calling record.reload on an ActiveRecord model instance will fetch the latest data for that record from the database and update the attributes of the model to reflect the database values, discarding any unsaved changes.
+
 
 ### Validation
 
