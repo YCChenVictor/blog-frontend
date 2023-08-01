@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This document aims to solve a specific problem in a more efficient manner by analyzing and comparing the time complexity of CRUD operations on various data structures. It provides a concise overview of each data structure's time complexity for create, read, update, and delete actions, helping programmers make informed decisions on data structure selection.
+This article aims to solve a programming problem in a more efficient manner by analyzing and comparing the time complexity of CRUD operations on various data structures. It provides a concise overview of each data structure's time complexity for create, read, update, and delete actions, helping programmers make informed decisions on data structure selection.
 
 ## Purpose
 

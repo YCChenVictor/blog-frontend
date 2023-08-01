@@ -127,7 +127,7 @@
     "useMathjax": false,
     "useThreeJS": false,
     "useMermaidJS": true,
-    "publish": true
+    "publish": false
   },
   "13": {
     "url": "aesthetics/main",

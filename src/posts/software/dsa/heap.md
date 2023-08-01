@@ -116,56 +116,101 @@ Although heap is a complete binary tree, we usually use array to construct heap 
 * Code example
   ```javascript
   class MaxHeap {
-    constructor() {
-      this.heap = [];
+    constructor(values) {
+      this.heap = values;
     }
-  
+    
+    // create
     insert(value) {
-      //
+      this.heap.unshift(value)
+      this.heapify()
     }
   
+    // read
+    findMax() {
+      return this.heap[0]
+    }
+  
+    values() {
+      return this.heap
+    }
+  
+    // update
+    update(value, index) {
+      this.heap[index] = value
+      this.heapify()
+    }
+  
+    // destroy
     delete() {
-      // 
+      // In max heap, we usually remove the maximum value
+      this.heap.shift()
+      this.heapify()
     }
   
-    heapify() {
-      // ... heapify implementation
-    }
+    heapify(i = 0) {
+      const leftChildIndex = i * 2 + 1
+      const rightChildIndex = i * 2 + 2
   
-    // ... other heap-related methods
+      if (i > this.heap.length) return
+  
+      let largest = i
+      if (leftChildIndex < this.heap.length && this.heap[leftChildIndex] > this.heap[largest]) {
+        largest = leftChildIndex
+      }
+      if (rightChildIndex < this.heap.length && this.heap[rightChildIndex] > this.heap[largest]) {
+        largest = rightChildIndex
+      }
+  
+      if (largest !== i) {
+        // Swap the current node with the largest child
+        const temp = this.heap[i];
+        this.heap[i] = this.heap[largest];
+        this.heap[largest] = temp;
+      }
+  
+      // Recursively heapify the affected child's subtree
+      this.heapify(leftChildIndex);
+      this.heapify(rightChildIndex);
+    }
   }
+  
+  module.exports = MaxHeap
   ```
 * Spec
   ```javascript
+  const MaxHeap = require('./max_heap.js')
+
   describe('Max Heap', () => {
-    let heap = new MaxHeap([5, 7, 10, 20, 9, 15])
+    let heap
+    beforeEach(async () => {
+      heap = new MaxHeap([20, 9, 15, 5, 7, 10])
+    });
     
     test('insert', () => {
       heap.insert(3)
-      expect(heap.values).toEqual([3, 5, 10, 20, 7, 15, 9])
+      expect(heap.values()).toEqual([20, 15, 10, 3, 5, 7, 9])
     })
-
-    test('findMin', () => {
-      expect(heap.findMin()).toEqual(5)
-    })
-
-    test('update', () => {
+  
+    test('update', () => { // check next time. It's wrong
       heap.update(3, 2)
-      // [5, 7, 10, 20, 9, 15]
-      // [5, 3, 10, 20, 9, 15]
-      // [3, 5, 10, 20, 9, 15]
-      expect(heap.values).toEqual([3, 5, 10, 20, 9, 15])
+      // [20, 9, 3, 5, 7, 10]
+      expect(heap.values()).toEqual([20, 9, 10, 5, 7, 3])
     })
-
+  
     test('delete', () => {
       heap.delete()
-      expect(heap.values).toEqual([7, 10, 20, 9, 15])
+      expect(heap.values()).toEqual([15, 10, 5, 7, 9])
     })
-
+  
+    test('findMax', () => {
+      expect(heap.findMax()).toEqual(20)
+    })
+  
     test('heapify', () => {
-      let randomHeap = newMax([10, 20, 5, 15, 9, 7])
+      let randomHeap = new MaxHeap([10, 20, 5, 15, 9, 7])
       randomHeap.heapify()
-      expect(randomHeap.values).toEqual([5, 7, 10, 20, 9, 15])
+      expect(randomHeap.values()).toEqual([20, 15, 7, 10, 9, 5])
     })
   })
   ```

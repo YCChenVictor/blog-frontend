@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ForceGraph2D from "react-force-graph-2d";
+import articleSettings from '../data/articleSettings.json'
 
 const NodeGraph = ({category}) => {
   const [nodes, setNodes] = useState([]);
@@ -38,11 +39,11 @@ const NodeGraph = ({category}) => {
     }
   }
 
-  useEffect(() => {
+  useEffect(() => { // please extract following as method
     forceRef.current.zoom(2, 300);
     const fetchData = async () => {
       const nodeData = await import(`../data/${category}/nodeGraph.json`)
-      const { nodes, links } = nodeData;
+      let { nodes, links } = nodeData;
 
       if (nodes === undefined || links === undefined) {
         return false
@@ -52,6 +53,27 @@ const NodeGraph = ({category}) => {
           return node['val'] = 5
         } else {
           return node['val'] = 1
+        }
+      })
+      const nodeCondition = Object.entries(articleSettings).map(([key, value], index) => {
+        return {[value["url"]]: value["publish"]}
+      }).reduce((result, currentObj) => {
+        return { ...result, ...currentObj };
+      }, {});
+
+      const removedNode = []
+      nodes = nodes.filter((node) => {
+        if (nodeCondition[node.url.replace('/blog/', '')]) {
+          return node
+        } else {
+          removedNode.push(node.id)
+        }
+      })
+      links = links.filter((link) => {
+        if (removedNode.includes(link["source"]) || removedNode.includes(link["target"])) {
+          return
+        } else {
+          return link
         }
       })
       setNodes(nodes)
