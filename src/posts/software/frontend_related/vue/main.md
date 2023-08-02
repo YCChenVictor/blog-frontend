@@ -19,6 +19,95 @@
 * Activated (For Keep-Alive)
   * activated: When a component that was deactivated (e.g., navigated away from) is reactivated (e.g., navigated back to), the activated hook is called.
 
+### get props
+
+```javascript
+<template>
+  <div>
+    <p>{{ propName }}</p>
+    <button @click="doSomethingWithProp">Click Me</button>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    propName: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    doSomethingWithProp() {
+      // Access the prop within the method using "this.propName"
+      console.log("Value of propName:", this.propName);
+
+      // You can perform any logic or actions with the prop here
+      // For example, update some data or call other methods.
+    }
+  }
+}
+</script>
+```
+
+### pass CSS style
+
+```javascript
+<template>
+  <div :style="customStyle"> <!-- Apply the style using :style binding -->
+    <!-- Your child component's template -->
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    customStyle: {
+      type: Object, // Expecting an object representing CSS styles
+      default: () => ({}) // Default empty object
+    }
+  }
+}
+</script>
+```
+
+### pass Div as prop
+
+In parent
+```javascript
+<template>
+  <div>
+    <!-- Pass the div element as a prop using v-slot -->
+    <child-component>
+      <div slot="content">
+        <!-- This div will be passed as a prop named "content" to the child component -->
+        <p>Hello from parent component!</p>
+      </div>
+    </child-component>
+  </div>
+</template>
+
+<script>
+import ChildComponent from './ChildComponent.vue';
+
+export default {
+  components: {
+    ChildComponent
+  }
+}
+</script>
+```
+
+In child
+```javascript
+<template>
+  <div>
+    <!-- Use the prop named "content" in the child component's template -->
+    <slot name="content"></slot>
+  </div>
+</template>
+```
+
 ### axios
 
 ```javascript

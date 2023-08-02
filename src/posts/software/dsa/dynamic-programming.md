@@ -1,27 +1,16 @@
----
-layout: post
-title:
-description: ''
-date: '2023-03-24'
-categories: DSA
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 
-(TBC)
+TBC
 
-## Why?
+## Purpose
 
 Dynamic programming offers an efficient solution to large-scale optimization problems by breaking them into smaller sub-problems and avoiding repetitive computations, making it applicable across various disciplines including computer science, mathematics, engineering, economics, and operations research.
 
-## How?
+## Concept
+
+All dynamic programmings involve smartly finding relationship between bigger dataset and smaller dataset and try to formulate it.
 
 ### Steps
 

@@ -28,7 +28,7 @@
     "useMathjax": false,
     "useThreeJS": false,
     "useMermaidJS": true,
-    "publish": true
+    "publish": false
   },
   "4": {
     "url": "software/dsa/greedy_algorithm",
@@ -72,7 +72,7 @@
     "useMathjax": false,
     "useThreeJS": false,
     "useMermaidJS": true,
-    "publish": true
+    "publish": false
   },
   "8": {
     "url": "software/css/main",
@@ -139,12 +139,18 @@
     "url": "software/react/main",
     "date": "2021-06-13",
     "categories": "react",
-    "publish": true
+    "publish": false
   },
   "15": {
     "url": "aesthetics/music/main",
     "data": "2023-04-11",
     "category": "music",
     "publish": true
+  },
+  "16": {
+    "url": "software/dsa/dynamic-programming",
+    "data": "2023-03-24",
+    "category": "DSA",
+    "publish": false
   }
 }

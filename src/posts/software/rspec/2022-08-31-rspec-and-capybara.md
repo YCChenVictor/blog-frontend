@@ -54,6 +54,38 @@ end
 
 This test describes the behavior of the add method in the Calculator class. It creates a new instance of the Calculator class and expects the result of calc.add(2, 3) to be equal to 5.
 
+### expect instance variable to receive
+
+```ruby
+class Example
+  attr_reader :aaa
+
+  def update
+    @aaa.bbb = false
+  end
+end
+```
+
+```ruby
+RSpec.describe Example do
+  describe "#update" do
+    it "sets @aaa.bbb to false" do
+      # Create a double for the instance of the Example class
+      example_instance = instance_double(Example)
+
+      # Stub the aaa method to return the double
+      allow_any_instance_of(Example).to receive(:aaa).and_return(example_instance)
+
+      # Set the expectation on the bbb attribute of the double
+      expect(example_instance).to receive(:bbb=).with(false)
+
+      # Call the update method on the example_instance
+      example_instance.update
+    end
+  end
+end
+```
+
 ### shared example
 
 Shared examples can help avoiding repetition and keep specs DRY (Don't Repeat Yourself). Example:
