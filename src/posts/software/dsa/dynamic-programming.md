@@ -14,48 +14,20 @@ All dynamic programmings involve smartly finding relationship between bigger dat
 
 ### Steps
 
-For example, given an integer array, [1, -2, 3, 4, -1, 2, 1, -5, 4], find the continuous sub array which has the largest sum.
+For example, given an integer array, [1, -2, 3, 4, -1, 2, 1, -5, 4], find the largest sum from a continuous sub-array.
 
-* Identify the optimal substructure
-  * Concept: Given the full array, try to destruct it to sub array, so that we can have the relation of $$F(array) = M(F(sub array), xxx)$$
-  * Example:
-    * i = 0, the continuos sub array = [1]
-    * i = 1, the continuous sub array = [1, -2], [-2]
-    * i = 3, the continuous sub array = [1, -2, 3], [-2, 3], [3]
-    * i = 4, the continuous sub array = [1, -2, 3, 4], [-2, 3, 4], [3, 4], [4]
-    * ...
-    * As you can see, max sub array of a given array can be finding the max sub array of the sub array (removing last element) and adds-on element to the sub arrays of last set.
-* Formulate the recurrence relation
-  * Concept: Given last step, we can try to formulate it.
-  * Example: $$F(array[0..i]) = max(array[i], F(array[0..i-1]) + array[i])$$
+* Try to find relationship between subset and set
+  * It's all about pretending. I pretend I already have the solution of an subset, denoted as F(array[0..i-1]). Then the element of array[i] comes in. What's next? The problem immediately becomes Max(F(array[0..i-1]), array[i], F(array[0..i-1]) + array[i]). Let's only consider array[i] is positive. Then the problem becomes Max(array[i], F(array[0..i-1]) + array[i]).
 * Define the base case
   * $$F(array[0]) = array[0]$$
-* Design the dynamic programming algorithm
-  * Concept: Try to write pseudocode first
-  * pseudocode
-    ```javascript
-    function xxx(array) {
-      result = 0
-      F = []
-      F[0] = array[0]
-      for (i in 0~len(array) - 1) {
-        F[i] = max(array[i], F[i - 1] + array[i])
-        result = max(result, F[i])
-      }
-
-      return result
-    }
-    ```
 * Implement the algorithm
   ```javascript
   function maxSubArraySum(arr) {
-    const dp = [];
-    dp[0] = arr[0];
-    let maxSum = dp[0];
+    let maxSum = arr[0]
     
     for (let i = 1; i < arr.length; i++) {
-      dp[i] = Math.max(arr[i], dp[i - 1] + arr[i]);
-      maxSum = Math.max(maxSum, dp[i]);
+      nextResult = Math.max(arr[i], dp[i - 1] + arr[i])
+      maxSum = Math.max(maxSum, nextResult);
     }
     
     return maxSum;
@@ -91,6 +63,8 @@ function factorialIterative(n) {
   return result
 }
 ```
+
+## What?
 
 ### fibonacci
 
@@ -148,40 +122,14 @@ function factorialIterative(n) {
   ```
 * Test
   ```javascript
-  // TBC
+  childHop = require('./triple_step.js')
+
+  describe('Triple Step', () => {
+    test('when the stair has 5 steps', () => {
+      expect(childHop(5)).toEqual(13)
+    })
+  })
   ```
-
-### Robot in a Grid
-
-### Robot in a Grid
-
-### Power Set
-
-### Recursive Multiply
-
-### Towers of Hanoi
-
-### Permutations without Dups
-
-### Permutations with Dups
-
-### Parens
-
-### Paint Fill
-
-### Coins
-
-### Eight Queens
-
-### Stack of Boxes
-
-### Boolean Evaluation
-
-### 0/1 Knapsack problem
-
-TBC
-
-## What?
 
 ### resource allocation
 
@@ -272,16 +220,6 @@ const { maxProfit, solution } = allocateResources(tasks, time);
 console.log(`Max profit: ${maxProfit}`);
 console.log(`Solution: ${solution.map(task => task.name).join(', ')}`);
 ```
-
-## TODO
-
-* dynamic programming
-  * longest increasing subsequence
-  * 0/1 knapsack problem
-  * Shortest path algorithms:
-  * Longest common subsequence
-  * Matrix chain multiplication
-  * Edit distance
 
 ## Reference
 
