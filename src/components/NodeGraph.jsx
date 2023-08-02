@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ForceGraph2D from "react-force-graph-2d";
+import articleSettings from '../data/articleSettings.json'
 
 const NodeGraph = ({category}) => {
   const [nodes, setNodes] = useState([]);
@@ -13,9 +14,10 @@ const NodeGraph = ({category}) => {
     window.open(baseUrl + node.url, '_blank').focus();
   }
 
-  const generateNodes = async () => {
+  const generateNodes = async (category) => {
+    const url = `http://localhost:5000/node-graph?category=${category}`
     try {
-      const response = await fetch('http://localhost:5000/');
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error('Failed to fetch data');
@@ -37,11 +39,11 @@ const NodeGraph = ({category}) => {
     }
   }
 
-  useEffect(() => {
+  useEffect(() => { // please extract following as method
     forceRef.current.zoom(2, 300);
     const fetchData = async () => {
       const nodeData = await import(`../data/${category}/nodeGraph.json`)
-      const { nodes, links } = nodeData;
+      let { nodes, links } = nodeData;
 
       if (nodes === undefined || links === undefined) {
         return false
@@ -51,6 +53,27 @@ const NodeGraph = ({category}) => {
           return node['val'] = 5
         } else {
           return node['val'] = 1
+        }
+      })
+      const nodeCondition = Object.entries(articleSettings).map(([key, value], index) => {
+        return {[value["url"]]: value["publish"]}
+      }).reduce((result, currentObj) => {
+        return { ...result, ...currentObj };
+      }, {});
+
+      const removedNode = []
+      nodes = nodes.filter((node) => {
+        if (nodeCondition[node.url.replace('/blog/', '')]) {
+          return node
+        } else {
+          removedNode.push(node.id)
+        }
+      })
+      links = links.filter((link) => {
+        if (removedNode.includes(link["source"]) || removedNode.includes(link["target"])) {
+          return
+        } else {
+          return link
         }
       })
       setNodes(nodes)
@@ -81,7 +104,7 @@ const NodeGraph = ({category}) => {
       }}
     >
       <button
-        onClick={generateNodes}
+        onClick={() => generateNodes(category)}
         className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
       >
         Draw Again

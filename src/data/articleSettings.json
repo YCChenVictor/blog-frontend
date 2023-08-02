@@ -16,7 +16,8 @@
     "note": null,
     "useMathjax": true,
     "useThreeJS": true,
-    "publish": true
+    "publish": true,
+    "TODO": "bit Manipulation, memory (stack vs. heap)"
   },
   "3": {
     "url": "software/dsa/graph",
@@ -27,7 +28,7 @@
     "useMathjax": false,
     "useThreeJS": false,
     "useMermaidJS": true,
-    "publish": true
+    "publish": false
   },
   "4": {
     "url": "software/dsa/greedy_algorithm",
@@ -71,7 +72,7 @@
     "useMathjax": false,
     "useThreeJS": false,
     "useMermaidJS": true,
-    "publish": true
+    "publish": false
   },
   "8": {
     "url": "software/css/main",
@@ -105,5 +106,51 @@
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": true
+  },
+  "11": {
+    "url": "software/dsa/solve-problem",
+    "specialTitle": null,
+    "date": "2023-03-08",
+    "categories": "DSA",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": true
+  },
+  "12": {
+    "url": "software/dsa/heap",
+    "specialTitle": null,
+    "date": "2023-05-03",
+    "categories": "DSA",
+    "note": null,
+    "useMathjax": false,
+    "useThreeJS": false,
+    "useMermaidJS": true,
+    "publish": false
+  },
+  "13": {
+    "url": "aesthetics/main",
+    "date": "2023-04-29",
+    "categories": "aesthetics",
+    "publish": true
+  },
+  "14": {
+    "url": "software/react/main",
+    "date": "2021-06-13",
+    "categories": "react",
+    "publish": false
+  },
+  "15": {
+    "url": "aesthetics/music/main",
+    "data": "2023-04-11",
+    "category": "music",
+    "publish": true
+  },
+  "16": {
+    "url": "software/dsa/dynamic-programming",
+    "data": "2023-03-24",
+    "category": "DSA",
+    "publish": false
   }
 }

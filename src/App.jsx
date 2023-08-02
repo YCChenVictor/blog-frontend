@@ -31,6 +31,7 @@ const Layout = () => {
             <Route path="/blog" element={<AuthorProfile />}/>
             <Route path="/blog/software" element={<Articles category={'software'} />}/>
             <Route path="/blog/medicine" element={<Articles category={'medicine'} />}/>
+            <Route path="/blog/aesthetics" element={<Articles category={'aesthetics'} />}/>
             <Route path="/blog/article_list" element={<ArticleList articleSettings={articleSettings} />}/>
             {desiredRoutes}
           </Routes>
