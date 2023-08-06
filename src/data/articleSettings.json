@@ -69,7 +69,7 @@
     "date": "2022-05-02",
     "categories": "DSA",
     "note": null,
-    "useMathjax": false,
+    "useMathjax": true,
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": false

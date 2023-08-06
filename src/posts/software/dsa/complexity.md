@@ -1,45 +1,30 @@
----
-layout: post
-title:
-description: ''
-date: '2022-05-02'
-categories: DSA
-note:
-mathjax: true
-p5:
-mermaidJS: true
-threeJS:
-chartJS: true
-publish: true
----
+# Title
 
-## Introduction
+## Purpose
 
-TBC
-
-## Why?
-
-With concept of complexity, we can evaluate solutions to a problem before diving in.
+With concept of complexity, we can evaluate solution for a problem before diving in.
 
 ## How?
 
 ### Math Concept
 
-Complexity quantifies the maximum resources, such as time and space, needed to solve a problem or execute an algorithm. It provides insights into the relationship between resource usage and input size, aiding in the identification of efficient algorithms for optimal problem-solving; for example, the total time to create x books may be as follow:
+Complexity quantifies the maximum resources required to solve a problem or execute an algorithm, aiding in identifying efficient algorithms for optimal problem-solving by understanding the relationship between resource usage and input size; for example, the total time to create x books may be as follow:
 
-$$Time(n) = 4n^3 + 4n^2 + 3$$
+Time(n) = 4n^3 + 4n^2 + 3
 
 However, in real world problems, precise function to describe the total time of producing n amount of books does not exist at all, so we use **asymptotic notations**.
 
 #### Asymptotic Notations
 
-There are commonly used notations in computer science, such as big-O (O), big-theta (Θ), and big-omega (Ω), which are used to describe and analyze the time or space complexity of algorithms. For more detailed definitions and explanations of these notations, I recommend referring to reputable academic sources available online.
+There are commonly used notations in computer science, such as big-O (O), big-theta (Θ), and big-omega (Ω), which are used to describe and analyze the time or space complexity of algorithms. For more detailed definitions and explanations of these notations, I recommend referring to reputable academic sources available online and we only focus on the defination of industry here.
 
-Here we focus on the defination of industry. The defination of $$O$$ in industry is the same as the defination of $$\Theta$$ in academia; that is
+The defination of **O** in industry is the same as the defination of **Θ** in academia; that is
 
-$$\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \ \ \ \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \} $$
+$\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \}$
 
-Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $$2x + 100$$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 100$$. The following plot demostrates that $$2x + 100$$ is wrapped by $$3x$$ and $$x$$ after $$x > 100$$
+why it render twice?
+
+Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $2x + 100$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 100$$. The following plot demostrates that $$2x + 100$$ is wrapped by $$3x$$ and $$x$$ after $$x > 100$$
 
 <canvas id="big-o-graph" width="400" height="200" class='bg-white'></canvas>
 
