@@ -1,9 +1,5 @@
 # (Self) Software
 
-## Abstract
-
-Software refers to a set of instructions or programs that tell a computer what to do. It encompasses all the applications, programs, and data that run on digital devices, enabling them to perform various tasks and functions.
-
 ## Purpose
 
 For me as web developer
@@ -15,7 +11,7 @@ For me as web developer
 
 Software is a set of instructions and data that tell a computer what to do.
 
-### Basic Knowledge
+### Base Knowledge
 
 #### Complexity
 
@@ -31,7 +27,7 @@ Bit manipulation is a programming technique that involves manipulating individua
 
 #### Object Oriented Design
 
-Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design]
+Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design].
 
 #### System Design
 

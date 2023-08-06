@@ -1,23 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-06-12'
-categories:
-note: remember to sync with object oriented programming. This section is really important
-mathjax:
-publish:
-mermaidJS:
-p5JS:
-chartJS:
-threeJS:
----
-
-## Introduction
-
-(TBC)
-
-This article describes the steps to design software in an object oriented manner. Please refer to [object oriented programming]() for more knowledge.
+# Title
 
 ## Why?
 

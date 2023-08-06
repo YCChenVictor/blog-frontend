@@ -151,6 +151,24 @@
     "url": "software/dsa/dynamic-programming",
     "data": "2023-03-24",
     "category": "DSA",
+    "publish": true
+  },
+  "17": {
+    "url": "software/dsa/sorting/main",
+    "data": "2023-03-09",
+    "category": "DSA",
+    "publish": true
+  },
+  "18": {
+    "url": "software/concept/object-oriented-design",
+    "data": "2023-06-12",
+    "category": "DSA",
+    "publish": false
+  },
+  "19": {
+    "url": "software/concept/object-oriented-programming",
+    "data": "2021-11-21",
+    "category": "DSA",
     "publish": false
   }
 }

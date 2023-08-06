@@ -35,6 +35,19 @@ The output is `3.33333333`
 
 ## String (2)
 
+### Split
+
+```ruby
+# Example string
+my_string = "apple,banana,orange"
+
+# Split the string using a comma (,) as the delimiter
+result_array = my_string.split(',')
+
+# Output the result
+puts result_array.inspect
+```
+
 ### string interpolation:
 ```
 a = "aaa"
@@ -73,6 +86,7 @@ $ puts "eddie".capitalize # => Eddie
 
 $ puts "".empty? # => true
 ```
+
 ### Calculate the number of letter appearing in a string
 ```
 words = "iiiiiiiijjjjjjjjAAAAAAAA"

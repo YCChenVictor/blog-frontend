@@ -1,27 +1,10 @@
----
-layout: post
-title:
-description: ''
-date: '2023-03-09'
-categories: DSA
-note: Should have time complexity comparison
-mathjax: true
-mermaidJS: true
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
-## Introduction
-
-(TBC)
-
-## Why?
+## Purpose
 
 Learning sorting algorithms is essential for developers as it equips them with the ability to efficiently organize and manipulate data, leading to improved code performance and problem-solving capabilities in various software development scenarios.
 
-## How?
+## Concept
 
 All the purposes of sorting methods are to arrange a collection of items in a specific order, typically ascending or descending, to make it easier to search, retrieve, or analyze the data.
 
@@ -34,9 +17,9 @@ All the purposes of sorting methods are to arrange a collection of items in a sp
   * Step 3: Compare 8 and 1. Since 8 is greater than 1, they are swapped, resulting in [2, 5, 1, 8, 4]
   * Step 4: Compare 8 and 4. Since 8 is greater than 4, they are swapped, resulting in [2, 5, 1, 4, 8]
   * After the first pass, the largest number has "bubbled" to the end of the list. And we do the same thing again and again ([2, 5, 1, 4, 8] => [2, 1, 4, 5, 8] => [1, 2, 4, 5, 8])
-* Time complexity: $$O(n^2)$$
+* Time complexity: O(n^2)
   * Because (n - 1) + (n - 2) + ... + 1 = (1 + (n-1)) * (n-1) / 2
-* Space complexity: $$O(1)$$
+* Space complexity: O(1)
   * We only need a space to store the element going to be swap
 * Code:
   ```javascript
@@ -64,9 +47,9 @@ All the purposes of sorting methods are to arrange a collection of items in a sp
   * And the same logic => [1, 2, 4, 5, 8], time complexity = O(n - 2)
   * Same logic => [1, 2, 4, 5, 8], time complexity = O(n - 3)
   * Same logic => [1, 2, 4, 5, 8], time complexity = O(n - 4)
-* Time complexity: $$O(n^2)$$
+* Time complexity: O(n^2)
   * Because (n - 1) + (n - 2) + ... + 1 = (1 + (n-1)) * (n-1) / 2
-* Space complexity: $$O(1)$$
+* Space complexity: O(1)
   * We only need a space to store the element going to be swap
 * Code:
   ```javascript
@@ -91,82 +74,60 @@ All the purposes of sorting methods are to arrange a collection of items in a sp
 
 ### Merge Sort
 
-* Concept: Merge sort is a divide-and-conquer algorithm that recursively divides an array into smaller subarrays, sorts them, and then merges the sorted subarrays to produce a sorted array.
+* Concept: Merge sort is a divide-and-conquer algorithm that recursively divides an array into smaller sub-arrays, sorts them, and then merges the sorted sub-arrays to produce a sorted array.
 * Example: Sort [8, 3, 5, 1, 9, 2]
   * Step 1: Recursively divide array into halves until it is a base example: [8], [3], [5], [1], [9], [2].
-    <div class="mermaid">
-      graph TD
-        id1((8, 3, 5, 1, 9, 2)) --> id2((8, 3, 5))
-        id1((8, 3, 5, 1, 9, 2)) --> id3((1, 9, 2))
+    ```mermaid
+    graph TD
+      id1((8, 3, 5, 1, 9, 2)) --> id2((8, 3, 5))
+      id1((8, 3, 5, 1, 9, 2)) --> id3((1, 9, 2))
 
-        id2((8, 3, 5)) --> id4((8, 3))
-        id2((8, 3, 5)) --> id5((5))
+      id2((8, 3, 5)) --> id4((8, 3))
+      id2((8, 3, 5)) --> id5((5))
       
-        id3((1, 9, 2)) --> id6((1, 9))
-        id3((1, 9, 2)) --> id7((2))
+      id3((1, 9, 2)) --> id6((1, 9))
+      id3((1, 9, 2)) --> id7((2))
 
-        id4((8, 3)) --> id8((8))
-        id4((8, 3)) --> id9((3))
+      id4((8, 3)) --> id8((8))
+      id4((8, 3)) --> id9((3))
 
-        id6((1, 9)) --> id10((1))
-        id6((1, 9)) --> id11((9))
-    </div>
+      id6((1, 9)) --> id10((1))
+      id6((1, 9)) --> id11((9))
+    ```
   * Step 2: Merge the individual elements in sorted order => [3, 8], [5], [1, 9], [2]
   * Step 3: Again => [3, 5, 8], [1, 2, 9]
   * Step 4: Again => [1, 2, 3, 5, 8, 9]
 * Time complexity
   * n * log(n)
-  * As you can see on the above graph, given the split process, the number of layer is always $$log_2N$$ and in each layer, we walk through n elements to make comparison and compose the result array.
-* Space complexity: TBC
+  * As you can see on the above graph, given the split process, the number of layer is always log_2^N and in each layer, we walk through n elements to make comparison and compose the result array.
 * Code
   ```javascript
   function mergeSort(arr) {
     if (arr.length <= 1) {
-      return arr; // Base case: array is already sorted or empty
+      return arr;
     }
-    
-    // Divide the array into two halves
+  
     const middle = Math.floor(arr.length / 2);
     const leftHalf = arr.slice(0, middle);
     const rightHalf = arr.slice(middle);
-    
-    // Recursively sort the two halves
-    const sortedLeft = mergeSort(leftHalf);
-    const sortedRight = mergeSort(rightHalf);
-    
-    result = merge(sortedLeft, sortedRight);
-    // Merge the sorted halves
-    return result
-  }
   
-  function merge(leftArr, rightArr) {
-    let merged = [];
-    let leftIdx = 0;
-    let rightIdx = 0;
-
-    // Compare elements from the left and right arrays
-    while (leftIdx < leftArr.length && rightIdx < rightArr.length) {
-      if (leftArr[leftIdx] < rightArr[rightIdx]) {
-        merged.push(leftArr[leftIdx]);
-        leftIdx++;
-      } else {
-        merged.push(rightArr[rightIdx]);
-        rightIdx++;
+    const merge = (leftArr, rightArr) => {
+      let merged = [];
+      let leftIdx = 0;
+      let rightIdx = 0;
+  
+      while (leftIdx < leftArr.length && rightIdx < rightArr.length) {
+        if (leftArr[leftIdx] < rightArr[rightIdx]) {
+          merged.push(leftArr[leftIdx++]);
+        } else {
+          merged.push(rightArr[rightIdx++]);
+        }
       }
-    }
-    
-    // Add any remaining elements from the left or right array
-    while (leftIdx < leftArr.length) {
-      merged.push(leftArr[leftIdx]);
-      leftIdx++;
-    }
-    
-    while (rightIdx < rightArr.length) {
-      merged.push(rightArr[rightIdx]);
-      rightIdx++;
-    }
-    
-    return merged;
+  
+      return merged.concat(leftArr.slice(leftIdx)).concat(rightArr.slice(rightIdx)); // deal with the remaining elements
+    };
+  
+    return merge(mergeSort(leftHalf), mergeSort(rightHalf));
   }
   
   // Example usage:
@@ -177,7 +138,7 @@ All the purposes of sorting methods are to arrange a collection of items in a sp
 
 ### Quick Sort
 
-Quick sort is a widely used sorting algorithm that follows the divide-and-conquer approach. It works by selecting a pivot element from the array and partitioning the other elements into two subarrays, according to whether they are less than or greater than the pivot. The process is then recursively applied to the subarrays until the entire array is sorted. For more information, please refer to [quick sort]({{site.baseurl}}/dsa/2023/06/02/quick-sort.html)
+Quick sort is a widely used sorting algorithm that follows the divide-and-conquer approach. It works by selecting a pivot element from the array and partitioning the other elements into two subarrays, according to whether they are less than or greater than the pivot. The process is then recursively applied to the subarrays until the entire array is sorted. For more information, please refer to [quick sort].
 
 ### Binary Search
 
@@ -185,26 +146,26 @@ Ok, after we sort an array we usually use binary search.
 
 * Concept: Binary search is a divide-and-conquer algorithm that efficiently searches for a target value in a sorted array by repeatedly dividing the search space in half.
 * Example:
-  <div class="mermaid">
-    graph TD
-      id1((1, 2, 3, 5, 8, 9)) --> id2((1, 2, 3))
-      id1((1, 2, 3, 5, 8, 9)) --> id3((5, 8, 9))
+  ```mermaid
+  graph TD
+    id1((1, 2, 3, 5, 8, 9)) --> id2((1, 2, 3))
+    id1((1, 2, 3, 5, 8, 9)) --> id3((5, 8, 9))
 
-      id2((1, 2, 3)) --> id4((1, 2))
-      id2((1, 2, 3)) --> id5((3))
+    id2((1, 2, 3)) --> id4((1, 2))
+    id2((1, 2, 3)) --> id5((3))
       
-      id3((5, 8, 9)) --> id6((5, 8))
-      id3((5, 8, 9)) --> id7((9))
+    id3((5, 8, 9)) --> id6((5, 8))
+    id3((5, 8, 9)) --> id7((9))
 
-      id4((1, 2)) --> id8((1))
-      id4((1, 2)) --> id9((2))
+    id4((1, 2)) --> id8((1))
+    id4((1, 2)) --> id9((2))
 
-      id6((5, 8)) --> id10((5))
-      id6((5, 8)) --> id11((8))
-  </div>
+    id6((5, 8)) --> id10((5))
+    id6((5, 8)) --> id11((8))
+  ```
 * Time complexity
-  * It is $$O(logN)$$
-  * As you can see, we at most to walk through $$log_2N$$ elements to find the desired value
+  * It is O(logN)
+  * As you can see, we at most to walk through log_2&N elements to find the desired value
 
 ## What?
 
@@ -237,11 +198,8 @@ shoes.sort(function(a, b) {
 // ]
 ```
 
-## TODO
-
-* Radix Sort
-* Insertion sort
-
-You can find more questions in text book
-
 ## Reference
+
+ChatGPT
+
+cracking the coding interview

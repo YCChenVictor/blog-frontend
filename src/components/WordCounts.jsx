@@ -1,23 +1,11 @@
-import React, { useState, useEffect, useRef, useNavigate } from "react";
+import React from "react";
 
-const WordCounts = () => {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    const element = document.getElementById('article');
-    if (!element) {
-      return null;
-    }
-    const text = element.textContent;
-    const words = text.trim().split(/\s+/);
-    setCount(words.length)
-  }, []);
-  const style = {
-    color: count > 1000 ? 'red' : 'black',
-  }
+const WordCounts = ({articleContent}) => {
+  const words = articleContent.split(' ')
 
   return(
-    <div style={style}>
-      word count: {count}
+    <div style={{color: 'black'}}>
+      words: {words.length}
     </div>
   )
 }

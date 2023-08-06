@@ -1,9 +1,5 @@
 # Title
 
-## Abstract
-
-This article aims to solve a programming problem in a more efficient manner by analyzing and comparing the time complexity of CRUD operations on various data structures. It provides a concise overview of each data structure's time complexity for create, read, update, and delete actions, helping programmers make informed decisions on data structure selection.
-
 ## Purpose
 
 To [solve problem] in a more efficient way, making no more space to improve both the [time complexity and space complexity].
@@ -70,11 +66,11 @@ A trie, also known as a prefix tree, is a data structure used to store and searc
 
 ### Dynamic Programming
 
-Dynamic programming is often applied to problems with recursive sequences of sub-problems, such as graph shortest path and longest common subsequence, by solving each subproblem only once and efficiently addressing large-scale optimization problems. The concept involves breaking down optimization problems into smaller sub-problems, storing and reusing their solutions to avoid redundant computations. For more information, please refer to [dynamic programming].
+Dynamic programming is often applied to problems with recursive sequences of sub-problems, such as graph shortest path and longest common subsequence, by solving each subproblem only once and efficiently addressing large-scale optimization problems. The concept involves breaking down optimization problems into smaller sub-problems, storing and reusing their solutions to avoid redundant computations. For more information, please refer to [dynamic programming](/blog/software/dsa/dynamic-programming).
 
 ### Sorting
 
-Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting].
+Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting](/blog/software/dsa/sorting/main).
 
 ## reference
 

@@ -1,17 +1,10 @@
----
-layout: post
-title:
-date: '2021-11-21'
-categories: concept
-note:
-mathjax: true
-mermaid: true
-publish: true
----
+# Title
 
-## Introduction
+## Purpose
 
-(TBC)
+OOP provides a flexible and powerful way to organize and structure software applications.
+
+## How
 
 * Use objects to represent and manipulate data
 * Objects are instances of classes that encapsulate data and methods (functions) that operate on that data
@@ -20,12 +13,6 @@ publish: true
   * Inheritance: One class (the child or subclass) can inherit the properties and methods of another class (the parent or superclass). This allows for code reuse and promotes modularity and extensibility.
   * Polymorphism: Polymorphism refers to the ability of objects of different classes to be treated as if they are of the same class. This allows for more flexible and dynamic programming, as objects can be used interchangeably without the need for complex type checking and casting.
   * Abstraction: Simplify complex systems by representing only the essential features, and interfaces, which define the contract between objects and the outside world.
-
-## Why
-
-OOP provides a flexible and powerful way to organize and structure software applications.
-
-## How
 
 ### classes
 
