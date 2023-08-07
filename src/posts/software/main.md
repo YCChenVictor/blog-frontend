@@ -12,7 +12,7 @@ Software is a set of instructions and data that tell a computer what to do.
 
 #### Complexity
 
-Complexity is a fundamental characteristic of systems, phenomena, and processes that exhibit intricate interconnections, dependencies, and behaviors. It involves the study and understanding of intricate patterns, emergent properties, and nonlinear dynamics, challenging traditional reductionist approaches and requiring holistic perspectives to unravel its multifaceted nature. For more information, please refer to [complexity]().
+Complexity is a fundamental characteristic of systems, phenomena, and processes that exhibit intricate interconnections, dependencies, and behaviors. It involves the study and understanding of intricate patterns, emergent properties, and nonlinear dynamics, challenging traditional reductionist approaches and requiring holistic perspectives to unravel its multifaceted nature. For more information, please refer to [complexity](/blog/software/dsa/complexity).
 
 #### Data Structures and Algorithms
 

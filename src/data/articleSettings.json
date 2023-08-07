@@ -170,5 +170,35 @@
     "data": "2021-11-21",
     "category": "DSA",
     "publish": false
+  },
+  "20": {
+    "url": "software/dsa/array",
+    "data": "2022-05-22",
+    "category": "DSA",
+    "publish": true
+  },
+  "21": {
+    "url": "software/dsa/linked-list",
+    "data": "2022-05-23",
+    "category": "DSA",
+    "publish": false
+  },
+  "22": {
+    "url": "software/dsa/queue",
+    "data": "2022-06-24",
+    "category": "DSA",
+    "publish": false
+  },
+  "23": {
+    "url": "software/dsa/stack",
+    "data": "2022-06-24",
+    "category": "DSA",
+    "publish": false
+  },
+  "24": {
+    "url": "software/dsa/tree",
+    "data": "2022-06-26",
+    "category": "DSA",
+    "publish": false
   }
 }

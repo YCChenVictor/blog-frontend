@@ -30,7 +30,7 @@ We can decompose all the programming logics into four actions: create, read, upd
 
 ### Array
 
-It is a data structure in programming that stores a collection of elements. These elements are stored in contiguous memory locations, and each element can be accessed using an index or a subscript. Please refer to [array] for more information.
+It is a data structure in programming that stores a collection of elements. These elements are stored in contiguous memory locations, and each element can be accessed using an index or a subscript. Please refer to [array](/blog/software/dsa/array) for more information.
 
 ### Linked list
 

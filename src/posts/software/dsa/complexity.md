@@ -22,9 +22,7 @@ The defination of **O** in industry is the same as the defination of **Θ** in a
 
 $\Theta(g(n)) = \{ f(n) | \exists c_0, c_1, n_0 > 0 \forall n > n_0, s.t. 0 \leq c_0g(n) \leq f(n) \leq c_1g(n) \}$
 
-why it render twice?
-
-Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $2x + 100$ is an element of $$\Theta(x)$$; then we can use $$x$$ to describe the complexity of $$2x + 100$$. The following plot demostrates that $$2x + 100$$ is wrapped by $$3x$$ and $$x$$ after $$x > 100$$
+Then f(n) is an element of $$\Theta$$ of g(n), which is what industry care about ($$O$$, big-O); for example, $2x + 100$ is an element of $\Theta(x)$; then we can use $x$ to describe the complexity of $2x + 100$. The following plot demonstrates that $$2x + 100$$ is wrapped by $$3x$$ and $$x$$ after $$x > 100$$
 
 <canvas id="big-o-graph" width="400" height="200" class='bg-white'></canvas>
 
@@ -98,13 +96,13 @@ Recap, the definition of big-O (O) in industry is the same as big-theta (Θ) in 
 
 #### Amortized Time
 
-In certain data structures, the time complexity of specific operations may vary significantly, such as an array resizing during element addition taking O(n) time, yet most additions are constant time O(1), leading us to evaluate the average time taken by a sequence of operations rather than a single operation.
+In certain data structures, the time complexity of specific operations may vary significantly; for example, an array resizing during element addition takes O(n) time, yet most additions are constant time O(1), leading us to evaluate the average time taken by **a sequence of operations rather than a single operation**.
 
 * Amortized time complexity analysis involves dividing the total time taken by a sequence of operations by the number of operations. This gives us the average time taken per operation, which is a more useful measure of the data structure's performance than the worst-case time complexity of a single operation.
 * Accounting method, which involves assigning a cost to each operation and using the cost to pay for future operations. For example, in an array with dynamic resizing, we could assign a cost of 1 to each add operation, and use the extra time taken by the occasional resize operation to pay for the cost of the future operations.
 * Example: Array Resizing
   * Suppose we init an array with space of 4 and when we add the fifth element, we need to resize the array, going to have O(n) complexity.
-  * After the resizing, we can have another four space for the 5~8 element. That is, the time complexity of this space adding process, O(n) should actually be added to the next 5~8 element adding.
+  * After the resizing, we can have another four space for the 5-8 element. That is, the time complexity of this space adding process, O(n) should actually be added to the next 5-8 element adding.
   * If we divide O(n) to the next 4 elements, then the amortized time complexity will be O(1).
 
 ### space complexity
@@ -125,8 +123,8 @@ The meaning of `Space complexity = O(n)` is that the space taken by the algorith
   }
   ```
 * Time complexity = O(A + B)
-  * Picks A elements from arrayA, each pick = O(1)
-  * Picks B elements from arrayB, each pick = O(1)
+  * Picks elements from arrayA, each pick = O(1)
+  * Picks elements from arrayB, each pick = O(1)
 * Space complexity = O(1)
   * Only need a space for i => O(1)
 
@@ -192,7 +190,7 @@ The meaning of `Space complexity = O(n)` is that the space taken by the algorith
   }
   ```
 * plot
-  <div class="mermaid">
+  ```mermaid
   graph TD
     id1((f_4)) --> id2((f_3))
     id1((f_4)) --> id3((f_2))
@@ -205,13 +203,11 @@ The meaning of `Space complexity = O(n)` is that the space taken by the algorith
   
     id3((f_2)) --> id8((f_1))
     id3((f_2)) --> id9((f_0))
-  </div>
+  ```
 * time complexity = $$O(2^N)$$
   * Given every function will request two functions, the time complexity = O(1 + 2 + 4 + ... + 2^(n-1)) = O(2^n - 1) = O(2^n)
 * space complexity = $$O(N)$$
   * The data we need to store is f(1), f(2), ... f(n), meaning the space complexity = O(n)
-
-## What?
 
 ### Product of A and B
 
@@ -227,17 +223,32 @@ The meaning of `Space complexity = O(n)` is that the space taken by the algorith
   ```
 * Time complexity: it will add a for b times, so the time complexity will be O(b)
 
-### Power of b on a
+### b^a
 
-(TBC)
+* code
+  ```javascript
+  function power(a, b) {
+    let result = 1
+    for (i = 0; i < a; i++) {
+      result * b
+    } 
+  }
+  ```
+* Time complexity: it will time result a times, so the time complexity is O(a).
 
 ### A % B
 
-(TBC)
-
-### Integer Division
-
-(TBC)
+* code
+  ```javascript
+  function mod(a, b) {
+    let result = a
+    while (result >= b) {
+      result - b
+    }
+    return result
+  }
+  ```
+* Time complexity: it will calculate (A/B) times, so the time complexity is O(A/B).
 
 ## Reference
 
