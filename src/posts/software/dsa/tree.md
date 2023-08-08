@@ -1,7 +1,4 @@
-## Introduction
-
-(TBC)
-
+# Title
 ## Why?
 
 Learning tree data structures is essential for organizing and efficiently accessing hierarchical data, such as file systems, organizational structures, and decision-making processes.
@@ -26,7 +23,7 @@ Learning tree data structures is essential for organizing and efficiently access
     id8((H)) --> id10((J))
   ```
 * Binary tree: each node has at most 2 child modes
-  ```mermaid`
+  ```mermaid
   graph TD
     id1((1)) --> id2((7))
     id1((1)) --> id3((9))
@@ -407,7 +404,7 @@ Given a binary tree, return the height; for example
 
 * QA
   * example 1
-  ```
+  ```bash
   Input:
        1
       /  \
@@ -415,7 +412,7 @@ Given a binary tree, return the height; for example
   Output: 2
   ```
   * example 2
-  ```
+  ```bash
   Input:
     2
      \
@@ -547,24 +544,6 @@ Given a binary tree, return the height; for example
     })
   })
   ```
-
-### List of Depths
-
-### Check Balanced
-
-### Validate BST
-
-### Successor
-
-### First Common Ancestor
-
-### BST Sequences
-
-### Check Subtree
-
-### Random Node
-
-### Paths with Sum
 
 ## What?
 

@@ -200,5 +200,29 @@
     "data": "2022-06-26",
     "category": "DSA",
     "publish": false
+  },
+  "25": {
+    "url": "software/dsa/hash-table",
+    "data": "2022-04-23",
+    "category": "DSA",
+    "publish": false
+  },
+  "26": {
+    "url": "software/dsa/tries",
+    "data": "2022-04-26",
+    "category": "DSA",
+    "publish": false
+  },
+  "27": {
+    "url": "software/operating-system/main",
+    "data": "2023-04-02",
+    "category": "OS",
+    "publish": true
+  },
+  "28": {
+    "url": "software/operating-system/process-management",
+    "data": "2021-12-24",
+    "category": "OS",
+    "publish": false
   }
 }

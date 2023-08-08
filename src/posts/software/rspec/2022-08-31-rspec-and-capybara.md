@@ -123,6 +123,28 @@ end
 * `skip: true` can skip all tests
 * `focus: true` can only do this test of this described class
 
+### skip callback
+
+```ruby
+require 'rails_helper'
+
+RSpec.describe YourModel, type: :model do
+  it "skips the callback during testing" do
+    # Skip the before_save callback
+    YourModel.skip_callback(:save, :before, :your_callback)
+
+    # Your test code that should not trigger the callback
+    # ...
+
+    # Expectations for your test
+    # ...
+
+    # Restore the callback after the test
+    YourModel.set_callback(:save, :before, :your_callback)
+  end
+end
+```
+
 ## What?
 
 I am going to demonstrate BDD with RSpec and Capybara to develop user login functions.

@@ -38,7 +38,7 @@ A linked list is a linear data structure where elements are stored in a sequence
 
 ### Hash Table
 
-A hash table is a data structure that provides fast access to values based on a key. It uses a hash function to map keys to indices in an array, allowing for constant-time access to values, making it an efficient choice for many types of applications. For more information, please refer to [hash table].
+A hash table is a data structure that provides fast access to values based on a key. It uses a hash function to map keys to indices in an array, allowing for constant-time access to values, making it an efficient choice for many types of applications. For more information, please refer to [hash table](/blog/software/dsa/hash-table).
 
 ### Tree
 

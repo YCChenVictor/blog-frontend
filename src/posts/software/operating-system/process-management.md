@@ -1,85 +1,65 @@
----
-layout: post
-title:
-description: ''
-date: '2021-12-24'
-categories: OS
-note:
-mermaidJS: true
-publish: true
----
+# Title
 
-## Introduction
-
-TBC
-
-## Why?
+## Purpose
 
 Understanding operating systems and properly managing processes allows for efficient code, improved system stability, concurrent system development, and effective issue identification and debugging.
 
-## How?
+## Concept
 
-<div class="mermaid">
-  graph TD
-    id1(program) --compiled--> id2(binary form)
-    id2(binary form) --loaded--> id3(memory)
+```mermaid
+graph TD
+  id1(program) --compiled--> id2(binary form)
+  id2(binary form) --loaded--> id3(memory)
+
+  id3(memory) --decompose--> id4(process 1)
+  id3(memory) --decompose--> id5(process 2)
+  id3(memory) --...decompose--> id6(...other processes)
   
-    id3(memory) --decompose--> id4(process 1)
-    id3(memory) --decompose--> id5(process 2)
-    id3(memory) --...decompose--> id6(...other processes)
-    
-    id4(process 1) --decompose--> id7(thread 1)
-    id4(process 1) --decompose--> id8(thread 2)
-    id4(process 1) --...decompose--> id9(...other threads)
-</div>
+  id4(process 1) --decompose--> id7(thread 1)
+  id4(process 1) --decompose--> id8(thread 2)
+  id4(process 1) --...decompose--> id9(...other threads)
+```
 
 ### Flow of process
 
-* Process Creation
+Create -> schedule -> sync -> terminate
+
+#### Creation
+
+* Goal: To solve the program we required computer to do
+* Steps: 
   * Allocating resources: OS sets up address space, allocates memory, and creates a page table.
   * Initializing data structures: Process control block (PCB) is initialized with process details.
   * Setting up the environment: OS prepares initial program counter, stack pointer, and registers.
-* Process Scheduling
+
+#### Scheduling
+  
+* Goal: Optimize CPU utilization, minimize response time, ensure fairness in resource allocation.
+* Steps:
   * Determines process execution order on the CPU.
   * Scheduler selects processes from the ready queue based on a scheduling algorithm.
-  * Goal: Optimize CPU utilization, minimize response time, ensure fairness in resource allocation.
-* Process Synchronization:
-  * Essential for shared resource access and task cooperation.
-  * Uses synchronization mechanisms (locks, semaphores, mutexes) to prevent conflicts.
-  * Avoids race conditions, deadlocks, and data inconsistencies.
-* Process Termination:
-  * Occurs when a process finishes execution or is forcibly terminated.
-  * Resources are released (memory, files, system resources).
-  * Process control block is updated and associated data structures are deallocated.
-* Process States, PCB, and Context Switching:
-  * Processes exist in states like running, ready, blocked, or terminated.
-  * PCB contains process information (state, priority, registers).
-  * Context switching saves and restores process state for multitasking and concurrent execution.
+
+#### Synchronization
+
+* Goal: Avoids race conditions, deadlocks, and data inconsistencies on shared resource access and task cooperation.
+* Steps: Uses synchronization mechanisms (locks, semaphores, mutexes) to prevent conflicts.
+
+#### Termination
+
+* Goal: Release resources (memory, files, system resources) when a process finishes execution or is forcibly terminated.
+* Concept: Process control block is updated and associated data structures are de-allocated.
 
 ### Process vs Thread
 
-* Threads share the same resources of the process they belongs to, such as memory and files in the same process
-* Processes take their own part of memory and cannot share memory with other process
-* Communication between threads is faster than processes
+* Threads share the same resources of the process they belongs to, such as memory and files in the same process; processes take their own part of memory and cannot share memory with other process.
+* Communication between threads is faster than processes.
 * Threads are scheduled by the operating system, but they are not self-contained like processes.
-
-### Concurrency
-
-To boost user experience, we use concurrent execution of tasks to delegate works which will stuck the system to other machine, so that the system can still work smoothly and all heavy works can still be done. For more information, please refer to [concurrency]({{site.baseurl}}/mindset/2022/05/07/concurrency.html)
 
 ### Process Control Block (PCB)
 
-The PCB is a critical component of process management in modern operating systems, allowing the operating system to manage and control multiple processes concurrently and efficiently. By maintaining a separate PCB for each process, the operating system can track and manage each process individually, ensuring that each process runs safely and efficiently.
+The PCB serves a pivotal role in managing tasks like task creation, scheduling, and termination within an operating system, while its data structure holds essential process information such as state, priority, and registers. By preserving process state through context switching, the PCB facilitates multitasking and concurrent execution, underlining its significance in modern OS process management. The PCB is initiated upon process creation, containing and updating vital information like process ID, memory allocation, and CPU usage as the process runs, enabling effective process tracking and CPU scheduling.
 
-With the help of PCB, OS can manage tasks such as creation, scheduling, termination, deadlock.
-
-* When a process is created, the operating system allocates a PCB for that process and stores the relevant information about the process in that PCB. As the process runs, the operating system updates the PCB to reflect changes in the process state, memory allocation, CPU usage, and other parameters. It contains information about the state of a process, including its process ID, memory allocation, CPU usage, and other important parameters.
-* The PCB is created when a process is initiated and is updated by the operating system as the process executes.
-* The PCB is also used by the operating system to switch between processes and manage the scheduling of the CPU.
-
-How PCB flows:
-
-<div class="mermaid">
+```mermaid
 graph TB
   id1(new) --admitted--> id2(ready)
   
@@ -91,14 +71,17 @@ graph TB
   end
 
   id3(running) --exit--> id4(terminated)
-</div>
+```
 
 ### Issues
 
 #### Resource Allocation
 
-* Description: Resource starvation or overloading caused by failing to manage resource efficiently for different processes, which require different amounts of CPU, memory, disk space, network bandwidth, and other resources
-* Solution: To manage resources effectively, you can use tools like task queues, load balancers, and resource allocation algorithms. You can also monitor the system's resource usage and adjust the allocation based on the workload.
+* Description: Resource starvation or overloading caused by failing to manage resource efficiently for different processes, which require different amounts of CPU, memory, disk space, network bandwidth, and other resources.
+* Solution: To manage resources effectively, you can use tools like task queues, load balancers, and resource allocation algorithms; for example, when a task is received, it is initially directed to available machines through load balancers. Subsequently, the task is enqueued on the designated machine using task queues, followed by the application of a resource allocation algorithm to efficiently assign the necessary resources for its execution on that machine.
+  * Task queues: Task queues are systems that manage and execute tasks asynchronously, enabling efficient handling of operations like calculations, network requests, or file processing. They use queues to organize tasks, allowing producers to add tasks and consumers to retrieve and process them, offering advantages like concurrency, scalability, and asynchronous processing.
+  * Load balancers: Load balancers are networking devices or software systems that distribute incoming network traffic, such as requests to a web server, across multiple servers or resources. This distribution optimizes resource utilization, enhances reliability, and ensures efficient handling of user requests, contributing to improved performance and availability of services.
+  * Resource allocation algorithm: Resource allocation algorithms are techniques used by operating systems and other systems to efficiently distribute and manage available resources, such as CPU time, memory, disk space, and network bandwidth, among competing processes or tasks. These algorithms help ensure that resources are utilized optimally to achieve desired performance, fairness, and responsiveness in a multi-tasking environment.
 
 #### Deadlocks
 
@@ -148,21 +131,14 @@ graph TB
 #### Process Synchronization
 
 * Processes may need to synchronize their activities to ensure correct and consistent behavior. Synchronization problems can arise when processes access shared resources, communicate with each other, or perform parallel computations.
-* Solution:
 
 #### Fault Tolerance
 
 * Process management may need to handle faults and failures gracefully to maintain system availability and reliability. Fault tolerance mechanisms include process restarts, redundancy, and error detection and recovery.
-* Solution:
 
 #### Security
 
 * Process management needs to enforce access control and protect against unauthorized access, malicious attacks, and other security threats.
-* Solution:
-
-## What?
-
-Give me a real world example
 
 ## Reference
 
