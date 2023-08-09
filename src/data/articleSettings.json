@@ -69,7 +69,7 @@
     "date": "2022-05-02",
     "categories": "DSA",
     "note": null,
-    "useMathjax": false,
+    "useMathjax": true,
     "useThreeJS": false,
     "useMermaidJS": true,
     "publish": false
@@ -151,6 +151,96 @@
     "url": "software/dsa/dynamic-programming",
     "data": "2023-03-24",
     "category": "DSA",
+    "publish": true
+  },
+  "17": {
+    "url": "software/dsa/sorting/main",
+    "data": "2023-03-09",
+    "category": "DSA",
+    "publish": true
+  },
+  "18": {
+    "url": "software/concept/object-oriented-design",
+    "data": "2023-06-12",
+    "category": "DSA",
+    "publish": false
+  },
+  "19": {
+    "url": "software/concept/object-oriented-programming",
+    "data": "2021-11-21",
+    "category": "DSA",
+    "publish": false
+  },
+  "20": {
+    "url": "software/dsa/array",
+    "data": "2022-05-22",
+    "category": "DSA",
+    "publish": true
+  },
+  "21": {
+    "url": "software/dsa/linked-list",
+    "data": "2022-05-23",
+    "category": "DSA",
+    "publish": false
+  },
+  "22": {
+    "url": "software/dsa/queue",
+    "data": "2022-06-24",
+    "category": "DSA",
+    "publish": false
+  },
+  "23": {
+    "url": "software/dsa/stack",
+    "data": "2022-06-24",
+    "category": "DSA",
+    "publish": false
+  },
+  "24": {
+    "url": "software/dsa/tree",
+    "data": "2022-06-26",
+    "category": "DSA",
+    "publish": false
+  },
+  "25": {
+    "url": "software/dsa/hash-table",
+    "data": "2022-04-23",
+    "category": "DSA",
+    "publish": false
+  },
+  "26": {
+    "url": "software/dsa/tries",
+    "data": "2022-04-26",
+    "category": "DSA",
+    "publish": false
+  },
+  "27": {
+    "url": "software/operating-system/main",
+    "data": "2023-04-02",
+    "category": "OS",
+    "publish": true
+  },
+  "28": {
+    "url": "software/operating-system/process-management",
+    "data": "2021-12-24",
+    "category": "OS",
+    "publish": false
+  },
+  "29": {
+    "url": "software/database/main",
+    "data": "2022-08-12",
+    "category": "DB",
+    "publish": false
+  },
+  "30": {
+    "url": "software/database/mysql",
+    "data": "2022-08-12",
+    "category": "DB",
+    "publish": false
+  },
+  "31": {
+    "url": "software/test/main",
+    "data": "2023-08-09",
+    "category": "test",
     "publish": false
   }
 }

@@ -1,25 +1,18 @@
 # (Self) Software
 
-## Abstract
-
-Software refers to a set of instructions or programs that tell a computer what to do. It encompasses all the applications, programs, and data that run on digital devices, enabling them to perform various tasks and functions.
-
 ## Purpose
 
-For me as web developer
-* Automate repetitive tasks
-* Improved job performance
-* Enhanced creativity of future
+To acquire the skills and knowledge necessary to design, develop, and utilize digital tools and applications to solve problems and improve efficiency in various domains.
 
 ## Concept
 
 Software is a set of instructions and data that tell a computer what to do.
 
-### Basic Knowledge
+### Fundamental Knowledge
 
 #### Complexity
 
-Complexity is a fundamental characteristic of systems, phenomena, and processes that exhibit intricate interconnections, dependencies, and behaviors. It involves the study and understanding of intricate patterns, emergent properties, and nonlinear dynamics, challenging traditional reductionist approaches and requiring holistic perspectives to unravel its multifaceted nature. For more information, please refer to [complexity].
+Complexity is a fundamental characteristic of systems, phenomena, and processes that exhibit intricate interconnections, dependencies, and behaviors. It involves the study and understanding of intricate patterns, emergent properties, and nonlinear dynamics, challenging traditional reductionist approaches and requiring holistic perspectives to unravel its multifaceted nature. For more information, please refer to [complexity](/blog/software/dsa/complexity).
 
 #### Data Structures and Algorithms
 
@@ -31,7 +24,7 @@ Bit manipulation is a programming technique that involves manipulating individua
 
 #### Object Oriented Design
 
-Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design]
+Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design].
 
 #### System Design
 
@@ -43,7 +36,7 @@ System design involves creating a blueprint for the structure and organization o
 
 ### System software
 
-This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems]
+This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems]().
 
 ### Web Application software
 
@@ -53,9 +46,9 @@ This type of software is designed for specific tasks or applications, such as wo
 
 Plan and design the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.
 * Server-side rendering
-  * Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility
-  * Concept: Generates the HTML content on the server and sending it to the client's web browser for display
-  * Example: rails
+  * Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility.
+  * Concept: Generates the HTML content on the server and sending it to the client's web browser for display.
+  * Example: Rails
 * Client-side rendering with a separation of concerns
   * Advantage: This approach offers a more interactive and responsive user experience since the client can manipulate the DOM and fetch data asynchronously without full page reloads.
   * Concept: The frontend is the user-facing part of an application responsible for displaying and interacting with the interface, the backend handles data processing and logic, and Token-based authentication and authorization mechanisms ensure secure data transmission between the frontend and backend by utilizing tokens as digital credentials for validating user identity and permissions.
@@ -67,17 +60,23 @@ Write the code for your web application, including the frontend (user interface)
 
 #### Frontend
 
-* React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to [React]
+* React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to [React].
 
 #### Backend
 
 * Framework: [Node.js], or [Ruby on Rails]
-* Test: [Jest], [Rspec]
 * [Token-based authentication and authorization mechanisms]: Token-based authentication and authorization mechanisms provide a secure and efficient means of verifying user identity and permissions in web applications and APIs. By utilizing tokens as digital credentials, these mechanisms enhance web security, enable stateless and scalable architectures, and ensure secure data transmission between the frontend and backend.
+* [Database](/blog/software/database/main)
 
-#### Package
+#### Test
 
-* Javascript: [Npm & Yarn]
+* Concept
+* [Jest]
+* [Rspec]()
+
+#### Package Managers
+
+* Javascript: [Npm], [Yarn]
 * Ruby: [Gem]
 
 #### Deploy and Maintain

@@ -1,9 +1,5 @@
 # Title
 
-## Introduction
-
-TBC
-
 ## Purpose
 
 Dynamic programming offers an efficient solution to large-scale optimization problems by breaking them into smaller sub-problems and avoiding repetitive computations, making it applicable across various disciplines including computer science, mathematics, engineering, economics, and operations research.
@@ -14,48 +10,20 @@ All dynamic programmings involve smartly finding relationship between bigger dat
 
 ### Steps
 
-For example, given an integer array, [1, -2, 3, 4, -1, 2, 1, -5, 4], find the continuous sub array which has the largest sum.
+For example, given an integer array, [1, -2, 3, 4, -1, 2, 1, -5, 4], find the largest sum from a continuous sub-array.
 
-* Identify the optimal substructure
-  * Concept: Given the full array, try to destruct it to sub array, so that we can have the relation of $$F(array) = M(F(sub array), xxx)$$
-  * Example:
-    * i = 0, the continuos sub array = [1]
-    * i = 1, the continuous sub array = [1, -2], [-2]
-    * i = 3, the continuous sub array = [1, -2, 3], [-2, 3], [3]
-    * i = 4, the continuous sub array = [1, -2, 3, 4], [-2, 3, 4], [3, 4], [4]
-    * ...
-    * As you can see, max sub array of a given array can be finding the max sub array of the sub array (removing last element) and adds-on element to the sub arrays of last set.
-* Formulate the recurrence relation
-  * Concept: Given last step, we can try to formulate it.
-  * Example: $$F(array[0..i]) = max(array[i], F(array[0..i-1]) + array[i])$$
+* Try to find relationship between subset and set
+  * It's all about pretending. I pretend I already have the solution of an subset, denoted as F(array[0..i-1]). Then the element of array[i] comes in. What's next? The problem immediately becomes Max(F(array[0..i-1]), array[i], F(array[0..i-1]) + array[i]). Let's only consider array[i] is positive. Then the problem becomes Max(array[i], F(array[0..i-1]) + array[i]).
 * Define the base case
-  * $$F(array[0]) = array[0]$$
-* Design the dynamic programming algorithm
-  * Concept: Try to write pseudocode first
-  * pseudocode
-    ```javascript
-    function xxx(array) {
-      result = 0
-      F = []
-      F[0] = array[0]
-      for (i in 0~len(array) - 1) {
-        F[i] = max(array[i], F[i - 1] + array[i])
-        result = max(result, F[i])
-      }
-
-      return result
-    }
-    ```
+  * F(array[0]) = array[0]
 * Implement the algorithm
   ```javascript
   function maxSubArraySum(arr) {
-    const dp = [];
-    dp[0] = arr[0];
-    let maxSum = dp[0];
+    let maxSum = arr[0]
     
     for (let i = 1; i < arr.length; i++) {
-      dp[i] = Math.max(arr[i], dp[i - 1] + arr[i]);
-      maxSum = Math.max(maxSum, dp[i]);
+      nextResult = Math.max(arr[i], dp[i - 1] + arr[i])
+      maxSum = Math.max(maxSum, nextResult);
     }
     
     return maxSum;
@@ -91,6 +59,8 @@ function factorialIterative(n) {
   return result
 }
 ```
+
+## What?
 
 ### fibonacci
 
@@ -148,42 +118,69 @@ function factorialIterative(n) {
   ```
 * Test
   ```javascript
-  // TBC
+  childHop = require('./triple_step.js')
+
+  describe('Triple Step', () => {
+    test('when the stair has 5 steps', () => {
+      expect(childHop(5)).toEqual(13)
+    })
+  })
   ```
 
-### Robot in a Grid
+### Longest Common Subsequence (LCS)
 
-### Robot in a Grid
+Please use the concept of dynamic programming to solve it.
 
-### Power Set
+#### Examples
 
-### Recursive Multiply
+* s1 = "ABCD", s2 = "ACDA". The LCS is "ACD" with a length of 3.
+* s1 = "AGGTAB", s2 = "GXTXAYB". The LCS is "GTAB" with a length of 4.
+* s1 = "abcdef", s2 = "xyz". The LCS is an empty string "" with a length of 0.
 
-### Towers of Hanoi
+#### Concept
+  
+* Build a 2D table, row is s1 and column is s2 and if value matches, mark the cell value as 1, otherwise 0.
+  |   | A | B | C | D |
+  |:-:|:-:|:-:|:-:|:-:|
+  | A | 1 | 0 | 0 | 0 |
+  | C | 0 | 0 | 1 | 0 |
+  | D | 0 | 0 | 0 | 1 |
+  | A | 1 | 0 | 0 | 0 |
+* Take a look at the table above
+  * row "AC" with col "A" => 1 and row "ACD" with col "A" => 1, which means it is impossible to increase LCS by increasing the letters of only s1 or s2 and also, DP[C][A] = 1; DP[D][A] = 1, ...etc.
+  * row "ACDA" with col "A" => 1 although there are two matches. It is impossible to increase LCS by only increase letters on one dimension because you must increase slots.
+  * DP[i][j] = DP[i-1][j-1] + 1 if row[i] = col[j]
+  * DP[i][j] = DP[i-1][j] or DP[i][j-1] if row[i] != col[j]
 
-### Permutations without Dups
+#### Code
 
-### Permutations with Dups
+Let's try to write the code
 
-### Parens
+* Try iterative
+  ```javascript
+  function longComSub(s1, s2) {
+    result = []
+    for (i = 0; i < s1.length; i++) {
+      result.push([]) // s1 will be row
+      for (j = 0; j < s2.length; i++) {
+        if (i === 0 && j === 0) {
+          result[i][j] = (s1[i] === s2[j]) ? 1 : 0
+        } else if (i === 0) {
+          result[i][j] = result[i][j - 1]
+        } else if (j === 0) {
+          result[i][j] = result[i - 1][j]
+        } else if (s1[i] === s2[j]) {
+          result[i][j] = result[i - 1][j - 1]
+        } else {
+          result[i][j] = Math.max(result[i - 1][j], result [i][j - 1])
+        }
+      }
+    }
+  }
+  ```
+* Time complexity: O(m x n)
 
-### Paint Fill
-
-### Coins
-
-### Eight Queens
-
-### Stack of Boxes
-
-### Boolean Evaluation
-
-### 0/1 Knapsack problem
-
-TBC
-
-## What?
-
-### resource allocation
+### (Real world) resource allocation
 
 * Problem: Allocates scarce resources in the most efficient way possible to maximize the overall benefit or profit. The problem can be represented as a table where the rows represent the projects and the columns represent the available budget. The table is filled out in a bottom-up manner, where each cell represents the maximum profit that can be obtained for a given budget and a subset of projects. Resource allocation problems can arise in many different fields, such as in supply chain management, healthcare, and environmental management. By using dynamic programming to optimize resource allocation, businesses and organizations can make more informed decisions and achieve better outcomes.
 * Example: Consider a company that has a limited budget and needs to allocate its resources (e.g., money, manpower, equipment) across different projects to maximize profits.
@@ -272,16 +269,6 @@ const { maxProfit, solution } = allocateResources(tasks, time);
 console.log(`Max profit: ${maxProfit}`);
 console.log(`Solution: ${solution.map(task => task.name).join(', ')}`);
 ```
-
-## TODO
-
-* dynamic programming
-  * longest increasing subsequence
-  * 0/1 knapsack problem
-  * Shortest path algorithms:
-  * Longest common subsequence
-  * Matrix chain multiplication
-  * Edit distance
 
 ## Reference
 

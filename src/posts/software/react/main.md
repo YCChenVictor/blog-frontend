@@ -390,6 +390,22 @@ The concept is turn it into svg first and then render the svg.
   }
   ```
 
+##### mathjax
+
+add remarkMath, rehypeKatex
+
+```javascript
+<ReactMarkdown
+  components={{
+    ...
+  }}
+  remarkPlugins={[remarkGfm, remarkMath]}
+  rehypePlugins={[rehypeKatex]}
+>
+  {markdownContent}
+</ReactMarkdown>
+```
+
 #### Other
 
 * [react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) for icon

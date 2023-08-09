@@ -123,6 +123,28 @@ end
 * `skip: true` can skip all tests
 * `focus: true` can only do this test of this described class
 
+### skip callback
+
+```ruby
+require 'rails_helper'
+
+RSpec.describe YourModel, type: :model do
+  it "skips the callback during testing" do
+    # Skip the before_save callback
+    YourModel.skip_callback(:save, :before, :your_callback)
+
+    # Your test code that should not trigger the callback
+    # ...
+
+    # Expectations for your test
+    # ...
+
+    # Restore the callback after the test
+    YourModel.set_callback(:save, :before, :your_callback)
+  end
+end
+```
+
 ## What?
 
 I am going to demonstrate BDD with RSpec and Capybara to develop user login functions.
@@ -203,6 +225,26 @@ end
 ### build feature
 
 run all spec with `bundle exec rspec` or specific spec with `bundle exec rspec spec/features/user_login_spec.rb` and keep building the features until no errors pop up.b
+
+### check with css
+
+```ruby
+describe "Component Presence" do
+  before do
+    # You might need to visit a specific URL where the component is located.
+    # Capybara.default_driver = :selenium_chrome # or any other driver you prefer
+    # visit '/path/to/your/component'
+  end
+
+  it "checks if a component with a specific CSS selector exists" do
+    # Navigate to the page or component if needed
+    # visit '/path/to/your/component'
+
+    # Use the `have_css` matcher to check for the presence of the component
+    expect(page).to have_css('.your-component-css-selector')
+  end
+end
+```
 
 ## Reference
 

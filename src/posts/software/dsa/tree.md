@@ -1,21 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-06-26'
-categories: DSA
-note:
-mathjax:
-threeJS:
-anchor:
-mermaidJS: true
-publish: true
----
-
-## Introduction
-
-(TBC)
-
+# Title
 ## Why?
 
 Learning tree data structures is essential for organizing and efficiently accessing hierarchical data, such as file systems, organizational structures, and decision-making processes.
@@ -25,49 +8,22 @@ Learning tree data structures is essential for organizing and efficiently access
 ### types of tree
 
 * General tree: each node has 0 to many child node
-  <div class="mermaid">
-    graph TD
-      id1((A)) --> id2((B))
-      id1((A)) --> id3((C))
-      id1((A)) --> id4((D))
-      id1((A)) --> id5((E))
-    
-      id2((B)) --> id6((F))
-      id3((C)) --> id7((G))
-      id3((C)) --> id8((H))
-      id5((E)) --> id9((I))
-    
-      id8((H)) --> id10((J))
-  </div>
+  ```mermaid
+  graph TD
+    id1((A)) --> id2((B))
+    id1((A)) --> id3((C))
+    id1((A)) --> id4((D))
+    id1((A)) --> id5((E))
+  
+    id2((B)) --> id6((F))
+    id3((C)) --> id7((G))
+    id3((C)) --> id8((H))
+    id5((E)) --> id9((I))
+  
+    id8((H)) --> id10((J))
+  ```
 * Binary tree: each node has at most 2 child modes
-  <div class="mermaid">
-    graph TD
-      id1((1)) --> id2((7))
-      id1((1)) --> id3((9))
-    
-      id2((7)) --> id4((2))
-      id2((7)) --> id5((6))
-      id3((9)) --> STOP1[ ]
-      id3((9)) --> id6((9))
-    
-      id5((6)) --> id7((5))
-      id5((6)) --> id8((11))
-    
-      id6((9)) --> id9((5))
-      id6((9)) --> STOP2[ ]
-  </div>
-  * The rectangle means no data
-  * Type
-    * Self-balancing: Balance means that the tree remains relatively symmetric and prevents it from becoming skewed or heavily imbalanced.
-    * Complete: Complete means that except last level, all levels' node has 0 or 2 children.
-    * Full: Full means every node has 0 or 2 children.
-    * Perfect: Perfect means all nodes have two children and all leaves are at the same level
-
-### types of traversal
-
-Given a tree as follow: (The rectangle means no data)
-
-<div class="mermaid">
+  ```mermaid
   graph TD
     id1((1)) --> id2((7))
     id1((1)) --> id3((9))
@@ -82,7 +38,34 @@ Given a tree as follow: (The rectangle means no data)
   
     id6((9)) --> id9((5))
     id6((9)) --> STOP2[ ]
-</div>
+  ```
+  * The rectangle means no data
+  * Type
+    * Self-balancing: Balance means that the tree remains relatively symmetric and prevents it from becoming skewed or heavily imbalanced.
+    * Complete: Complete means that except last level, all levels' node has 0 or 2 children.
+    * Full: Full means every node has 0 or 2 children.
+    * Perfect: Perfect means all nodes have two children and all leaves are at the same level
+
+### types of traversal
+
+Given a tree as follow: (The rectangle means no data)
+
+```mermaid
+graph TD
+  id1((1)) --> id2((7))
+  id1((1)) --> id3((9))
+
+  id2((7)) --> id4((2))
+  id2((7)) --> id5((6))
+  id3((9)) --> STOP1[ ]
+  id3((9)) --> id6((9))
+
+  id5((6)) --> id7((5))
+  id5((6)) --> id8((11))
+
+  id6((9)) --> id9((5))
+  id6((9)) --> STOP2[ ]
+```
 
 There are three actions we can do in current node
 
@@ -421,7 +404,7 @@ Given a binary tree, return the height; for example
 
 * QA
   * example 1
-  ```
+  ```bash
   Input:
        1
       /  \
@@ -429,7 +412,7 @@ Given a binary tree, return the height; for example
   Output: 2
   ```
   * example 2
-  ```
+  ```bash
   Input:
     2
      \
@@ -561,24 +544,6 @@ Given a binary tree, return the height; for example
     })
   })
   ```
-
-### List of Depths
-
-### Check Balanced
-
-### Validate BST
-
-### Successor
-
-### First Common Ancestor
-
-### BST Sequences
-
-### Check Subtree
-
-### Random Node
-
-### Paths with Sum
 
 ## What?
 

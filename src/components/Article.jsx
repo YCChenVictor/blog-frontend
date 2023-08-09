@@ -7,7 +7,9 @@ import RenderImage from "./RenderImage.jsx"
 import RenderCode from "./RenderCode.jsx"
 import RenderMermaid from "./RenderMermaid.jsx"
 import mermaid from 'mermaid'
-import RenderTable from "./RenderTable.jsx"
+import WordCounts from './WordCounts.jsx'
+import remarkMath from 'remark-math'
+import rehypeMathjax from 'rehype-mathjax'
 
 const Article = ({setting}) => {
   const filePath = `posts/${setting['url']}.md`
@@ -75,6 +77,9 @@ const Article = ({setting}) => {
   return (
     <div className='bg-gray-400 flex pt-10'>
       <div className='fixed' ref={componentSidebarRef}>
+        <WordCounts
+          articleContent={markdownContent}
+        />
         {rawTitles.length > 0 ? (
           <SidebarLayout
             onToggleExpand={updateArticleWidth}
@@ -119,9 +124,17 @@ const Article = ({setting}) => {
                   <table className='border w-full' {...props}></table>
                 </div>
               )
+            },
+            span: ({node, ...props}) => { // done
+              if (props.className === 'math math-inline') {
+                return <span className="math math-inline inline-flex">{props.children[0]}</span>;
+              } else {
+                return props.children[0]
+              }
             }
           }}
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeMathjax]}
         >
           {markdownContent}
         </ReactMarkdown>

@@ -1,17 +1,4 @@
----
-layout: post
-title:
-date: '2022-05-23'
-categories: DSA
-note: just finish the cracking coding interview examples first
-mathjax: true
-mermaidJS: true
-publish: true
----
-
-## Introduction
-
-This article explores the benefits and usage of linked lists, specifically focusing on singly and doubly linked lists. It provides code examples and explanations for implementation, along with techniques for efficient manipulation and problem-solving in linked lists.
+# Title
 
 ## why
 

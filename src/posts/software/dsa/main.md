@@ -1,9 +1,5 @@
 # Title
 
-## Abstract
-
-This article aims to solve a programming problem in a more efficient manner by analyzing and comparing the time complexity of CRUD operations on various data structures. It provides a concise overview of each data structure's time complexity for create, read, update, and delete actions, helping programmers make informed decisions on data structure selection.
-
 ## Purpose
 
 To [solve problem] in a more efficient way, making no more space to improve both the [time complexity and space complexity].
@@ -34,7 +30,7 @@ We can decompose all the programming logics into four actions: create, read, upd
 
 ### Array
 
-It is a data structure in programming that stores a collection of elements. These elements are stored in contiguous memory locations, and each element can be accessed using an index or a subscript. Please refer to [array] for more information.
+It is a data structure in programming that stores a collection of elements. These elements are stored in contiguous memory locations, and each element can be accessed using an index or a subscript. Please refer to [array](/blog/software/dsa/array) for more information.
 
 ### Linked list
 
@@ -42,7 +38,7 @@ A linked list is a linear data structure where elements are stored in a sequence
 
 ### Hash Table
 
-A hash table is a data structure that provides fast access to values based on a key. It uses a hash function to map keys to indices in an array, allowing for constant-time access to values, making it an efficient choice for many types of applications. For more information, please refer to [hash table].
+A hash table is a data structure that provides fast access to values based on a key. It uses a hash function to map keys to indices in an array, allowing for constant-time access to values, making it an efficient choice for many types of applications. For more information, please refer to [hash table](/blog/software/dsa/hash-table).
 
 ### Tree
 
@@ -74,7 +70,7 @@ Dynamic programming is often applied to problems with recursive sequences of sub
 
 ### Sorting
 
-Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting].
+Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting](/blog/software/dsa/sorting/main).
 
 ## reference
 
