@@ -167,6 +167,48 @@ Ok, after we sort an array we usually use binary search.
   * It is O(logN)
   * As you can see, we at most to walk through log_2&N elements to find the desired value
 
+### Sorted Merge
+
+* Question: You are given two sorted arrays, A and B, where A has a large enough buffer at the end to hold B. Write a method to merge B into A in sorted order.
+* Concept: Record the current largest number form both A and B and compare these two number. Retrieve the bigger one and assign the next number as bigger one. The time complexity will at most be $$N(lengthA + lengthB)$$
+* Code
+  ```javascript
+  SortedMerge = (arrayA, arrayB) => {
+    const result = []
+    let largestIndexA = 0
+    let largestIndexB = 0
+    while ((largestIndexA < arrayA.length) && (largestIndexB < arrayB.length)) {
+      const elementA = arrayA[largestIndexA]
+      const elementB = arrayB[largestIndexB]
+  
+      if (elementA <= elementB) {
+        result.push(elementA)
+        largestIndexA += 1
+      } else {
+        result.push(elementB)
+        largestIndexB += 1
+      }
+    }
+  
+    result.push(...arrayA.slice(largestIndexA))
+    result.push(...arrayB.slice(largestIndexB))
+  
+    return result
+  }
+  
+  module.exports = SortedMerge
+  ```
+* Test
+  ```javascript
+  const SortedMerge = require('../examples/sorted_merge.js')
+
+  describe('SortedMerge', () => {
+    it('should return sorted merged result', () => {
+      expect(SortedMerge([5, 12, 18, 23, 27, 31, 42, 55, 63, 78], [9, 15, 20, 34, 45])).toEqual([5, 9, 12, 15, 18, 20, 23, 27, 31, 34, 42, 45, 55, 63, 78])
+    })
+  })
+  ```
+
 ## What?
 
 ### E-commerce websites

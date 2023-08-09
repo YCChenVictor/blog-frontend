@@ -107,6 +107,20 @@ puts "Hello, Ruby".include?("R") # => true
 ```
 puts "PHP is good".sub(/PHP/, "Ruby") # => Ruby is good
 ```
+
+### include
+
+```ruby
+string = "Hello, world!"
+word_to_check = "world"
+
+if string.include?(word_to_check)
+  puts "#{word_to_check} found in the string."
+else
+  puts "#{word_to_check} not found in the string."
+end
+```
+
 ## Array (3)
 nothing to elaborate
 

@@ -46,9 +46,9 @@ This type of software is designed for specific tasks or applications, such as wo
 
 Plan and design the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.
 * Server-side rendering
-  * Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility
-  * Concept: Generates the HTML content on the server and sending it to the client's web browser for display
-  * Example: rails
+  * Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility.
+  * Concept: Generates the HTML content on the server and sending it to the client's web browser for display.
+  * Example: Rails
 * Client-side rendering with a separation of concerns
   * Advantage: This approach offers a more interactive and responsive user experience since the client can manipulate the DOM and fetch data asynchronously without full page reloads.
   * Concept: The frontend is the user-facing part of an application responsible for displaying and interacting with the interface, the backend handles data processing and logic, and Token-based authentication and authorization mechanisms ensure secure data transmission between the frontend and backend by utilizing tokens as digital credentials for validating user identity and permissions.
@@ -60,17 +60,23 @@ Write the code for your web application, including the frontend (user interface)
 
 #### Frontend
 
-* React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to [React]
+* React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to [React].
 
 #### Backend
 
 * Framework: [Node.js], or [Ruby on Rails]
-* Test: [Jest], [Rspec]
 * [Token-based authentication and authorization mechanisms]: Token-based authentication and authorization mechanisms provide a secure and efficient means of verifying user identity and permissions in web applications and APIs. By utilizing tokens as digital credentials, these mechanisms enhance web security, enable stateless and scalable architectures, and ensure secure data transmission between the frontend and backend.
+* [Database](/blog/software/database/main)
 
-#### Package
+#### Test
 
-* Javascript: [Npm & Yarn]
+* Concept
+* [Jest]
+* [Rspec]()
+
+#### Package Managers
+
+* Javascript: [Npm], [Yarn]
 * Ruby: [Gem]
 
 #### Deploy and Maintain
