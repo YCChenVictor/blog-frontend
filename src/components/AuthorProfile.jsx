@@ -13,7 +13,7 @@ const AuthorProfile = () => {
     <div className="prose bg-gray-400 p-4 flex">
       <Sidebar
         backgroundColor="rgb(156 163 175)"
-        collapsed={!isCollapsed}
+        collapsed={isCollapsed}
       >
         <Menu>
           <MenuItem

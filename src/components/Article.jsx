@@ -10,6 +10,7 @@ import mermaid from 'mermaid'
 import WordCounts from './WordCounts.jsx'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
+import LinkPage from './LinkPage.jsx'
 
 const Article = ({setting}) => {
   const filePath = `posts/${setting['url']}.md`
@@ -77,13 +78,16 @@ const Article = ({setting}) => {
   return (
     <div className='bg-gray-400 flex pt-10'>
       <div className='fixed' ref={componentSidebarRef}>
+        <LinkPage
+          articleUrl={setting['url']}
+        />
         <WordCounts
           articleContent={markdownContent}
         />
         {rawTitles.length > 0 ? (
           <SidebarLayout
             onToggleExpand={updateArticleWidth}
-            height={window.innerHeight}
+            height={'80vh'}
             rawTitles={rawTitles}
           />
         ) : (

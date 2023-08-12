@@ -4,7 +4,7 @@ const WordCounts = ({articleContent}) => {
   const words = articleContent.split(' ')
 
   return(
-    <div style={{color: 'black'}}>
+    <div className="px-4" style={{color: 'black'}}>
       words: {words.length}
     </div>
   )
