@@ -254,5 +254,11 @@
     "data": "2023-03-27",
     "category": "SYS_D",
     "publish": false
+  },
+  "34": {
+    "url": "software/system-design/scalability",
+    "data": "2023-06-16",
+    "category": "SYS_D",
+    "publish": false
   }
 }

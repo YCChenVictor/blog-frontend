@@ -58,11 +58,25 @@ Based on information in step 2 and step 3, determine the priorities and know whi
   
 After step 4, we should adjust our design; for example, some components take too much time but is not that important, so we can remove it currently from the major components.
 
-#### Step 6: Start to code
+#### Step 6: Choose the right frameworks
+
+If you do not know which frontend, backend, database to choose, just choose the most popular one.
+
+#### Step 7: Start to code
 
 Ok, based on above design, we now should have components, user interface, URL shortening, analytics, user account management, APIs, services, database, and external integrations and we can start to think about the design patterns for them.
 
-Any user interface related frontend and backend, we should use [MVC structure]. That is, we break CRUD of links and CRUD of users into [RESTful] design, which is going to return us 
+Any user interface related frontend and backend, we should use [MVC structure]. That is, we break Create, Read, Update, Destroy (CRUD) of links and CRUD of users into [RESTful] design, which is going to return us methods mapping GET (Read), POST (Create), PUT (Update), DELETE (Destroy); for example, in [rails, we have 7 methods].
+
+Now we can successfully CRUD the data. The next step is to return desired services for users
+* URL shortening service should use singleton pattern to avoid multiple shortened URL to be created for one URL.
+* Analytics service should use observer or strategy pattern
+  * If the calculations take time, we can use observer pattern to trigger analytics data calculations right after key information updates. But I think it will not be the case in this system.
+  * If we need multiple same key statistics with some difference on different environments, we may need strategy pattern; for example, users all care about the click rate of tinyURL but definition of denominator and numerator may be the same of different on different components. Then we can initiate multiple services with the combinations of the methods to calculate denominator and numerator.
+* User management service should use decorator pattern to return different data given the type of users; for example, we may need to examine the authentication of users before they use an API. Then we can have decorator to decorate the ability based on the identity of the users.
+* External service should use adapter pattern to connect different data source with same method; for example, we know google and facebook both provide statistics and we can write a method to deal with these two different APIs. Then although both use `connect` method, based on the adaptor, we can connect the APIs successfully and do the next steps.
+
+For more information, please refer to [design pattern].
 
 ### Design An Algorithm
 
@@ -73,15 +87,35 @@ Sometimes we do not need to re-design a system but we want to solve an algorithm
 * Step 3: Get Real, try to write down pseudocode first and even start compose the functions.
 * Step 4: Solve Problems, during step 3, there will be more problems occurs and keep iterating.
 
-### Key concepts
+### Normal Solutions
 
-#### Horizontal Scaling
+#### Design for scalability
 
-TBC, connect with the articles
+There are two ways of scalability; one is horizontal, the other is vertical. For more information, please refer to [scalability](/blog/software/system-design/scalability).
 
-#### Vertical Scaling
+#### TODO
 
-### Considerations
+* Scaling
+* Load balancer
+* Denormalization
+* NoSQL
+* Sharding
+* Caching
+* Background job
+* Networking Metrics
+* MapReduce
+
+### Other Considerations
+
+#### Distribute Systems
+
+A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed systems].
+
+#### Real-time operating systems
+
+Real-time systems, scheduling, and response times.
+
+#### TODO
 
 * Failures
   * Concept: Systems are prone to failures, and it's crucial to plan for them. Identify potential points of failure in your system and design appropriate measures to handle them.
@@ -99,14 +133,10 @@ TBC, connect with the articles
     * Automated failover
 * Read-heavy vs. Write-heavy
   * Concept: Depending on whether your system is more read-heavy or write-heavy, you can design strategies such as queuing writes for write-intensive applications or utilizing caching mechanisms for read-intensive applications to optimize performance and mitigate potential failures.
+  * Read-heavy maps to distributed system
+  * Write-heavy maps to real-time operation system
 * Security
   * Security threats pose significant risks to a system. Identify potential security vulnerabilities and design appropriate security measures to protect your system. This can include authentication mechanisms, access controls, encryption, input validation, and robust error handling to prevent attacks like injection, cross-site scripting, and data breaches.
-* Scalability: Design your system to handle increased workload and accommodate future growth. Consider horizontal scaling (adding more machines) and vertical scaling (increasing the resources of existing machines). Use technologies like load balancing, distributed architectures, and database sharding to ensure scalability.
-* Performance: Optimize your system for efficient and responsive performance. Consider factors like response times, throughput, latency, and resource utilization. Use techniques such as caching, indexing, query optimization, and efficient algorithms to enhance performance.
-* Data Storage and Persistence: Determine the appropriate data storage mechanisms based on your system requirements. Consider factors like data volume, access patterns, data consistency, and durability. Choose between relational databases, NoSQL databases, file systems, caching solutions, or a combination of these based on your specific needs.
-* Interoperability and Integration: If your system needs to interact with external systems or services, design it to be interoperable and easily integrable. Use standard protocols, APIs, and well-defined interfaces to enable seamless communication and data exchange between different components or systems.
-* Maintainability: Plan for long-term maintenance and ease of system management. Follow best practices like modular design, clean code principles, documentation, version control, and automated testing. Design your system to be easily diagnosable and upgradeable.
-* Cost-effectiveness: Consider the cost implications of your system design decisions. Evaluate the trade-offs between performance, scalability, and cost. Optimize resource utilization, consider cloud services or open-source alternatives, and assess the total cost of ownership (TCO) over the system's lifecycle.
 
 ## Reference
 
