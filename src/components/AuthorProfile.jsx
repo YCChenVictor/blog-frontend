@@ -27,6 +27,12 @@ const AuthorProfile = () => {
            
           </MenuItem>
           <MenuItem
+            key={4}
+            component={<Link to="/blog/investment" />}
+          >
+            {'Investment'}
+          </MenuItem>
+          <MenuItem
             key={1}
             component={<Link to="/blog/software" />}
           >

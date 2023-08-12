@@ -101,6 +101,17 @@ filename_to_ignore.xxx
 *.xxx
 ```
 
+### check the branches
+
+* locally
+  ```bash
+  git branch | grep -i xxx
+  ```
+* all
+  ```bash
+  git branch --all | grep -i xxx
+  ```
+
 ## Reference
 
 [什麼是 Git？為什麼要學習它？ - 為你自己學 Git](https://gitbook.tw/chapters/introduction/what-is-git.html)

@@ -246,6 +246,22 @@ describe "Component Presence" do
 end
 ```
 
+### change locale
+
+```ruby
+RSpec.describe "Localization" do
+  it "changes the locale for testing" do
+    # Set the desired locale before running the test
+    I18n.locale = :fr  # Change 'fr' to the desired locale
+
+    # Your test code here
+
+    # Make sure to reset the locale back to the default after the test
+    I18n.locale = I18n.default_locale
+  end
+end
+```
+
 ## Reference
 
 [What is Integration Testing? Software Testing Tutorial](https://www.youtube.com/watch?v=QYCaaNz8emY)

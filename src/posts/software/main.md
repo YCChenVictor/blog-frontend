@@ -18,21 +18,13 @@ Complexity is a fundamental characteristic of systems, phenomena, and processes 
 
 [Data Structures and Algorithms (DSA)](/blog/software/dsa/main) are essential foundations in software development, providing the tools and techniques to organize and manipulate data efficiently, optimize code performance, and solve complex problems in a systematic and scalable manner. Mastery of DSA enables developers to design robust software solutions, improve algorithmic efficiency, and create optimized code for various applications and domains.
 
-#### Bit
-
-Bit manipulation is a programming technique that involves manipulating individual bits or groups of bits within **binary representations** of data. It is commonly used to perform efficient operations on binary data, optimize code, and solve specific algorithmic problems. For more information, please refer to [bit manipulation]
-
 #### Object Oriented Design
 
 Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design].
 
 #### System Design
 
-System design involves creating a blueprint for the structure and organization of a software system, considering factors such as architecture, modules, interfaces, and data flow. It aims to transform requirements into an efficient and scalable solution that meets the desired goals and objectives of the system. For more information, please refer to [system design]
-
-#### Development
-
-* Concept: TDD, BDD
+System design involves creating a blueprint for the structure and organization of a software system, considering factors such as architecture, modules, interfaces, and data flow. It aims to transform requirements into an efficient and scalable solution that meets the desired goals and objectives of the system. For more information, please refer to [system design](/blog/software/system-design/main).
 
 ### System software
 
@@ -44,7 +36,8 @@ This type of software is designed for specific tasks or applications, such as wo
     
 #### Plan and Design
 
-Plan and design the user interface and functionality of your web application. Decide on the features you want to include and how users will interact with the application.
+Plan and design the user interface and functionality of your web application. 
+
 * Server-side rendering
   * Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility.
   * Concept: Generates the HTML content on the server and sending it to the client's web browser for display.
@@ -53,10 +46,6 @@ Plan and design the user interface and functionality of your web application. De
   * Advantage: This approach offers a more interactive and responsive user experience since the client can manipulate the DOM and fetch data asynchronously without full page reloads.
   * Concept: The frontend is the user-facing part of an application responsible for displaying and interacting with the interface, the backend handles data processing and logic, and Token-based authentication and authorization mechanisms ensure secure data transmission between the frontend and backend by utilizing tokens as digital credentials for validating user identity and permissions.
   * Example: React + Node
-
-#### Develop
-
-Write the code for your web application, including the frontend (user interface) and the backend (server-side logic).
 
 #### Frontend
 
@@ -70,9 +59,9 @@ Write the code for your web application, including the frontend (user interface)
 
 #### Test
 
-* Concept
+* [TDD]
 * [Jest]
-* [Rspec]()
+* [Rspec]
 
 #### Package Managers
 

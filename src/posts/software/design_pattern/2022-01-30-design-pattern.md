@@ -50,22 +50,6 @@ Main 23 design patterns as follow:
   * Strategy: This pattern allows you to define a family of interchangeable algorithms, encapsulate each one, and make them interchangeable at runtime. It's useful when you want to choose an algorithm dynamically, based on runtime conditions.
   * Interpreter: This pattern provides a way to define the grammar of a language, and to interpret sentences in that language. It's useful
 
-## What?
-
-give general example to each pattern
-
-### factory method
-
-wait the other articles
-
-### builder
-
-### prototype
-
-### singleton
-
-### abstract method
-
 ## Reference
 
 [Software design pattern](https://en.wikipedia.org/wiki/Software_design_pattern)
