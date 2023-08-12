@@ -16,7 +16,7 @@ function SignupLogin() {
         {showLoginButton ? (
           <button
             onClick={setLoginModalOpen}
-            className="p-2"
+            className="px-4 py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:outline-none"
           >Login
           </button>
         ) : (
@@ -25,7 +25,7 @@ function SignupLogin() {
         {showSignupButton ? (
           <button
             onClick={setSignupModalOpen}
-            className="p-2"
+            className="px-4 py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:outline-none"
             >Signup
           </button>
         ) : (
