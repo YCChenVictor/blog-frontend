@@ -1,9 +1,5 @@
 # Title
 
-## Abstract
-
-TBC
-
 ## Purpose
 
 Heaps are necessary because they provide an efficient way to manage **priority-based** operations, such as retrieving the minimum or maximum element, which is valuable in various applications like scheduling, graph algorithms, and priority queues.
@@ -27,73 +23,94 @@ Although heap is a complete binary tree, we usually use array to construct heap 
   ```
 * Code example
   ```javascript
-  class Heap {
-    constructor() {
-      this.values = [];
+  class MinHeap {
+    constructor(values) {
+      this.values = values
+      this.heapify()
     }
   
     // create
     insert(value) {
-      this.heap.append(value)
-      heapify()
+      this.values.push(value)
+      this.heapify()
     }
-
+  
     // read
     findMin() {
-      return this.heap[0]
+      return this.values[0]
     }
-
+  
     // update
     update(value, index) {
-      this.heap[index] = value
-      heapify()
+      this.values[index] = value
+      this.heapify()
+      return this.values
     }
   
     // destroy
     delete() {
-      // It will delete the minimum value
-      this.heap.shift()
-      heapify()
+      this.values.shift()
+      this.heapify()
     }
   
-    heapify() {
-      // After each create, update, destroy, we will do heapify
-      this.heap
+    heapify() { // bottom up approach
+      for(let i = this.values.length - 1; i >= 0; i--) {
+        const leftChildIndex = i * 2 + 1
+        const rightChildIndex = i * 2 + 2
+      
+        let smallestIndex = i
+        if(this.values[i] > this.values[leftChildIndex]) {
+          smallestIndex = leftChildIndex
+        }
+        if(this.values[smallestIndex] > this.values[rightChildIndex]) {
+          smallestIndex = rightChildIndex
+        }
+        if(smallestIndex !== i) {
+          const tmp = this.values[i]
+          this.values[i] = this.values[smallestIndex]
+          this.values[smallestIndex] = tmp
+          this.heapify(leftChildIndex)
+          this.heapify(rightChildIndex)
+        }
+      }
     }
   }
   
+  module.exports = MinHeap
   ```
 * Spec
   ```javascript
-  describe('Min Heap', () => {
-    let heap = new MaxHeap([5, 7, 10, 20, 9, 15])
-    
-    test('insert', () => {
-      heap.insert(3)
-      expect(heap.values).toEqual([3, 5, 10, 20, 7, 15, 9])
-    })
+  MinHeap = require('./min_heap.js')
 
+  describe('MinHeap', () => {
+    let heap = new MinHeap([5, 12, 8, 3, 9, 7])
+  
+    // init
+    test('#new', () => {
+      expect(heap.values).toEqual([3, 5, 7, 12, 9, 8])
+    })
+  
+    // create
+    test('#insert', () => {
+      heap.insert(4)
+      expect(heap.values).toEqual([3, 5, 4, 12, 9, 8, 7])
+    })
+  
+    // read
     test('findMin', () => {
-      expect(heap.findMin()).toEqual(5)
+      expect(heap.findMin()).toEqual(3)
     })
-
-    test('update', () => {
-      heap.update(3, 2)
-      // [5, 7, 10, 20, 9, 15]
-      // [5, 3, 10, 20, 9, 15]
-      // [3, 5, 10, 20, 9, 15]
-      expect(heap.values).toEqual([3, 5, 10, 20, 9, 15])
+  
+    // update
+    test('#update', () => {
+      heap.update(6, 3)
+      expect(heap.values).toEqual([3, 5, 7, 6, 9, 8])
     })
-
-    test('delete', () => {
+  
+    // destroy
+    test.only('#delete', () => {
       heap.delete()
-      expect(heap.values).toEqual([7, 10, 20, 9, 15])
-    })
-
-    test('heapify', () => {
-      let randomHeap = newMax([10, 20, 5, 15, 9, 7])
-      randomHeap.heapify()
-      expect(randomHeap.values).toEqual([5, 7, 10, 20, 9, 15])
+      expect(heap.values).toEqual([5, 7, 12, 9, 8])
     })
   })
   ```
@@ -214,8 +231,6 @@ Although heap is a complete binary tree, we usually use array to construct heap 
     })
   })
   ```
-
-## Example
 
 ## Reference
 

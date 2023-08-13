@@ -34,7 +34,7 @@ It is a data structure in programming that stores a collection of elements. Thes
 
 ### Linked list
 
-A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linked list].
+A linked list is a linear data structure where elements are stored in a sequence, and each element is linked to its next element using pointers or references. It consists of a series of nodes, where each node contains a data element and a reference to the next node in the sequence. For more information, please refer to [linked list](/blog/software/dsa/linked-list).
 
 ### Hash Table
 
@@ -50,15 +50,15 @@ A graph is a visual representation of data that shows the relationship between d
 
 ### Stack
 
-A stack is an abstract data type that represents a collection of elements in a particular order. It follows the Last-In-First-Out (LIFO) principle, where the last element added to the stack will be the first one to be removed. For more information, please refer to [stack].
+A stack is an abstract data type that represents a collection of elements in a particular order. It follows the Last-In-First-Out (LIFO) principle, where the last element added to the stack will be the first one to be removed. For more information, please refer to [stack](/blog/software/dsa/stack).
 
 ### Queue
 
-A queue is a linear data structure that follows the First-In-First-Out (FIFO) principle, where the first element added to the queue is the first element to be removed. It is commonly used in computer science and everyday life for organizing tasks or processing requests in a sequential manner. For more information, please refer to [queue].
+A queue is a linear data structure that follows the First-In-First-Out (FIFO) principle, where the first element added to the queue is the first element to be removed. It is commonly used in computer science and everyday life for organizing tasks or processing requests in a sequential manner. For more information, please refer to [queue](/blog/software/dsa/queue).
 
 ### Heap
 
-A heap is a specialized tree-based data structure that satisfies the heap property, where the value of each node is greater than or equal to (in a max heap) or less than or equal to (in a min heap) the values of its child nodes. Heaps are commonly used for efficient priority queue operations and serve as a foundation for algorithms like heap sort and finding the kth largest/smallest element. For more information, please refer to [heap].
+A heap is a specialized tree-based data structure that satisfies the heap property, where the value of each node is greater than or equal to (in a max heap) or less than or equal to (in a min heap) the values of its child nodes. Heaps are commonly used for efficient priority queue operations and serve as a foundation for algorithms like heap sort and finding the kth largest/smallest element. For more information, please refer to [heap](/blog/software/dsa/heap).
 
 ### Tries
 

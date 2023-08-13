@@ -1,42 +1,14 @@
----
-layout: post
-title: stack
-description: ''
-date: '2022-06-24'
-categories: DSA
-note:
-mathjax:
-mermaidJS:
-chartJS:
-threeJS:
-p5:
-publish: true
----
+# Title
 
-## Introduction
-
-(TBC)
-
-## Why?
+## Purpose
 
 Learning about stacks is essential for understanding how function calls and recursion work in programming languages, as well as for organizing and managing data efficiently.
 
-## How?
+## Concept
 
-Visualization:
+![stack](assets/img/stack)
 
-```bash
-|   Stack 1   |   Stack 2   |   Stack 3   |
-| (Original)  |    (Pop)    |    (Push)   |
-|-------------|-------------|-------------|
-|   Element   |   Element   |   Element   |
-|-------------|-------------|-------------|
-|             |             |     Item0   |
-|     Item1   |             |     Item1   |
-|     Item2   |     Item2   |     Item2   |
-|     Item3   |     Item3   |     Item3   |
-|     Item4   |     Item4   |     Item4   |
-```
+[Image Source](https://www.geeksforgeeks.org/stack-data-structure/)
 
 Stack uses mechanism of first in last out (FILO), we can only add or pop the top element.
 
@@ -74,17 +46,8 @@ Stack uses mechanism of first in last out (FILO), we can only add or pop the top
       console.log(this.items.toString());
     }
   }
-  
-  // Example usage
-  const stack = new Stack();
-  stack.push(10);
-  stack.push('hello');
-  stack.push({ name: "John", age: 25 });
-  console.log(stack.peek()); // Output: 10
-  console.log(stack.pop()); // Output: 10
-  stack.print(); // Output: ['hello', { name: "John", age: 25 }]
   ```
-* spec (2023/07/04)
+* spec
   ```javascript
   const Stack = require('../examples/stack.js');
   
@@ -143,6 +106,8 @@ Stack uses mechanism of first in last out (FILO), we can only add or pop the top
     * Again, we can only access the top, so the time complexity of this operation is O(1).
   * Delete an item: O(1)
     * Again, we can only access the top, so the time complexity of this operation is O(1).
+
+## Example
 
 ### Three in One
 
@@ -393,6 +358,8 @@ Stack uses mechanism of first in last out (FILO), we can only add or pop the top
     ```
   * more general: The first approach did not use the space in array efficiently because we cannot put more data into an full stack even if there are space in other stacks. (TBC)
 
+
+
 ### Stack Min
 
 * Problem: How would you design a stack which, in addition to push and pop, has a function min which returns the minimum element? Push, pop and min should ail operate in 0 ( 1 ) time.
@@ -437,13 +404,10 @@ Stack uses mechanism of first in last out (FILO), we can only add or pop the top
   })
   ```
 
-### Stack of Plates
+### TODO
 
-### Sort Stack
-
-## What
-
-try to implement real world example
+* Stack of Plates
+* Sort Stack
 
 ## Reference
 

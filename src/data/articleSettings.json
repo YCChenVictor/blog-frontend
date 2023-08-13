@@ -72,7 +72,7 @@
     "useMathjax": true,
     "useThreeJS": false,
     "useMermaidJS": true,
-    "publish": false
+    "publish": true
   },
   "8": {
     "url": "software/css/main",
@@ -229,13 +229,13 @@
     "url": "software/database/main",
     "data": "2022-08-12",
     "category": "DB",
-    "publish": false
+    "publish": true
   },
   "30": {
     "url": "software/database/mysql",
     "data": "2022-08-12",
     "category": "DB",
-    "publish": false
+    "publish": true
   },
   "31": {
     "url": "software/test/main",
@@ -259,6 +259,12 @@
     "url": "software/system-design/scalability",
     "data": "2023-06-16",
     "category": "SYS_D",
+    "publish": false
+  },
+  "35": {
+    "url": "software/ood/main",
+    "data": "2023-08-12",
+    "category": "OOD",
     "publish": false
   }
 }

@@ -1,103 +1,101 @@
----
-layout: post
-title: queue
-description: ''
-date: '2022-06-24'
-categories: DSA
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
-## Introduction
-
-(TBC)
-
-## Why?
+## Purpose
 
 Learning about queues is important in computer science and programming as it helps in managing data and organizing tasks efficiently using the First-In-First-Out (FIFO) principle.
 
-## How?
+## Concept
 
-### Concept
+### Visualization
 
-A queue implements FIFO ordering.
+![queue](assets/img/queue)
 
-```bash
-# init
-|   Order   |
-|-----------|
-|   Order1  |
-|   Order2  |
-|   Order3  |
-|   Order4  |
+[Source](https://www.geeksforgeeks.org/queue-data-structure/)
 
-# push
-|   Order   |
-|-----------|
-|   Order1  |
-|   Order2  |
-|   Order3  |
-|   Order4  |
-|   Order5  |
+### Code
 
-# pop
-|   Order   |
-|-----------|
-|   Order2  |
-|   Order3  |
-|   Order4  |
-```
-#### code example
-
-```javascript
-class Queue {
-  constructor() {
-    this.items = [];
-  }
-
-  enqueue(element) {
-    this.items.push(element);
-  }
-
-  dequeue() {
-    if (this.isEmpty()) {
-      return "Queue is empty";
+* Implementation
+  ```javascript
+  class Queue {
+    constructor() {
+      this.items = [];
     }
-    return this.items.shift();
-  }
-
-  peek() {
-    if (this.isEmpty()) {
-      return "Queue is empty";
+  
+    enqueue(element) {
+      this.items.push(element);
     }
-    return this.items[0];
+  
+    dequeue() {
+      if (this.isEmpty()) {
+        return "Queue is empty";
+      }
+      return this.items.shift();
+    }
+  
+    peek() {
+      if (this.isEmpty()) {
+        return "Queue is empty";
+      }
+      return this.items[0];
+    }
+  
+    isEmpty() {
+      return this.items.length === 0;
+    }
+  
+    size() {
+      return this.items.length;
+    }
   }
+  ```
+* Spec
+  ```javascript
+  const Queue = require('../examples/queue.js');
 
-  isEmpty() {
-    return this.items.length === 0;
-  }
+  describe('Queue', () => {
+    let testQueue;
+    beforeEach(() => {
+      testQueue = new Queue();
+      const values = [1, 74, 888, 62, 33];
+      for(let i = 0; i < values.length; i++){
+        testQueue.enqueue(values[i]);
+      }
+    });
+  
+    test('#init', () => {
+      expect(testQueue.print()).toEqual([1, 74, 888, 62, 33])
+    })
+  
+    test('#enqueue', () => {
+      testQueue.enqueue(0);
+      expect(testQueue.print()).toEqual([1, 74, 888, 62, 33, 0]);
+    });
+  
+    test('#dequeue', () => { // first in is 1
+      testQueue.dequeue();
+      expect(testQueue.print()).toEqual([74, 888, 62, 33]);
+    })
+  
+    test('#peek', () => {
+      expect(testQueue.peek()).toEqual(1);
+    });
+  
+    test('#isEmpty', () => {
+      expect(testQueue.isEmpty()).toEqual(false);
+    })
+  
+    test('#size', () => {
+      expect(testQueue.size()).toEqual(5);
+    })
+  });
+  ```
+* Time complexity
+  * Create an item: **O(1)**, The enqueue method will concatenate item on the last without shifting elements, so the complexity will not increase when the number of elements increases.
+  * Read an item: **O(1)**, The read method can only read the front element of the queue, so the complexity will not increase when the number of elements increases.
+  * Update an item: **O(n)**, It is not normal to have update operation in queue. We achieve by dequeuing the elements and then enqueuing back. As a result, the time complexity i s O(n) on worst case.
+  * Delete an item: **O(1)** because when removing the last element, there is no need to shift or modify any other elements, making it independent of the queue's size.
 
-  size() {
-    return this.items.length;
-  }
-
-  print() {
-    console.log(this.items.toString());
-  }
-}
-```
-
-#### Time complexity
-
-* Create an item: **O(1)**, The enqueue method will concatenate item on the last without shifting elements, so the complexity will not increase when the number of elements increases.
-* Read an item: **O(1)**, The read method can only read the front element of the queue, so the complexity will not increase when the number of elements increases.
-* Update an item: **O(n)**, It is not normal to have update operation in queue. We achieve by dequeuing the elements and then enqueuing back. As a result, the time complexity i s O(n) on worst case.
-* Delete an item: **O(1)** because when removing the last element, there is no need to shift or modify any other elements, making it independent of the queue's size.
+## Example
 
 ### Queue via Stacks
 
@@ -314,9 +312,5 @@ class Queue {
     }
   }
   ```
-
-## What
-
-Please give real world example
 
 ## Reference
