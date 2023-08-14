@@ -28,9 +28,9 @@ const AuthorProfile = () => {
           </MenuItem>
           <MenuItem
             key={4}
-            component={<Link to="/blog/investment" />}
+            component={<Link to="/blog/economics" />}
           >
-            {'Investment'}
+            {'Economics'}
           </MenuItem>
           <MenuItem
             key={1}
@@ -43,12 +43,6 @@ const AuthorProfile = () => {
             component={<Link to="/blog/medicine" />}
           >
             {'Medicine'}
-          </MenuItem>
-          <MenuItem
-            key={3}
-            component={<Link to="/blog/aesthetics" />}
-          >
-            {'Aesthetics'}
           </MenuItem>
         </Menu>
       </Sidebar>

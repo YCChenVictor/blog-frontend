@@ -39,11 +39,9 @@ Involves identifying the attributes (data) and methods (functions) associated wi
 
 Review and refine the design by considering principles such as encapsulation, inheritance, polymorphism, and other object-oriented design principles. Ensure that the design is modular, extensible, and adheres to best practices.
 
-* Encapsulation: we may use encapsulation to make the attributes of the Book and Member classes private and provide getter and setter methods to access and modify them
-
 ### Step 6: Implement the design
 
-Translate the design into actual code using a programming language. Follow the design principles and guidelines to implement the classes, their relationships, and their behaviors.
+Translate the design into actual code using a programming language. Follow the design principles and guidelines to implement the classes, their relationships, and their behaviors. Please refer to [object oriented programming]().
 
 ### Step 7: Test and iterate 
 

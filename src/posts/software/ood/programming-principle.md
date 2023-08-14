@@ -4,49 +4,39 @@
 
 OOP provides a flexible and powerful way to organize and structure software applications.
 
-## How
+## Concept
 
-* Use objects to represent and manipulate data
-* Objects are instances of classes that encapsulate data and methods (functions) that operate on that data
-* Principles
-  * Encapsulation: Hide the internal details of an object and exposing only the necessary information through well-defined interfaces. This helps to ensure data integrity and makes code more modular and reusable.
-  * Inheritance: One class (the child or subclass) can inherit the properties and methods of another class (the parent or superclass). This allows for code reuse and promotes modularity and extensibility.
-  * Polymorphism: Polymorphism refers to the ability of objects of different classes to be treated as if they are of the same class. This allows for more flexible and dynamic programming, as objects can be used interchangeably without the need for complex type checking and casting.
-  * Abstraction: Simplify complex systems by representing only the essential features, and interfaces, which define the contract between objects and the outside world.
+Use objects to represent and manipulate data. Objects are instances of classes that encapsulate data and methods (functions) that operate on that data.
 
-### classes
+### Class
 
 We use class to create objects and the class will define the attributes and methods these objects have. For example, a `User` class in any SaaS product would be as follow:
 
-```ruby
-class User
-  def initialize(name)
-    # attributes
-    @name = name
-  end
+```javascript
+class User {
+  constructor(name) {
+    // attributes
+    this.name = name;
+  }
   
-  # methods
-  def say_hello
-    puts "Hello, my name is " + @name
-  end
-end
-
-user = User.new('name')
-user.say_hello
-user.name
+  // methods
+  sayHello() {
+    console.log("Hello, my name is " + this.name);
+  }
+}
 ```
 
 ### Coupling and Cohesion
 
-Coupling refers to the degree to which classes or modules in a software system depend on one another. High coupling can make a system more difficult to maintain, update, and test because changes to one class can have a ripple effect on other classes.
-
-We want less coupling and high cohesion. For example, if this class represents a machine in a company, we want it to be as independent as possible so that once it needs to be replace or suspended for some reason, we can easily do it, increasing the maintainability of this company.
-
-So anything making this machine to be related to other components of this company will increase coupling.
+Coupling evaluates the interconnection level among software modules; decreasing it improves system maintainability, much like ensuring the independence of a position in a company, allowing for effortless replacement or suspension without complex dependencies.
 
 #### math
 
+A math evaluation can help us rank the severity.
+
 $$Coupling(C) = 1 - 1/(d_o + d_i + 2 * (c_o + c_i) + g_d + 2 * g_c + w + r)$$
+
+where
 
 1. $$d_o$$ = number of output data parameters
 2. $$d_i$$ = number of input data parameters
@@ -71,64 +61,74 @@ $$Coupling(C) = 1 - 1/(d_o + d_i + 2 * (c_o + c_i) + g_d + 2 * g_c + w + r)$$
 
 ### Interfaces
 
+If we design system with abstraction, encapsulation, minimizing number of variables, 
+
 * Implements abstraction and encapsulation thoroughly, making we only see the appearance of this function and use it easily; for example, we know the light can be on by switching the button but we do not know the logics behind it.
 * Reduce the number of global variables used as data or control, as well as the number of input or output parameters, by providing a common interface that can be used by multiple clients.
-* Reduce the number of modules called (fan-out) by promoting modular design and encouraging the use of common interfaces between modules.
+* Reduce the number of modules called (fan-out) by promoting modular design and encouraging the use of common interfaces between modules. For example, built APIs and call the end points rather import the same modules many times.
 
 ### Abstraction
 
+Simplify complex systems by representing only the essential features, and interfaces, which define the contract between objects and the outside world.
+
 Abstraction shows only **essential** attributes; for example, in this world, there are lots of animals such as human, pig, ...etc and there are some identical characteristics, then we can first define a class, `Animal` and then subdivide it with inheritance rather than writing both classes having the same characteristics.
 
-```ruby
-class Animal
-  def initialize
-  end
+```javascript
+class Animal {
+  constructor () {
 
-  def eat
-  end
-end
+  }
 
-class Human < Animal
-  def speak
-  end
-end
+  eat () {
 
-class Pig
-end
+  }
+}
+
+class Human extends Animal {
+  speak () {
+
+  }
+}
+
+class Pig extends Animal {
+
+}
 ```
 
 rather than
 
 ```ruby
-class Human < Animal
-  def initialize
-  end
+class Human {
+  constructor() {
+  }
 
-  def eat
-  end
+  eat() {
+  }
 
-  def speak
-  end
-end
+  speak() {
+  }
+}
 
-class Pig
-  def initialize
-  end
+class Pig {
+  constructor() {
+  }
 
-  def eat
-  end
-end
+  eat() {
+  }
+}
 ```
 
 ### Encapsulation
 
-The private methods are example of encapsulation in ruby. You cannot use the methods outside the class. We only show the meaningful methods for outsiders.
+Hide the internal details of an object and exposing only the necessary information through well-defined interfaces. This helps to ensure data integrity and makes code more modular and reusable. The private methods are example of encapsulation in ruby. You cannot use the methods outside the class. We only show the meaningful methods for outsiders.
 
 ### Interfaces
 
 An interface implements abstraction and encapsulation throughly, making we only see the appearance of this function and use it easily; for example, we know the light can be on by switching the button but we do not know the logics behind it.
 
 ### Inheritance
+
+One class (the child or subclass) can inherit the properties and methods of another class (the parent or superclass). This allows for code reuse and promotes modularity and extensibility.
 
 For example, I want to create Animals: Dog, Cat, Bird.
 
@@ -161,6 +161,8 @@ bird.move
 ```
 
 ### Polymorphism
+
+Polymorphism refers to the ability of objects of different classes to be treated as if they are of the same class. This allows for more flexible and dynamic programming, as objects can be used interchangeably without the need for complex type checking and casting.
 
 For example, I want to create Animals: Dog, Cat, Bird I can write a polymorphic class as follow:
 
@@ -230,8 +232,6 @@ A inherited from B -> A has all attributes and methods from B; for example, stud
 C composed of D -> D is a part of C; for example, car is composed of wheels.
 
 #### aggregation
-
-## What
 
 ## Reference
 

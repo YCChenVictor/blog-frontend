@@ -42,11 +42,11 @@ A hash table is a data structure that provides fast access to values based on a 
 
 ### Tree
 
-A tree is a hierarchical data structure with nodes connected by edges, and a single root node at the top. It is used in computer science to represent data with a hierarchical structure, and various algorithms have been developed to manipulate and process tree structures efficiently. For more information, please refer to [tree].
+A tree is a hierarchical data structure with nodes connected by edges, and a single root node at the top. It is used in computer science to represent data with a hierarchical structure, and various algorithms have been developed to manipulate and process tree structures efficiently. For more information, please refer to [tree](/blog/software/dsa/tree).
 
 ### Graph
 
-A graph is a visual representation of data that shows the relationship between different variables. It consists of nodes or vertices connected by edges or links that illustrate the connections or interactions between them. For more information, please refer to [graph].
+A graph is a visual representation of data that shows the relationship between different variables. It consists of nodes or vertices connected by edges or links that illustrate the connections or interactions between them. For more information, please refer to [graph](/blog/software/dsa/graph).
 
 ### Stack
 
