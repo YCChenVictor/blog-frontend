@@ -41,7 +41,7 @@ Review and refine the design by considering principles such as encapsulation, in
 
 ### Step 6: Implement the design
 
-Translate the design into actual code using a programming language. Follow the design principles and guidelines to implement the classes, their relationships, and their behaviors. Please refer to [object oriented programming]().
+Translate the design into actual code using a programming language. Follow the design principles and guidelines to implement the classes, their relationships, and their behaviors. Please refer to [object oriented programming](/blog/software/ood/programming-principle).
 
 ### Step 7: Test and iterate 
 

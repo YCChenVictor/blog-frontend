@@ -120,11 +120,46 @@ class Pig {
 
 ### Encapsulation
 
-Hide the internal details of an object and exposing only the necessary information through well-defined interfaces. This helps to ensure data integrity and makes code more modular and reusable. The private methods are example of encapsulation in ruby. You cannot use the methods outside the class. We only show the meaningful methods for outsiders.
+Encapsulation involves concealing an object's inner workings while presenting clear interfaces, enhancing data integrity, modularity, and code reusability. For example, the private methods are example of encapsulation in ruby; you cannot use the methods outside the class, showing only the meaningful methods for outsiders.
 
-### Interfaces
+In javascript, we use '#'
 
-An interface implements abstraction and encapsulation throughly, making we only see the appearance of this function and use it easily; for example, we know the light can be on by switching the button but we do not know the logics behind it.
+* Encapsulate function
+  ```javascript
+  class Example {
+    #privateFunction() {
+      console.log("This is a private function.");
+    }
+  
+    publicFunction() {
+      console.log("Calling public function.");
+      this.#privateFunction();
+    }
+  }
+
+  const instance = new Example();  
+  instance.publicFunction(); // Output: Calling public function.
+                             //         This is a private function.
+  instance.#privateFunction(); // This will result in an error
+  ```
+* Encapsulate attribute
+  ```javascript
+  class Person {
+    #name;
+  
+    constructor(name) {
+      this.#name = name;
+    }
+  
+    getName() {
+      return this.#name;
+    }
+  }
+  
+  const person1 = new Person("Alice");
+  console.log(person1.getName());  // Output: "Alice"
+  console.log(person1.#name);  // This will result in an error
+  ```
 
 ### Inheritance
 
@@ -132,32 +167,24 @@ One class (the child or subclass) can inherit the properties and methods of anot
 
 For example, I want to create Animals: Dog, Cat, Bird.
 
-```ruby
-class Animal
-  def initialize
-  end
+```javascript
+class Animal {
+  move() {
+    console.log(`${this.constructor.name} is moving`);
+  }
+}
 
-  def move
-    puts "#{self.class.name} is moving"
-  end
-end
+class Dog extends Animal {}
+class Cat extends Animal {}
+class Bird extends Animal {}
 
-class Dog < Animal
-end
+const dog = new Dog();
+const cat = new Cat();
+const bird = new Bird();
 
-class Cat < Animal
-end
-
-class Bird < Animal
-end
-
-dog = Dog.new
-cat = Cat.new
-bird = Bird.new
-
-dog.move
-cat.move
-bird.move
+dog.move();   // Output: Dog is moving
+cat.move();   // Output: Cat is moving
+bird.move();  // Output: Bird is moving
 ```
 
 ### Polymorphism
@@ -166,35 +193,42 @@ Polymorphism refers to the ability of objects of different classes to be treated
 
 For example, I want to create Animals: Dog, Cat, Bird I can write a polymorphic class as follow:
 
-```ruby
-class Animal
-  DOG = 0
-  CAT = 1
-  BIRD = 2
+```javascript
+class Animal {
+  static DOG = 0;
+  static CAT = 1;
+  static BIRD = 2;
 
-  attr_accessor :type
+  constructor(type) {
+    this.type = type;
+  }
 
-  def initialize(type)
-    @type = type
-  end
-  
-  def speak(words)
-    puts words
-  end
-end
+  speak() {
+    switch (this.type) {
+      case Animal.DOG:
+        console.log('bark');
+        break;
+      case Animal.CAT:
+        console.log('meow');
+        break;
+      case Animal.BIRD:
+        console.log('tweet');
+        break;
+      default:
+        console.log('Unknown animal');
+    }
+  }
+}
 
-animals = [Animal.new(Animal.DOG), Animal.new(Animal.CAT), Animal.new(Animal.BIRD)]
+const animals = [
+  new Animal(Animal.DOG),
+  new Animal(Animal.CAT),
+  new Animal(Animal.BIRD)
+];
 
-animals.each |animal| do
-  case animal.type
-  when Animal.DOG
-    animal.speak('bark')
-  when Animal.CAT
-    animal.speak('meow')
-  when Animal.BIRD
-    animal.speak('tweet')
-  end
-end
+animals.forEach(animal => {
+  animal.speak();
+});
 ```
 
 ### polymorphism vs inheritance
@@ -202,36 +236,6 @@ end
 It depends on the business logic to determine which one to be used. Think about your database. If we use inheritance, then there will be a new model produced which you can create a table associate with it and you will not need runtime to calculate the logics, of which you cost more space but save more time and vice versa.
 
 For example, the same `Dog` class. If you are running a zoo, you will not need a table for `Dog` and you just need a polymorphism table, `Animal`, to list all the animals with type in that table. But if you are running, a store professionally takes good care about dogs, then you need a `Dog` model inherited from `Animal`.
-
-### Unified Model Language
-
-It is a language to describe the relationship between models. The relationships: inheritance, composition, aggregation, association, link (solid), dependency, realization, link (dashed)
-
-<div class="mermaid">
-classDiagram
-  classA --|> classB : Inheritance
-  classC --* classD : Composition
-  classE --o classF : Aggregation
-  classG --> classH : Association
-</div>
-
-<div class="mermaid">
-classDiagram
-  classI -- classJ : Link(Solid)
-  classK ..> classL : Dependency
-  classM ..|> classN : Realization
-  classO .. classP : Link(Dashed)
-</div>
-
-#### inheritance
-
-A inherited from B -> A has all attributes and methods from B; for example, student is inherited from person.
-
-#### composition
-
-C composed of D -> D is a part of C; for example, car is composed of wheels.
-
-#### aggregation
 
 ## Reference
 

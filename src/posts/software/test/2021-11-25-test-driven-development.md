@@ -35,10 +35,16 @@ TDD reduces bugs and increase the quality of code, making software to be more ma
 
 ```ruby
 RSpec.describe "the_summary", type: :feature do
-
-  context "arrange" do
-    it "assertion" do
-      "act"
+  context "when acting on something" do
+    it "should have an assertion" do
+      # Arrange
+      # Set up any necessary context or variables here
+      
+      # Act
+      result = "act"
+      
+      # Assert
+      expect(result).to eq("expected result")
     end
   end
 end
@@ -53,11 +59,14 @@ describe('Test sum', () => {
   test('adds 1 + 2 to equal 3', () => { // arrange
     const a = 1;
     const b = 2;
-    it('should add them correctly', () => { // assert
-      expect(a + b).toBe(3); // act
-    });
-  })
-})
+
+    // Act
+    const result = a + b;
+
+    // Assert
+    expect(result).toBe(3);
+  });
+});
 ```
 
 [jest]({{site.baseurl}}/test/2023/01/01/jest.html)

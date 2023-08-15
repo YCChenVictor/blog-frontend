@@ -169,7 +169,7 @@
     "url": "software/ood/programming-principle",
     "data": "2021-11-21",
     "category": "OOD",
-    "publish": false
+    "publish": true
   },
   "20": {
     "url": "software/dsa/array",
