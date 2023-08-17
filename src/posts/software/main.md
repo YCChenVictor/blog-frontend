@@ -49,7 +49,7 @@ Plan and design the user interface and functionality of your web application.
 
 #### Frontend
 
-* React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to [React].
+* [React](/blog/software/react/main) is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications.
 
 #### Backend
 

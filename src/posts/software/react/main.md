@@ -1,16 +1,14 @@
 # Title
 
-## Abstract
-
-TBC
-
 ## Purpose
 
-Learning React is valuable for developers as it equips them with a powerful and widely-used JavaScript library, enabling the creation of efficient, modular, and interactive user interfaces that are in high demand across the web development industry.
+Learning React is valuable for developers as it equips them with a powerful and widely-used [javascript](/blog/software/javascript/main) library, enabling the creation of efficient, modular, and interactive user interfaces that are in high demand across the web development industry.
 
 ## Concept
 
-### start a project
+### Outside Build App
+
+#### start a project
 
 * Create react app with following command
   ```bash
@@ -29,9 +27,9 @@ Learning React is valuable for developers as it equips them with a powerful and 
   ```
   * which will create a JS object and render it into the DOM with id = root in the `public/index.html`
 * Naming
-  * File: There is no strict convention for naming files in React, but camel case is more commonly used for component files while snake case is more commonly used for non-component modules or helper functions.
+  * File: There is no strict convention for naming files in React, but **camel case** is more commonly used for component files while snake case is more commonly used for non-component modules or helper functions.
 
-### Environment
+#### Environment
 
 Use `process.env` to get environment variable; for example,
 
@@ -76,7 +74,7 @@ function App() {
 export default App;
 ```
 
-### Package
+#### Package
 
 * Update npm/yarn
 * Remove unused package manually: walk through `package.json` and just remove the lines
@@ -125,14 +123,14 @@ export default App;
     npm install -g depcheck
     ```
   * Use it
-    ```
+    ```bash
     depcheck
     ```
   * Then you can upm uninstall the unused package it lists
 
-### Deploy
+#### Deploy
 
-#### Github
+##### Github
 
 * install `gh-pages`
   ```bash
@@ -155,7 +153,7 @@ export default App;
 
 Note: If you cannot deploy successfully, just build it and then push it to gh-pages branch. Or use Netlify.
 
-#### Netlify
+##### Netlify
 
 * install
   ```bash
@@ -170,25 +168,40 @@ Note: If you cannot deploy successfully, just build it and then push it to gh-pa
   netlify deploy
   ```
 
+#### Tailwind
+
+* Install: `yarn add tailwind`
+* [Official guide](https://tailwindcss.com/docs/guides/create-react-app)
+* And import it in `index.js` with
+  ```javascript
+  import './index.css';
+  ```
+* For the basic css concept, please refer to [CSS]
+
+#### fontawesome
+
+* [react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) for icon
+* [fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons) for icon
+
 ### Component
 
-In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to [component]({{site.baseurl}}/react/2023/01/27/component.html).
+In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to [component]
 
 ### Hook
 
-[hook]({{site.baseurl}}/react/2023/01/27/component.html)
+[hook]
 
 ### Routes
 
-In React, routes are used to define different paths and URLs within a web application. react-router-dom is a popular library used to implement routing in React applications. For more information, please refer to [routes]({{site.baseurl}}/react/2023/04/21/routes.html).
+In React, routes are used to define different paths and URLs within a web application. react-router-dom is a popular library used to implement routing in React applications. For more information, please refer to [routes]
 
 ### API
 
-React uses HTTP requests to communicate with APIs and obtain data that can be rendered dynamically in the user interface. This allows for interactive and responsive web applications. For more information, please refer to [api]({{site.baseurl}}/react/2022/09/14/api.html)
+React uses HTTP requests to communicate with APIs and obtain data that can be rendered dynamically in the user interface. This allows for interactive and responsive web applications. For more information, please refer to [api]
 
 ### layout
 
-Layout in React refers to the arrangement and positioning of components on a web page or application. It involves creating a hierarchy of components that define the structure of the user interface and applying styles to position and align them in a visually appealing way. For more information, please refer to [layout]({{site.baseurl}}/react/2021/06/14/layout.html).
+Layout in React refers to the arrangement and positioning of components on a web page or application. It involves creating a hierarchy of components that define the structure of the user interface and applying styles to position and align them in a visually appealing way. For more information, please refer to [layout]
 
 ### Assets
 
@@ -209,50 +222,13 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
-## What?
+## Example
 
 ### sign up and login mechanism
 
-[sign up and login mechanism]({{site.baseurl}}/react/2021/10/15/sign-up-and-login.html)
+[sign up and login mechanism]
 
-### Youtube Videos
-
-To embed videos in a React application, you can use the <iframe> HTML element along with the appropriate video embed code provided by the video hosting platform (such as YouTube or Vimeo).
-
-* create component to put videoUrl in iframe
-  ```JSX
-  import React from 'react';
-  
-  const VideoPlayer = ({ videoUrl }) => {
-    return (
-      <div>
-        <iframe
-          src={videoUrl}
-          width="560"
-          height="315"
-          frameBorder="0"
-          allowFullScreen
-        ></iframe>
-      </div>
-    );
-  };
-  
-  export default VideoPlayer;
-  ```
-
-### Third Party Library
-
-#### Tailwind
-
-* Install: `yarn add tailwind`
-* [Official guide](https://tailwindcss.com/docs/guides/create-react-app)
-* And import it in `index.js` with
-  ```javascript
-  import './index.css';
-  ```
-* For the basic css concept, please refer to [CSS]()
-
-#### Markdown
+### Markdown
 
 * Install
   ```bash
@@ -281,7 +257,7 @@ To embed videos in a React application, you can use the <iframe> HTML element al
   export default Article
   ```
 
-##### Image
+#### Image
 
 * In md file
   ```HTML
@@ -323,7 +299,7 @@ To embed videos in a React application, you can use the <iframe> HTML element al
   export default RenderImage
   ```
 
-##### Code Block
+#### Code Block
 
 * Install package
   ```bash
@@ -350,7 +326,7 @@ To embed videos in a React application, you can use the <iframe> HTML element al
   ```
 * RenderCode
 
-##### Mermaid
+#### Mermaid
 
 The concept is turn it into svg first and then render the svg.
 
@@ -390,7 +366,7 @@ The concept is turn it into svg first and then render the svg.
   }
   ```
 
-##### mathjax
+#### mathjax
 
 add remarkMath, rehypeKatex
 
@@ -405,12 +381,6 @@ add remarkMath, rehypeKatex
   {markdownContent}
 </ReactMarkdown>
 ```
-
-#### Other
-
-* [react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) for icon
-* [fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons) for icon
-* [mui](https://mui.com/getting-started/installation/) for react components
 
 
 ## Reference
