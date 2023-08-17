@@ -20,6 +20,10 @@ graph TD
   id4(process 1) --...decompose--> id9(...other threads)
 ```
 
+### Terminology
+
+* Resource: A resource is a fundamental entity, tangible or abstract, that a program interacts with or utilizes during its operation, encompassing elements such as data, memory, files, and hardware components.
+
 ### Flow of process
 
 Create -> schedule -> sync -> terminate
@@ -128,9 +132,64 @@ graph TB
 * Description: Priority inversion is a situation where a low-priority process holds a resource that a high-priority process needs, leading to a delay in the high-priority process's execution. This problem is particularly prevalent in real-time systems.
 * Solution: To prevent priority inversion, you can use techniques like priority inheritance, priority ceiling, and preemptive scheduling. These techniques ensure that high-priority processes get access to the resources they need without being delayed by low-priority processes.
 
-#### Process Synchronization
+#### Synchronization for Consistency
 
-* Processes may need to synchronize their activities to ensure correct and consistent behavior. Synchronization problems can arise when processes access shared resources, communicate with each other, or perform parallel computations.
+Processes may need to synchronize their activities to ensure correct and consistent behavior. Synchronization problems can arise when processes access shared resources, communicate with each other, or perform parallel computations.
+
+##### Solution
+  
+* Locks
+* Semaphores: A way to mark a resource and make sure only pre-defined number of processes can use this resource.
+  ```javascript
+  class Semaphore {
+    constructor(initialCount) {
+      this.count = initialCount;
+      this.queue = [];
+    }
+  
+    async acquire() {
+      if (this.count > 0) {
+        this.count--;
+      } else {
+        await new Promise(resolve => this.queue.push(resolve));
+      }
+    }
+  
+    release() {
+      this.count++;
+      if (this.queue.length > 0) {
+        const resolve = this.queue.shift();
+        resolve();
+      }
+    }
+  }
+  
+  const semaphore = new Semaphore(2); // Allow one process at a time
+  
+  async function sharedResourceAccess(id) {
+    console.log(`Process ${id} is waiting for access.`);
+    await semaphore.acquire();
+    console.log(`Process ${id} has acquired access to the shared resource.`);
+    // Simulating some work being done with the shared resource
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    console.log(`Process ${id} is releasing the shared resource.`);
+    semaphore.release(); // This step will increase the count and 
+  }
+  
+  // Create multiple processes trying to access the shared resource
+  async function runProcesses() {
+    for (let i = 1; i <= 5; i++) {
+      sharedResourceAccess(i);
+    }
+  }
+  
+  runProcesses();
+  ```
+  * When I call `runProcesses`, because of `async`, it called 5 `sharedResourceAccess` at the same time without waiting each other. In `sharedResourceAccess`, there is `await` statement of `semaphore.acquire()`, meaning it will wait until `acquire` finish.
+  * `acquire` will check the number of processes we pre-defined to use the resource and if this resource is not available, it will wait `resolve` to be pushed into the queue.
+  * After the work done in `sharedResourceAccess`, it will do `release()` and the `resolve()` will be called, making `Promise` to receive the `resolve` and then the `acquire` passed.
+  * Then now we do not need to wait any `acquire` and the `count` is > 0, so we can do other tasks in other `sharedResourceAccess`.
+* Barriers
 
 #### Fault Tolerance
 

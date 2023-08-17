@@ -60,7 +60,7 @@ function factorialIterative(n) {
 }
 ```
 
-## What?
+## Example
 
 ### fibonacci
 
@@ -127,6 +127,60 @@ function factorialIterative(n) {
   })
   ```
 
+### Robot in a Grid
+
+Question: Imagine a robot sitting on the upper left corner of grid with r rows and c columns. The robot can only move in two directions, right and down, but certain cells are "off limits" such that the robot cannot step on them. Design an algorithm to find a path for the robot from the top left to the bottom right.
+
+* Example
+  * Input
+    ```bash
+    r = 3 (number of rows)
+    c = 4 (number of columns)
+    Off-limit cells: [[1, 1], [2, 2], [2, 3]]
+    ```
+  * Output: array of (x, y)
+* Code
+  ```javascript
+  const offLimitCells = [
+    { row: 1, col: 1 },
+    { row: 2, col: 2 },
+    { row: 2, col: 3 },
+  ];
+
+  function path(x, y, offLimitCells, currentResult = []) {
+    currentResult.push([x, y])
+
+    const inOffLimitCells = (target) => {
+      if(offLimitCells.find((cell) => cell.row === target.row && cell.col === target.y)) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    if(x === 1 && y === 1) {
+      return currentResult
+    }
+
+    let lastPoint
+    if(x === 1 && !inOffLimitCells({ row: 1, col: y - 1 })) {
+      lastPoint = { row: 1, col: y - 1 }
+    } else if(y === 1 && !inOffLimitCells({ row: x - 1, col: 1 })) {
+      lastPoint = { row: x - 1, col: 1 }
+    } else if(!inOffLimitCells({ row: x - 1, col: y })) {
+      lastPoint = { row: x - 1, col: y }
+    } else if(!inOffLimitCells({ row: x, col: y - 1 })) {
+      lastPoint = { row: x, col: y - 1 }
+    } else {
+      return 'no routes'
+    }
+
+    return path(lastPoint.row, lastPoint.col, offLimitCells, currentResult)
+  }
+
+  const result = path(3, 4, offLimitCells)
+  ```
+
 ### Longest Common Subsequence (LCS)
 
 Please use the concept of dynamic programming to solve it.
@@ -160,7 +214,7 @@ Let's try to write the code
   ```javascript
   function longComSub(s1, s2) {
     result = []
-    for (i = 0; i < s1.length; i++) {
+    for (i = 0; i < s1.length; i++) { // iteration
       result.push([]) // s1 will be row
       for (j = 0; j < s2.length; i++) {
         if (i === 0 && j === 0) {
@@ -172,7 +226,7 @@ Let's try to write the code
         } else if (s1[i] === s2[j]) {
           result[i][j] = result[i - 1][j - 1]
         } else {
-          result[i][j] = Math.max(result[i - 1][j], result [i][j - 1])
+          result[i][j] = Math.max(result[i - 1][j], result [i][j - 1]) // dynamic programming here
         }
       }
     }

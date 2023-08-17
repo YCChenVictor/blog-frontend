@@ -12,7 +12,7 @@ Overview of operating system functions, history, and types. For more information
 
 ### Process Management
 
-Managing processes, threads, and scheduling algorithms. For more information, please refer to [process management]({{site.baseurl}}/os/2021/12/24/process-management.html).
+Managing processes, threads, and scheduling algorithms. For more information, please refer to [process management](/blog/software/operating-system/process-management).
 
 ### Memory Management
 

@@ -217,7 +217,7 @@
     "url": "software/operating-system/main",
     "data": "2023-04-02",
     "category": "OS",
-    "publish": true
+    "publish": false
   },
   "28": {
     "url": "software/operating-system/process-management",
