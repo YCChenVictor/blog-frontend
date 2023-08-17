@@ -28,7 +28,7 @@ System design involves creating a blueprint for the structure and organization o
 
 ### System software
 
-This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems].
+This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems](/blog/software/os/main).
 
 ### Web Application software
 

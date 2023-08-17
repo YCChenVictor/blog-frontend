@@ -214,16 +214,16 @@
     "publish": false
   },
   "27": {
-    "url": "software/operating-system/main",
+    "url": "software/os/main",
     "data": "2023-04-02",
     "category": "OS",
-    "publish": false
+    "publish": true
   },
   "28": {
-    "url": "software/operating-system/process-management",
+    "url": "software/os/process-management",
     "data": "2021-12-24",
     "category": "OS",
-    "publish": false
+    "publish": true
   },
   "29": {
     "url": "software/database/main",
@@ -253,18 +253,24 @@
     "url": "software/system-design/main",
     "data": "2023-03-27",
     "category": "SYS_D",
-    "publish": false
+    "publish": true
   },
   "34": {
     "url": "software/system-design/scalability",
     "data": "2023-06-16",
     "category": "SYS_D",
-    "publish": false
+    "publish": true
   },
   "35": {
     "url": "software/ood/main",
     "data": "2023-08-12",
     "category": "OOD",
     "publish": true
+  },
+  "36": {
+    "url": "software/design-pattern/main",
+    "data": "2023-08-12",
+    "category": "OOD",
+    "publish": false
   }
 }
