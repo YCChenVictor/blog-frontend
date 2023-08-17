@@ -25,6 +25,11 @@ const Layout = () => {
               <img className="p-4 w-24 rounded-full" src={titleImg} alt="title" />
             </a>
           </ul>
+          <ul className="flex items-center space-x-4 ml-auto p-6">
+            <a href="/blog/software" className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition">
+              Software
+            </a>
+          </ul>
         </nav>
         <div className="">
           <Routes>
