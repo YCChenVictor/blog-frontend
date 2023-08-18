@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import LoginModal from './LoginModal.jsx';
 import SignupModal from './SignupModal.jsx';
 
 function SignupLogin() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signUpModalOpen, setSignupModalOpen] = useState(false);
-  const LoginModalContext = React.createContext();
-  const SignupModalContext = React.createContext();
   const showLoginButton = true;
   const showSignupButton = true;
 
@@ -15,7 +13,9 @@ function SignupLogin() {
       <div className="top-4 right-4 rounded-sm">
         {showLoginButton ? (
           <button
-            onClick={setLoginModalOpen}
+            onClick={() => {
+              setLoginModalOpen(!loginModalOpen)
+            }}
             className="px-4 py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:outline-none"
           >Login
           </button>
@@ -24,7 +24,7 @@ function SignupLogin() {
         )}
         {showSignupButton ? (
           <button
-            onClick={setSignupModalOpen}
+            onClick={() => setSignupModalOpen(!signUpModalOpen)}
             className="px-4 py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:outline-none"
             >Signup
           </button>
@@ -32,22 +32,18 @@ function SignupLogin() {
           null
         )}
       </div>
-      <LoginModalContext.Provider value={{ loginModalOpen, setLoginModalOpen }}>
+      {loginModalOpen ? (
         <LoginModal
-          ariaHideApp={false}
-          loginModalOpen={loginModalOpen}
-          setLoginModalOpen={setLoginModalOpen}
-          MyContext={LoginModalContext}
         />
-      </LoginModalContext.Provider>
-      <SignupModalContext.Provider value={{ signUpModalOpen, setSignupModalOpen }}>
+      ) : (
+        null
+      )}
+      {signUpModalOpen ? (
         <SignupModal
-          ariaHideApp={false}
-          SignupModalOpen={signUpModalOpen}
-          setSignupModalOpen={setSignupModalOpen}
-          MyContext={SignupModalContext}
         />
-      </SignupModalContext.Provider>
+      ) : (
+        null
+      )}
     </div>
   );
 }
