@@ -27,42 +27,56 @@ export default function LoginModal(props) {
 
   return(
     <Modal
-    ariaHideApp={false} // TODO: remove it and fix the errors
-      isOpen={Boolean(loginModalOpen)}
-      className='rounded-lg dark:bg-gray-700 max-w-2xl md:h-auto'
-    >
-      <h1 className="text-xl font-semibold text-gray-900 dark:text-white"
-      >Login</h1>
-      <form>
-        <label>
-          email:
+  ariaHideApp={false} // TODO: Remove this and address errors
+  isOpen={Boolean(loginModalOpen)}
+  className='rounded-lg md:h-auto fixed inset-0 flex items-center justify-center'
+>
+  <div className="p-6">
+    <h1 className="text-xl font-semibold text-gray-900 mb-4">
+      Login
+    </h1>
+    <form className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700">
+          Email
           <input
             type="text"
             value={email}
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
+            className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600"
           />
         </label>
-        <label>
-          password:
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700">
+          Password
           <input
             type="password"
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600"
           />
         </label>
-      </form>
-      <div className='flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600'>
+      </div>
+      <div className="flex justify-between">
         <button
-        onClick={() => PostLoginInfo({ email:email, password:password })}
-                  className='block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-                >Login</button>
-                <button
-                  onClick={() => setLoginModalOpen(false)}
-                >Close</button>
-              </div>
-            </Modal>
-          )
-        }
-        
+          onClick={() => PostLoginInfo({ email: email, password: password })}
+          className="btn-primary"
+        >
+          Login
+        </button>
+        <button
+          onClick={() => setLoginModalOpen(false)}
+          className="btn-secondary"
+        >
+          Close
+        </button>
+      </div>
+    </form>
+  </div>
+</Modal>
+
+  )
+}        
