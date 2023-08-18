@@ -1,29 +1,12 @@
----
-layout: post
-title:
-description: ''
-date: '2022-12-12'
-categories: javascript
-note: 研究 arrow function
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish:
----
+# Title
 
-## Introduction
-
-(TBC)
-
-## Why?
+## Purpose
 
 For web applications with rich user experiences has driven the widespread adoption of JavaScript as a versatile and powerful language.
 
-## How?
+## Concept
 
-JavaScript, an object-oriented language, empowers developers to create reusable code through modules and classes, facilitating the maintenance and scalability of large code bases, while on the client-side, it enables real-time manipulation of web page content through the Document Object Model (DOM) without page refresh. Additionally, when used with Node.js on the server-side, JavaScript enables the development of full-stack web applications, integrating both client-side and server-side logic seamlessly.
+Javascript, an object-oriented language, empowers developers to create reusable code through modules and classes, facilitating the maintenance and scalability of large code bases, while on the client-side, it enables real-time manipulation of web page content through the Document Object Model (DOM) without page refresh. Additionally, when used with Node.js on the server-side, JavaScript enables the development of full-stack web applications, integrating both client-side and server-side logic seamlessly.
 
 ### Forms
 
@@ -31,9 +14,9 @@ There are two different forms to construct objects, functional forms and class f
 
 #### Functional Form
 
-* Purpose: 
-* Concept: Objects in JavaScript are created using functions and closures, allowing for the definition of object behavior through nested functions within the constructor or by attaching functions to the object's prototype, with the this keyword referring to the object instance and enabling encapsulation and private variables through closures.
-* Example (2023/07/02)
+Objects in JavaScript are created using functions and closures, allowing for the definition of object behavior through nested functions within the constructor or by attaching functions to the object's prototype, with the this keyword referring to the object instance and enabling encapsulation and private variables through closures.
+
+* Example
   ```javascript
   function createPerson(name, age) {
     // Private variables
@@ -82,106 +65,105 @@ There are two different forms to construct objects, functional forms and class f
 * Objects are created using the new keyword followed by the class name.
 * Object behavior is defined using methods within the class definition.
 The this keyword also refers to the object instance that the method is called on.
-
-* Protected methods in class
-    ```javascript
-    class MyClass {
-      constructor() {
-        this._protectedProperty = 'foo';
-      }
-    
-      _protectedMethod() {
-        console.log('This method is protected');
-      }
-    
-      publicMethod() {
-        console.log('This is a public method');
-        this._protectedMethod(); // call the protected method from within the class
-      }
+* Inheritance
+  ```javascript
+  // Parent class
+  class ParentClass {
+    constructor(name) {
+      this.name = name;
     }
-    ```
-
-### Class Form
-
-After ECMAScript 2015 (ES6)
-
-```javascript
-// Parent class
-class ParentClass {
-  constructor(name) {
-    this.name = name;
+  
+    greet() {
+      console.log('Hello, ' + this.name + '!');
+    }
   }
-
-  greet() {
-    console.log('Hello, ' + this.name + '!');
+  
+  // Child class
+  class ChildClass extends ParentClass {
+    constructor(name, age) {
+      super(name);
+      this.age = age;
+    }
+  
+    introduce() {
+      console.log('My name is ' + this.name + ' and I am ' + this.age + ' years old.');
+    }
   }
-}
-
-// Child class
-class ChildClass extends ParentClass {
-  constructor(name, age) {
-    super(name);
-    this.age = age;
+  
+  // Usage
+  const child = new ChildClass('Alice', 25);
+  child.greet();      // Output: Hello, Alice!
+  child.introduce();  // Output: My name is Alice and I am 25 years old.
+  ```
+* Protected methods in class
+  ```javascript
+  class MyClass {
+    constructor() {
+      this._protectedProperty = 'foo';
+    }
+    
+    _protectedMethod() {
+      console.log('This method is protected');
+    }
+    
+    publicMethod() {
+      console.log('This is a public method');
+      this._protectedMethod(); // call the protected method from within the class
+    }
   }
-
-  introduce() {
-    console.log('My name is ' + this.name + ' and I am ' + this.age + ' years old.');
-  }
-}
-
-// Usage
-const child = new ChildClass('Alice', 25);
-child.greet();      // Output: Hello, Alice!
-child.introduce();  // Output: My name is Alice and I am 25 years old.
-```
+  ```
 
 ### Function
 
+#### Structure
+
 * Normal function
-    ```javascript
-    function add(a, b) {
-      return a + b;
+  ```javascript
+  function add(a, b) {
+    return a + b;
+  }
+  ```
+* Arrow function
+  ```javascript
+  const add = (a, b) => a + b;
+  ```
+
+#### Arrow vs Normal
+
+* Arrow functions can be written in a single line without using the `return`
+* Binding of `this`:
+  ```javascript
+  const person = {
+    name: "John",
+    sayHello: function() {
+      console.log("Hello, my name is " + this.name);
+    },
+    sayHelloArrow: () => {
+      console.log("Hello, my name is " + this.name);
     }
-    ```
-  * Arrow function
-    ```javascript
-    const add = (a, b) => a + b;
-    ```
-  * Arrow vs Normal
-    * Arrow functions can be written in a single line without using the `return`
-    * Binding of `this`:
-      ```javascript
-      const person = {
-        name: "John",
-        sayHello: function() {
-          console.log("Hello, my name is " + this.name);
-        },
-        sayHelloArrow: () => {
-          console.log("Hello, my name is " + this.name);
-        }
-      };
-      
-      person.sayHello(); // output: Hello, my name is John
-      person.sayHelloArrow(); // output: Hello, my name is undefined
-      ```
-      * The value of `this` in the arrow function `sayHelloArrow` refers to the global context, which does not have a `name` property.
-      * the value of `this` in the normal function `sayHello` function refers to the object instance on which the function is called.
-    * Use of "arguments": Normal functions have access to a special variable called "arguments", which contains all the arguments passed to the function. Arrow functions do not have access to "arguments".
-      ```javascript
-      function sum() {
-        let total = 0;
-        for(let i=0; i<arguments.length; i++) {
-          total += arguments[i];
-        }
-        return total;
-      }
-      
-      const sumArrow = (...args) => args.reduce((total, num) => total + num, 0);
-      
-      console.log(sum(1, 2, 3, 4)); // output: 10
-      console.log(sumArrow(1, 2, 3, 4)); // output: 10
-      ```
-      * In the above example, the normal function "sum" uses the "arguments" variable to calculate the sum of all the arguments passed to it. The arrow function "sumArrow" uses the spread operator to convert the arguments into an array and then uses the "reduce" method to calculate the sum.
+  };
+  
+  person.sayHello(); // output: Hello, my name is John
+  person.sayHelloArrow(); // output: Hello, my name is undefined
+  ```
+  * The value of `this` in the arrow function `sayHelloArrow` refers to the global context, which does not have a `name` property.
+  * the value of `this` in the normal function `sayHello` function refers to the object instance on which the function is called.
+* Use of "arguments": Normal functions have access to a special variable called "arguments", which contains all the arguments passed to the function. Arrow functions do not have access to "arguments".
+  ```javascript
+  function sum() {
+    let total = 0;
+    for(let i=0; i<arguments.length; i++) { // arguments
+      total += arguments[i];
+    }
+    return total;
+  }
+  
+  const sumArrow = (...args) => args.reduce((total, num) => total + num, 0);
+  
+  console.log(sum(1, 2, 3, 4)); // output: 10
+  console.log(sumArrow(1, 2, 3, 4)); // output: 10
+  ```
+  * In the above example, the normal function "sum" uses the "arguments" variable to calculate the sum of all the arguments passed to it. The arrow function "sumArrow" uses the spread operator to convert the arguments into an array and then uses the "reduce" method to calculate the sum.
 
 ### Execution Order
 
@@ -193,8 +175,6 @@ child.introduce();  // Output: My name is Alice and I am 25 years old.
   * Secondly, any module-level statements, such as variable declarations or function definitions, will be processed. These statements can reference any imported modules, since the import statements have already been processed.
   * Finally, any top-level export statements will be processed. These statements determine which functions, objects, or variables from the module should be exposed to other modules that import it.
   * Modules are loaded and executed asynchronously, so the order in which they are loaded and executed may not correspond to the order in which they appear in the code. This can lead to issues with circular dependencies, where two or more modules depend on each other, but neither can be loaded until the other has been loaded. To avoid circular dependency issues, it's important to design module dependencies carefully and avoid circular references wherever possible.
-
-### 
 
 ### datatype
 
@@ -228,61 +208,61 @@ going to add more strange logic in javascript
 
 * Conditional Statements:
   * `if` statement
-```javascript
-let x = 10;
-if (x > 5) {
-  console.log("x is greater than 5");
-}
-```
+    ```javascript
+    let x = 10;
+    if (x > 5) {
+      console.log("x is greater than 5");
+    }
+    ```
   * `switch` statement
-```javascript
-let day = "Monday";
-switch(day) {
-  case "Monday":
-    console.log("It's Monday!");
-    break;
-  case "Tuesday":
-    console.log("It's Tuesday!");
-    break;
-  default:
-    console.log("It's not Monday or Tuesday.");
-    break;
-}
-```
+    ```javascript
+    let day = "Monday";
+    switch(day) {
+      case "Monday":
+        console.log("It's Monday!");
+        break;
+      case "Tuesday":
+        console.log("It's Tuesday!");
+        break;
+      default:
+        console.log("It's not Monday or Tuesday.");
+        break;
+    }
+    ```
   * Loops
     * for loop
-```javascript
-for (let i = 0; i < 5; i++) {
-  console.log(i);
-}
-```
+      ```javascript
+      for (let i = 0; i < 5; i++) {
+        console.log(i);
+      }
+      ```
     * while loop
-```javascript
-let i = 0;
-while (i < 5) {
-  console.log(i);
-  i++;
-}
-```
+      ```javascript
+      let i = 0;
+      while (i < 5) {
+        console.log(i);
+        i++;
+      }
+      ```
 * Control Statements
   * break
-```javascript
-for (let i = 0; i < 10; i++) {
-  if (i === 5) {
-    break;
-  }
-  console.log(i);
-}
-```
+    ```javascript
+    for (let i = 0; i < 10; i++) {
+      if (i === 5) {
+        break;
+      }
+      console.log(i);
+    }
+    ```
   * continue (skip over an iteration of a loop)
-```javascript
-for (let i = 0; i < 10; i++) {
-  if (i === 5) {
-    continue;
-  }
-  console.log(i);
-}
-```
+    ```javascript
+    for (let i = 0; i < 10; i++) {
+      if (i === 5) {
+        continue;
+      }
+      console.log(i);
+    }
+    ```
 
 ### OOP
 

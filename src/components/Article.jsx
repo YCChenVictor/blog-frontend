@@ -76,11 +76,15 @@ const Article = ({setting}) => {
   };
 
   return (
-    <div className='bg-gray-400 flex pt-10'>
+    <div className='bg-gray-400 flex'>
       <div className='fixed' ref={componentSidebarRef}>
-        <LinkPage
-          articleUrl={setting['url']}
-        />
+        {setting.publish ? (
+          <LinkPage
+            articleUrl={setting['url']}
+          />
+        ) : (
+          <div>{}</div>
+        )}
         <WordCounts
           articleContent={markdownContent}
         />

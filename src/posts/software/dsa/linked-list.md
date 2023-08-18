@@ -1,20 +1,20 @@
 # Title
 
-## why
+## Purpose
 
 Learning linked lists is valuable because they provide a flexible and efficient data structure for dynamic memory allocation and manipulation, enabling dynamic resizing and efficient insertion, deletion, and traversal operations compared to fixed-size arrays.
 
-## How
+## Concept
 
 ### Singly Linked List
 
 * Graph
-  <div class="mermaid">
-    graph LR
-      id1((A)) --> id2((B))
-      id2((B)) --> id3((C))
-      id3((C)) --> id4((...))
-  </div>
+  ```mermaid
+  graph LR
+    id1((A)) --> id2((B))
+    id2((B)) --> id3((C))
+    id3((C)) --> id4((...))
+  ```
 * Code
   ```javascript
   class Node {
@@ -188,6 +188,392 @@ Learning linked lists is valuable because they provide a flexible and efficient 
     })
   });
   ```
+
+### Runner Technique
+
+* Concept: two pointers iterates through a linked list at the same time.
+* Detecting Cycles
+  ```javascript
+  function hasCycle(head) {
+    let slow = head;
+    let fast = head;
+  
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next;
+      fast = fast.next.next;
+  
+      if (slow === fast) {
+        return true;
+      }
+    }
+  
+    return false;
+  }
+  ```
+* Finding the Middle Node
+  ```javascript
+  function findMiddle(head) {
+    let slow = head;
+    let fast = head;
+  
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+  
+    return slow;
+  }
+  ```
+
+### Remove Dups
+
+* Problem: Write code to remove duplicates from an unsorted linked list
+* Information:
+  * Example: from [1, 4, 6, 3, 2, 7, 4, 8, 3] to [1, 4, 6, 3, 2, 7, 8]
+  * You can remove any duplicate nodes you want as long as the result are all unique values
+* Edge cases: Only one node in this linked list
+* Brute force: compare each node with the rest linked nodes
+* Best time complexity: Because we need to traverse all the nodes to read their values at least once, the time complexity will be at least O(n).
+* Code example
+  ```javascript
+  function removeDup(linkedList) {
+    set = new Set();
+    let currentNode = linkedList.head
+    let previousNode = null
+  
+    while (currentNode !== null) {
+      if (!set.has(currentNode.value)) {
+        set.add(currentNode.value)
+      } else {
+        previousNode.next = currentNode.next
+      }
+      previousNode = currentNode
+      currentNode = currentNode.next
+    }
+  
+    return linkedList.printList()
+  }
+  ```
+* test
+  ```javascript
+  const { removeDup } = require('../examples/remove_dup.js');
+  const LinkedList = require('../examples/singly_linked_list.js');
+  
+  describe('RemoveDup', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new LinkedList();
+      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+      for(let i = 0; i < values.length; i++){
+        testLinkedList.append(values[i]);
+      }
+    });
+  
+    test('#', () => {
+      const result = removeDup(testLinkedList)
+      expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
+    });
+  });
+  ```
+
+### Return Kth to Last
+
+* Problem: Implement an algorithm to find the kth to last element of a singly linked list.
+* Information:
+  * Example: If a linked list is 1 <- 4 <- 6 <- 3 <- 2 <- 7 <- 8, then returnKthToLast(linkedList, 3) will be 6 <- 3 <- 2 <- 7 <- 8
+  * It should return a node because the node of a linked list will show all the following node values. 
+* Code example:
+  ```javascript
+  function returnKthToLast (linkedList, k) {
+    let counter = 1; // The first element is 1th
+    let node = linkedList.head;
+    while (node) {
+      if (counter === k) {
+        return node;
+      }
+      counter++;
+      node = node.next;
+    }
+    return null;
+  }
+  
+  module.exports = {
+    returnKthToLast: returnKthToLast
+  };
+  ```
+* Test:
+  ```javascript
+  const { removeDup } = require('../examples/remove_dup.js');
+  const LinkedList = require('../examples/singly_linked_list.js');
+  
+  describe('RemoveDup', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new LinkedList();
+      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+      for(let i = 0; i < values.length; i++){
+        testLinkedList.append(values[i]);
+      }
+    });
+  
+    test('#', () => {
+      const result = removeDup(testLinkedList)
+      expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
+    });
+  });
+  ```
+
+### TODO
+
+* Palindrome
+* Intersection
+* Loop Detection
+
+## Example
+
+### Sum List
+
+* Problem: Two numbers are presented as linked list; for example, 671 as 6 -> 7 -> 1. Please write an algorithm for the sum of these two numbers; input: (6 -> 7 -> 1), (3 -> 5) and output: (7 -> 0 -> 6). p.s 671 + 35 = 706
+* Time Complexity: I think the least time complexity is O(A + B), where A is the number of nodes of first linked list and B is the number of nodes of second linked list.
+* Code
+  ```javascript
+  const LinkedList = require('./singly_linked_list.js')
+
+  function sumList(A, B) {
+    const numberOfA = getNumber(A)
+    const numberOfB = getNumber(B)
+  
+    let restNumber = numberOfA + numberOfB
+    const result = new LinkedList()
+    while (restNumber !== 0) {
+      result.prepend(restNumber % 10)
+      restNumber = Math.floor(restNumber / 10)
+    }
+  
+    return result
+  
+    function getNumber(node) {
+      let currentNode = node.head
+      let number = 0
+      const values = []
+  
+      while (currentNode != null) {
+        values.unshift(currentNode.value)
+        currentNode = currentNode.next
+      }
+  
+      for(let i = 0; i < values.length; i++) {
+        number += values[i] * 10 ** i
+      }
+      
+      return number
+    }
+  }
+  
+  module.exports = {
+    sumList: sumList
+  }
+  ```
+* Test:
+  ```javascript
+  const { sumList } = require('../examples/sum_list.js')
+  const LinkedList = require('../examples/singly_linked_list.js')
+  
+  describe('sum list', () => {
+    const linkedListA = new LinkedList()
+    const linkedListB = new LinkedList()
+    beforeEach(() => {
+      const numberOfA = [6, 1, 7] // 6 is head
+      const numberOfB = [5, 9, 2] // 2 is head
+      for(let i = 0 ;i < numberOfA.length; i++) {
+        linkedListA.append(numberOfA[i])
+      }
+      for(let i = 0 ;i < numberOfB.length; i++) {
+        linkedListB.append(numberOfB[i])
+      }
+    })
+    test('return desired linked list', () => {
+      expect(sumList(linkedListA, linkedListB).printList()).toEqual([1, 2, 0, 9])
+    })
+  })
+  ```
+
+### Delete Middle Node
+
+* Problem: Implement an algorithm to delete a node in the middle.
+* Example:
+  * a -> b -> c -> d -> e -> f => a -> b -> d -> e -> f
+  * a -> b -> c -> d -> e => a -> b -> d -> e
+* Edge Case:
+  * If the linked list has only one node, then nothing will be removed from the list.
+* Time complexity: We must need to traverse at least once to know the length, so the time complexity is at least O(n).
+* Code example:
+  ```javascript
+  function deleteMiddleNode(linkedList) {
+    let fast = linkedList.head;
+    let slow = linkedList.head;
+
+    if (fast.next === null) {
+      return
+    }
+
+    while (fast) {
+      fast = fast.next.next
+      preNode = slow
+      slow = slow.next
+      if (fast.next === null) {
+        preNode.next = slow.next
+        return
+      }
+    }
+    return linkedList;
+  }
+  ```
+* Test:
+  ```javascript
+  let linkedList = new LinkedList();
+  const values = [1, 2, 3, 5, 4, 449, 12];
+  for(let i = 0; i < values.length; i++){
+    linkedList.insertAtBegin(values[i]); // return 12 <- 449 <- 4 <- 3 <- 2 <- 1
+  }
+  
+  let node = deleteMiddleNode(linkedList);
+  while (node !== null) {
+    console.log(node.value);
+    node = node.next;
+  }
+  ```
+
+### Partition
+
+* Problem: Given a number, all nodes with value less than this number will be moved to left and all nodes with value larger than this number will be moved to right.
+* Example
+  * Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1
+  * Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+* Edge Case:
+  * If there is only one node, then return linkedlist
+* Time complexity: We need to traverse all nodes at least once to compare the values, so the time complexity is at least O(n).
+* Code example:
+  ```javascript
+  function Partition(linkedlist, value) {
+    let node = linkedlist.head
+    let leftPartition = new LinkedList()
+    let rightPartition = new LinkedList()
+
+    while(node) {
+      if node.value < value {
+        leftPartition.prepand(node)
+      } else {
+        rightPartition.prepand(node)
+      }
+    }
+
+    leftPartition.printList()
+    rightPartition.printList()
+  }
+  ```
+* Test:
+  ```javascript
+  const { Partition } = require('../examples/partition.js');
+  const LinkedList = require('../examples/singly_linked_list.js');
+
+  describe('Partition', () => {
+    let testLinkedList;
+    beforeEach(() => {
+      testLinkedList = new LinkedList();
+      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
+      for(let i = 0; i < values.length; i++){
+        testLinkedList.append(values[i]);
+      }
+    });
+  
+    test('#', () => {
+      const result = Partition(testLinkedList, 5)
+      // 1, 4, 3, 2, 4, 3
+      // 6, 7, 8
+      expect(result.printList()).toEqual([1, 4, 3, 2, 4, 3, 6, 7, 8]);
+    });
+  });
+  ```
+
+### ChatGPT Answer
+
+Real-world problem that uses an linked list data structure and algorithm
+
+* I want to parse the steps from a ChatGPT answer and store them as different Nodes in a linked list
+
+```javascript
+class Step {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  addStep(data) {
+    const newStep = new Step(data);
+
+    if (!this.head) {
+      this.head = newStep;
+    } else {
+      let currentStep = this.head;
+
+      while (currentStep.next) {
+        currentStep = currentStep.next;
+      }
+
+      currentStep.next = newStep;
+    }
+  }
+
+  removeStep(data) {
+    if (!this.head) {
+      return;
+    }
+
+    if (this.head.data === data) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let currentStep = this.head;
+
+    while (currentStep.next) {
+      if (currentStep.next.data === data) {
+        currentStep.next = currentStep.next.next;
+        return;
+      }
+
+      currentStep = currentStep.next;
+    }
+  }
+}
+```
+
+and use this structure
+
+```javascript
+const linkedList = new LinkedList();
+
+async function handleQuestion(question) {
+  const answer = await getChatGPTResponse(question);
+  const steps = parseSteps(answer);
+
+  steps.forEach(step => linkedList.addStep(step));
+}
+
+function parseSteps(answer) {
+  const steps = answer.split('\n');
+  return steps.map(step => step.trim()).filter(step => step !== '');
+}
+```
+
+## Appendix
 
 ### Doubly Linked List
 
@@ -376,387 +762,6 @@ Learning linked lists is valuable because they provide a flexible and efficient 
     })
   });
   ```
-
-### runner technique
-
-* Concept: two pointers iterates through a linked list at the same time.
-* Detecting Cycles
-  ```javascript
-  function hasCycle(head) {
-    let slow = head;
-    let fast = head;
-  
-    while (fast !== null && fast.next !== null) {
-      slow = slow.next;
-      fast = fast.next.next;
-  
-      if (slow === fast) {
-        return true;
-      }
-    }
-  
-    return false;
-  }
-  ```
-* Finding the Middle Node
-  ```javascript
-  function findMiddle(head) {
-    let slow = head;
-    let fast = head;
-  
-    while (fast !== null && fast.next !== null) {
-      slow = slow.next;
-      fast = fast.next.next;
-    }
-  
-    return slow;
-  }
-  ```
-
-### Remove Dups
-
-* Problem: Write code to remove duplicates from an unsorted linked list
-* Information:
-  * Example: from [1, 4, 6, 3, 2, 7, 4, 8, 3] to [1, 4, 6, 3, 2, 7, 8]
-  * You can remove any duplicate nodes you want as long as the result are all unique values
-* Edge cases: Only one node in this linked list
-* Brute force: compare each node with the rest linked nodes
-* Best time complexity: Because we need to traverse all the nodes to read their values at least once, the time complexity will be at least O(n).
-* Code example
-  ```javascript
-  function removeDup(linkedList) {
-    set = new Set();
-    let currentNode = linkedList.head
-    let previousNode = null
-  
-    while (currentNode !== null) {
-      if (!set.has(currentNode.value)) {
-        set.add(currentNode.value)
-      } else {
-        previousNode.next = currentNode.next
-      }
-      previousNode = currentNode
-      currentNode = currentNode.next
-    }
-  
-    return linkedList.printList()
-  }
-  ```
-* test
-  ```javascript
-  const { removeDup } = require('../examples/remove_dup.js');
-  const LinkedList = require('../examples/singly_linked_list.js');
-  
-  describe('RemoveDup', () => {
-    let testLinkedList;
-    beforeEach(() => {
-      testLinkedList = new LinkedList();
-      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
-      for(let i = 0; i < values.length; i++){
-        testLinkedList.append(values[i]);
-      }
-    });
-  
-    test('#', () => {
-      const result = removeDup(testLinkedList)
-      expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
-    });
-  });
-  ```
-* Temporary buffer not allowed (TBC)
-
-### Return Kth to Last
-
-* Problem: Implement an algorithm to find the kth to last element of a singly linked list.
-* Information:
-  * Example: If a linked list is 1 <- 4 <- 6 <- 3 <- 2 <- 7 <- 8, then returnKthToLast(linkedList, 3) will be 6 <- 3 <- 2 <- 7 <- 8
-  * It should return a node because the node of a linked list will show all the following node values. 
-* Code example:
-  ```javascript
-  function returnKthToLast (linkedList, k) {
-    let counter = 1; // The first element is 1th
-    let node = linkedList.head;
-    while (node) {
-      if (counter === k) {
-        return node;
-      }
-      counter++;
-      node = node.next;
-    }
-    return null;
-  }
-  
-  module.exports = {
-    returnKthToLast: returnKthToLast
-  };
-  ```
-* Test:
-  ```javascript
-  const { removeDup } = require('../examples/remove_dup.js');
-  const LinkedList = require('../examples/singly_linked_list.js');
-  
-  describe('RemoveDup', () => {
-    let testLinkedList;
-    beforeEach(() => {
-      testLinkedList = new LinkedList();
-      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
-      for(let i = 0; i < values.length; i++){
-        testLinkedList.append(values[i]);
-      }
-    });
-  
-    test('#', () => {
-      const result = removeDup(testLinkedList)
-      expect(result).toEqual([1, 4, 6, 3, 2, 7, 8]);
-    });
-  });
-  ```
-
-### Delete Middle Node
-
-* Problem: Implement an algorithm to delete a node in the middle.
-* Example:
-  * a -> b -> c -> d -> e -> f => a -> b -> d -> e -> f
-  * a -> b -> c -> d -> e => a -> b -> d -> e
-* Edge Case:
-  * If the linked list has only one node, then nothing will be removed from the list.
-* Time complexity: We must need to traverse at least once to know the length, so the time complexity is at least O(n).
-* Code example:
-  ```javascript
-  function deleteMiddleNode(linkedList) {
-    let fast = linkedList.head;
-    let slow = linkedList.head;
-
-    if (fast.next === null) {
-      return
-    }
-
-    while (fast) {
-      fast = fast.next.next
-      preNode = slow
-      slow = slow.next
-      if (fast.next === null) {
-        preNode.next = slow.next
-        return
-      }
-    }
-    return linkedList;
-  }
-  ```
-* Test:
-  ```javascript
-  let linkedList = new LinkedList();
-  const values = [1, 2, 3, 5, 4, 449, 12];
-  for(let i = 0; i < values.length; i++){
-    linkedList.insertAtBegin(values[i]); // return 12 <- 449 <- 4 <- 3 <- 2 <- 1
-  }
-  
-  let node = deleteMiddleNode(linkedList);
-  while (node !== null) {
-    console.log(node.value);
-    node = node.next;
-  }
-  ```
-
-### Partition
-
-* Problem: Given a number, all nodes with value less than this number will be moved to left and all nodes with value larger than this number will be moved to right.
-* Example: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 => 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
-* Edge Case:
-  * If there is only one node, then return linkedlist
-* Time complexity: We need to traverse all nodes at least once to compare the values, so the time complexity is at least O(n).
-* Code example:
-  ```javascript
-  function Partition(linkedlist, value) {
-    let node = linkedlist.head
-    let leftPartition = new LinkedList()
-    let rightPartition = new LinkedList()
-
-    while(node) {
-      if node.value < value {
-        leftPartition.prepand(node)
-      } else {
-        rightPartition.prepand(node)
-      }
-    }
-
-    leftPartition.printList()
-    rightPartition.printList()
-  }
-  ```
-* Test:
-  ```javascript
-  const { Partition } = require('../examples/partition.js');
-  const LinkedList = require('../examples/singly_linked_list.js');
-
-  describe('Partition', () => {
-    let testLinkedList;
-    beforeEach(() => {
-      testLinkedList = new LinkedList();
-      const values = [1, 4, 6, 3, 2, 7, 4, 8, 3];
-      for(let i = 0; i < values.length; i++){
-        testLinkedList.append(values[i]);
-      }
-    });
-  
-    test('#', () => {
-      const result = Partition(testLinkedList, 5)
-      // 1, 4, 3, 2, 4, 3
-      // 6, 7, 8
-      expect(result.printList()).toEqual([1, 4, 3, 2, 4, 3, 6, 7, 8]);
-    });
-  });
-  ```
-
-### Sum List
-
-* Problem: Two numbers are presented as linked list; for example, 671 as 6 -> 7 -> 1. Please write an algorithm for the sum of these two numbers; input: (6 -> 7 -> 1), (3 -> 5) and output: (7 -> 0 -> 6). p.s 671 + 35 = 706
-* Time Complexity: I think the least time complexity is O(A + B), where A is the number of nodes of first linked list and B is the number of nodes of second linked list.
-* Code
-  ```javascript
-  const LinkedList = require('./singly_linked_list.js')
-
-  function sumList(A, B) {
-    const numberOfA = getNumber(A)
-    const numberOfB = getNumber(B)
-  
-    let restNumber = numberOfA + numberOfB
-    const result = new LinkedList()
-    while (restNumber !== 0) {
-      result.prepend(restNumber % 10)
-      restNumber = Math.floor(restNumber / 10)
-    }
-  
-    return result
-  
-    function getNumber(node) {
-      let currentNode = node.head
-      let number = 0
-      const values = []
-  
-      while (currentNode != null) {
-        values.unshift(currentNode.value)
-        currentNode = currentNode.next
-      }
-  
-      for(let i = 0; i < values.length; i++) {
-        number += values[i] * 10 ** i
-      }
-      
-      return number
-    }
-  }
-  
-  module.exports = {
-    sumList: sumList
-  }
-  ```
-* Test:
-  ```javascript
-  const { sumList } = require('../examples/sum_list.js')
-  const LinkedList = require('../examples/singly_linked_list.js')
-  
-  describe('sum list', () => {
-    const linkedListA = new LinkedList()
-    const linkedListB = new LinkedList()
-    beforeEach(() => {
-      const numberOfA = [6, 1, 7] // 6 is head
-      const numberOfB = [5, 9, 2] // 2 is head
-      for(let i = 0 ;i < numberOfA.length; i++) {
-        linkedListA.append(numberOfA[i])
-      }
-      for(let i = 0 ;i < numberOfB.length; i++) {
-        linkedListB.append(numberOfB[i])
-      }
-    })
-    test('return desired linked list', () => {
-      expect(sumList(linkedListA, linkedListB).printList()).toEqual([1, 2, 0, 9])
-    })
-  })
-  ```
-
-### Palindrome
-
-### Intersection
-
-### Loop Detection
-
-## What
-
-Real-world problem that uses an linked list data structure and algorithm
-
-* I want to parse the steps from a ChatGPT answer and store them as different Nodes in a linked list
-
-```javascript
-class Step {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-  }
-}
-
-class LinkedList {
-  constructor() {
-    this.head = null;
-  }
-
-  addStep(data) {
-    const newStep = new Step(data);
-
-    if (!this.head) {
-      this.head = newStep;
-    } else {
-      let currentStep = this.head;
-
-      while (currentStep.next) {
-        currentStep = currentStep.next;
-      }
-
-      currentStep.next = newStep;
-    }
-  }
-
-  removeStep(data) {
-    if (!this.head) {
-      return;
-    }
-
-    if (this.head.data === data) {
-      this.head = this.head.next;
-      return;
-    }
-
-    let currentStep = this.head;
-
-    while (currentStep.next) {
-      if (currentStep.next.data === data) {
-        currentStep.next = currentStep.next.next;
-        return;
-      }
-
-      currentStep = currentStep.next;
-    }
-  }
-}
-```
-
-and use this structure
-
-```javascript
-const linkedList = new LinkedList();
-
-async function handleQuestion(question) {
-  const answer = await getChatGPTResponse(question);
-  const steps = parseSteps(answer);
-
-  steps.forEach(step => linkedList.addStep(step));
-}
-
-function parseSteps(answer) {
-  const steps = answer.split('\n');
-  return steps.map(step => step.trim()).filter(step => step !== '');
-}
-```
 
 ## reference
 

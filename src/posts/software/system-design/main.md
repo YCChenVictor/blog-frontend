@@ -76,7 +76,7 @@ Now we can successfully CRUD the data. The next step is to return desired servic
 * User management service should use decorator pattern to return different data given the type of users; for example, we may need to examine the authentication of users before they use an API. Then we can have decorator to decorate the ability based on the identity of the users.
 * External service should use adapter pattern to connect different data source with same method; for example, we know google and facebook both provide statistics and we can write a method to deal with these two different APIs. Then although both use `connect` method, based on the adaptor, we can connect the APIs successfully and do the next steps.
 
-For more information, please refer to [design pattern].
+For more information, please refer to [design pattern](/blog/software/design-pattern/main).
 
 ### Design An Algorithm
 

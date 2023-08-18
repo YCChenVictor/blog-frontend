@@ -20,7 +20,7 @@ Complexity is a fundamental characteristic of systems, phenomena, and processes 
 
 #### Object Oriented Design
 
-Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design].
+Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design](/blog/software/ood/main).
 
 #### System Design
 
@@ -28,7 +28,7 @@ System design involves creating a blueprint for the structure and organization o
 
 ### System software
 
-This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems]().
+This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems](/blog/software/os/main).
 
 ### Web Application software
 
@@ -49,7 +49,7 @@ Plan and design the user interface and functionality of your web application.
 
 #### Frontend
 
-* React is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications. For more information, please refer to [React].
+* [React](/blog/software/react/main) is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications.
 
 #### Backend
 

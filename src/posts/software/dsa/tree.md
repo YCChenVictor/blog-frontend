@@ -1,9 +1,10 @@
 # Title
-## Why?
+
+## Purpose
 
 Learning tree data structures is essential for organizing and efficiently accessing hierarchical data, such as file systems, organizational structures, and decision-making processes.
 
-## How?
+## Concept
 
 ### types of tree
 

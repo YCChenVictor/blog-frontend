@@ -72,7 +72,7 @@
     "useMathjax": true,
     "useThreeJS": false,
     "useMermaidJS": true,
-    "publish": false
+    "publish": true
   },
   "8": {
     "url": "software/css/main",
@@ -166,10 +166,10 @@
     "publish": false
   },
   "19": {
-    "url": "software/concept/object-oriented-programming",
+    "url": "software/ood/programming-principle",
     "data": "2021-11-21",
-    "category": "DSA",
-    "publish": false
+    "category": "OOD",
+    "publish": true
   },
   "20": {
     "url": "software/dsa/array",
@@ -181,25 +181,25 @@
     "url": "software/dsa/linked-list",
     "data": "2022-05-23",
     "category": "DSA",
-    "publish": false
+    "publish": true
   },
   "22": {
     "url": "software/dsa/queue",
     "data": "2022-06-24",
     "category": "DSA",
-    "publish": false
+    "publish": true
   },
   "23": {
     "url": "software/dsa/stack",
     "data": "2022-06-24",
     "category": "DSA",
-    "publish": false
+    "publish": true
   },
   "24": {
     "url": "software/dsa/tree",
     "data": "2022-06-26",
     "category": "DSA",
-    "publish": false
+    "publish": true
   },
   "25": {
     "url": "software/dsa/hash-table",
@@ -214,28 +214,28 @@
     "publish": false
   },
   "27": {
-    "url": "software/operating-system/main",
+    "url": "software/os/main",
     "data": "2023-04-02",
     "category": "OS",
     "publish": true
   },
   "28": {
-    "url": "software/operating-system/process-management",
+    "url": "software/os/process-management",
     "data": "2021-12-24",
     "category": "OS",
-    "publish": false
+    "publish": true
   },
   "29": {
     "url": "software/database/main",
     "data": "2022-08-12",
     "category": "DB",
-    "publish": false
+    "publish": true
   },
   "30": {
     "url": "software/database/mysql",
     "data": "2022-08-12",
     "category": "DB",
-    "publish": false
+    "publish": true
   },
   "31": {
     "url": "software/test/main",
@@ -253,12 +253,30 @@
     "url": "software/system-design/main",
     "data": "2023-03-27",
     "category": "SYS_D",
-    "publish": false
+    "publish": true
   },
   "34": {
     "url": "software/system-design/scalability",
     "data": "2023-06-16",
     "category": "SYS_D",
+    "publish": true
+  },
+  "35": {
+    "url": "software/ood/main",
+    "data": "2023-08-12",
+    "category": "OOD",
+    "publish": true
+  },
+  "36": {
+    "url": "software/design-pattern/main",
+    "data": "2023-08-12",
+    "category": "OOD",
+    "publish": false
+  },
+  "37": {
+    "url": "software/javascript/main",
+    "data": "2022-12-12",
+    "category": "JS",
     "publish": false
   }
 }

@@ -1,9 +1,5 @@
 # title
 
-## Abstract
-
-This article explores the purpose and concept of using graphs to visually represent data relationships and presents methods to represent undirected graphs. It also includes code examples for implementing an undirected graph class and traversal algorithms like DFS and BFS.
-
 ## Purpose
 
 Graphs are valuable tools for visually representing the relationships and connections among data points, enabling us to easily discern patterns and gain insightful observations.
