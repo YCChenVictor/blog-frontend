@@ -24,7 +24,7 @@ Main 23 design patterns as follow:
 * Example
   * Composition: This pattern allows you to create hierarchical structures of objects by composing objects into tree structures. It's useful when you want to represent part-whole hierarchies.
   * Decorator: This pattern allows you to add behavior to objects dynamically by wrapping them in an object of a decorator class. It's useful when you want to add functionality to an object without changing its interface.
-  * Adapter: This pattern allows you to adapt an object to another interface, without changing the underlying object. It's useful when you want to reuse existing code with a different interface.
+  * [Adapter](/blog/software/design-pattern/adapter): This pattern allows you to adapt an object to another interface, without changing the underlying object. It's useful when you want to reuse existing code with a different interface.
   * Proxy: This pattern provides a surrogate or placeholder for another object to control access to it. It's useful when you want to add security, logging, or caching to an object.
   * Bridge: This pattern separates an object's interface from its implementation, so that the two can vary independently. It's useful when you want to decouple an abstraction from its implementation, allowing both to evolve independently.
   * Facade: This pattern provides a simplified interface to a complex subsystem of objects. It's useful when you want to provide a simple interface to a complex system.

@@ -278,5 +278,17 @@
     "data": "2022-12-12",
     "category": "JS",
     "publish": false
+  },
+  "38": {
+    "url": "software/tdd/main",
+    "data": "2021-04-06",
+    "category": "tdd",
+    "publish": true
+  },
+  "39": {
+    "url": "software/design-pattern/adapter",
+    "data": "2023-03-30",
+    "category": "design-pattern",
+    "publish": false
   }
 }
