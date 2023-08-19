@@ -53,8 +53,7 @@ Plan and design the user interface and functionality of your web application.
 
 #### Backend
 
-* Framework: [Node.js], or [Ruby on Rails]
-* [Token-based authentication and authorization mechanisms]: Token-based authentication and authorization mechanisms provide a secure and efficient means of verifying user identity and permissions in web applications and APIs. By utilizing tokens as digital credentials, these mechanisms enhance web security, enable stateless and scalable architectures, and ensure secure data transmission between the frontend and backend.
+* Framework: [Express], or [Ruby on Rails]
 * [Database](/blog/software/database/main)
 
 #### Test

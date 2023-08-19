@@ -7,6 +7,7 @@ import Article from './components/Article.jsx'
 import settings from './data/articleSettings.json'
 import ArticleList from './components/ArticleList.jsx'
 import articleSettings from './data/articleSettings.json'
+import SignupLogin from './components/SignupLogin.jsx'
 
 const Layout = () => {
   const desiredRoutes = Object.entries(settings).map(([key, value], index) => (
@@ -18,19 +19,22 @@ const Layout = () => {
   ))
   return (
     <div className="bg-gray-700">
+      <nav className="flex items-center justify-between bg-gray-700 p-4">
+        <ul  className="bg-gray-700">
+          <a href="/blog" className="m-0 p-0">
+            <img className="w-16 rounded-full" src={titleImg} alt="title" />
+          </a>
+        </ul>
+        <ul className="flex items-center space-x-4 ml-auto p-6">
+          <a href="/blog/software" className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition">
+            Software
+          </a>
+        </ul>
+        <ul className="space-x-4">
+          <SignupLogin />
+        </ul>
+      </nav>
       <Router>
-        <nav className="flex">
-          <ul className="bg-gray-700">
-            <a href="/blog" className="m-0 p-0">
-              <img className="p-4 w-24 rounded-full" src={titleImg} alt="title" />
-            </a>
-          </ul>
-          <ul className="flex items-center space-x-4 ml-auto p-6">
-            <a href="/blog/software" className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition">
-              Software
-            </a>
-          </ul>
-        </nav>
         <div className="">
           <Routes>
             <Route path="/blog" element={<AuthorProfile />}/>

@@ -25,6 +25,7 @@ I need to structure my thoughts.
 
 * Add an appendix directory to store the examples in each article
 * I think the node graph need to have colors as grouped
+* You should have session to expire JWT
 * Because I there is going to be other mechanism, I need devise
 * Actually, I can try to use rails to build backend, since blog is static sites with not that much UI/UX requirements
 * Start to build backend and connect ChatGPT API
