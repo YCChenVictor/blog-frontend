@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
-import { HashLink } from 'react-router-hash-link';
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import React, { useState, useEffect } from 'react'
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar'
+import { HashLink } from 'react-router-hash-link'
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined"
 
 const SidebarLayout = ({onToggleExpand, height, rawTitles}) => {
   const [isExpand, setIsExapand] = useState(true);
@@ -10,12 +10,30 @@ const SidebarLayout = ({onToggleExpand, height, rawTitles}) => {
     tagName: item.tagName.match(/\d+/)[0],
     position: rawTitles.indexOf(item)
   }))
+  const textSizeMapping = {
+    '2': 'text-xl',
+    '3': 'text-lg',
+    '4': 'text-base',
+    '5': 'text-sm',
+    '6': 'text-xs',
+  }
+  const textColorMapping = {
+    '2': 'text-zinc-900',
+    '3': 'text-zinc-800',
+    '4': 'text-zinc-700',
+    '5': 'text-zinc-600',
+    '6': 'text-zinc-500',
+  }
   const menuItemsDesired = titles.map((title, index) => (
     <MenuItem
       key={index}
       component={<HashLink to={`#${title.content.toLowerCase().replace(/[?!,-]+/g, '').replace(/\s+/g, '-')}`} />}
     >
-      {title.content}
+      <p
+        className={`${textColorMapping[title.tagName]} pl-${title.tagName} ${textSizeMapping[title.tagName]}`}
+      >
+        {title.content}
+      </p>
     </MenuItem>
   ))
 
