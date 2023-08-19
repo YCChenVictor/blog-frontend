@@ -59,9 +59,7 @@ Plan and design the user interface and functionality of your web application.
 
 #### Test
 
-* [TDD]
-* [Jest]
-* [Rspec]
+Test-Driven Development ([TDD](/blog/software/tdd/main)) involves writing tests before code to guide development, ensuring early and thorough software testing and aligning code with intended functionality, ultimately enhancing code quality and reducing defects. TDD's approach helps catch issues early, leading to more reliable software and efficient development.
 
 #### Package Managers
 

@@ -1,49 +1,38 @@
----
-layout: post
-title:
-description: ''
-date: '2023-03-30'
-categories: design-pattern
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
-## Introduction
+## Purpose
+
+An adapter in software is used to either reuse an existing class with a different interface or to enable a class to work with multiple incompatible classes, while also providing abstraction to decouple client code from underlying class specifics.
+
+## How?
 
 The Adapter pattern allows two incompatible interfaces to work together by creating a class that acts as an interface between them. The adapter class maps the methods of one interface to another, making it possible for the two interfaces to communicate.
 
 Three components
+
 * Client: The client is the component that is trying to use the adaptee, but cannot do so directly because the adaptee's interface is incompatible with the client's interface
 * Adapter: The adapter is a class that acts as a bridge between the client and the adaptee. It maps the methods of the adaptee to the methods of the client.
 * Adaptee: The adaptee is the component that the client wants to use, but cannot do so directly because its interface is incompatible with the client's interface.
 
-## Why?
-
-* Reuse an existing class that does not match the interface of the client
-* Create a class that can work with multiple incompatible classes
-
-## How?
-
 ### example in javascript
+
+Let's say there are two different payment system and we need to store the logs on different services.
 
 ```javascript
 // First Adaptee - the complex class that needs to be adapted
 class LegacyPaymentProcessor {
   constructor() {
-    this.total = 0;
+    this.total = 0
   }
 
-  addLegacyPayment(amount) {
-    this.total += amount;
+  addPayment(amount) {
+    this.total += amount
+    console.log('add payment, log to legacy')
   }
 
-  getLegacyTotal() {
-    return this.total;
+  getTotal() {
+    return this.total
+    console.log('get total, log to legacy')
   }
 }
 
@@ -53,12 +42,14 @@ class ModernPaymentProcessor {
     this.total = 0;
   }
 
-  addModernPayment(amount) {
+  addPayment(amount) {
     this.total += amount;
+    console.log('add payment, log to legacy')
   }
 
-  getModernTotal() {
+  getTotal() {
     return this.total;
+    console.log('get total, log to legacy')
   }
 }
 
@@ -69,19 +60,11 @@ class PaymentAdapter {
   }
 
   processPayment(amount) {
-    if (this.adaptee instanceof LegacyPaymentProcessor) {
-      this.adaptee.addLegacyPayment(amount);
-    } else if (this.adaptee instanceof ModernPaymentProcessor) {
-      this.adaptee.addModernPayment(amount);
-    }
+    this.adaptee.addPayment(amount);
   }
 
-  getAmount() {
-    if (this.adaptee instanceof LegacyPaymentProcessor) {
-      return this.adaptee.getLegacyTotal();
-    } else if (this.adaptee instanceof ModernPaymentProcessor) {
-      return this.adaptee.getModernTotal();
-    }
+  getTotal() {
+    this.adaptee.getTotal();
   }
 }
 
@@ -91,17 +74,13 @@ const modernPaymentProcessor = new ModernPaymentProcessor();
 const paymentAdapter1 = new PaymentAdapter(legacyPaymentProcessor);
 const paymentAdapter2 = new PaymentAdapter(modernPaymentProcessor);
 paymentAdapter1.processPayment(100);
-paymentAdapter2.processPayment(200);
-console.log(paymentAdapter1.getAmount()); // Output: 100
-console.log(paymentAdapter2.getAmount()); // Output: 200
+paymentAdapter2.processPayment(100);
 ```
 
-## What?
+## Example
 
-We can have a look at rails [active record]()
+* Active record in rails
 
 ## Reference
 
-Why: asking for the reason or purpose behind something.
-How: asking for the method or process of doing something.
-What: asking for information about a specific thing or object.
+ChatGPT
