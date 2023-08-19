@@ -222,6 +222,19 @@ fs.writeFile('myData.json', jsonString, function (err) {
 
 * read
 
+### Auto Refresh
+
+Use node-supervisor
+
+* install
+  ```bash
+  npm install -g node-supervisor
+  ```
+* use
+  ```bash
+  node-supervisor -w /path/to/your/project server.js
+  ```
+
 ## What?
 
 * [passport for sign up and login]({{site.baseurl}}/node/2022/12/31/sign-up-and-login.html)

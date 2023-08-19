@@ -13,10 +13,6 @@ anchor:
 publish: true
 ---
 
-## Introduction
-
-TBC
-
 ## Why?
 
 As my blog getting bigger, I need it

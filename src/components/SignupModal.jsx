@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from "react-modal";
 
 function SignupModal(props) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const PostSignUpInfo = (params) => {
@@ -34,12 +34,12 @@ function SignupModal(props) {
         <form className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Username
+              Email
               <input
                 type="text"
-                value={username}
-                placeholder="Username"
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
                 className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600"
               />
             </label>
@@ -58,7 +58,7 @@ function SignupModal(props) {
           </div>
           <div className="flex justify-between">
             <button
-              onClick={() => PostSignUpInfo({ username: username, password: password })}
+              onClick={() => PostSignUpInfo({ email: email, password: password })}
               className="btn-primary"
             >
               Sign Up

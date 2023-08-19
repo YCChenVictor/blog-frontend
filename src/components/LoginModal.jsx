@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import Modal from "react-modal";
+import React, { useState } from 'react'
+import Modal from "react-modal"
 
 function LoginModal(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [modalOpen, setModalOpen] = useState(true)
 
   const PostLoginInfo = (params) => {
     fetch("http://localhost:5000/login", {
@@ -15,9 +16,8 @@ function LoginModal(props) {
     }).then((res) => {
       return res.json()
     }).then((data) => {
-      localStorage.setItem('logged in', data.token);
-      // close modal
-      window.location.href = '/task_list';
+      console.log(data.token)
+      localStorage.setItem('blog logged in', data.token)
       alert('login successfully')
     }).catch(error => {
       console.log(error)
@@ -26,7 +26,7 @@ function LoginModal(props) {
 
   return(
     <Modal
-      isOpen={true}
+      isOpen={modalOpen}
       className='rounded-lg md:h-auto fixed inset-0 flex items-center justify-center'
       appElement={document.getElementById('root')}
     >
@@ -61,13 +61,19 @@ function LoginModal(props) {
           </div>
           <div className="flex justify-between">
             <button
-              onClick={() => PostLoginInfo({ email: email, password: password })}
+              onClick={(e) => {
+                e.preventDefault()
+                PostLoginInfo({ email: email, password: password })
+              }}
               className="btn-primary"
             >
               Login
             </button>
             <button
-              onClick={() => console.log(false)}
+              onClick={(e) => {
+                e.preventDefault()
+                setModalOpen(!modalOpen)
+              }}
               className="btn-secondary"
             >
               Close
