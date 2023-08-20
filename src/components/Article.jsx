@@ -11,12 +11,15 @@ import WordCounts from './WordCounts.jsx'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
 import LinkPage from './LinkPage.jsx'
+import GptAdvice from './GptAdvice.jsx'
+// import api from './Api.jsx'
 
 const Article = ({setting}) => {
   const filePath = `posts/${setting['url']}.md`
   const [markdownContent, setMarkdownContent] = useState('')
   const [rawTitles, setRawTitles] = useState([])
   const [articleLeftPaddingWidth, setArticleLeftPaddingWidth] = useState('')
+  const [loggedIn, setLoggedIn] = useState(true)
 
   const componentSidebarRef = useRef(null);
 
@@ -62,6 +65,11 @@ const Article = ({setting}) => {
       }, 500);
       window.addEventListener('resize', updateArticleWidth);
     }
+    // const checkLoggedIn = () => {
+    //   api.getGPT()
+    //   setLoggedIn()
+    // }
+    // checkLoggedIn()
     importFileAndFetchContent()
   }, []);
 
@@ -78,6 +86,11 @@ const Article = ({setting}) => {
   return (
     <div className='bg-gray-400 flex'>
       <div className='fixed' ref={componentSidebarRef}>
+        {loggedIn ? (
+          <GptAdvice />
+        ) : (
+          <div>{}</div>
+        )}
         {setting.publish ? (
           <LinkPage
             articleUrl={setting['url']}

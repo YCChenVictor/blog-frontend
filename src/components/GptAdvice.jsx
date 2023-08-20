@@ -30,8 +30,13 @@ function GptAdvice() {
   const [diff] = parseDiff(diffText, {nearbySequences: 'zip'});
 
   return (
-    <div id="gptAdvice">
-      <button onClick={setModalOpen}>GPT Advice</button>
+    <div className="px-4" id="gptAdvice">
+      <button
+        className="text-white transition"
+        onClick={setModalOpen}
+      >
+        GPT
+      </button>
       <Modal
         isOpen={Boolean(modalOpen)}
         onRequestClose={() => setModalOpen(false)}
