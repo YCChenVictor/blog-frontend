@@ -12,6 +12,7 @@ import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
 import LinkPage from './LinkPage.jsx'
 import Gpt from './Gpt.jsx'
+import ButtonScrollTop from './ButtonScrollTop.jsx'
 // import api from './Api.jsx'
 
 const Article = ({setting}) => {
@@ -104,7 +105,7 @@ const Article = ({setting}) => {
         {rawTitles.length > 0 ? (
           <SidebarLayout
             onToggleExpand={updateArticleWidth}
-            height={'80vh'}
+            height={'60vh'}
             rawTitles={rawTitles}
           />
         ) : (
@@ -159,6 +160,9 @@ const Article = ({setting}) => {
         >
           {markdownContent}
         </ReactMarkdown>
+      </div>
+      <div>
+        <ButtonScrollTop/>
       </div>
     </div>
   )
