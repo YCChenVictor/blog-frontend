@@ -4,6 +4,8 @@ import nodeGraph from '../data/software/nodeGraph.json'
 const LinkPage = ({articleUrl}) => {
   const nodes = nodeGraph.nodes
   const links = nodeGraph.links
+  if(nodes.length === 0) return
+  if(links.length === 0) return
   const pageNodeId = nodes.find((node) => {return node.url === `/blog/${articleUrl}`}).id
   const link = links.find((link) => {return link.target === pageNodeId})
 
