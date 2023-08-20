@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {diffLines, formatLines} from 'unidiff';
-import {parseDiff, Diff, Hunk} from 'react-diff-view';
-import Modal from "react-modal";
+import React, { useState, useEffect } from "react"
+import {diffLines, formatLines} from 'unidiff'
+import {parseDiff, Diff, Hunk} from 'react-diff-view'
+import Modal from "react-modal"
 
-function GptAdvice() {
-  const [modalOpen, setModalOpen] = useState(false);
+function Gpt() {
+  const [modalOpen, setModalOpen] = useState(false)
   const oldText = '[\n' +  // going to useState
     '    {\n' +
     '        "age": "22",\n' +
@@ -30,7 +30,7 @@ function GptAdvice() {
   const [diff] = parseDiff(diffText, {nearbySequences: 'zip'});
 
   return (
-    <div className="px-4" id="gptAdvice">
+    <div className="px-4" id="gpt">
       <button
         className="text-white transition"
         onClick={setModalOpen}
@@ -40,6 +40,7 @@ function GptAdvice() {
       <Modal
         isOpen={Boolean(modalOpen)}
         onRequestClose={() => setModalOpen(false)}
+        className="transparent"
         // style={customStyles} (going to research the best practice to do style)
       >
         <h1>Advice</h1>
@@ -56,10 +57,10 @@ function GptAdvice() {
           </main>
         </div>
 
-        <button onClick={() => setModalOpen(false)}>Close Modal</button>
+        <button onClick={() => setModalOpen(false)}>Close</button>
       </Modal>
     </div>
   );
 }
 
-export default GptAdvice;
+export default Gpt;

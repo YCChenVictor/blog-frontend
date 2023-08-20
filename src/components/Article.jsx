@@ -11,7 +11,7 @@ import WordCounts from './WordCounts.jsx'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
 import LinkPage from './LinkPage.jsx'
-import GptAdvice from './GptAdvice.jsx'
+import Gpt from './Gpt.jsx'
 // import api from './Api.jsx'
 
 const Article = ({setting}) => {
@@ -87,7 +87,7 @@ const Article = ({setting}) => {
     <div className='bg-gray-400 flex'>
       <div className='fixed' ref={componentSidebarRef}>
         {loggedIn ? (
-          <GptAdvice />
+          <Gpt />
         ) : (
           <div>{}</div>
         )}
