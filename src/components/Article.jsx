@@ -11,12 +11,16 @@ import WordCounts from './WordCounts.jsx'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
 import LinkPage from './LinkPage.jsx'
+import Gpt from './Gpt.jsx'
+import ButtonScrollTop from './ButtonScrollTop.jsx'
+// import api from './Api.jsx'
 
 const Article = ({setting}) => {
   const filePath = `posts/${setting['url']}.md`
   const [markdownContent, setMarkdownContent] = useState('')
   const [rawTitles, setRawTitles] = useState([])
   const [articleLeftPaddingWidth, setArticleLeftPaddingWidth] = useState('')
+  const [loggedIn, setLoggedIn] = useState(true)
 
   const componentSidebarRef = useRef(null);
 
@@ -62,6 +66,11 @@ const Article = ({setting}) => {
       }, 500);
       window.addEventListener('resize', updateArticleWidth);
     }
+    // const checkLoggedIn = () => {
+    //   api.getGPT()
+    //   setLoggedIn()
+    // }
+    // checkLoggedIn()
     importFileAndFetchContent()
   }, []);
 
@@ -78,6 +87,11 @@ const Article = ({setting}) => {
   return (
     <div className='bg-gray-400 flex'>
       <div className='fixed' ref={componentSidebarRef}>
+        {loggedIn ? (
+          <Gpt />
+        ) : (
+          <div>{}</div>
+        )}
         {setting.publish ? (
           <LinkPage
             articleUrl={setting['url']}
@@ -91,7 +105,7 @@ const Article = ({setting}) => {
         {rawTitles.length > 0 ? (
           <SidebarLayout
             onToggleExpand={updateArticleWidth}
-            height={'80vh'}
+            height={'60vh'}
             rawTitles={rawTitles}
           />
         ) : (
@@ -146,6 +160,9 @@ const Article = ({setting}) => {
         >
           {markdownContent}
         </ReactMarkdown>
+      </div>
+      <div>
+        <ButtonScrollTop/>
       </div>
     </div>
   )

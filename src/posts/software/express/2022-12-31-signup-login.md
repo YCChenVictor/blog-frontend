@@ -111,6 +111,88 @@ customizedPassport.deserializeUser(function(user, done) {
 module.exports = customizedPassport
 ```
 
+#### JWT
+
+```javascript
+const passport = require('passport');
+const passportJWT = require('passport-jwt');
+const JwtStrategy = passportJWT.Strategy;
+const ExtractJwt = passportJWT.ExtractJwt;
+
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: 'your-secret-key'
+};
+
+const jwtStrategy = new JwtStrategy(jwtOptions, (jwtPayload, done) => {
+  // You can perform user lookup based on jwtPayload.sub or any other criteria
+  // For example:
+  // User.findById(jwtPayload.sub)
+  //   .then(user => {
+  //     if (user) {
+  //       return done(null, user);
+  //     } else {
+  //       return done(null, false);
+  //     }
+  //   })
+  //   .catch(err => done(err, false));
+
+  // For simplicity, let's assume user always exists
+  return done(null, { id: jwtPayload.sub });
+});
+
+passport.use(jwtStrategy);
+
+// To protect routes, use passport.authenticate('jwt', { session: false })
+
+// Example route:
+app.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.json({ message: 'You are authorized to access this route!' });
+});
+```
+
+#### dynamic strategy
+
+```javascript
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+
+// Define your strategies
+const localStrategy = new LocalStrategy((username, password, done) => {
+  // Your local authentication logic here
+});
+
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: 'your-secret-key'
+};
+
+const jwtStrategy = new JwtStrategy(jwtOptions, (jwtPayload, done) => {
+  // Your JWT authentication logic here
+});
+
+// Use the strategies in Passport
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+// Middleware to dynamically choose strategy based on request
+const chooseStrategy = (req, res, next) => {
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    passport.authenticate('jwt', { session: false })(req, res, next);
+  } else {
+    passport.authenticate('local', { session: false })(req, res, next);
+  }
+};
+
+// Use the middleware in your routes
+app.post('/login', chooseStrategy, (req, res) => {
+  // If the chosen strategy succeeds, this route will be accessed.
+  res.json({ message: 'Authentication successful!' });
+});
+```
+
 ### API
 
 * user story
