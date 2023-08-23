@@ -2,6 +2,7 @@ import React from 'react'
 import nodeGraph from '../data/software/nodeGraph.json'
 
 const LinkPage = ({articleUrl}) => {
+  debugger
   const nodes = nodeGraph.nodes
   const links = nodeGraph.links
   if(nodes.length === 0) return

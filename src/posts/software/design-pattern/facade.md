@@ -1,18 +1,12 @@
----
-layout: post
-title: facade
-description: ''
-date: '2022-07-28'
-categories: design-pattern presentation
-note: p5 可以新增打字的 feature
-mathjax:
-mermaid:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
-## Introduction
+## Purpose
+
+We only care about the aspects we care; for example, given a delivery system, user cares **when** the package arrives and the **cost**.
+
+Even thought the process of delivering involves shippings, air transport, ...etc and it is truly complicate, we do not care. We should prepare the system to have clean interfaces (facades) for them to acquire the information they want.
+
+## Concept
 
 This pattern
 
@@ -20,25 +14,7 @@ This pattern
 * belongs to structural patterns, so it structures a specific kind of objects
 * deal with **complex** set of objects, which these objects did not follow any particular structure; they should be **messy**
 
-<div id='facade' class='h-screen justify-center items-center'>
-  <div id='facade_toggle_erase' class=''></div>
-  <div id='facade_image_save' class=''></div>
-  <div id='facade_canvas' class='border'></div>
-</div>
-
-<script>
-  const id = 'facade'
-  let binarySearchTree = p5Draw(id)
-  let binarySearchTreeP5 = new p5(binarySearchTree, id);
-</script>
-
-## Why?
-
-We only care about the aspects we care; for example, given a delivery system, user cares **when** the package arrives and the **cost**.
-
-Even thought the process of delivering involves shippings, air transport, ...etc and it is truly complicate, we do not care. We should prepare the system to have clean interfaces (facades) for them to acquire the information they want.
-
-## How? & What?
+## Example
 
 For example, there are multiple services:
 
@@ -205,10 +181,6 @@ class LandTransportationService
   end
 end
 ```
-
-### pros and cons
-
-
 
 ## Reference
 
