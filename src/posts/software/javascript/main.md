@@ -147,7 +147,7 @@ The this keyword also refers to the object instance that the method is called on
   person.sayHelloArrow(); // output: Hello, my name is undefined
   ```
   * The value of `this` in the arrow function `sayHelloArrow` refers to the global context, which does not have a `name` property.
-  * the value of `this` in the normal function `sayHello` function refers to the object instance on which the function is called.
+  * The value of `this` in the normal function `sayHello` function refers to the object instance on which the function is called.
 * Use of "arguments": Normal functions have access to a special variable called "arguments", which contains all the arguments passed to the function. Arrow functions do not have access to "arguments".
   ```javascript
   function sum() {
@@ -165,16 +165,142 @@ The this keyword also refers to the object instance that the method is called on
   ```
   * In the above example, the normal function "sum" uses the "arguments" variable to calculate the sum of all the arguments passed to it. The arrow function "sumArrow" uses the spread operator to convert the arguments into an array and then uses the "reduce" method to calculate the sum.
 
-### Execution Order
+### Promises and Asynchronous
 
-* Normally, from top to bottom
-* Function: If a function is defined in the file but not called until later in the code, the function definition will still be processed when the file is loaded, but the function itself will not be executed until it is called.
-* Asynchronous: If the JavaScript code makes use of asynchronous operations, such as fetching data from an external API, the order in which the code is executed may not be strictly linear. In such cases, the JavaScript runtime will handle the asynchronous operations separately from the main execution thread, and the order in which the asynchronous code is executed may not correspond to the order in which it appears in the file.
+Asynchronous programming is usually implemented using callbacks or Promises
+* JavaScript is a single-threaded language, which means that it can only execute one task at a time
+* A callback is a function that is passed as an argument to another function, and is called when the other function completes its task. This allows the program to continue executing while the asynchronous task is being performed in the background. We can ensure that the data is processed only when it is available, rather than blocking the program while waiting for the data to be fetched. This allows the program to continue executing other tasks while the data is being fetched in the background. For example,
+
+```javascript
+function fetchData(callback) {
+  // simulate fetching data from a server
+  setTimeout(function() {
+    const data = [1, 2, 3, 4, 5];
+    callback(data);
+  }, 200);
+  console.log('Process this first')
+}
+
+function processData(data) {
+  console.log("Processing data:", data);
+}
+
+// Call fetchData function and pass processData function as a callback
+fetchData(processData);
+```
+
+* Promise is another way to implement asynchronous programming in JavaScript. A Promise is an object that represents a value that may not be available yet. When a Promise is resolved, the value is made available to the program. Promises can be chained together using the then() method to create a sequence of asynchronous tasks. For example,
+
+```javascript
+function fetchData() {
+  // return a new Promise
+  return new Promise(function(resolve, reject) {
+    // simulate fetching data from a server
+    setTimeout(function() {
+      const data = [1, 2, 3, 4, 5];
+      resolve(data); // fulfill the promise with the data
+    }, 2000);
+  });
+}
+
+function processData(data) {
+  console.log("Processing data:", data);
+}
+
+// Call fetchData function which returns a promise
+fetchData().then((data) => processData(data));
+```
+
+* Async/await is a newer syntax introduced in ES2017 that provides a more intuitive way to write asynchronous code. It allows developers to write asynchronous code that looks and behaves like synchronous code, making it easier to reason about and debug. Async/await works by using Promises under the hood, but hides the details of Promise chaining and error handling.
+
+### AJAX
+
+If the JavaScript code makes use of asynchronous operations, such as fetching data from an external API, the order in which the code is executed may not be strictly linear. In such cases, the JavaScript runtime will handle the asynchronous operations separately from the main execution thread, and the order in which the asynchronous code is executed may not correspond to the order in which it appears in the file. For more information, please refer to [AJAX](/blog/software/javascript/AJAX).
+
+### Execution Order in File
+
+Normally, from top to bottom. But there are exceptions.
+
+* Asynchronous Operations
+  * Concept: Top-level import statements are processed first, ensuring that dependent modules are imported before use; module-level statements like variable declarations or function definitions are then processed, allowing references to imported modules; top-level export statements are lastly processed, determining what is accessible to other modules. Modules load and execute asynchronously, potentially deviating from their appearance in the code, which can lead to circular dependency problems requiring careful design to avoid.
+  * Example
+    ```javascript
+    console.log("Start")
+
+    setTimeout(() => {
+        console.log("Timeout callback")
+    }, 0);
+    
+    console.log("End")
+    ```
+  * Result
+    ```bash
+    Start
+    End
+    Timeout callback
+    ```
 * Module
-  * Firstly, any top-level import statements will be processed before any other code in the file is executed. This means that if a module depends on another module, the dependent module must be imported first.
-  * Secondly, any module-level statements, such as variable declarations or function definitions, will be processed. These statements can reference any imported modules, since the import statements have already been processed.
-  * Finally, any top-level export statements will be processed. These statements determine which functions, objects, or variables from the module should be exposed to other modules that import it.
-  * Modules are loaded and executed asynchronously, so the order in which they are loaded and executed may not correspond to the order in which they appear in the code. This can lead to issues with circular dependencies, where two or more modules depend on each other, but neither can be loaded until the other has been loaded. To avoid circular dependency issues, it's important to design module dependencies carefully and avoid circular references wherever possible.
+  * 
+  * Example
+    ```javascript
+    // moduleA.js
+    console.log("Module A start")
+    import { valueB } from './moduleB.js'
+    console.log("Module A end")
+
+    // moduleB.js
+    console.log("Module B start")
+    export const valueB = 42
+    console.log("Module B end")
+
+    // main.js
+    import './moduleA.js'
+    console.log("Main script")
+    ```
+  * Result
+    ```bash
+    Module A start
+    Module B start
+    Module B end
+    Module A end
+    Main script
+    ```
+* Function
+  * Concept: Function needs to be declared before it is executed
+  * Example: Pops error that it did not know `bark()`
+    ```javascript
+    function main() {
+      const test = () => {
+        console.log('test')
+      }
+    
+      test()
+      bark()
+    
+      const bark = () => {
+        console.log('bark')
+      }
+    }
+    
+    main()
+    ```
+  * Example: no error because when execute `main`, all the functions is declared
+    ```javascript
+    function main() {
+      test()
+      bark()
+    }
+
+    const test = () => {
+      console.log('test')
+    }
+
+    const bark = () => {
+      console.log('bark')
+    }
+    
+    main()
+    ```
 
 ### datatype
 
@@ -286,58 +412,6 @@ You can return error with
 ```javascript
 throw "Error occurred";
 ```
-
-### Promises and Asynchronous
-
-Asynchronous programming is usually implemented using callbacks or Promises
-* JavaScript is a single-threaded language, which means that it can only execute one task at a time
-* A callback is a function that is passed as an argument to another function, and is called when the other function completes its task. This allows the program to continue executing while the asynchronous task is being performed in the background. We can ensure that the data is processed only when it is available, rather than blocking the program while waiting for the data to be fetched. This allows the program to continue executing other tasks while the data is being fetched in the background. For example,
-
-```javascript
-function fetchData(callback) {
-  // simulate fetching data from a server
-  setTimeout(function() {
-    const data = [1, 2, 3, 4, 5];
-    callback(data);
-  }, 200);
-  console.log('Process this first')
-}
-
-function processData(data) {
-  console.log("Processing data:", data);
-}
-
-// Call fetchData function and pass processData function as a callback
-fetchData(processData);
-```
-
-* Promise is another way to implement asynchronous programming in JavaScript. A Promise is an object that represents a value that may not be available yet. When a Promise is resolved, the value is made available to the program. Promises can be chained together using the then() method to create a sequence of asynchronous tasks. For example,
-
-```javascript
-function fetchData() {
-  // return a new Promise
-  return new Promise(function(resolve, reject) {
-    // simulate fetching data from a server
-    setTimeout(function() {
-      const data = [1, 2, 3, 4, 5];
-      resolve(data); // fulfill the promise with the data
-    }, 2000);
-  });
-}
-
-function processData(data) {
-  console.log("Processing data:", data);
-}
-
-// Call fetchData function which returns a promise
-fetchData().then((data) => processData(data));
-```
-
-  * Async/await is a newer syntax introduced in ES2017 that provides a more intuitive way to write asynchronous code. It allows developers to write asynchronous code that looks and behaves like synchronous code, making it easier to reason about and debug. Async/await works by using Promises under the hood, but hides the details of Promise chaining and error handling.
-
-### AJAX
-
-[AJAX]({{site.baseurl}}/javascript/2021/06/19/AJAX.html)
 
 ### JSON
 

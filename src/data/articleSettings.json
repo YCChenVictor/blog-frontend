@@ -166,7 +166,7 @@
     "publish": false
   },
   "19": {
-    "url": "software/ood/programming-principle",
+    "url": "software/ood/oop",
     "data": "2021-11-21",
     "category": "OOD",
     "publish": true
@@ -271,7 +271,7 @@
     "url": "software/design-pattern/main",
     "data": "2023-08-12",
     "category": "OOD",
-    "publish": false
+    "publish": true
   },
   "37": {
     "url": "software/javascript/main",
@@ -289,6 +289,36 @@
     "url": "software/design-pattern/adapter",
     "data": "2023-03-30",
     "category": "design-pattern",
+    "publish": false
+  },
+  "40": {
+    "url": "software/design-pattern/facade",
+    "data": "2022-07-28",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "41": {
+    "url": "software/ood/solid",
+    "data": "2022-07-28",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "42": {
+    "url": "software/design-pattern/visitor",
+    "data": "2022-10-28",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "43": {
+    "url": "software/design-pattern/command",
+    "data": "2022-08-25",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "44": {
+    "url": "software/javascript/AJAX",
+    "data": "2021-06-19",
+    "category": "javascript",
     "publish": false
   }
 }

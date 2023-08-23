@@ -6,7 +6,7 @@ Learning React is valuable for developers as it equips them with a powerful and 
 
 ## Concept
 
-### Outside Build App
+### Besides Development
 
 #### start a project
 

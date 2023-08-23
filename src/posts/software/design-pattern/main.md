@@ -6,7 +6,7 @@ Design patterns provide standardized solutions to common software design problem
 
 ## Concept
 
-Main 23 design patterns as follow:
+Main 23 design patterns
 
 ### Creational
 
@@ -27,7 +27,7 @@ Main 23 design patterns as follow:
   * [Adapter](/blog/software/design-pattern/adapter): This pattern allows you to adapt an object to another interface, without changing the underlying object. It's useful when you want to reuse existing code with a different interface.
   * Proxy: This pattern provides a surrogate or placeholder for another object to control access to it. It's useful when you want to add security, logging, or caching to an object.
   * Bridge: This pattern separates an object's interface from its implementation, so that the two can vary independently. It's useful when you want to decouple an abstraction from its implementation, allowing both to evolve independently.
-  * Facade: This pattern provides a simplified interface to a complex subsystem of objects. It's useful when you want to provide a simple interface to a complex system.
+  * [Facade](/blog/software/design-pattern/facade): This pattern provides a simplified interface to a complex subsystem of objects. It's useful when you want to provide a simple interface to a complex system.
   * Flyweight: This pattern allows you to share objects to reduce memory usage, by sharing common parts of state between objects. It's useful when you want to create many objects with similar state.
 
 ### Behavioral
@@ -38,6 +38,14 @@ Main 23 design patterns as follow:
   * Template Method: This pattern defines the skeleton of an algorithm in a base class, allowing subclasses to provide concrete implementations of certain steps. It's useful when you want to define the basic structure of an algorithm, while allowing certain steps to be customized.
   * Strategy: This pattern allows you to define a family of interchangeable algorithms, encapsulate each one, and make them interchangeable at runtime. It's useful when you want to choose an algorithm dynamically, based on runtime conditions.
   * Interpreter: This pattern provides a way to define the grammar of a language, and to interpret sentences in that language.
+  * [Visitor](/blog/software/design-pattern/visitor): Allows you to add new behaviors or operations to a set of objects without modifying their structure. It achieves this by defining separate visitor objects that can traverse and operate on the elements of a complex object structure.
+  * Command: 
+  * Iterator:
+  * Mediator: 
+  * Memento: 
+  * State:
+  * Chain of Responsibility:
+
 
 ## Reference
 
