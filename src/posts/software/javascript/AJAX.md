@@ -1,11 +1,3 @@
----
-layout: post
-title:
-date: '2021-06-19'
-categories: javascript
-publish: true
----
-
 ## Introduction
 
 AJAX is a web development technique that allows you to update parts of a web page without reloading the entire page.
