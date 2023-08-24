@@ -546,6 +546,18 @@ Given a binary tree, return the height; for example
   })
   ```
 
+### TODO
+
+* List of Depths
+* Check Balanced
+* Validate BST
+* Successor
+* First Common Ancestor
+* BST Sequences
+* Check Subtree
+* Random Node
+* Paths with Sum
+
 ## What?
 
 ### real world example

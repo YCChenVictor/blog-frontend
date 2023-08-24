@@ -362,6 +362,14 @@ function Palindrome(string) {
 
 Then the time complexity = $$O(N)$$. We can also try to break it at the point of middle, then the time complexity = $$O(N/2)$$
 
+### TODO
+
+* One Away
+* String Compression
+* Rotate Matrix
+* Zero Matrix
+* String Rotation
+
 ## What?
 
 Real-world problem that uses an arrayList data structure and algorithm

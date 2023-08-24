@@ -398,6 +398,11 @@ Given the graph above
 * Detecting cycles: DFS > BFS because DFS will go deeper first, which will return to a visited node on a route first, compared to BFS.
 * Find shortest path: DFS < BFS because BFS does level-by-level exploration. When we find a target nodes, we can stop the exploration and return the path from a node to target node.
 
+### TODO
+
+* Route Between Nodes
+* Build Order
+
 ## What?
 
 ### Maze

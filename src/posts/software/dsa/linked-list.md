@@ -323,14 +323,6 @@ Learning linked lists is valuable because they provide a flexible and efficient 
   });
   ```
 
-### TODO
-
-* Palindrome
-* Intersection
-* Loop Detection
-
-## Example
-
 ### Sum List
 
 * Problem: Two numbers are presented as linked list; for example, 671 as 6 -> 7 -> 1. Please write an algorithm for the sum of these two numbers; input: (6 -> 7 -> 1), (3 -> 5) and output: (7 -> 0 -> 6). p.s 671 + 35 = 706
@@ -496,6 +488,8 @@ Learning linked lists is valuable because they provide a flexible and efficient 
   });
   ```
 
+## Example
+
 ### ChatGPT Answer
 
 Real-world problem that uses an linked list data structure and algorithm
@@ -572,6 +566,12 @@ function parseSteps(answer) {
   return steps.map(step => step.trim()).filter(step => step !== '');
 }
 ```
+
+### TODO
+
+* Palindrome
+* Intersection
+* Loop Detection
 
 ## Appendix
 

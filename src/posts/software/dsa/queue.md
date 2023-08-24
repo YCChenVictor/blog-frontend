@@ -95,8 +95,6 @@ Learning about queues is important in computer science and programming as it hel
   * Update an item: **O(n)**, It is not normal to have update operation in queue. We achieve by dequeuing the elements and then enqueuing back. As a result, the time complexity i s O(n) on worst case.
   * Delete an item: **O(1)** because when removing the last element, there is no need to shift or modify any other elements, making it independent of the queue's size.
 
-## Example
-
 ### Queue via Stacks
 
 * Problem: implement a MyQueue class which implements a queue using two stacks.
@@ -312,5 +310,9 @@ Learning about queues is important in computer science and programming as it hel
     }
   }
   ```
+
+## Real world example
+
+TBC
 
 ## Reference

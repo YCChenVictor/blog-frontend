@@ -62,7 +62,7 @@ A heap is a specialized tree-based data structure that satisfies the heap proper
 
 ### Tries
 
-A trie, also known as a prefix tree, is a data structure used to store and search for strings efficiently. It organizes strings by their common prefixes, allowing for fast retrieval and insertion operations. For more information, please refer to [tries].
+A trie, also known as a prefix tree, is a data structure used to store and search for strings efficiently. It organizes strings by their common prefixes, allowing for fast retrieval and insertion operations. For more information, please refer to [tries](/blog/software/dsa/tries).
 
 ### Dynamic Programming
 

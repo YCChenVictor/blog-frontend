@@ -154,10 +154,10 @@
     "publish": true
   },
   "17": {
-    "url": "software/dsa/sorting/main",
+    "url": "software/dsa/sorting",
     "data": "2023-03-09",
     "category": "DSA",
-    "publish": true
+    "publish": false
   },
   "18": {
     "url": "software/concept/object-oriented-design",
@@ -211,7 +211,7 @@
     "url": "software/dsa/tries",
     "data": "2022-04-26",
     "category": "DSA",
-    "publish": false
+    "publish": true
   },
   "27": {
     "url": "software/os/main",

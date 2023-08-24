@@ -60,8 +60,6 @@ function factorialIterative(n) {
 }
 ```
 
-## Example
-
 ### fibonacci
 
 * Concept
@@ -233,6 +231,23 @@ Let's try to write the code
   }
   ```
 * Time complexity: O(m x n)
+
+## TODO
+
+* MagicIndex
+* Power Set
+* Recursive Multiply
+* Towers of Hanoi
+* Permutations without Dups
+* Permutations with Dups
+* Parens
+* Paint Fill
+* Coins
+* Eight Queens
+* Stack of Boxes
+* Boolean Evaluation
+
+## Example
 
 ### (Real world) resource allocation
 
