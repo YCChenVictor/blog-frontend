@@ -76,4 +76,4 @@ Test-Driven Development ([TDD](/blog/software/tdd/main)) involves writing tests 
 
 This type of software is designed to control and manage hardware devices and systems, and is often built into the devices themselves. Examples include the software that controls a car's engine, a digital camera's image processing, or a smart thermostat's temperature control.
 
-## Reference
+* [Robotic]()

@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import axios from 'axios'
+
 import Articles from './components/Articles.jsx';
 import AuthorProfile from './components/AuthorProfile.jsx';
-import titleImg from './assets/img/title.jpeg'
 import Article from './components/Article.jsx'
-import settings from './data/articleSettings.json'
+import UserInNav from "./components/UserInNav.jsx"
 import ArticleList from './components/ArticleList.jsx'
+
+import { checkLoggedIn } from "./utils/checkLoggedIn.js"
+
+import titleImg from './assets/img/title.jpeg'
+import settings from './data/articleSettings.json'
 import articleSettings from './data/articleSettings.json'
-import SignupLogin from './components/SignupLogin.jsx'
 
 const Layout = () => {
+  const helloWorldUrl = 'http://localhost:5000/'
+  const [serverOn, setServerOn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false)
+
   const desiredRoutes = Object.entries(settings).map(([key, value], index) => (
     <Route
       key={index}
@@ -17,6 +26,24 @@ const Layout = () => {
       element={<Article setting={value} />}
     />
   ))
+
+  const fetchRequireData = async () => {
+    try {
+      const isServerOn = await axios.get(helloWorldUrl)
+      setServerOn(isServerOn)
+    } catch (error) {
+      setServerOn(false)
+    }
+    if(serverOn) return
+
+    const isLoggedInResponse = await checkLoggedIn()
+    setLoggedIn(isLoggedInResponse.loggedIn)
+  }
+
+  useEffect(() => {
+    fetchRequireData()
+  }, [])
+
   return (
     <div className="bg-gray-700">
       <nav className="flex items-center justify-between bg-gray-700 p-4">
@@ -30,16 +57,18 @@ const Layout = () => {
             Software
           </a>
         </ul>
-        <ul className="space-x-4">
-          <SignupLogin />
-        </ul>
+        {serverOn && (
+          <ul className="space-x-4">
+            <UserInNav />
+          </ul>
+        )}
       </nav>
       <Router>
         <div className="">
           <Routes>
             <Route path="/blog" element={<AuthorProfile />}/>
-            <Route path="/blog/software" element={<Articles category={'software'} />}/>
-            <Route path="/blog/medicine" element={<Articles category={'medicine'} />}/>
+            <Route path="/blog/software" element={<Articles category={'software'} loggedIn={loggedIn} />}/>
+            <Route path="/blog/gene" element={<Articles category={'gene'} />}/>
             <Route path="/blog/aesthetics" element={<Articles category={'aesthetics'} />}/>
             <Route path="/blog/article_list" element={<ArticleList articleSettings={articleSettings} />}/>
             {desiredRoutes}

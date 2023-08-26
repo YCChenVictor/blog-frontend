@@ -1,43 +1,37 @@
----
-layout: post
-title: observer
-description: ''
-date: '2022-03-25'
-categories: design-pattern
-note:
-mathjax:
-mermaid: true
-publish: true
----
+# Title
 
-## Introduction
+## Purpose
 
-Apple fans (果粉) really want new iphone, so they keep visiting store everyday to check whether new iphone released. The company feels disturbed, so they decided to send the release information through advertisements and broadcasts. But in this time, people not interested complain that they do not want to see this information.
+The purpose of using the observer pattern is to establish a one-to-many dependency between objects, ensuring that when one object changes its state, all its dependents are automatically notified and updated.
 
-<div class="mermaid">
+## How?
+
+Apple fans really want new iphone, so they keep visiting store everyday to check whether new iphone released. The company feels disturbed, so they decided to send the release information through advertisements and broadcasts. But in this time, people not interested complain that they do not want to see this information.
+
+```mermaid
 graph TD
   id2(fan 1) --visit--> id1(apple store)
   id3(fan 2) --visit--> id1(apple store)
   id4(fan 3) --visit--> id1(apple store)
   id5(fan 4) --visit--> id1(apple store)
-</div>
+```
 
 Bad solution: (broadcast randomly), which will notify someone not interested or skip some fans
 
-<div class="mermaid">
+```mermaid
 graph TD
   id1(apple store) --broadcast--> id2(fan 1)
   id1(apple store) --broadcast--> id3(fan 2)
   id1(apple store) --broadcast--> id4(bystander 1)
   id1(apple store) --broadcast--> id5(fan 4)
   id1(apple store) --broadcast--> id6(...)
-</div>
+```
 
 To solve this problem, Apple lets people visiting store for new iphone information to leave email so that the company can send notifications to these people when new iphone released. The notification is just like observer pattern.
 
 Better solution:
 
-<div class="mermaid">
+```mermaid
 graph TD
   subgraph Observer Pattern
     id1(observer) -- observes --> id2(apple store)
@@ -48,33 +42,21 @@ graph TD
     id1(observer) --broadcast--> id5(fan 3)
     id1(observer) --broadcast--> id6(...other fans)
   end
-</div>
-
-## Why?
-
-pros:
-
-* Open/Closed Principle. You can introduce new observers classes without having to change the observable’s code (and vice versa).
-
-cons:
-
-* Subscribers are notified in random order.
-
-## How?
+```
 
 1. One to many relationship (one observable (apple store) to many observers (fans))
 2. The state of observable changed and all observers are notified
 
-<div class="mermaid">
+```mermaid
 graph LR
   id1((Observable)) -- push: I changed status --> id2((observers))
   id1((Observable)) -- push: I changed status --> id3((observers))
   id1((Observable)) -- push: I changed status --> ...
-</div>
+```
 
 and the UML (suppose fans can receive release information through phone and computer)
 
-<div class="mermaid">
+```mermaid
 classDiagram
   direction RL
   InterfaceObservable --> InterfaceObserver : has many
@@ -97,7 +79,7 @@ classDiagram
   StoreObserverA : update()
 
   StoreObserverB : update()
-</div>
+```
 
 * `update`: How observer reacts to observable events
 * `add`: Let observers to observe
@@ -105,85 +87,94 @@ classDiagram
 * `notify`: how observable object want observers to react
 * `business_logic`: the business logic of observable and observers can react accordingly
 
+### Pros and Cons
+
+* pros
+  * Open/Closed Principle. You can introduce new observers classes without having to change the observable’s code (and vice versa).
+* cons
+  * Subscribers are notified in random order.
+
 ## What?
 
-```ruby
-class InterfaceObservable
-  def add(observer)
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
+```javascript
+class InterfaceObservable {
+  add(observer) {
+    throw new Error(`${this.constructor.name} has not implemented method 'add'`);
+  }
 
-  def remove(observer)
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
+  remove(observer) {
+    throw new Error(`${this.constructor.name} has not implemented method 'remove'`);
+  }
 
-  def notify
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
-end
+  notify() {
+    throw new Error(`${this.constructor.name} has not implemented method 'notify'`);
+  }
+}
 
-class InterfaceObserver
-  def update(_subject)
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
-end
+class InterfaceObserver {
+  update(_subject) {
+    throw new Error(`${this.constructor.name} has not implemented method 'update'`);
+  }
+}
 
-class StoreObservable < InterfaceObservable
-  attr_accessor :state
+class StoreObservable extends InterfaceObservable {
+  constructor() {
+    super();
+    this.state = null;
+    this.observers = [];
+  }
 
-  def initialize
-    @observers = []
-  end
+  add(observer) {
+    this.observers.push(observer);
+  }
 
-  def add(observer)
-    @observers << observer
-  end
+  remove(observer) {
+    const index = this.observers.indexOf(observer);
+    if (index !== -1) {
+      this.observers.splice(index, 1);
+    }
+  }
 
-  def remove(observer)
-    @observers.delete(observer)
-  end
+  notify() {
+    this.observers.forEach(observer => observer.update(this));
+  }
 
-  def notify
-    @observers.each { |observer| observer.update(self) }
-  end
+  businessLogic() {
+    this.state = ['new iphone released', 'no new iphone released'][Math.floor(Math.random() * 2)]; // simulate the business logic going to change the state of the observable
+    console.log(`Subject: My state has just changed to: ${this.state}`);
+    this.notify();
+  }
+}
 
-  def business_logic
-    @state = ['new iphone released', 'no new iphone released'].sample # simulate the business logic going to change the state of the observable
+class StoreObserverA extends InterfaceObserver {
+  update(subject) {
+    console.log(`Inform A: ${subject.state}`);
+  }
+}
 
-    puts "Subject: My state has just changed to: #{@state}"
-    notify
-  end
-end
+class StoreObserverB extends InterfaceObserver {
+  update(subject) {
+    console.log(`Inform B: ${subject.state}`);
+  }
+}
 
-class StoreObserverA < InterfaceObserver
-  def update(subject)
-    puts "Inform A: #{subject.state}"
-  end
-end
+// the implementation
+const storeObservable = new StoreObservable();
+const storeObserverA = new StoreObserverA();
+const storeObserverB = new StoreObserverB();
 
-class StoreObserverB < InterfaceObserver
-  def update(subject)
-    puts "Inform B: #{subject.state}"
-  end
-end
+// let observer observe the observable
+storeObservable.add(storeObserverA);
+storeObservable.add(storeObserverB);
 
-# the implementation
-store_observable = StoreObservable.new
-store_observer_a = StoreObserverA.new
-store_observer_b = StoreObserverB.new
+// the states of the observers will change according to the state of store observable
+storeObservable.businessLogic();
+storeObservable.businessLogic();
 
-# let observer to observes the observable
-store_observable.add(store_observer_a)
-store_observable.add(store_observer_b)
+storeObservable.remove(storeObserverA);
 
-# the states of the observers will change according to the state of store observable
-store_observable.business_logic
-store_observable.business_logic
-
-store_observable.remove(store_observer_a)
-
-# the observer a will not be notified
-store_observable.business_logic
+// observer A will not be notified
+storeObservable.businessLogic();
 ```
 
 What we can do more:

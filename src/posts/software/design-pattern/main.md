@@ -23,7 +23,7 @@ Main 23 design patterns
 * Structural design patterns deal with object composition and provide ways to organize objects to form larger structures
 * Example
   * Composition: This pattern allows you to create hierarchical structures of objects by composing objects into tree structures. It's useful when you want to represent part-whole hierarchies.
-  * Decorator: This pattern allows you to add behavior to objects dynamically by wrapping them in an object of a decorator class. It's useful when you want to add functionality to an object without changing its interface.
+  * [Decorator](/blog/software/design-pattern/decorator): This pattern allows you to add behavior to objects dynamically by wrapping them in an object of a decorator class. It's useful when you want to add functionality to an object without changing its interface.
   * [Adapter](/blog/software/design-pattern/adapter): This pattern allows you to adapt an object to another interface, without changing the underlying object. It's useful when you want to reuse existing code with a different interface.
   * Proxy: This pattern provides a surrogate or placeholder for another object to control access to it. It's useful when you want to add security, logging, or caching to an object.
   * Bridge: This pattern separates an object's interface from its implementation, so that the two can vary independently. It's useful when you want to decouple an abstraction from its implementation, allowing both to evolve independently.
@@ -34,12 +34,12 @@ Main 23 design patterns
 
 * Behavioral design patterns deal with communication between objects and how objects interact with each other
 * Example
-  * Observer: This pattern allows you to define a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically. It's useful when you want to keep multiple objects in sync with each other.
+  * [Observer](/blog/software/design-pattern/observer): This pattern allows you to define a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically. It's useful when you want to keep multiple objects in sync with each other.
   * Template Method: This pattern defines the skeleton of an algorithm in a base class, allowing subclasses to provide concrete implementations of certain steps. It's useful when you want to define the basic structure of an algorithm, while allowing certain steps to be customized.
   * Strategy: This pattern allows you to define a family of interchangeable algorithms, encapsulate each one, and make them interchangeable at runtime. It's useful when you want to choose an algorithm dynamically, based on runtime conditions.
   * Interpreter: This pattern provides a way to define the grammar of a language, and to interpret sentences in that language.
   * [Visitor](/blog/software/design-pattern/visitor): Allows you to add new behaviors or operations to a set of objects without modifying their structure. It achieves this by defining separate visitor objects that can traverse and operate on the elements of a complex object structure.
-  * Command: 
+  * [Command](/blog/software/design-pattern/command): Encapsulates a request as an object, allowing for parameterization of clients with different requests, queuing of requests, and logging of the commands, thus decoupling the sender and receiver of the command.
   * Iterator:
   * Mediator: 
   * Memento: 

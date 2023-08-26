@@ -56,7 +56,7 @@ classDiagram
 
 * may creates too detailed and too many classes for commands
 
-## What?
+## Example
 
 For example, a robot performs a serial movements to dance: right leg, left leg, head, butt and we can write a script as follow:
 

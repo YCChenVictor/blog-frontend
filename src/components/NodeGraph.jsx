@@ -3,10 +3,9 @@ import ForceGraph2D from "react-force-graph-2d"
 import articleSettings from '../data/articleSettings.json'
 import axios from "axios"
 
-const NodeGraph = ({category}) => {
+const NodeGraph = ({category, loggedIn}) => {
   const [nodes, setNodes] = useState([])
   const [links, setLinks] = useState([])
-  const [loggedIn, setLoggedIn] = useState(false)
   const forceRef = useRef()
 
   const handleNodeClick = (node) => {
@@ -31,7 +30,7 @@ const NodeGraph = ({category}) => {
   }
 
   const fetchNodeData = async () => {
-    const nodeData = await import(`../data/${category}/nodeGraph.json`)
+    const nodeData = await import(`../data/${category}/nodeGraph.json`) // After deploy backend, should get from backend
     let { nodes, links } = nodeData
 
     if (nodes === undefined || links === undefined) {
@@ -70,21 +69,9 @@ const NodeGraph = ({category}) => {
     return true
   }
 
-  const checkLoggedIn = () => {
-    const url = `http://localhost:5000/node-graph-init`
-    const token = localStorage['blog logged in']
-    const headers = {
-      'Authorization': `Bearer ${token}`,
-    }
-    axios.get(url, {headers})
-      .then((response) => {setLoggedIn(response.data.loggedIn)})
-      .catch((error) => {console.error("Error:", error)})
-  }
-
   useEffect(() => { // please extract following as method
     forceRef.current.zoom(2, 300)
 
-    checkLoggedIn()
     fetchNodeData().then((success) => {
       if(!success) return
       setTimeout(function() { // Give it time to render

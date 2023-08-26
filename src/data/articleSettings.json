@@ -86,10 +86,10 @@
     "publish": true
   },
   "9": {
-    "url": "medicine/main",
+    "url": "gene/main",
     "specialTitle": null,
     "date": "2023-07-22",
-    "categories": "medicine",
+    "categories": "gene",
     "note": null,
     "useMathjax": false,
     "useThreeJS": false,
@@ -97,10 +97,10 @@
     "publish": true
   },
   "10": {
-    "url": "medicine/biology",
+    "url": "gene/biology",
     "specialTitle": null,
     "date": "2023-07-29",
-    "categories": "medicine",
+    "categories": "gene",
     "note": null,
     "useMathjax": false,
     "useThreeJS": false,
@@ -289,13 +289,13 @@
     "url": "software/design-pattern/adapter",
     "data": "2023-03-30",
     "category": "design-pattern",
-    "publish": false
+    "publish": true
   },
   "40": {
     "url": "software/design-pattern/facade",
     "data": "2022-07-28",
     "category": "design-pattern",
-    "publish": false
+    "publish": true
   },
   "41": {
     "url": "software/ood/solid",
@@ -307,7 +307,7 @@
     "url": "software/design-pattern/visitor",
     "data": "2022-10-28",
     "category": "design-pattern",
-    "publish": false
+    "publish": true
   },
   "43": {
     "url": "software/design-pattern/command",
@@ -319,6 +319,24 @@
     "url": "software/javascript/AJAX",
     "data": "2021-06-19",
     "category": "javascript",
+    "publish": false
+  },
+  "45": {
+    "url": "software/design-pattern/decorator",
+    "data": "2022-04-02",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "46": {
+    "url": "software/design-pattern/observer",
+    "data": "2022-03-25",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "47": {
+    "url": "software/robotic/main",
+    "data": "2022-08-26",
+    "category": "robotic",
     "publish": false
   }
 }
