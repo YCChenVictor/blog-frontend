@@ -49,7 +49,7 @@ Plan and design the user interface and functionality of your web application.
 
 #### Frontend
 
-* [React](/blog/software/react/main) is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications.
+* [React] is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications.
 
 #### Backend
 
@@ -76,4 +76,4 @@ Test-Driven Development ([TDD](/blog/software/tdd/main)) involves writing tests 
 
 This type of software is designed to control and manage hardware devices and systems, and is often built into the devices themselves. Examples include the software that controls a car's engine, a digital camera's image processing, or a smart thermostat's temperature control.
 
-* [Robotic]()
+* [Robotic]

@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-12-30'
-categories: node
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 
@@ -154,7 +141,84 @@ The API of Node.js provides a comprehensive set of functions and modules that en
 
 ### spec
 
-In Node.js, writing tests using a testing specification or methodology is essential for ensuring code quality and preventing bugs. Jest is a widely-used testing framework that supports several testing styles and formats and is a great choice for Node.js developers looking for a powerful and easy-to-use testing framework. For more information, please refer to [spec]({{site.baseurl}}/node/2023/01/20/spec.html)
+I use jest.
+
+* Install
+  ```nash
+  npm i jest
+  ```
+* In `/spec`, run jest
+  * Setup script
+    ```JSON
+    "scripts": {
+      "test": "NODE_ENV=test jest",
+    },
+    ```
+* Create spec directory in root, and run tests in specific directory
+  ```bash
+  npx jest ./tests --detectOpenHandles
+  ```
+* Environment variables, in `.env` add following to setup test database
+  ```bash
+  TEST_DATABASE_URL={database_system}://{username}:{password}@{host_and_port}/{database_name}
+  ```
+* Refer to [Docker] for setting up test database; for example, PG
+  ```bash
+  docker run --name my_db \
+      -e POSTGRESQL_PORT=5432 \
+      -e POSTGRESQL_DB=my_db \
+      -e POSTGRESQL_USER=postgres \
+      -e POSTGRES_PASSWORD=test1234 \
+      -d postgres
+  ```
+* Use `request(app)`
+  ```javascript
+  const request = require('supertest')
+  const app = require('../server.js')
+  const apis = require('../apis/summary.js')
+  
+  describe('HelloWorld', () => {
+    let server
+  
+    beforeEach (() => {
+      server = app.listen(0)
+      apis(app)
+    })
+  
+    afterEach(() => {
+      server.close()
+    })
+  
+    describe('GET /', () => {
+      test('should return Hello World!', () => {
+        request(app).get('/').then(response => {
+          expect(response.text).toEqual('Hello World!')
+        });
+      })
+    })
+  })
+  ```
+* Other
+  * Reset database before each case to drop and create tables
+    ```javascript
+    beforeEach(async () => {
+      sequelize.truncate({ cascade: true, restartIdentity: true });
+    });
+    ```
+* Mock: In `spec_config`
+  ```javascript
+  jest.mock('pg', () => { // should extract to other file
+    const mPool = {
+      connect: function () {
+        return { query: jest.fn() };
+      },
+      query: jest.fn(),
+      end: jest.fn(),
+      on: jest.fn(),
+    };
+    return { Pool: jest.fn(() => mPool) };
+  });
+  ```
 
 ### debugger
 
