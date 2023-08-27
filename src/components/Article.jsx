@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
-import remarkGfm from "remark-gfm";
-import SidebarLayout from './SidebarLayout.jsx'
-import { marked } from "marked"
-import RenderImage from "./RenderImage.jsx"
-import RenderCode from "./RenderCode.jsx"
-import RenderMermaid from "./RenderMermaid.jsx"
+import remarkGfm from 'remark-gfm'
+import { marked } from 'marked'
 import mermaid from 'mermaid'
-import WordCounts from './WordCounts.jsx'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
-import LinkPage from './LinkPage.jsx'
-import Gpt from './Gpt.jsx'
+
+import SidebarLayout from './SidebarLayout.jsx'
+import RenderImage from './RenderImage.jsx'
+import RenderCode from './RenderCode.jsx'
+import RenderMermaid from './RenderMermaid.jsx'
 import ButtonScrollTop from './ButtonScrollTop.jsx'
+// import LinkPage from './LinkPage.jsx'
+// import Gpt from './Gpt.jsx'
 // import api from './Api.jsx'
 
 const Article = ({setting}) => {
@@ -39,12 +39,6 @@ const Article = ({setting}) => {
     mermaid.contentLoaded();
   }
 
-  const updateArticleWidth = async () => {
-    const sidebarWidth = componentSidebarRef.current.clientWidth
-    console.log(sidebarWidth)
-    setArticleLeftPaddingWidth(sidebarWidth)
-  }
-
   useEffect(() => { // try to dynamic import from filePath
     const importFileAndFetchContent = async () => {
       const fileModule = await import(`../${filePath}`)
@@ -60,11 +54,6 @@ const Article = ({setting}) => {
         tagName: tag.tagName,
       }));
       setRawTitles(tags);
-
-      setTimeout(() => {
-        updateArticleWidth()
-      }, 500);
-      window.addEventListener('resize', updateArticleWidth);
     }
     // const checkLoggedIn = () => {
     //   api.getGPT()
@@ -86,34 +75,34 @@ const Article = ({setting}) => {
 
   return (
     <div className='bg-gray-400 flex'>
-      <div className='fixed' ref={componentSidebarRef}>
-        {loggedIn ? (
+      <div className='' ref={componentSidebarRef}>
+        {/* {loggedIn ? (
           <Gpt />
         ) : (
           <div>{}</div>
-        )}
-        {setting.publish ? (
+        )} */}
+        {/* {setting.publish ? (
           <LinkPage
             articleUrl={setting['url']}
           />
         ) : (
           <div>{}</div>
-        )}
-        <WordCounts
-          articleContent={markdownContent}
-        />
+        )} */}
         {rawTitles.length > 0 ? (
-          <SidebarLayout
-            onToggleExpand={updateArticleWidth}
-            height={'60vh'}
-            rawTitles={rawTitles}
-          />
+          <div className="sticky top-0 h-screen overflow-y-auto">
+            <SidebarLayout
+              setting={setting}
+              articleContent={markdownContent}
+              height={'80vh'}
+              rawTitles={rawTitles}
+            />
+          </div>
         ) : (
           <div>Loading...</div>
         )}
       </div>
       <div style={{
-        paddingLeft: `${articleLeftPaddingWidth + 16}px`,
+        padding: `16px`,
         }}
       >
         <ReactMarkdown

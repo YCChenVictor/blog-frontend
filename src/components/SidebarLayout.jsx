@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import { HashLink } from 'react-router-hash-link'
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined"
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
+import WordCounts from './WordCounts.jsx'
+import LinkPage from './LinkPage.jsx'
 
-const SidebarLayout = ({onToggleExpand, height, rawTitles}) => {
+const SidebarLayout = ({setting, articleContent, height, rawTitles}) => {
   const [isExpand, setIsExapand] = useState(true);
   const titles = rawTitles.map((item) => ({
     content: item.content,
@@ -46,25 +48,34 @@ const SidebarLayout = ({onToggleExpand, height, rawTitles}) => {
   }, [])
 
   return (
-    <div style={{ display: 'flex', height: height }} >
+    <div>
+      <div className='p-4'>
+        <button
+          className="items-center p-2 space-x-2 bg-gray-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring"
+          onClick={() => { setIsExapand(!isExpand) }}
+        >
+          <MenuOutlinedIcon /> {/* Render the MUI icon */}
+        </button>
+      </div>
       <Sidebar
         backgroundColor="rgb(156 163 175)"
         collapsed={isExpand}
       >
         <Menu>
-          <MenuItem
-            icon={<MenuOutlinedIcon />}
-            onClick={() => {
-              setIsExapand(!isExpand)
-              setTimeout(() => {
-                onToggleExpand()
-              }, 400);
-            }}
-            style={{ textAlign: "center" }}
+          <div
+            className='p-4'
           >
-          {" "}
-         
-        </MenuItem>
+            <WordCounts
+              articleContent={articleContent}
+            />
+            {setting.publish ? (
+              <LinkPage
+                articleUrl={setting['url']}
+              />
+            ) : (
+              <div>{}</div>
+            )}
+          </div>
           {menuItemsDesired}
         </Menu>
       </Sidebar>
