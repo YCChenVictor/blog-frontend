@@ -1,39 +1,16 @@
----
-layout: post
-title: absctact factory
-description: ''
-date: '2022-04-09'
-categories: design-pattern
-note:
-mathjax:
-mermaid: true
-p5:
-publish: true
----
+# Title
 
-## Introduction & Why
+## Purpose
 
-Given that we know the factory method, which can create same kind of monster with different level. That is, we call the factory to use its product line to create **same** kind of product but choose **different** feature during the process of production. What if we want the factory to create various product? We need the factroy to have various product lines.
+Abstract factory is the extension of factory method. Use the abstract factory pattern when you need to create families of related objects and ensure their compatibility, whereas the factory method pattern is suitable for creating individual objects with customization.
 
-The result would be as follow:
+## Concept
 
-```ruby
-def create_monsters(factory)
-  monster_a = factory.create_monster_a
-  monster_b = factory.create_monster_b
-end
-```
+Recap: We call the factory method to create **same** kind of product but choose **different** feature during the process of production.
 
-Note that here only two monster using one factory, meaning each factory has its own  two product lines for these two monsters. We can do more complex design such as two factory using same product line for monster_a. But I am going to just demo it with two product line in each factory.
+If we want the factory to create various product, we need the factory to have various product lines, which is the abstract factory design pattern.
 
-## How?
-
-Let's say we want two methods for three environments:
-
-1. ocean
-2. plain
-
-and there are two types of monsters: horse & fish. The horse monster is strong in plain but weak in ocean; the fish monster is strong in ocean but weak in plain. We need two factories for two environments. Each has two product lines.
+For example, let's say we want two environments, ocean and plain and two types of monsters, horse and fish. The horse monster is strong in plain but weak in ocean; the fish monster is strong in ocean but weak in plain. We need two factories for two environments. Each has two product lines.
 
 so the methods to create the monsters accroding to the envrionmnets would be as follow:
 
@@ -47,7 +24,7 @@ end
 
 and the UML would be as follow:
 
-<div class="mermaid">
+```mermaid
   classDiagram
     Fish <-- StrongFish : is a
     Fish <-- WeakFish : is a
@@ -68,9 +45,9 @@ and the UML would be as follow:
 
     WeakHorse <-- FactoryOcean : create
     StrongHorse <-- FactoryPlain : create
-</div>
+```
 
-## What?
+## Example
 
 ```ruby
 class AbstractFactory

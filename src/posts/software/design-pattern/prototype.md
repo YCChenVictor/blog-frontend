@@ -1,16 +1,12 @@
----
-layout: post
-title: prototype
-description: ''
-date: '2022-03-22'
-categories: design-pattern presentation
-note:
-mathjax:
-mermaid: true
-publish: true
----
+# Title
 
-## Introduction
+## Purpose
+
+* Run time saving (no need to reconstructure the file)
+* Avoid objects created dependent on class (we do not need to modify class to create new objects, which may affect the objects created after the midification)
+* Some private field must only connected to this object cannot be used in other object
+
+## Concept
 
 For example, at first, there is only **one supervisor** and the host needs to print file with the title of that supervisor; however, right before the meeting, another supervisor requests to join the meeting, so we need another same file with different title. The host now may have these options:
 
@@ -21,14 +17,6 @@ For example, at first, there is only **one supervisor** and the host needs to pr
 * some confidential informations may need the customized styles to emphasize only used in this particular file for particular meetings
 
 Prototype design pattern serves as the same concepts of the copy process (option 1); for **creating** new object by **clone** other object and do required modifications **at run time**.
-
-## Why?
-
-* run time saving (no need to reconstructure the file)
-* avoid objects created dependent on class (we do not need to modify class to create new objects, which may affect the objects created after the midification)
-* some private field must only connected to this object cannot be used in other object
-
-## How? & What?
 
 ### the concept of copy
 
@@ -106,7 +94,52 @@ puts x1 # the article of x1 not changed
 puts x2
 ```
 
-### Demonstration
+### design graph and pseudocode
+
+The code in section, Demonstration, is for one document. We can extend this design for more documents as following design graph and pseudocode
+
+#### design graph
+
+```mermaid
+classDiagram
+  Client --|> Prototype : Call
+  DocumentOne <|-- Prototype : Inherited From
+  DocumentTwo <|-- Prototype : Inherited From
+
+  Prototype : clone()
+  DocumentOne: FieldOne
+  DocumentTwo: FieldTwo
+```
+
+#### pseudocode
+
+```ruby
+class Prototype
+  def clone
+  end
+end
+
+class ConfidentialReference
+  ...
+end
+
+class DocumentOne < Prototype
+  def initialize
+    @document = 'One'
+    super
+  end
+  ...
+end
+
+class DocumentTwo < Prototype
+  def initialize
+    @document = 'Two'
+    super
+  end
+end
+```
+
+### Example
 
 If we build the class intuitively, we may just create a class as follow:
 
@@ -156,51 +189,6 @@ p1.title != p2.title # for two different supervisor
 p1.articles.equal?(p2.articles) # two different articles with same content
 p1.confidentials.equal?(p2.confidentials)
 p1.confidentials.prototype.equal?(p2.confidentials.prototype) # again two different confidential articles with same content, so if the information leaks, we know who did it.
-```
-
-### design graph and pseudocode
-
-The code in section, Demonstration, is for one document. We can extend this design for more documents as following design graph and pseudocode
-
-#### design graph
-
-<div class="mermaid">
-classDiagram
-  Client --|> Prototype : Call
-  DocumentOne <|-- Prototype : Inherited From
-  DocumentTwo <|-- Prototype : Inherited From
-
-  Prototype : clone()
-  DocumentOne: FieldOne
-  DocumentTwo: FieldTwo
-</div>
-
-#### pseudocode
-
-```ruby
-class Prototype
-  def clone
-  end
-end
-
-class ConfidentialReference
-  ...
-end
-
-class DocumentOne < Prototype
-  def initialize
-    @document = 'One'
-    super
-  end
-  ...
-end
-
-class DocumentTwo < Prototype
-  def initialize
-    @document = 'Two'
-    super
-  end
-end
 ```
 
 ## Reference

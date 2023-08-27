@@ -362,9 +362,76 @@ function Palindrome(string) {
 
 Then the time complexity = $$O(N)$$. We can also try to break it at the point of middle, then the time complexity = $$O(N/2)$$
 
+### One Away
+
+* Question: There are three types of edits that can be performed on strings: insert a character, remove a character, or replace a character. Given two strings, write a function to check if they are one edit (or zero edits) away.
+* Example (all edge case included)
+  * paie, pie -> true
+  * paies, paie -> true
+  * paie, baie -> true
+  * paie, bake -> false
+* Code
+  ```javascript
+  function oneAway (s1, s2) {
+    let match = {}
+    const concatString = s1 + s2
+    for (let i = 0; i < concatString.length; i++) {
+      if (match[concatString[i]] === undefined) {
+        match[concatString[i]] = i
+      } else {
+        match[concatString[i]] -= i
+      }
+    }
+  
+    let noMatch = 0
+    let misMatch = 0
+    let positionDistance = 0
+    for (const key in match) {
+      const value = match[key]
+      if (value > 0) {
+        noMatch += 1
+      }
+      if (value < 0) {
+        positionDistance = value
+        if (positionDistance !== value) {
+          misMatch += 1
+        }
+      }
+    }
+    
+    if (noMatch > 1 || misMatch > 1) {
+      return false
+    } else {
+      return true
+    }
+  }
+  
+  module.exports = oneAway
+  ```
+* Test
+  ```javascript
+  describe('One Away', () => {
+    test('paie, pie', () => {
+      expect(OneAway('paie', 'pie')).toEqual(true)
+    })
+    test('paies, paie', () => {
+      expect(OneAway('paies', 'paie')).toEqual(true)
+    })
+    test('paie, baie', () => {
+      expect(OneAway('paie', 'baie')).toEqual(true)
+    })
+    test('paie, bake', () => {
+      expect(OneAway('paie', 'bake')).toEqual(true)
+    })
+  })
+  ```
+* Time Complexity = O(m + n) and GPT said the minimum is O(min(m, n))
+  * There is a technique: `while (i < s1.length && j < s2.length)`, which can iterate two array at the same time.
+
+Process: Question -> add questions for edge cases for full examples -> guess best time complexity -> code -> test
+
 ### TODO
 
-* One Away
 * String Compression
 * Rotate Matrix
 * Zero Matrix

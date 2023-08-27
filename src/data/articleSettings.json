@@ -344,5 +344,29 @@
     "data": "2022-12-30",
     "category": "express",
     "publish": false
+  },
+  "49": {
+    "url": "software/design-pattern/factory-method",
+    "data": "2022-04-06",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "50": {
+    "url": "software/design-pattern/strategy",
+    "data": "2022-03-22",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "51": {
+    "url": "software/design-pattern/prototype",
+    "data": "2022-06-17",
+    "category": "design-pattern",
+    "publish": false
+  },
+  "52": {
+    "url": "software/design-pattern/abstract-factory",
+    "data": "2022-04-09",
+    "category": "design-pattern",
+    "publish": false
   }
 }

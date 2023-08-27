@@ -567,6 +567,98 @@ function parseSteps(answer) {
 }
 ```
 
+### Palindrome
+
+* Question: Implement a function to check if a linked list is a palindrome.
+* Example
+  * 1 -> 2 -> 1 => true
+  * 1 -> 2 -> 2 -> 1 => true
+  * Seems not singly linked list? => true
+* Time complexity
+  * I think I still need to loop through all elements, so the it is at least O(n)
+* Code
+  ```javascript
+  function palindrome (linkedList) {
+    let currentNode = linkedList.head
+    let fasterNode = linkedList.head
+    const allValues = []
+    const halfValues = []
+    while (fasterNode !== null) {
+      halfValues.push(currentNode.value)
+      currentNode = currentNode.next
+  
+      allValues.push(fasterNode.value)
+      fasterNode = fasterNode.next
+      if (fasterNode !== null) {
+        allValues.push(fasterNode.value)
+        fasterNode = fasterNode.next
+      }
+    }
+  
+    for (i = halfValues.length - 1; i >= 0; i--) {
+      if (halfValues[i] === allValues[allValues.length - 1 - i]) {
+        continue
+      } else {
+        return false
+      }
+    }
+    return true
+  }
+  
+  module.exports = palindrome
+  ```
+* Test
+  ```javascript
+  const LinkedList = require('../main.js')
+  const palindrome = require('../examples/palindrome.js')
+  
+  describe('Palindrome', () => {
+    describe('1 -> 2 -> 1', () => {
+      const linkedList = new LinkedList
+  
+      beforeEach(() => {
+        linkedList.prepend(1)
+        linkedList.prepend(2)
+        linkedList.prepend(1)
+      })
+  
+      test('#', () => {
+        expect(palindrome(linkedList)).toEqual(true)
+      })
+    })
+  
+    describe('1 -> 2 -> 2 -> 1', () => {
+      const linkedList = new LinkedList
+  
+      beforeEach(() => {
+        linkedList.prepend(1)
+        linkedList.prepend(2)
+        linkedList.prepend(2)
+        linkedList.prepend(1)
+      })
+  
+      test('#', () => {
+        expect(palindrome(linkedList)).toEqual(true)
+      })
+    })
+  
+    describe('1 -> 2 -> 3 -> 1', () => {
+      const linkedList = new LinkedList
+  
+      beforeEach(() => {
+        linkedList.prepend(1)
+        linkedList.prepend(2)
+        linkedList.prepend(3)
+        linkedList.prepend(1)
+      })
+  
+      test('#', () => {
+        expect(palindrome(linkedList)).toEqual(false)
+      })
+    })
+  })
+  ```
+
 ### TODO
 
 * Palindrome

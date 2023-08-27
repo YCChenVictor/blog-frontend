@@ -12,11 +12,11 @@ Main 23 design patterns
 
 * Different ways to create objects
 * Example
-  * [Factory method]: Factory method provides a way to delegate the creation of objects to subclasses. It's useful when you want to create objects without specifying the exact class of object that will be created.
+  * [Factory method](/blog/software/design-pattern/factory-method): Factory method provides a way to delegate the creation of objects to subclasses. It's useful when you want to create objects without specifying the exact class of object that will be created.
   * Builder: Builder separates the construction of a complex object from its representation, so that the same construction process can create different representations. It's useful when you want to create complex objects with many optional parameters.
-  * Prototype: Prototype involves creating new objects by cloning existing objects. It's useful when creating objects is expensive, and you want to reuse existing objects.
+  * [Prototype](/blog/software/design-pattern/prototype): Prototype involves creating new objects by cloning existing objects. It's useful when creating objects is expensive, and you want to reuse existing objects.
   * Singleton: Singleton ensures that only one instance of a class can be created, and provides a global point of access to that instance. It's useful when you want to limit the number of instances of a class, or when you need to coordinate actions across the system.
-  * Abstract method: This pattern provides an interface for creating families of related objects, without specifying the concrete classes of those objects. It's useful when you want to create objects that share a common interface, but have different implementations.
+  * [Abstract Factory](/blog/software/design-pattern/abstract-factory): This pattern provides an interface for creating families of related objects, without specifying the concrete classes of those objects. It's useful when you want to create objects that share a common interface, but have different implementations.
 
 ### Structural
 
@@ -36,7 +36,7 @@ Main 23 design patterns
 * Example
   * [Observer](/blog/software/design-pattern/observer): This pattern allows you to define a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically. It's useful when you want to keep multiple objects in sync with each other.
   * Template Method: This pattern defines the skeleton of an algorithm in a base class, allowing subclasses to provide concrete implementations of certain steps. It's useful when you want to define the basic structure of an algorithm, while allowing certain steps to be customized.
-  * Strategy: This pattern allows you to define a family of interchangeable algorithms, encapsulate each one, and make them interchangeable at runtime. It's useful when you want to choose an algorithm dynamically, based on runtime conditions.
+  * [Strategy](/blog/software/design-pattern/strategy): This pattern allows you to define a family of interchangeable algorithms, encapsulate each one, and make them interchangeable at runtime. It's useful when you want to choose an algorithm dynamically, based on runtime conditions.
   * Interpreter: This pattern provides a way to define the grammar of a language, and to interpret sentences in that language.
   * [Visitor](/blog/software/design-pattern/visitor): Allows you to add new behaviors or operations to a set of objects without modifying their structure. It achieves this by defining separate visitor objects that can traverse and operate on the elements of a complex object structure.
   * [Command](/blog/software/design-pattern/command): Encapsulates a request as an object, allowing for parameterization of clients with different requests, queuing of requests, and logging of the commands, thus decoupling the sender and receiver of the command.

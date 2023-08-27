@@ -1,24 +1,12 @@
----
-layout: post
-title: strategy
-description: ''
-date: '2022-03-22'
-categories: design-pattern
-note:
-mathjax:
-mermaid: true
-publish: true
----
-
-## Introduction
-
-Constructs multiple intefaces for variant methods in a upper class so that we can have multiple **combinations** to create multiple classes inherit from this upper class with shared methods.
+# Title
 
 ## Why?
 
 We do not want to rewrite the same methods in different lower classes.
 
 ## How?
+
+Constructs multiple intefaces for variant methods in a upper class so that we can have multiple **combinations** to create multiple classes inherit from this upper class with shared methods.
 
 For example, given lots of varieties of dogs, there are four dogs with different **behaviors** according to their characteristics:
 
@@ -41,7 +29,7 @@ Given the OOP concepts, we have choices as follow:
 
 Given the four characteristics map four behaviors, we need to write logics or overwrite the methods in the upper class. What if we want Chihuahua to share their kissing behavior with Sheepdogs? We need the concept of **strategy** and the UML as follow:
 
-<div class="mermaid">
+```mermaid
 classDiagram
   Dog <|-- Chihuahua : Inherit
   Dog <|-- Bulldog : Inherit
@@ -64,59 +52,61 @@ classDiagram
   KissForIntimacy : kiss()
   WalkForLost : walk()
   walkToAnywhere : walk()
-</div>
+```
 
 ## What?
 
-```ruby
-class Dog
-  def initialize(walk_behavior, kiss_behavior)
-  end
+```javascript
+class Dog {
+  constructor(walkBehavior, kissBehavior) {
+    this.walkBehavior = walkBehavior;
+    this.kissBehavior = kissBehavior;
+  }
 
-  def kiss
-    puts kiss_behavior.kiss
-  end
+  kiss() {
+    console.log(this.kissBehavior.kiss());
+  }
 
-  def walk
-    puts walk_behavior.walk
-  end
-end
+  walk() {
+    console.log(this.walkBehavior.walk());
+  }
+}
 
-class KissBehavior
-  def kiss
-    raise 'Must'
-  end
-end
+class KissBehavior {
+  kiss() {
+    throw new Error('Must');
+  }
+}
 
-class WalkBehavior
-  def walk
-    raise 'Must'
-  end
-end
+class WalkBehavior {
+  walk() {
+    throw new Error('Must');
+  }
+}
 
-class KissForStroking < KissBehavior
-  def kiss
-    puts "kiss for stroking"
-  end
-end
+class KissForStroking extends KissBehavior {
+  kiss() {
+    return "kiss for stroking";
+  }
+}
 
-class KissForIntimacy < KissBehavior
-  def kiss
-    puts "kiss for intimacy"
-  end
-end
+class KissForIntimacy extends KissBehavior {
+  kiss() {
+    return "kiss for intimacy";
+  }
+}
 
-class WalkForLost < WalkBehavior
-  def walk
-    puts "walk for lost"
-  end
-end
+class WalkForLost extends WalkBehavior {
+  walk() {
+    return "walk for lost";
+  }
+}
 
-class WalkToAnyWhere < WalkBehavior
-  def walk
-    puts "walk to any where"
-  end
-end
+class WalkToAnyWhere extends WalkBehavior {
+  walk() {
+    return "walk to anywhere";
+  }
+}
 ```
 
 and create instance from these four classes
