@@ -19,7 +19,7 @@ const Layout = () => {
   const [serverOn, setServerOn] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
 
-  const desiredRoutes = Object.entries(settings).map(([key, value], index) => (
+  const articleRoutes = Object.entries(settings).map(([key, value], index) => (
     <Route
       key={index}
       path={`blog/${value['url']}`}
@@ -71,7 +71,7 @@ const Layout = () => {
             <Route path="/blog/gene" element={<Articles category={'gene'} />}/>
             <Route path="/blog/aesthetics" element={<Articles category={'aesthetics'} />}/>
             <Route path="/blog/article_list" element={<ArticleList articleSettings={articleSettings} />}/>
-            {desiredRoutes}
+            {articleRoutes}
           </Routes>
         </div>
       </Router>

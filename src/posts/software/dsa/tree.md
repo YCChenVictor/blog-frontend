@@ -546,6 +546,77 @@ Given a binary tree, return the height; for example
   })
   ```
 
+### List of Depths
+
+* Question: Given a binary tree, design an algorithm which creates a linked list of all the nodes at each depth.
+* Example: (e.g., if you have a tree with depth D, you'll have D linked lists).
+  * Normal
+    ```bash
+      1
+     / \
+    2   3
+
+    // result: 1 -> 2 -> 3
+    ```
+  * Edge
+    ```
+        1
+       / \
+      2   
+       \
+        3
+    ```
+  * I can either create new nodes or use the same nodes to construct the linked list.
+* Code
+  ```javascript
+  function listOfDepths (binaryTree) {
+    const root = binaryTree.root
+    const nodes = []
+    const queue = []
+
+    queue.push(root)
+    while (queue.length !== 0) {
+      const insertNode = queue.pop()
+      nodes.push(insertNode)
+      if (insertNode.left !== null) queue.push(insertNode.left)
+      if (insertNode.right !== null) queue.push(insertNode.right)
+    }
+
+    linkedList = new LinkedList()
+    let previousNode
+    for (let i = 0; i < nodes.length; i ++) {
+      if (linkedList.head === null) {
+        linkedList.head = nodes[i]
+        previousNode = nodes[i]
+      } else {
+        previousNode.next = nodes[i]
+      }
+    }
+
+    return linkedList
+  }
+  ```
+* Test
+  ```javascript
+  describe('List Of Depths', () => {
+    describe('', () => {
+      let binaryTree
+      beforeEach('', () => {
+        const values = [1, 2, 3]
+        for (i = 0; i < values.length; i++) {
+          binaryTree.addNode(values[i])
+        }
+      })
+      //   1
+      //  / \
+      // 2   3
+      test('#', () => {
+        expect(listOfDepths(binaryTree).printList()).toEqual([1, 2, 3])
+      })
+    })
+  })
+  ```
+
 ### TODO
 
 * List of Depths
@@ -558,9 +629,7 @@ Given a binary tree, return the height; for example
 * Random Node
 * Paths with Sum
 
-## What?
-
-### real world example
+## Real world example
 
 A real world example of implementing a decision tree
 
@@ -612,22 +681,6 @@ root.ask();
 ```
 
 Each node has a question, a yesNode branch and a noNode branch. The ask() method of the node prompts the user to answer the question and then follows the appropriate branch based on the answer. If the branch is another DecisionTreeNode, it recursively calls the ask() method on that node. If the branch is a leaf node, it simply returns the corresponding result.
-
-## TODO
-
-* Determine if two trees are identical
-* Mirror tree
-* Symmetric Tree
-* Diameter of tree
-* Checked for Balanced tree
-* Children Sum Parent
-* Check for BST
-* Array to BST
-* Largest value in each level of binary tree
-* Maximum GCD of siblings of a binary tree
-* Zigzag Tree Traversal
-* Inorder Successor in BST
-* Kth Largest Element in a BST
 
 ## Reference
 

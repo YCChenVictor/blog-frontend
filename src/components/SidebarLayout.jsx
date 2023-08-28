@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import { HashLink } from 'react-router-hash-link'
+
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
+
 import WordCounts from './WordCounts.jsx'
 import LinkPage from './LinkPage.jsx'
+import Gpt from './Gpt.jsx'
 
-const SidebarLayout = ({setting, articleContent, height, rawTitles}) => {
+const SidebarLayout = ({
+    loggedIn,
+    setting,
+    articleContent,
+    rawTitles
+  }) => {
   const [isExpand, setIsExapand] = useState(true);
   const titles = rawTitles.map((item) => ({
     content: item.content,
@@ -68,6 +76,11 @@ const SidebarLayout = ({setting, articleContent, height, rawTitles}) => {
             <WordCounts
               articleContent={articleContent}
             />
+            {loggedIn ? (
+              <Gpt />
+            ) : (
+              <div>{}</div>
+            )}
             {setting.publish ? (
               <LinkPage
                 articleUrl={setting['url']}

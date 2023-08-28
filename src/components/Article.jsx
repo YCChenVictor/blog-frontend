@@ -12,7 +12,6 @@ import RenderCode from './RenderCode.jsx'
 import RenderMermaid from './RenderMermaid.jsx'
 import ButtonScrollTop from './ButtonScrollTop.jsx'
 // import LinkPage from './LinkPage.jsx'
-// import Gpt from './Gpt.jsx'
 // import api from './Api.jsx'
 
 const Article = ({setting}) => {
@@ -76,11 +75,6 @@ const Article = ({setting}) => {
   return (
     <div className='bg-gray-400 flex'>
       <div className='' ref={componentSidebarRef}>
-        {/* {loggedIn ? (
-          <Gpt />
-        ) : (
-          <div>{}</div>
-        )} */}
         {/* {setting.publish ? (
           <LinkPage
             articleUrl={setting['url']}
@@ -91,9 +85,9 @@ const Article = ({setting}) => {
         {rawTitles.length > 0 ? (
           <div className="sticky top-0 h-screen overflow-y-auto">
             <SidebarLayout
+              loggedIn={loggedIn}
               setting={setting}
               articleContent={markdownContent}
-              height={'80vh'}
               rawTitles={rawTitles}
             />
           </div>

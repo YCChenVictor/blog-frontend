@@ -1,34 +1,13 @@
-import React, { useState, useEffect } from "react"
-import Modal from "react-modal"
+import React, { useState, useEffect } from 'react'
+import Modal from 'react-modal'
 import axios from 'axios'
+import ReactMarkdown from 'react-markdown'
 
 function Gpt() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const [createRequest, setCreateRequest] = useState('Please help create an article about topic:')
-  const handleInputChange = (e) => {
-    setCreateRequest(e.target.value)
-  }
-  const createArticle = async () => {
-    const token = localStorage['blog logged in']
-    try {
-      const response = await axios.post(
-        'http://localhost:5000/create-article',
-        {
-          prompt: createRequest,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-
-      console.log(response.data)
-    } catch(error) {
-      console.log(error)
-    }
-  }
+  const [previewArticle, setPreviewArticle] = useState('')
 
   useEffect(() => {
     const token = localStorage['blog logged in']
@@ -46,6 +25,29 @@ function Gpt() {
       console.error("Error:", error);
     });
   }, [])
+
+  const handleInputChange = (e) => {
+    setCreateRequest(e.target.value)
+  }
+  const createArticle = async () => {
+    const token = localStorage['blog logged in']
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/create-article',
+        {
+          prompt: createRequest,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      setPreviewArticle(response.data.message.content)
+    } catch(error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="px-4" id="gpt">
@@ -88,6 +90,13 @@ function Gpt() {
               Send
             </button>
           </div>
+        </div>
+
+        <div className="modal-content">
+          <h3>Preview</h3>
+          <ReactMarkdown>
+            {previewArticle}
+          </ReactMarkdown>
         </div>
       </Modal>
     </div>

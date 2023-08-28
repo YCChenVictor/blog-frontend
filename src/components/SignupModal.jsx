@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Modal from "react-modal";
 
 function SignupModal(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [modalOpen, setModalOpen] = useState(true)
 
   const PostSignUpInfo = (params) => {
     fetch("http://localhost:5000/signup", {
@@ -23,7 +24,7 @@ function SignupModal(props) {
 
   return(
     <Modal
-      isOpen={true}
+      isOpen={modalOpen}
       className='rounded-lg md:h-auto fixed inset-0 flex items-center justify-center'
       appElement={document.getElementById('root')}
     >
@@ -64,7 +65,10 @@ function SignupModal(props) {
               Sign Up
             </button>
             <button
-              onClick={() => console.log(false)}
+              onClick={(e) => {
+                e.preventDefault()
+                setModalOpen(!modalOpen)
+              }}
               className="btn-secondary"
             >
               Close

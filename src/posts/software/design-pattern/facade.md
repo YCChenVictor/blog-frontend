@@ -25,8 +25,10 @@ For example, there are multiple services:
 Actually we only care the possible choices of time and cost, so
 
 ```ruby
+## The facade class and the inputs: start, destination, item
 WhatWeCare.new('Taichung', 'Taipei', 'Chihuahua').result
-## example result: (when it arrives, cost)
+
+## example outputs: (when it arrives, cost)
 [
   ['60 mins', 1000],
   ['30 mins', 2000],
@@ -35,151 +37,154 @@ WhatWeCare.new('Taichung', 'Taipei', 'Chihuahua').result
 
 `WhatWeCare` is a facade as follow: (pseudocode)
 
-```ruby
-class WhatWeCare # facade
-  def initialize(origin, destination, item)
-    @origin = origin
-    @destination = destination
-    @item = item
-  end
+```javascript
+class WhatWeCare {
+  constructor(origin, destination, item) {
+    this.origin = origin;
+    this.destination = destination;
+    this.item = item;
+  }
 
-  def result
-    Route.new(@origin, @destination).results.map do |route|
-      if route.is_deliverable?
-        [
-          when_it_arrives(route),
-          cost(route)
-        ]
-      end
-    end
-  end
+  result() {
+    return new Route(this.origin, this.destination).results.map((route) => {
+      if (route.is_deliverable()) {
+        return [
+          this.when_it_arrives(route),
+          this.cost(route)
+        ];
+      }
+    });
+  }
 
-  private
-  def when_it_arrives(route)
-    result = []
-    route.each do |sub_route|
-      case sub_route.type
-      when 'Air'
-        AirTransportationService.new(sub_route).time
-      when 'Land'
-        LandTransportationService.new(sub_route).time
-      when 'Ocean'
-        OceanTransportationService.new(sub_route).time
-      end
-    end
-    result.sum
-  end
+  when_it_arrives(route) {
+    const result = [];
+    route.forEach((sub_route) => {
+      switch (sub_route.type) {
+        case 'Air':
+          result.push(new AirTransportationService(sub_route).time);
+          break;
+        case 'Land':
+          result.push(new LandTransportationService(sub_route).time);
+          break;
+        case 'Ocean':
+          result.push(new OceanTransportationService(sub_route).time);
+          break;
+      }
+    });
+    return result.reduce((sum, time) => sum + time, 0);
+  }
 
-  def cost(route)
-    result = []
-    route.each do |sub_route|
-      case sub_route.type
-      when 'Air'
-        AirTransportationService.new(sub_route).cost
-      when 'Land'
-        LandTransportationService.new(sub_route).cost
-      when 'Ocean'
-        OceanTransportationService.new(sub_route).cost
-      end
-    end
-    result.sum
-  end
+  cost(route) {
+    const result = [];
+    route.forEach((sub_route) => {
+      switch (sub_route.type) {
+        case 'Air':
+          result.push(new AirTransportationService(sub_route).cost);
+          break;
+        case 'Land':
+          result.push(new LandTransportationService(sub_route).cost);
+          break;
+        case 'Ocean':
+          result.push(new OceanTransportationService(sub_route).cost);
+          break;
+      }
+    });
+    return result.reduce((sum, cost) => sum + cost, 0);
+  }
 
-  def routes(@origin, @destination)
-    Route.new(@origin, @destination)
-  end
-end
+  routes() {
+    return new Route(this.origin, this.destination);
+  }
+}
 ```
 
 given the service as follow:
 
-```ruby
-class Route
-  # returns all possible routes
-  def initialize(origin, destination)
-    ...
-  end
+```javascript
+class Route {
+  constructor(origin, destination) {
+    // Initialize route with origin and destination
+    // ...
+  }
 
-  def results # suppose there are two possible routes
-    ...
-    possible_routes.map do |route|
-      if is_deliverable?(route)
-        route
-      end
-    end
-  end
+  results() {
+    return this.possible_routes().filter((route) => {
+      if (this.is_deliverable(route)) {
+        return route;
+      }
+    });
+  }
 
-  private
-  def possible_routes
-    ...
-    [
+  possible_routes() {
+    // Define possible routes
+    return [
       ['Taichung to Taoyuan (Air)', 'Taoyuan to Taipei (Ocean)'],
       ['Taichung to Hsinchu (Air)', 'Hsinchu to Banqiao (Ocean)', 'Banqiao to Taipei (Ocean)'],
-      ...
-    ]
-  end
+      // ...
+    ];
+  }
 
-  def is_deliverable?(route)
-    Package(route).result
-  end
-end
+  is_deliverable(route) {
+    return new Package(route).result();
+  }
+}
 
-class Package
-  # returns whether this package is deliverable in this route
-  def initialize(route)
-    ...
-  end
+class Package {
+  constructor(route) {
+    // Initialize package with route
+    // ...
+  }
 
-  def result
-    ...
-    true or false # whether the item is deliverable in this sub-route
-  end
-end
+  result() {
+    // Determine if the item is deliverable in this sub-route
+    // Return true or false
+  }
+}
 
-class OceanShippingService
-  # returns the estimates of delivery time and cost
-  def initialize(route)
-    ...
-  end
+class OceanShippingService {
+  constructor(route) {
+    // Initialize service with route
+    // ...
+  }
 
-  def time
-    ...
-  end
+  time() {
+    // Return estimated delivery time
+  }
 
-  def cost
-    ...
-  end
-end
+  cost() {
+    // Return estimated delivery cost
+  }
+}
 
-class AirTransportationService
-  # returns the estimates of delivery time and cost
-  def initialize
-    ...
-  end
+class AirTransportationService {
+  constructor() {
+    // Initialize service
+    // ...
+  }
 
-  def time
-    ...
-  end
+  time() {
+    // Return estimated delivery time
+  }
 
-  def cost
-    ...
-  end
-end
+  cost() {
+    // Return estimated delivery cost
+  }
+}
 
-class LandTransportationService
-  # returns the estimates of delivery time and cost
-  def initialize
-    ...
-  end
+class LandTransportationService {
+  constructor() {
+    // Initialize service
+    // ...
+  }
 
-  def time
-    ...
-  end
+  time() {
+    // Return estimated delivery time
+  }
 
-  def cost
-    ...
-  end
-end
+  cost() {
+    // Return estimated delivery cost
+  }
+}
 ```
 
 ## Reference

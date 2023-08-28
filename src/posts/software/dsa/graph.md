@@ -398,9 +398,67 @@ Given the graph above
 * Detecting cycles: DFS > BFS because DFS will go deeper first, which will return to a visited node on a route first, compared to BFS.
 * Find shortest path: DFS < BFS because BFS does level-by-level exploration. When we find a target nodes, we can stop the exploration and return the path from a node to target node.
 
+### Route Between Nodes
+
+* Problem: Given a **directed** graph, design an algorithm to find out whether there is a route between two nodes.
+* Example
+  * Normal: I think I do not need more information and I will use DFS.
+  * Edge: What if there is route between two node but the direction is wrong? If the graph is A -> B -> C, then there is route from A to C but not C to A.
+* Time complexity: It at most need to traverse all the nodes, so the time complexity is O(V+E)
+* Code
+  ```javascript
+  function routeBetweenNodes (graph, start, end) {
+    if (start === end) {
+      return true
+    }
+    let nextNodes = graph.getNeighbors(start)
+    for (let i = 0; i < nextNodes.length; i ++) {
+      if (routeBetweenNodes(graph, nextNodes[i], end)) {
+        return true
+      }
+    }
+    return false
+  }
+  
+  module.exports = routeBetweenNodes
+  ```
+* Test
+  * Visualize
+    ```mermaid
+    flowchart LR
+        a((A)) ---> b((B))
+        a((A)) ---> c((C))
+        b((B)) ---> d((D))
+        b((B)) ---> e((E))
+        c((C)) ---> f((F))
+        e((E)) ---> f((F))
+        g((G))
+    ```
+  * Code
+    ```javascript
+    const DirectedGraph = require('../examples/directed-graph.js')
+    const routeBetweenNodes = require('../examples/route-between-nodes.js')
+    
+    describe('Route Between Nodes', () => {
+      let testGraph
+      beforeEach(() => {
+        testGraph = new DirectedGraph();
+        ['A', 'B', 'C', 'D', 'E', 'F', 'G'].forEach((node) => {
+          testGraph.addVertex(node);
+        });
+        [['A', 'B'], ['B', 'D'], ['B', 'E'], ['E', 'F'], ['A', 'C'], ['C', 'F']].forEach(edge => testGraph.addEdge(edge[0], edge[1]))
+      })
+    
+      test('#', () => {
+        expect(routeBetweenNodes(testGraph, 'A', 'F')).toEqual(true)
+        expect(routeBetweenNodes(testGraph, 'C', 'E')).toEqual(false)
+      })
+    })
+    ```
+* Conclusion: Time complexity is O(V + E) because I will only visit those nodes once. GPT told me I should use BFS.
+
 ### TODO
 
-* Route Between Nodes
 * Build Order
 
 ## What?
