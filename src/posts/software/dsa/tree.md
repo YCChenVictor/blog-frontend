@@ -617,10 +617,43 @@ Given a binary tree, return the height; for example
   })
   ```
 
+### Check Balanced
+
+* Question: Implement a function to check if a binary tree is balanced. For the purposes of this question, a balanced tree is defined to be a tree such that the heights of the two subtrees of **any node** never differ by more than one.
+* Example
+  * The tree is binary tree
+  * It is impossible that the nodes are singly connected
+* Code
+  ```javascript
+  function checkBalanced(tree) {
+    if(tree === null) { // null tree is balanced
+      return true
+    } else if(Math.abs(height(tree.left) - height(tree.right)) <= 1) {
+      return true
+    } else if(!checkBalanced(tree.left)) {
+      return false
+    } else if(!checkBalanced(tree.right)) {
+      return false
+    } else {
+      return true
+    }
+
+    const height = (tree) => {
+      if(tree === null) {
+        return 0
+      } else {
+        return 1 + Math.max(height(tree.left), height(tree.right))
+      }
+    }
+  }
+  ```
+* Test
+  ```javascript
+  // Skip, I found it takes too much time on creating the right data
+  ```
+
 ### TODO
 
-* List of Depths
-* Check Balanced
 * Validate BST
 * Successor
 * First Common Ancestor

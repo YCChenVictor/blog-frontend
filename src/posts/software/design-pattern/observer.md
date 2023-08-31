@@ -4,7 +4,7 @@
 
 The purpose of using the observer pattern is to establish a one-to-many dependency between objects, ensuring that when one object changes its state, all its dependents are automatically notified and updated.
 
-## How?
+## Concept
 
 Apple fans really want new iphone, so they keep visiting store everyday to check whether new iphone released. The company feels disturbed, so they decided to send the release information through advertisements and broadcasts. But in this time, people not interested complain that they do not want to see this information.
 
@@ -94,7 +94,7 @@ classDiagram
 * cons
   * Subscribers are notified in random order.
 
-## What?
+## Example
 
 ```javascript
 class InterfaceObservable {
