@@ -122,8 +122,10 @@ graph TB
     })
   })
   ```
+* Time complexity
+  * 
 
-## What?
+## Real World Example
 
 Real world example: Trie for melody
 

@@ -659,10 +659,97 @@ function parseSteps(answer) {
   })
   ```
 
+### Intersection
+
+* Question: Given two (singly) linked lists, determine if the two lists intersect. Return the intersecting node. Note that the intersection is defined based on reference, not value. That is, if the kth node of the first linked list is the exact same node (by reference) as the j_th node of the second linked list, then they are intersecting.
+* Example
+  * If there is only one node in a linked list and this node is in another linked list, then they are intersected.
+  * If there are multiple shared nodes in two linked list, they are still intersected.
+  * Actually given the attribute of node, once intersected, the nodes next from the intersection are all the same.
+    ```mermaid
+    graph LR
+      a1(a1) --> a2(a2)
+      a2(a2) --> c1(c1)
+      c1(c1) --> c2(c2)
+      c2(c2) --> c3(c3)
+
+      b1(b1) --> b2(b2)
+      b2(b2) --> b3(b3)
+      b3(b3) --> c1(c1)
+    ```
+* Code
+  ```javascript
+  function findIntersection(headA, headB) {
+    if (!headA || !headB) {
+      return null; // One of the lists is empty, no intersection
+    }
+  
+    let pointerA = headA;
+    let pointerB = headB;
+  
+    while (pointerA !== pointerB) {
+      // Move pointers to the next node, and if either reaches the end, switch to the other list
+      pointerA = pointerA ? pointerA.next : headB;
+      pointerB = pointerB ? pointerB.next : headA;
+      // With switching list, we can make sure both pointer will run the same length of nodes and reach to the intersection.
+    }
+  
+    return pointerA; // Return the intersection point or null if no intersection
+  }
+  ```
+* Test
+  ```javascript
+  const { Node, LinkedList } = require('../main.js')
+  const intersection = require('../examples/intersection.js')
+  
+  describe('intersection', () => {
+    const nodes = ['a1', 'a2', 'c1', 'c2', 'c3', 'b1', 'b2', 'b3'].map((value) => {
+      return new Node(value)
+    })
+  
+    describe('has intersection', () => {
+      let linkedList1 = new LinkedList()
+      let linkedList2 = new LinkedList()
+  
+      beforeEach(() => {
+        linkedList1.prependNode(nodes[0])
+        linkedList1.prependNode(nodes[1])
+        linkedList1.prependNode(nodes[2])
+        linkedList1.prependNode(nodes[3])
+        linkedList1.prependNode(nodes[4])
+  
+        linkedList2.prependNode(nodes[5])
+        linkedList2.prependNode(nodes[6])
+        linkedList2.prependNode(nodes[7])
+        linkedList2.prependNode(nodes[2])
+        linkedList2.prependNode(nodes[3])
+        linkedList2.prependNode(nodes[4])
+      })
+      test('#', () => {
+        expect(intersection(linkedList1, linkedList2)).toEqual(true)
+      })
+    })
+  
+    describe('has no intersection', () => {
+      let linkedList1 = new LinkedList()
+      let linkedList2 = new LinkedList()
+  
+      beforeEach(() => {
+        linkedList1.prepend(nodes[0])
+        linkedList1.prepend(nodes[1])
+        linkedList2.prepend(nodes[5])
+        linkedList2.prepend(nodes[6])
+        linkedList2.prepend(nodes[7])
+      })
+      test('#', () => {
+        expect(intersection(linkedList1, linkedList2)).toEqual(false)
+      })
+    })
+  })
+  ```
+
 ### TODO
 
-* Palindrome
-* Intersection
 * Loop Detection
 
 ## Appendix

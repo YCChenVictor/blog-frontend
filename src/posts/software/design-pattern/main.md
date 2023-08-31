@@ -22,7 +22,7 @@ Main 23 design patterns
 
 * Structural design patterns deal with object composition and provide ways to organize objects to form larger structures
 * Example
-  * Composition: This pattern allows you to create hierarchical structures of objects by composing objects into tree structures. It's useful when you want to represent part-whole hierarchies.
+  * [Composite](/blog/software/design-pattern/composite): This pattern allows you to create hierarchical structures of objects by composing objects into tree structures. It's useful when you want to represent part-whole hierarchies.
   * [Decorator](/blog/software/design-pattern/decorator): This pattern allows you to add behavior to objects dynamically by wrapping them in an object of a decorator class. It's useful when you want to add functionality to an object without changing its interface.
   * [Adapter](/blog/software/design-pattern/adapter): This pattern allows you to adapt an object to another interface, without changing the underlying object. It's useful when you want to reuse existing code with a different interface.
   * [Proxy](/blog/software/design-pattern/proxy): This pattern provides a surrogate or placeholder for another object to control access to it. It's useful when you want to add security, logging, or caching to an object.

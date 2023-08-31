@@ -107,8 +107,6 @@ Stack uses mechanism of first in last out (FILO), we can only add or pop the top
   * Delete an item: O(1)
     * Again, we can only access the top, so the time complexity of this operation is O(1).
 
-## Example
-
 ### Three in One
 
 * Problem: Use a single array to implement three stacks
@@ -404,10 +402,91 @@ Stack uses mechanism of first in last out (FILO), we can only add or pop the top
   })
   ```
 
+### Stack of Plates
+
+* Question: Imagine a (literal) stack of plates. If the stack gets too high, it might topple. Therefore, in real life, we would likely start a new stack when the previous stack exceeds some threshold. Implement a data structure SetOfStacks that mimics this. SetOfStacks should be composed of several stacks and should create a new stack once the previous one exceeds capacity. SetOfStacks .push() and SetOfStacks .pop() should behave identically to a single stack (that is, pop( ) should return the same values as it would if there were just a single stack).
+* Example:
+  * I think there is only one stack to be created when previous one exceeds capacity.
+  * Also, I think I can use index to check whether new one is empty so that I can pop.
+  * Also, I think I can use index to tell program which stack to push value.
+* Code
+  ```javascript
+  class SetOfStacks {
+    constructor(capacity) {
+      this.capacity = capacity
+      this.stacks = []
+      this.currentStack = null
+    }
+
+    this.push(value) {
+      if(this.currentStack === null) {
+        this.currentStack = new Stack()
+        this.currentStack.push(value)
+      } else if(this.currentStack.size() >= this.capacity) {
+        this.stacks.push(this.currentStack)
+        this.currentStack = new Stack()
+      } else {
+        this.currentStack.push(value)
+      }
+    }
+
+    this.pop(value) {
+      if(this.currentStack === null && this.stacks.length === 0) {
+        return 'no element'
+      } else if(this.currentStack.length === 0) {
+        this.currentStack = this.stacks.pop()
+        this.currentStack.pop()
+      } else {
+        this.currentStack.pop()
+      }
+    }
+  }
+  ```
+* Test
+  ```javascript
+  describe('set of stacks', () => {
+    let setOfStacks
+    describe('capacity === 3', () => {
+      setOfStacks = new SetOfStacks(3)
+      describe('existed elements = [1, 2, 3, 4, 5, 6]', () => {
+        beforeEach(() => {
+          [1, 2, 3, 4, 5, 6].forEach((element) => {
+            setOfStacks.push(element)
+          })
+        })
+        test('#push 7', () => {
+          setOfStacks.push(7)
+          expect(setOfStacks.stacks.length).toEqual(3)
+        })
+      })
+
+      describe('three stacks but last stack is empty', () => {
+        beforeEach(() => {
+          [1, 2, 3, 4, 5, 6, 7].forEach((element) => {
+            setOfStacks.push(element)
+          })
+          setOfStacks.pop()
+        })
+        test('#pop', () => {
+          expect(setOfStacks.pop()).toEqual(6)
+          expect(setOfStacks.stacks.length).toEqual(2)
+        })
+      })
+
+      describe('existed elements is none', () => {
+        test('#pop', () => {
+          expect(setOfStacks.pop()).toEqual('no element')
+        })
+      })
+    })
+  })
+  ```
+
 ### TODO
 
-* Stack of Plates
 * Sort Stack
+
+## Real world example
 
 ## Reference
 

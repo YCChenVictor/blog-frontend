@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
+import FileSaver from "file-saver"
 
 function Gpt() {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -29,6 +30,7 @@ function Gpt() {
   const handleInputChange = (e) => {
     setCreateRequest(e.target.value)
   }
+
   const createArticle = async () => {
     const token = localStorage['blog logged in']
     try {
@@ -47,6 +49,12 @@ function Gpt() {
     } catch(error) {
       console.log(error)
     }
+  }
+
+  const storeArticle = () => {
+    // Currently can only store file to download and move it to target article
+    const article = new Blob([previewArticle], {type: "text/plain;charset=utf-8"});
+    FileSaver.saveAs(article, "hello world.txt");
   }
 
   return (
@@ -94,6 +102,12 @@ function Gpt() {
 
         <div className="modal-content">
           <h3>Preview</h3>
+          <button
+            className="text-white bg-gray-500 px-4 py-2 rounded hover:bg-gray-700 transition"
+            onClick={() => storeArticle()}
+          >
+            Store
+          </button>
           <ReactMarkdown>
             {previewArticle}
           </ReactMarkdown>

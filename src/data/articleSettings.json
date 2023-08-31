@@ -349,29 +349,35 @@
     "url": "software/design-pattern/factory-method",
     "data": "2022-04-06",
     "category": "design-pattern",
-    "publish": false
+    "publish": true
   },
   "50": {
     "url": "software/design-pattern/strategy",
     "data": "2022-03-22",
     "category": "design-pattern",
-    "publish": false
+    "publish": true
   },
   "51": {
     "url": "software/design-pattern/prototype",
     "data": "2022-06-17",
     "category": "design-pattern",
-    "publish": false
+    "publish": true
   },
   "52": {
     "url": "software/design-pattern/abstract-factory",
     "data": "2022-04-09",
     "category": "design-pattern",
-    "publish": false
+    "publish": true
   },
   "53": {
     "url": "software/design-pattern/proxy",
     "data": "2023-08-28",
+    "category": "design-pattern",
+    "publish": true
+  },
+  "54": {
+    "url": "software/design-pattern/composite",
+    "data": "2023-08-29",
     "category": "design-pattern",
     "publish": false
   }

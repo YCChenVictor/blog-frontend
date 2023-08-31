@@ -430,9 +430,48 @@ Then the time complexity = $$O(N)$$. We can also try to break it at the point of
 
 Process: Question -> add questions for edge cases for full examples -> guess best time complexity -> code -> test
 
+### String Compression
+
+* Question: Implement a method to perform basic string compression using the counts of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3, If the "compressed" string would not become smaller than the original string, your method should return the original string. You can assume the string has only uppercase and lowercase letters (a - z).
+* Example
+  * a => a1 (X)
+  * aaab => a3b1 (X)
+  * aabbcc => a2b2c2 (X)
+  * abbcc => a1bbcc (X)
+  * aa => a2 (X)
+  * aaa => a3 (V)
+  * aabcccccaaa => a2b1c5a3 (V)
+  * I believe I can just compare the length after the operation.
+* Code
+  ```javascript
+  function stringCompression(string) {
+    let compressed = '';
+    let count = 1;
+    
+    for (let i = 0; i < string.length; i++) {
+      if (string[i] === string[i + 1]) { // the key is string[i + 1] will return undefined
+        count++;
+      } else {
+        compressed += string[i] + count;
+        count = 1;
+      }
+    }
+    
+    return compressed.length < string.length ? compressed : string;
+  }
+  
+  module.exports = stringCompression
+  ```
+* Test
+  ```javascript
+  describe('stringCompression', () => {
+    test(stringCompression('aabcccccaaa')).toEqual('a2b1c5a3')
+    test(stringCompression('a')).toEqual('a')
+  })
+  ```
+
 ### TODO
 
-* String Compression
 * Rotate Matrix
 * Zero Matrix
 * String Rotation

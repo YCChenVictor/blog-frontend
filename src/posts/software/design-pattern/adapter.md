@@ -44,12 +44,12 @@ class ModernPaymentProcessor {
 
   addPayment(amount) {
     this.total += amount;
-    console.log('add payment, log to legacy')
+    console.log('add payment, log to modern')
   }
 
   getTotal() {
     return this.total;
-    console.log('get total, log to legacy')
+    console.log('get total, log to modern')
   }
 }
 
