@@ -2,6 +2,8 @@ import React from 'react'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 
 const RenderCode = (props) => {
+  props.children[0] = props.children[0].replace(/\n$/, '')
+
   let language
   let result
   if (props.inline === true) {
