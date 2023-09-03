@@ -457,9 +457,77 @@ Given the graph above
     ```
 * Conclusion: Time complexity is O(V + E) because I will only visit those nodes once. GPT told me I should use BFS.
 
-### TODO
+### Build Order
 
-* Build Order
+* Question: You are given a list of projects and a list of dependencies (which is a list of pairs of projects, where the second project is dependent on the first project). Ail of a project's dependencies must be built before the project is. Find a build order that will allow the projects to be built. If there is no valid build order, return an error.
+* Example
+  * Ok, the list of projects is the vertices in a graph and the dependencies is the edges. I need to use BFS because after one project is built the other projects around this project can be build as well.
+  * But the problem is how can I find the root if the graph => I think I need to find the node that is less dependent on other project first.
+* Code
+  ```javascript
+  const DirectedGraph = require("../examples/directed-graph")
+
+  function buildOrder(projects, dependencies) {
+    let graph = new DirectedGraph()
+    projects.forEach((project) => {
+      graph.addVertex(project)
+    })
+    dependencies.forEach((dependency) => {
+      graph.addEdge(dependency[0], dependency[1])
+    })
+  
+    const findStarts = (projects, dependencies) => {
+      dependent = dependencies.map((d) => {return d[1]})
+      result = projects.filter((element) => !dependent.includes(element))
+      return result
+    }
+  
+    starts = findStarts(projects, dependencies)
+    for(let i = 0; i < starts.length; i++) {
+      let start = starts[i]
+      const queue = [start]
+      const visits = new Set([start])
+  
+      while(queue.length) { // this is the important step of BFS
+        const currentVertex = queue.shift()
+        const neighbors = graph.getNeighbors(currentVertex)
+  
+        for(let neighbor of neighbors) {
+          if(!visits.has(neighbor)) {
+            queue.push(neighbor)
+            visits.add(neighbor)
+          }
+        }
+      }
+  
+      for(let i = 0; i < starts.length; i++) { // remember to use let...
+        visits.add(starts[i])
+      }
+  
+      if(projects.length === visits.size) {
+        console.log(visits)
+        return [...visits]
+      }
+    }
+  
+    return false
+  }
+  
+  module.exports = buildOrder
+  ```
+* Test
+  ```javascript
+  const buildOrder = require('../examples/build-order.js')
+
+  describe('build order', () => {
+    let projects = ['a', 'b', 'c', 'd', 'e', 'f']
+    let dependencies = [['a', 'd'], ['f', 'b'], ['b', 'd'], ['f', 'a'], ['d', 'c']]
+  
+    test('#', () => {
+      expect(buildOrder(projects, dependencies)).toEqual(['f', 'b', 'a', 'd', 'c', 'e'])
+    })
+  })
+  ```
 
 ## What?
 

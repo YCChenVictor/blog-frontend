@@ -78,15 +78,24 @@ class MonsterEasy extends Monster {
   }
 }
 
-function create_monster(factory) {
+function create_monster(type) {
+  let factory
+  switch(factory) {
+    case 'hard':
+      factory = HardModeCreator()
+      break;
+    case 'easy':
+      factory = EasyModeCreator()
+      break
+  }
   factory.create();
 }
 
-create_monster(new HardModeCreator());
-create_monster(new EasyModeCreator());
+create_monster('hard');
+create_monster('easy');
 ```
 
-As you can see, all the monster creation use the method, `create_monster` and call different type of factory.
+As you can see, all the monster creation use the method, `create_monster` and call different type of factory. And the Creator and Monster all inherited from interface that follows the SOLID.
 
 ## Reference
 

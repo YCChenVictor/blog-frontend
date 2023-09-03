@@ -482,9 +482,59 @@ Stack uses mechanism of first in last out (FILO), we can only add or pop the top
   })
   ```
 
-### TODO
+### Sort Stack
 
-* Sort Stack
+* Question: Write a program to sort a stack such that the smallest items are on the top. You can use an additional temporary stack, but you may not copy the elements into any other data structure (such as an array). The stack supports the following operations: push, pop, peek, and is Empty.
+* Example
+  * Can only use additional temporary stack
+  * Cannot copy elements
+  * Can use a placeholder to hold a value temporary
+* Code
+  ```javascript
+  function sortStack(stack) {
+    // Input = [3, 1, 2, 4]
+    // Output = [4, 3, 2, 1]
+    const additionalStack = new Stack()
+    let topPlaceholder
+
+    while(!stack.empty()) {
+      topPlaceholder = stack.pop()
+
+      while(!additionalStack.empty() && additionalStack.peek() > topPlaceholder) {
+        stack.push(additionalStack.pop())
+      }
+
+      additionalStack.push(topPlaceholder)
+
+      console.log('==========')
+      console.log(stack)
+      console.log(additionalStack)
+
+      // this is really hard to come out the idea
+      // the idea is to compare the size of the placeholder, if larger than placeholder, move the larger items from additional to the stack and then put the placeholder to the additional stack.
+      // Actually, it is trying to make the additional stack from small to large and make the stack from large to small. Each round it tries to move an item to additional stack and before it puts the item into, if there is any item larger than this placeholder, move them to the stack first.
+    }
+
+    while (!additionalStack.isEmpty()) {
+      stack.push(additionalStack.pop())
+    }
+
+    return stack
+  }
+  ```
+* Test
+  ```javascript
+  describe('sort stack', () => {
+    // bottom -> top
+    // Input = [3, 1, 2, 4]
+    // Output = [4, 3, 2, 1]
+    test('#', () => {
+      let stack = new Stack()
+      [3, 1, 2, 4].forEach((item) => {stack.push(item)})
+      expect(sortStack(stack).items).toEqual([4, 3, 2, 1])
+    })
+  })
+  ```
 
 ## Real world example
 
