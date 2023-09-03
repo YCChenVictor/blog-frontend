@@ -380,5 +380,11 @@
     "data": "2023-08-29",
     "category": "design-pattern",
     "publish": false
+  },
+  "55": {
+    "url": "software/design-pattern/singleton",
+    "data": "2023-09-03",
+    "category": "design-pattern",
+    "publish": false
   }
 }
