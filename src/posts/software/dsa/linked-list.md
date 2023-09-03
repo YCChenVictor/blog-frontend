@@ -748,9 +748,51 @@ function parseSteps(answer) {
   })
   ```
 
-### TODO
+### Loop Detection
 
-* Loop Detection
+* Question: Given a circular linked list, implement an algorithm that returns the node at the beginning of the loop.
+* Example:
+  * Input: A -> B -> C -> D -> E -> C
+  * Output: C
+* Time complexity: I think the least complexity will be O(n) because I at least need to traverse all the nodes
+* Code
+  ```javascript
+  function loopDetection(linkedList) {
+    hash = {}
+    currentNode = linkedList.head
+
+    while(currentNode) {
+      if(!hash[currentNode.value]) {
+        hash[currentNode.value] = [currentNode]
+      } else if(hash[currentNode.value]) {
+        if(hash[currentNode.value].include(currentNode)) {
+          return currentNode.value
+        }
+      } else {
+        currentNode = currentNode.next
+      }
+    }
+    
+    return false
+  }
+  ```
+* Test
+  ```javascript
+  describe('loop detection', () => {
+    let values = ['A', 'B', 'C', 'D', 'E']
+    let nodes = values.map((value) => {new Node(value)})
+    let linkedList = new LinkedList()
+    linkedList.prependNode(nodes[2])
+    linkedList.prependNode(nodes[4])
+    linkedList.prependNode(nodes[3])
+    linkedList.prependNode(nodes[2])
+    linkedList.prependNode(nodes[1])
+    test('#', () => {
+      expect(loopDetection(linkedList)).toEqual('C')
+    })
+  })
+  ```
+* GPT tells me to use Floyd's Tortoise and Hare algorithm
 
 ## Appendix
 

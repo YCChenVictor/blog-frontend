@@ -26,6 +26,10 @@ Object-oriented design is a fundamental aspect of software development, emphasiz
 
 System design involves creating a blueprint for the structure and organization of a software system, considering factors such as architecture, modules, interfaces, and data flow. It aims to transform requirements into an efficient and scalable solution that meets the desired goals and objectives of the system. For more information, please refer to [system design](/blog/software/system-design/main).
 
+#### Refactor
+
+Refactoring is the process of improving code quality and structure without changing its external behavior, essential for enhancing software maintainability and reducing technical debt. It involves making small, incremental changes to optimize code, making it easier to understand and extend. For more information, please refer to [refactor]().
+
 ### System software
 
 This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems](/blog/software/os/main).

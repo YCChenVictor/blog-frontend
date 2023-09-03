@@ -386,5 +386,11 @@
     "data": "2023-09-03",
     "category": "design-pattern",
     "publish": true
+  },
+  "56": {
+    "url": "software/refactor/main",
+    "data": "2023-09-03",
+    "category": "refactor",
+    "publish": false
   }
 }

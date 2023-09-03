@@ -18,7 +18,7 @@ We can decompose all the programming logics into four actions: create, read, upd
 | Stacks | O(1) | O(1) | O(1) | O(1) |
 | Queues | O(1) | O(1) | O(n) | O(1) |
 | Heaps | O(1) | O(n) | O(log n) | O(log n) |
-| Tries |
+| Tries | O(n) | O(n) | O(n) | O(n) |
 
 * Explanation:
   * "n" refers to the number of total elements in the data structure currently

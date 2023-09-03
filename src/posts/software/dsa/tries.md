@@ -47,6 +47,7 @@ graph TB
       this.root = new TrieNode();
     }
   
+    // create
     insert(word) {
       let node = this.root;
       for (let i = 0; i < word.length; i++) {
@@ -58,7 +59,8 @@ graph TB
       }
       node.isEndOfWord = true;
     }
-  
+    
+    // read
     search(word) {
       let node = this.root;
       for (let i = 0; i < word.length; i++) {
@@ -71,6 +73,10 @@ graph TB
       return node.isEndOfWord;
     }
   
+    // update
+    // It is not normal to have update method in tries
+
+    // destroy
     delete(word) {
       let node = this.root
       let nodes = []
@@ -122,8 +128,11 @@ graph TB
     })
   })
   ```
-* Time complexity
-  * 
+* Time complexity (Because tries are usually used for wording, I will discuss the time complexity of CRUD of a wording)
+  * Create: Given a tries, to create a word in tries, we need to traverse all the letters in the given word and because all the children of a node lay in a hash, the time complexity to check whether it exists in children is O(1). Then the time complexity will be O(n); that is, traverse all the letters and insert it into the tries.
+  * Read: Again, to read a wording in tries, we need to traverse all the letter in the given tries and it is O(n).
+  * Delete: It will check whether this word exists in tries and then remove the nodes with only one specific children of corresponding letters. Because the reading of hash is O(1), the time complexity of removing a node is O(n). (Or you can say it is O(n + n) since we need to traverse the tries first)
+  * Update: You can think update = delete and then create, so the time complexity is also O(n).
 
 ## Real World Example
 
