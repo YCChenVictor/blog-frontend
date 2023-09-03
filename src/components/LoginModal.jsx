@@ -43,7 +43,7 @@ function LoginModal() {
                 value={email}
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600"
+                className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:border-gray-600"
               />
             </label>
           </div>
@@ -55,7 +55,7 @@ function LoginModal() {
                 value={password}
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:bg-gray-800 dark:border-gray-600"
+                className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:border-gray-600"
               />
             </label>
           </div>
@@ -64,6 +64,7 @@ function LoginModal() {
               onClick={(e) => {
                 e.preventDefault()
                 PostLoginInfo({ email: email, password: password })
+                setModalOpen(!modalOpen)
               }}
               className="btn-primary"
             >
