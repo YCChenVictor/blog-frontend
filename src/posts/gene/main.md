@@ -40,6 +40,10 @@ Genes can influence the function of neurotransmitters and hormones, which in tur
 
 Also, genetic factors can make individuals more or less prone to certain epigenetic changes in response to their environment, and these epigenetic changes can subsequently influence an individual's desires and decisions regarding having children.
 
+##### Why to reproduce
+
+If humans had infinite life spans, the drive to reproduce might be significantly diminished, as one of the primary purposes of reproduction is to pass on one's genetic legacy and ensure the survival of future generations. We all die, so we want to reproduce.
+
 ##### Increase probability of having children
 
 Before fatherhood

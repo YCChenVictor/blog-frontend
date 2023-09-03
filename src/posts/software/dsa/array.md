@@ -470,9 +470,62 @@ Process: Question -> add questions for edge cases for full examples -> guess bes
   })
   ```
 
+### Rotate Matrix
+
+* Question: Given an image represented by an NxN matrix, where each pixel in the image is 4
+bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+* Example
+  * The possible input would be
+    ```javascript
+    input = [
+      [1111, 2222],
+      [3333, 4444],
+    ]
+    ```
+  * And the output of the input above
+    ```javascript
+    output = [
+      [3333, 1111],
+      [4444, 2222]
+    ]
+    ```
+* Time complexity: since we must need to walk through all the elements, the time complexity will be at least O(N^2)
+* Code
+  ```javascript
+  function rotateMatrix(matrix) {
+    result = []
+    for(let i = matrix.length - 1; i >= 0; i--) {
+      if(i == matrix.length - 1) {
+        for(let j = 0; j < matrix[i].length; j++) {
+          result.push([matrix[i][j]])
+        }
+      } else {
+        for(let j = 0; j < matrix[i].length; j ++) {
+          result[j].push(matrix[i][j])
+        }
+      }
+    }
+    return result
+  }
+  ```
+* Test
+  ```javascript
+  describe('rotate matrix', () => {
+    let input = [
+      [1111, 2222],
+      [3333, 4444],
+    ]
+    test('#', () => {
+      expect(rotateMatrix(input)).toEqual([
+        [3333, 1111],
+        [4444, 2222]
+      ])
+    })
+  })
+  ```
+
 ### TODO
 
-* Rotate Matrix
 * Zero Matrix
 * String Rotation
 
