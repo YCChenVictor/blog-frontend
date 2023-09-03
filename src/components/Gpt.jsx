@@ -45,7 +45,9 @@ function Gpt() {
           },
         }
       )
-      setPreviewArticle(response.data.message.content)
+      let article = response.data.message.content
+      localStorage['article'] = article
+      setPreviewArticle(article)
     } catch(error) {
       console.log(error)
     }
@@ -55,6 +57,10 @@ function Gpt() {
     // Currently can only store file to download and move it to target article
     const article = new Blob([previewArticle], {type: "text/plain;charset=utf-8"});
     FileSaver.saveAs(article, "hello world.txt");
+  }
+
+  const editArticle = () => {
+    window.open('http://localhost:3000/blog/edit-article').focus()
   }
 
   return (
@@ -103,10 +109,16 @@ function Gpt() {
         <div className="modal-content">
           <h3>Preview</h3>
           <button
-            className="text-white bg-gray-500 px-4 py-2 rounded hover:bg-gray-700 transition"
+            className="mr-2 text-white bg-gray-500 px-4 py-2 rounded hover:bg-gray-700 transition"
             onClick={() => storeArticle()}
           >
             Store
+          </button>
+          <button
+            className="text-white bg-gray-500 px-4 py-2 rounded hover:bg-gray-700 transition"
+            onClick={() => editArticle()}
+          >
+            Edit
           </button>
           <ReactMarkdown>
             {previewArticle}

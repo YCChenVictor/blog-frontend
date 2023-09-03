@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import axios from 'axios'
 
-import Articles from './components/Articles.jsx';
-import AuthorProfile from './components/AuthorProfile.jsx';
+import Articles from './components/Articles.jsx'
+import AuthorProfile from './components/AuthorProfile.jsx'
 import Article from './components/Article.jsx'
 import UserInNav from "./components/UserInNav.jsx"
 import ArticleList from './components/ArticleList.jsx'
+import EditArticle from './components/EditArticle.jsx'
 
 import { checkLoggedIn } from "./utils/checkLoggedIn.js"
 
@@ -66,6 +67,7 @@ const Layout = () => {
       <Router>
         <div className="">
           <Routes>
+            <Route path="/blog/edit-article" element={<EditArticle />}/>
             <Route path="/blog" element={<AuthorProfile />}/>
             <Route path="/blog/software" element={<Articles category={'software'} loggedIn={loggedIn} />}/>
             <Route path="/blog/gene" element={<Articles category={'gene'} />}/>
