@@ -38,7 +38,7 @@ describe('Test sum', () => {
 });
 ```
 
-[jest]
+[Jest](https://jestjs.io/docs/getting-started)
 
 #### AAA principle maps Rspec
 
@@ -59,7 +59,16 @@ RSpec.describe "the_summary", type: :feature do
 end
 ```
 
-[rspec]
+[RSpec](https://rspec.info/documentation/)
+
+### Coverage
+
+Unit and integration tests should touch every line of code. Coverage reveals the percentage of code has been tested or the percentage of code may not be required.
+
+* The reasonable coverage rate: 80%
+* In rails, we use gem `simplecov`
+* In express,
+* In react,
 
 ## Example
 

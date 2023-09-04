@@ -794,6 +794,30 @@ function parseSteps(answer) {
   ```
 * GPT tells me to use Floyd's Tortoise and Hare algorithm
 
+#### Floyd Tortoise and Hare
+
+Floyd's Tortoise and Hare algorithm is a cycle detection technique used to find a cycle in a linked list by moving two pointers at different speeds; it's efficient and helps detect cycles in constant space.
+
+```javascript
+function floydTortoiseHare(linkedList) {
+  let fast = linkedList.head
+  let slow = fast.next
+
+  while(slow) {
+    if(fast !== slow) {
+      fast = fast.next
+      slow = slow.next.next
+    } else {
+      return true
+    }
+  }
+
+  return false
+}
+```
+
+With this algorithm, the space complexity is `O(1)` because we only need two slot for storing values of fast and slow nodes.
+
 ## Appendix
 
 ### Doubly Linked List
