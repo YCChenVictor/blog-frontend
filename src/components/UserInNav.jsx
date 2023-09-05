@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import SignUpLogin from './SignUpLogin'
+import SignUpLogin from './SignUpLogin.jsx'
 
 const UserInNav = (loggedIn) => {
   return (

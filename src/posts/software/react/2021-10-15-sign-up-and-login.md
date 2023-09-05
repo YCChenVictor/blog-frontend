@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Modal from "react-modal";
 
-function SignupModal(props) {
+function SignUpModal(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { signUpModalOpen, setSignUpModalOpen } = useContext(props.MyContext);
@@ -65,4 +65,4 @@ function SignupModal(props) {
   )
 }
 
-export default SignupModal;
+export default SignUpModal;

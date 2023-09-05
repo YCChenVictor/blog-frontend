@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import LoginModal from './LoginModal.jsx';
-import SignupModal from './SignupModal.jsx';
+import SignUpModal from './SignUpModal.jsx';
 
-function SignupLogin() {
+function SignUpLogin() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
-  const [signUpModalOpen, setSignupModalOpen] = useState(false);
+  const [signUpModalOpen, setSignUpModalOpen] = useState(false);
   const showLoginButton = true;
   const showSignupButton = true;
 
@@ -24,7 +24,7 @@ function SignupLogin() {
         )}
         {showSignupButton ? (
           <button
-            onClick={() => setSignupModalOpen(!signUpModalOpen)}
+            onClick={() => setSignUpModalOpen(!signUpModalOpen)}
             className="px-4 py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:outline-none"
             >Signup
           </button>
@@ -39,7 +39,7 @@ function SignupLogin() {
         null
       )}
       {signUpModalOpen ? (
-        <SignupModal
+        <SignUpModal
         />
       ) : (
         null
@@ -48,4 +48,4 @@ function SignupLogin() {
   );
 }
 
-export default SignupLogin;
+export default SignUpLogin;
