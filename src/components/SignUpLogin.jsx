@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LoginModal from './LoginModal.jsx';
-import SignUpModal from './SignUpModal.jsx';
+import Login from './Login.jsx';
+import SignUp from './SignUp.jsx';
 
 function SignUpLogin() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -33,13 +33,13 @@ function SignUpLogin() {
         )}
       </div>
       {loginModalOpen ? (
-        <LoginModal
+        <Login
         />
       ) : (
         null
       )}
       {signUpModalOpen ? (
-        <SignUpModal
+        <SignUp
         />
       ) : (
         null

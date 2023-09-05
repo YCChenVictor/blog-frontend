@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Modal from "react-modal"
 
-function LoginModal() {
+function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [modalOpen, setModalOpen] = useState(true)
@@ -86,4 +86,4 @@ function LoginModal() {
   )
 }
 
-export default LoginModal
+export default Login
