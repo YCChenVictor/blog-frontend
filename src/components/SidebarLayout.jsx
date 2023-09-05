@@ -34,13 +34,20 @@ const SidebarLayout = ({
     '5': 'text-zinc-600',
     '6': 'text-zinc-500',
   }
+  const paddingLeft = {
+    '2': '',
+    '3': 'pl-4',
+    '4': 'pl-6',
+    '5': 'pl-8',
+    '6': 'pl-10',
+  }
   const menuItemsDesired = titles.map((title, index) => (
     <MenuItem
       key={index}
       component={<HashLink to={`#${title.content.toLowerCase().replace(/[?!,-]+/g, '').replace(/\s+/g, '-')}`} />}
     >
       <p
-        className={`${textColorMapping[title.tagName]} pl-${title.tagName} ${textSizeMapping[title.tagName]}`}
+        className={`${textColorMapping[title.tagName]} ${paddingLeft[title.tagName]} ${textSizeMapping[title.tagName]}`}
       >
         {title.content}
       </p>
@@ -59,7 +66,7 @@ const SidebarLayout = ({
     <div>
       <div className='p-4'>
         <button
-          className="items-center p-2 space-x-2 bg-gray-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring"
+          className="items-center p-2 space-x-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring"
           onClick={() => { setIsExapand(!isExpand) }}
         >
           <MenuOutlinedIcon /> {/* Render the MUI icon */}
@@ -70,6 +77,9 @@ const SidebarLayout = ({
         collapsed={isExpand}
       >
         <Menu>
+          <h3 className='p-4'>
+            Attributes
+          </h3>
           <div
             className='p-4'
           >
@@ -89,6 +99,9 @@ const SidebarLayout = ({
               <div>{}</div>
             )}
           </div>
+          <h3 className='p-4'>
+            Titles
+          </h3>
           {menuItemsDesired}
         </Menu>
       </Sidebar>
