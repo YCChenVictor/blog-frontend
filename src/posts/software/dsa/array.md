@@ -524,9 +524,84 @@ bytes, write a method to rotate the image by 90 degrees. Can you do this in plac
   })
   ```
 
+### Zero Matrix
+
+* Question: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and column are set to 0.
+* Example:
+  * 1:
+    ```javascript
+    // input
+    [
+      [0, 1]
+    ]
+    // output
+    [
+      [0, 0]
+    ]
+    ```
+  * 2:
+    ```javascript
+    // input
+    [
+      [0],
+      [1]
+    ]
+    // output
+    [
+      [0],
+      [0]
+    ]
+    ```
+* Time complexity: I believe I at least need to traverse all the elements, so the time complexity is at least O(mn)
+* Code
+  ```javascript
+  function zeroMatrix(matrix) {
+    rowIndex = [] // M rows
+    columnIndex = [] // N columns
+    for(let i = 0; i < matrix.length; i++) { // m
+      for(let j = 0; j < matrix.length; j++) { // n
+        if(matrix[i][j] === 0) {
+          rowIndex.push(i)
+          columnIndex.push(j)
+        }
+      }
+    }
+
+    for(let i = 0; i < matrix.length; i++) {
+      for(let j = 0; j < columnIndex.length; j++) {
+        matrix[i][columnIndex[j]] = 0
+      }
+    }
+
+    for(let i = 0; i < rowIndex.length; i++) {
+      for(let j = 0; j < matrix.length; j++) {
+        matrix[rowIndex[i]][j] = 0
+      }
+    }
+
+    return matrix
+  }
+  ```
+* Test
+  ```javascript
+  describe('zero matrix', () => {
+    test('#', () => {
+      let matrix =  [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+      ]
+      expect(zeroMatrix(matrix)).toEqual([
+        [0, 0, 0],
+        [0, 4, 5],
+        [0, 7, 8],
+      ])
+    })
+  })
+  ```
+
 ### TODO
 
-* Zero Matrix
 * String Rotation
 
 ## What?

@@ -168,6 +168,7 @@ Note: If you cannot deploy successfully, just build it and then push it to gh-pa
   netlify deploy
   ```
 * cd on github
+* CD: Just setup it in netlify
 
 #### Tailwind
 

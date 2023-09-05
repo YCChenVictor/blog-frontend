@@ -652,9 +652,56 @@ Given a binary tree, return the height; for example
   // Skip, I found it takes too much time on creating the right data
   ```
 
+### Validate BST
+
+* Question: Implement a function to check if a binary tree is a binary search tree.
+* Example
+  * The left node must smaller or equal to the right node
+  * Check it recursively
+* Code
+  ```javascript
+  function validateBST(tree) {
+    if (node === null) {
+      return true; // An empty tree is a valid BST.
+    }
+  
+    if (node.value <= min || node.value >= max) { // It is a better idea to use node value to check whether it is truly smaller than the righter node and larger to the lefter node.
+      return false; // Node value violates BST property.
+    }
+  
+    // Check left subtree with updated max value, and right subtree with updated min value.
+    return (
+      validateBST(node.left, min, node.value) &&
+      validateBST(node.right, node.value, max)
+    );
+  }
+  ```
+  * You may think that if node === null return true is wrong. But if the code can run to here, it means all the nodes with children pass `validateBST` which means this tree is BST.
+* Test
+  ```javascript
+  describe('validate BST', () => {
+    let tree = new BinaryTree()
+    describe('BST', () => {
+      //     10
+      //    /  \
+      //   5    15
+      //  / \   / \
+      // 3   7 12  17
+      test.addNode(10);
+      test.addNode(5);
+      test.addNode(15);
+      test.addNode(3);
+      test.addNode(7);
+      test.addNode(12);
+      test.addNode(17);
+
+      test(validateBST(tree)).toEqual(true)
+    })
+  })
+  ```
+
 ### TODO
 
-* Validate BST
 * Successor
 * First Common Ancestor
 * BST Sequences
