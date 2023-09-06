@@ -90,9 +90,6 @@ const NodeGraph = ({category, loggedIn}) => {
 
   return(
     <div style={{
-        border: "1px solid black",
-        borderRadius: "10px",
-        padding: "10px"
       }}
     >
       {loggedIn ? (
@@ -108,7 +105,8 @@ const NodeGraph = ({category, loggedIn}) => {
       <ForceGraph2D
         ref={forceRef}
         graphData={{ nodes, links }}
-        height={650}
+        height={window.innerHeight}
+        width={window.innerWidth * 0.75}
         nodeRelSize={5}
         linkDirectionalArrowRelPos={1}
         linkDirectionalArrowLength={5}

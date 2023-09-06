@@ -7,10 +7,14 @@ const Articles = ({category, loggedIn}) => {
   return (
     <div className='bg-gray-400'>
     <h1 className='text-center font-bold p-6'>{title}</h1>
-      <div className='p-4'>
+    <div className='flex'>
+      <div className='w-3/4'>
         <NodeGraph category={category} loggedIn={loggedIn} />
-        {/* <SearchBar category={category} /> */}
       </div>
+      <div className='w-1/4'>
+        <SearchBar category={category} />
+      </div>
+    </div>
     </div>
   );
 };

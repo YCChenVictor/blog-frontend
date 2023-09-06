@@ -317,7 +317,7 @@ A Binary Search Tree (BST) is a data structure with nodes containing a value and
     * Before updating the value of a node, we need to traverse to the target node, which is proportionate to the layers of tree, so it is O(log n) for balanced tree and O(n) for unbalanced tree.
   * delete: O(log n) to O(n)
     * Deleting a node from a binary tree requires finding the node to be deleted and then rearranging the tree to maintain its properties. In the worst case, this also involves traversing the height of the tree, which has a time complexity of O(log n) for a balanced binary tree and O(n) for an unbalanced binary tree.
-* spec (2023/07/02)
+* spec
   ```javascript
   const BinaryTree = require('../examples/binary_tree.js');
   
@@ -559,7 +559,7 @@ Given a binary tree, return the height; for example
     // result: 1 -> 2 -> 3
     ```
   * Edge
-    ```
+    ```bash
         1
        / \
       2   
@@ -700,9 +700,47 @@ Given a binary tree, return the height; for example
   })
   ```
 
+### Successor
+
+* Question: Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a binary search tree. You may assume that each node has a link to its parent.
+* Example
+  * Input: a node but not a value because there may be two different node with same value
+  * Output: the in-order successor's value
+  * Because each node is a tree, so I can keep doing in-order traversal on that node.
+  * In-order means LVR
+    ```javascript
+    // Input
+        20
+       /  \
+      8    22
+     / \
+    4  12
+      /  \
+     10  14
+    // Output
+    22
+
+    // And input, 8 -> Output: 10
+    // And input, 4 -> Output: null
+    ```
+* Time complexity: The time complexity seems O(h), where h is the height of the right sub tree (log(n)).
+* Code
+  ```javascript
+  function successor(node) {
+    if(node === null) {
+      return null
+    }
+
+    let rightSubTree = node.right
+    while(rightSubTree.left) {
+      rightSubTree = rightSubTree.left
+    }
+    return rightSubTree
+  }
+  ```
+
 ### TODO
 
-* Successor
 * First Common Ancestor
 * BST Sequences
 * Check Subtree
