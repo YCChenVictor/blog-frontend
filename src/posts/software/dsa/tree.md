@@ -739,9 +739,37 @@ Given a binary tree, return the height; for example
   }
   ```
 
+### First Common Ancestor
+
+* Question: Design an algorithm and write code to find the first common ancestor of two nodes in a binary tree. Avoid storing additional nodes in a data structure. NOTE: This is not necessarily a binary search tree.
+* Example
+  * Edge one: The tree is null
+  * Edge two: A node is ancestor of the other
+* Time complexity: It at least need to traverse all nodes, so O(n)
+* Code
+  ```javascript
+  function firstCommonAncestor(tree, node1, node2) {
+    if(!tree) {
+      return null // edge 1
+    }
+
+    if(tree === node1 || tree === node2) {
+      return tree // edge 2
+    }
+
+    leftResult = firstCommonAncestor(tree.left, node1, node2)
+    rightResult = firstCommonAncestor(tree.right, node1, node2)
+
+    if(leftResult && rightResult) {
+      return tree // if both leftResult and rightResult find node, return the current tree
+    }
+
+    return null
+  }
+  ```
+
 ### TODO
 
-* First Common Ancestor
 * BST Sequences
 * Check Subtree
 * Random Node

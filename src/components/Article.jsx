@@ -95,10 +95,7 @@ const Article = ({setting}) => {
           <div>Loading...</div>
         )}
       </div>
-      <div style={{
-        padding: `16px`,
-        }}
-      >
+      <div id='article' style={{ padding: `16px `}}>
         <ReactMarkdown
           components={{
             h1: () => (

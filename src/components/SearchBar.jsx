@@ -30,11 +30,13 @@ const SearchBar = () => {
       <input type="text" placeholder="Search..." value={query} onChange={handleInputChange} />
 
       <ul>
-        {searchResults.map(item => (
-          <li key={item.id}>
-            <a href={item.url}>({item.category}) {item.title}</a>
-          </li>
-        ))}
+        {searchResults.map(item => {
+          return (
+            <div>
+              <a href={item.url}>{item.title}</a>
+            </div>
+          )
+        })}
       </ul>
     </div>
   );
