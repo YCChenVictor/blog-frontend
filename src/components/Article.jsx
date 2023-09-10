@@ -8,7 +8,7 @@ import rehypeMathjax from 'rehype-mathjax'
 
 import SidebarLayout from './SidebarLayout.jsx'
 import RenderImage from './RenderImage.jsx'
-import RenderCode from './RenderCode.jsx'
+import RenderCodeBlock from './RenderCodeBlock.jsx'
 import RenderMermaid from './RenderMermaid.jsx'
 import ButtonScrollTop from './ButtonScrollTop.jsx'
 // import LinkPage from './LinkPage.jsx'
@@ -117,7 +117,7 @@ const Article = ({setting}) => {
               if (props.className === 'language-mermaid') {
                 return RenderMermaid(props)
               } else {
-                return RenderCode(props)
+                return RenderCodeBlock(props)
               }
             },
             table: ({node, ...props}) => {

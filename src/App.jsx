@@ -7,7 +7,8 @@ import AuthorProfile from './components/AuthorProfile.jsx'
 import Article from './components/Article.jsx'
 import UserInNav from "./components/UserInNav.jsx"
 import ArticleList from './components/ArticleList.jsx'
-import EditArticle from './components/EditArticle.jsx'
+import EditArticle from './components/AutoArticle/EditArticle.jsx'
+// import RenderFrontend from './components/AutoFrontend/.jsx'
 
 import { checkLoggedIn } from "./utils/checkLoggedIn.js"
 
@@ -65,15 +66,16 @@ const Layout = () => {
         )}
       </nav>
       <Router>
-        <div className="">
+        <div className=''>
           <Routes>
-            <Route path="/blog/edit-article" element={<EditArticle />}/>
-            <Route path="/blog" element={<AuthorProfile />}/>
-            <Route path="/blog/software" element={<Articles category={'software'} loggedIn={loggedIn} />}/>
-            <Route path="/blog/gene" element={<Articles category={'gene'} />}/>
-            <Route path="/blog/aesthetics" element={<Articles category={'aesthetics'} />}/>
-            <Route path="/blog/article_list" element={<ArticleList articleSettings={articleSettings} />}/>
+            <Route path='/blog/edit-article' element={<EditArticle />}/>
+            <Route path='/blog' element={<AuthorProfile />}/>
+            <Route path='/blog/software' element={<Articles category={'software'} loggedIn={loggedIn} />}/>
+            <Route path='/blog/gene' element={<Articles category={'gene'} />}/>
+            <Route path='/blog/aesthetics' element={<Articles category={'aesthetics'} />}/>
+            <Route path='/blog/article-list' element={<ArticleList articleSettings={articleSettings} />}/>
             {articleRoutes}
+            {/* <Route path='/auto-frontend' element={<RenderFrontend/>}/> After development, should split out this component to another repo. Now, this is the experiment */}
           </Routes>
         </div>
       </Router>

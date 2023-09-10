@@ -6,7 +6,7 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 
 import WordCounts from './WordCounts.jsx'
 import LinkPage from './LinkPage.jsx'
-import Gpt from './Gpt.jsx'
+import Gpt from './AutoArticle/Gpt.jsx'
 
 const SidebarLayout = ({
     loggedIn,

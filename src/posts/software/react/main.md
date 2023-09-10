@@ -318,7 +318,7 @@ export default MyComponent;
     components={{
       ...
       code: ({ node, ...props }) => (
-        RenderCode(props)
+        RenderCodeBlock(props)
       )
     }}
     ...
@@ -326,7 +326,7 @@ export default MyComponent;
     {markdownContent}
   </ReactMarkdown>
   ```
-* RenderCode
+* RenderCodeBlock
 
 #### Mermaid
 
@@ -341,7 +341,7 @@ The concept is turn it into svg first and then render the svg.
         if (props.className === 'language-mermaid') {
           return RenderMermaid(props)
         } else {
-          return RenderCode(props)
+          return RenderCodeBlock(props)
         }
       }
     }}

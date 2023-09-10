@@ -1,7 +1,7 @@
 import React from 'react'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 
-const RenderCode = (props) => {
+const RenderCodeBlock = (props) => {
   props.children[0] = props.children[0].replace(/\n$/, '')
 
   let language
@@ -30,4 +30,4 @@ const RenderCode = (props) => {
   )
 }
 
-export default RenderCode
+export default RenderCodeBlock
