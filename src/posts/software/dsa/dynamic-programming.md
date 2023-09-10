@@ -234,18 +234,18 @@ Let's try to write the code
 
 ## TODO
 
-* MagicIndex
-* Power Set
-* Recursive Multiply
-* Towers of Hanoi
-* Permutations without Dups
-* Permutations with Dups
-* Parens
-* Paint Fill
-* Coins
-* Eight Queens
-* Stack of Boxes
-* Boolean Evaluation
+* MagicIndex (M)
+* Power Set (M)
+* Recursive Multiply (M)
+* Towers of Hanoi (M)
+* Permutations without Dups (M)
+* Permutations with Dups (M)
+* Parens (M)
+* Paint Fill (M)
+* Coins (M)
+* Eight Queens (M)
+* Stack of Boxes (M)
+* Boolean Evaluation (M)
 
 ## Example
 

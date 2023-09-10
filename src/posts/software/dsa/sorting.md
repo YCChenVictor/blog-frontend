@@ -396,17 +396,8 @@ Ok, after we sort an array we usually use binary search.
 
 ## TODO
 
-* Sorted Merge
-* Group Anagrams
-* Search in Rotated Array
-* Sorted Search, No Size
-* Sparse Search
-* Sort Big File
-* Missing Int
-* Find Duplicates
-* Sorted Matrix Search
-* Rank from Stream
-* Peaks and Valleys
+* Sorted Merge (M)
+* Group Anagrams (M)
 
 ## What?
 

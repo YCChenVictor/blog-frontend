@@ -768,13 +768,6 @@ Given a binary tree, return the height; for example
   }
   ```
 
-### TODO
-
-* BST Sequences
-* Check Subtree
-* Random Node
-* Paths with Sum
-
 ## Real world example
 
 A real world example of implementing a decision tree
