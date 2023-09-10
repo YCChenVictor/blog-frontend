@@ -1,18 +1,26 @@
-// const React = require('react');
-// const ReactDOMServer = require('react-dom/server');
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 
-// function MyComponent() {
-//   return (
-//     <div>
-//       <h1>Hello, React!</h1>
-//       <p>This is a simple React component.</p>
-//     </div>
-//   );
-// }
+const RenderFrontend = () => {
+  const [compiledResult ,setCompiledResult] = useState('')
+  const url = `http://localhost:5000/auto-frontend`
 
-// const html = ReactDOMServer.renderToString(<MyComponent />);
+  useEffect(() => {
+    fetchCompiledResult()
+  }, [])
 
-// const fs = require('fs');
+  const fetchCompiledResult = async () => {
+    try {
+      const response = await axios.get(url)
+      setCompiledResult(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-// // Save the rendered HTML to a file
-// fs.writeFileSync('compiled.html', html);
+  return (
+    <div dangerouslySetInnerHTML={{ __html: compiledResult }} />
+  )
+}
+
+export default RenderFrontend

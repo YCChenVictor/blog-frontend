@@ -8,7 +8,7 @@ import Article from './components/Article.jsx'
 import UserInNav from "./components/UserInNav.jsx"
 import ArticleList from './components/ArticleList.jsx'
 import EditArticle from './components/AutoArticle/EditArticle.jsx'
-// import RenderFrontend from './components/AutoFrontend/.jsx'
+import RenderFrontend from './components/AutoFrontend/RenderFrontend.jsx'
 
 import { checkLoggedIn } from "./utils/checkLoggedIn.js"
 
@@ -75,7 +75,7 @@ const Layout = () => {
             <Route path='/blog/aesthetics' element={<Articles category={'aesthetics'} />}/>
             <Route path='/blog/article-list' element={<ArticleList articleSettings={articleSettings} />}/>
             {articleRoutes}
-            {/* <Route path='/auto-frontend' element={<RenderFrontend/>}/> After development, should split out this component to another repo. Now, this is the experiment */}
+            <Route path='/auto-frontend' element={<RenderFrontend/>}/> After development, should split out this component to another repo. Now, this is the experiment
           </Routes>
         </div>
       </Router>
