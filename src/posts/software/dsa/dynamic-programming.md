@@ -232,20 +232,58 @@ Let's try to write the code
   ```
 * Time complexity: O(m x n)
 
+### MagicIndex
+
+* Question: A magic index in an array A[0...n-1] is defined to be an index such thatA[i] = i. Given a sorted array of distinct integers, write a method to find a magic index, if one exists, in array A.
+* Discussion
+  * Please return the index itself and return -1 if there is no magic index.
+  * If there are multiple magic index, please return the smallest one
+  * Example one
+    ```javascript
+    // input
+    [0, 2, 3, 4]
+
+    // output
+    0
+    ```
+* Estimate Time complexity: Because at most to walk through all element, it is O(n).
+* Code (First try)
+  ```javascript
+  function magicIndex(array) {
+    for(i = 0; i < array.length; i++) {
+      if(array[i] === i) {
+        return i
+      }
+    }
+  }
+  ```
+* GPT told me that there is more efficient way to do it; for example, binary search. I also found that the elements are distinct and sorted. I think if the middle one is larger than the index of itself, then all the elements in the right will not be considered; also, if the middle one is smaller than the index of itself, then all the elements in the left will not be considered.
+  ```javascript
+  function magicIndex(array, start = 0, end = array.length - 1) { // make the array consistent, so that we can return the index of full array
+    if (start > end) {
+        return -1; // No magic index found
+    }
+
+    const middleIndex = Math.floor((start + end) / 2)
+    const middleValue = array[middleIndex]
+
+    if(middleValue === middleIndex) {
+      return middleIndex
+    } else if(middleValue > middleIndex) {
+      return magicIndex(array, start, middleIndex - 1)
+    } else if(middleValue < middleIndex) {
+      return magicIndex(array, middleIndex + 1, end)
+    } else {
+      return -1
+    }
+  }
+  ```
+* Dynamic way: TBC
+
 ## TODO
 
-* MagicIndex (M)
 * Power Set (M)
 * Recursive Multiply (M)
-* Towers of Hanoi (M)
-* Permutations without Dups (M)
-* Permutations with Dups (M)
-* Parens (M)
-* Paint Fill (M)
-* Coins (M)
-* Eight Queens (M)
-* Stack of Boxes (M)
-* Boolean Evaluation (M)
 
 ## Example
 

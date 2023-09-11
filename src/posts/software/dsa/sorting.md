@@ -111,7 +111,9 @@ All the purposes of sorting methods are to arrange a collection of items in a sp
     const leftHalf = arr.slice(0, middle);
     const rightHalf = arr.slice(middle);
   
-    const merge = (leftArr, rightArr) => {
+    return merge(mergeSort(leftHalf), mergeSort(rightHalf));
+
+    function merge (leftArr, rightArr) {
       let merged = [];
       let leftIdx = 0;
       let rightIdx = 0;
@@ -126,8 +128,6 @@ All the purposes of sorting methods are to arrange a collection of items in a sp
   
       return merged.concat(leftArr.slice(leftIdx)).concat(rightArr.slice(rightIdx)); // deal with the remaining elements
     };
-  
-    return merge(mergeSort(leftHalf), mergeSort(rightHalf));
   }
   
   // Example usage:
@@ -394,9 +394,32 @@ Ok, after we sort an array we usually use binary search.
   })
   ```
 
+### Sorted Merge
+
+* Question: You are given two sorted arrays, A and B, where A has a large enough buffer at the end to hold B. Write a method to merge B into A in sorted order.
+* Example
+  * I will use the concept of merge sort. Seems that this question is already the last step of merge sort.
+* Code
+  ```javascript
+  function sortedMerge(array1, array2) {
+    const merged = []
+    let leftIndex = 0
+    let rightIndex = 0
+    while(leftIndex < array1.length && rightIndex < array2.length) {
+      if(array1[leftIndex] < array2[rightIndex]) {
+        merged.push(array1[leftIndex])
+        leftIndex++
+      } else {
+        merged.push(array2[rightIndex])
+        rightIndex++
+      }
+    }
+    return merged
+  }
+  ```
+
 ## TODO
 
-* Sorted Merge (M)
 * Group Anagrams (M)
 
 ## What?

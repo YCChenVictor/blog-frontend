@@ -70,7 +70,7 @@ Dynamic programming is often applied to problems with recursive sequences of sub
 
 ### Sorting
 
-Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting](/blog/software/dsa/sorting/main).
+Sorting is a fundamental operation in computer science that involves arranging a collection of elements in a specific order. It plays a crucial role in various applications, such as searching, data analysis, and maintaining data integrity, by providing an organized and easily accessible representation of the data. For more information, please refer to [sorting](/blog/software/dsa/sorting).
 
 ## reference
 
