@@ -280,10 +280,59 @@ Let's try to write the code
   ```
 * Dynamic way: TBC
 
-## TODO
+### Power Set
 
-* Power Set (M)
-* Recursive Multiply (M)
+* Question: Write a method to return all subsets of a set.
+* Example
+  ```javascript
+  // input
+  {1, 2}
+  // output
+  {1}, {2}, {1, 2}, {}
+  ```
+* Time complexity: I think I can remove the element one by one in every big set, so time complexity wil be: 1 * n + 2 * (n-1) + 3 * (n-2) + ... n * 0. But GPT say it is O(2^n).
+* Code
+  ```javascript
+  function powerSet(inputSet) {
+    const subsets = new Set([new Set()]);
+  
+    for(const item of inputSet) {
+      // Ok, the key problem is the set points to the same set. I need to clone first and then assign it
+      // What I learned, set has the same pointer, I need to clone it
+      newSubsets = new Set(subsets)
+      for(const subset of subsets) {
+        const newSubset = new Set(subset)
+        newSubset.add(item)
+        newSubsets.add(newSubset)
+      }
+  
+      for(const set of newSubsets) {
+        subsets.add(set)
+      }
+    }
+    console.log(subsets)
+  
+    return subsets
+  }
+  
+  module.exports = powerSet
+  ```
+
+### Recursive Multiply
+
+* Question: Write a recursive function to multiply two positive integers without using the * operator. You can use addition, subtraction, and bit shifting, but you should minimize the number of those operations.
+* Time complexity will be min(a, b) because I need to add either b, a times or a, b times.
+* Example
+  ```javascript
+  function recursiveMultiply(a, b) {
+    if(a === 0 || b === 0) {
+      return 0
+    } else {
+      return(recursiveMultiply((a-1), (b-1)) + a + b - 1)
+    }
+  }
+  ```
+* GPT said there more efficient way to use bit shifting. But both its answer and mine are both min(a, b).
 
 ## Example
 

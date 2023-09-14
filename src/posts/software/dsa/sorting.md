@@ -418,9 +418,43 @@ Ok, after we sort an array we usually use binary search.
   }
   ```
 
-## TODO
+### Group Anagrams
 
-* Group Anagrams (M)
+* Question: Write a method to sort an array of strings so that all the anagrams are next to each other.
+* Example
+  ```javascript
+  // input
+  ["listen", "hello", "act", "silent", "world", "cat"]
+
+  // output
+  ["listen", "silent", "hello", "act", "cat", "world"]
+  ```
+* Time complexity: Actually, I think the time complexity is O(n^2) where n is the number of strings.
+* Code
+  ```javascript
+  function groupAnagrams(words) {
+    const sortedWords = {}
+    for(i = 0; i < words.length; i++) {
+      key = words[i].split('').sort().join('')
+      if(!sortedWords[key]) {
+        sortedWords[key] = []
+      }
+      sortedWords[key].push(i)
+    }
+  
+    const result = []
+    Object.keys(sortedWords).forEach(key => {
+      wordIndexes = sortedWords[key]
+      for(i = 0; i < wordIndexes.length; i++) {
+        result.push(words[wordIndexes[i]])
+      }
+    })
+    return result
+  }
+  ```
+* Test (TBC)
+  ```javascript
+  ```
 
 ## What?
 

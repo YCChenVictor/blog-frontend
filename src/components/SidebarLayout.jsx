@@ -2,19 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import { HashLink } from 'react-router-hash-link'
 
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
-
 import WordCounts from './WordCounts.jsx'
 import LinkPage from './LinkPage.jsx'
 import Gpt from './AutoArticle/Gpt.jsx'
 
 const SidebarLayout = ({
+    isCollapsed,
     loggedIn,
     setting,
     articleContent,
     rawTitles
   }) => {
-  const [isExpand, setIsExapand] = useState(true);
   const titles = rawTitles.map((item) => ({
     content: item.content,
     tagName: item.tagName.match(/\d+/)[0],
@@ -54,58 +52,40 @@ const SidebarLayout = ({
     </MenuItem>
   ))
 
-  useEffect(() => {
-    if (window.innerWidth > 1280) {
-      setIsExapand(false)
-    } else {
-      setIsExapand(true)
-    }
-  }, [])
-
   return (
-    <div>
-      <div className='p-4'>
-        <button
-          className="items-center p-2 space-x-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring"
-          onClick={() => { setIsExapand(!isExpand) }}
+    <Sidebar
+      backgroundColor="rgb(156 163 175)"
+      collapsed={isCollapsed}
+    >
+      <Menu>
+        <h3 className='p-4'>
+          Attributes
+        </h3>
+        <div
+          className='p-4'
         >
-          <MenuOutlinedIcon /> {/* Render the MUI icon */}
-        </button>
-      </div>
-      <Sidebar
-        backgroundColor="rgb(156 163 175)"
-        collapsed={isExpand}
-      >
-        <Menu>
-          <h3 className='p-4'>
-            Attributes
-          </h3>
-          <div
-            className='p-4'
-          >
-            <WordCounts
-              articleContent={articleContent}
+          <WordCounts
+            articleContent={articleContent}
+          />
+          {loggedIn ? (
+            <Gpt />
+          ) : (
+            <div>{}</div>
+          )}
+          {setting.publish ? (
+            <LinkPage
+              articleUrl={setting['url']}
             />
-            {loggedIn ? (
-              <Gpt />
-            ) : (
-              <div>{}</div>
-            )}
-            {setting.publish ? (
-              <LinkPage
-                articleUrl={setting['url']}
-              />
-            ) : (
-              <div>{}</div>
-            )}
-          </div>
-          <h3 className='p-4'>
-            Titles
-          </h3>
-          {menuItemsDesired}
-        </Menu>
-      </Sidebar>
-    </div>
+          ) : (
+            <div>{}</div>
+          )}
+        </div>
+        <h3 className='p-4'>
+          Titles
+        </h3>
+        {menuItemsDesired}
+      </Menu>
+    </Sidebar>
   );
 }
 
