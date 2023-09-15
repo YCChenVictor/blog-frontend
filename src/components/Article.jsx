@@ -55,11 +55,6 @@ const Article = ({setting}) => {
       }));
       setRawTitles(tags);
     }
-    // const checkLoggedIn = () => {
-    //   api.getGPT()
-    //   setLoggedIn()
-    // }
-    // checkLoggedIn()
     importFileAndFetchContent()
   }, []);
 

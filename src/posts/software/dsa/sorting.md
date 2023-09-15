@@ -146,29 +146,33 @@ Learning QuickSort not only equips you with a fast sorting algorithm but also en
 
 QuickSort is an efficient sorting algorithm with an average runtime of **O(n * log(n))**. By using a **random pivot**, it reduces the chances of encountering worst-case scenarios and outperforms other sorting algorithms due to a **smaller constant factor**. Learning QuickSort enhances algorithmic thinking skills and expands problem-solving abilities, providing an elegant and efficient solution to the sorting problem and introducing the **Divide and Conquer** technique for a structured approach to various problems.
   
-##### Divide and Conquer Technique: (Two steps)
-
+##### Divide and Conquer Technique
 * Figure out the **base case**. This should be the simplest possible case. **Divide** or decrease your problem until it becomes the base case.
 * For example, given a quadrilateral with length, 1680 and width, 640 and we want to find the largest square to divide it evenly.
   ```bash
-                  1680
-     ---------------------------------
-    |                                 |
-    |                                 | 640
-    |                                 |
-    |                                 |
-     ---------------------------------
+
+                1680
+   ---------------------------------
+  |                                 |
+  |                                 | 640
+  |                                 |
+  |                                 |
+   ---------------------------------
+
   ```
   * Step one: the base case, The length is twice the width.
     ```bash
+
              160
        ---------------
       |       |       | 
       |       |       | 80
        ---------------
+
     ```
   * Step two: By Euclid’s algorithm, solving the largest square in 640 X 400 is the same in 1680 X 640
     ```bash
+
             640          640       400
        ---------------------------------
       |            |             |      |
@@ -176,6 +180,7 @@ QuickSort is an efficient sorting algorithm with an average runtime of **O(n * l
       |            |             |      |
       |            |             |      |
        ---------------------------------
+
     ```
   * However, 640 X 400 is not the base case, so keep doing the recursive process -> 640 X 400 => 400 X 240 => 240 X 160 => 160 X 80 and then we find the base case, **160 X 80**.
 
