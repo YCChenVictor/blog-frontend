@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+import ImageUpload from './ImageUpload'
+
 const RenderFrontend = () => {
   const [compiledResult ,setCompiledResult] = useState('')
   const url = `http://localhost:5000/auto-frontend`
@@ -19,7 +21,10 @@ const RenderFrontend = () => {
   }
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: compiledResult }} />
+    <div>
+      <ImageUpload />
+      <div dangerouslySetInnerHTML={{ __html: compiledResult }} />
+    </div>
   )
 }
 

@@ -8,6 +8,14 @@ Dynamic programming offers an efficient solution to large-scale optimization pro
 
 All dynamic programmings involve smartly finding relationship between bigger dataset and smaller dataset and try to formulate it.
 
+### Identify
+
+My approach, I will define a function, F. F(input) = answer. And then try to find the relationship between F(input) and F(subset(input)). For example, I want to find the longest increasing subsequence of [3, 1, 8, 2, 5], which has answer equals to 3 (1, 2, 5).
+
+We can decompose the answer to F([3, 1, 8, 2]) + 1 and also F([3, 1, 8, 2]) can be decomposed to F([3, 1, 8]) + 1. Now we only need to make sure F([3, 1, 8]) will pick 1, and then F([3, 1, 8, 2]) will pick [1, 2]. So, we need to make sure the picked one is smaller.
+
+Now, we can write the answer as F([3, 1, 8, 2, 5]) = 1 + max{ F([3, 1, 8, 2]) where last element is smaller than 5 } = 1 + max { 1 + max { F[3, 1, 8] where last element is smaller than 2 } } and so on.
+
 ### Steps
 
 For example, given an integer array, [1, -2, 3, 4, -1, 2, 1, -5, 4], find the largest sum from a continuous sub-array.
@@ -431,3 +439,5 @@ console.log(`Solution: ${solution.map(task => task.name).join(', ')}`);
 [0/1 Knapsack Problem Dynamic Programming](https://www.youtube.com/watch?v=8LusJS5-AGo)
 
 [Knapsack Problem](https://web.ntnu.edu.tw/~algo/KnapsackProblem.html)
+
+[5 Simple Steps for Solving Dynamic Programming Problems](https://www.youtube.com/watch?v=aPQY__2H3tE)

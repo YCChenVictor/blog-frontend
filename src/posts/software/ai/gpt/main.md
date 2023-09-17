@@ -2,6 +2,14 @@
 
 https://platform.openai.com/docs/quickstart/build-your-application
 
+## playground
+
+https://platform.openai.com/playground?model=gpt-4
+
+## image
+
+Turn image to base64 string -> prompt: please provide me the react code with following UI design: ...
+
 ## dashboard
 
 https://platform.openai.com/account/usage
