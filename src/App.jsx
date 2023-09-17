@@ -50,7 +50,7 @@ const Layout = () => {
     <div className="bg-gray-700">
       <nav className="flex items-center justify-between bg-gray-700 p-4">
         <ul  className="bg-gray-700">
-          <a href="/blog" className="m-0 p-0">
+          <a href="/" className="m-0 p-0">
             <img className="w-16 rounded-full" src={titleImg} alt="title" />
           </a>
         </ul>
@@ -69,13 +69,14 @@ const Layout = () => {
         <div className=''>
           <Routes>
             <Route path='/blog/edit-article' element={<EditArticle />}/>
+            <Route path='/' element={<AuthorProfile />}/>
             <Route path='/blog' element={<AuthorProfile />}/>
             <Route path='/blog/software' element={<Articles category={'software'} loggedIn={loggedIn} />}/>
             <Route path='/blog/gene' element={<Articles category={'gene'} />}/>
             <Route path='/blog/aesthetics' element={<Articles category={'aesthetics'} />}/>
             <Route path='/blog/article-list' element={<ArticleList articleSettings={articleSettings} />}/>
+            <Route path='/auto-frontend' element={<RenderFrontend/>}/>
             {articleRoutes}
-            <Route path='/auto-frontend' element={<RenderFrontend/>}/> After development, should split out this component to another repo. Now, this is the experiment
           </Routes>
         </div>
       </Router>
