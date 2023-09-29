@@ -10,10 +10,6 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/icons-material": "^5.14.0",
-    "@types/jest": "^29.5.5",
-    "@types/node": "^20.6.3",
-    "@types/react": "^18.2.22",
-    "@types/react-dom": "^18.2.7",
     "axios": "^1.4.0",
     "file-saver": "^2.0.5",
     "fs": "^0.0.1-security",
@@ -33,7 +29,6 @@
     "rehype-mathjax": "^4.0.3",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
-    "typescript": "^5.2.2",
     "unidiff": "^1.0.4"
   },
   "scripts": {
