@@ -384,6 +384,39 @@ add remarkMath, rehypeKatex
 </ReactMarkdown>
 ```
 
+### Typescript
+
+* install
+  ```bash
+  npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+  ```
+* Rename the File: Change the file extension from .jsx to .tsx. For example, if you have a file named MyComponent.jsx, rename it to MyComponent.tsx.
+* Update Imports: If your JSX file contains imports like this:
+  ```ts
+  import React from 'react';
+  ```
+* Type Annotations: In your TSX file, you may want to add type annotations for your props and state, like so:
+  ```ts
+  import React, { ReactNode } from 'react';
+
+  interface MyComponentProps {
+    message: string;
+    children: ReactNode;
+  }
+
+  function MyComponent({ message, children }: MyComponentProps) {
+    return (
+      <div>
+        <p>{message}</p>
+        {children}
+      </div>
+    );
+  }
+
+  export default MyComponent;
+  ```
+  * Here, we've defined an interface MyComponentProps to describe the expected props for MyComponent. You can add type annotations as needed for your components.
+* Type Checking: TypeScript will automatically check your code for type errors and provide feedback during development, helping you catch potential issues early.
 
 ## Reference
 
