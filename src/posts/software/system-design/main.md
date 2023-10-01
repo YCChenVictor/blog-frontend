@@ -6,11 +6,13 @@ System design is essential to ensure that a software system is well-structured, 
 
 ## Concept
 
+In this section, I will provide two kinds of designs, designing whole system and designing algorithm.
+
 ### Design Whole System
 
-For example, let's design TinyURL
+For example, let's design TinyURL, which can shorten the URLs.
 
-#### Step 1 Scope the Problem
+#### Step 1: Scope the Problem
 
 Ask lots of questions to define user stories and get the requirements. After the questions, we should know the requirements:
 
@@ -21,20 +23,21 @@ Ask lots of questions to define user stories and get the requirements. After the
 
 #### Step 2: Make Reasonable Assumptions
 
-* Based on step 1, given each requirement, we need to think about Feasibility, Impact Analysis, Scalability and Extensibility
+Based on step 1, given the requirements, we need to think about Feasibility, Impact Analysis, Scalability and Extensibility. We can just consider these factors and finish features first and then optimize them later.
+
 * Feasibility
-  * technical constraints
-  * resource availability
-  * time constraints
+  * Technical constraints
+  * Resource availability
+  * Time constraints
 * Impact Analysis
-  * functionality
-  * performance
-  * security
-  * user experience
+  * Functionality
+  * Performance
+  * Security
+  * User experience
 * Scalability and Extensibility
-  * increasing user load
-  * additional features
-  * integration with new technologies
+  * Increasing user load
+  * Additional features
+  * Integration with new technologies
 
 #### Step 3: Draw the Major Components (on whiteboard)
 
@@ -68,7 +71,7 @@ Ok, based on above design, we now should have components, user interface, URL sh
 
 Any user interface related frontend and backend, we should use [MVC structure]. That is, we break Create, Read, Update, Destroy (CRUD) of links and CRUD of users into [RESTful] design, which is going to return us methods mapping GET (Read), POST (Create), PUT (Update), DELETE (Destroy); for example, in [rails, we have 7 methods].
 
-Now we can successfully CRUD the data. The next step is to return desired services for users
+Now we can successfully CRUD the data. The next step is to return desired services for users with [design pattern](/blog/software/design-pattern/main).
 * URL shortening service should use singleton pattern to avoid multiple shortened URL to be created for one URL.
 * Analytics service should use observer or strategy pattern
   * If the calculations take time, we can use observer pattern to trigger analytics data calculations right after key information updates. But I think it will not be the case in this system.
@@ -76,9 +79,7 @@ Now we can successfully CRUD the data. The next step is to return desired servic
 * User management service should use decorator pattern to return different data given the type of users; for example, we may need to examine the authentication of users before they use an API. Then we can have decorator to decorate the ability based on the identity of the users.
 * External service should use adapter pattern to connect different data source with same method; for example, we know google and facebook both provide statistics and we can write a method to deal with these two different APIs. Then although both use `connect` method, based on the adaptor, we can connect the APIs successfully and do the next steps.
 
-For more information, please refer to [design pattern](/blog/software/design-pattern/main).
-
-### Design An Algorithm
+### Design Algorithm
 
 Sometimes we do not need to re-design a system but we want to solve an algorithm.
 
@@ -89,13 +90,16 @@ Sometimes we do not need to re-design a system but we want to solve an algorithm
 
 ### Normal Solutions
 
-#### Design for scalability
+#### Scalability
 
 There are two ways of scalability; one is horizontal, the other is vertical. For more information, please refer to [scalability](/blog/software/system-design/scalability).
 
+#### Distribute Systems
+
+A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed systems].
+
 #### TODO
 
-* Scaling
 * Load balancer
 * Denormalization
 * NoSQL
@@ -104,19 +108,6 @@ There are two ways of scalability; one is horizontal, the other is vertical. For
 * Background job
 * Networking Metrics
 * MapReduce
-
-### Other Considerations
-
-#### Distribute Systems
-
-A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed systems].
-
-#### Real-time operating systems
-
-Real-time systems, scheduling, and response times.
-
-#### TODO
-
 * Failures
   * Concept: Systems are prone to failures, and it's crucial to plan for them. Identify potential points of failure in your system and design appropriate measures to handle them.
   * Example

@@ -444,6 +444,59 @@ function MyService() {
   window.open(url, '_blank').focus();
   ```
 
+### Typescript
+
+TypeScript is a statically typed superset of JavaScript that helps catch errors early in development by adding a type system to JavaScript, allowing developers to define variable types and function signatures, which helps detect type-related errors during compilation rather than at runtime.
+
+#### Example
+
+```ts
+function addNumbers(a: number, b: number): number {
+    return a + b;
+}
+
+let result = addNumbers(5, "2"); // TypeScript error: Argument of type '"2"' is not assignable to parameter of type 'number'.
+```
+
+#### interface
+
+Interface is a way to define the structure or shape of an object. It specifies a contract that an object should adhere to, defining the properties and methods that the object must have. There are four common way to use interface.
+
+* Defining Object Shape: You can use interfaces to define the structure of objects, specifying the names and types of their properties.
+  ```ts
+  interface Person {
+    name: string;
+    age: number;
+  }
+  
+  const person: Person = { name: "John", age: 30 };
+  ```
+* Type Checking: Interfaces are used to enforce type checking. If an object doesn't match the interface's structure, TypeScript will throw a type error.
+  ```ts
+  const person: Person = { name: "John" }; // Error: Property 'age' is missing.
+  ```
+* Class Implementation: You can use interfaces to define contracts that classes must follow.
+  ```ts
+  interface Shape {
+    area(): number;
+  }
+  
+  class Circle implements Shape {
+    constructor(private radius: number) {}
+    area() {
+      return Math.PI * this.radius * this.radius;
+    }
+  }
+  ```
+* Function Signatures: Interfaces can describe the shape of functions, specifying the types of their parameters and return values.
+  ```ts
+  interface MathOperation {
+    (a: number, b: number): number;
+  }
+  
+  const add: MathOperation = (a, b) => a + b;
+  ```
+
 ### other topics
 
 * Objects and prototypes

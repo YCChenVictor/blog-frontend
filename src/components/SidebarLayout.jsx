@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import { HashLink } from 'react-router-hash-link'
 
@@ -42,7 +42,7 @@ const SidebarLayout = ({
   const menuItemsDesired = titles.map((title, index) => (
     <MenuItem
       key={index}
-      component={<HashLink to={`#${title.content.toLowerCase().replace(/[?!,-]+/g, '').replace(/\s+/g, '-')}`} />}
+      component={<HashLink to={`#${title.content.toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, '-')}`} />}
     >
       <p
         className={`${textColorMapping[title.tagName]} ${paddingLeft[title.tagName]} ${textSizeMapping[title.tagName]}`}

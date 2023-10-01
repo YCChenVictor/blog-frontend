@@ -224,6 +224,58 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
+### Typescript
+
+For example, from
+
+```js
+import React, { useState } from 'react';
+
+const Counter = ({ initialCount }) => {
+  const [count, setCount] = useState(initialCount);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+};
+
+export default Counter;
+```
+
+to
+
+```ts
+import React, { useState } from 'react';
+
+interface CounterProps {
+  initialCount: number;
+}
+
+const Counter: React.FC<CounterProps> = ({ initialCount }) => {
+  const [count, setCount] = useState<number>(initialCount);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+};
+
+export default Counter;
+```
+
 ## Example
 
 ### sign up and login mechanism
