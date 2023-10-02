@@ -4,6 +4,8 @@
 
 Dynamic programming offers an efficient solution to large-scale optimization problems by breaking them into smaller sub-problems and avoiding repetitive computations, making it applicable across various disciplines including computer science, mathematics, engineering, economics, and operations research.
 
+Dynamic programming typically involves storing and reusing previously computed results to avoid redundant calculations, which can make the solution more efficient for larger values.
+
 ## Concept
 
 All dynamic programmings involve smartly finding relationship between bigger dataset and smaller dataset and try to formulate it.
