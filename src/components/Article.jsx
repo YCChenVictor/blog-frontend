@@ -105,13 +105,13 @@ const Article = ({setting}) => {
                 <h1 className="text-center">{`(${category}) ${articleName}`}</h1>
               ),
               h2: ({ node, ...props }) => (
-                <h2 id={generateSlug(props.children[0])} {...props}></h2>
+                <h2 id={generateSlug(props.children)} {...props}></h2>
               ),
               h3: ({ node, ...props }) => (
-                <h3 id={generateSlug(props.children[0])} {...props}></h3>
+                <h3 id={generateSlug(props.children)} {...props}></h3>
               ),
               h4: ({ node, ...props }) => (
-                <h4 id={generateSlug(props.children[0])} {...props}></h4>
+                <h4 id={generateSlug(props.children)} {...props}></h4>
               ),
               img: ({ node, ...props }) => (
                 RenderImage(props)

@@ -2,7 +2,7 @@ import React from 'react'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 
 const RenderCodeBlock = (props) => {
-  props.children[0] = props.children[0].replace(/\n$/, '')
+  // props.children[0] = props.children[0].replace(/\n$/, '')
 
   let language
   let result

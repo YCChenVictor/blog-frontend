@@ -39,7 +39,8 @@ const SidebarLayout = ({
     '5': 'pl-8',
     '6': 'pl-10',
   }
-  const menuItemsDesired = titles.map((title, index) => (
+  const menuItemsDesired = titles.map((title, index) => {
+    return (
     <MenuItem
       key={index}
       component={<HashLink to={`#${title.content.toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, '-')}`} />}
@@ -50,7 +51,7 @@ const SidebarLayout = ({
         {title.content}
       </p>
     </MenuItem>
-  ))
+  )})
 
   return (
     <Sidebar
