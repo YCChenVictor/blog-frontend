@@ -398,5 +398,17 @@
     "data": "2023-10-02",
     "category": "javascript",
     "publish": false
+  },
+  "58": {
+    "url": "aesthetics/english/ielts/main",
+    "data": "2023-10-10",
+    "category": "ielts",
+    "publish": false
+  },
+  "59": {
+    "url": "aesthetics/english/ielts/preparation-course",
+    "data": "2023-10-10",
+    "category": "ielts",
+    "publish": false
   }
 }
