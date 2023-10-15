@@ -6,14 +6,14 @@ const RenderCodeBlock = (props) => {
 
   let language
   let result
-  if (props.inline === true) {
+  if (props.inline === true || !props.className) {
     language = 'inline'
   } else {
     language = /language-(\w+)/.exec(props['className'] || '')[1]
   }
 
   if (language === 'inline') {
-    result = <code className="bg-gray-500 text-white p-0.5">{props.children[0]}</code>
+    result = <code className="bg-gray-500 text-white p-0.5">{props.children}</code>
   } else {
     result =
       <SyntaxHighlighter

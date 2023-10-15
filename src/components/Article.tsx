@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { marked } from 'marked'
-import mermaid from 'mermaid'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
 
