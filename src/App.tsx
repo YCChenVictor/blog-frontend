@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Articles from './components/Articles';
 import AuthorProfile from './components/AuthorProfile';
-import Article from './components/Article';
+import Article from './components/Article.tsx';
 import UserInNav from './components/UserInNav';
 import ArticleList from './components/ArticleList';
 import EditArticle from './components/AutoArticle/EditArticle';

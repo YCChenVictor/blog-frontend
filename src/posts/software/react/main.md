@@ -436,16 +436,19 @@ add remarkMath, rehypeKatex
 </ReactMarkdown>
 ```
 
-### Typescript
+### Turn ito Typescript
 
 * install
   ```bash
   npm install --save typescript @types/node @types/react @types/react-dom @types/jest
   ```
 * Rename the File: Change the file extension from .jsx to .tsx. For example, if you have a file named MyComponent.jsx, rename it to MyComponent.tsx.
-* Update Imports: If your JSX file contains imports like this:
+* Update Imports: Change the imports of that jsx file to tsx file.
   ```ts
-  import React from 'react';
+  // from
+  import xxx from 'xxx';
+  // to
+  import xxx from 'xxx.tsx'
   ```
 * Type Annotations: In your TSX file, you may want to add type annotations for your props and state, like so:
   ```ts

@@ -13,11 +13,14 @@ import RenderMermaid from './RenderMermaid.jsx'
 import ScrollToTopButton from './ScrollToTopButton.jsx'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 
-const Article = ({setting}) => {
+interface ArticleComponent {
+  setting: Object
+}
+
+function Article({setting}: ArticleComponent) {
   const filePath = `posts/${setting['url']}.md`
   const [markdownContent, setMarkdownContent] = useState('')
   const [rawTitles, setRawTitles] = useState([])
-  const [articleLeftPaddingWidth, setArticleLeftPaddingWidth] = useState('')
   const [loggedIn, setLoggedIn] = useState(true)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [showMobileSidebar, setShowMobileSidebar] = useState(false)
@@ -28,16 +31,6 @@ const Article = ({setting}) => {
   const category = filePath.split("/")[length - 2]
   let articleName = filePath.split("/")[length - 1].split('.')[0]
   articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1)
-
-  if (setting.useMermaidJS) {
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: 'default',
-      securityLevel: 'loose',
-      fontFamily: 'monospace',
-    });
-    mermaid.contentLoaded();
-  }
 
   useEffect(() => { // try to dynamic import from filePath
     const importFileAndFetchContent = async () => {
