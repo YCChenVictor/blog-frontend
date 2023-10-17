@@ -12,11 +12,15 @@ All dynamic programmings involve smartly finding relationship between bigger dat
 
 ### Identify
 
-My approach, I will define a function, F. F(input) = answer. And then try to find the relationship between F(input) and F(subset(input)). For example, I want to find the longest increasing subsequence of [3, 1, 8, 2, 5], which has answer equals to 3 (1, 2, 5).
+Usually, when we found a problem can be solved with recursive mindset, we can start to think about dynamic programming. The essence of dynamic programming is not to repeat the sub-tasks. That is, to achieve a result, the answer of a subset my be used in other bigger set.
 
-We can decompose the answer to F([3, 1, 8, 2]) + 1 and also F([3, 1, 8, 2]) can be decomposed to F([3, 1, 8]) + 1. Now we only need to make sure F([3, 1, 8]) will pick 1, and then F([3, 1, 8, 2]) will pick [1, 2]. So, we need to make sure the picked one is smaller.
+For example, I want to find the longest increasing subsequence of [3, 1, 8, 2, 5], which has answer equals to 3 (1, 2, 5) and I denote as F([3, 1, 8, 2, 5]) = 3. Then I will try to find the relationship between F([3, 1, 8, 2, 5]) and F([3, 1, 8, 2]).
+
+We can decompose the answer to F([3, 1, 8, 2]) + 1 when the next element is larger than the last element of [3, 1, 8, 2] or F([3, 1, 8, 2]) if next element is smaller than the last element of [3, 1, 8, 2].
 
 Now, we can write the answer as F([3, 1, 8, 2, 5]) = 1 + max{ F([3, 1, 8, 2]) where last element is smaller than 5 } = 1 + max { 1 + max { F[3, 1, 8] where last element is smaller than 2 } } and so on.
+
+In the loop, please remember to use a structure to store the results, so we can use it in future recursive.
 
 ### Steps
 
