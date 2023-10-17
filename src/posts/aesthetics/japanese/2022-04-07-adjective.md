@@ -1,15 +1,4 @@
----
-layout: post
-title:
-description:
-date: '2022-04-07'
-categories: japanese
-note: 記得有事沒事要打開來看，多看幾次就會發現規律
-mathjax:
-mermaid:
-p5:
-publish: true
----
+# Title
 
 ## Introduction
 

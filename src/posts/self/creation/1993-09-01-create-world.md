@@ -1,14 +1,4 @@
----
-layout: post
-title: create world
-description: ''
-date: '1993-09-01'
-categories:
-note:
-mathjax:
-mermaid:
-p5:
----
+# Title
 
 ## Introduction
 

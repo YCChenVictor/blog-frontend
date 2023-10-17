@@ -1,11 +1,4 @@
----
-layout: post
-title: Economic Efficiency
-description:
-date: '2021-12-13'
-categories: economics
-note:
----
+# Title
 
 ## Intro
 

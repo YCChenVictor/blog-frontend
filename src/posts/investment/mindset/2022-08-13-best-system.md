@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-08-13'
-categories: economics
-note: 資本主義不是最好的系統，他並不能解決 poverty 等人類基本的需求。定義好規則後，可以用 ML 來預測 steady state 的結果
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish:
----
+# Title
 
 ## Introduction
 

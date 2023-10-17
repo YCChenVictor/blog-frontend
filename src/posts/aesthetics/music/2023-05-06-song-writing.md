@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-05-06'
-categories: music
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 

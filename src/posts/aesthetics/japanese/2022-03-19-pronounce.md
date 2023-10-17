@@ -1,13 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-03-19'
-categories: japanese
-note:
-mermaid:
-publish: true
----
+# Title
 
 ## Introduction
 

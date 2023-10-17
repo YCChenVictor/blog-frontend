@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-11-19'
-categories: english
-note: Remember to get the materials back from sk2
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 

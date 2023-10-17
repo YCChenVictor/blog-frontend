@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-11-20'
-categories: english
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 

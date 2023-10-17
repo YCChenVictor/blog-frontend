@@ -1,15 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-04-13'
-categories: japanese
-note:
-mathjax:
-mermaid:
-p5:
-publish: true
----
+# Title
 
 ## Introduction
 

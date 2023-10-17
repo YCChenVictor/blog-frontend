@@ -1,9 +1,5 @@
 # title
 
-## Introduction
-
-TBC
-
 ## Why?
 
 We need music because it has the power to evoke emotions, inspire creativity, and unite people across cultures, providing a universal language that transcends barriers and enriches our lives.

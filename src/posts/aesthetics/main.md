@@ -1,9 +1,5 @@
 # Title
 
-## Introduction
-
-TBC
-
 ## Purpose
 
 Learning aesthetics allows us to develop a deeper appreciation and understanding of art, beauty, and design, enriching our perspective and enhancing our ability to create and appreciate meaningful experiences in various aspects of life.

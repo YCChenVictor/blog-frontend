@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-03-17'
-categories: psychology
-note: Please go to professionals for overall mental health check
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 

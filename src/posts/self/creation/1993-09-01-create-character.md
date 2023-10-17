@@ -1,16 +1,4 @@
----
-layout: "{{site.baseurl}}/src/_layouts/post.html"
-title:
-description: ''
-date: '1993-09-01'
-categories:
-note: 接下來就是慢慢實踐它，但是不要一開始就想要做很大
-mathjax:
-mermaid:
-p5:
-threeJS:
-publish:
----
+# Title
 
 ## Introduction
 
