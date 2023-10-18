@@ -138,27 +138,27 @@ function Article({setting}: ArticleComponent) {
         </div>
       </div>
       <div className="lg:hidden"> {/* Display SidebarLayout on screens smaller than "lg" */}
-        <div className="fixed h-screen overflow-y-auto">
-          <div className="fixed bottom-4 left-4 z-10">
-            {showMobileSidebar ? (
+        <div className="fixed bottom-4 left-4 z-10 h-screen flex flex-col justify-end">
+          {showMobileSidebar ? (
+            <div className="overflow-y-auto">
               <SidebarLayout
                 loggedIn={loggedIn}
                 setting={setting}
                 articleContent={markdownContent}
                 rawTitles={rawTitles}
               />
-            ) : (
-              <></>
-            )}
-            <button
-              className="items-center p-2 space-x-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring"
-              onClick={() => {
-                setShowMobileSidebar(!showMobileSidebar)
-              }}
-            >
-              <MenuOutlinedIcon />
-            </button>
-          </div>
+            </div>
+          ) : (
+            <></>
+          )}
+          <button
+            className="items-center p-2 space-x-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring"
+            onClick={() => {
+              setShowMobileSidebar(!showMobileSidebar)
+            }}
+          >
+            <MenuOutlinedIcon />
+          </button>
         </div>
       </div>
       <div>
