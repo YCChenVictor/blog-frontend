@@ -98,9 +98,17 @@ There are two ways of scalability; one is horizontal, the other is vertical. For
 
 A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed systems].
 
+#### Load balancer
+
+* Purpose: To ensure efficient and reliable system performance, a load balancer distributes incoming network traffic across multiple servers.
+* Concept:
+  * Round-robin: Round-robin evenly distributes requests among servers in a **sequential manner**, ensuring each server gets an equal share, but it doesn't consider server load or capacity.
+  * Least connections: It directs incoming network traffic to the server with the **fewest active connections**, aiming to distribute the load more evenly among servers based on their current workload and capacity.
+  * Weighted distribution: It assigns different capacities or priorities to servers, allowing them to handle varying proportions of incoming traffic **based on their weight**, typically set by system administrators.
+* Example: AWS Elastic Load Balancer, Nginx, Kubernetes
+
 #### TODO
 
-* Load balancer
 * Denormalization
 * NoSQL
 * Sharding
