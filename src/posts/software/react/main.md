@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Learning React is valuable for developers as it equips them with a powerful and widely-used [javascript](/blog/software/javascript/main) library, enabling the creation of efficient, modular, and interactive user interfaces that are in high demand across the web development industry.
+Learning React is valuable for developers as it equips them with a powerful and widely-used [javascript] library, enabling the creation of efficient, modular, and interactive user interfaces that are in high demand across the web development industry.
 
 ## Concept
 
-### Besides Development
+### Before Development
 
-#### start a project
+#### Init Project
 
 * Create react app with following command
   ```bash
@@ -73,117 +73,6 @@ function App() {
 
 export default App;
 ```
-
-#### Package
-
-* Update npm/yarn
-* Remove unused package manually: walk through `package.json` and just remove the lines
-* Detect bundle size of packages
-  * Install `webpack-bundle-analyzer`
-    ```bash
-    npm install --save-dev webpack-bundle-analyzer
-    # or
-    yarn add --dev webpack-bundle-analyzer
-    ```
-  * Modify `webpack.config.js`
-    ```javascript
-    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-    module.exports = {
-      // ...your existing webpack configuration...
-      plugins: [
-        new BundleAnalyzerPlugin(),
-        // ...other plugins...
-      ],
-    };
-    ```
-* ESLint can detect unused imports
-  * Install
-    ```bash
-    npm install --save-dev eslint-plugin-unused-imports
-    # or
-    yarn add --dev eslint-plugin-unused-imports
-    ```
-  * config (.eslintrc)
-    ```JSON
-    {
-      "plugins": ["unused-imports"],
-      "rules": {
-        "unused-imports/no-unused-imports": "error"
-      }
-    }
-    ```
-* Enable tree shaking in webpack configuration. It can detect installed but unused packages.
-  * If we use react, then this is already enabled.
-  * For example, if you use a utility library like Lodash but only utilize a couple of methods from it, tree-shaking will ensure that only those specific methods are included in the bundle, not the entire library.
-  * However, if you have installed packages via npm or yarn but haven't imported or used any of their exports in your code, the tree-shaking process won't automatically remove those packages from your node_modules directory.
-* Use `depcheck`
-  * Install
-    ```bash
-    npm install -g depcheck
-    ```
-  * Use it
-    ```bash
-    depcheck
-    ```
-  * Then you can upm uninstall the unused package it lists
-
-#### Deploy
-
-##### Github
-
-* install `gh-pages`
-  ```bash
-  npm install gh-pages --save-dev
-  ```
-* In `package.json`, add
-  ```JSON
-  ...
-  "homepage": "http://{github-username}.github.io/{repo-name}",
-  ...
-  "scripts": {
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
-  }
-  ```
-* In directory, run
-  ```bash
-  npm run deploy
-  ```
-
-Note: If you cannot deploy successfully, just build it and then push it to gh-pages branch. Or use Netlify.
-
-##### Netlify
-
-* install
-  ```bash
-  npm install netlify-cli -g
-  ```
-* build
-  ```bash
-  npm run build
-  ```
-* deploy
-  ```bash
-  netlify deploy
-  ```
-* cd on github
-* CD: Just setup it in netlify
-
-#### Tailwind
-
-* Install: `yarn add tailwind`
-* [Official guide](https://tailwindcss.com/docs/guides/create-react-app)
-* And import it in `index.js` with
-  ```javascript
-  import './index.css';
-  ```
-* For the basic css concept, please refer to [CSS]
-
-#### fontawesome
-
-* [react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) for icon
-* [fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons) for icon
 
 ### Component
 
@@ -472,6 +361,119 @@ add remarkMath, rehypeKatex
   ```
   * Here, we've defined an interface MyComponentProps to describe the expected props for MyComponent. You can add type annotations as needed for your components.
 * Type Checking: TypeScript will automatically check your code for type errors and provide feedback during development, helping you catch potential issues early.
+
+### Other Issues
+
+#### Package Management
+
+* Update npm/yarn
+* Remove unused package manually: walk through `package.json` and just remove the lines
+* Detect bundle size of packages
+  * Install `webpack-bundle-analyzer`
+    ```bash
+    npm install --save-dev webpack-bundle-analyzer
+    # or
+    yarn add --dev webpack-bundle-analyzer
+    ```
+  * Modify `webpack.config.js`
+    ```javascript
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+    module.exports = {
+      // ...your existing webpack configuration...
+      plugins: [
+        new BundleAnalyzerPlugin(),
+        // ...other plugins...
+      ],
+    };
+    ```
+* ESLint can detect unused imports
+  * Install
+    ```bash
+    npm install --save-dev eslint-plugin-unused-imports
+    # or
+    yarn add --dev eslint-plugin-unused-imports
+    ```
+  * config (.eslintrc)
+    ```JSON
+    {
+      "plugins": ["unused-imports"],
+      "rules": {
+        "unused-imports/no-unused-imports": "error"
+      }
+    }
+    ```
+* Enable tree shaking in webpack configuration. It can detect installed but unused packages.
+  * If we use react, then this is already enabled.
+  * For example, if you use a utility library like Lodash but only utilize a couple of methods from it, tree-shaking will ensure that only those specific methods are included in the bundle, not the entire library.
+  * However, if you have installed packages via npm or yarn but haven't imported or used any of their exports in your code, the tree-shaking process won't automatically remove those packages from your node_modules directory.
+* Use `depcheck`
+  * Install
+    ```bash
+    npm install -g depcheck
+    ```
+  * Use it
+    ```bash
+    depcheck
+    ```
+  * Then you can upm uninstall the unused package it lists
+
+#### Deploy
+
+##### Github
+
+* install `gh-pages`
+  ```bash
+  npm install gh-pages --save-dev
+  ```
+* In `package.json`, add
+  ```JSON
+  ...
+  "homepage": "http://{github-username}.github.io/{repo-name}",
+  ...
+  "scripts": {
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build",
+  }
+  ```
+* In directory, run
+  ```bash
+  npm run deploy
+  ```
+
+Note: If you cannot deploy successfully, just build it and then push it to gh-pages branch. Or use Netlify.
+
+##### Netlify
+
+* install
+  ```bash
+  npm install netlify-cli -g
+  ```
+* build
+  ```bash
+  npm run build
+  ```
+* deploy
+  ```bash
+  netlify deploy
+  ```
+* cd on github
+* CD: Just setup it in netlify
+
+#### Tailwind
+
+* Install: `yarn add tailwind`
+* [Official guide](https://tailwindcss.com/docs/guides/create-react-app)
+* And import it in `index.js` with
+  ```javascript
+  import './index.css';
+  ```
+* For the basic css concept, please refer to [CSS]
+
+#### fontawesome
+
+* [react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) for icon
+* [fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons) for icon
 
 ## Reference
 
