@@ -88,7 +88,7 @@ In React, routes are used to define different paths and URLs within a web applic
 
 ### API
 
-React uses HTTP requests to communicate with APIs and obtain data that can be rendered dynamically in the user interface. This allows for interactive and responsive web applications. For more information, please refer to [api]
+React can communicate with backend APIs through HTTP requests to obtain data for dynamic rendering, enabling interactive and responsive web applications when used in conjunction with libraries like `Axios` or the `fetch` API. For more information, please refer to [api](/blog/software/react/api).
 
 ### Assets
 
