@@ -124,6 +124,34 @@ export default MyComponent;
 
 In this example, we use the ternary operator (? :) to conditionally render different content inside the return statement based on the value of isLoggedIn. If isLoggedIn is true, the component will render a welcome message, and if it's false, the component will render a login prompt. The JSX syntax allows us to include JavaScript expressions inside curly braces {}, so we can evaluate the condition and render the appropriate content inline.
 
+#### condition
+
+We can use concept of ternary to achieve it
+
+* Conditional rendering
+  ```JSX
+  {false ? (
+  <button
+    onClick={setTaskModalOpen}
+    className="bg-white p-2"
+  >Create Task</button>) : ('')}
+  ```
+* Conditional Style
+  ```JSX
+  const MyComponent = ({ isHighlighted }) => {
+    const style = {
+      color: isHighlighted ? 'red' : 'black',
+      fontWeight: isHighlighted ? 'bold' : 'normal'
+    }
+  
+    return (
+      <div style={style}>
+        Hello World
+      </div>
+    )
+  }
+  ```
+
 ### child
 
 React supports decomposing big component to small components and we can use props to pass different variables to the small components to render the same framework with different data. For example, we can decompose the `Comment` with `AuthorInfo` and `CommentContent` as follow:

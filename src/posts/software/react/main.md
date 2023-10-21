@@ -76,7 +76,7 @@ export default App;
 
 ### Component
 
-In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to [component]
+In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to [component].
 
 ### Hook
 
@@ -89,10 +89,6 @@ In React, routes are used to define different paths and URLs within a web applic
 ### API
 
 React uses HTTP requests to communicate with APIs and obtain data that can be rendered dynamically in the user interface. This allows for interactive and responsive web applications. For more information, please refer to [api]
-
-### layout
-
-Layout in React refers to the arrangement and positioning of components on a web page or application. It involves creating a hierarchy of components that define the structure of the user interface and applying styles to position and align them in a visually appealing way. For more information, please refer to [layout]
 
 ### Assets
 
