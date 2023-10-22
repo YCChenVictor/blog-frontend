@@ -6,15 +6,26 @@ For web applications with rich user experiences has driven the widespread adopti
 
 ## Concept
 
-Javascript, an object-oriented language, empowers developers to create reusable code through modules and classes, facilitating the maintenance and scalability of large code bases, while on the client-side, it enables real-time manipulation of web page content through the Document Object Model (DOM) without page refresh. Additionally, when used with Node.js on the server-side, JavaScript enables the development of full-stack web applications, integrating both client-side and server-side logic seamlessly.
+* JavaScript is a single-threaded language, which means that it can only execute one task at a time
 
-### Forms
+### OOP
+
+something like
+
+```javascript
+const randomObject = {
+  attributes1: 'attributes1',
+  ...
+}
+```
+
+### Constructing Objects
 
 There are two different forms to construct objects, functional forms and class forms.
 
 #### Functional Form
 
-Objects in JavaScript are created using functions and closures, allowing for the definition of object behavior through nested functions within the constructor or by attaching functions to the object's prototype, with the this keyword referring to the object instance and enabling encapsulation and private variables through closures.
+Objects in JavaScript are created using functions and closures, allowing for the definition of object behavior through nested functions within the constructor or by attaching functions to the object's prototype, with the `this` keyword referring to the object instance and enabling encapsulation and private variables through closures.
 
 * Example
   ```javascript
@@ -113,7 +124,7 @@ The this keyword also refers to the object instance that the method is called on
   }
   ```
 
-### Function
+### Functions
 
 #### Structure
 
@@ -165,57 +176,142 @@ The this keyword also refers to the object instance that the method is called on
   ```
   * In the above example, the normal function "sum" uses the "arguments" variable to calculate the sum of all the arguments passed to it. The arrow function "sumArrow" uses the spread operator to convert the arguments into an array and then uses the "reduce" method to calculate the sum.
 
-### Promises and Asynchronous
+### Asynchronous
 
-Asynchronous programming is usually implemented using callbacks or Promises
-* JavaScript is a single-threaded language, which means that it can only execute one task at a time
-* A callback is a function that is passed as an argument to another function, and is called when the other function completes its task. This allows the program to continue executing while the asynchronous task is being performed in the background. We can ensure that the data is processed only when it is available, rather than blocking the program while waiting for the data to be fetched. This allows the program to continue executing other tasks while the data is being fetched in the background. For example,
+* Callbacks: Using functions that are passed as arguments to be executed when an asynchronous task completes. For example,
+  ```javascript
+  function fetchData(callback) {
+    setTimeout(() => callback([1, 2, 3, 4, 5]), 2000);
+  }
+  
+  function processFetchedData(data) {
+    console.log("Processing fetched data:", data);
+  }
+  
+  function doSomethingElse() {
+    console.log("This can be done while waiting for data.");
+  }
+  
+  fetchData(processFetchedData);
+  doSomethingElse();
+  ```
+* Promises: Employing the Promise object to handle asynchronous operations in a more structured and readable way.
+  ```javascript
+  function fetchData() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const data = [1, 2, 3, 4, 5];
+        resolve(data);
+      }, 20000);
+    });
+  }
+  
+  function processFetchedData(data) {
+    console.log("Processing fetched data:", data);
+  }
+  
+  function doSomethingElse() {
+    console.log("This can be done while waiting for data.");
+  }
 
-```javascript
-function fetchData(callback) {
-  // simulate fetching data from a server
-  setTimeout(function() {
-    const data = [1, 2, 3, 4, 5];
-    callback(data);
-  }, 200);
-  console.log('Process this first')
-}
+  function main() {
+    fetchData()
+      .then(processFetchedData) // when resolve, do processFetchedData
+      .catch((error) => console.error("Error:", error));
 
-function processData(data) {
-  console.log("Processing data:", data);
-}
-
-// Call fetchData function and pass processData function as a callback
-fetchData(processData);
-```
-
-* Promise is another way to implement asynchronous programming in JavaScript. A Promise is an object that represents a value that may not be available yet. When a Promise is resolved, the value is made available to the program. Promises can be chained together using the then() method to create a sequence of asynchronous tasks. For example,
-
-```javascript
-function fetchData() {
-  // return a new Promise
-  return new Promise(function(resolve, reject) {
-    // simulate fetching data from a server
-    setTimeout(function() {
-      const data = [1, 2, 3, 4, 5];
-      resolve(data); // fulfill the promise with the data
-    }, 2000);
-  });
-}
-
-function processData(data) {
-  console.log("Processing data:", data);
-}
-
-// Call fetchData function which returns a promise
-fetchData().then((data) => processData(data));
-```
-
-* Async/await is a newer syntax introduced in ES2017 that provides a more intuitive way to write asynchronous code. It allows developers to write asynchronous code that looks and behaves like synchronous code, making it easier to reason about and debug. Async/await works by using Promises under the hood, but hides the details of Promise chaining and error handling.
+    doSomethingElse();
+  }
+  
+  main()
+  ```
+* Async/await: Using the async/await syntax introduced in ES2017 to write asynchronous code in a more synchronous-like style, built on top of Promises.
+  ```javascript
+  // Given the fetchData above
+  async function main() {
+    try {
+      const dataPromise = fetchData();
+      doSomethingElse(); // This function will run concurrently
+      const data = await dataPromise;
+      processFetchedData(data);
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  }
+  
+  main();
+  ```
+* Generators: Implementing asynchronous operations with generator functions and the use of the yield keyword.
+* Web Workers: Running asynchronous tasks in a separate thread using Web Workers, allowing parallel execution without blocking the main thread.
 
 ### AJAX
 
 If the JavaScript code makes use of asynchronous operations, such as fetching data from an external API, the order in which the code is executed may not be strictly linear. In such cases, the JavaScript runtime will handle the asynchronous operations separately from the main execution thread, and the order in which the asynchronous code is executed may not correspond to the order in which it appears in the file. For more information, please refer to [AJAX](/blog/software/javascript/AJAX).
+
+### AJAX (Asynchronous JavaScript and XML)
+
+Request data from external server -> Parse the data -> Load data without a refresh -> Data can be formats like (XML, JSON, HTML)
+
+* index.html
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script src="main.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+* main.js
+
+```JS
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(request => request.json())
+    .then(posts => {
+      console.log(posts)
+  })
+})
+```
+
+then in console, 
+
+<img src="{{site.baseurl}}/assets/img/fetch_data_ajax.png" alt="fetch_data_ajax">
+
+Then, I am going to show the effect of AJAX, which is going to show a loading view and **after it fetch the requested data successfully**, the data will replace the loading without page refreshed.  
+#### index.html
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div class="post-title">
+      <h2> Loading... </h2>
+    </div>
+  </body>
+</html>
+```
+#### main.js
+
+```JS
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(request => request.json())
+    .then(posts => {
+      const firstPost = posts[0];
+      const postTitleA = document.querySelector('.post-title');
+      postTitleA.textContent = firstPost.title
+      document.querySelector('.post-title').textContent = firstPost.title
+  })
+})
+```
 
 ### Execution Order in File
 
@@ -389,17 +485,6 @@ going to add more strange logic in javascript
       console.log(i);
     }
     ```
-
-### OOP
-
-something like
-
-```javascript
-const randomObject = {
-  attributes1: 'attributes1',
-  ...
-}
-```
 
 ### built-in methods
 
