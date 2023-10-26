@@ -182,6 +182,55 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
+### Test
+
+In the root, create a file named jest.config.js and add the following code configuration.
+
+```js
+module.exports = {
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{js,jsx}'],
+  coverageDirectory: 'coverage',
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+}
+```
+
+In the `package.json` in the script object add the following scripts
+
+```json
+scripts:{
+  ... //scripts you already have
+  test: "jest",
+  coverage: "jest --coverage"
+}
+```
+
+In your project's root directory, create a folder named `tests`. Inside the `tests` folder, create a test file for your React component. Name the file with the same name as the component you want to test and append `.test.js` or `.spec.js` to it. For example, if you have a component named `MyComponent`, create a test file named `MyComponent.test.js`.
+
+In the test file, you can write your test cases using Jest's testing functions like "test," "describe," and assertions such as "expect."
+
+Here's a basic example of a test file structure:
+
+```javascript
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import MyComponent from '../MyComponent'; // Import your component
+
+test('it renders correctly', () => {
+  render(<MyComponent />);
+  const element = screen.getByText('Some Text'); // Replace with your component's text
+  expect(element).toBeInTheDocument();
+});
+```
+
+// Add more test cases as needed
+Make sure to replace "MyComponent" and the test case content with your component's name and the actual test logic.
+
+This is a simple setup for creating Jest test files in a React project. You can add more advanced configurations and testing libraries based on your project's needs.
+
+**run test by running npm run test**
+
 ### Typescript
 
 For example, from
