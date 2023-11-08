@@ -1,36 +1,24 @@
-class Person {
-  constructor(
-    public id: string,
-    public name: string,
-    public city: string
-  ) {
-
-  }
+type Person = {
+  id: string,
+  name: string,
+  city: string,
+  contact: {phone: number} // 物件
 }
 
-class Employee extends Person {
-  constructor(
-    public readonly id: string, // 覆寫父層
-    public name: string,
-    private dept: string,
-    public city: string
-  ) {
-    // super(id, name, city) // 呼叫父層建構子
-  }
-
-  writeDept() {
-    console.log(`${this.name} works in ${this.dept}`)
-  }
+type Employee = {
+  id: string,
+  company: string,
+  dept: string
+  contact: {name: string} // 物件
 }
 
-let data = [
-  new Person('a', 'b', 'c'),
-  new Employee('d', 'e', 'f', 'g')
-]
+type EmployedPerson = Person & Employee
+let typeTest = typeof ({} as EmployedPerson)['contact']
 
-data.forEach(item => {
-  console.log(`Person: ${item.name}, ${item.city}`)
-  if(item instanceof Employee) {
-    item.writeDept();
-  }
-})
+let person1: EmployedPerson = {
+  id: 'wqer', name: 'qwer', city: 'qewr',
+  company: 'qwer', dept: 'qwer',
+  contact: {name: 'qwer', phone: 111111}
+}
+
+console.log(typeTest)
