@@ -6,6 +6,18 @@ Learning React is valuable for developers as it equips them with a powerful and 
 
 ## Concept
 
+### Debug source code
+
+This section describes the steps of how to debug react source code. The main idea is through symlink to link a react client app to react itself on local.
+
+#### Prerequisite
+
+Just clone it, install, and build react app on local.
+
+#### symlink
+
+After we build the app, cd into the build directory; take react-dom as example, we can find it through navigating through the path in react build: `build/node_modules/reactc`. And then in the client react app, link the repository with the client code through ``
+
 ### Before Development
 
 #### Init Project
@@ -80,7 +92,7 @@ In React, a component is a self-contained, reusable piece of code that defines a
 
 ### Hook
 
-[hook]
+[hook]()
 
 ### Routes
 

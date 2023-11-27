@@ -434,5 +434,11 @@
     "data": "2023-11-03",
     "category": "javascript",
     "publish": false
+  },
+  "64": {
+    "url": "software/react/hook",
+    "data": "2021-06-18",
+    "category": "react",
+    "publish": false
   }
 }

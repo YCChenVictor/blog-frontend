@@ -43,7 +43,7 @@ Review and refine the design by considering principles such as encapsulation, in
 
 Translate the design into actual code using a programming language. Follow the design principles and guidelines to implement the classes, their relationships, and their behaviors. Please refer to [object oriented programming](/blog/software/ood/oop) and [SOLID](/blog/software/ood/solid).
 
-### Step 7: Test and iterate 
+### Step 7: Test and iterate
 
 Test the implemented system to verify its correctness, functionality, and performance. Iterate as necessary to fix any bugs, address design issues, and improve the overall quality of the system.
 
