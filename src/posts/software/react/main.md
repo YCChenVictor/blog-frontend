@@ -16,7 +16,9 @@ Just clone it, install, and build react app on local.
 
 #### symlink
 
-After we build the app, cd into the build directory; take react-dom as example, we can find it through navigating through the path in react build: `build/node_modules/reactc`. And then in the client react app, link the repository with the client code through ``
+After we build the app, cd into the build directory; take react-dom as example, we can find it through navigating through the path in react build: `build/node_modules/react`. And then in the client react app, link the repository with the client code through ``
+
+Please refer to https://dev.to/arnabchat90/debugging-react-source-code-with-a-react-client-app-1l7
 
 ### Before Development
 
@@ -628,3 +630,5 @@ Note: If you cannot deploy successfully, just build it and then push it to gh-pa
 [react-markdown的使用](https://www.cnblogs.com/mbbk/p/react-markdown.html)
 
 [How to Integrate Next, React, Mermaid, and Markdown](https://www.andynanopoulos.com/blog/how-to-integrate-next-react-mermaid-markdown)
+
+[Debugging React Source Code with a React Client App](https://dev.to/arnabchat90/debugging-react-source-code-with-a-react-client-app-1l7)

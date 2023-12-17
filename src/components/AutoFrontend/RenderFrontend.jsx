@@ -1,29 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-
 import ImageUpload from './ImageUpload'
+import RenderOneComponent from './RenderOneComponent'
 
 const RenderFrontend = () => {
-  const [compiledResult ,setCompiledResult] = useState('')
-  const url = `http://localhost:5000/auto-frontend`
-
-  useEffect(() => {
-    fetchCompiledResult()
-  }, [])
-
-  const fetchCompiledResult = async () => {
-    try {
-      const response = await axios.get(url)
-      setCompiledResult(response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // Because GPT cannot read image, the ImageUpload wont work now
+  // I will try to render a component posted by GPT first
 
   return (
     <div>
-      <ImageUpload />
-      <div dangerouslySetInnerHTML={{ __html: compiledResult }} />
+      {/* <ImageUpload /> */}
+      <RenderOneComponent />
     </div>
   )
 }

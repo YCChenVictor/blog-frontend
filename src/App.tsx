@@ -75,10 +75,12 @@ function Layout(props: LayoutProps): JSX.Element {
               path="/blog/software"
               element={<Articles category={'software'} loggedIn={loggedIn} />}
             />
-            <Route path="/blog/gene" element={<Articles category={'gene'} />} />
+            <Route
+              path="/blog/gene"
+              element={<Articles category={'gene'} loggedIn={loggedIn} />} />
             <Route
               path="/blog/aesthetics"
-              element={<Articles category={'aesthetics'} />}
+              element={<Articles category={'aesthetics'} loggedIn={loggedIn} />}
             />
             <Route
               path="/blog/article-list"
