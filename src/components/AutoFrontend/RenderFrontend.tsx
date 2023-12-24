@@ -22,12 +22,9 @@ const RenderFrontend: FC<StandardRender> = ({isLoggedIn}) => {
   };
 
   return (
-    <div>
-      <div>
-        test
-      </div>
+    <div className="min-h-screen p-8 m-4"  onContextMenu={handleRightClick}>
       {isLoggedIn && (
-        <div onContextMenu={handleRightClick}>
+        <div>
           <h1>Your Content Goes Here</h1>
           <GptModal isOpen={isModalOpen} isLoggedIn={isLoggedIn} handleClose={handleCloseModal}>
             <p>Modal Content</p>
