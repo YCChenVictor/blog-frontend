@@ -18,7 +18,7 @@ import settings from './data/articleSettings.json';
 interface LayoutProps {}
 
 function Layout(props: LayoutProps): JSX.Element {
-  const helloWorldUrl = 'http://localhost:5000/';
+  const helloWorldUrl = 'http://localhost:5001/';
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
 

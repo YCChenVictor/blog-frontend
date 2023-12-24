@@ -23,7 +23,7 @@ MySQL is a popular choice for learning due to its robust feature set, scalabilit
     ```bash
     brew services list
     ```
-  * Debug
+  * Debug (You should try to do it)
     ```bash
     tail -n 50 /usr/local/var/log/postgresql@14.log
     ```

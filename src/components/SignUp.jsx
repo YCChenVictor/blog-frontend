@@ -7,7 +7,7 @@ function SignUp(props) {
   const [modalOpen, setModalOpen] = useState(true)
 
   const PostSignUpInfo = (params) => {
-    fetch("http://localhost:5000/signup", {
+    fetch("http://localhost:5001/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
