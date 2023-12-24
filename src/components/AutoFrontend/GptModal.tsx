@@ -1,13 +1,8 @@
 import React, { FC, useState, useEffect } from 'react';
 import Modal from 'react-modal'
+import ModalProps from '../Interfaces/Modal.tsx'
 
-interface ModalProps {
-  isOpen: boolean;
-  handleClose: () => void;
-}
-
-const GptModal: FC<ModalProps> = ({ isOpen, handleClose }) => {
-    const [loggedIn, setLoggedIn] = useState(false);
+const GptModal: FC<ModalProps> = ({ isOpen, isLoggedIn, handleClose }) => {
     const [previewArticle, setPreviewArticle] = useState('');
   
     useEffect(() => {
@@ -18,13 +13,10 @@ const GptModal: FC<ModalProps> = ({ isOpen, handleClose }) => {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then((response) => response.json())
-        .then((data) => {
-          setLoggedIn(data.loggedIn); // Use data.loggedIn instead of data['loggedIn']
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     }, []);
   
     return (

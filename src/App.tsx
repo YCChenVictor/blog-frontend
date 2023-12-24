@@ -86,7 +86,10 @@ function Layout(props: LayoutProps): JSX.Element {
               path="/blog/article-list"
               element={<ArticleList articleSettings={settings} />}
             />
-            <Route path="/auto-frontend" element={<RenderFrontend />} />
+            <Route
+              path="/auto-frontend"
+              element={<RenderFrontend isLoggedIn={loggedIn}/>}
+            />
             {articleRoutes}
           </Routes>
         </div>
