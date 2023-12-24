@@ -12,7 +12,7 @@ function Gpt() {
 
   useEffect(() => {
     const token = localStorage['blog logged in']
-    fetch("http://localhost:5000/gpt-init", {
+    fetch(`${process.env.REACT_APP_ENDPOINT_DEV}/gpt-init`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,

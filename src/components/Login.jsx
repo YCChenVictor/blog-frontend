@@ -7,7 +7,7 @@ function Login() {
   const [modalOpen, setModalOpen] = useState(true)
 
   const PostLoginInfo = (params) => {
-    fetch("http://localhost:5000/login", {
+    fetch(`${process.env.HOST_DEV}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
