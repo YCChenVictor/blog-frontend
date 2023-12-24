@@ -8,7 +8,7 @@ import Article from './components/Article.tsx';
 import UserInNav from './components/UserInNav';
 import ArticleList from './components/ArticleList';
 import EditArticle from './components/AutoArticle/EditArticle';
-import RenderFrontend from './components/AutoFrontend/RenderFrontend';
+import RenderFrontend from './components/AutoFrontend/RenderFrontend.tsx';
 
 import { checkLoggedIn } from './utils/checkLoggedIn';
 
