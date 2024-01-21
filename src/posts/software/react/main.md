@@ -247,6 +247,84 @@ This is a simple setup for creating Jest test files in a React project. You can 
 
 ### Typescript
 
+#### Install
+
+* Step 1: Create a new React app
+
+  ```bash
+  npx create-react-app my-react-app
+  ```
+
+* Step 2: Install TypeScript dependencies
+
+```bash
+yarn add --save typescript @types/node @types/react @types/react-dom @types/jest
+```
+
+* Step 3: Rename files to TypeScript extensions
+Rename your src/index.js file to src/index.tsx and src/App.js to src/App.tsx.
+
+* Step 4: Update tsconfig.json
+Create a tsconfig.json file in the root of your project and configure it with the necessary TypeScript options. Here's a basic example:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
+```
+
+* Step 5: Update your tsconfig.json with additional settings for React
+Update your tsconfig.json to include the following settings for React:
+
+```json
+{
+  // ... other settings
+
+  "compilerOptions": {
+    // ... existing options
+
+    "jsx": "react",
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+  },
+  "include": ["src/**/*.tsx", "src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+
+* Step 6: Start your React app
+
+```bash
+npm start
+```
+
+Now, you can use TypeScript in your React project. You can create components with .tsx extension, and TypeScript will provide you with static type checking.
+
+Remember to install any additional TypeScript typings if you are using third-party libraries that don't include them by default:
+
+```json
+npm install --save @types/library-name
+```
+
+#### Example
+
 For example, from
 
 ```js
