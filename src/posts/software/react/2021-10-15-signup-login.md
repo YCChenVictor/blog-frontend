@@ -1,21 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2021-10-15'
-categories: react
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
-
-## Introduction
-
-This article describes how to build sign up and login with react to interact with backend.
+# Title
 
 ## Why?
 
@@ -25,6 +8,8 @@ Mechanism to
 2. post info for logging in
 
 ## How?
+
+## Example
 
 ### Button to pop modal
 

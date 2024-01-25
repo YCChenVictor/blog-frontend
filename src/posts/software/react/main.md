@@ -103,28 +103,37 @@ React does not have default route settings built in; routing is typically handle
 * Create a component, `Navbar` in `components/navbar.jsx`
 * Install library
   ```bash
-  npm install react-router-dom
+  yarn add react-router-dom
+  ```
+* Wrap `App` with `BrowserRouter`
+  ```tsx
+  import { BrowserRouter } from 'react-router-dom'
+
+  render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    document.getElementById('root')
+  )
   ```
 * Use BrowserRouter, Routes, Route, and Link components to render different components based on the current URL path.
   ```jsx
-  import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+  import { Routes, Route, Link } from "react-router-dom";
   
   function Navbar() {
     return (
-      <Router>
-        <nav>
-          <ul>
-            <li><Link to="/home">Home</Link></li>
-            <li><Link to="/twitter_api">Twitter Api</Link></li>
-          </ul>
-        </nav>
-        <div>
-          <Routes>
-            <Route path="/home" element={<Home />}/>
-            <Route path="/twitter_api" element={<TwitterApi />}/>
-          </Routes>
-        </div>
-      </Router>
+      <nav>
+        <ul>
+          <li><Link to="/home">Home</Link></li>
+          <li><Link to="/twitter_api">Twitter Api</Link></li>
+        </ul>
+      </nav>
+      <div>
+        <Routes>
+          <Route path="/home" element={<Home />}/>
+          <Route path="/twitter_api" element={<TwitterApi />}/>
+        </Routes>
+      </div>
     )
   }
   
@@ -374,6 +383,12 @@ const Counter: React.FC<CounterProps> = ({ initialCount }) => {
 
 export default Counter;
 ```
+
+### Layout
+
+#### Modal
+
+reference: https://hackernoon.com/the-perfect-react-modal-implementation-for-2023
 
 ## Example
 
@@ -673,8 +688,8 @@ Note: If you cannot deploy successfully, just build it and then push it to gh-pa
 #### Tailwind
 
 * Install: `yarn add tailwind`
-* [Official guide](https://tailwindcss.com/docs/guides/create-react-app)
-* And import it in `index.js` with
+* And then follow [Official guide](https://tailwindcss.com/docs/guides/create-react-app)
+* And import it in `index.js` or `index.tsx` with
   ```javascript
   import './index.css';
   ```
