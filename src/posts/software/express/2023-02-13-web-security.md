@@ -1,21 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-02-13'
-categories: node
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
-
-## Introduction
-
-This article describes how node deal with web security issues.
+# Title
 
 ## Why?
 
@@ -36,7 +19,7 @@ const app = express()
 
 // CORS
 import cors from './middleware/cors.js';
-app.use(cors);
+app.use(cors());
 
 ...
 

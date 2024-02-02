@@ -34,7 +34,7 @@ Import and export statements are used in JavaScript to organize code into reusab
 
 ### ECMAScript modules
 
-Add "type": "module" to your `package.json` file.
+Add `"type": "module"` to your `package.json` file.
 
 This tells Node.js to treat all .js files in your project as ESM modules by default. Here's an example of what your package.json might look like:
 

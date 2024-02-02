@@ -1,21 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-12-31'
-categories: node
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
-
-## Introduction
-
-This article provides a step-by-step guide on implementing sign up and log in functionality in your Node.js application using express-session for session management and passport for login authentication. It covers the usage of middleware for authentication, supports multiple authentication strategies including Local Authentication, OAuth (e.g., Facebook, Google), and OpenID Connect, and demonstrates how to enhance security by utilizing bcrypt to encode and store passwords securely in the database, ensuring protection against potential attackers.
+# Title
 
 ## Why?
 
@@ -23,11 +6,83 @@ Validate whether this user can use our product
 
 ## How?
 
-### Database
+### sign up
 
-Refer to [database]
+#### Database
 
-### Server
+Refer to [database]()
+
+#### User Model
+
+Given we setup the [model](2022-01-20-model) environment, create a file `models/user.js` with
+
+```javascript
+// user.model.ts
+
+import { DataTypes, Model } from 'sequelize';
+import { sequelize } from './sequelize';
+
+interface UserAttributes {
+  username: string;
+  password: string;
+}
+
+class User extends Model<UserAttributes> implements UserAttributes {
+  public username!: string;
+  public password!: string;
+
+  // Add any additional methods or static functions here
+
+  // This static function will be used to initialize the User model
+  public static initialize(sequelize: Sequelize): void {
+    this.init(
+      {
+        username: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          unique: true,
+        },
+        password: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+      },
+      {
+        sequelize,
+        modelName: 'User',
+      }
+    );
+  }
+}
+
+export { User };
+```
+
+#### Update sequelize
+
+```ts
+// sequelize.ts
+
+import { Sequelize } from 'sequelize';
+import { User } from './user.model';
+
+const sequelize = new Sequelize('your-database-name', 'your-username', 'your-password', {
+  host: 'localhost',
+  dialect: 'postgres', // Change this to 'mysql' or 'sqlite' if using a different database
+});
+
+// Initialize models
+User.initialize(sequelize);
+
+// Synchronize the models with the database (create tables if not exists)
+sequelize.sync();
+
+export { sequelize };
+```
+
+### log in
+
+#### Server
 
 ```javascript
 ...
@@ -46,29 +101,7 @@ app.use(passport.initialize());
 module.exports = app
 ```
 
-### User Model
-
-Given we setup the [model](2022-01-20-model) environment, create a file `models/user.js` with
-
-```javascript
-'use strict';
-
-const Sequelize = require('sequelize');
-const sequelize = require('./index.js');
-
-const user = sequelize.define('user', {
-  email: {
-    type: Sequelize.STRING,
-  },
-  password: {
-    type: Sequelize.STRING
-  }
-})
-
-module.export = user
-```
-
-### Passport Middleware
+#### Passport Middleware
 
 You can think `passport.js` as a middleware to check whether this user can enter the border of our app.
 
@@ -191,67 +224,6 @@ app.post('/login', chooseStrategy, (req, res) => {
   // If the chosen strategy succeeds, this route will be accessed.
   res.json({ message: 'Authentication successful!' });
 });
-```
-
-### API
-
-* user story
-  * signup
-    * frontend post email and password
-    * backend encode password with bcrypt and store email and encoded password in database
-    * return jwt token
-  * login
-    * frontend post email and password
-    * backend find user with email
-    * backend decode password
-    * return jwt token
-* code example
-  ```javascript
-  import passport from '../middleware/passport.js'
-  import User from '../database/models/user.js'
-  import jwt from 'jsonwebtoken'
-  
-  const userAPIs = (app) => {
-    app.post('/signup', async (req, res, next) => {
-      const { email, password } = req.body.params; // Destructure email and password from req.body.params
-  
-      if (!email || !password) {
-        return res.status(401).json({ msg: 'Please enter all fields' });
-      }
-  
-      try {
-        const user = await User.create({
-          email,
-          password
-        });
-  
-        const token = jwt.sign({ email: user.email }, 'secret_key'); // Wrap the payload in an object
-        res.json({ token });
-      } catch (error) {
-        // Handle error during user creation
-        console.error(error);
-        res.status(500).json({ msg: 'An error occurred' });
-      }
-    });
-  
-    app.post('/login', passport.authenticate('local'), (req, res) => {
-      res.status(200).json({ token: req.user.token });
-    });
-  };
-  
-  export default userAPIs
-  ```
-* QA
-  ```bash
-  curl -d '{"key": "item"}' -H "Content-Type: application/json" -X POST https://any_existed_url.com/
-  ```
-
-### spec
-
-TBC
-
-```javascript
-
 ```
 
 ### session vs token

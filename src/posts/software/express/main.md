@@ -1,40 +1,32 @@
 # Title
 
-## Introduction
+## Purpose
 
-This article describes how to setup baseline node app.
+This article describes the key steps to build application with express, a light-weighted framework based on node. Inherited from node, it features real-time, high-performance, and scalable network.
 
-## Why?
-
-* Node: real-time, high-performance, and scalable network applications.
-* Rails: convention -> easier to code & build app quicker
-
-## How?
+## Concept
 
 ### init
 
 * Install dependencies
-  * Code
-    ```bash
-    npm install express pg dotenv axios bcrypt
-    npm install nodemon debug --save-dev
-    ```
-  * Explanation
-    * express: 
-    * pg: the package to connect to a PostgreSQL database
-    * dotenv: allows you to load environment variables from a .env file
-    * axios: a popular package for making HTTP requests, including GET and POST
-    * bcrypt: a library for hashing and salting passwords
-    * Development & test
-      * nodemon: a development utility that automatically restarts the server whenever changes are made to the code 
-      * debug: a package that provides a simple debugging utility
+  ```bash
+  yarn add express pg dotenv axios bcrypt
+  yarn add nodemon --save-dev
+  ```
+  * express: simplifies web development in Node.js by providing a framework for handling HTTP requests, defining routes, implementing middleware, and rendering dynamic views
+  * pg: the package to connect to a PostgreSQL database
+  * dotenv: allows you to load environment variables from a .env file
+  * axios: a popular package for making HTTP requests, including GET and POST
+  * bcrypt: a library for hashing and salting passwords
+  * nodemon: a development utility that automatically restarts the server whenever changes are made to the code
+  * cors: https://expressjs.com/en/resources/middleware/cors.html
 * Initialize
   ```bash
   mkdir my-project
   cd my-project
   npm init -y
   ```
-* add `.gitignore` with
+* `touch .gitignore` with
   ```bash
   # Dependency directories
   node_modules/
@@ -50,7 +42,7 @@ This article describes how to setup baseline node app.
   process.env.xxx
   ```
 * ES (import & export): [import and export]({{site.baseurl}}/javascript/2023/04/06/import-export.html)
-* Add `server.js`
+* `touch app.js`
   ```javascript
   // init
   import express from 'express'
@@ -66,7 +58,7 @@ This article describes how to setup baseline node app.
   
   // cors
   import cors from './middleware/cors.js';
-  app.use(cors);
+  (app.use(cors));
   
   // API
   import api from './apis/api_summary.js';
@@ -97,6 +89,46 @@ This article describes how to setup baseline node app.
   NODE_ENV=development npx nodemon server.js
   ```
 * test it with curl: `curl http://localhost:5000/`
+
+### Typescript
+
+* `npx tsc --init`
+* `yarn add ts-node`
+* `yarn add tsconfig-paths`
+* `yarn add express @types/express --save`
+* `npx tsc`
+* Update `package.json`
+  ```JSON
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "NODE_ENV=development nodemon app.ts", // If you use nodemon for development
+    "build": "tsc"
+  }
+  ```
+* Allow ES, in `tsconfig.json`
+  ```JSON
+  {
+    "compilerOptions": {
+      "esModuleInterop": true,
+    }
+  }
+  ```
+* Update `nodemon.json`
+  ```JSON
+  {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "execMap": {
+      "ts": "node --loader ts-node/esm -r tsconfig-paths/register"
+    },
+    "ignore": [
+      "src/**/*.spec.ts"
+    ]
+  }
+  ```
+* run app through `yarn run dev`
 
 ### structure
 
@@ -134,10 +166,6 @@ Various libraries and frameworks such as Mongoose, Sequelize, or Bookshelf can b
 ### Service
 
 In Node.js, a service module can be a self-contained piece of code that performs a specific task or set of tasks, such as communicating with an external API, handling database interactions, or performing complex business logic. For more information, please refer to [service]()
-
-### API
-
-The API of Node.js provides a comprehensive set of functions and modules that enable developers to build scalable and efficient network applications. It offers features such as file system operations, networking capabilities, event-driven programming, and support for various protocols, making it a powerful tool for server-side development. For more information, please refer to [API]({{site.baseurl}}/node/2022/01/26/api.html)
 
 ### spec
 
@@ -299,11 +327,9 @@ Use node-supervisor
   node-supervisor -w /path/to/your/project server.js
   ```
 
-## What?
+### sign up and log in
 
-* [passport for sign up and login]({{site.baseurl}}/node/2022/12/31/sign-up-and-login.html)
-
-## Other
+[passport for sign up and login]({{site.baseurl}}/node/2022/12/31/sign-up-and-login.html)
 
 #### Import and Export
 
