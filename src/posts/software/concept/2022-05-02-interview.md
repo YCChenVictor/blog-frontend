@@ -1,44 +1,97 @@
----
-layout: post
-title:
-description: ''
-date: '2022-05-02'
-categories:
-note:
-mathjax:
-mermaid:
-p5:
----
+# Title
 
-## Introduction
+## Purpose
 
-This article describes my conclusion about how to pass google interview. The key elements is as follow:
+## Concept
 
-* basic knowledge
-  * data structure and algorithm
-  * design pattern
-  * micro-service, API, schema design
-  * frameworks: backend, frontend, NFT, ML
-* behavior question
-  * skip
-* prior experience
-  * key improvements on current company
-  * self-built project just for fun
+### Introduction (5 minutes)
 
-Note that there is a preparation map which I can follow.
+* Start with a brief introduction of yourself, your background, and your current role.
+* Mention your experience, skills, and any relevant projects you've worked on.
 
-## Why?
+### Behavioral Questions (15 minutes)
 
-I want pass google software engineer interview. No matter what
+* Can you describe a challenging project you've worked on?
+* How do you handle tight deadlines and pressure?
+* Tell me about a time when you had to resolve a conflict within a team.
+* Tell me about a time when you had to deal with a difficult team member. How did you handle it?
+* Can you share an example of a project or task that didn't go as planned? How did you handle the situation and what did you learn from it?
+* Give me an example of a time when you had to adapt to a change in a work environment. How did you approach it?
+* Tell me about a situation where you had to work with a challenging client or customer. How did you handle the relationship?
+* Describe a moment when you had to lead a team through a challenging project. What strategies did you use to motivate and guide your team?
+* Give me an example of a time when you had to resolve a conflict within your team. What steps did you take to address the issue?
+* Can you share a situation where you had to make a tough decision? How did you come to the conclusion, and what were the results?
+* Tell me about a time when you demonstrated leadership skills. What was the outcome of your actions?
+* Describe a situation where you had to handle multiple tasks simultaneously. How did you prioritize and manage your time effectively?
+* Give me an example of a time when you had to take initiative without being prompted. What was the outcome?
+* Describe a situation in which you had to learn a new skill or technology quickly. How did you go about it?
 
-## How?
+### Technical Questions (30 minutes)
 
-### data structure and algorithm
+Cover various technical areas such as algorithms, data structures, databases, and system design.
+Examples of technical questions:
+Implement a function to reverse a linked list.
+Explain the difference between SQL and NoSQL databases.
+Design a system for a scalable web application.
 
-Please read the section of DSA.
+1. Coding Exercise (30 minutes)
+Present a coding problem and ask the candidate to solve it in real-time.
+Choose problems that assess problem-solving skills and coding proficiency.
+Examples:
+Implement an algorithm to find the maximum subarray sum.
+Write code to validate a Sudoku board.
+Solve a system design problem related to a real-world scenario.
+1. Open-ended Discussion and Questions (15 minutes)
+Allow time for the candidate to ask questions about the company, team, or role.
+Discuss any topics the candidate brings up and provide insights into the work culture, projects, etc.
+1. Feedback and Improvement (10 minutes)
+Provide constructive feedback on both technical and soft skills.
+Highlight areas of strength and areas that need improvement.
+Suggest resources or areas to focus on for further improvement.
+Tips:
+Simulate the interview environment as closely as possible, including time constraints.
+Use a collaborative coding platform for coding exercises.
+Encourage the candidate to talk through their thought process during coding questions.
+Provide a mix of easy, medium, and challenging questions to assess the candidate's skill level.
 
-### design pattern
+## Example
 
-## Reference
+### Introduction
 
-cracking the coding interview
+I'm a Rails developer with approximately three years of experience. Currently, I am legally eligible to work in Canada and am actively seeking opportunities in the country. My expertise extends to developing applications using Rails, Vue, React, and Node.
+
+During my career, I have had the opportunity to work on projects in both Ad Tech and Ed Tech domains. In the Ad Tech sector, I collaborated with a team to build a bidding system for the advertisement market. This experience equipped me with valuable insights into the dynamic and competitive nature of the advertising industry.
+
+In the Ed Tech domain, my role at Faria Education Group encompassed a range of impactful contributions. Notably, I spearheaded the implementation of a comprehensive Admission Journey checklist and due dates mechanism, significantly streamlining the admission process and enhancing school admission rates. Additionally, my involvement in the Parent UI Redesign project underscored my commitment to software quality, as I meticulously addressed 87 groups of unit and feature tests to ensure consistency with a revised specification and new UI. In the Advancement Module project, I seamlessly integrated new features, analyzed over 1,000 lines of code, and established robust security measures, contributing to the efficient management of worldwide alumni families. These experiences have not only sharpened my technical skills but have also cultivated my ability to devise innovative solutions and adapt to diverse project requirements, making me well-equipped for future challenges in the Ed Tech sector. I am eager to bring this expertise to your team and contribute to the success of your initiatives.
+
+I am enthusiastic about the prospect of contributing my skills and expertise to new challenges in Canada and look forward to discussing potential opportunities.
+
+### Behavior Question
+
+#### Faria, Advancement module
+
+* Can you describe a challenging project you've worked on? Advancement module
+* How do you handle tight deadlines and pressure? Transparency
+
+The most challenging one is a module we built in Faria, aiming helping schools, our customers, to manage the relationship with their graduated students. During the development, I need to understand the legacy code in short period because the new feature needs a smooth integration with the old systems. Also, this feature is a premium feature, so I need to modularize it for showing it to only those paid customers.
+
+At first, I asked several co-workers whether they know the logics of the legacy code as there is no unit tests for these features. However, only one developer has developed a similar one with little understanding of these codebase. As a result, I started the try and error process, which literally copy paste the old codebase directly with some amendments and developed one which seemingly fitted the specifications. During the process, I keep full transparency with my manager, product managers, and QA team, resulting in their big supports. For example, the QA team helped me test whether the result achieved the requirements and whether it broke the old features. Moreover, the product manager enhanced my knowledge related to the perspectives from customers and sales team and answered all my questions about the conflicts between old programs and the new business logics. Through out the iterations, I accomplished the new system and it successfully attracts new revenue from customers. Fortunately, I only made one manageable mistake in this whole process, which require some minor amendments on the database data. After this whole process, I am the only person, having full understanding about the fields mechanism in the product, so I also added the key unit tests to keep functionalities.
+
+In the past, I usually expected clear specifications for a new project. Nevertheless, sometime, in a competitive market, benchmarking market has higher priority. Consequently, I need to adjust my mindset to meet the expectations. To have a clear goal, communication serves as a fundamental factor. Then, keep refreshing the goals through adaptability. Then, keep transparency so that team members can help. To boost the efficiency in all aspects during this whole process, honing the coding skill persistently and decomposing the logics into smaller problems to solve step by step are the keys.
+
+#### OneAD, SuperDSP
+
+* Tell me about a time when you had to resolve a conflict within a team.
+* Tell me about a time when you had to deal with a difficult team member. How did you handle it?
+
+While developing this module, I encountered situations where I required information from other departments. However, my manager prefers all communication to go through her, maintaining a centralized approach to project oversight. Unfortunately, this led to a misunderstanding when one of my co-workers was perceived as attempting to handle tasks covertly. To address this, I engaged in a conversation with my co-worker, emphasizing the importance of aligning our efforts with team goals. I encouraged him to focus on the collective objectives we aimed to achieve and, during our discussion, I also checked if he was experiencing any emotional distress stemming from the miscommunication with our manager. This approach aimed at fostering a positive and collaborative work environment and ensuring that everyone is on the same page moving forward.
+
+#### Faria, Parent UI redesign
+
+Please check the answer in this section again
+
+* Can you share an example of a project or task that didn't go as planned? How did you handle the situation and what did you learn from it?
+
+When I joined the project, the UI had already undergone changes as per the new design; however, both the feature and unit tests were found to be broken. Subsequently, the development team approached the project manager to assign me the task of rectifying the issues. Upon investigation, it became apparent that some desired behaviors had deviated from the correct business logic, and the frontend developers had not strictly adhered to Test-Driven Development (TDD) practices, leading to significant delays in the overall processes.
+
+Upon recognizing the need for a more collaborative approach, I adjusted my strategy by informing the project managers first and then engaging closely with the frontend developers to understand the challenges they were facing. This shift initiated a series of productive meetings, where we collectively addressed discrepancies between the design and implemented features, as well as tackled issues within the testing process. Together, we identified root causes, such as miscommunication, a lack of adherence to testing practices, and insufficient communication regarding changes in business requirements. Rather than placing blame on individuals, we focused on improving processes. Collaborating extensively with the frontend developers, I updated the tests to accurately reflect the correct business logic. Simultaneously, we established clearer communication channels among the design, development, and testing teams to prevent similar issues in the future.

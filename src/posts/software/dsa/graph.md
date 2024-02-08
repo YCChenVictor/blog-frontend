@@ -398,6 +398,8 @@ Given the graph above
 * Detecting cycles: DFS > BFS because DFS will go deeper first, which will return to a visited node on a route first, compared to BFS.
 * Find shortest path: DFS < BFS because BFS does level-by-level exploration. When we find a target nodes, we can stop the exploration and return the path from a node to target node.
 
+## What?
+
 ### Route Between Nodes
 
 * Problem: Given a **directed** graph, design an algorithm to find out whether there is a route between two nodes.
@@ -529,15 +531,27 @@ Given the graph above
   })
   ```
 
-## What?
+### detect circle
 
-### Maze
+If we meet the visited node, it means there is circle
 
-* Try to find the shortest path in maze with DFS
-* Represent maze as a graph, each cell is a node and the neighboring cells are connected by edges
-* Use a depth-first search algorithm to explore all possible paths from the starting cell to the exit cell. We can mark each cell as visited as we explore the maze and keep track of the shortest path we've found so far. Once we reach the exit cell, we compare the length of the path we've found to the shortest path so far and update it if the new path is shorter.
-* This approach can be optimized using techniques such as backtracking and memoization to avoid exploring paths that cannot lead to the shortest path.
-* Code example:
+```js
+function detectCircle(start) {
+  let visited = new Set()
+
+  return dfs(start)
+
+  function dfs(node) {
+    visited.add(node.val)
+    for(neighbor of node.neighbors) {
+      if(visited.has(neighbor.val)) {
+        return false
+      }
+      dfs(neighbor)
+    }
+  }
+}
+```
 
 ## Reference
 

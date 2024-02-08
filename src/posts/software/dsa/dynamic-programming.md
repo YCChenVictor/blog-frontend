@@ -8,69 +8,29 @@ Dynamic programming typically involves storing and reusing previously computed r
 
 ## Concept
 
-All dynamic programmings involve smartly finding relationship between bigger dataset and smaller dataset and try to formulate it.
-
-### Identify
-
-Usually, when we found a problem can be solved with recursive mindset, we can start to think about dynamic programming. The essence of dynamic programming is not to repeat the sub-tasks. That is, to achieve a result, the answer of a subset my be used in other bigger set.
-
-For example, I want to find the longest increasing subsequence of [3, 1, 8, 2, 5], which has answer equals to 3 (1, 2, 5) and I denote as F([3, 1, 8, 2, 5]) = 3. Then I will try to find the relationship between F([3, 1, 8, 2, 5]) and F([3, 1, 8, 2]).
-
-We can decompose the answer to F([3, 1, 8, 2]) + 1 when the next element is larger than the last element of [3, 1, 8, 2] or F([3, 1, 8, 2]) if next element is smaller than the last element of [3, 1, 8, 2].
-
-Now, we can write the answer as F([3, 1, 8, 2, 5]) = 1 + max{ F([3, 1, 8, 2]) where last element is smaller than 5 } = 1 + max { 1 + max { F[3, 1, 8] where last element is smaller than 2 } } and so on.
-
-In the loop, please remember to use a structure to store the results, so we can use it in future recursive.
-
-### Steps
-
-For example, given an integer array, [1, -2, 3, 4, -1, 2, 1, -5, 4], find the largest sum from a continuous sub-array.
-
-* Try to find relationship between subset and set
-  * It's all about pretending. I pretend I already have the solution of an subset, denoted as F(array[0..i-1]). Then the element of array[i] comes in. What's next? The problem immediately becomes Max(F(array[0..i-1]), array[i], F(array[0..i-1]) + array[i]). Let's only consider array[i] is positive. Then the problem becomes Max(array[i], F(array[0..i-1]) + array[i]).
-* Define the base case
-  * F(array[0]) = array[0]
-* Implement the algorithm
-  ```javascript
-  function maxSubArraySum(arr) {
-    let maxSum = arr[0]
-    
-    for (let i = 1; i < arr.length; i++) {
-      nextResult = Math.max(arr[i], dp[i - 1] + arr[i])
-      maxSum = Math.max(maxSum, nextResult);
-    }
-    
-    return maxSum;
-  }
-  
-  // Example usage:
-  const array = [1, -2, 3, 4, -1, 2, 1, -5, 4];
-  const result = maxSubArraySum(array);
-  ```
-* Analyze the time and space complexity
-  * Since it will only loop through all element once, the time complexity is O(n)
+All dynamic programmings involve smartly finding relationship between bigger dataset and smaller dataset and try to formulate it. As demonstration, I am going to solve problem, longest increasing subsequence, with dynamic programming.
 
 ### Recursive vs. Iterative Solutions
 
-All recursive algorithms can be implemented iteratively. If the recursive solution takes too much memory, we can consider solve it iteratively.
+All recursive algorithms can be implemented iteratively. If the recursive solution takes too much memory, we can consider solving it iteratively.
 
 For example, we can calculate `factorial` with recursive and iterative method as follow:
 
 ```javascript
 function factorialRecursive(n) {
-  if(n == 1) {
-    return 0
+  if (n === 1) {
+    return 1;
   } else {
-    return n * factorialRecursive(n - 1)
+    return n * factorialRecursive(n - 1);
   }
 }
 
 function factorialIterative(n) {
-  result = 1
-  for (let i = 1; i <= n; i ++) {
-    result = result * i
+  let result = 1;
+  for (let i = 1; i <= n; i++) {
+    result *= i;
   }
-  return result
+  return result;
 }
 ```
 
@@ -83,23 +43,25 @@ function factorialIterative(n) {
 * Recursive
   ```javascript
   function fibonacci(n) {
-    const memo = {};
+    const memo = {}; // the memo is the key for dynamic programming
     function fibonacciHelper(n) {
       if (n <= 1) {
         return n;
       } else if (n in memo) {
         return memo[n];
       } else {
-        memo[n] = fibonacciHelper(n-1) + fibonacciHelper(n-2);
+        memo[n] = fibonacciHelper(n - 1) + fibonacciHelper(n - 2);
         return memo[n];
       }
     }
     return fibonacciHelper(n);
   }
-  
+
   console.log(fibonacci(10)); // Output: 55
   ```
-* Time complexity: O(n) because with memo, I only need to know f(n), ... f(1)
+* Time complexity: O(n) because with memo, I only need to calculate each Fibonacci number once.
+
+## Example
 
 ### Triple Step
 
@@ -109,7 +71,7 @@ function factorialIterative(n) {
   * hop 2 => must hop to 3 before => the ways(3)
   * hop 3 => must hop to 2 before => the ways(2)
   * As a result, we can conclude that ways(n) = ways(n-1) + ways(n-2) + ways(n-3)
-* Solution:
+* Solution: (recursive one, no memory)
   ```javascript
   function childHop(n) {
     if (n == 1) {
@@ -127,6 +89,23 @@ function factorialIterative(n) {
   }
 
   // childHop(5) = 13
+  ```
+* Solution: (dynamic programming one)
+  ```javascript
+  function childHop(n) {
+    dp = Array(n + 1).fill(0)
+
+    // dp[0] = 0 (0 step)
+
+    dp[0] = 0
+    dp[1] = 1 // [1]
+    dp[2] = 2 // [1, 1], [2]
+    dp[3] = 4 // [1, 1, 1], [2, 1], [1, 2], [3]
+    for(let i = 4; i <= n; i++) {
+      dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
+    }
+    return dp[n]
+  }
   ```
 * Test
   ```javascript
@@ -348,14 +327,12 @@ Let's try to write the code
   ```
 * GPT said there more efficient way to use bit shifting. But both its answer and mine are both min(a, b).
 
-## Example
+### 0/1 Knapsack Problem
 
-### (Real world) resource allocation
-
-* Problem: Allocates scarce resources in the most efficient way possible to maximize the overall benefit or profit. The problem can be represented as a table where the rows represent the projects and the columns represent the available budget. The table is filled out in a bottom-up manner, where each cell represents the maximum profit that can be obtained for a given budget and a subset of projects. Resource allocation problems can arise in many different fields, such as in supply chain management, healthcare, and environmental management. By using dynamic programming to optimize resource allocation, businesses and organizations can make more informed decisions and achieve better outcomes.
-* Example: Consider a company that has a limited budget and needs to allocate its resources (e.g., money, manpower, equipment) across different projects to maximize profits.
-* Solution: Use dynamic programming solve this problem by breaking it down into smaller sub-problems and optimizing each subproblem independently. By computing the values in the table for all possible combinations of projects and budgets, the optimal solution can be found by selecting the combination of projects with the highest profit that also fits within the budget constraints.
-* Code: Suppose we have a list of n tasks, each with an associated profit and time required. We also have a limited amount of time available to complete tasks. Our goal is to choose a subset of tasks to complete in the allotted time that maximizes the total profit. We can use dynamic programming to solve this problem by building a table where the rows represent the tasks and the columns represent the available time. We fill out the table in a bottom-up manner, computing the maximum profit that can be obtained for each subset of tasks and time.
+* Problem: Allocating scarce resources efficiently to maximize overall benefit or profit is a common problem across various domains. The problem is often represented as a table where rows denote projects, and columns represent available budgets. By employing dynamic programming to optimize resource allocation, businesses and organizations can make more informed decisions, leading to better outcomes.
+* Example: Consider a company with a limited budget aiming to allocate resources (e.g., money, manpower, equipment) across projects to maximize profits.
+* Solution: Dynamic programming can efficiently solve resource allocation problems by breaking them into smaller sub-problems and optimizing each subproblem independently. This is achieved by computing values in a table for all possible combinations of projects and budgets, selecting the combination that yields the highest profit within budget constraints.
+* Code: Suppose we have a list of n tasks, each with an associated profit and time required. The goal is to choose a subset of tasks within a limited time to maximize total profit. Dynamic programming is applied by constructing a table where rows represent tasks, and columns represent available time. The table is filled in a bottom-up manner, computing the maximum profit for each subset of tasks and time.
 
 We want to find the most profitable tasks in a give time as follow
 
@@ -394,10 +371,9 @@ And use dynamic programming:
 ```javascript
 function allocateResources(tasks, time) {
   const n = tasks.length;
-  const table = Array.from({ length: n + 1 }, () => Array(time + 1).fill(0));
+  const table = Array.from({ length: n + 1 }, () => Array(time + 1).fill(0)); // dynamic programming
 
-  // construct desired structure
-  // Rows are the accumulated projects and column are the limit of time
+  // Construct table: Rows represent accumulated profits of projects, columns represent time limits
   for (let i = 1; i <= n; i++) {
     const { profit, time: taskTime } = tasks[i - 1];
     for (let j = 1; j <= time; j++) {
@@ -425,7 +401,7 @@ function allocateResources(tasks, time) {
   return { maxProfit: table[n][time], solution };
 }
 
-const time = 5;
+const time = 5; // scare resources
 
 const tasks = [
   { name: 'Task A', profit: 2, time: 1 },
@@ -439,6 +415,34 @@ const { maxProfit, solution } = allocateResources(tasks, time);
 console.log(`Max profit: ${maxProfit}`);
 console.log(`Solution: ${solution.map(task => task.name).join(', ')}`);
 ```
+
+### largest sum from a continuous sub-array
+
+For example, given an integer array, [1, -2, 3, 4, -1, 2, 1, -5, 4], find the largest sum from a continuous sub-array.
+
+* Try to find relationship between subset and set
+  * It's all about pretending. I pretend I already have the solution of an subset, denoted as F(array[0..i-1]). Then the element of array[i] comes in. What's next? The problem immediately becomes Max(F(array[0..i-1]), array[i], F(array[0..i-1]) + array[i]). Let's only consider array[i] is positive. Then the problem becomes Max(array[i], F(array[0..i-1]) + array[i]).
+* Define the base case
+  * F(array[0]) = array[0]
+* Implement the algorithm
+  ```javascript
+  function maxSubArraySum(arr) {
+    let maxSum = arr[0]
+    
+    for (let i = 1; i < arr.length; i++) {
+      nextResult = Math.max(arr[i], dp[i - 1] + arr[i])
+      maxSum = Math.max(maxSum, nextResult);
+    }
+    
+    return maxSum;
+  }
+  
+  // Example usage:
+  const array = [1, -2, 3, 4, -1, 2, 1, -5, 4];
+  const result = maxSubArraySum(array);
+  ```
+* Analyze the time and space complexity
+  * Since it will only loop through all element once, the time complexity is O(n)
 
 ## Reference
 
