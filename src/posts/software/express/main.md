@@ -327,10 +327,6 @@ Use node-supervisor
   node-supervisor -w /path/to/your/project server.js
   ```
 
-### sign up and log in
-
-[passport for sign up and login]({{site.baseurl}}/node/2022/12/31/sign-up-and-login.html)
-
 #### Import and Export
 
 Whether to use import or require() in Node.js project depends on the version of Node.js and personal preference for code style and syntax, with import being advantageous for newer versions of Node.js, while require() may be preferred for backwards compatibility and certain package compatibility.

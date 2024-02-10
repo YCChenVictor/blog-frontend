@@ -388,7 +388,64 @@ export default Counter;
 
 #### Modal
 
-reference: https://hackernoon.com/the-perfect-react-modal-implementation-for-2023
+Create Modal Component
+
+```jsx
+// Modal.js
+import React from 'react';
+
+const Modal = ({ isOpen, onClose, children }) => {
+  if (!isOpen) {
+    return null;
+  }
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <span className="close-button" onClick={onClose}>
+          &times;
+        </span>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default Modal;
+```
+
+Use Modal Component in Parent Component
+
+```jsx
+// ParentComponent.js
+import React, { useState } from 'react';
+import Modal from './Modal';
+
+const ParentComponent = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <div>
+      <button onClick={openModal}>Open Modal</button>
+
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2>Modal Content</h2>
+        <p>This is the content of the modal.</p>
+      </Modal>
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
 
 ## Example
 

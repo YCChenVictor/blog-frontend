@@ -11,12 +11,12 @@
 
 ### Behavioral Questions (15 minutes)
 
-* Can you describe a challenging project you've worked on?
-* How do you handle tight deadlines and pressure?
-* Tell me about a time when you had to resolve a conflict within a team.
-* Tell me about a time when you had to deal with a difficult team member. How did you handle it?
-* Can you share an example of a project or task that didn't go as planned? How did you handle the situation and what did you learn from it?
-* Give me an example of a time when you had to adapt to a change in a work environment. How did you approach it?
+* (V) Can you describe a challenging project you've worked on?
+* (V) How do you handle tight deadlines and pressure?
+* (V) Tell me about a time when you had to resolve a conflict within a team.
+* (V) Tell me about a time when you had to deal with a difficult team member. How did you handle it?
+* (V) Can you share an example of a project or task that didn't go as planned? How did you handle the situation and what did you learn from it?
+* (V) Give me an example of a time when you had to adapt to a change in a work environment. How did you approach it?
 * Tell me about a situation where you had to work with a challenging client or customer. How did you handle the relationship?
 * Describe a moment when you had to lead a team through a challenging project. What strategies did you use to motivate and guide your team?
 * Give me an example of a time when you had to resolve a conflict within your team. What steps did you take to address the issue?
@@ -54,6 +54,26 @@ Use a collaborative coding platform for coding exercises.
 Encourage the candidate to talk through their thought process during coding questions.
 Provide a mix of easy, medium, and challenging questions to assess the candidate's skill level.
 
+### Coding Exercise (30 minutes)
+
+Present a coding problem and ask the candidate to solve it in real-time.
+Choose problems that assess problem-solving skills and coding proficiency.
+Examples:
+Implement an algorithm to find the maximum subarray sum.
+Write code to validate a Sudoku board.
+Solve a system design problem related to a real-world scenario.
+
+### Open-ended Discussion and Questions (15 minutes)
+
+Allow time for the candidate to ask questions about the company, team, or role.
+Discuss any topics the candidate brings up and provide insights into the work culture, projects, etc.
+
+### Feedback and Improvement (10 minutes)
+
+Provide constructive feedback on both technical and soft skills.
+Highlight areas of strength and areas that need improvement.
+Suggest resources or areas to focus on for further improvement.
+
 ## Example
 
 ### Introduction
@@ -67,6 +87,28 @@ In the Ed Tech domain, my role at Faria Education Group encompassed a range of i
 I am enthusiastic about the prospect of contributing my skills and expertise to new challenges in Canada and look forward to discussing potential opportunities.
 
 ### Behavior Question
+
+#### Faria
+
+* Give me an example of a time when you had to adapt to a change in a work environment. How did you approach it?
+
+The most pivotal shift in my professional life occurred with the unexpected resignation of the CEO at my previous company, a figure who also happened to be the founder and had held the position for decades. Initially, concerns about potential mass layoffs loomed, causing a sense of apprehension. However, my proactive approach in resolving various issues and introducing valuable features to my product proved instrumental in solidifying my position within the organization.
+
+As my supervisor interviewed me about this abrupt change, I found myself in a tranquil state, buoyed by confidence in the contributions I had made to the team and reassured about the stability of my role. Taking the initiative, I reassured my supervisor that I remained unaffected by the change, despite my initial shock. I emphasized my commitment to maintaining peak performance and ensuring the ongoing success of my role within the organization. This proactive stance not only alleviated any concerns my supervisor may have had but also underscored my dedication to making valuable contributions and retaining a sense of ownership amidst significant organizational changes.
+
+Reflecting on this experience, I've gained a deeper understanding of the importance of dedication in our daily work. Life's uncertainties underscore the need for a consistent and committed approach, as we never know what challenges or opportunities may arise.
+
+* Tell me about a situation where you had to work with a challenging client or customer. How did you handle the relationship?
+
+In my role as a software engineer at Faria, I encountered a challenging situation while working with a particular customer. The challenge revolved around implementing cookie settings for their users visiting their page, utilizing a third-party API that imposed fees based on query volume or multiple domains.
+
+Initially, when we communicated the necessity for the customer to apply for the required credentials due to the associated fees, they were resistant and unwilling to bear the additional cost. This posed a significant hurdle in moving forward with the implementation of the desired features.
+
+To navigate this challenging client relationship, I adopted a proactive and transparent communication approach. I patiently explained the intricacies of the third-party API's fee structure and the reasons why they needed to take charge of obtaining the credentials. I ensured that I provided detailed information on how the fees were essential for accessing the API and, consequently, for delivering the intended cookie settings.
+
+Despite multiple discussions, it took some time for the client to fully comprehend the situation. However, maintaining open lines of communication and emphasizing the importance of these steps for the project's success played a crucial role in building trust. I took the opportunity to showcase the potential benefits and long-term advantages of investing in the necessary credentials, assuring them that it would enhance their users' experience and contribute to the overall success of their platform.
+
+Ultimately, through perseverance and clear communication, the client began to appreciate the need for obtaining the credentials. They acknowledged the rationale behind the decision, and this understanding paved the way for a more cooperative and collaborative working relationship. By the end of the process, not only did we successfully implement the required features, but the experience also highlighted the importance of transparency and effective communication in managing challenging client relationships.
 
 #### Faria, Advancement module
 
