@@ -7,6 +7,36 @@ React employs hooks for state and lifecycle management in functional components,
 ## Concept
 
 * `useState` for managing state
+  * Updating array. Use `...`
+    ```jsx
+    import React, { useState } from 'react';
+
+    const YourComponent = () => {
+      const [components, setComponents] = useState([]);
+    
+      // Function to add a new component to the array
+      const addComponent = (newComponent) => {
+        setComponents((prevComponents) => [...prevComponents, newComponent]);
+      };
+    
+      // Example of using the addComponent function
+      const handleAddComponent = () => {
+        const newComponent = // Your new component or value here;
+        addComponent(newComponent);
+      };
+    
+      return (
+        <div>
+          {/* Render your existing components here */}
+          
+          {/* Button to add a new component */}
+          <button onClick={handleAddComponent}>Add Component</button>
+        </div>
+      );
+    };
+    
+    export default YourComponent;
+    ```
 * `useEffect` for handling lifecycle events
 * `useContext` for accessing the context API
 * `useRef` for persisting values and interacting with the DOM imperatively

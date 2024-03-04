@@ -90,7 +90,7 @@ export default App;
 
 ### Component
 
-In React, a component is a self-contained, reusable piece of code that defines a specific part of a user interface. Components can be combined to create complex UIs, and they can be managed and updated independently, making them a powerful tool for building scalable and modular applications. For more information, please refer to [component].
+[component](2023-01-27-component)
 
 ### Hook
 
@@ -184,7 +184,7 @@ React does not have default route settings built in; routing is typically handle
 
 ### API
 
-React can communicate with backend APIs through HTTP requests to obtain data for dynamic rendering, enabling interactive and responsive web applications when used in conjunction with libraries like `Axios` or the `fetch` API. For more information, please refer to [api](/blog/software/react/api).
+[api](/blog/software/react/api).
 
 ### Assets
 

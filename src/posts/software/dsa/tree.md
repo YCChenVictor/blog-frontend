@@ -198,8 +198,7 @@ After each traverse, redo it from begin
       return result
     }
     
-    levelorderTraversal() {
-      // [5, 3, 8, 2, 4, 7, 9]
+    levelorderTraversal() { // Just like the BFS in Graph
       const queue = [this.root]
       const result = []
   

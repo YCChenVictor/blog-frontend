@@ -1,21 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-01-27'
-categories: react
-note:
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
-
-## Introduction
-
-TBC
+# Title
 
 ## Why?
 
@@ -226,10 +209,6 @@ const CommentContent = ({ content }) => {
 export default CommentContent;
 ```
 
-#### prop vs state
-
-TBC
-
 ### Wait until Data Prepared
 
 We can use conditional rendering to wait until data fetched
@@ -339,7 +318,7 @@ Say if there is an operation in child component, then we want parent component t
   
   export default ParentComponent;
   ```
-* Child: Use the method passed form parent component
+* Child: Use the method passed from parent component
   ```jsx
   // ChildComponent.js
   import React from 'react';

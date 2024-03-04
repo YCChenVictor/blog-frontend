@@ -153,7 +153,7 @@ The structure I prefer
 
 ### API
 
-The API of Node.js provides a comprehensive set of functions and modules that enable developers to build scalable and efficient network applications. It offers features such as file system operations, networking capabilities, event-driven programming, and support for various protocols, making it a powerful tool for server-side development. For more information, please refer to [API]({{site.baseurl}}/node/2022/01/26/api.html)
+[API]({{site.baseurl}}/node/2022/01/26/api.html)
 
 ### Database
 

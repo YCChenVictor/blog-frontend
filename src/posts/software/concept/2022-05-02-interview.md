@@ -4,12 +4,12 @@
 
 ## Concept
 
-### Introduction (5 minutes)
+### Introduction
 
 * Start with a brief introduction of yourself, your background, and your current role.
 * Mention your experience, skills, and any relevant projects you've worked on.
 
-### Behavioral Questions (15 minutes)
+### Behavioral Questions
 
 * (V) Can you describe a challenging project you've worked on?
 * (V) How do you handle tight deadlines and pressure?
@@ -17,58 +17,27 @@
 * (V) Tell me about a time when you had to deal with a difficult team member. How did you handle it?
 * (V) Can you share an example of a project or task that didn't go as planned? How did you handle the situation and what did you learn from it?
 * (V) Give me an example of a time when you had to adapt to a change in a work environment. How did you approach it?
-* Tell me about a situation where you had to work with a challenging client or customer. How did you handle the relationship?
-* Describe a moment when you had to lead a team through a challenging project. What strategies did you use to motivate and guide your team?
-* Give me an example of a time when you had to resolve a conflict within your team. What steps did you take to address the issue?
-* Can you share a situation where you had to make a tough decision? How did you come to the conclusion, and what were the results?
-* Tell me about a time when you demonstrated leadership skills. What was the outcome of your actions?
-* Describe a situation where you had to handle multiple tasks simultaneously. How did you prioritize and manage your time effectively?
-* Give me an example of a time when you had to take initiative without being prompted. What was the outcome?
-* Describe a situation in which you had to learn a new skill or technology quickly. How did you go about it?
+* (V) Tell me about a situation where you had to work with a challenging client or customer. How did you handle the relationship?
+* (V) Describe a moment when you had to lead a team through a challenging project. What strategies did you use to motivate and guide your team?
+* (V) Can you share a situation where you had to make a tough decision? How did you come to the conclusion, and what were the results?
+* (V) Tell me about a time when you demonstrated leadership skills. What was the outcome of your actions?
+* (V) Describe a situation where you had to handle multiple tasks simultaneously. How did you prioritize and manage your time effectively?
+* (V) Give me an example of a time when you had to take initiative without being prompted. What was the outcome?
+* (V) Describe a situation in which you had to learn a new skill or technology quickly. How did you go about it?
 
-### Technical Questions (30 minutes)
+### Technical Questions
 
-Cover various technical areas such as algorithms, data structures, databases, and system design.
-Examples of technical questions:
-Implement a function to reverse a linked list.
-Explain the difference between SQL and NoSQL databases.
-Design a system for a scalable web application.
+Present a coding problem to assess problem-solving skills and coding proficiency.
+Choose problems that cover various technical areas (algorithms, data structures, etc.)
 
-1. Coding Exercise (30 minutes)
-Present a coding problem and ask the candidate to solve it in real-time.
-Choose problems that assess problem-solving skills and coding proficiency.
-Examples:
-Implement an algorithm to find the maximum subarray sum.
-Write code to validate a Sudoku board.
-Solve a system design problem related to a real-world scenario.
-1. Open-ended Discussion and Questions (15 minutes)
-Allow time for the candidate to ask questions about the company, team, or role.
-Discuss any topics the candidate brings up and provide insights into the work culture, projects, etc.
-1. Feedback and Improvement (10 minutes)
-Provide constructive feedback on both technical and soft skills.
-Highlight areas of strength and areas that need improvement.
-Suggest resources or areas to focus on for further improvement.
-Tips:
-Simulate the interview environment as closely as possible, including time constraints.
-Use a collaborative coding platform for coding exercises.
-Encourage the candidate to talk through their thought process during coding questions.
-Provide a mix of easy, medium, and challenging questions to assess the candidate's skill level.
+Just literally practice leetcode and side projects.
 
-### Coding Exercise (30 minutes)
-
-Present a coding problem and ask the candidate to solve it in real-time.
-Choose problems that assess problem-solving skills and coding proficiency.
-Examples:
-Implement an algorithm to find the maximum subarray sum.
-Write code to validate a Sudoku board.
-Solve a system design problem related to a real-world scenario.
-
-### Open-ended Discussion and Questions (15 minutes)
+### Open-ended Discussion and Questions
 
 Allow time for the candidate to ask questions about the company, team, or role.
 Discuss any topics the candidate brings up and provide insights into the work culture, projects, etc.
 
-### Feedback and Improvement (10 minutes)
+### Feedback and Improvement
 
 Provide constructive feedback on both technical and soft skills.
 Highlight areas of strength and areas that need improvement.
@@ -110,6 +79,22 @@ Despite multiple discussions, it took some time for the client to fully comprehe
 
 Ultimately, through perseverance and clear communication, the client began to appreciate the need for obtaining the credentials. They acknowledged the rationale behind the decision, and this understanding paved the way for a more cooperative and collaborative working relationship. By the end of the process, not only did we successfully implement the required features, but the experience also highlighted the importance of transparency and effective communication in managing challenging client relationships.
 
+* Describe a situation where you had to handle multiple tasks simultaneously. How did you prioritize and manage your time effectively?
+
+n my daily work at Faria, I often juggled multiple tasks, such as developing new features while addressing urgent bugs. To handle this, I maintained two tickets in progress simultaneously. I did this for three reasons:
+
+1. It prevented me from falling into a 'logic hole.' Sometimes, taking a break and working on another task allowed me to refresh my thinking and find a more creative solution to a problem.
+2. It maximized my output by focusing on solving the most significant issue within a given timeframe.
+3. It provided a time cushion. If new requirements or edge cases emerged during development, I could adjust my code without the risk of having to redo the entire feature from scratch.
+
+To switch seamlessly between tasks, I took detailed notes while resolving issues.
+
+* Give me an example of a time when you had to take initiative without being prompted. What was the outcome?
+
+The filter system was experiencing performance issues due to the large amount of data it processed. While the system continued to deliver the desired results without any customer complaints, the development team recognized the need for a more efficient solution. However, a complete refactor seemed impractical due to a lack of immediate incentive.
+
+To address this, I proactively decided to study the codebase and create concise documentation for future development. This initiative would benefit the team regardless of whether we decided to refactor the feature or not. Additionally, I proposed a refactor plan that included denormalization, indexing, removing joins, and removing offsets. Although the proposal was not immediately approved due to higher priority features, there is ongoing progress. This approach ensures that in the future, we can seamlessly begin the refactoring process without the need for extensive reevaluation of the codebase.
+
 #### Faria, Advancement module
 
 * Can you describe a challenging project you've worked on? Advancement module
@@ -137,3 +122,55 @@ Please check the answer in this section again
 When I joined the project, the UI had already undergone changes as per the new design; however, both the feature and unit tests were found to be broken. Subsequently, the development team approached the project manager to assign me the task of rectifying the issues. Upon investigation, it became apparent that some desired behaviors had deviated from the correct business logic, and the frontend developers had not strictly adhered to Test-Driven Development (TDD) practices, leading to significant delays in the overall processes.
 
 Upon recognizing the need for a more collaborative approach, I adjusted my strategy by informing the project managers first and then engaging closely with the frontend developers to understand the challenges they were facing. This shift initiated a series of productive meetings, where we collectively addressed discrepancies between the design and implemented features, as well as tackled issues within the testing process. Together, we identified root causes, such as miscommunication, a lack of adherence to testing practices, and insufficient communication regarding changes in business requirements. Rather than placing blame on individuals, we focused on improving processes. Collaborating extensively with the frontend developers, I updated the tests to accurately reflect the correct business logic. Simultaneously, we established clearer communication channels among the design, development, and testing teams to prevent similar issues in the future.
+
+#### OneAD, Sales Performance
+
+* Describe a moment when you had to lead a team through a challenging project. What strategies did you use to motivate and guide your team?
+
+I did not really have experience to lead a team but I did help my team to walk through some challenges. There are two challenges during the development of a critical feature for this project. The first obstacle was the need for iterative confirmation of results with the sales team, and the second was a knowledge gap among some developers.
+
+To tackle the challenge of confirming results with the sales team, I implemented a communication strategy featuring regular and transparent updates. Recognizing that the sales team manager faced difficulties with the JIRA process, I adapted by providing consistent updates in a Google document tailored for her easy review and understanding.
+
+To address the knowledge gap, I organized targeted training sessions, empowering team members with the skills such as rails code needed for specific features. Additionally, I fostered collaboration through pair programming, facilitating the transfer of expertise and fostering a sense of teamwork within the group.
+
+Throughout the entire process, I consistently emphasized the benefits of the new feature, effectively boosting my co-workers' motivation and willingness to contribute their efforts. This approach ensured that the team remained aligned with the project goals and understood the significance of their contributions.
+
+#### Faria, Admission Journey
+
+* Can you share a situation where you had to make a tough decision? How did you come to the conclusion, and what were the results?
+
+During the development of this feature, a pivotal decision arose regarding whether to adhere to the existing field design or to embrace a new CRUD approach. Opting for continuity with the old design necessitates the creation of a syncing mechanism for the fields. On the other hand, adopting the new CRUD approach allows for direct querying of required data from another table. However, this requires the addition of a new field in the field system merely to serve as a link between the new feature and the field feature.
+
+While the latter option streamlines data retrieval, it introduces the risk of confusion in future developments. The new field essentially functions as a connection point, lacking any further utility within the context of field features. This trade-off prompts consideration of the long-term implications for clarity and maintainability in the evolving system.
+
+Initially, I contemplated incorporating historical tracking features, leaning towards the more conservative option of sticking with the existing field system. However, upon closer examination, it became evident that this approach did not yield any substantial benefits. As I delved into the intricacies of the field system, I identified a potential requirement for import and export capabilities for the field.
+
+To ensure alignment with project goals, I consulted with the project manager about the necessity of these additional implementations. The PM clarified that such features were not required for the current project. Consequently, I made the strategic decision to forego the field system and instead opted for the implementation of the new feature using a CRUD approach. This choice was driven by a pragmatic evaluation of the specific needs and priorities of the project at hand.
+
+#### Demo Site
+
+* Tell me about a time when you demonstrated leadership skills. What was the outcome of your actions?
+
+When I was at Faria, I took full responsibility for maintaining demo sites, which required annual updates to meet sales demonstration needs. Throughout this process, I collaborated closely with my manager, the sales team, the product manager, and the QA team to gather key information. To improve communication efficiency, we needed a reliable method for sharing information.
+
+The product manager had already implemented a Google document for the sales team to list all the requirements. However, translating these requirements into code and data required more detailed scenarios, such as edge cases and the specific data we wanted to share with customers. This level of detail was challenging for the sales team and product manager to determine in advance.
+
+To address this, I initiated a meeting with my manager and proposed building the demo site to meet all requirements quickly. I then planned to assist the QA team with a rapid check on one demo site. Afterward, I would ask the product manager to review the results, as they had domain knowledge about customer preferences.
+
+I viewed this approach as similar to a greedy algorithm, where I carefully managed my time to prioritize solving issues with the greatest impact, rather than spending too much time on minor issues. Finally, I requested quick feedback from the sales team to ensure the demo sites met their needs effectively.
+
+#### New Skills
+
+* Describe a situation in which you had to learn a new skill or technology quickly. How did you go about it?
+
+In my role as a software engineer at OneAD, I encountered a situation where I had to rapidly acquire knowledge of Vue.js and understand the principles of frontend-backend separation. Similarly, while working at Faria, I needed to quickly familiarize myself with various design patterns to develop scalable systems.
+
+In such scenarios, my approach remains consistent. Firstly, I thoroughly examine the existing codebase to identify any patterns or features that may be analogous to the new skill or technology required. Consulting with team members helps expedite this process, as their insights can provide valuable shortcuts.
+
+If no relevant information is found internally, I turn to online resources. The internet is a treasure trove of similar functionalities and solutions. By leveraging available documentation and tutorials, I can swiftly build a foundational understanding and begin implementing the necessary features or addressing issues.
+
+Throughout the development process, I prioritize test-driven development. Building tests first not only ensures the correctness of the current implementation but also facilitates future modifications for maintainability and readability.
+
+After completing an initial version of the code, I proactively communicate with my manager. I make them aware of the situation, explaining that the feature was developed from scratch. This transparency is crucial in managing expectations, and I may request additional time or resources to refine the code further.
+
+Furthermore, I arrange a meeting with the feature requesters to validate the results and gather any specific requirements for quality assurance testing. Clear communication at this stage helps in refining the solution and ensuring alignment with stakeholders' expectations.

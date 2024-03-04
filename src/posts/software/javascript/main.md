@@ -6,17 +6,23 @@ For web applications with rich user experiences has driven the widespread adopti
 
 ## Concept
 
-* JavaScript is a single-threaded language, which means that it can only execute one task at a time
+JavaScript is a single-threaded language, which means that it can only execute one task at a time
 
 ### OOP
 
-something like
+Object-oriented programming (OOP) is a programming paradigm that uses objects, which are instances of **classes**, to organize code. JavaScript supports OOP through its prototype-based inheritance system. ECMAScript 6 (ES6) introduced the class syntax, which provides a more traditional class-based approach to OOP in JavaScript.
+
+A typical Object in javascript:
 
 ```javascript
-const randomObject = {
-  attributes1: 'attributes1',
-  ...
-}
+let car = {
+  make: 'Toyota',
+  model: 'Camry',
+  year: 2022,
+  start: function() {
+    console.log('Engine started');
+  }
+};
 ```
 
 ### Constructing Objects
@@ -68,6 +74,47 @@ Objects in JavaScript are created using functions and closures, allowing for the
   person.celebrateBirthday();
   console.log(person.getAge()); // Output: 26
   ```
+* Example (with this)
+  ```javascript
+  function Person(name, age) {
+    // Public properties
+    this.name = name;
+    this.age = age;
+  
+    // Private function
+    function increaseAge() {
+      this.age++;
+    }
+  
+    // Public methods
+    this.getName = function() {
+      return this.name;
+    };
+  
+    this.getAge = function() {
+      return this.age;
+    };
+  
+    this.celebrateBirthday = function() {
+      increaseAge.call(this);
+    };
+  }
+  
+  // Create an instance object
+  var person = new Person("John", 25);
+  
+  // Access the public properties and methods
+  console.log(person.getName()); // Output: "John"
+  console.log(person.getAge()); // Output: 25
+  
+  // Try to access the public properties directly
+  console.log(person.name); // Output: "John"
+  console.log(person.age); // Output: 25
+  
+  // Use public method to increase age
+  person.celebrateBirthday();
+  console.log(person.getAge()); // Output: 26
+  ```
 
 #### Class Form
   
@@ -75,7 +122,7 @@ Objects in JavaScript are created using functions and closures, allowing for the
 * Classes provide a more formal and structured way of defining objects with shared behavior and state.
 * Objects are created using the new keyword followed by the class name.
 * Object behavior is defined using methods within the class definition.
-The this keyword also refers to the object instance that the method is called on.
+The `this` keyword also refers to the object instance that the method is called on.
 * Inheritance
   ```javascript
   // Parent class
@@ -92,7 +139,7 @@ The this keyword also refers to the object instance that the method is called on
   // Child class
   class ChildClass extends ParentClass {
     constructor(name, age) {
-      super(name);
+      super(name); // You need to call this to construct Parent
       this.age = age;
     }
   
@@ -122,6 +169,9 @@ The this keyword also refers to the object instance that the method is called on
       this._protectedMethod(); // call the protected method from within the class
     }
   }
+
+  test = new MyClass()
+  test.publicMethod()
   ```
 
 ### Functions
@@ -163,7 +213,7 @@ The this keyword also refers to the object instance that the method is called on
   ```javascript
   function sum() {
     let total = 0;
-    for(let i=0; i<arguments.length; i++) { // arguments
+    for(let i = 0; i < arguments.length; i++) { // arguments
       total += arguments[i];
     }
     return total;
@@ -191,9 +241,13 @@ The this keyword also refers to the object instance that the method is called on
   function doSomethingElse() {
     console.log("This can be done while waiting for data.");
   }
-  
-  fetchData(processFetchedData);
-  doSomethingElse();
+
+  function main() {
+    fetchData(processFetchedData);
+    doSomethingElse(); // this will show up first
+  }
+
+  main()
   ```
 * Promises: Employing the Promise object to handle asynchronous operations in a more structured and readable way.
   ```javascript
@@ -202,7 +256,7 @@ The this keyword also refers to the object instance that the method is called on
       setTimeout(() => {
         const data = [1, 2, 3, 4, 5];
         resolve(data);
-      }, 20000);
+      }, 2000);
     });
   }
   
@@ -214,25 +268,40 @@ The this keyword also refers to the object instance that the method is called on
     console.log("This can be done while waiting for data.");
   }
 
+  function doSomethingElse() {
+    console.log("This can be done while waiting for data.");
+  }
+
+  function main() {
+    fetchData(processFetchedData);
+    doSomethingElse(); // this will show up first
+  }
+
+  main()
+  ```
+* Generators: Implementing asynchronous operations with generator functions and the use of the yield keyword.
+* Web Workers: Running asynchronous tasks in a separate thread using Web Workers, allowing parallel execution without blocking the main thread.
+
+### Managing Asynchronous Operations in JavaScript
+
+* then
+  ```javascript
   function main() {
     fetchData()
       .then(processFetchedData) // when resolve, do processFetchedData
+      .then(doSomethingElse) // Show up after processFetchedData
       .catch((error) => console.error("Error:", error));
-
-    doSomethingElse();
   }
   
   main()
   ```
 * Async/await: Using the async/await syntax introduced in ES2017 to write asynchronous code in a more synchronous-like style, built on top of Promises.
   ```javascript
-  // Given the fetchData above
   async function main() {
     try {
-      const dataPromise = fetchData();
-      doSomethingElse(); // This function will run concurrently
-      const data = await dataPromise;
+      const data = await fetchData();
       processFetchedData(data);
+      doSomethingElse(); // show up after fetchData
     } catch (error) {
       console.error('An error occurred:', error);
     }
@@ -240,165 +309,94 @@ The this keyword also refers to the object instance that the method is called on
   
   main();
   ```
-* Generators: Implementing asynchronous operations with generator functions and the use of the yield keyword.
-* Web Workers: Running asynchronous tasks in a separate thread using Web Workers, allowing parallel execution without blocking the main thread.
 
 ### AJAX
 
-If the JavaScript code makes use of asynchronous operations, such as fetching data from an external API, the order in which the code is executed may not be strictly linear. In such cases, the JavaScript runtime will handle the asynchronous operations separately from the main execution thread, and the order in which the asynchronous code is executed may not correspond to the order in which it appears in the file. For more information, please refer to [AJAX](/blog/software/javascript/AJAX).
-
-### AJAX (Asynchronous JavaScript and XML)
-
-Request data from external server -> Parse the data -> Load data without a refresh -> Data can be formats like (XML, JSON, HTML)
-
-* index.html
-
-```HTML
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <script src="main.js"></script>
-  </head>
-  <body>
-  </body>
-</html>
-```
-
-* main.js
-
-```JS
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(request => request.json())
-    .then(posts => {
-      console.log(posts)
-  })
-})
-```
-
-then in console, 
-
-<img src="{{site.baseurl}}/assets/img/fetch_data_ajax.png" alt="fetch_data_ajax">
-
-Then, I am going to show the effect of AJAX, which is going to show a loading view and **after it fetch the requested data successfully**, the data will replace the loading without page refreshed.  
-#### index.html
-
-```HTML
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <script src="main.js"></script>
-  </head>
-  <body>
-    <div class="post-title">
-      <h2> Loading... </h2>
-    </div>
-  </body>
-</html>
-```
-#### main.js
-
-```JS
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(request => request.json())
-    .then(posts => {
-      const firstPost = posts[0];
-      const postTitleA = document.querySelector('.post-title');
-      postTitleA.textContent = firstPost.title
-      document.querySelector('.post-title').textContent = firstPost.title
-  })
-})
-```
+AJAX (Asynchronous JavaScript and XML) is a web development technique that allows for seamless, asynchronous communication between a web browser and server, enabling dynamic and responsive updates to web pages without requiring a full page reload. For more information, please refer to [AJAX](/blog/software/javascript/AJAX)
 
 ### Execution Order in File
 
-Normally, from top to bottom. But there are exceptions.
+Normally, from top to bottom. With exception as follow:
 
-* Asynchronous Operations
-  * Concept: Top-level import statements are processed first, ensuring that dependent modules are imported before use; module-level statements like variable declarations or function definitions are then processed, allowing references to imported modules; top-level export statements are lastly processed, determining what is accessible to other modules. Modules load and execute asynchronously, potentially deviating from their appearance in the code, which can lead to circular dependency problems requiring careful design to avoid.
-  * Example
-    ```javascript
-    console.log("Start")
+#### Asynchronous Operations
+  
+* Concept: If there is an asynchronous section, then the section will be executed later.
+* Example
+  ```javascript
+  console.log("Start")
+  setTimeout(() => {
+      console.log("Timeout callback")
+  }, 0)
+  
+  console.log("End")
+  ```
+* Result
+  ```bash
+  Start
+  End
+  Timeout callback # even though the timeout is 0, this wording still shows in the last line
+  ```
 
-    setTimeout(() => {
-        console.log("Timeout callback")
-    }, 0);
-    
-    console.log("End")
-    ```
-  * Result
-    ```bash
-    Start
-    End
-    Timeout callback
-    ```
-* Module
-  * 
-  * Example
+#### Module
+  
+* Import
+  * Concept: The import statement can only be top position
+  * Example: there are two modules, A imports B
     ```javascript
     // moduleA.js
-    console.log("Module A start")
-    import { valueB } from './moduleB.js'
-    console.log("Module A end")
-
-    // moduleB.js
-    console.log("Module B start")
-    export const valueB = 42
-    console.log("Module B end")
-
-    // main.js
-    import './moduleA.js'
-    console.log("Main script")
+    function sayHello() {
+      console.log("Hello from module A!");
+    }
+    
+    console.log("Module A start");
+    sayHello();
+    import { greet } from './moduleB.js'; // Attempt to move import to a lower position
+    greet();
+    console.log("Module A end");
     ```
   * Result
     ```bash
-    Module A start
-    Module B start
-    Module B end
-    Module A end
-    Main script
+    Uncaught SyntaxError: import declarations may only appear at top level of a module
     ```
-* Function
-  * Concept: Function needs to be declared before it is executed
-  * Example: Pops error that it did not know `bark()`
+* Hoisting
+  * Concept: Traditional variable and function declarations in JavaScript are subject to hoisting. The variable will not throw error even though it is called before declaration and the function will still be callable even though it is defined later. But if you use `let` or `const` to define variable or function then it will throw error with `ReferenceError`.
+  * Example
     ```javascript
-    function main() {
-      const test = () => {
-        console.log('test')
-      }
+    // Example of hoisting with variable declaration
+    console.log(message); // undefined, it will not throw error
+    var message = "Hello, hoisting!";
+    console.log(message); // "Hello, hoisting!"
     
-      test()
-      bark()
-    
-      const bark = () => {
-        console.log('bark')
-      }
+    // Example of hoisting with function declaration
+    sayHello(); // "Hello, hoisting!"
+    function sayHello() {
+      console.log("Hello, hoisting!");
     }
-    
-    main()
     ```
-  * Example: no error because when execute `main`, all the functions is declared
+  * Example (use let or const)
     ```javascript
-    function main() {
-      test()
-      bark()
-    }
-
-    const test = () => {
-      console.log('test')
-    }
-
-    const bark = () => {
-      console.log('bark')
-    }
+    // Example with const and arrow function
+    console.log(sayHello); // ReferenceError: Cannot access 'sayHello' before initialization
+    console.log(sayHelloArrow); // ReferenceError: Cannot access 'sayHelloArrow' before initialization
     
-    main()
+    const sayHello = function() {
+      console.log("Hello from sayHello!");
+    };
+    
+    const sayHelloArrow = () => {
+      console.log("Hello from sayHelloArrow!");
+    };
+    
+    console.log(sayHello); // [Function: sayHello]
+    console.log(sayHelloArrow); // [Function: sayHelloArrow]
+    
+    sayHello(); // Hello from sayHello!
+    sayHelloArrow(); // Hello from sayHelloArrow!
     ```
 
 ### datatype
+
+TBC
 
 In JavaScript, data types define the type of data that a variable or a value can hold. JavaScript has six primitive data types and one non-primitive data type. For more information, please refer to [datatype]({{site.baseurl}}/javascript/2022/12/25/datatype.html).
 
@@ -582,6 +580,12 @@ Interface is a way to define the structure or shape of an object. It specifies a
   const add: MathOperation = (a, b) => a + b;
   ```
 
+### Transpiler
+
+Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments.
+
+
+
 ### other topics
 
 * Objects and prototypes
@@ -650,10 +654,15 @@ function backToTop() {
   const shallowClone = { ...originalObject };
   ```
 * deep clone
-  ```javascript
-  const originalObject = { key1: 'value1', nestedObject: { key: 'nestedValue' } };
-  const deepClone = JSON.parse(JSON.stringify(originalObject));
-  ```
+  * stringify way (may encounter circular reference issue)
+    ```javascript
+    const originalObject = { key1: 'value1', nestedObject: { key: 'nestedValue' } };
+    const deepClone = JSON.parse(JSON.stringify(originalObject));
+    ```
+  * directly create an object with same structure
+    ```javascript
+    const clonedNode = { val: node.val, next: null, random: null }
+    ```
 
 ## Reference
 
@@ -668,3 +677,5 @@ function backToTop() {
 [How can I split a javascript application into multiple files?](https://stackoverflow.com/questions/8752627/how-can-i-split-a-javascript-application-into-multiple-files)
 
 [JavaScript Module Pattern: In-Depth](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html)
+
+[What is Babel?](https://babeljs.io/docs/)
