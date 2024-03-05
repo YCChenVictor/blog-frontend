@@ -440,5 +440,11 @@
     "data": "2021-06-18",
     "category": "react",
     "publish": false
+  },
+  "65": {
+    "url": "software/dsa/quick-sort",
+    "data": "2024-03-04",
+    "category": "DSA",
+    "publish": false
   }
 }
