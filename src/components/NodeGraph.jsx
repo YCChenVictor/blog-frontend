@@ -92,7 +92,7 @@ const NodeGraph = ({category, loggedIn}) => {
     <div style={{
       }}
     >
-      {loggedIn ? (
+      {true ? (
         <button
           onClick={() => generateNodes(category)}
           className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"

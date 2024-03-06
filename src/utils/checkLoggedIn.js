@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export async function checkLoggedIn() {
-  const url = `http://localhost:5001/authentication`
+  const url = `http://localhost:5000/authentication`
   const token = localStorage['blog logged in']
   const headers = {
     'Authorization': `Bearer ${token}`,

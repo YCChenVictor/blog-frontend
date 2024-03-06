@@ -20,7 +20,7 @@ let car = {
   model: 'Camry',
   year: 2022,
   start: function() {
-    console.log('Engine started');
+    console.log('Engine started')
   }
 };
 ```
@@ -648,20 +648,43 @@ function backToTop() {
 
 ### clone
 
+There are two difference type of clone, shallow clone and deep clone. Shallow clone only copies the top-level structure of the original. That is, it does not copy the nested objects. As a result, changes made to nested objects in the clone will affect the original.
+
 * shallow clone
   ```javascript
-  const originalObject = { key1: 'value1', key2: 'value2' };
-  const shallowClone = { ...originalObject };
+  const originalObject = { key1: 'value1', key2: 'value2' }
+  const shallowClone = { ...originalObject } // first way
+  const shallowClone = Object.assign({}, originalObject) // second way
   ```
 * deep clone
   * stringify way (may encounter circular reference issue)
     ```javascript
-    const originalObject = { key1: 'value1', nestedObject: { key: 'nestedValue' } };
-    const deepClone = JSON.parse(JSON.stringify(originalObject));
+    const originalObject = { key1: 'value1', nestedObject: { key: 'nestedValue' } }
+    const deepClone = JSON.parse(JSON.stringify(originalObject))
     ```
   * directly create an object with same structure
     ```javascript
-    const clonedNode = { val: node.val, next: null, random: null }
+    function deepClone(obj) {
+      if (obj === null || typeof obj !== 'object') {
+        return obj;
+      }
+    
+      const clone = Array.isArray(obj) ? [] : {};
+    
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          clone[key] = deepClone(obj[key]); // recursive way
+        }
+      }
+    
+      return clone;
+    }
+    ```
+  * external libraries
+    ```javascript
+    const _ = require('lodash')
+    const originalObject = { key: 'value', nested: { key: 'nestedValue' } }
+    const deepClone = _.cloneDeep(originalObject)
     ```
 
 ## Reference
