@@ -1,63 +1,21 @@
 # Title
 
-## Purpose
-
-## Concept
-
-### Introduction
+## Introduction
 
 * Start with a brief introduction of yourself, your background, and your current role.
 * Mention your experience, skills, and any relevant projects you've worked on.
 
-### Behavioral Questions
+I'm a fullstack developer with approximately three years of experience. My expertise extends to developing applications using Rails, Vue, React, and Node.
 
-* (V) Can you describe a challenging project you've worked on?
-* (V) How do you handle tight deadlines and pressure?
-* (V) Tell me about a time when you had to resolve a conflict within a team.
-* (V) Tell me about a time when you had to deal with a difficult team member. How did you handle it?
-* (V) Can you share an example of a project or task that didn't go as planned? How did you handle the situation and what did you learn from it?
-* (V) Give me an example of a time when you had to adapt to a change in a work environment. How did you approach it?
-* (V) Tell me about a situation where you had to work with a challenging client or customer. How did you handle the relationship?
-* (V) Describe a moment when you had to lead a team through a challenging project. What strategies did you use to motivate and guide your team?
-* (V) Can you share a situation where you had to make a tough decision? How did you come to the conclusion, and what were the results?
-* (V) Tell me about a time when you demonstrated leadership skills. What was the outcome of your actions?
-* (V) Describe a situation where you had to handle multiple tasks simultaneously. How did you prioritize and manage your time effectively?
-* (V) Give me an example of a time when you had to take initiative without being prompted. What was the outcome?
-* (V) Describe a situation in which you had to learn a new skill or technology quickly. How did you go about it?
-
-### Technical Questions
-
-Present a coding problem to assess problem-solving skills and coding proficiency.
-Choose problems that cover various technical areas (algorithms, data structures, etc.)
-
-Just literally practice leetcode and side projects.
-
-### Open-ended Discussion and Questions
-
-Allow time for the candidate to ask questions about the company, team, or role.
-Discuss any topics the candidate brings up and provide insights into the work culture, projects, etc.
-
-### Feedback and Improvement
-
-Provide constructive feedback on both technical and soft skills.
-Highlight areas of strength and areas that need improvement.
-Suggest resources or areas to focus on for further improvement.
-
-## Example
-
-### Introduction
-
-I'm a Rails developer with approximately three years of experience. Currently, I am legally eligible to work in Canada and am actively seeking opportunities in the country. My expertise extends to developing applications using Rails, Vue, React, and Node.
-
-During my career, I have had the opportunity to work on projects in both Ad Tech and Ed Tech domains. In the Ad Tech sector, I collaborated with a team to build a bidding system for the advertisement market. This experience equipped me with valuable insights into the dynamic and competitive nature of the advertising industry.
+Throughout my career, I've been fortunate to engage in projects spanning the realms of Ad Tech and Ed Tech. Within the Ad Tech sector, I actively contributed to the development of a robust bidding system tailored for the dynamic advertisement market. This endeavor provided me with invaluable insights into effectively synchronizing diverse data sources and facilitating informed decision-making for our clientele.
 
 In the Ed Tech domain, my role at Faria Education Group encompassed a range of impactful contributions. Notably, I spearheaded the implementation of a comprehensive Admission Journey checklist and due dates mechanism, significantly streamlining the admission process and enhancing school admission rates. Additionally, my involvement in the Parent UI Redesign project underscored my commitment to software quality, as I meticulously addressed 87 groups of unit and feature tests to ensure consistency with a revised specification and new UI. In the Advancement Module project, I seamlessly integrated new features, analyzed over 1,000 lines of code, and established robust security measures, contributing to the efficient management of worldwide alumni families. These experiences have not only sharpened my technical skills but have also cultivated my ability to devise innovative solutions and adapt to diverse project requirements, making me well-equipped for future challenges in the Ed Tech sector. I am eager to bring this expertise to your team and contribute to the success of your initiatives.
 
-I am enthusiastic about the prospect of contributing my skills and expertise to new challenges in Canada and look forward to discussing potential opportunities.
+I am enthusiastic about the prospect of contributing my skills and expertise to new challenges and look forward to discussing potential opportunities.
 
-### Behavior Question
+## Behavioral Questions
 
-#### Faria
+### Faria
 
 * Give me an example of a time when you had to adapt to a change in a work environment. How did you approach it?
 
@@ -95,7 +53,7 @@ The filter system was experiencing performance issues due to the large amount of
 
 To address this, I proactively decided to study the codebase and create concise documentation for future development. This initiative would benefit the team regardless of whether we decided to refactor the feature or not. Additionally, I proposed a refactor plan that included denormalization, indexing, removing joins, and removing offsets. Although the proposal was not immediately approved due to higher priority features, there is ongoing progress. This approach ensures that in the future, we can seamlessly begin the refactoring process without the need for extensive reevaluation of the codebase.
 
-#### Faria, Advancement module
+### Faria, Advancement module
 
 * Can you describe a challenging project you've worked on? Advancement module
 * How do you handle tight deadlines and pressure? Transparency
@@ -106,16 +64,14 @@ At first, I asked several co-workers whether they know the logics of the legacy 
 
 In the past, I usually expected clear specifications for a new project. Nevertheless, sometime, in a competitive market, benchmarking market has higher priority. Consequently, I need to adjust my mindset to meet the expectations. To have a clear goal, communication serves as a fundamental factor. Then, keep refreshing the goals through adaptability. Then, keep transparency so that team members can help. To boost the efficiency in all aspects during this whole process, honing the coding skill persistently and decomposing the logics into smaller problems to solve step by step are the keys.
 
-#### OneAD, SuperDSP
+### OneAD, SuperDSP
 
 * Tell me about a time when you had to resolve a conflict within a team.
 * Tell me about a time when you had to deal with a difficult team member. How did you handle it?
 
 While developing this module, I encountered situations where I required information from other departments. However, my manager prefers all communication to go through her, maintaining a centralized approach to project oversight. Unfortunately, this led to a misunderstanding when one of my co-workers was perceived as attempting to handle tasks covertly. To address this, I engaged in a conversation with my co-worker, emphasizing the importance of aligning our efforts with team goals. I encouraged him to focus on the collective objectives we aimed to achieve and, during our discussion, I also checked if he was experiencing any emotional distress stemming from the miscommunication with our manager. This approach aimed at fostering a positive and collaborative work environment and ensuring that everyone is on the same page moving forward.
 
-#### Faria, Parent UI redesign
-
-Please check the answer in this section again
+### Faria, Parent UI redesign
 
 * Can you share an example of a project or task that didn't go as planned? How did you handle the situation and what did you learn from it?
 
@@ -123,7 +79,7 @@ When I joined the project, the UI had already undergone changes as per the new d
 
 Upon recognizing the need for a more collaborative approach, I adjusted my strategy by informing the project managers first and then engaging closely with the frontend developers to understand the challenges they were facing. This shift initiated a series of productive meetings, where we collectively addressed discrepancies between the design and implemented features, as well as tackled issues within the testing process. Together, we identified root causes, such as miscommunication, a lack of adherence to testing practices, and insufficient communication regarding changes in business requirements. Rather than placing blame on individuals, we focused on improving processes. Collaborating extensively with the frontend developers, I updated the tests to accurately reflect the correct business logic. Simultaneously, we established clearer communication channels among the design, development, and testing teams to prevent similar issues in the future.
 
-#### OneAD, Sales Performance
+### OneAD, Sales Performance
 
 * Describe a moment when you had to lead a team through a challenging project. What strategies did you use to motivate and guide your team?
 
@@ -135,7 +91,7 @@ To address the knowledge gap, I organized targeted training sessions, empowering
 
 Throughout the entire process, I consistently emphasized the benefits of the new feature, effectively boosting my co-workers' motivation and willingness to contribute their efforts. This approach ensured that the team remained aligned with the project goals and understood the significance of their contributions.
 
-#### Faria, Admission Journey
+### Faria, Admission Journey
 
 * Can you share a situation where you had to make a tough decision? How did you come to the conclusion, and what were the results?
 
@@ -147,7 +103,7 @@ Initially, I contemplated incorporating historical tracking features, leaning to
 
 To ensure alignment with project goals, I consulted with the project manager about the necessity of these additional implementations. The PM clarified that such features were not required for the current project. Consequently, I made the strategic decision to forego the field system and instead opted for the implementation of the new feature using a CRUD approach. This choice was driven by a pragmatic evaluation of the specific needs and priorities of the project at hand.
 
-#### Demo Site
+### Demo Site
 
 * Tell me about a time when you demonstrated leadership skills. What was the outcome of your actions?
 
@@ -159,7 +115,9 @@ To address this, I initiated a meeting with my manager and proposed building the
 
 I viewed this approach as similar to a greedy algorithm, where I carefully managed my time to prioritize solving issues with the greatest impact, rather than spending too much time on minor issues. Finally, I requested quick feedback from the sales team to ensure the demo sites met their needs effectively.
 
-#### New Skills
+The main outcome of these iterative process is successfully updating all the demo sites without errors before the deadline.
+
+### New Skills
 
 * Describe a situation in which you had to learn a new skill or technology quickly. How did you go about it?
 
@@ -174,3 +132,30 @@ Throughout the development process, I prioritize test-driven development. Buildi
 After completing an initial version of the code, I proactively communicate with my manager. I make them aware of the situation, explaining that the feature was developed from scratch. This transparency is crucial in managing expectations, and I may request additional time or resources to refine the code further.
 
 Furthermore, I arrange a meeting with the feature requesters to validate the results and gather any specific requirements for quality assurance testing. Clear communication at this stage helps in refining the solution and ensuring alignment with stakeholders' expectations.
+
+## Technical Questions
+
+Present a coding problem to assess problem-solving skills and coding proficiency.
+Choose problems that cover various technical areas (algorithms, data structures, etc.)
+
+Just literally practice leetcode and side projects.
+
+## Open-ended Discussion and Questions
+
+Allow time for the candidate to ask questions about the company, team, or role.
+Discuss any topics the candidate brings up and provide insights into the work culture, projects, etc.
+
+1. Number of users?
+2. tests?
+3. remote? Taichung?
+
+## Feedback and Improvement
+
+Provide constructive feedback on both technical and soft skills.
+Highlight areas of strength and areas that need improvement.
+Suggest resources or areas to focus on for further improvement.
+
+## Ask Companies
+
+* What's the total number of users within this product?
+* Are there opportunities for professional development and advancement within the company?
