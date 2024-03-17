@@ -6,7 +6,7 @@ To acquire the skills and knowledge necessary to design, develop, and utilize di
 
 ## Concept
 
-Software is a set of instructions and data that tell a computer what to do.
+Software is essentially a collection of instructions and data that dictates the actions and behavior of a computer system. These instructions, typically written in a programming language, outline the steps the computer should follow to perform specific tasks, while the data provides the necessary information for these tasks to be executed. Together, they serve as the guiding force behind the computer's operations, enabling it to process information, run applications, and interact with users or other systems. In essence, software acts as the bridge between users and the hardware components of a computer, translating human-readable commands and tasks into machine-executable instructions. Without software, computers would be inert machines devoid of functionality, incapable of carrying out the myriad tasks they are commonly used for in today's digital age.
 
 ### Fundamental Knowledge
 
@@ -37,10 +37,14 @@ This type of software is designed to manage and control the hardware and softwar
 ### Web Application software
 
 This type of software is designed for specific tasks or applications, such as word processing, spreadsheet creation, email management, and graphic design. Examples include Microsoft Office, Adobe Creative Suite, and Google Chrome.
-    
+
+#### Internet
+
+[internet](/blog/software/internet/main)
+
 #### Plan and Design
 
-Plan and design the user interface and functionality of your web application. 
+Plan and design the user interface and functionality of your web application.
 
 * Server-side rendering
   * Advantage: Efficient search engine indexing, better performance on low-powered devices, and improved accessibility.
