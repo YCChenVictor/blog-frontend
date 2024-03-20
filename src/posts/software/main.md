@@ -30,6 +30,14 @@ System design involves creating a blueprint for the structure and organization o
 
 Refactoring is the process of improving code quality and structure without changing its external behavior, essential for enhancing software maintainability and reducing technical debt. It involves making small, incremental changes to optimize code, making it easier to understand and extend. For more information, please refer to [refactor]().
 
+#### API
+
+[API]
+
+#### Cache
+
+
+
 ### System software
 
 This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems](/blog/software/os/main).
