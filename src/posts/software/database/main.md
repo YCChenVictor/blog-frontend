@@ -6,8 +6,6 @@ Databases provide a structured and efficient way to store, manage, and retrieve 
 
 ## Concept
 
-Let's consider an example of building a database system for a blog. The steps:
-
 ### Design
 
 * Define problem: I need a way to manage users. There will be two roles, users and admins. Some articles are only visible to login users amd some features are only available to admins.
@@ -49,7 +47,7 @@ LIMIT 10 OFFSET 20;
 
 In this example, the query fetches 10 rows from the result set, starting from the 21st row (OFFSET 20).
 
-* Efficiency Considerations: While OFFSET is useful for implementing pagination, it can have efficiency considerations, especially when dealing with **large datasets**. As the OFFSET value increases, the database engine must skip more rows, which could lead to performance issues. This is because the database engine may need to fetch and discard rows before reaching the desired starting point.
+* Efficiency Considerations: While OFFSET is useful for implementing pagination, it can have efficiency problems, especially when dealing with **large datasets**. As the OFFSET value increases, the database engine must skip more rows, which could lead to performance issues. This is because the database engine may need to fetch and discard rows before reaching the desired starting point.
 
 ##### Solutions
 
@@ -138,7 +136,8 @@ Performing many joins in a relational database can potentially lead to efficienc
   * Indexing
     ```sql
     CREATE INDEX idx_department_id ON employees (department_id);
-    -- MySQL scans the existing data in the department_id column and creates an index structure that allows for efficient lookup based on the values in that column
+    -- MySQL scans the existing data in the department_id column and creates an index structure that allows
+    -- efficient lookup based on the values in that column
 
     -- The idx_department_id index would store a sorted list of unique values from the department_id column (101, 102, 103) along with pointers to the corresponding rows in the employees table.
     ```
@@ -146,3 +145,39 @@ Performing many joins in a relational database can potentially lead to efficienc
 * Query Optimization: Write efficient queries by selecting only the necessary columns and optimizing the use of indexes.
 * Denormalization: Evaluate the possibility of denormalizing data in cases where read performance is critical, striking a balance between query complexity and data consistency.
   * Solution: through denormalization, it directly diminish the number of joins
+  * Example:
+    ```sql
+    -- Create Two Table
+    CREATE TABLE customers (
+      customer_id INT PRIMARY KEY,
+      customer_name VARCHAR(100),
+      customer_email VARCHAR(100)
+    )
+    
+    CREATE TABLE orders (
+      order_id INT PRIMARY KEY,
+      customer_id INT,
+      order_date DATE,
+      total_amount DECIMAL(10, 2),
+      FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    )
+
+    -- Normal Join
+    SELECT o.order_id, c.customer_name, c.customer_email, o.order_date, o.total_amount
+    FROM orders o
+    JOIN customers c ON o.customer_id = c.customer_id
+
+    -- Avoid Join, directly add customer data to orders
+    ALTER TABLE orders
+    ADD COLUMN customer_name VARCHAR(100),
+    ADD COLUMN customer_email VARCHAR(100)
+
+    UPDATE orders o
+    JOIN customers c ON o.customer_id = c.customer_id
+    SET o.customer_name = c.customer_name,
+        o.customer_email = c.customer_email
+
+    -- Then do not require JOIN
+    SELECT order_id, customer_name, customer_email, order_date, total_amount
+    FROM orders
+    ```
