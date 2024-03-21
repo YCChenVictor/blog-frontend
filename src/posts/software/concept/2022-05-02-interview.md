@@ -7,7 +7,7 @@
 
 I'm a fullstack developer with approximately three years of experience. My expertise extends to developing applications using Rails, Vue, React, and Node.
 
-Throughout my career, I've been fortunate to engage in projects spanning the realms of Ad Tech and Ed Tech. Within the Ad Tech sector, I actively contributed to the development of a robust bidding system tailored for the dynamic advertisement market. This endeavor provided me with invaluable insights into effectively synchronizing diverse data sources and facilitating informed decision-making for our clientele.
+Throughout my career, I've been fortunate to engage in projects spanning the realms of Ad Tech and Ed Tech. Within the Ad Tech sector, I actively contributed to the development of a robust bidding system tailored for the dynamic advertisement market. This endeavor provided me with invaluable insights into effectively synchronizing diverse data sources and facilitating informed decision-making for our clients.
 
 In the Ed Tech domain, my role at Faria Education Group encompassed a range of impactful contributions. Notably, I spearheaded the implementation of a comprehensive Admission Journey checklist and due dates mechanism, significantly streamlining the admission process and enhancing school admission rates. Additionally, my involvement in the Parent UI Redesign project underscored my commitment to software quality, as I meticulously addressed 87 groups of unit and feature tests to ensure consistency with a revised specification and new UI. In the Advancement Module project, I seamlessly integrated new features, analyzed over 1,000 lines of code, and established robust security measures, contributing to the efficient management of worldwide alumni families. These experiences have not only sharpened my technical skills but have also cultivated my ability to devise innovative solutions and adapt to diverse project requirements, making me well-equipped for future challenges in the Ed Tech sector. I am eager to bring this expertise to your team and contribute to the success of your initiatives.
 
@@ -39,7 +39,7 @@ Ultimately, through perseverance and clear communication, the client began to ap
 
 * Describe a situation where you had to handle multiple tasks simultaneously. How did you prioritize and manage your time effectively?
 
-n my daily work at Faria, I often juggled multiple tasks, such as developing new features while addressing urgent bugs. To handle this, I maintained two tickets in progress simultaneously. I did this for three reasons:
+In my daily work at Faria, I often juggled multiple tasks, such as developing new features while addressing urgent bugs. To handle this, I maintained two tickets in progress simultaneously. I did this for three reasons:
 
 1. It prevented me from falling into a 'logic hole.' Sometimes, taking a break and working on another task allowed me to refresh my thinking and find a more creative solution to a problem.
 2. It maximized my output by focusing on solving the most significant issue within a given timeframe.

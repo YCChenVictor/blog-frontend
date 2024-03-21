@@ -1,56 +1,74 @@
----
-layout: post
-title:
-description: ''
-date: '2022-08-30'
-categories: web-security
-note: 把下面的 section 跟列點的整合再一起
-mathjax:
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
-## Introduction
+## Purpose
 
 Web security is the practice of protecting websites and web applications from unauthorized access, data theft, and other malicious activities. It involves implementing a range of security measures, including authentication, encryption, and access control, to safeguard sensitive information and ensure the integrity and availability of web-based resources.
 
-## Why?
+## Concept
 
-It helps to prevent unauthorized access, data breaches, and other malicious activities that can compromise the confidentiality, integrity, and availability of web-based resources.
+### Authentication
 
-## How?
+Successful authentication provides the user with a proof of identity, often in the form of a session token or cookie, which is then used to access protected resources without having to re-authenticate for each request.
 
-### Authentication and Authorization
+Common authentication mechanisms include:
 
-A strong authentication system that verifies user credentials and authorization policies that determine what users can and cannot access is essential to maintain security.
-* Broken Authentication and Session Management: Related to user authentication and session management
-  * weak passwords
-  * session hijacking
-  * broken logout functionality
-* Broken Access Control: Broken Access Control is a web security vulnerability that occurs when a web application does not properly enforce restrictions on what authenticated users can access or manipulate, allowing attackers to gain unauthorized access to sensitive data or functionality. To prevent Broken Access Control, web developers must implement proper access control mechanisms, including authentication and authorization, and ensure that these controls are enforced consistently throughout the application.
-* Insufficient Authorization and Authentication: Insufficient Authorization and Authentication refer to a range of security issues related to ensuring that users are properly authenticated and authorized to access sensitive data or functionality. A lack of strong authentication systems and authorization policies can result in unauthorized access to critical resources and data.
+* Username/password authentication: Users provide a username and password that are compared against stored credentials.
+* Multi-factor authentication (MFA): Users provide two or more forms of identification, such as a password combined with a one-time code sent to their phone.
+* Biometric authentication: Users authenticate using unique biological traits like fingerprints, facial recognition, or iris scans.
+* Token-based authentication: Users provide a token (such as an access token or session token) obtained after successful authentication.
+
+Ways to attack:
+
+* Brute Force Attacks
+* Session Hijacking
+
+### Authorization
+
+Authorization mechanisms ensure that users only have access to the resources and functionality that are appropriate for their role or level of privilege.
+
+Examples of authorization mechanisms include:
+
+* Role-based access control (RBAC): Users are assigned roles, and permissions are granted to those roles. Users inherit permissions based on their assigned roles.
+* Attribute-based access control (ABAC): Access decisions are based on attributes of the user, resource, environment, or a combination of these factors.
+* Rule-based access control: Access decisions are determined by predefined rules or policies.
+
+Ways of attack:
+
+* Cross-Site Request Forgery (CSRF)
+* Path Traversal/File Inclusion
+* Insecure Direct Object References (IDOR)
+
+#### Cross-Site Request Forgery (CSRF)
+
+* Purpose: Cross-Site Request Forgery (CSRF) attacks trick users into performing actions on a website without their knowledge or consent, by exploiting the trust relationship between the user and the website
+* Theory: To prevent CSRF attacks, web developers should implement anti-CSRF measures such as using CSRF tokens attached to each request and checking HTTP Referer headers to ensure that the request is coming from the allowed site.
+* Solution: 
+  * Synchronizer Token Pattern: This method adds a unique token to each HTTP request, which the server then verifies before processing the request.
+  * Same-Site Cookies: This method sets the SameSite attribute of a cookie, which tells the browser to only send the cookie with requests made on the same website.
+  * Double Submit Cookies: This method adds a unique token to both the cookie and the form data, and then verifies that they match on the server.
+  * Recaptcha v3
+  * Use of frameworks that have built-in CSRF protection mechanisms.
 
 ### Input Validation and Sanitization
 
-Attackers can exploit a website by submitting malicious input through forms, such as SQL injection attacks or Cross-site scripting (XSS) attacks. By validating all user input and sanitizing it (removing any potentially dangerous characters), you can prevent these types of attacks.
+Attackers can exploit a website by submitting malicious input through forms. By validating all user input and sanitizing it (removing any potentially dangerous characters), you can prevent these types of attacks.
 
-* SQL Injection: Injection attacks occur when an attacker sends malicious code or commands to a web application with the goal of tricking the application into executing unintended actions, which can lead to data theft and other security issues. To prevent injection attacks, it is important to use input validation and sanitization techniques to ensure that user input is properly filtered and sanitized before being processed by the application.
+Ways to attack:
+
+* SQL Injection (SQLi)
 * Cross-Site Scripting (XSS)
-  * Purpose: Cross-Site Scripting (XSS) is a web security vulnerability that allows attackers to inject malicious code into a website viewed by other users, potentially allowing them to steal sensitive data or take control of user accounts.
-  * Theory: Preventing XSS attacks involves proper input validation and sanitization, as well as implementing measures such as Content Security Policy (CSP) to limit the types of content that can be loaded by a website.
-  * Solution: (TBC)
-* Cross-Site Request Forgery (CSRF)
-  * Purpose: Cross-Site Request Forgery (CSRF) attacks trick users into performing actions on a website without their knowledge or consent, by exploiting the trust relationship between the user and the website
-  * Theory: To prevent CSRF attacks, web developers should implement anti-CSRF measures such as using CSRF tokens attached to each request and checking HTTP Referer headers to ensure that the request is coming from the allowed site.
-  * Solution: 
-    * Synchronizer Token Pattern: This method adds a unique token to each HTTP request, which the server then verifies before processing the request.
-    * Same-Site Cookies: This method sets the SameSite attribute of a cookie, which tells the browser to only send the cookie with requests made on the same website.
-    * Double Submit Cookies: This method adds a unique token to both the cookie and the form data, and then verifies that they match on the server.
-    * Recaptcha v3
-    * Use of frameworks that have built-in CSRF protection mechanisms.
+* XML External Entity (XXE) Injection
+* Command Injection
+
+#### SQL Injection
+
+Injection attacks occur when an attacker sends malicious code or commands to a web application with the goal of tricking the application into executing unintended actions, which can lead to data theft and other security issues. To prevent injection attacks, it is important to use input validation and sanitization techniques to ensure that user input is properly filtered and sanitized before being processed by the application.
+
+#### Cross-Site Scripting (XSS)
+
+* Purpose: Cross-Site Scripting (XSS) is a web security vulnerability that allows attackers to inject malicious code into a website viewed by other users, potentially allowing them to steal sensitive data or take control of user accounts.
+* Theory: Preventing XSS attacks involves proper input validation and sanitization, as well as implementing measures such as Content Security Policy (CSP) to limit the types of content that can be loaded by a website.
+* Solution: (TBC)
 
 ### Secure Connections and Encryption
 
@@ -67,31 +85,9 @@ injection flaws: Attacks server side. Attacker injects SQL commands to a webpage
 to be continued
 ```
 
-### cross site scripting (XSS)
+## Example
 
-to be continued, going to show how to do XSS
-
-### Broken Access Control
-
-to be continued
-
-### Security Misconfiguration
-
-to be continued
-
-### Sensitive Data Exposure
-
-to be continued
-
-### Insufficient Logging and Monitoring
-
-to be continued
-
-### Insufficient Authorization and Authentication
-
-insecure direct object reference: Attackers can get information by changing parameters sent to server. To solve it, we use session in cookie to store currently logged-in user and only response the data related to this user.
-
-## What?
+List libraries for dealing with these attacks.
 
 ### CORS
 
