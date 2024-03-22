@@ -146,16 +146,12 @@ Allow time for the candidate to ask questions about the company, team, or role.
 Discuss any topics the candidate brings up and provide insights into the work culture, projects, etc.
 
 1. Number of users?
-2. tests?
-3. remote? Taichung?
+2. Tests?
+3. Salary?
+4. remote? Taichung?
 
 ## Feedback and Improvement
 
 Provide constructive feedback on both technical and soft skills.
 Highlight areas of strength and areas that need improvement.
 Suggest resources or areas to focus on for further improvement.
-
-## Ask Companies
-
-* What's the total number of users within this product?
-* Are there opportunities for professional development and advancement within the company?

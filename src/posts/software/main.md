@@ -38,6 +38,10 @@ Refactoring is the process of improving code quality and structure without chang
 
 [Cache]
 
+#### Test Concept
+
+* ([TDD](/blog/software/tdd/main)): Test-Driven Development involves writing tests before code to guide development, ensuring early and thorough software testing and aligning code with intended functionality, ultimately enhancing code quality and reducing defects. TDD's approach helps catch issues early, leading to more reliable software and efficient development.
+
 ### System software
 
 This type of software is designed to manage and control the hardware and software resources of a computer system. Examples include operating systems like Windows, macOS, and Linux, as well as device drivers and utility programs like antivirus software and disk management tools. For more information, please refer to [operating systems](/blog/software/os/main).
@@ -71,10 +75,7 @@ Plan and design the user interface and functionality of your web application.
 
 * Framework: [Express], or [Ruby on Rails]
 * [Database](/blog/software/database/main)
-
-#### Test
-
-Test-Driven Development ([TDD](/blog/software/tdd/main)) involves writing tests before code to guide development, ensuring early and thorough software testing and aligning code with intended functionality, ultimately enhancing code quality and reducing defects. TDD's approach helps catch issues early, leading to more reliable software and efficient development.
+* [backend tests](/blog/software/database/backend-tests)
 
 #### Package Managers
 
