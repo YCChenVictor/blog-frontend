@@ -470,5 +470,11 @@
     "data": "2022-08-31",
     "category": "web-security",
     "publish": false
+  },
+  "70": {
+    "url": "software/ci-cd/main",
+    "data": "2022-08-13",
+    "category": "ci-cd",
+    "publish": false
   }
 }
