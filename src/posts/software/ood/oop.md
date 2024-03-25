@@ -61,7 +61,7 @@ where
 
 ### Interfaces
 
-If we design system with abstraction, encapsulation, minimizing number of variables, 
+If we design system with abstraction, encapsulation, minimizing number of variables and modules, it is an interface.
 
 * Implements abstraction and encapsulation thoroughly, making we only see the appearance of this function and use it easily; for example, we know the light can be on by switching the button but we do not know the logics behind it.
 * Reduce the number of global variables used as data or control, as well as the number of input or output parameters, by providing a common interface that can be used by multiple clients.
