@@ -155,3 +155,11 @@ Discuss any topics the candidate brings up and provide insights into the work cu
 Provide constructive feedback on both technical and soft skills.
 Highlight areas of strength and areas that need improvement.
 Suggest resources or areas to focus on for further improvement.
+
+## Resume
+
+* Why transfer from Economics to Software? During my academic pursuits and professional endeavors in economics, I gained significant experience in programming. For instance, I developed applications using R programming and leveraged TensorFlow for stock price prediction. Additionally, during my tenure as an analyst at Taiwan Mobile, I automated numerous reports using VBA code.
+* How do you know the number of users? Through the news report of the CEO in the past.
+* How do you know you refactored 15 modules? Through my notes of all the refactors. We had weekly sessions to discuss the code quality.
+* How do you calculate the percentage of test coverage? It's a approximation, I know my total number of PRs and I know the total number of PRs in the period.
+* How do you know the number of daily logins is 100K? Number of user (4 millions), 30 days expiration dates -> Users will login 12 times a year -> 4 millions * 12 / 365 = 100,000

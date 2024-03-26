@@ -476,5 +476,11 @@
     "data": "2022-08-13",
     "category": "ci-cd",
     "publish": false
+  },
+  "71": {
+    "url": "software/database/scaling",
+    "data": "2022-08-13",
+    "category": "ci-cd",
+    "publish": false
   }
 }
