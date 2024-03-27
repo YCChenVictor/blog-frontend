@@ -49,16 +49,15 @@ This article describes the key steps to build application with express, a light-
   const app = express();
   
   // parse body
-  import bodyParser from 'body-parser'
-  app.use(bodyParser.json())
+  app.use(express.json());
   
   // passport
   import passport from './middleware/passport.js';
   app.use(passport.initialize());
   
   // cors
-  import cors from './middleware/cors.js';
-  (app.use(cors));
+  import cors from 'cors'
+  app.use(cors());
   
   // API
   import api from './apis/api_summary.js';
@@ -291,28 +290,44 @@ Then we can debug the code in [debug console]
 ### File
 
 * store
-
-```javascript
-const fs = require('fs');
-
-// Sample JSON data
-const myData = {
-  "name": "John",
-  "age": 30,
-  "city": "New York"
-};
-
-// Convert JSON data to a string
-const jsonString = JSON.stringify(myData);
-
-// Write the JSON data to a file
-fs.writeFile('myData.json', jsonString, function (err) {
-  if (err) throw err;
-  console.log('Saved!');
-});
-```
-
+  ```javascript
+  const fs = require('fs')
+  
+  // Sample JSON data
+  const myData = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+  }
+  
+  // Convert JSON data to a string
+  const jsonString = JSON.stringify(myData)
+  
+  // Write the JSON data to a file
+  fs.writeFile('myData.json', jsonString, function (err) {
+    if (err) throw err
+    console.log('Saved!')
+  })
+  ```
 * read
+  ```javascript
+  const fs = require('fs');
+
+  // Specify the file path
+  const filePath = 'example.txt';
+  
+  // Asynchronously read the contents of the file
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      // Handle error if any
+      console.error('Error reading file:', err);
+      return;
+    }
+    
+    // File contents are available in the `data` variable
+    console.log('File contents:', data);
+  });
+  ```
 
 ### Auto Refresh
 

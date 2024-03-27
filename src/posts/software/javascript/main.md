@@ -249,13 +249,13 @@ The `this` keyword also refers to the object instance that the method is called 
 
   main()
   ```
-* Promises: Employing the Promise object to handle asynchronous operations in a more structured and readable way.
+* Promises: An object representing the eventual completion or failure of an asynchronous operation.
   ```javascript
   function fetchData() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
+    return new Promise((resolve) => { // resolve is a function
+      setTimeout(() => { // simulate the asynchronous operation
         const data = [1, 2, 3, 4, 5];
-        resolve(data);
+        resolve(data); // It will do the promised resolve after timeout
       }, 2000);
     });
   }
@@ -268,12 +268,8 @@ The `this` keyword also refers to the object instance that the method is called 
     console.log("This can be done while waiting for data.");
   }
 
-  function doSomethingElse() {
-    console.log("This can be done while waiting for data.");
-  }
-
   function main() {
-    fetchData(processFetchedData);
+    fetchData().then(processFetchedData);
     doSomethingElse(); // this will show up first
   }
 
@@ -295,6 +291,7 @@ The `this` keyword also refers to the object instance that the method is called 
   
   main()
   ```
+
 * Async/await: Using the async/await syntax introduced in ES2017 to write asynchronous code in a more synchronous-like style, built on top of Promises.
   ```javascript
   async function main() {
@@ -584,7 +581,11 @@ Interface is a way to define the structure or shape of an object. It specifies a
 
 Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments.
 
+### Event loop
 
+* JavaScript's event loop only has one thread => One AJAX triggered by another will run in queue => Consolidate timelines that end by creating one new timeline
+
+[video](https://www.youtube.com/watch?v=8aGhZQkoFbQ&t=876s)
 
 ### other topics
 

@@ -163,3 +163,6 @@ Suggest resources or areas to focus on for further improvement.
 * How do you know you refactored 15 modules? Through my notes of all the refactors. We had weekly sessions to discuss the code quality.
 * How do you calculate the percentage of test coverage? It's a approximation, I know my total number of PRs and I know the total number of PRs in the period.
 * How do you know the number of daily logins is 100K? Number of user (4 millions), 30 days expiration dates -> Users will login 12 times a year -> 4 millions * 12 / 365 = 100,000
+* How do you reduce the filter time? How did you calculate 66% reduces? There are offset, joins, N+1 in that query -> Solve N+1 first, try to reduce unnecessary joins, and add indexing to heavy large table to improve offset.
+* How do you know you refined the public API processing? Some fields need to do pre-calculation but it is actually heavy read, so I add these fields to the cache, then we do not need to re-calculate them again. Also, some user will not receive updated fields value because of cache, so I proposed a new service to do correct re-caches after data changes. Combined, the waiting time of the API decreased 50%.
+* TBC
