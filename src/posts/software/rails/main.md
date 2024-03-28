@@ -26,9 +26,9 @@ With a large and active community of developers and contributors, Ruby on Rails 
 * build project: `bundle install`
 * start project: `rails new app_name`
 * start server: `rails s`
-  <img src="{{site.baseurl}}/assets/img/rails_server_start.png" alt="rails_server_start">
+  ![rails_server_start](assets/img/rails_server_start)
 * open browsers and input `http://localhost:3000`
-  <img src="{{site.baseurl}}/assets/img/rails_start_page.png" alt="rails_start_page">
+  ![rails_start_page](assets/img/rails_start_page)
 * initializer
   * When application starts, it goes through an initialization process, walking through the initializer files in `config/initializers`.
 
@@ -40,7 +40,7 @@ Scaffold in rails is a quick way to create MVC structure; for example, if you wa
 rails g scaffold User name:string email:string tel:string
 ```
 
-<img src="{{site.baseurl}}/assets/img/files_created_by_scaffold.png" alt="">
+![files_created_by_scaffold](assets/img/files_created_by_scaffold)
 
 As you can see, there are files for `active_record`, `resource_route`, `scaffold_controller`, `test_unit`, `assets`, `scss`.
 
@@ -60,7 +60,7 @@ Models are in `app/models`. file name: `user.rb` maps class `User` and maps tabl
 
 Views are in `app/views`. For example, the view file related to controller, `UserController` will be in `app/views/users` as follow:
 
-<img src="{{site.baseurl}}/assets/img/view_user_index.png" alt="">
+![view_user_index](assets/img/view_user_index)
 
 For more information, please refer to [view]({{site.baseurl}}/rails/2021/03/02/view.html)
 
@@ -68,9 +68,9 @@ For more information, please refer to [view]({{site.baseurl}}/rails/2021/03/02/v
 
 Controllers are in `app/controllers`. The file names and the controller names are linked; for example, file name: `users_controller.rb` maps class, `UserController` as follow:
 
-<img src="{{site.baseurl}}/assets/img/user_controller.png" alt="">
+![user_controller](assets/img/user_controller)
 
-For more information, please refer to [controller]({{site.baseurl}}/rails/2022/02/06/Controller.html)
+For more information, please refer to [controller]({{site.baseurl}}/rails/2022/02/06/Controller.html).
 
 ### API
 
@@ -78,7 +78,7 @@ API mode is a feature in Rails 6 that provides a stripped-down version of Rails 
 
 ### ORM
 
-ORM (Object-Relational Mapping) is a technique or library that allows developers to map database tables to classes, and vice versa, so that they can interact with the database using object-oriented programming. The ORM abstracts away the SQL code and provides a higher-level API for creating, reading, updating, and deleting records from the database. For more information, please refer to [ORM]({{site.baseurl}}/rails/2022/01/13/object-relational-mapping.html)
+ORM (Object-Relational Mapping) is a technique or library that allows developers to map database tables to classes, and vice versa, so that they can interact with the database using object-oriented programming. The ORM abstracts away the SQL code and provides a higher-level API for creating, reading, updating, and deleting records from the database. For more information, please refer to [ORM](/blog/software/rails/ORM).
 
 ### ORM vs Model
 
@@ -132,8 +132,6 @@ For more information, please refer to [test driven development]({{site.baseurl}}
   ```
 
 ### rake
-
-
 
 ## What?
 

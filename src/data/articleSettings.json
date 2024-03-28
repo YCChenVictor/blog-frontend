@@ -50,7 +50,7 @@
     "useMathjax": false,
     "useThreeJS": false,
     "useMermaidJS": true,
-    "publish": true
+    "publish": false
   },
   "6": {
     "url": "software/rails/database",
@@ -480,7 +480,19 @@
   "71": {
     "url": "software/database/scaling",
     "data": "2022-08-13",
-    "category": "ci-cd",
+    "category": "database",
+    "publish": false
+  },
+  "72": {
+    "url": "software/database/ORM",
+    "data": "2022-01-04",
+    "category": "database",
+    "publish": false
+  },
+  "73": {
+    "url": "software/rails/ORM",
+    "data": "2022-01-13",
+    "category": "rails",
     "publish": false
   }
 }

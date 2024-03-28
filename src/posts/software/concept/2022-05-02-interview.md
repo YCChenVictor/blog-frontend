@@ -139,6 +139,7 @@ Present a coding problem to assess problem-solving skills and coding proficiency
 Choose problems that cover various technical areas (algorithms, data structures, etc.)
 
 Just literally practice leetcode and side projects.
+Also, practice those node questions.
 
 ## Open-ended Discussion and Questions
 
@@ -158,6 +159,8 @@ Suggest resources or areas to focus on for further improvement.
 
 ## Resume
 
+### Faria
+
 * Why transfer from Economics to Software? During my academic pursuits and professional endeavors in economics, I gained significant experience in programming. For instance, I developed applications using R programming and leveraged TensorFlow for stock price prediction. Additionally, during my tenure as an analyst at Taiwan Mobile, I automated numerous reports using VBA code.
 * How do you know the number of users? Through the news report of the CEO in the past.
 * How do you know you refactored 15 modules? Through my notes of all the refactors. We had weekly sessions to discuss the code quality.
@@ -165,4 +168,15 @@ Suggest resources or areas to focus on for further improvement.
 * How do you know the number of daily logins is 100K? Number of user (4 millions), 30 days expiration dates -> Users will login 12 times a year -> 4 millions * 12 / 365 = 100,000
 * How do you reduce the filter time? How did you calculate 66% reduces? There are offset, joins, N+1 in that query -> Solve N+1 first, try to reduce unnecessary joins, and add indexing to heavy large table to improve offset.
 * How do you know you refined the public API processing? Some fields need to do pre-calculation but it is actually heavy read, so I add these fields to the cache, then we do not need to re-calculate them again. Also, some user will not receive updated fields value because of cache, so I proposed a new service to do correct re-caches after data changes. Combined, the waiting time of the API decreased 50%.
-* TBC
+* External APIs such as zendesk, LOU, Canny are all to help users. As a result, users can make good use of all those features in all the webpages.
+* External APIs such as Google Tag and Cookie can help internal teams to analyze the user behaviors, which can significantly boost the future design.
+* To boost the maintainability, I do write notes during my daily work. Also, if the features are important, I will write professional articles on work shared documents.
+* The number of users increase 3% within one month, so we think the revenue can increase for 36%
+
+### OneAD
+
+None
+
+### Faria, Demo Site
+
+### Faria, Advancement Module

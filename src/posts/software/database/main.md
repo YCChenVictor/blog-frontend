@@ -39,3 +39,7 @@ Given we have chosen framework such as node or rails. We use framework to do the
 ### Scaling
 
 [scaling](/blog/software/database/scaling)
+
+### ORM
+
+[ORM](/blog/software/database/orm)
