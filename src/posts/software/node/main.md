@@ -8,9 +8,64 @@
 * Node uses event-driven architecture to handle asynchronous operations: Node.js was built using JavaScript, so it inherits JavaScript's event-driven, asynchronous nature. It operates using an event loop, continuously listening for events such as incoming requests or responses from I/O operations, triggering associated callback functions for asynchronous responses, thus enabling efficient handling of a large number of concurrent connections, making it well-suited for building scalable and high-performance applications.
 * Node use require to import module and module.exports to export module
 * The event loop is a continuous loop that manages asynchronous events by monitoring a queue of events and dispatching them to appropriate event handlers or callbacks when they occur.
-* Node.js 中，什麼是 Stream 物件？它有什麼用途？
 
-### Pros and Cons
+### Stream
+
+A "stream" refers to a mechanism for handling data flow in chunks, rather than as a single unit. Streams are a core concept in Node.js and are used for reading from or writing to data sources in a more efficient and scalable manner.
+
+* Readable streams: These streams allow you to read data from a source, such as a file, HTTP request, or even generating data on the fly. Examples include reading from a file using fs.createReadStream() or handling incoming HTTP request bodies.
+* Writable streams: These streams allow you to write data to a destination, such as a file, HTTP response, or a database. Examples include writing to a file using fs.createWriteStream() or sending data over an HTTP response.
+* Duplex streams: These streams represent both readable and writable streams, allowing data to be both read from and written to them. An example of a duplex stream is a TCP socket, where data can be sent and received simultaneously.
+* Transform streams: These streams are a special type of duplex stream where data can be modified as it is being read from a source and written to a destination. Transform streams are often used for tasks such as data compression, encryption, or parsing. An example of a transform stream is the zlib module in Node.js, which provides compression and decompression capabilities.
+* Streams provide several benefits
+  * Memory efficiency: Streams allow data to be processed in small, manageable chunks, reducing memory usage compared to loading entire datasets into memory.
+  * Performance: Streams enable asynchronous processing of data, which can improve the performance of applications by allowing them to perform other tasks while data is being read or written.
+  * Scalability: Streams can handle large volumes of data efficiently, making them well-suited for applications that need to process or transfer large files or streams of data.
+
+#### Example
+
+Network Communication: Streams are integral to handling network communication in Node.js. When dealing with HTTP requests and responses, streams allow for efficient transmission of data between clients and servers. They are also used for network protocols like TCP and UDP.
+
+For example, an easy http server
+
+```javascript
+const http = require('http');
+
+// Create an HTTP server
+const server = http.createServer((req, res) => {
+  // Set response headers
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+
+  // Create a readable stream to receive data from the client
+  req.on('data', (chunk) => {
+    console.log(`Received chunk: ${chunk}`);
+    // Process the received data here
+  });
+
+  // End event is emitted when all data has been received
+  req.on('end', () => {
+    console.log('Request data received completely.');
+    // Send a response back to the client
+    res.end('Response from server\n');
+  });
+});
+
+// Listen on port 3000
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+```
+
+In the provided code, the streams are implicitly used, as the request (req) and response (res) objects in Node.js are stream instances.
+
+Specifically, the req object is a readable stream that allows you to receive data from the client. When the client sends data to the server, it's received in chunks, and the 'data' event is emitted each time a chunk is available. This allows you to process incoming data asynchronously, which is characteristic of stream-based handling.
+
+Similarly, the res object is a writable stream that allows you to send data back to the client. You can write data to this stream using methods like res.write() or res.end(), and the data is sent asynchronously to the client.
+
+So, although explicit stream creation using stream.Readable or stream.Writable is not shown in the code, the usage of req and res objects represents the use of streams for handling network communication in Node.js.
+
+### Node's Pros and Cons
 
 #### Pros
 
