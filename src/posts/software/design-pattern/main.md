@@ -6,7 +6,7 @@ Design patterns provide standardized solutions to common software design problem
 
 ## Concept
 
-Main 23 design patterns
+The Gang of Four (GoF) design patterns provide standardized solutions to common software design problems, enhancing code reusability and extensibility in object-oriented systems. These patterns are categorized into Creational, Structural, and Behavioral patterns, each addressing different aspects of software design such as object creation, composition, and communication between objects.
 
 ### Creational
 
