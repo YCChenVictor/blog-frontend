@@ -179,4 +179,17 @@ None
 
 ### Faria, Demo Site
 
+* The 10% reduction in deployment and build failures just count as 2/24 because these two times I did do some modification to the progress like modifying the platform, the deployment scripts, adding tests in CI, and amend commits to fit production code to the demo code.
+* The reason why I said 33% is from the town hall meetings
+* Resolution within 1 hour is real because I usually solve the issues in a short time to make sure the demo works smoothly.
+* The decrease maintenance and machine cost by 20% is from the sidekiq from 5 to 1.
+* The 50+ table is true that this project has that many tables
+
 ### Faria, Advancement Module
+
+* The 1K+ code is true because I need to integrate the new features to the old codebase
+* This new module are only for the paid users, so it is crucial to write correct credential mechanism to protect the users
+* The most important features in this module is the school can use this one to get more income from its alumni pool
+* The 80% decrease are tested locally, which compare the import and the manually inputting
+
+After you finish answering the questions on resume, start to prepare the questions for node and rails.
