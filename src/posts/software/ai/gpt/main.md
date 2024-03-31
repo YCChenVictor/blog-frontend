@@ -1,3 +1,11 @@
+# Title
+
+## Purpose
+
+I wan to build App with GPT API.
+
+## Concept
+
 ## Build App
 
 https://platform.openai.com/docs/quickstart/build-your-application

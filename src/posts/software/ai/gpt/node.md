@@ -1,3 +1,9 @@
+# Title
+
+## Purpose
+
+## Concept
+
 # Using the GPT API in Node.js: A Step-by-Step Guide
 
 With the advancement of artificial intelligence, natural language processing has reached new heights. One of the remarkable developments in this field is the GPT (Generative Pre-trained Transformer) API, which enables developers to integrate powerful language generation capabilities into their applications. In this tutorial, we will walk you through the process of using the GPT API in a Node.js environment to create engaging and contextually relevant text.
