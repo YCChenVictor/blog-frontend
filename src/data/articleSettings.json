@@ -494,5 +494,11 @@
     "data": "2022-01-13",
     "category": "rails",
     "publish": false
+  },
+  "74": {
+    "url": "for-new-feature",
+    "data": "2024-04-09",
+    "category": "new-feature",
+    "publish": false
   }
 }
