@@ -41,10 +41,11 @@ The Gang of Four (GoF) design patterns provide standardized solutions to common 
   * [Visitor](/blog/software/design-pattern/visitor): Allows you to add new behaviors or operations to a set of objects without modifying their structure. It achieves this by defining separate visitor objects that can traverse and operate on the elements of a complex object structure.
   * [Command](/blog/software/design-pattern/command): Encapsulates a request as an object, allowing for parameterization of clients with different requests, queuing of requests, and logging of the commands, thus decoupling the sender and receiver of the command.
   * Iterator:
-  * Mediator: 
-  * Memento: 
+  * Mediator:
+  * Memento:
   * State:
   * Chain of Responsibility:
+  * [Event-Driven Architecture (EDA)](/blog/software/design-pattern/event-driven): Event-Driven Architecture is a design pattern that focuses on the production, detection, consumption, and reaction to events in a software system. Components of a system communicate asynchronously by producing and consuming events. This pattern enables loosely coupled and highly scalable systems, where components can react to events in real-time without needing to know the internal workings of other components.
 
 
 ## Reference
