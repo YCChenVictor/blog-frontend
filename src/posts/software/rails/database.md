@@ -152,6 +152,28 @@ end
 
 This will load all the comments for all the posts in a single query, rather than issuing a separate query for each post.
 
+We can check the SQL query to understand the difference. Instead of
+
+```mysql
+-- For the first post
+SELECT COUNT(*) FROM `comments` WHERE `comments`.`post_id` = <post_id_1>;
+
+-- For the second post
+SELECT COUNT(*) FROM `comments` WHERE `comments`.`post_id` = <post_id_2>;
+
+-- For the third post
+SELECT COUNT(*) FROM `comments` WHERE `comments`.`post_id` = <post_id_3>;
+```
+
+it will do
+
+```mysql
+SELECT `posts`.*, COUNT(`comments`.`id`) AS comments_count
+FROM `posts`
+LEFT OUTER JOIN `comments` ON `comments`.`post_id` = `posts`.`id`
+GROUP BY `posts`.`id`
+```
+
 We can set condition with chaining as follow:
 
 ```ruby

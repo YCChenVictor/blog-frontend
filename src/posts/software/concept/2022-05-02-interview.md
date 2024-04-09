@@ -139,7 +139,50 @@ Present a coding problem to assess problem-solving skills and coding proficiency
 Choose problems that cover various technical areas (algorithms, data structures, etc.)
 
 Just literally practice leetcode and side projects.
-Also, practice those node questions.
+Also, practice those node and rails questions.
+
+### Database
+
+#### Past Challenges, advancement module
+
+In my past experience, I encountered a particularly challenging situation revolving around the maintenance of fundamental data within our application. While Rails' migration mechanism streamlined schema management, ensuring stability, the creation and management of core application data posed significant hurdles.
+
+Within a newly developed module, I was tasked with crafting scripts to generate essential foundational data. These scripts were subject to frequent modifications, mirroring shifts in our PM's marketing strategies. Consequently, meticulous attention to detail was paramount, as any amendments had to be carefully implemented to avoid disrupting the application's functionality.
+
+Furthermore, to safeguard against data contamination, I devised temporary mechanisms to segregate test user data from other user records within the database. This measure ensured that newly generated data remained isolated during testing phases, preventing unintended consequences on existing datasets.
+
+While scripts could be rewritten to accommodate changes in staging environments, adjustments to the production database demanded a more cautious approach. With shifts in business logic, mere script creation proved insufficient. Instead, comprehensive modifications were necessary, considering the broader implications of introducing or modifying foundational data.
+
+Navigating these challenges required a delicate balance between flexibility and precision, as any missteps could potentially disrupt the integrity of our production environment.
+
+#### How to deal with price in database?
+
+* Data Type Selection: Use an appropriate data type for storing prices, such as DECIMAL or NUMERIC, which are precise and suitable for monetary values. Avoid using floating-point data types like FLOAT or DOUBLE, as they can introduce rounding errors due to their limited precision.
+  * Floating-point data types like FLOAT or DOUBLE use binary representation, which can introduce rounding errors when representing decimal fractions.
+* Normalization: Store price-related information in a normalized manner. It's common to have a separate table for prices, especially if prices can vary over time or depend on other factors. This can help maintain data integrity and reduce redundancy.
+* Currency Handling: If dealing with multiple currencies, consider storing prices in a base currency and including a separate column for the currency code. Alternatively, you may choose to store prices in a single currency and perform currency conversions as needed.
+* Handling Discounts and Taxes: Determine how to handle discounts, taxes, and other price adjustments. It's often useful to store these as separate fields or in separate tables to accurately calculate the final price.
+* Precision and Rounding: Be mindful of precision and rounding rules to ensure accurate calculations. For example, round prices to an appropriate number of decimal places to avoid displaying excessive precision to users.
+* Consistency: Enforce consistency in price formatting and handling across the database to avoid confusion and errors. Use validation rules or constraints to ensure that prices adhere to the specified format and range.
+* Auditing and History: Maintain a history of price changes if necessary, especially for products or services with fluctuating prices over time. This can be achieved by adding timestamp columns or using a separate table to track price revisions.
+* Security: Implement appropriate security measures to protect price-related data from unauthorized access or manipulation. Ensure that only authorized users have the necessary privileges to modify prices.
+
+##### Example, USD to TWD
+
+Let's say we need to store the exchange rate information in a table where USD to TWD now is 32.08, then we can create a table in mysql as follow:
+
+```mysql
+CREATE TABLE currency_exchange (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    currency_from VARCHAR(3) NOT NULL,
+    currency_to VARCHAR(3) NOT NULL,
+    exchange_rate DECIMAL(10, 5) NOT NULL -- Adjust precision and scale as needed
+);
+```
+
+* DECIMAL(10, 5) means precision of 10 and a scale of 5
+  * The total number of digits allowed, including both sides of the decimal point, is 10.
+  * Out of these 10 digits, 5 are allocated to the right side of the decimal point (scale), and the remaining 5 digits can be used for the integer part (precision - scale).
 
 ## Open-ended Discussion and Questions
 
@@ -191,5 +234,3 @@ None
 * This new module are only for the paid users, so it is crucial to write correct credential mechanism to protect the users
 * The most important features in this module is the school can use this one to get more income from its alumni pool
 * The 80% decrease are tested locally, which compare the import and the manually inputting
-
-After you finish answering the questions on resume, start to prepare the questions for node and rails.
