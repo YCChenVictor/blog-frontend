@@ -69,7 +69,8 @@ Plan and design the user interface and functionality of your web application.
 
 #### Frontend
 
-* [React] is a popular JavaScript library for building user interfaces, known for its efficient rendering and component-based architecture. Developed by Facebook, React allows developers to create reusable UI components and seamlessly update them as the application state changes, resulting in faster and more interactive web applications.
+* Framework: [React], [Vue]
+* Resource: Resources encompass all the elements and assets utilized by a web application, including JavaScript code, HTML elements, CSS styles, images, fonts, data structures, external libraries, storage mechanisms, caching, browser tabs, event handlers, and dynamic content. Efficient management of resources is essential for optimizing frontend memory usage and enhancing the performance and stability of web applications.
 
 #### Backend
 
