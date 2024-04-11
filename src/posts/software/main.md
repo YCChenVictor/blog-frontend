@@ -18,13 +18,14 @@ Complexity is a fundamental characteristic of systems, phenomena, and processes 
 
 [Data Structures and Algorithms (DSA)](/blog/software/dsa/main) are essential foundations in software development, providing the tools and techniques to organize and manipulate data efficiently, optimize code performance, and solve complex problems in a systematic and scalable manner. Mastery of DSA enables developers to design robust software solutions, improve algorithmic efficiency, and create optimized code for various applications and domains.
 
-#### Object Oriented Design
-
-Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design](/blog/software/ood/main).
-
 #### System Design
 
 System design involves creating a blueprint for the structure and organization of a software system, considering factors such as architecture, modules, interfaces, and data flow. It aims to transform requirements into an efficient and scalable solution that meets the desired goals and objectives of the system. For more information, please refer to [system design](/blog/software/system-design/main).
+
+#### Programming Style
+
+* Object-oriented design is a fundamental aspect of software development, emphasizing the creation of elegant and maintainable code through the organization of classes and methods to solve problems or represent real-life entities. By applying object-oriented principles, developers can achieve modularity, reusability, and improved quality in their software systems. For more information, please refer to [object oriented design](/blog/software/ood/main).
+* [Functional Programming]
 
 #### Refactor
 
@@ -40,7 +41,7 @@ Refactoring is the process of improving code quality and structure without chang
 
 #### Test Concept
 
-* ([TDD](/blog/software/tdd/main)): Test-Driven Development involves writing tests before code to guide development, ensuring early and thorough software testing and aligning code with intended functionality, ultimately enhancing code quality and reducing defects. TDD's approach helps catch issues early, leading to more reliable software and efficient development.
+([TDD](/blog/software/tdd/main)): Test-Driven Development involves writing tests before code to guide development, ensuring early and thorough software testing and aligning code with intended functionality, ultimately enhancing code quality and reducing defects. TDD's approach helps catch issues early, leading to more reliable software and efficient development.
 
 ### System software
 
