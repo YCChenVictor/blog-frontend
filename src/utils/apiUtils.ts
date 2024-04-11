@@ -8,7 +8,6 @@ const superFetch = async (
   endpoint: string,
   options: RequestOptions
 ): Promise<Response> => {
-  debugger
   const url = `${process.env.REACT_APP_ENDPOINT_DEV}/${endpoint}`;
 
   try {

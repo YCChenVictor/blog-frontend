@@ -19,7 +19,7 @@ const GptModal: FC<ModalProps> = ({ isOpen, isLoggedIn, handleClose }) => {
   const handleSendRequest = async () => {
     await superFetch('your-post-endpoint', {
       method: 'POST',
-      headers: { "Authorization": `Bearer ${localStorage['blog logged in']}` },
+      headers: { 'Authorization': `Bearer ${localStorage['blog logged in']}` },
       body: '', // This may be wrong
     });
   };

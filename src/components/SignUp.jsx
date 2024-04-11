@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import Modal from "react-modal";
+import Modal from 'react-modal';
 
-function SignUp(props) {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+function SignUp() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [modalOpen, setModalOpen] = useState(true)
 
   const PostSignUpInfo = (params) => {
-    fetch("http://localhost:5000/signup", {
-      method: "POST",
+    fetch('http://localhost:5000/signup', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ params }),
     }).then((res) => {

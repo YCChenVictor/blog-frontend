@@ -1,6 +1,4 @@
 import React, { FC, useEffect, useState } from 'react'
-import ImageUpload from './ImageUpload'
-import RenderOneComponent from './RenderOneComponent'
 import GptModal from './GptModal';
 import StandardRender from '../Interfaces/StandardRender'
 
@@ -9,12 +7,12 @@ const RenderFrontend: FC<StandardRender> = ({isLoggedIn}) => {
   // I will try to render a component posted by GPT first
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const [position, setPosition] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
+  // const [position, setPosition] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
 
   const handleRightClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setModalOpen(true);
-    setPosition({ x: e.clientX, y: e.clientY });
+    // setPosition({ x: e.clientX, y: e.clientY });
   };
 
   const handleCloseModal = () => {

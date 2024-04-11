@@ -30,9 +30,9 @@ function Article({setting}: ArticleComponent) {
 
   const componentSidebarRef = useRef(null);
 
-  const length = filePath.split("/").length
-  const category = filePath.split("/")[length - 2]
-  let articleName = filePath.split("/")[length - 1].split('.')[0]
+  const length = filePath.split('/').length
+  const category = filePath.split('/')[length - 2]
+  let articleName = filePath.split('/')[length - 1].split('.')[0]
   articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1)
 
   useEffect(() => { // try to dynamic import from filePath
@@ -59,9 +59,9 @@ function Article({setting}: ArticleComponent) {
     let str = string.replace(/^\s+|\s+$/g, "");
     str = str.toLowerCase();
     str = str
-      .replace(/[^a-z0-9 -]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
+      .replace(/[^a-z0-9 -]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
     return str;
   };
 
@@ -128,7 +128,7 @@ function Article({setting}: ArticleComponent) {
                   return RenderCodeBlock(props)
                 }
               },
-              table: ({node, ...props}) => {
+              table: ({...props}) => {
                 return (
                   <div className='p-2'>
                     <table className='border w-full' {...props}></table>

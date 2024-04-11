@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from "react"
-import ForceGraph2D from "react-force-graph-2d"
+import React, { useState, useEffect, useRef } from 'react'
+import ForceGraph2D from 'react-force-graph-2d'
 import articleSettings from '../data/articleSettings.json'
-import axios from "axios"
+import axios from 'axios'
+
+const NodeGraph = ({category}) => {
+  const loggedIn = true // should fix it with true logics
 
 const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;}) => {
   const [nodes, setNodes] = useState([])
@@ -45,8 +48,9 @@ const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;})
         return node['val'] = 1
       }
     })
-    const nodeCondition = Object.entries(articleSettings).map(([key, value], index) => {
-      return {[value["url"]]: value["publish"]}
+    const nodeCondition = Object.keys(articleSettings).map(key => {
+      const { url, publish } = articleSettings[key]
+      return {[url]: publish}
     }).reduce((result, currentObj) => {
       return { ...result, ...currentObj }
     }, {})
@@ -96,10 +100,9 @@ const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;})
   }, [])
 
   return(
-    <div style={{
-      }}
+    <div
     >
-      {true ? (
+      {loggedIn ? (
         <button
           onClick={() => generateNodes(category)}
           className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
@@ -120,11 +123,11 @@ const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;})
         d3VelocityDecay={0.6} // Decrease velocity decay to reduce node overlap
         d3AlphaDecay={0.03} // Decrease alpha decay to increase simulation time
         onNodeClick={handleNodeClick} // redirect to the page when click node
-        nodeCanvasObjectMode={() => "after"}
+        nodeCanvasObjectMode={() => 'after'}
         nodeCanvasObject={(node, ctx) => {
-          ctx.textAlign = "center"
-          ctx.font = `5px Sans-Serif`
-          ctx.fillStyle = "black"
+          ctx.textAlign = 'center'
+          ctx.font = '5px Sans-Serif'
+          ctx.fillStyle = 'black'
           const lineHeight = 5
           const lines = node.name.split("-")
           let x = node.x ?? 0;

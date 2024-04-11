@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import VideoPlayer from "./VideoPlayer.jsx"
+import React from 'react';
+import VideoPlayer from './VideoPlayer.jsx'
 
 function Youtube() {
-  const [categories, setCategories] = useState({
+  const categories = {
     'music': ['TNHDNHtghK4']
-  })
+  }
 
   // useEffect(() => {
   //   fetch('http://localhost:3000/youtube_v3/') // do not know the best way to get it

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
-import FileSaver from "file-saver"
+import FileSaver from 'file-saver'
 
 function Gpt() {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -13,18 +13,18 @@ function Gpt() {
   useEffect(() => {
     const token = localStorage['blog logged in']
     fetch(`${process.env.REACT_APP_ENDPOINT_DEV}/gpt-init`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Authorization": `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`,
       },
     })
-    .then((response) => response.json())
-    .then((data) => {
-      setLoggedIn(data['loggedIn'])
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        setLoggedIn(data['loggedIn'])
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }, [])
 
   const handleInputChange = (e) => {
@@ -55,8 +55,8 @@ function Gpt() {
 
   const storeArticle = () => {
     // Currently can only store file to download and move it to target article
-    const article = new Blob([previewArticle], {type: "text/plain;charset=utf-8"});
-    FileSaver.saveAs(article, "hello world.txt");
+    const article = new Blob([previewArticle], {type: 'text/plain;charset=utf-8'});
+    FileSaver.saveAs(article, 'hello world.txt');
   }
 
   const editArticle = () => {
