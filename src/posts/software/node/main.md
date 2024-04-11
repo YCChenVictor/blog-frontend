@@ -82,67 +82,21 @@ So, although explicit stream creation using stream.Readable or stream.Writable i
 * Limited CPU Intensive Tasks: While Node.js excels in handling I/O-bound tasks, it may not be the best choice for CPU-intensive operations due to its single-threaded nature. CPU-bound tasks can block the event loop, reducing overall performance. Developers often offload such tasks to worker threads or other processes.
 * Memory Leaks: Improper management of resources or circular references in Node.js applications can lead to memory leaks, which can degrade application performance and stability over time. Careful attention to memory management practices is necessary to mitigate this risk.
 * Learning Curve: For developers new to asynchronous programming or event-driven paradigms, there can be a steep learning curve associated with Node.js. Understanding concepts such as event loops, callbacks, and non-blocking I/O may require time and effort to grasp fully.
- 
 
-
-
-1. 請解釋關聯式資料庫和非關聯式資料庫 (1)差異 (2)建議何種情境使用非關聯式資料庫。
-關聯式相較有結構，所以如果商業邏輯明確，可以直接使用關聯式。另外如果 Join 很明顯太好時間需要 denormalization，可以先考慮 NoSQL
-
-
-
-
-
-
-
-
-2. 請問您會如何設計關聯式資料庫的 Table ? 確保有一千萬資料的 Table 也有不錯的查詢效能。
+1. 請問您會如何設計關聯式資料庫的 Table ? 確保有一千萬資料的 Table 也有不錯的查詢效能。
 我會直接考慮 lndexing
-
-
-
-
-
-
-
-
 
 3. 請描述什麼是 (1)正規化與反正規化  (2)建議使用反正規化時機。
 
 正規化將資料分解成更小且相關連的表，可以減少重複性的資料，反正規化通常就是一些正規化操作太耗時例如 heavy read，則考慮使用
 
-
-
-
-
-
-
-
 4. 什麼是 SQL transaction? transaction 失敗了怎麼辦？
 一個 transaction 內可以有多種操作，若失敗應該要全部退回原始狀態
-
-
-
-
-
-
-
-
-
 
 5. 假設現在有 1 會員資料表，擁有 1 千萬筆資料，您需要根據傳入的 1 百萬個會員 ID 更新某個欄位值，請問您會怎麼處理這個需求?
 我想到
 UPDATE xxx WHERE ID is [...]
 但我知道這個效率不好
-
-
-
-
-
-
-
-
-
 
 6. 請描述您對 (1)Redis 的理解 (2)使用時機 (3)指令 keys 是否該使用，請說明原因。
 
