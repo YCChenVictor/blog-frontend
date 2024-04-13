@@ -506,5 +506,11 @@
     "data": "2024-03-31",
     "category": "database",
     "publish": false
+  },
+  "76": {
+    "url": "software/functional-programming/main",
+    "data": "2022-12-10",
+    "category": "functional-programming",
+    "publish": false
   }
 }
