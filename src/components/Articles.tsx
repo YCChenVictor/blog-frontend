@@ -1,6 +1,6 @@
 import React from 'react';
-import NodeGraph from './NodeGraph.jsx';
-import SearchBar from './SearchBar.jsx';
+import NodeGraph from './NodeGraph.tsx';
+import SearchBar from './SearchBar.tsx';
 
 const Articles = ({category, loggedIn}) => {
   const title = category.charAt(0).toUpperCase() + category.slice(1)

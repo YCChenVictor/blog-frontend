@@ -5,15 +5,20 @@ import { marked } from 'marked'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
 
-import SidebarLayout from './SidebarLayout.jsx'
-import RenderImage from './RenderImage.jsx'
-import RenderCodeBlock from './RenderCodeBlock.jsx'
-import RenderMermaid from './RenderMermaid.jsx'
-import ScrollToTopButton from './ScrollToTopButton.jsx'
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
+import SidebarLayout from './SidebarLayout.tsx'
+import RenderImage from './RenderImage.tsx'
+import RenderCodeBlock from './RenderCodeBlock.tsx'
+import RenderMermaid from './RenderMermaid.tsx'
+import ScrollToTopButton from './ScrollToTopButton.tsx'
+// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 
 interface ArticleComponent {
-  setting: Object
+  setting: {
+    url: string;
+    date: string;
+    category: string;
+    publish: boolean;
+  }
 }
 
 function Article({setting}: ArticleComponent) {
@@ -45,12 +50,12 @@ function Article({setting}: ArticleComponent) {
         content: tag.textContent,
         tagName: tag.tagName,
       }));
-      setRawTitles(tags);
+      // setRawTitles(tags);
     }
     importFileAndFetchContent()
   }, []);
 
-  const generateSlug = (string) => {
+  const generateSlug = (string: String) => {
     let str = string.replace(/^\s+|\s+$/g, "");
     str = str.toLowerCase();
     str = str
@@ -73,7 +78,7 @@ function Article({setting}: ArticleComponent) {
                     setIsCollapsed(!isCollapsed)
                   }}
                 >
-                  <MenuOutlinedIcon />
+                  {/* <MenuOutlinedIcon /> */}
                 </button>
                 <SidebarLayout
                   isCollapsed={isCollapsed}
@@ -96,15 +101,27 @@ function Article({setting}: ArticleComponent) {
               h1: () => (
                 <h1 className="text-center">{`(${category}) ${articleName}`}</h1>
               ),
-              h2: ({ node, ...props }) => (
-                <h2 id={generateSlug(props.children)} {...props}></h2>
-              ),
-              h3: ({ node, ...props }) => (
-                <h3 id={generateSlug(props.children)} {...props}></h3>
-              ),
-              h4: ({ node, ...props }) => (
-                <h4 id={generateSlug(props.children)} {...props}></h4>
-              ),
+              h2: ({ node, ...props }) => {
+                if (props.className === 'math math-inline' && props.children) {
+                  return <h2 id={generateSlug(props.children.toString())} {...props}></h2>
+                } else {
+                  return null;
+                }
+              },
+              h3: ({ node, ...props }) => {
+                if (props.className === 'math math-inline' && props.children) {
+                  return <h3 id={generateSlug(props.children.toString())} {...props}></h3>
+                } else {
+                  return null;
+                }
+              },
+              h4: ({ node, ...props }) => {
+                if (props.className === 'math math-inline' && props.children) {
+                  return <h4 id={generateSlug(props.children.toString())} {...props}></h4>
+                } else {
+                  return null;
+                }
+              },
               img: ({ node, ...props }) => (
                 RenderImage(props)
               ),
@@ -123,10 +140,11 @@ function Article({setting}: ArticleComponent) {
                 )
               },
               span: ({node, ...props}) => { // done
-                if (props.className === 'math math-inline') {
-                  return <span className="math math-inline inline-flex">{props.children[0]}</span>;
+                if (props.className === 'math math-inline' && props.children) {
+                  const content = props.children;
+                  return <span className="math math-inline inline-flex">{content}</span>;
                 } else {
-                  return props.children[0]
+                  return null
                 }
               }
             }}
@@ -142,6 +160,7 @@ function Article({setting}: ArticleComponent) {
           {showMobileSidebar ? (
             <div className="overflow-y-auto">
               <SidebarLayout
+                isCollapsed={false}
                 loggedIn={loggedIn}
                 setting={setting}
                 articleContent={markdownContent}
@@ -157,7 +176,7 @@ function Article({setting}: ArticleComponent) {
               setShowMobileSidebar(!showMobileSidebar)
             }}
           >
-            <MenuOutlinedIcon />
+            {/* <MenuOutlinedIcon /> */}
           </button>
         </div>
       </div>

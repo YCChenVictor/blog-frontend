@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
-import Articles from './components/Articles';
-import AuthorProfile from './components/AuthorProfile';
+import Articles from './components/Articles.tsx';
+import AuthorProfile from './components/AuthorProfile.tsx';
 import Article from './components/Article.tsx';
-import UserInNav from './components/UserInNav';
-import ArticleList from './components/ArticleList';
-import EditArticle from './components/AutoArticle/EditArticle';
+import UserInNav from './components/UserInNav.tsx';
+import ArticleList from './components/ArticleList.tsx';
+import EditArticle from './components/AutoArticle/EditArticle.tsx';
 import RenderFrontend from './components/AutoFrontend/RenderFrontend.tsx';
 
-import { checkLoggedIn } from './utils/checkLoggedIn';
+import { checkLoggedIn } from './utils/checkLoggedIn.ts';
 
 import titleImg from './assets/img/title.jpeg';
 import settings from './data/articleSettings.json';
@@ -21,7 +21,7 @@ function Layout(props: LayoutProps): JSX.Element {
   const helloWorldUrl = process.env.HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-
+  
   const articleRoutes = Object.entries(settings).map(([key, value], index) => (
     <Route
       key={index}
@@ -31,12 +31,15 @@ function Layout(props: LayoutProps): JSX.Element {
   ));
 
   const fetchRequireData = async () => {
+    if(!helloWorldUrl) return
+
     try {
       const isServerOn = await axios.get(helloWorldUrl);
       setServerOn(isServerOn.data); // Assuming the server response indicates its status.
     } catch (error) {
       setServerOn(false);
     }
+
     if (serverOn) return;
 
     const isLoggedInResponse = await checkLoggedIn();
