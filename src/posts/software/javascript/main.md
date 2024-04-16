@@ -25,6 +25,15 @@ let car = {
 };
 ```
 
+#### Object methods
+
+* defineProperty: Object.defineProperty gives you the ability to define properties that may not be achievable using simple property assignment syntax (obj.property = value). For example, you can create read-only properties, define getters and setters for computed properties, or create properties that are not enumerable (i.e., they won't show up during iteration).
+  ```javascript
+  // Example: defines a non-enumerable property named "value" on the object objA, with an initial value of true.
+  Object.defineProperty(objA, "value", { value: true, enumerable: false });
+  // Noted that the non-enumerable variable will not be seen with log
+  ```
+
 ### Constructing Objects
 
 There are two different forms to construct objects, functional forms and class forms.
