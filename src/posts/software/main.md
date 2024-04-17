@@ -70,7 +70,7 @@ Plan and design the user interface and functionality of your web application.
 
 #### Frontend
 
-* Framework: [React], [Vue]
+* Framework: [React](/blog/software/react/main), [Vue]
 * Resource: Resources encompass all the elements and assets utilized by a web application, including JavaScript code, HTML elements, CSS styles, images, fonts, data structures, external libraries, storage mechanisms, caching, browser tabs, event handlers, and dynamic content. Efficient management of resources is essential for optimizing frontend memory usage and enhancing the performance and stability of web applications.
 
 #### Backend

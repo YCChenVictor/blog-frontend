@@ -542,5 +542,11 @@
     "data": "2023-05-28",
     "category": "express",
     "publish": false
+  },
+  "82": {
+    "url": "software/react/component",
+    "data": "2023-01-27",
+    "category": "react",
+    "publish": false
   }
 }
