@@ -56,38 +56,6 @@ Caching is used to store frequently accessed data closer to where it's needed, r
 * GPU Caches: Graphics Processing Units (GPUs) have their own caches, such as texture caches and global memory caches, which store frequently accessed data for graphics rendering and parallel computation.
 * Proxy Caches: Proxy servers can employ caches to store and serve frequently accessed web content on behalf of clients, reducing the load on origin servers and improving response times.
 * Middleware Caches: Middleware components, like caching servers or caching plugins, can be used to cache frequently accessed data or responses in software architectures, improving performance and reducing the load on backend systems.
-  * Example: Redis
-    * System
-      * Stop
-       ```bash
-       killall redis-server
-       ```
-      * Start redis
-        ```bash
-        redis-server
-        ```
-      * Connect
-        ```bash
-        redis-cli
-        ```
-      * Check the number of keys
-        ```bash
-        DBSIZE
-        ```
-      * Check whether a data cached
-      * Remove all cache
-        ```bash
-        redis-cli FLUSHALL
-        ```
-      * Do some steps on your webpage for caching in redis
-      * Monitor
-        ```bash
-        > redis-cli MONITOR
-        ```
-      * Check the keys of cached data
-        ```bash
-        > keys *
-        ```
 * Application-Level Caches: Applications themselves may implement caching mechanisms to store frequently accessed data, such as caching query results or computed values, enhancing performance and reducing the need for repeated computations.
 * Session Caches: Session caches are used to store session data related to user sessions in web applications. This helps improve session management and allows for quick access to session information.
 * Memory Caches: Memory caches, sometimes referred to as general-purpose caches, are used to cache data from various sources in memory for fast retrieval. They are often employed in distributed systems or high-performance computing environments.
