@@ -20,8 +20,11 @@ Learning MySQL is valuable because it equips you with the essential skills to ef
   * Specific database: `USE database_name;`
 * Update
   * rename database
-  * first approach (details below): create a new database -> move tables to new database -> remove the old database
-  * second approach (details below): export and import with mysqldump
+    ```mysql
+    -- 1. Backup the Database
+    -- 2. Run SQL Query
+    RENAME DATABASE old_name TO new_name;
+    ```
 * Destroy: `drop database <db_name>;`
 
 ### Table
@@ -45,11 +48,68 @@ Learning MySQL is valuable because it equips you with the essential skills to ef
   * Specific condition: `SELECT * FROM table_name where xxx`
   * Specific column: `SELECT xxx FROM table_name`
 * Update
-* Destroy: `DELETE FROM ‘table_name’ WHERE id = 1 LIMIT 1`
+  ```mysql
+  UPDATE table_name
+  SET column1 = value1, column2 = value2, ...
+  WHERE condition;
+  ```
+* Destroy: `DELETE FROM ‘table_name’ WHERE (condition)`
 
 ### Data type
 
-Refer to [data type](https://dev.mysql.com/doc/refman/8.0/en/data-types.html#:~:text=MySQL%20supports%20SQL%20data%20types,and%20the%20JSON%20data%20type.).
+#### Numeric
+
+* exact
+  * INTEGER
+  * SMALLINT
+  * DECIMAL
+  * NUMERIC
+* approximate
+  * FLOAT
+  * REAL
+  * DOUBLE PRECISION
+
+#### Time
+
+* DATE
+* TIME
+* DATETIME
+* TIMESTAMP
+* YEAR
+
+#### String
+
+* CHAR
+* VARCHAR
+* BINARY
+* VARBINARY
+* BLOB
+* TEXT
+* ENUM
+* SET
+
+#### Spatial
+
+* 
+
+#### JSON
+
+#### Default Value
+
+You can explicitly specify the default value for the new created record; for example,
+```mysql
+CREATE TABLE t1 (
+  -- literal defaults
+  i INT         DEFAULT 0,
+  c VARCHAR(10) DEFAULT '',
+  -- expression defaults
+  f FLOAT       DEFAULT (RAND() * RAND()),
+  b BINARY(16)  DEFAULT (UUID_TO_BIN(UUID())),
+  d DATE        DEFAULT (CURRENT_DATE + INTERVAL 1 YEAR),
+  p POINT       DEFAULT (Point(0,0)),
+  j JSON        DEFAULT (JSON_ARRAY())
+);
+```
 
 ### Syntax
 
@@ -124,3 +184,5 @@ erDiagram
   * `IGNORE 1 ROWS` means the process during import csv file will ignore the column names whose location is on first row
 
 ## Reference
+
+[data type](https://dev.mysql.com/doc/refman/8.0/en/data-types.html#:~:text=MySQL%20supports%20SQL%20data%20types,and%20the%20JSON%20data%20type.)
