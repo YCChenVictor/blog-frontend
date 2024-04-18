@@ -4,35 +4,25 @@
 
 Components in React are used to modularize and organize the user interface into reusable, independent units of functionality.
 
-Provide more context on why React components are essential and how they contribute to building scalable applications.
+* Reusability: Components allow you to break down your UI into reusable pieces, which can be used multiple times throughout your application.
+* Abstraction and Encapsulation: Components encapsulate both the structure and behavior of a UI element, allowing you to abstract away the complexity and focus on building self-contained units of functionality.
+* Composability: React components can be composed together to build complex UIs from simple building blocks. This composability enables you to create sophisticated user interfaces by combining smaller, more manageable components in a hierarchical manner.
+* Separation of Concerns: React encourages a separation of concerns by promoting a clear separation between UI components and application logic. This separation makes your codebase easier to maintain and test, as it allows you to focus on specific aspects of your application independently.
+* Performance Optimization: React's virtual DOM and reconciliation algorithm allow it to efficiently update the UI in response to changes in application state. By breaking your UI into smaller, granular components, React can minimize the number of DOM manipulations required, resulting in better performance.
 
 ## Concept
 
-### Structure
+### Basic Structure
 
 A really basic component: in `src`, create `components/counter.jsx` with
 
 ```javascript
-import React, { useState } from 'react';
+import React from 'react';
 
 const Counter = () => {
-  // State for the counter value
-  const [counterValue, setCounterValue] = useState(0);
-
-  // Function to handle incrementing the counter value
-  const incrementCounter = () => {
-    setCounterValue(prevValue => prevValue + 1);
-  };
-
   return (
     <div>
-      {/* Display the counter value */}
-      <span className="counter-value">{counterValue}</span>
-
-      {/* Button to increment the counter */}
-      <button className="increment-button" onClick={incrementCounter}>
-        Increment
-      </button>
+      This is a Counter
     </div>
   );
 };
@@ -48,42 +38,25 @@ import Counter from './components/counter.jsx'
 <Counter />
 ```
 
-### Render virtual DOM
+### Render Process
 
-Clarify the explanation of the virtual DOM and its role in React's rendering process. Simplify complex concepts to make them more accessible to readers who may be new to React.
+React will always create virtual DOM first and then compare the actual DOM and do necessary change on the actual DOM.
 
-The reason to use component: `render()` method returns **react elements**, virtual DOM, which are JS objects in memory map to real DOM element. When a state changes, react change the virtual DOM first and then change the state of real DOM, making it just like JQuery with AJAX.
-
-### insert components
-
-React accept pass array of components into a component and render them; Take `sidebar` as example,
-
-```jsx
-function SidebarLayout() {
-  const [menuItems, setMenuItems] = useState('testing')
-  useEffect(() => {
-    const queriedTitles = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')];
-    const titles = queriedTitles.filter((item) => item.tagName !== 'H1').map(
-      item => ({id: item.id, tag: item.tagName.match(/\d+/)[0], position: queriedTitles.indexOf(item)})
-    )
-    const menuItemsDesired = titles.map((title) => (<MenuItem>{title.id}</MenuItem>))
-    setMenuItems(menuItemsDesired)
-  }, []);
-  return (
-    <div style={{ display: 'flex', height: '100%' }} >
-      <ProSidebarProvider>
-        <BrowserRouter>
-          <Sidebar>
-            <Menu>
-              {menuItems}
-            </Menu>
-          </Sidebar>
-        </BrowserRouter>
-      </ProSidebarProvider>
-    </div>
-  );
-}
-```
+* Initial Render
+  * When you first load a React application, React creates a virtual DOM representation of your UI based on the component hierarchy you've defined in your code.
+  * It traverses the component tree starting from the root component and generates corresponding virtual DOM nodes for each component.
+  * Once the virtual DOM is constructed, React converts it into actual DOM elements and renders them to the browser.
+* Updating the DOM
+  * When the application state changes, either due to user interactions or other events, React re-renders the affected components.
+  * React performs a process called reconciliation to determine which parts of the virtual DOM need to be updated.
+  * It compares the new virtual DOM representation with the previous one and identifies the differences (referred to as "diffing").
+  * Based on the differences, React computes the minimal set of DOM operations needed to update the actual DOM.
+  * React then applies these changes to the real DOM, efficiently updating only the portions of the UI that have changed.
+* Optimizations
+  * React employs several optimizations to make the rendering process as efficient as possible.
+  * It batches multiple updates together and performs them in a single pass to minimize DOM manipulations.
+  * React also utilizes techniques like useMemo and useCallback to prevent unnecessary re-renders of components when their props or state haven't changed.
+  * Additionally, React's virtual DOM allows it to perform optimizations such as key-based reconciliation and tree differencing to optimize the update process further.
 
 ### Conditional Rendering
 
@@ -111,39 +84,9 @@ export default MyComponent;
 
 In this example, we use the ternary operator (? :) to conditionally render different content inside the return statement based on the value of isLoggedIn. If isLoggedIn is true, the component will render a welcome message, and if it's false, the component will render a login prompt. The JSX syntax allows us to include JavaScript expressions inside curly braces {}, so we can evaluate the condition and render the appropriate content inline.
 
-#### condition
+### Child Components
 
-We can use concept of ternary to achieve it
-
-* Conditional rendering
-  ```JSX
-  {false ? (
-  <button
-    onClick={setTaskModalOpen}
-    className="bg-white p-2"
-  >Create Task</button>) : ('')}
-  ```
-* Conditional Style
-  ```JSX
-  const MyComponent = ({ isHighlighted }) => {
-    const style = {
-      color: isHighlighted ? 'red' : 'black',
-      fontWeight: isHighlighted ? 'bold' : 'normal'
-    }
-  
-    return (
-      <div style={style}>
-        Hello World
-      </div>
-    )
-  }
-  ```
-
-### child
-
-#### Benefits
-
-Emphasize the benefits of component decomposition and how it contributes to code maintainability and reusability.
+We can decompose big component into smaller one and import them to the parent component.
 
 #### Decomposing
 
@@ -158,8 +101,8 @@ const Comment = ({ author, content, timestamp }) => {
   return (
     <div className="comment">
       <h4>{author}</h4>
-      <p>{content}</p>
       <span>{timestamp}</span>
+      <p>{content}</p>
     </div>
   );
 };
@@ -219,101 +162,44 @@ const CommentContent = ({ content }) => {
 export default CommentContent;
 ```
 
-### Wait until Data Prepared
+### insert components
 
-* purpose: Explain the purpose of waiting for data and how conditional rendering ensures a seamless user experience.
-* concept
+React accept pass array of components into a component and render them; Take `sidebar` as example,
 
-We can use conditional rendering to wait until data fetched
-
-```javascript
-const Article = () => {
-  ...
-  const [markdownContent, setMarkdownContent] = useState('');
-  const [rawTitles, setRawTitles] = useState([]);
-
+```jsx
+function SidebarLayout() {
+  const [menuItems, setMenuItems] = useState('testing')
   useEffect(() => {
-    fetch(file)
-      .then((res) => res.text())
-      .then(text => {
-        const parsedHTML = marked.parse(text)
-        const container = document.createElement('div')
-        container.innerHTML = parsedHTML
-        const tags = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6')).map((tag) => tag.textContent)
-        setRawTitles(tags)
-        setMarkdownContent(text)
-      })
+    const queriedTitles = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')];
+    const titles = queriedTitles.filter((item) => item.tagName !== 'H1').map(
+      item => ({id: item.id, tag: item.tagName.match(/\d+/)[0], position: queriedTitles.indexOf(item)})
+    )
+    const menuItemsDesired = titles.map((title) => (<MenuItem>{title.id}</MenuItem>))
+    setMenuItems(menuItemsDesired)
   }, []);
-
   return (
-    <div className='bg-gray-400 px-2 py-2 lg:px-8 lg:py-4 xl:px-72 xl:py-6 2xl:px-96 2xl:py-8'>
-      {rawTitles.length > 0 ? (
-        <div>
-          <SidebarLayout rawTitles={rawTitles} />
-          <ReactMarkdown>{markdownContent}</ReactMarkdown>
-        </div>
-      ) : (
-        <div>Loading...</div>
-      )}
+    <div style={{ display: 'flex', height: '100%' }} >
+      <ProSidebarProvider>
+        <BrowserRouter>
+          <Sidebar>
+            <Menu>
+              {menuItems}
+            </Menu>
+          </Sidebar>
+        </BrowserRouter>
+      </ProSidebarProvider>
     </div>
-  )
+  );
 }
 ```
 
-### Component interactions
+### Components interactions
 
-Provide more context on the different types of component interactions, such as parent-child and sibling components.
+This section will utilize react hooks, so please study hooks first.
 
-Include examples demonstrating various interaction patterns, such as passing data between components and synchronizing component behavior.
+#### Only one different level
 
-
-#### On the same level
-
-Say we want the width of a component to listen to another component's width
-
-```jsx
-import React, { useEffect, useRef, useState } from 'react';
-
-const ParentComponent = () => {
-  const [componentAWidth, setComponentAWidth] = useState(0);
-
-  const updateComponentAWidth = (width) => {
-    setComponentAWidth(width);
-  };
-
-  const componentARef = useRef(null);
-
-  useEffect(() => {
-    // Get the width of ComponentA and call the updateComponentAWidth function
-    if (componentARef.current) {
-      const width = componentARef.current.clientWidth;
-      updateComponentAWidth(width);
-    }
-  }, []);
-
-  const componentBStyle = {
-    width: `${componentAWidth}px`, // Set the width of ComponentB based on ComponentA's width
-    /* Add any other styles you desire */
-  };
-
-  return (
-    <div>
-      <div ref={componentARef}>
-        {/* Your ComponentA content */}
-      </div>
-      <div style={componentBStyle}>
-        {/* Your ComponentB content */}
-      </div>
-    </div>
-  );
-};
-
-export default ParentComponent;
-```
-
-#### On different level
-
-Say if there is an operation in child component, then we want parent component to do actions accordingly
+Say if there is an operation in child component, then we want parent component to do actions accordingly.
 
 * Parent: Pass the method to child component
   ```jsx
@@ -358,48 +244,97 @@ Say if there is an operation in child component, then we want parent component t
   export default ChildComponent;
   ```
 
-## Example
+#### On the same level
 
-Provide a complete example demonstrating the concepts discussed in the article. This example could showcase the creation of a simple React application with multiple components, state management, and interactions.
+Say we want the width of a component to listen to another component's width
+
+```jsx
+import React, { useEffect, useRef, useState } from 'react';
+
+const ParentComponent = () => {
+  const [componentAWidth, setComponentAWidth] = useState(0);
+
+  const componentARef = useRef(null); // refer to the component A without trigger re-render
+
+  useEffect(() => {
+    // Get the width of ComponentA and call the updateComponentAWidth function
+    if (componentARef.current) {
+      const width = componentARef.current.clientWidth;
+      setComponentAWidth(width);
+    }
+  }, []);
+
+  const componentBStyle = {
+    width: `${componentAWidth}px`, // Set the width of ComponentB based on ComponentA's width
+    /* Add any other styles you desire */
+  };
+
+  return (
+    <div>
+      <div ref={componentARef}>
+        {/* Your ComponentA content */}
+      </div>
+      <div style={componentBStyle}>
+        {/* Your ComponentB content */}
+      </div>
+    </div>
+  );
+};
+
+export default ParentComponent;
+```
+
+#### On far far away
+
+Use React Context for managing global state or sharing data between components without having to pass props down manually through each level of the component tree.
+
+```jsx
+// Create a context
+import React, { createContext, useContext, useState } from 'react';
+
+const MyContext = createContext();
+
+// Define a provider component
+const MyProvider = ({ children }) => {
+  const [data, setData] = useState('initial data');
+
+  return (
+    <MyContext.Provider value={{ data, setData }}>
+      {children}
+    </MyContext.Provider>
+  );
+};
+
+// Use the context in child components
+const ChildComponent = () => {
+  const { data, setData } = useContext(MyContext);
+
+  const handleClick = () => {
+    setData('new data'); // you can set new data to the data variable with this method and all other components can access to this data
+  };
+
+  return (
+    <div>
+      <p>Data from context: {data}</p>
+      <button onClick={handleClick}>Change Data</button>
+    </div>
+  );
+};
+
+// Wrap the components with the provider
+const App = () => {
+  return (
+    <MyProvider>
+      <ChildComponent />
+    </MyProvider>
+  );
+};
+
+export default App;
+```
+
+In this example, MyProvider wraps around the components that need access to the context, and MyContext.Provider provides the data to its children. useContext hook is used in ChildComponent to consume the context and access the data.
 
 ## Reference
 
-## Other topics
-
-React Props and Prop Types:
-
-Explain the concept of props in React and how they allow components to accept inputs.
-Introduce PropTypes for type checking props to ensure component reliability and catch bugs early in development.
-React Hooks:
-
-Provide an overview of React hooks such as useState, useEffect, useContext, etc., and their role in functional components.
-Explain how hooks enable developers to add state and side-effects to functional components without using class components.
-React Context API:
-
-Introduce the Context API as a mechanism for passing data through the component tree without having to pass props manually at every level.
-Demonstrate how to create and consume context in React applications to manage global state or provide theme configurations.
-React Router:
-
-Discuss React Router as a library for handling navigation in React applications.
-Provide examples of how to set up routing, define routes, and handle navigation events in React Router.
-React Lifecycle Methods:
-
-Explain the lifecycle of a React component and the various lifecycle methods available in class components.
-Discuss how lifecycle methods are used for initialization, updating, and cleanup in React applications.
-React Forms and Form Handling:
-
-Cover techniques for handling forms in React applications, including controlled components and form validation.
-Provide examples of form submission, handling user input, and updating state based on form values.
-React Performance Optimization:
-
-Discuss best practices for optimizing React application performance, including minimizing re-renders, using memoization techniques, and lazy loading components.
-Error Handling in React:
-
-Explain strategies for handling errors in React applications, including error boundaries, componentDidCatch lifecycle method, and error logging.
-Server-Side Rendering (SSR) and Client-Side Rendering (CSR):
-
-Compare and contrast server-side rendering and client-side rendering approaches in React applications.
-Discuss the benefits and trade-offs of each approach and when to use them based on project requirements.
-Testing React Components:
-
-Introduce testing methodologies for React components, including unit testing with Jest and Enzyme, and end-to-end testing with tools like Cypress.
+GPT
