@@ -60,39 +60,84 @@ Learning MySQL is valuable because it equips you with the essential skills to ef
 #### Numeric
 
 * exact
-  * INTEGER
-  * SMALLINT
-  * DECIMAL
-  * NUMERIC
+  * INTEGER (INT): An integer data type represents whole numbers without any fractional part. In most systems, it typically occupies 4 bytes of memory, allowing it to represent values within a certain range, often from -2,147,483,648 to 2,147,483,647. (-2^31 to (2^31 - 1))
+  * SMALLINT: Similar to INTEGER but typically occupies less memory, often 2 bytes. It's used for smaller integer values, covering a smaller range, usually from -32,768 to 32,767. (-2^15 to (2^15 - 1))
+  * DECIMAL (EDC, FIXED): This data type is used for storing exact decimal numbers. It's commonly used for financial calculations where precision is critical. DECIMAL data type stores numbers as fixed-point numbers, meaning they have a fixed number of digits after the decimal point.
+  * NUMERIC: Similar to DECIMAL, NUMERIC is used for storing exact numeric values with fixed precision and scale. It's often interchangeable with DECIMAL in many database systems.
 * approximate
-  * FLOAT
-  * REAL
-  * DOUBLE PRECISION
+  * FLOAT: A floating-point data type represents approximate real numbers. It's used for storing numbers with a fractional part or numbers that require a large range but don't need exact precision. FLOAT values are stored in scientific notation and can represent a wide range of values, but they may not always be precise due to the limitations of floating-point arithmetic.
+  * REAL: REAL is a synonym for FLOAT in some database systems. It represents single-precision floating-point numbers, typically occupying 4 bytes of memory.
+  * DOUBLE PRECISION: Also known as DOUBLE, this data type represents double-precision floating-point numbers. It offers higher precision compared to FLOAT or REAL, typically occupying 8 bytes of memory. DOUBLE PRECISION can store larger values and provide greater precision for calculations.
 
 #### Time
 
-* DATE
-* TIME
-* DATETIME
-* TIMESTAMP
-* YEAR
+* DATE: The DATE data type is used for storing dates without any time information. It typically represents a calendar date in the format YYYY-MM-DD, where YYYY represents the year, MM represents the month (01-12), and DD represents the day of the month (01-31).
+* TIME: The TIME data type is used for storing time information without any date component. It represents a specific time of day in the format HH:MM:SS, where HH represents the hour (00-23), MM represents the minute (00-59), and SS represents the second (00-59).
+* DATETIME: DATETIME is a combined data type that stores both date and time information. It represents a specific point in time, including both the date and time components. The format for DATETIME data varies depending on the database system but often follows the pattern YYYY-MM-DD HH:MM:SS.
+* TIMESTAMP: TIMESTAMP is similar to DATETIME but typically represents a point in time relative to a specific reference point, such as the Unix epoch (January 1, 1970, UTC). It can store a larger range of values compared to DATETIME and may also have fractional seconds precision.
+* YEAR: The YEAR data type is used for storing only the year component of a date. It typically represents a calendar year in a four-digit format (YYYY).
 
 #### String
 
-* CHAR
-* VARCHAR
-* BINARY
-* VARBINARY
-* BLOB
-* TEXT
-* ENUM
-* SET
+* CHAR: CHAR is a fixed-length character string data type. When you define a column as CHAR, you must specify a fixed length for the string. If the actual string is shorter than the specified length, it will be padded with spaces to match the length. CHAR is useful for storing strings of a known and consistent length.
+* VARCHAR: VARCHAR is a variable-length character string data type. It allows you to store strings of varying lengths, up to a maximum specified length. Unlike CHAR, VARCHAR only uses as much storage space as necessary to store the actual string, plus a small overhead.
+* BINARY: BINARY is a fixed-length binary string data type. Similar to CHAR, when you define a column as BINARY, you must specify a fixed length for the binary string. It's commonly used for storing binary data, such as images or encrypted data.
+* VARBINARY: VARBINARY is a variable-length binary string data type. It allows you to store binary data of varying lengths, up to a maximum specified length. Like VARCHAR, VARBINARY only uses as much storage space as necessary for the actual data.
+* BLOB (Binary Large Object): BLOB is a data type used for storing large binary objects, such as images, audio/video files, or other binary data. It can store variable-length binary data of virtually any size, making it suitable for handling large files.
+* TEXT: TEXT is a data type used for storing large strings of text. It's similar to VARCHAR but optimized for storing large amounts of text data. TEXT columns can store variable-length strings with a maximum length determined by the database system.
+* ENUM: ENUM is a data type that represents a set of **predefined values**. When you define a column as ENUM, you specify a list of allowed values. The column can then only store one of these predefined values, providing a way to enforce data integrity and limit the possible values for the column.
+* SET: SET is similar to ENUM but allows multiple values to be selected from a predefined list. When you define a column as SET, you specify a list of allowed values, and the column can store a combination of these values.
 
 #### Spatial
 
-* 
+Spatial data types are specialized data types used in databases to represent geometric objects or spatial information. These data types enable the storage and manipulation of spatial data, such as points, lines, polygons, and other geometric shapes, as well as performing spatial queries and analyses.
+
+* Point: Represents a single point in space defined by its coordinates (x, y). Points are often used to represent specific locations or objects with a precise position.
+* LineString: Represents a sequence of connected straight line segments. LineStrings are commonly used to represent linear features such as roads, rivers, or paths.
+* Polygon: Represents a closed geometric shape with three or more vertices connected by straight line segments. Polygons are often used to represent areas or regions, such as land parcels, buildings, or administrative boundaries.
+* MultiPoint: Represents a collection of points. MultiPoints are useful for storing multiple discrete points as a single entity.
+* MultiLineString: Represents a collection of LineStrings. MultiLineStrings are useful for storing complex linear features composed of multiple segments.
+* MultiPolygon: Represents a collection of Polygons. MultiPolygons are useful for storing complex geographic features with multiple contiguous areas.
 
 #### JSON
+
+The JSON data type is a relatively new addition to many relational database management systems (RDBMS), including PostgreSQL, MySQL, and others. It allows for the storage, retrieval, and manipulation of JSON (**JavaScript** Object Notation) data directly within the database.
+
+The JSON data type in databases provides several benefits:
+
+* Flexible Schema: JSON allows for semi-structured data storage, meaning that each JSON document can have its own structure without requiring a predefined schema. This flexibility is useful for applications where the structure of the data may vary from one record to another.
+* Efficient Storage: JSON data is stored in a compact binary format within the database, optimizing storage space compared to traditional relational data types.
+* Querying and Indexing: Many modern databases that support the JSON data type also provide functionality for querying and indexing JSON data. This allows for efficient retrieval and manipulation of JSON documents using SQL-like query languages and indexing mechanisms.
+* Integration with Applications: With the increasing popularity of web and mobile applications that communicate using JSON, storing JSON data directly in the database can simplify data integration and reduce the need for complex data transformation logic in the application layer.
+
+Here's a basic example of creating a table with a JSON column in PostgreSQL:
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    data JSON
+);
+```
+
+In this example, the "data" column is defined as type JSON, allowing it to store JSON documents.
+
+You can then insert JSON data into the "data" column using standard SQL syntax:
+
+```sql
+INSERT INTO users (name, data)
+VALUES ('John', '{"age": 30, "email": "john@example.com"}');
+```
+
+And you can query JSON data using SQL:
+
+```sql
+SELECT name, data->>'email' AS email
+FROM users
+WHERE data->>'age' > '25';
+```
+
+This query retrieves the names and email addresses of users with an age greater than 25 from the "users" table.
 
 #### Default Value
 
