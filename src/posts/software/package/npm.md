@@ -22,6 +22,10 @@ focus on why we need it
 * node module: `yarn install`
 * zsh: in `.zshrc`, add `export PATH="$PATH:$HOME/.yarn/bin"`
 
+### upload package
+
+
+
 ## What?
 
 give an example
