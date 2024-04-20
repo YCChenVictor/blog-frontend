@@ -1,14 +1,10 @@
 # Title
 
-## Introduction
+## Purpose
 
 This article describes frontend package manager.
 
-## Why?
-
-focus on why we need it
-
-## How?
+## Concept
 
 ### npm
 
@@ -24,9 +20,9 @@ focus on why we need it
 
 ### upload package
 
+[reference](https://www.youtube.com/watch?v=KxnvvkNsSvs)
 
-
-## What?
+## Example
 
 give an example
 <img src="{{site.baseurl}}/assets/img/xxx.png" alt="">
