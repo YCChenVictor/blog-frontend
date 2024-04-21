@@ -112,8 +112,104 @@ React employs hooks for state and lifecycle management in functional components,
     export default MyComponent;
     ```
 * useContext: Provides a way to pass data through the component tree without having to pass props down manually at every level.
+  * Example
+    ```jsx
+    import React, { createContext, useContext } from 'react';
+    
+    // Step 1: Create a context object
+    const ThemeContext = createContext();
+    
+    // Step 2: Provide a value for the context
+    function App() {
+      const theme = 'light';
+    
+      return (
+        <ThemeContext.Provider value={theme}>
+          <MyComponent />
+        </ThemeContext.Provider>
+      );
+    }
+    
+    // Step 3: Consume the context value
+    function MyComponent() {
+      const theme = useContext(ThemeContext);
+    
+      return <p>Current theme: {theme}</p>;
+    }
+    
+    export default App;
+    ```
 * useReducer: An alternative to useState, often used for more complex state logic.
-* useCallback: Memoizes functions to prevent unnecessary re-renders in child components.
+  * Example
+    ```jsx
+    import React, { useReducer } from 'react';
+    
+    // Step 1: Define a reducer function
+    const initialState = { count: 0 };
+    
+    function reducer(state, action) {
+      switch (action.type) {
+        case 'increment':
+          return { count: state.count + 1 };
+        case 'decrement':
+          return { count: state.count - 1 };
+        case 'reset':
+          return initialState;
+        default:
+          throw new Error('Invalid action type');
+      }
+    }
+    
+    // Step 2: Use the useReducer hook to manage state
+    function Counter() {
+      // Call useReducer with the reducer function and initial state
+      const [state, dispatch] = useReducer(reducer, initialState);
+    
+      return (
+        <div>
+          <p>Count: {state.count}</p>
+          <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+          <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+          <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+        </div>
+      );
+    }
+    
+    export default Counter;
+    ```
+* useCallback: Memoizes functions to **prevent unnecessary re-renders in child components**.
+  * Example
+    ```jsx
+    import React, { useState, useCallback } from 'react';
+
+    function ParentComponent() {
+      const [count, setCount] = useState(0);
+    
+      // Define a callback function using useCallback
+      const handleClick = useCallback(() => {
+        setCount(count + 1);
+      }, [count]); // Dependency array contains 'count'
+    
+      return (
+        <div>
+          <p>Count: {count}</p>
+          {/* Pass the callback function to a child component */}
+          <ChildComponent onClick={handleClick} />
+        </div>
+      );
+    }
+    
+    // ChildComponent receives the callback function as a prop
+    function ChildComponent({ onClick }) {
+      return (
+        <button onClick={onClick}>
+          Click me to increment count
+        </button>
+      );
+    }
+    
+    export default ParentComponent;
+        ```
 * useMemo: Memoizes the result of a function to avoid re-computation on every render.
 * useRef: Provides a way to access a mutable reference to a DOM element or a value that persists across renders without causing a re-render.
 * useLayoutEffect: Similar to useEffect, but fires synchronously after all DOM mutations. It's typically used for DOM measurements or operations that need to occur before the browser paints.
