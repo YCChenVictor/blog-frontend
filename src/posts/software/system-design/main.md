@@ -69,7 +69,7 @@ If you do not know which frontend, backend, database to choose, just choose the 
 
 Ok, based on above design, we now should have components, user interface, URL shortening, analytics, user account management, APIs, services, database, and external integrations and we can start to think about the design patterns for them.
 
-Any user interface related frontend and backend, we should use [MVC structure]. That is, we break Create, Read, Update, Destroy (CRUD) of links and CRUD of users into [RESTful] design, which is going to return us methods mapping GET (Read), POST (Create), PUT (Update), DELETE (Destroy); for example, in [rails, we have 7 methods].
+Any user interface related frontend and backend, we should use [MVC structure]. That is, we break Create, Read, Update, Destroy (CRUD) of links and CRUD of users into [RESTful] design, which is going to return us methods mapping GET (Read), POST (Create), PUT (Update), DELETE (Destroy).
 
 Now we can successfully CRUD the data. The next step is to return desired services for users with [design pattern](/blog/software/design-pattern/main).
 * URL shortening service should use singleton pattern to avoid multiple shortened URL to be created for one URL.
@@ -88,15 +88,17 @@ Sometimes we do not need to re-design a system but we want to solve an algorithm
 * Step 3: Get Real, try to write down pseudocode first and even start compose the functions.
 * Step 4: Solve Problems, during step 3, there will be more problems occurs and keep iterating.
 
-### Normal Solutions
+### Afterward Solutions
+
+As the traffic increases, we may need some common solutions to solve this issue.
 
 #### Scalability
 
 There are two ways of scalability; one is horizontal, the other is vertical. For more information, please refer to [scalability](/blog/software/system-design/scalability).
 
-#### Distribute Systems
+#### Distribute System
 
-A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed systems].
+A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed system].
 
 #### Load balancer
 

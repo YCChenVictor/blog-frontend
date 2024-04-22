@@ -512,5 +512,11 @@
     "data": "2022-12-10",
     "category": "functional-programming",
     "publish": false
+  },
+  "77": {
+    "url": "software/system-design/distributed-system",
+    "data": "2023-06-16",
+    "category": "system-design",
+    "publish": false
   }
 }

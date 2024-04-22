@@ -1,32 +1,21 @@
----
-layout: post
-title:
-description: ''
-date: '2023-06-16'
-categories:
-note:
-mathjax:
-mermaidJS:
-p5JS:
-chartJS:
-threeJS:
-publish:
----
+# Title
 
-## Introduction
+## Purpose
 
-TBC
+Learning distributed system is essential for understanding how to design, build, and manage robust and scalable applications that can handle the complexities of modern distributed environments.
 
-## Why?
-
-Learning distributed systems is essential for understanding how to design, build, and manage robust and scalable applications that can handle the complexities of modern distributed environments.
-
-## How?
+## Concept
 
 ### Distributed Computing Models
 
 * client-server architecture
+  * Purpose: By separating client and server, we can focus on optimizing only one side. For example, some computation require heavy resources on the server, we can scale it up without amending any structure of the client side.
+  * Concept: Clients are typically user devices such as computers, smartphones, or tablets, which request services or resources from servers. Servers, on the other hand, are powerful computers or software applications that provide these services or resources to clients.
+  * Example: A classic example of client-server architecture is the World Wide Web. In this setup, web browsers (clients) on users' devices send requests for web pages or resources to web servers. The web servers then process these requests and send back the requested web pages to the clients, which are displayed in the users' browsers. This client-server interaction allows users to access and view web content stored on remote servers from their own devices.
 * peer-to-peer networks
+  * Purpose: The purpose of peer-to-peer (P2P) architecture is to enable distributed communication, collaboration, and resource sharing among individual nodes in a network without the need for centralized control or authority.
+  * Concept: Peer-to-peer (P2P) architecture is a decentralized computing model where individual nodes in a network act both as clients and as servers, sharing resources directly with each other without the need for a central server.
+  * Example: A classic example of peer-to-peer architecture is file-sharing networks like BitTorrent, where users share files directly with each other without relying on a central server. Other examples include decentralized cryptocurrency networks like Bitcoin, where nodes in the network collaborate to validate and record transactions without the need for a central authority.
 * distributed file systems
 
 ### Distributed Data Storage
@@ -70,8 +59,6 @@ Exploring the concepts of cloud computing, virtualization technologies, and how 
 ### Case Studies and Real-World Examples
 
 Examining real-world distributed systems like Google's Bigtable, Apache Kafka, or Amazon DynamoDB to gain insights into the design and architecture of large-scale distributed applications.
-
-## What?
 
 ## Other
 
