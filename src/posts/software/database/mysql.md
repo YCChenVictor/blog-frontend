@@ -169,6 +169,84 @@ HAVING aggregate_function(column3) condition;
 
 The concept of GROUP BY is to group the rows according to the values of the columns. After we have the GROUP BY, we can then use aggregate_function to manipulate the data of these groups; for example, sum(column3) will return sum of the value of the column3 on each group with specific value of column1 and column2.
 
+### Bottleneck
+
+You can use EXPLAIN to check the most time consuming steps of that command; for example,
+
+Let's create some data
+
+```sql
+-- create
+CREATE TABLE EMPLOYEE (
+  empId INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  dept TEXT NOT NULL
+);
+
+-- insert
+INSERT INTO EMPLOYEE VALUES (0001, 'Clark', 'Sales');
+INSERT INTO EMPLOYEE VALUES (0002, 'Dave', 'Accounting');
+INSERT INTO EMPLOYEE VALUES (0003, 'Ava', 'Sales');
+
+-- fetch 
+SELECT * FROM EMPLOYEE WHERE dept = 'Sales';
+```
+
+And run the following code
+
+```sql
+EXPLAIN SELECT * FROM customers WHERE country = 'USA';
+```
+
+Result
+
+```bash
+Output:
+
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type | table    | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | EMPLOYEE | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where |
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------------
+```
+
+* id: An identifier for the select query within the output. If the query is a subquery, this id will be unique within the query execution plan.
+* select_type: Describes the type of SELECT query being executed. In this case, it's SIMPLE, which means it's a simple SELECT statement without any subqueries or unions.
+* table: The table being accessed or used in the query. In this case, it's the EMPLOYEE table.
+* partitions: Information about partitions used. In this case, it's NULL, indicating that partitions are not being used.
+* type: The join type being used to access the table. In this case, it's ALL, which means a full table scan is being performed. This is often not ideal for performance, especially on large tables.
+* possible_keys: Lists the indexes that MySQL can potentially use to optimize the query. In this case, it's NULL, indicating that no indexes are being used.
+* key: Indicates the index that MySQL actually uses to optimize the query. In this case, it's NULL, meaning no index is being used.
+* key_len: The length of the index that MySQL would use if it were using an index. In this case, it's NULL because no index is being used.
+* ref: Shows the columns or constants that are compared to the index named in the key column. In this case, it's NULL because no index is being used.
+* rows: Estimates the number of rows MySQL must examine to execute the query. In this case, it's 3 rows.
+* filtered: Represents the percentage of rows that satisfy the WHERE condition. In this case, it's 33.33%, indicating that about one-third of the rows are expected to satisfy the condition.
+* Extra: Provides additional information about the query execution plan. In this case, it says "Using where", which means that the WHERE clause is being used to filter rows.
+
+Also, use ANALYZE
+
+```sql
+EXPLAIN ANALYZE SELECT * FROM EMPLOYEE WHERE dept = 'Sales';
+```
+
+Output:
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| EXPLAIN                                                                                                                                                                                         |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| -> Filter: (employee.dept = 'Sales')  (cost=0.55 rows=1) (actual time=0.020..0.024 rows=2 loops=1)
+    -> Table scan on EMPLOYEE  (cost=0.55 rows=3) (actual time=0.015..0.018 rows=3 loops=1)
+ |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+* Filter: This part indicates that there's a filter condition being applied. Specifically, it's filtering rows where the dept column in the EMPLOYEE table is equal to 'Sales'.
+* Cost: The cost estimate for this operation. Lower costs generally indicate better performance. In this case, the cost is 0.55.
+* Rows: The estimated number of rows that will be processed by this operation. It estimates 1 row will be returned.
+* Actual Time: The actual time taken for this operation during execution. It includes the time taken for fetching the rows. The format is (start time..end time).
+* Rows: The actual number of rows processed during execution. In this case, it processed 2 rows.
+* Loops: The number of iterations or loops for this operation. In this case, it's 1 loop.
+* Table Scan: Indicates the type of access method used for accessing the table. In this case, it's a table scan, meaning MySQL will scan the entire table.
+
 ## Example
 
 ### Multiple Apartments
@@ -231,3 +309,4 @@ erDiagram
 ## Reference
 
 [data type](https://dev.mysql.com/doc/refman/8.0/en/data-types.html#:~:text=MySQL%20supports%20SQL%20data%20types,and%20the%20JSON%20data%20type.)
+[10.8.1 Optimizing Queries with EXPLAIN](https://dev.mysql.com/doc/refman/8.3/en/using-explain.html)
