@@ -518,5 +518,11 @@
     "data": "2023-06-16",
     "category": "system-design",
     "publish": false
+  },
+  "78": {
+    "url": "algorithmic-game-theory",
+    "data": "2024-04-22",
+    "category": "self",
+    "publish": false
   }
 }
