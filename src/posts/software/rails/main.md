@@ -1,23 +1,10 @@
 # title
 
-## Introduction
+## Purpose
 
-Ruby on Rails is an open-source web application framework in Ruby that follows the Model-View-Controller (MVC) architectural pattern, providing a structured approach to building web applications with separate components for data and logic (Model), user interface (View), and user input handling (Controller).
+Ruby on Rails is an open-source web application framework in Ruby, following the Model-View-Controller architectural pattern for structured development. It simplifies tasks like database interaction and request handling, enabling rapid development through conventions and built-in tools.
 
-It simplifies web application development by offering conventions and abstractions, eliminating repetitive tasks, such as interacting with databases through its Object-Relational Mapping (ORM) system, handling incoming requests with a routing system, and facilitating automated testing with a built-in testing framework.
-
-With a large and active community of developers and contributors, Ruby on Rails offers abundant learning resources, troubleshooting support, and a wide range of third-party plugins and libraries that can be easily integrated to enhance and extend the framework's functionality.
-
-## Why?
-
-* Convention over Configuration: Help you get started quickly and focus on building your application logic instead of configuring the framework.
-* Rapid Development: Rails is designed to make development fast and easy, with features like scaffolding, which generates boilerplate code for you.
-* Rails community: has created a vast ecosystem of gems (libraries) that can be easily integrated into your application.
-* Full-stack framework: Rails is a full-stack framework that includes an ORM (ActiveRecord) for database access, routing, middleware, and a view layer (ActionView) for rendering HTML. This means that you can build a complete web application using just Rails.
-* Mature framework: Built since 2004, meaning it has a large number of plugins, tools, and resources available, as well as a large pool of experienced developers who can help you troubleshoot issues.
-* Ruby language: Rails is built on the Ruby programming language, which is known for its simplicity and readability
-
-## How?
+## Concept
 
 ### init
 

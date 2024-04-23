@@ -180,8 +180,6 @@ We can set condition with chaining as follow:
 @posts = Post.includes(comments: [:user]).where(comments: { approved: true }, users: { admin: true })
 ```
 
-And include = preload + eager_load: to be continued
-
 * Use indexes: Indexes can significantly improve the performance of your queries by reducing the amount of time it takes to find and retrieve records. Use the add_index method in your migrations to add indexes to your database tables. For example, to add an index to the email column in a users table, you can do:
 
 ```ruby
