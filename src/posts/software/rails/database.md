@@ -294,6 +294,64 @@ end
 
 When you run migrations in your Rails application, they are used to modify the database schema. Each migration corresponds to a specific change to the schema, such as adding a new table or column, renaming a table, or modifying a column's data type. When you run rails db:migrate, Rails applies all of the migrations that haven't been run yet to bring your database schema up to date with your application's current state.
 
+#### single table inheritance (STI)
+
+Instead of having separate tables for each subclass in an inheritance hierarchy, STI stores all data in a **single table**. Each row represents an instance of any class in the hierarchy, with a discriminator column distinguishing between different types.
+
+* Single Table Representation: In STI, all attributes of the classes in the inheritance hierarchy are stored in a single database table. Each row in the table represents an instance of one of the classes in the hierarchy.
+* Discriminator Column: To differentiate between different types of objects stored in the same table, a special column called a "discriminator column" is used. This column typically contains a value that identifies the specific class type of each row.
+* Shared Structure: Because all classes share the same table, they also share the same structure (columns). However, not all columns may be relevant to all subclasses. Some columns may be specific to certain subclasses, while others may be common to all.
+* Efficiency: STI can be more efficient in terms of database storage and query performance compared to other inheritance mapping strategies (like Class Table Inheritance or Concrete Table Inheritance) because it reduces the number of tables involved and simplifies the database schema.
+* Query Simplicity: Working with STI is often simpler in terms of querying the database since all data is stored in a single table. There's no need for complex JOIN operations to retrieve data from related tables.
+* Limitations: Despite its advantages, STI has some limitations. For example, it can lead to a less normalized database schema, and it may not be suitable for inheritance hierarchies with a large number of subclasses or where subclasses have vastly different sets of attributes.
+* In Ruby on Rails, ActiveRecord provides built-in support for STI, making it easy to define inheritance hierarchies using a single database table. Developers can specify the inheritance relationships between their models using the type column as the discriminator column by default.
+
+##### STI Example
+
+In Ruby on Rails, implementing Single Table Inheritance (STI) is straightforward, thanks to ActiveRecord's built-in support for inheritance mapping.
+
+* Define Your Base Model: Start by defining a base model that will serve as the parent class for your inheritance hierarchy. This base model will not be associated with a database table directly.
+  ```ruby
+  # app/models/animal.rb
+  class Animal < ApplicationRecord
+    self.abstract_class = true
+  end
+  ```
+* Create Subclasses: Create subclasses that inherit from the base model. Each subclass will represent a different type of animal.
+  ```ruby
+  # app/models/dog.rb
+  class Dog < Animal
+  end
+  
+  # app/models/cat.rb
+  class Cat < Animal
+  end
+  ```
+* Add a Type Column: Rails conventionally uses a column named type as the discriminator column for STI. Make sure to add this column to your database table.
+  ```ruby
+  class CreateAnimals < ActiveRecord::Migration[6.0]
+    def change
+      create_table :animals do |t|
+        t.string :name
+        t.string :type
+        # Add other attributes as needed
+        t.timestamps
+      end
+    end
+  end
+  ```
+* Populate the Database: Create records in your database for each subclass. Make sure to specify the type attribute to indicate the class type.
+  ```ruby
+  Dog.create(name: 'Buddy')
+  Cat.create(name: 'Whiskers')
+  ```
+* Querying: You can query the base model Animal to retrieve records of all subclasses. ActiveRecord will automatically handle the type filtering for you. You can also query individual subclasses directly.
+  ```ruby
+  Animal.all  # Returns all animals, including dogs and cats
+  Dog.all  # Returns all dogs
+  Cat.all  # Returns all cats
+  ```
+
 ### Built commands
 
 * Find all commands
