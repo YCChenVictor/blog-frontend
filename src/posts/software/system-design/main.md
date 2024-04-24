@@ -98,46 +98,51 @@ There are two ways of scalability; one is horizontal, the other is vertical. For
 
 #### Distribute System
 
-A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed system].
+A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed system](/blog/software/system-design/distributed-system).
 
-#### Load balancer
+#### Denormalization
 
-* Purpose: To ensure efficient and reliable system performance, a load balancer distributes incoming network traffic across multiple servers.
-* Concept:
-  * Round-robin: Round-robin evenly distributes requests among servers in a **sequential manner**, ensuring each server gets an equal share, but it doesn't consider server load or capacity.
-  * Least connections: It directs incoming network traffic to the server with the **fewest active connections**, aiming to distribute the load more evenly among servers based on their current workload and capacity.
-  * Weighted distribution: It assigns different capacities or priorities to servers, allowing them to handle varying proportions of incoming traffic **based on their weight**, typically set by system administrators.
-* Example: AWS Elastic Load Balancer, Nginx, Kubernetes
+[Denormalization] is a database optimization technique that involves adding redundant data to improve query performance, particularly in read-heavy environments. By reducing the need for complex joins, denormalization simplifies data retrieval and enhances system responsiveness, though it introduces trade-offs in terms of data consistency and storage requirements.
 
-#### TODO
+#### Caching
 
-* Denormalization
-* NoSQL
-* Sharding
-* Caching
-* Background job
-* Networking Metrics
-* MapReduce
-* Failures
-  * Concept: Systems are prone to failures, and it's crucial to plan for them. Identify potential points of failure in your system and design appropriate measures to handle them.
-  * Example
-    * Redundancy
-    * Fault tolerance
-    * Error handling
-    * Disaster recovery strategies.
-* Availability and Reliability
-  * Concept: Availability refers to the percentage of time a system is operational and accessible to users. Reliability is the probability that the system will remain operational over a specified period.
+Caching is a technique used in system design to store frequently accessed data temporarily, reducing latency and improving performance by serving requests from a faster access layer. By storing copies of data closer to the application or user, caching minimizes the need to fetch data from slower primary sources such as databases or remote services, enhancing system responsiveness and scalability.
+
+#### Background job
+
+Background jobs are asynchronous tasks performed independently of the main application thread, typically handling time-consuming operations like sending emails or processing large datasets. By executing these tasks in the background, applications can maintain responsiveness and scalability, enhancing user experience and system reliability.
+
+#### Failures
+
+* Concept: Systems are prone to failures, and it's crucial to plan for them. Identify potential points of failure in your system and design appropriate measures to handle them.
+* Example
+  * Redundancy
+  * Fault tolerance
+  * Error handling
+  * Disaster recovery strategies.
+
+#### Availability and Reliability
+
+* Concept: Availability refers to the percentage of time a system is operational and accessible to users. Reliability is the probability that the system will remain operational over a specified period.
   * Example
     * Load balancing
     * Clustering
     * Monitoring
     * Automated failover
-* Read-heavy vs. Write-heavy
-  * Concept: Depending on whether your system is more read-heavy or write-heavy, you can design strategies such as queuing writes for write-intensive applications or utilizing caching mechanisms for read-intensive applications to optimize performance and mitigate potential failures.
+
+#### Read-heavy vs. Write-heavy
+
+* Concept: Depending on whether your system is more read-heavy or write-heavy, you can design strategies such as queuing writes for write-intensive applications or utilizing caching mechanisms for read-intensive applications to optimize performance and mitigate potential failures.
   * Read-heavy maps to distributed system
   * Write-heavy maps to real-time operation system
-* Security
-  * Security threats pose significant risks to a system. Identify potential security vulnerabilities and design appropriate security measures to protect your system. This can include authentication mechanisms, access controls, encryption, input validation, and robust error handling to prevent attacks like injection, cross-site scripting, and data breaches.
+
+#### Security
+
+Security threats pose significant risks to a system. Identify potential security vulnerabilities and design appropriate security measures to protect your system. This can include authentication mechanisms, access controls, encryption, input validation, and robust error handling to prevent attacks like injection, cross-site scripting, and data breaches.
+
+#### Networking Metrics
+
+Networking metrics are essential for monitoring and optimizing network performance. Metrics such as bandwidth, latency, packet loss, and throughput provide insights into the health and efficiency of a network. By regularly measuring and analyzing these metrics, network administrators can identify bottlenecks, troubleshoot issues, and make informed decisions to improve overall network performance.
 
 ## Reference
 
