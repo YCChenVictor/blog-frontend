@@ -1,10 +1,10 @@
 # Title
 
-## Why?
+## Purpose
 
 We do not want to rewrite the same methods in different lower classes.
 
-## How?
+## Concept
 
 Constructs multiple intefaces for variant methods in a upper class so that we can have multiple **combinations** to create multiple classes inherit from this upper class with shared methods.
 
@@ -112,7 +112,7 @@ class WalkToAnyWhere extends WalkBehavior {
 and create instance from these four classes
 
 ```ruby
-chihuahua = Dog.new(WalkForLost.new, KissBehavior.new)
+chihuahua = Dog.new(WalkForLost.new, KissForStroking.new)
 chihuahua.walk
 chihuahua.kiss
 ```

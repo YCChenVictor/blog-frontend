@@ -50,82 +50,82 @@ and the UML would be as follow:
 ## Example
 
 ```ruby
-class AbstractFactory
-  def create_fish
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
+class AbstractFactory {
+  createFish() {
+    throw new Error(`${this.constructor.name} has not implemented method 'createFish'`);
+  }
 
-  def create_horse
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
-end
+  createHorse() {
+    throw new Error(`${this.constructor.name} has not implemented method 'createHorse'`);
+  }
+}
 
-class FactoryOcean < AbstractFactory
-  def create_fish
-    StrongFish.new
-  end
+class FactoryOcean extends AbstractFactory {
+  createFish() {
+    return new StrongFish();
+  }
 
-  def create_horse
-    WeakFish.new
-  end
-end
+  createHorse() {
+    return new WeakHorse();
+  }
+}
 
-class FactoryPlain < AbstractFactory
-  def create_fish
-    WeakFish.new
-  end
+class FactoryPlain extends AbstractFactory {
+  createFish() {
+    return new WeakFish();
+  }
 
-  def create_horse
-    StrongHorse.new
-  end
-end
+  createHorse() {
+    return new StrongHorse();
+  }
+}
 
-class Fish
-  def power
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
-end
+class Fish {
+  power() {
+    throw new Error(`${this.constructor.name} has not implemented method 'power'`);
+  }
+}
 
-class StrongFish < Fish
-  def power
-    'strong fish'
-  end
-end
+class StrongFish extends Fish {
+  power() {
+    return 'strong fish';
+  }
+}
 
-class WeakFish < Fish
-  def power
-    'weak fish'
-  end
-end
+class WeakFish extends Fish {
+  power() {
+    return 'weak fish';
+  }
+}
 
-class Horse
-  def power
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-  end
-end
+class Horse {
+  power() {
+    throw new Error(`${this.constructor.name} has not implemented method 'power'`);
+  }
+}
 
-class StrongHorse < Horse
-  def power
-    'strong horse'
-  end
-end
+class StrongHorse extends Horse {
+  power() {
+    return 'strong horse';
+  }
+}
 
-class WeakHorse < Horse
-  def power
-    'weak horse'
-  end
-end
+class WeakHorse extends Horse {
+  power() {
+    return 'weak horse';
+  }
+}
 
-def create_monsters(factory)
-  fish = factory.create_fish
-  horse = factory.create_horse
+function createMonsters(factory) {
+  const fish = factory.createFish();
+  const horse = factory.createHorse();
 
-  puts fish.power
-  puts horse.power
-end
+  console.log(fish.power());
+  console.log(horse.power());
+}
 
-create_monsters(FactoryOcean.new)
-create_monsters(FactoryPlain.new)
+createMonsters(new FactoryOcean());
+createMonsters(new FactoryPlain());
 ```
 
 ## Reference

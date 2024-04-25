@@ -79,14 +79,16 @@ class MonsterEasy extends Monster {
 }
 
 function create_monster(type) {
-  let factory
-  switch(factory) {
+  let factory;
+  switch(type) {
     case 'hard':
-      factory = HardModeCreator()
+      factory = new HardModeCreator();
       break;
     case 'easy':
-      factory = EasyModeCreator()
-      break
+      factory = new EasyModeCreator();
+      break;
+    default:
+      throw new Error('Invalid monster type');
   }
   factory.create();
 }
