@@ -4,7 +4,7 @@
 
 An adapter in software is used to either reuse an existing class with a different interface or to enable a class to work with multiple incompatible classes, while also providing abstraction to decouple client code from underlying class specifics.
 
-## How?
+## Concept
 
 The Adapter pattern allows two incompatible interfaces to work together by creating a class that acts as an interface between them. The adapter class maps the methods of one interface to another, making it possible for the two interfaces to communicate.
 
@@ -16,7 +16,7 @@ Three components
 
 ### example in javascript
 
-Let's say there are two different payment system and we need to store the logs on different services.
+Let's say there are two different payment system and we need to store the logs on different services. The key will be even though there are two different payment class, they still call the same method in PaymentAdapter.
 
 ```javascript
 // First Adaptee - the complex class that needs to be adapted
@@ -64,7 +64,7 @@ class PaymentAdapter {
   }
 
   getTotal() {
-    this.adaptee.getTotal();
+    return this.adaptee.getTotal();
   }
 }
 
