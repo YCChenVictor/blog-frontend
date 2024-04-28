@@ -63,6 +63,14 @@ In the Pollution Game, imagine a scenario where multiple factories are located o
 
 The key insight from the Pollution Game is that individual rationality (choosing to pollute) often leads to a collectively undesirable outcome (high pollution), similar to the Tragedy of the Commons. However, if players can coordinate their actions and cooperate by investing in pollution control measures, they can achieve a better outcome for all.
 
+#### Tragedy of the commons
+
+There are contradiction between a player's benefit and the total benefits of other players. The common formula of the return of player_i among other players would be
+
+$$x_i(1 - \sum_j(x_j))$$
+
+Let's get the steady state
+
 ## Reference
 
 [algorithmic-game-theory](https://www.cs.cmu.edu/~sandholm/cs15-892F13/algorithmic-game-theory.pdf)
