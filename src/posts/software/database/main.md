@@ -12,7 +12,9 @@ Databases provide a structured and efficient way to store, manage, and retrieve 
 * Identify entities or relationships: User. If there is relationship between these entities, we use ERD to visualize it.
 * Choose a suitable database management system (DBMS). Consider options based on the requirements, data structure, and scalability needs.
   * Relational: [MySQL](/blog/software/database/mysql)
-  * Non-relational (NoSQL): [MongoDB], [Redis]
+  * Non-relational (NoSQL)
+    * Document: [MongoDB]
+    * [Redis]
   * [Relational vs non-relational](/blog/software/database/relational-vs-non-relational)
 * Design the database schema
   * Convert the ERD into a logical data model
