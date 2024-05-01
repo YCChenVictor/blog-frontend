@@ -100,17 +100,9 @@ There are two ways of scalability; one is horizontal, the other is vertical. For
 
 A distributed system refers to a network of interconnected computers that work together to solve a common problem or perform a coordinated task. It involves the distribution of resources, data, and processing across multiple machines, enabling collaboration and scalability beyond the capabilities of a single system. For more information, please refer to [distributed system](/blog/software/system-design/distributed-system).
 
-#### Denormalization
+#### cloud computing
 
-[Denormalization] is a database optimization technique that involves adding redundant data to improve query performance, particularly in read-heavy environments. By reducing the need for complex joins, denormalization simplifies data retrieval and enhances system responsiveness, though it introduces trade-offs in terms of data consistency and storage requirements.
-
-#### Caching
-
-Caching is a technique used in system design to store frequently accessed data temporarily, reducing latency and improving performance by serving requests from a faster access layer. By storing copies of data closer to the application or user, caching minimizes the need to fetch data from slower primary sources such as databases or remote services, enhancing system responsiveness and scalability.
-
-#### Background job
-
-Background jobs are asynchronous tasks performed independently of the main application thread, typically handling time-consuming operations like sending emails or processing large datasets. By executing these tasks in the background, applications can maintain responsiveness and scalability, enhancing user experience and system reliability.
+[cloud computing]
 
 #### Failures
 
