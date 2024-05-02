@@ -6,6 +6,10 @@ The main purpose of using cloud computing is to leverage its scalability, cost e
 
 ## Concept
 
+Cloud computing resources enable scalability by allowing you to adjust your computing power, storage capacity, and other resources according to the demands of your application or workload. This scalability is one of the key benefits of cloud computing, as it enables businesses to efficiently handle fluctuations in traffic, user demand, and data processing requirements without the need to invest in and manage physical infrastructure.
+
+You can consider yourself to be building a cloud application when you are developing an application that is designed to run and leverage the resources provided by cloud computing platforms. This means that instead of hosting your application on physical servers or on-premises infrastructure, you are deploying it on cloud infrastructure, such as Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), or other cloud providers.
+
 ### Characteristics
 
 * On-Demand Self-Service: Users can provision computing resources (such as servers, storage, and applications) as needed without requiring human intervention from the service provider.
