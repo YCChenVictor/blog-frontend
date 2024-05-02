@@ -840,6 +840,99 @@ Note: If you cannot deploy successfully, just build it and then push it to gh-pa
 * [react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) for icon
 * [fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons) for icon
 
+### upload to npm
+
+create a react app
+
+create a component
+```jsx
+import React from 'react';
+const MyComponent=(props)=> {
+  const {label} = props;
+  return (
+    <div>
+      <button>{label}</button>
+    </div>
+  );
+}
+export default MyComponent;
+```
+
+use babel. In root, create babel.config.js
+```
+module.exports = {
+    presets:[
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+}
+```
+
+package.json
+```json
+{
+  "name": "test-npm-ycchenvictor",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "dependencies": {
+    "@babel/cli": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "5.0.1",
+    "save-dev": "^0.0.1-security",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepublishOnly": "npm run build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+```
+
+run `npm run build` and it will create a `dist/` in the root
+
+publish through `npm publish`
+
+Then import it in another app as follow:
+
+npm install my-react-package
+
+import it
+```
+import { MyComponent } from 'my-react-package';
+
+const App = () =>{
+return(
+  <div>
+   <MyComponent label={'Submit'}/>
+  </div>
+ )
+}
+```
+
 ## Reference
 
 [React JS - React Tutorial for Beginners](https://www.youtube.com/watch?v=Ke90Tje7VS0)
@@ -865,3 +958,5 @@ Note: If you cannot deploy successfully, just build it and then push it to gh-pa
 [How to Integrate Next, React, Mermaid, and Markdown](https://www.andynanopoulos.com/blog/how-to-integrate-next-react-mermaid-markdown)
 
 [Debugging React Source Code with a React Client App](https://dev.to/arnabchat90/debugging-react-source-code-with-a-react-client-app-1l7)
+
+[A Step-by-Step Guide to Publishing Your Own React NPM Package](https://blog.nonstopio.com/a-step-by-step-guide-to-publishing-your-own-react-npm-package-fa2b7f1d149)
