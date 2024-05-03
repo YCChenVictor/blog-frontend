@@ -2,29 +2,26 @@
 
 ## Purpose
 
-This article describes the key steps to build application with express, a light-weighted framework based on node. Inherited from node, it features real-time, high-performance, and scalable network.
+This article describes the key steps to build application with express, a light-weighted framework based on node. Inherited from node, it features real-time, high-performance, and scalable network. NodeJS is built in javascript.
 
 ## Concept
 
-### init
+### Init
 
 * Install dependencies
   ```bash
-  yarn add express pg dotenv axios bcrypt
+  yarn add express dotenv cors
   yarn add nodemon --save-dev
   ```
   * express: simplifies web development in Node.js by providing a framework for handling HTTP requests, defining routes, implementing middleware, and rendering dynamic views
-  * pg: the package to connect to a PostgreSQL database
+  * cors: CORS (Cross-Origin Resource Sharing) is primarily enforced by the web browser, which checks the server's response headers to determine if a cross-origin request is permitted based on the requesting domain. This helps prevent unauthorized cross-origin requests and enhances security by ensuring that resources are only accessed by allowed domains.
   * dotenv: allows you to load environment variables from a .env file
-  * axios: a popular package for making HTTP requests, including GET and POST
-  * bcrypt: a library for hashing and salting passwords
   * nodemon: a development utility that automatically restarts the server whenever changes are made to the code
-  * cors: https://expressjs.com/en/resources/middleware/cors.html
 * Initialize
   ```bash
   mkdir my-project
   cd my-project
-  npm init -y
+  yarn init
   ```
 * `touch .gitignore` with
   ```bash
@@ -41,26 +38,51 @@ This article describes the key steps to build application with express, a light-
   ```javascript
   process.env.xxx
   ```
-* ES (import & export): [import and export]({{site.baseurl}}/javascript/2023/04/06/import-export.html)
-* `touch app.js`
+* ES6: In `package.json`
+  ```JSON
+  {
+    "type": "module",
+    ...
+  }
+  ```
+* Typescript
+  * `npx tsc --init`
+  * `yarn add ts-node`
+  * `yarn add tsconfig-paths`
+  * `yarn add express @types/express --save`
+  * `npx tsc`
+  * Update `package.json`
+    ```JSON
+    "scripts": {
+      "start": "node dist/app.ts",
+      "dev": "NODE_ENV=development nodemon ./src/app.ts", // If you use nodemon for development
+      "build": "tsc"
+    }
+    ```
+  * Allow ES, in `tsconfig.json`
+    ```JSON
+    {
+      "compilerOptions": {
+        "esModuleInterop": true,
+      }
+    }
+    ```
+  * Update `nodemon.json`
+    ```JSON
+    {
+      "watch": ["src"],
+      "ext": "ts,json",
+      "ignore": ["src/**/*.spec.ts"],
+      "exec": "node --loader ts-node/esm"
+    }
+    ```
+  * run app through `yarn run dev`
+* `touch server.ts` with
   ```javascript
   // init
   import express from 'express'
   const app = express();
   
-  // parse body
-  app.use(express.json());
-  
-  // passport
-  import passport from './middleware/passport.js';
-  app.use(passport.initialize());
-  
-  // cors
-  import cors from 'cors'
-  app.use(cors());
-  
-  // API
-  import api from './apis/api_summary.js';
   if (process.env.NODE_ENV === 'development') {
     app.listen(5000, () => {
       api(app)
@@ -75,59 +97,7 @@ This article describes the key steps to build application with express, a light-
   
   export default app
   ```
-* package.json
-  ```JSON
-  "scripts": {
-    "test": "NODE_ENV=test jest",
-    "dev": "NODE_ENV=development npx nodemon server.js",
-    "debug": "npx nodemon --inspect-brk server.js"
-  },
-  ```
-* server
-  ```bash
-  NODE_ENV=development npx nodemon server.js
-  ```
 * test it with curl: `curl http://localhost:5000/`
-
-### Typescript
-
-* `npx tsc --init`
-* `yarn add ts-node`
-* `yarn add tsconfig-paths`
-* `yarn add express @types/express --save`
-* `npx tsc`
-* Update `package.json`
-  ```JSON
-  "scripts": {
-    "start": "node dist/app.js",
-    "dev": "NODE_ENV=development nodemon app.ts", // If you use nodemon for development
-    "build": "tsc"
-  }
-  ```
-* Allow ES, in `tsconfig.json`
-  ```JSON
-  {
-    "compilerOptions": {
-      "esModuleInterop": true,
-    }
-  }
-  ```
-* Update `nodemon.json`
-  ```JSON
-  {
-    "watch": [
-      "src"
-    ],
-    "ext": "ts",
-    "execMap": {
-      "ts": "node --loader ts-node/esm -r tsconfig-paths/register"
-    },
-    "ignore": [
-      "src/**/*.spec.ts"
-    ]
-  }
-  ```
-* run app through `yarn run dev`
 
 ### structure
 
@@ -143,7 +113,6 @@ The structure I prefer
     * migrations
   * middleware
   * services
-    * sign in and sign up
   * server.js (core file to start the app)
 
 ```mermaid
@@ -209,16 +178,16 @@ Various libraries and frameworks such as Mongoose, Sequelize, or Bookshelf can b
 
 In Node.js, a service module can be a self-contained piece of code that performs a specific task or set of tasks, such as communicating with an external API, handling database interactions, or performing complex business logic. For more information, please refer to [service]()
 
-### spec
+### Test
 
-I use jest.
+I prefer jest.
 
 * Install
   ```nash
-  npm i jest
+  yarn add jest
   ```
-* In `/spec`, run jest
-  * Setup script
+* In `/test`, run jest
+  * Setup script, in `package.json`
     ```JSON
     "scripts": {
       "test": "NODE_ENV=test jest",
@@ -241,7 +210,7 @@ I use jest.
       -e POSTGRES_PASSWORD=test1234 \
       -d postgres
   ```
-* Use `request(app)`
+* Use `request(app)` to test the api
   ```javascript
   const request = require('supertest')
   const app = require('../server.js')
@@ -268,13 +237,12 @@ I use jest.
     })
   })
   ```
-* Other
-  * Reset database before each case to drop and create tables
-    ```javascript
-    beforeEach(async () => {
-      sequelize.truncate({ cascade: true, restartIdentity: true });
-    });
-    ```
+* Reset database before each case to drop and create tables
+  ```javascript
+  beforeEach(async () => {
+    sequelize.truncate({ cascade: true, restartIdentity: true });
+  });
+  ```
 * Mock: In `spec_config`
   ```javascript
   jest.mock('pg', () => { // should extract to other file
@@ -329,65 +297,6 @@ node xxx.js # for plain script
 ```
 
 Then we can debug the code in [debug console]
-
-### File
-
-* store
-  ```javascript
-  const fs = require('fs')
-  
-  // Sample JSON data
-  const myData = {
-    "name": "John",
-    "age": 30,
-    "city": "New York"
-  }
-  
-  // Convert JSON data to a string
-  const jsonString = JSON.stringify(myData)
-  
-  // Write the JSON data to a file
-  fs.writeFile('myData.json', jsonString, function (err) {
-    if (err) throw err
-    console.log('Saved!')
-  })
-  ```
-* read
-  ```javascript
-  const fs = require('fs');
-
-  // Specify the file path
-  const filePath = 'example.txt';
-  
-  // Asynchronously read the contents of the file
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      // Handle error if any
-      console.error('Error reading file:', err);
-      return;
-    }
-    
-    // File contents are available in the `data` variable
-    console.log('File contents:', data);
-  });
-  ```
-
-### Auto Refresh
-
-Use node-supervisor
-
-* install
-  ```bash
-  npm install -g node-supervisor
-  ```
-* use
-  ```bash
-  node-supervisor -w /path/to/your/project server.js
-  ```
-
-#### Import and Export
-
-Whether to use import or require() in Node.js project depends on the version of Node.js and personal preference for code style and syntax, with import being advantageous for newer versions of Node.js, while require() may be preferred for backwards compatibility and certain package compatibility.
 
 ## Reference
 
