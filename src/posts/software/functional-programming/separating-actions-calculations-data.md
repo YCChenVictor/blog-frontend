@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2022-12-10'
-categories: functional-programming presentation
-note: TODO, remove the images from textbook
-mathjax:
-mermaid: true
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 

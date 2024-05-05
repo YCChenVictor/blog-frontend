@@ -1,17 +1,4 @@
----
-layout: post
-title:
-description: ''
-date: '2023-04-08'
-categories: functional-programming
-note:
-mathjax: true
-mermaid:
-p5:
-threeJS:
-anchor:
-publish: true
----
+# Title
 
 ## Introduction
 

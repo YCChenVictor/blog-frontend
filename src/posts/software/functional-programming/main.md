@@ -6,11 +6,12 @@ The main purpose of using functional programming is to write code that is more m
 
 ## Concept
 
-* Pure functions: Easy to reason about and test, since they always return the same output given the same input and have no side effects. This can make your code more reliable and easier to maintain (TBC, should understand all process of creating pure function)
-  * [Distinguishing actions, calculations, and data]({{site.baseurl}}/functional-programming/presentation/2022/12/10/separating-actions-calculations-data.html)
-  * [Isolating Timelines]({{site.baseurl}}//functional-programming/2023/04/08/isolating-timelines.html)
+* Pure functions: Easy to reason about and test, since they always return the same output given the same input and have no side effects. This can make your code more reliable and easier to maintain
+  * [Distinguishing actions, calculations, and data](/blog/software/functional-programming/separating-actions-calculations-data)
 * Immutability: Immutability refers to the idea that once a data structure is created, it cannot be modified. Instead, you create a new data structure that is based on the original one. This helps prevent bugs and makes your code more predictable, since you can be sure that the data structure will not change unexpectedly.
+  * [immutability-with-mutable-legacy]
 * Higher-order functions: A higher-order function is a function that takes another function as an argument, or returns a function as its result. Higher-order functions allow you to write more concise and expressive code, and they can help you avoid repetition and increase code reuse.
+  * [codifying-discipline-with-higher-order-functions]
   * higher order function will return a function; for example
     ```javascript
     function baker(degree) {
@@ -52,6 +53,7 @@ The main purpose of using functional programming is to write code that is more m
       ```
 * Improved code quality: By emphasizing pure functions and immutable data structures, functional programming can lead to code that is easier to read, test, and maintain. With fewer side effects to worry about, it can be easier to reason about the behavior of a program and to ensure that it is working correctly.
 * Concurrency and parallelism: Take advantage of multiple processing cores or distributed systems. Since pure functions have no side effects, they can be safely executed in parallel without worrying about race conditions or other synchronization issues.
+  * [Isolating Timelines](/blog/software/functional-programming/isolating-timelines.html)
 * Better abstraction and modularity: Abstractions such as higher-order functions, which can make it easier to write reusable code that can be composed and combined in flexible ways. This can help reduce code duplication and make it easier to reason about the behavior of a program.
 * Declarative programming: Functional programming emphasizes what a program should do rather than how it should do it. This can make code easier to read and understand, especially for complex tasks that involve many transformations on data.
 * Strong type systems: Many functional programming languages have strong type systems that can catch errors at compile time rather than at runtime. This can help catch bugs earlier in the development process and reduce the likelihood of runtime errors.
