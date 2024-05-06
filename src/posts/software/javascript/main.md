@@ -537,15 +537,14 @@ function MyService() {
 
 TypeScript is a statically typed superset of JavaScript that helps catch errors early in development by adding a type system to JavaScript, allowing developers to define variable types and function signatures, which helps detect type-related errors during compilation rather than at runtime.
 
-#### Example
-
-```ts
-function addNumbers(a: number, b: number): number {
-    return a + b;
-}
-
-let result = addNumbers(5, "2"); // TypeScript error: Argument of type '"2"' is not assignable to parameter of type 'number'.
-```
+* Example
+  ```ts
+  function addNumbers(a: number, b: number): number {
+      return a + b;
+  }
+  
+  let result = addNumbers(5, "2"); // TypeScript error: Argument of type '"2"' is not assignable to parameter of type 'number'.
+  ```
 
 #### interface
 
@@ -614,7 +613,7 @@ Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a
 * Popular JavaScript libraries and frameworks, such as React, Angular, and Vue.js
 * Best practices and code organization
 
-## What
+## Example
 
 ### scroll to the top
 
