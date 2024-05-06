@@ -41,7 +41,7 @@ Refactoring is the process of improving code quality and structure without chang
 
 #### Test Concept
 
-([TDD](/blog/software/tdd/main)): Test-Driven Development involves writing tests before code to guide development, ensuring early and thorough software testing and aligning code with intended functionality, ultimately enhancing code quality and reducing defects. TDD's approach helps catch issues early, leading to more reliable software and efficient development.
+[testing]
 
 ### System software
 
