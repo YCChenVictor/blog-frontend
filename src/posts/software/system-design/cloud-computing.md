@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The main purpose of using cloud computing is to leverage its scalability, cost efficiency, flexibility, and reliability to modernize IT infrastructure, improve operational efficiency, and accelerate innovation, ultimately enabling organizations to adapt to changing market conditions and deliver value to their customers more effectively. Cloud computing offers a secure, managed, and globally accessible platform for storing, processing, and accessing data and applications, empowering businesses to scale their operations, reach global audiences, and achieve their strategic objectives with greater agility and efficiency.
+The main purpose of using cloud computing (mitigation strategy) is to leverage its scalability, cost efficiency, flexibility, and reliability to modernize IT infrastructure, improve operational efficiency, and accelerate innovation, ultimately enabling organizations to adapt to changing market conditions and deliver value to their customers more effectively. Cloud computing offers a secure, managed, and globally accessible platform for storing, processing, and accessing data and applications, empowering businesses to scale their operations, reach global audiences, and achieve their strategic objectives with greater agility and efficiency.
 
 ## Concept
 

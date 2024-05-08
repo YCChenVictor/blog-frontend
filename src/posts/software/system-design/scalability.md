@@ -6,6 +6,20 @@ Learning about horizontal and vertical scalability is essential to efficiently h
 
 ## Concept
 
+### Observability
+
+The first step is trouble shooting the key issue, which requires the technique of logging. It helps developers track the execution flow of a software application, record errors and exceptions, and provide audit trails for security and compliance.
+
+### Difference + Usage
+
+Also, we need to monitor the performances:
+
+* Instrumentation
+* Monitoring
+* Telemetry
+
+### Scale up
+
 Some common ways to scale the system:
 
 * Vertical Scaling (Scaling Up): Increase the capacity of a single machine, such as upgrading CPU, memory, or storage. This approach is limited by the maximum capacity of the hardware and can become expensive as the system grows.
