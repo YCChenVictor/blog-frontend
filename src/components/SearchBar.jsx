@@ -35,8 +35,8 @@ const SearchBar = () => {
             return
           } else {
             return (
-              <div>
-                <a id={index} href={item.url}>{item.title}</a>
+              <div key={item.url}>
+                <a href={item.url}>{item.title}</a>
               </div>
             )
           }
