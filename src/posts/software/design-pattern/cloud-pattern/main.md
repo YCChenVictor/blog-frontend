@@ -20,8 +20,66 @@ Increase the quality of deployment, maintainability, development, reusability.
 
 There are different nodes in this system, so we need a good messaging mechanism for them to communicate with each other. Usually, we use asynchronous messaging to decouple producer and consumer. However, it brings other issues such as ordering messages, poison message management, idempotency.
 
+### Reliability
+
+#### Circuit Breaker
+
+This pattern is crucial for maintaining system reliability and preventing cascading failures in a distributed system.
+
+In Node.js, you can use the opossum library to implement the Circuit Breaker pattern. Here's a basic example:
+
+```js
+const CircuitBreaker = require('opossum');
+const axios = require('axios');
+
+// Define the function that should be protected with a circuit breaker
+const httpGet = async function() {
+  const response = await axios.get('http://example.com');
+  return response.data;
+}
+
+// Create a new circuit breaker
+const breaker = new CircuitBreaker(httpGet, {
+  errorThresholdPercentage: 50, // When 50% of requests fail
+  timeout: 3000, // If a request takes longer than 3 seconds
+  resetTimeout: 30000 // After 30 seconds try a single request
+});
+
+// Use the circuit breaker
+breaker.fallback(() => 'Sorry, out of service right now');
+breaker.on('fallback', (result) => console.log(result));
+
+breaker.fire()
+  .then(console.log)
+  .catch(console.error);
+```
+
+In this example, if the httpGet function fails more than 50% of the time or takes longer than 3 seconds, the circuit breaker will open and all further calls to the function will fail immediately for 30 seconds. After 30 seconds, the circuit breaker will allow one call to go through to check if the function is now working correctly. If the function fails during this trial, the circuit breaker will remain open for another 30 seconds. If the function succeeds, the circuit breaker will close and allow all calls to go through.
+
 ## Example
 
 ## Reference
 
 [Challenges in cloud development](https://learn.microsoft.com/en-us/azure/architecture/patterns/)
+
+## Other
+
+Study with the following list
+
+CQRS (Command Query Responsibility Segregation): This pattern is key for systems where high throughput and scalability are required, and where the read and write workloads are different.
+
+Event Sourcing: This pattern is important for systems where the event log is crucial, and it's necessary to have a complete history of all changes.
+
+Cache-Aside: This pattern is important for improving performance by reducing database load.
+
+Retry: This pattern is important for improving the reliability of communication between microservices in a distributed system.
+
+Ambassador: This pattern is useful for offloading networking-related tasks and can help in testing and development environments.
+
+Backends for Frontends: This pattern is important for separating concerns between different frontend applications and their corresponding backend services.
+
+Bulkhead: This pattern is crucial for system reliability as it isolates elements of an application into pools so that if one fails, the others will continue to function.
+
+Saga: This pattern is important for managing data consistency across microservices in distributed transaction scenarios.
+
+Throttling: This pattern is important for controlling the consumption of resources used by an instance of an application, an individual tenant, or an entire service.
