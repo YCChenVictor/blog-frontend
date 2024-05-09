@@ -135,7 +135,8 @@ The structure I prefer
 
 * node app
   * test
-  * api
+  * routes
+  * controllers
   * configs
   * models
   * database
@@ -145,14 +146,56 @@ The structure I prefer
     * sign in and sign up
   * server.js (core file to start the app)
 
+```mermaid
+graph LR
+  DB((Database)) <--> M((Models))
+  M((Models)) <--read/write data--> C((Controllers))
+  R((Routes)) --Forward request--> C((Controllers))
+  Request([HTTP Request]) --> R((Routes))
+  C((Controllers)) --> Response([HTTP Response])
+```
+
 #### Naming Convention
 
 * File: use hyphens; for example, `user-controller.js`
 * Url: use hyphens; for example, `/node-graph`
 
-### API
+### Routes
 
-[API]({{site.baseurl}}/node/2022/01/26/api.html)
+In Express.js, "Routes" are used to direct incoming requests to the appropriate controller functions. These routes are defined based on the HTTP method (like GET or POST) and the URL of the request. Any information encoded in the request URL, such as parameters or query strings, is also forwarded to the controller function.
+
+```js
+const express = require('express');
+const router = express.Router();
+const userController = require('./controllers/user-controller');
+
+// Route for GET request to /users
+router.get('/users', userController.getUsers);
+
+// Route for POST request to /users
+router.post('/users', userController.createUser);
+
+module.exports = router;
+```
+
+### Controllers
+
+"Controller" functions are responsible for handling requests once they've been routed. They interact with the model to get the requested data, create an HTML page (or some other type of response) displaying the data, and send it back to the user to view in their browser.
+
+```js
+// In user-controller.js
+exports.getUsers = (req, res) => {
+  // Get data from model
+  // Create HTML page with data
+  // Send response to user
+};
+
+exports.createUser = (req, res) => {
+  // Get data from request
+  // Use model to create new user
+  // Send response to user
+};
+```
 
 ### Database
 
@@ -363,3 +406,5 @@ Whether to use import or require() in Node.js project depends on the version of 
 [npm Passport 筆記（Learn to Use Passport JS）](https://pjchender.dev/npm/npm-passport/)
 
 [Password hashing in Node.js with bcrypt](https://blog.logrocket.com/password-hashing-node-js-bcrypt/)
+
+[](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes)
