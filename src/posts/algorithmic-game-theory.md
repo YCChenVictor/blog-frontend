@@ -65,11 +65,31 @@ The key insight from the Pollution Game is that individual rationality (choosing
 
 #### Tragedy of the commons
 
-There are contradiction between a player's benefit and the total benefits of other players. The common formula of the return of player_i among other players would be
+There are contradiction between a player's benefit and the total benefits of other players.
+
+Say there is a bandwidth with maximum capacity of 1. Each player i send `x_i` amount of data. As a result, all users benefit will be 0 if
+
+$$\sum_j(x_j) > 1$$
+
+And it is also straight forward to formulate the return of player_i among other players as
 
 $$x_i(1 - \sum_j(x_j))$$
 
-Let's get the steady state
+where
+
+$$\sum_n(x_n) < 1$$
+
+Let's get the steady state. Say the total benefit of all the other player is `t` and at the same time player send x amount of data, then the benefit of player i would be
+
+$$x(1 - t - x)$$
+
+Then the maximum benefit would occur when
+
+$$x_i = \frac{1 - \sum_(j!=i)(x_j)}{2}$$
+
+Say all players have the same benefit, then you will find
+
+$$x_i = \frac{1}{(1+n)}$$
 
 ## Reference
 
