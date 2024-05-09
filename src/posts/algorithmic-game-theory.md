@@ -91,6 +91,33 @@ Say all players have the same benefit, then you will find
 
 $$x_i = \frac{1}{(1+n)}$$
 
+### Coordination Games
+
+A basic coordination game entails two participants who have two choices to make, with the objective of making the same selection.
+
+#### Battle of The Sexes
+
+Boys prefer baseball and girls prefer softball, but they need each other so that they can play the game. So the payoff:
+
+| Girl \ Boy | Baseball | Softball |
+| :---  | :----: | :---: |
+| Baseball | 5 \ 6 | 1 \ 1 |
+| Softball | 2 \ 2 | 6 \ 5 |
+
+Given girls choose softball, boys will choose softball. Also, given girls choose baseball, boys choose baseball. There are two Nash Equ. both baseball or both softball.
+
+#### Randomized Strategies
+
+| 1 \ 2 | Head | Tail |
+| :---  | :----: | :---: |
+| Head | 1 \ -1 | -1 \ 1 |
+| Tail | -1 \ 1 | 1 \ -1 |
+
+No pure Nash Equilibrium.
+
+
+
+
 ## Reference
 
 [algorithmic-game-theory](https://www.cs.cmu.edu/~sandholm/cs15-892F13/algorithmic-game-theory.pdf)
