@@ -115,8 +115,33 @@ Given girls choose softball, boys will choose softball. Also, given girls choose
 
 No pure Nash Equilibrium.
 
+### Mathematically Define Games
 
+There are n players, {1, 2, ..., n}. Each player has his own set of strategies, Si. User i will choose a strategy, si, from Si. Player i has preference by his payoff (ui) and cost (ci) where
 
+$$u_i: S -> R$$
+
+and
+
+$$c_i: S -> R$$
+
+and actually payoff and cost are interchangeable; that is,
+
+$$u_i(s) = -c_i(s)$$
+
+### Dominant Strategy Solution
+
+A strategy vector
+
+$$s \in S$$
+
+is a dominant strategy solution, if for each player $i$ and each alternative strategy vector
+
+$$s' \in S$$
+
+we have
+
+$$u_i(s_i, s'_{-i}) >= u_i(s'_i, s'_{-i})$$
 
 ## Reference
 
