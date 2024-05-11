@@ -28,21 +28,21 @@ const App: React.FC = () => {
     if(!helloWorldUrl) return
 
     try {
-      const isServerOn = await axios.get(helloWorldUrl);
-      setServerOn(isServerOn.data); // Assuming the server response indicates its status.
+      const isServerOn = await axios.get(helloWorldUrl)
+      setServerOn(isServerOn.data) // Assuming the server response indicates its status.
     } catch (error) {
-      setServerOn(false);
+      setServerOn(false)
     }
 
     if (serverOn) return;
 
-    const isLoggedInResponse = await checkLoggedIn();
-    setLoggedIn(isLoggedInResponse.loggedIn);
-  };
+    const isLoggedInResponse = await checkLoggedIn()
+    setLoggedIn(isLoggedInResponse.loggedIn)
+  }
 
   useEffect(() => {
-    fetchRequireData();
-  }, []);
+    fetchRequireData()
+  }, [])
 
   return (
     <div className="bg-gray-700">
@@ -52,18 +52,15 @@ const App: React.FC = () => {
             <img className="w-16 rounded-full" src={process.env.REACT_APP_PUBLIC_URL + 'assets/img/title.jpeg'} alt="title" />
           </a>
         </ul>
-        <ul className="flex items-center space-x-4 ml-auto p-6">
-          <a
-            href="/blog/software"
-            className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition"
-          >
+        <ul className='flex items-center space-x-4 ml-auto p-6'>
+          <a href='/blog/software' className='bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition'>
             Software
           </a>
         </ul>
         {serverOn as boolean ? <ul className="space-x-4"><UserInNav /></ul> : null}
       </nav>
       <Router>
-        <div className="">
+        <div className=''>
           <Routes>
             {/* <Route path="/blog/edit-article" element={<EditArticle />} /> */}
             <Route path="/" element={<AuthorProfile />} />
@@ -92,7 +89,7 @@ const App: React.FC = () => {
         </div>
       </Router>
     </div>
-  );
+  )
 }
 
 export default App;
