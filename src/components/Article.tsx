@@ -10,17 +10,16 @@ import RenderCodeBlock from './RenderCodeBlock'
 import RenderMermaid from './RenderMermaid'
 import ScrollToTopButton from './ScrollToTopButton'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
+}
 
-interface ArticleComponent {
+function Article({setting}: {
   setting: {
     url: string;
     date: string;
     category: string;
     publish: boolean;
   }
-}
-
-function Article({setting}: ArticleComponent) {
+}) {
   const filePath = `posts/${setting['url']}.md`
   const [markdownContent, setMarkdownContent] = useState('')
   const [rawTitles, setRawTitles] = useState<Array<{ content: string, tagName: string }>>([])
