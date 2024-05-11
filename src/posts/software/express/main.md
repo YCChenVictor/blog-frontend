@@ -168,7 +168,7 @@ exports.createUser = (req, res) => {
 
 ### Database
 
-Set up a database and models for a node project using PG and Sequelize. The process involves creating a database, installing Sequelize, configuring it using a .sequelizerc file and a config.js file, generating a migration file for the models, and migrating the database. For more information, please refer to [database]({{site.baseurl}}/node/2022/12/30/database.html).
+[database]({{site.baseurl}}/node/2022/12/30/database.html).
 
 ### Model
 
@@ -260,41 +260,17 @@ I prefer jest.
 
 ### debugger
 
-#### project
-
 In `package.json`,
 
 ```JSON
 "scripts": {
-  "debug": "NODE_ENV=test npx nodemon --inspect-brk server.js",
+  "dev": "NODE_ENV=development npx nodemon --inspect server.js",
 }
 ```
 
-and run debug with
+In vscode, click `Run and Debug` in the sidebar
 
-```bash
-npm run debug
-```
-
-and in chrome, enter `chrome://inspect` and then click "inspect"
-
-#### console
-
-The better way is to use vscode.
-
-open command palette with Command + Shift + P and then input
-
-```bash
-Debug: JavaScript Debug Terminal
-```
-
-In the terminal, input
-
-```bash
-npm test --watch # for jest
-# or
-node xxx.js # for plain script
-```
+In the top, click `Run Script: dev`
 
 Then we can debug the code in [debug console]
 

@@ -1,8 +1,8 @@
 # Title
 
-## Why?
+## Purpose
 
-We need stable way to create database schema for node app.
+Set up a database and models for a node project using PG and Sequelize. The process involves creating a database, installing Sequelize, configuring it using a .sequelizerc file and a config.js file, generating a migration file for the models, and migrating the database.
 
 ## How?
 
