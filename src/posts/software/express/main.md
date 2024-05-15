@@ -291,7 +291,7 @@ In this example, the `userRouter` inherits from the `baseRouter`. You can create
 
 ### Database
 
-[database]({{site.baseurl}}/node/2022/12/30/database.html).
+[database](/blog/software/express/database)
 
 ### Model
 
