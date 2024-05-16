@@ -12,6 +12,65 @@ If you are using any cloud computing resources, then you are developing cloud ap
 
 Data is hosted in different locations, so we need a pattern to synchronize them across different locations.
 
+#### CQRS
+
+A pattern that separates reading and writing into different models, allowing you to optimize each side independently.
+
+* Example
+  ```javascript
+  // Query Model
+  class Product {
+    constructor(id, name, price) {
+      this.id = id;
+      this.name = name;
+      this.price = price;
+    }
+  }
+  
+  class ProductQuery {
+    constructor() {
+      this.products = [ // there will be a mechanism to sync with write model
+        new Product(1, 'Product 1', 100),
+        new Product(2, 'Product 2', 200),
+        new Product(3, 'Product 3', 300),
+      ];
+    }
+  
+    getById(id) {
+      return this.products.find(product => product.id === id);
+    }
+  }
+  
+  // Command Model
+  class ProductCommand {
+    constructor() {
+      this.products = [ // there will be a mechanism to sync with read model
+        new Product(1, 'Product 1', 100),
+        new Product(2, 'Product 2', 200),
+        new Product(3, 'Product 3', 300),
+      ];
+    }
+  
+    updatePrice(id, newPrice) {
+      let product = this.products.find(product => product.id === id);
+      if (product) {
+        product.price = newPrice;
+      }
+    }
+  }
+  
+  // Usage
+  let productQuery = new ProductQuery(); // Read
+  console.log(productQuery.getById(1)); // Get product by id
+  
+  let productCommand = new ProductCommand(); // Write
+  productCommand.updatePrice(1, 150); // Update product price
+  ```
+
+In this example, ProductQuery and ProductCommand are separate models for reading and writing data respectively. The ProductQuery model is used to fetch product information, and the ProductCommand model is used to update product information.
+
+In a CQRS pattern, the synchronization between the read model (Query) and the write model (Command) is typically handled by an event-driven architecture.
+
 ### design and implementation
 
 Increase the quality of deployment, maintainability, development, reusability.
