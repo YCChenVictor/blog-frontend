@@ -65,6 +65,23 @@ graph TB
   id3(running) --exit--> id4(terminated)
 ```
 
+### Thread
+
+Threads, like processes, also have a lifecycle. Here's a general overview:
+
+* Thread Creation: A thread is created by a process. The operating system allocates necessary resources for the thread, such as a stack, registers, and scheduling information.
+* Thread Scheduling: Similar to processes, threads are scheduled by the operating system's scheduler. The scheduler determines which threads should run and when, based on factors like priority and state.
+* Thread Synchronization: Threads within the same process share resources, so synchronization is crucial to prevent conflicts. Mechanisms like locks, semaphores, and condition variables can be used to ensure that threads properly coordinate when accessing shared resources or performing tasks that need to be done in a certain order.
+* Thread Termination: A thread can be terminated when its task is complete, when the entire process is terminated, or when explicitly killed. Upon termination, the operating system reclaims the resources that were allocated to the thread.
+
+Threads within the same process share the process's resources, but each thread has its own program counter, stack, and set of registers. This allows each thread to function independently while still having access to the same memory and resources as the other threads in the process.
+
+### States of Process
+
+The state of a process is typically determined by the state of its primary or main thread, which is the thread that begins at the program's main function.
+
+If a process has multiple threads and one of them is in the "running" state, the process itself is generally considered to be in the "running" state, even if the other threads are in different states. This is because the process's state reflects whether it is making progress, which it can do as long as at least one of its threads is running.
+
 ### Process vs Thread
 
 * Threads share the same resources of the process they belongs to, such as memory and files in the same process; processes take their own part of memory and cannot share memory with other process.
@@ -84,21 +101,6 @@ A deadlock occurs when two or more processes are blocked waiting for each other 
 * Mutual Exclusion
   * Description: Two resources, A and B, and two processes, P1 and P2, that need access to both resources in order to complete their tasks. However, if both processes acquire one resource and then try to acquire the other, they may end up deadlocked, where neither process can proceed because they are both waiting for the other to release the resource it is holding.
   * Solution: Give each resource a lock. That is, processes P1 or P2 must gain the lock of each resource, then they can start to process, which means P1 and P2 are mutual exclusive
-  * Code example:
-    ```javascript
-    // Create a Mutex object
-    const mutex = new Mutex();
-
-    // Acquire the lock
-    mutex.acquire().then(function() {
-      // Critical section
-      // Code here will be executed by only one thread at a time
-      // Release the lock
-      mutex.release();
-    });
-
-    // Mutex object is created and then the acquire() method is called to acquire the lock. If the lock is currently held by another thread, the acquire() method will block until it is released. Once the lock is acquired, the critical section of code is executed. Once the critical section is complete, the release() method is called to release the lock and allow other threads to acquire it.
-    ```
 * Deadlock detection and recovery algorithms: These are widely used in many operating systems and databases to detect and recover from deadlocks.
 * Resource allocation policies: These policies are commonly used to allocate resources in a way that minimizes the risk of deadlocks. For example, some systems use priority-based scheduling to give higher priority to processes that are less likely to cause deadlocks.
 * Message passing: This technique is often used in distributed systems to ensure that processes can communicate with each other without the risk of deadlocks.
