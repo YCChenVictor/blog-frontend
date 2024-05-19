@@ -2,17 +2,7 @@
 
 ## Purpose
 
-The Microservices architectural pattern is designed to address challenges associated with building and maintaining large and complex software systems. Its primary purpose is to decompose a monolithic application into a set of smaller, loosely coupled services that can be developed, deployed, and scaled independently. Here are some key purposes and benefits of the Microservices pattern:
-
-* Scalability: Microservices allow for horizontal scaling by breaking down the system into independently deployable services. Each service can be scaled based on its specific workload, allowing for better resource utilization and improved performance.
-* Flexibility and Agility: Microservices promote flexibility and agility in development and deployment. Since services are decoupled, teams can work on them independently, using different programming languages, frameworks, and technologies. This enables faster development cycles and easier adoption of new technologies.
-* Resilience and Fault Isolation: Microservices enhance system resilience by isolating failures. If one service fails, it doesn't necessarily affect the entire system, as other services can continue to function independently. This isolation helps in identifying, containing, and resolving faults more effectively.
-* Maintainability and Evolution: Microservices simplify maintenance and evolution of software systems. Each service has a well-defined responsibility and can be updated, deployed, or replaced without impacting other services. This modular approach makes it easier to understand, test, and modify individual components, facilitating continuous integration and continuous delivery (CI/CD) practices.
-* Technology Diversity: Microservices enable technology diversity within a system. Different services can use different technologies based on their specific requirements, such as database choice, programming language, or communication protocol. This allows teams to choose the best tools for each service, optimizing performance and productivity.
-* Scalable Teams: Microservices facilitate scalable teams. Since services are decoupled, different teams can work on different services concurrently without stepping on each other's toes. This enables better team autonomy, specialization, and collaboration.
-* Domain-Driven Design (DDD): Microservices encourage aligning service boundaries with domain boundaries, following principles of Domain-Driven Design. Each service focuses on a specific business capability or domain, leading to a clearer understanding of the system's architecture and improving overall system design.
-
-Overall, the Microservices architectural pattern aims to improve agility, scalability, resilience, and maintainability of software systems by breaking them down into smaller, loosely coupled services that can be developed, deployed, and scaled independently.
+The Microservices architectural pattern decomposes a monolithic application into smaller, independently deployable services, enabling scalability, flexibility, and resilience. It promotes modular development, fault isolation, and technology diversity, resulting in maintainable and evolvable software systems.
 
 ## Concept
 
@@ -24,7 +14,7 @@ Independence and Autonomy: Microservices are designed to be independent and auto
 
 Service Communication: Microservices communicate with each other through well-defined APIs or message-based communication protocols. This communication enables services to collaborate and fulfill complex business requirements. Common communication mechanisms include HTTP/REST, messaging queues, or RPC (Remote Procedure Call).
 
-Decentralized Data Management: Each Microservice manages its own data store, choosing the most appropriate database technology for its specific requirements. This decentralization helps in avoiding data coupling between services and allows for better data isolation and scalability.
+Decentralized Data Management: Each Microservice **manages its own data store**, choosing the most appropriate database technology for its specific requirements. This decentralization helps in avoiding data coupling between services and allows for better data isolation and scalability.
 
 Resilience and Fault Tolerance: Microservices are designed to be resilient to failures. They are expected to handle failures gracefully and degrade functionality in case of service unavailability. Techniques such as circuit breakers, retries, and fallback mechanisms are commonly used to improve fault tolerance.
 

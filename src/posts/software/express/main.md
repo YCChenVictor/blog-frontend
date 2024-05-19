@@ -112,7 +112,7 @@ The structure I prefer
   * database
     * migrations
   * middleware
-  * services
+  * service in monolith
   * server.js (core file to start the app)
 
 ```mermaid
@@ -297,9 +297,74 @@ In this example, the `userRouter` inherits from the `baseRouter`. You can create
 
 Various libraries and frameworks such as Mongoose, Sequelize, or Bookshelf can be used to implement models in Node.js, providing an ORM layer for interacting with databases and managing data models. For more information, please refer to [model]({{site.baseurl}}/node/2022/01/20/model.html)
 
-### Service
+### Service in monolithic
 
-In Node.js, a service module can be a self-contained piece of code that performs a specific task or set of tasks, such as communicating with an external API, handling database interactions, or performing complex business logic. For more information, please refer to [service]()
+In a monolithic architecture, a service can refer to a module or a set of related functionality within the application. These services are not independent applications; they are part of the same application and run in the same process. However, they are often organized in a way that separates concerns and makes the application easier to understand and manage.
+
+You can think of the service layer as an intermediary between the controller and model layers in an application. When you find your controllers are too fat and want to extract the code.
+
+Suppose you have two model, product, order. To create a order, you need to check whether there is enough stock in these products. Now, here is the key issue. Think about whether this **checking** is a flow. If the checking may have different route, then it is a flow, then you should not put this logic in model; as this may impose to all the orders. However, as controller mainly deal with http request, we should not put the flow in controller, causing fat controller. As a result, we create services to deal with this kind of flow.
+
+The service:
+
+```javascript
+// OrderService.js
+class OrderService {
+  constructor(productModel, orderModel) {
+    this.productModel = productModel;
+    this.orderModel = orderModel;
+  }
+
+  async createOrder(orderData) {
+    const product = await this.productModel.findById(orderData.productId);
+
+    if (product.stock >= orderData.quantity) {
+      const order = await this.orderModel.create(orderData);
+
+      product.stock -= orderData.quantity;
+      await product.save();
+
+      return order;
+    } else {
+      // Not enough stock, create a future order
+      const futureOrder = await this.orderModel.create({
+        ...orderData,
+        isFutureOrder: true
+      });
+
+      return futureOrder;
+    }
+  }
+}
+
+module.exports = OrderService;
+```
+
+The controller:
+
+```javascript
+// OrderController.js
+const OrderService = require('./OrderService');
+const ProductModel = require('./models/Product');
+const OrderModel = require('./models/Order');
+
+const orderService = new OrderService(ProductModel, OrderModel);
+
+class OrderController {
+  async createOrder(req, res) {
+    try {
+      const order = await orderService.createOrder(req.body);
+      res.status(201).json(order);
+    } catch (error) {
+      res.status(500).json({ error: error.toString() });
+    }
+  }
+}
+
+module.exports = OrderController;
+```
+
+### micro-services
 
 ### Test
 
