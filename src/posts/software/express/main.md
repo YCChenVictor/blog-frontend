@@ -400,30 +400,15 @@ I prefer jest.
   ```
 * Use `request(app)` to test the api
   ```javascript
-  const request = require('supertest')
-  const app = require('../server.js')
-  const apis = require('../apis/summary.js')
+  const request = require('supertest');
+  const app = require('../app'); // Import your app
   
-  describe('HelloWorld', () => {
-    let server
-  
-    beforeEach (() => {
-      server = app.listen(0)
-      apis(app)
-    })
-  
-    afterEach(() => {
-      server.close()
-    })
-  
-    describe('GET /', () => {
-      test('should return Hello World!', () => {
-        request(app).get('/').then(response => {
-          expect(response.text).toEqual('Hello World!')
-        });
-      })
-    })
-  })
+  describe('Test the /api path', () => {
+    test('It should response the GET method', async () => {
+      const response = await request(app).get('/api');
+      expect(response.statusCode).toBe(200);
+    });
+  });
   ```
 * Reset database before each case to drop and create tables
   ```javascript
