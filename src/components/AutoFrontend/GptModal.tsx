@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import Modal from 'react-modal'
-import ModalProps from '../Interfaces/Modal.tsx'
-import superFetch from '../../utils/apiUtils.ts'; 
+import ModalProps from '../Interfaces/Modal'
+import superFetch from '../../utils/apiUtils'; 
 
 const GptModal: FC<ModalProps> = ({ isOpen, isLoggedIn, handleClose }) => {
   const [request, setRequest] = useState('')

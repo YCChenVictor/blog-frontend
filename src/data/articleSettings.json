@@ -457,37 +457,37 @@
   },
   "77": {
     "url": "software/system-design/distributed-system",
-    "data": "2023-06-16",
+    "date": "2023-06-16",
     "category": "system-design",
     "publish": false
   },
   "78": {
     "url": "algorithmic-game-theory",
-    "data": "2024-04-22",
+    "date": "2024-04-22",
     "category": "self",
     "publish": false
   },
   "79": {
     "url": "software/functional-programming/separating-actions-calculations-data",
-    "data": "2022-12-10",
+    "date": "2022-12-10",
     "category": "functional-programming",
     "publish": false
   },
   "80": {
     "url": "software/javascript/typescript-進階泛型功能",
-    "data": "2023-11-27",
+    "date": "2023-11-27",
     "category": "javascript",
     "publish": false
   },
   "81": {
     "url": "software/express/database",
-    "data": "2023-05-28",
+    "date": "2023-05-28",
     "category": "express",
     "publish": false
   },
   "82": {
     "url": "software/react/component",
-    "data": "2023-01-27",
+    "date": "2023-01-27",
     "category": "react",
     "publish": false
   }

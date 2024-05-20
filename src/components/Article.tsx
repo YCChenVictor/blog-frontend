@@ -5,11 +5,11 @@ import { marked } from 'marked'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
 
-import SidebarLayout from './SidebarLayout.tsx'
-import RenderImage from './RenderImage.tsx'
-import RenderCodeBlock from './RenderCodeBlock.tsx'
-import RenderMermaid from './RenderMermaid.tsx'
-import ScrollToTopButton from './ScrollToTopButton.tsx'
+import SidebarLayout from './SidebarLayout'
+import RenderImage from './RenderImage'
+import RenderCodeBlock from './RenderCodeBlock'
+import RenderMermaid from './RenderMermaid'
+import ScrollToTopButton from './ScrollToTopButton'
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 
 interface ArticleComponent {
