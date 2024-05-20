@@ -1,10 +1,10 @@
 # Title
 
-## Why?
+## Purpose
 
-We need stable way to create database schema for node app.
+Set up a database and models for a node project using PG and Sequelize. The process involves creating a database, installing Sequelize, configuring it using a .sequelizerc file and a config.js file, generating a migration file for the models, and migrating the database.
 
-## How?
+## Concept
 
 ### Choose a database
 
@@ -22,14 +22,14 @@ Migration in database is necessary to manage and track changes in the structure 
 
 ```bash
 yarn add --save sequelize
-yarn add -g sequelize-cli
+yarn add --dev sequelize-cli
 ```
 
 #### configuration
 
 * Use it in ES6 (reference: [Sequelize - run migration with es6 and modules](https://stackoverflow.com/questions/68304477/sequelize-run-migration-with-es6-and-modules))
-  ```
-  npm i --save-dev babel-register
+  ```bash
+  yarn add --dev babel-register
   ```
 * Create `./.sequelizerc` with
   ```javascript
@@ -123,7 +123,7 @@ yarn add -g sequelize-cli
   ```bash
   npx sequelize-cli db:migrate
   ```
-* (TBC) Add column, for example, I want to add column, purpose to tasks table
+* Add column, for example, I want to add column, purpose to tasks table
   * In terminal, to create migration file
     ```bash
     npx sequelize-cli migration:generate --name add-purpose-to-tasks
@@ -181,22 +181,70 @@ or add script to migrate both test and development
 
 ```JSON
 "scripts": {
-  "database": "NODE_ENV=development sequelize db:migrate; NODE_ENV=test sequelize db:migrate"
+  "migrate:dev": "NODE_ENV=development npx sequelize-cli db:migrate",
+  "migrate:test": "NODE_ENV=test npx sequelize-cli db:migrate"
 }
 ```
 
 #### rollback
 
 * all
-```bash
-npx sequelize-cli db:migrate:undo:all --to XXXXXXXXXXXXXX-create-posts.js
+  ```bash
+  npx sequelize-cli db:migrate:undo:all --to XXXXXXXXXXXXXX-create-posts.js
+  ```
+* last one
+  ```bash
+  npx sequelize-cli db:migrate:undo
+  ```
+
+or add script to migrate both test and development
+
+```JSON
+"scripts": {
+  "rollback:dev": "NODE_ENV=development npx sequelize-cli db:migrate:undo",
+  "rollback:all:dev": "NODE_ENV=development npx sequelize-cli db:migrate:undo:all",
+  "rollback:to:dev": "NODE_ENV=development npx sequelize-cli db:migrate:undo:all --to"
+}
 ```
 
-### schema
-
-TBC
-
 ### match test database with development
+
+```JSON
+"scripts": {
+  "migrate:test": "NODE_ENV=test npx sequelize-cli db:drop && NODE_ENV=test npx sequelize-cli db:create && NODE_ENV=test npx sequelize-cli db:migrate",
+}
+```
+
+### Populate data
+
+Say I want to create data in users table
+
+In, `fixtures/users.json`
+
+```JSON
+[
+  {
+    "model": "User",
+    "data": {
+      "username": "devuser",
+      "email": "dev@example.com"
+    }
+  }
+]
+```
+
+```javascript
+// Populate data
+const SequelizeFixtures = require('sequelize-fixtures');
+
+SequelizeFixtures.loadFiles([
+  'fixtures/users.json',
+], models).then(() => {
+  console.log('Data populated successfully');
+}).catch((error) => {
+  console.error('Error populating data:', error);
+});
+```
 
 ## What?
 

@@ -537,15 +537,14 @@ function MyService() {
 
 TypeScript is a statically typed superset of JavaScript that helps catch errors early in development by adding a type system to JavaScript, allowing developers to define variable types and function signatures, which helps detect type-related errors during compilation rather than at runtime.
 
-#### Example
-
-```ts
-function addNumbers(a: number, b: number): number {
-    return a + b;
-}
-
-let result = addNumbers(5, "2"); // TypeScript error: Argument of type '"2"' is not assignable to parameter of type 'number'.
-```
+* Example
+  ```ts
+  function addNumbers(a: number, b: number): number {
+      return a + b;
+  }
+  
+  let result = addNumbers(5, "2"); // TypeScript error: Argument of type '"2"' is not assignable to parameter of type 'number'.
+  ```
 
 #### interface
 
@@ -614,7 +613,7 @@ Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a
 * Popular JavaScript libraries and frameworks, such as React, Angular, and Vue.js
 * Best practices and code organization
 
-## What
+## Example
 
 ### scroll to the top
 
@@ -696,6 +695,48 @@ There are two difference type of clone, shallow clone and deep clone. Shallow cl
     const originalObject = { key: 'value', nested: { key: 'nestedValue' } }
     const deepClone = _.cloneDeep(originalObject)
     ```
+
+### File
+
+* store
+  ```javascript
+  const fs = require('fs')
+  
+  // Sample JSON data
+  const myData = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+  }
+  
+  // Convert JSON data to a string
+  const jsonString = JSON.stringify(myData)
+  
+  // Write the JSON data to a file
+  fs.writeFile('myData.json', jsonString, function (err) {
+    if (err) throw err
+    console.log('Saved!')
+  })
+  ```
+* read
+  ```javascript
+  const fs = require('fs');
+
+  // Specify the file path
+  const filePath = 'example.txt';
+  
+  // Asynchronously read the contents of the file
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      // Handle error if any
+      console.error('Error reading file:', err);
+      return;
+    }
+    
+    // File contents are available in the `data` variable
+    console.log('File contents:', data);
+  });
+  ```
 
 ## Reference
 

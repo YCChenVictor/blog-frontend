@@ -30,37 +30,33 @@ graph TD
 
 When a job or task is initiated from an application, the operating system's process management component handles the creation of a new process, allocating necessary resources through the kernel, managing memory and CPU usage, coordinating I/O operations through device drivers, and providing an interface for user interaction, all while ensuring the overall stability and efficiency of the system.
 
+### Process Management
+
+It involves the creation, scheduling, and termination of processes. It also includes inter-process communication and synchronization. Refer to [process management](/blog/software/os/process-management).
+
 ### memory management
 
-Given processes in a computer, memory management checks how much memory to be allocated, what time to allocate the memory, and update the status of memory once some memory gets freed or unallocated. For more information, please refer to [process management](/blog/software/os/process-management).
+It involves keeping track of each byte in a system's memory and which processes are using which memory. It decides which processes to load when memory space becomes available.
 
 ### device management
 
-In order to handle physical and virtual devices, device controller born in OS. Physical device includes all Input/Output devices and virtual devices mimics physical device in software, serving as device in system, making system to believe a particular hardware exists.
+It involves managing all the device controllers to monitor every device, channel, and control unit. It's responsible for the communication between devices.
 
 ### file management
 
-Recorded on secondary or non-volatile storage such as optical disks and used as medium for input and output of data.
+It involves the creation, deletion, and access of files. It also provides mechanisms for creating directories and managing disk space.
 
-### security
+### security Management
 
-To prevent threats and attacks, several ways: regular OS patch updates, antivirus engines and software, firewall, stratification of authorization.
+It involves protecting the system's resources and data from unauthorized access and providing a secure way for users to access the system.
 
-### performance monitoring
+### Network Management
 
-To optimize the OS, we need logs from performance monitoring for further optimization.
+This involves managing network connections and network security.
 
-### job accounting
+### User Interface Management
 
-For tracking the time and resources used by various jobs and users.
-
-### error detecting
-
-Given noise in transmission of data, error detecting ensures reliable delivery of data by patching the data on time.
-
-### coordination
-
-Given lots of program at the sametime, OS corrdination serves to schedule these programs.
+This involves managing how users interact with the system, either through a graphical user interface (GUI) or a command-line interface (CLI).
 
 ## Example
 

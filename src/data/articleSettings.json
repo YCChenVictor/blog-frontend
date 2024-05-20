@@ -530,5 +530,17 @@
     "data": "2022-12-10",
     "category": "functional-programming",
     "publish": false
+  },
+  "80": {
+    "url": "software/javascript/typescript-進階泛型功能",
+    "data": "2023-11-27",
+    "category": "javascript",
+    "publish": false
+  },
+  "81": {
+    "url": "software/express/database",
+    "data": "2023-05-28",
+    "category": "express",
+    "publish": false
   }
 }
