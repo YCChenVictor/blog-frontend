@@ -6,20 +6,6 @@ Learning React is valuable for developers as it equips them with a powerful and 
 
 ## Concept
 
-### Debug source code
-
-This section describes the steps of how to debug react source code. The main idea is through symlink to link a react client app to react itself on local.
-
-#### Prerequisite
-
-Just clone it, install, and build react app on local.
-
-#### symlink
-
-After we build the app, cd into the build directory; take react-dom as example, we can find it through navigating through the path in react build: `build/node_modules/react`. And then in the client react app, link the repository with the client code through ``
-
-Please refer to https://dev.to/arnabchat90/debugging-react-source-code-with-a-react-client-app-1l7
-
 ### Before Development
 
 #### Init Project
@@ -90,13 +76,27 @@ export default App;
 
 ### Component
 
-[component](2023-01-27-component)
+In [component](/blog/software/react/component), we are going to discuss component rendering, decomposing big component, components interactions.
 
 ### Hook
 
-[hook]()
+[hook](/blog/software/react/hook), 
+
+### Props
+
+React Props and Prop Types:
+
+Explain the concept of props in React and how they allow components to accept inputs.
+Introduce PropTypes for type checking props to ensure component reliability and catch bugs early in development.
+
+### States
 
 ### Routes
+
+React Router:
+
+Discuss React Router as a library for handling navigation in React applications.
+Provide examples of how to set up routing, define routes, and handle navigation events in React Router.
 
 React does not have default route settings built in; routing is typically handled by third-party libraries like React Router; for example, let's create a navbar with react router
 
@@ -185,6 +185,39 @@ React does not have default route settings built in; routing is typically handle
 ### API
 
 [api](/blog/software/react/api).
+
+### Life Cycle
+
+React Lifecycle Methods:
+
+Explain the lifecycle of a React component and the various lifecycle methods available in class components.
+Discuss how lifecycle methods are used for initialization, updating, and cleanup in React applications.
+
+### Forms and Form Handling
+
+React Forms and Form Handling:
+
+Cover techniques for handling forms in React applications, including controlled components and form validation.
+Provide examples of form submission, handling user input, and updating state based on form values.
+React Performance Optimization:
+
+Discuss best practices for optimizing React application performance, including minimizing re-renders, using memoization techniques, and lazy loading components.
+
+### Error Handling
+
+Error Handling in React:
+
+Explain strategies for handling errors in React applications, including error boundaries, componentDidCatch lifecycle method, and error logging.
+Server-Side Rendering (SSR) and Client-Side Rendering (CSR):
+
+Compare and contrast server-side rendering and client-side rendering approaches in React applications.
+Discuss the benefits and trade-offs of each approach and when to use them based on project requirements.
+
+### Test
+
+Testing React Components:
+
+Introduce testing methodologies for React components, including unit testing with Jest and Enzyme, and end-to-end testing with tools like Cypress.
 
 ### Assets
 
@@ -446,6 +479,18 @@ const ParentComponent = () => {
 
 export default ParentComponent;
 ```
+
+### Debug source code
+
+This section describes the steps of how to debug react source code. The main idea is through symlink to link a react client app to react itself on local.
+
+#### Prerequisite
+
+Just clone it, install, and build react app on local.
+
+#### symlink
+
+Please refer to [Debugging React Source Code with a React Client App](https://dev.to/arnabchat90/debugging-react-source-code-with-a-react-client-app-1l7)
 
 ## Example
 

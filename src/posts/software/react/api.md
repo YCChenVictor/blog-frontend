@@ -1,5 +1,10 @@
 # Title
 
+React Context API:
+
+Introduce the Context API as a mechanism for passing data through the component tree without having to pass props manually at every level.
+Demonstrate how to create and consume context in React applications to manage global state or provide theme configurations.
+
 ## Introduction
 
 This article explains how react as frontend to communicate with backend RESTful API.
