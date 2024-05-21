@@ -8,7 +8,7 @@ const AuthorProfile = () => {
     <div className="prose bg-gray-400 p-4">
       <div className='p-4'>
         <div className="text-center text-indigo flex items-center justify-center flex-col">
-          {/* <img className="mx-auto p-4 rounded-full" src={headImg} alt="author profile" /> */}
+          <img className="w-32 rounded-full" src={process.env.PUBLIC_URL + 'assets/img/head.jpeg'} alt="head" />
           <p className="text-5xl font-bold">YCChen</p>
           <p className="text-gray-500 pb-4">Software Engineer</p>
           <div className="text text-indigo font-mono">
