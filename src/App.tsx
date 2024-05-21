@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-
 import Articles from './components/Articles';
 import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
@@ -9,14 +8,11 @@ import UserInNav from './components/UserInNav';
 import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle';
 import RenderFrontend from './components/AutoFrontend/RenderFrontend';
-
 import { checkLoggedIn } from './utils/checkLoggedIn';
-
 // import titleImg from './assets/img/title.jpeg';
 import settings from './data/articleSettings.json';
 
 const App: React.FC = () => {
-  debugger
   const helloWorldUrl = process.env.HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
