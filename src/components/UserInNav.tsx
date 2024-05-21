@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SignUpLogin from './SignUpLogin.jsx'
 
-const UserInNav = (loggedIn) => {
+const UserInNav = (loggedIn: boolean) => {
   return (
     <>
       {loggedIn ? (

@@ -123,9 +123,9 @@ function Article({setting}: ArticleComponent) {
                 }
               },
               img: ({ node, ...props }) => (
-                RenderImage(props)
+                RenderImage({ ...props, src: props.src ?? '' })
               ),
-              code: ({ node, ...props }) => {
+              code: ({ node, ...props }: { node: any; children: React.ReactNode; className: string }) => {
                 if (props.className === 'language-mermaid') {
                   return RenderMermaid(props)
                 } else {

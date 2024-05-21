@@ -65,7 +65,7 @@ const App: React.FC = () => {
             Software
           </a>
         </ul>
-        {serverOn && <ul className="space-x-4"><UserInNav /></ul>}
+        {/* {serverOn && <ul className="space-x-4"><UserInNav /></ul>} */}
       </nav>
       <Router>
         <div className="">
