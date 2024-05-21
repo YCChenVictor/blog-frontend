@@ -12,7 +12,7 @@ import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
 
 const App: React.FC = () => {
-  const helloWorldUrl = process.env.HOST_DEV;
+  const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   
@@ -49,7 +49,7 @@ const App: React.FC = () => {
       <nav className="flex items-center justify-between bg-gray-700 p-4">
         <ul className="bg-gray-700">
           <a href="/" className="m-0 p-0">
-            <img className="w-16 rounded-full" src={process.env.PUBLIC_URL + 'assets/img/title.jpeg'} alt="title" />
+            <img className="w-16 rounded-full" src={process.env.REACT_APP_PUBLIC_URL + 'assets/img/title.jpeg'} alt="title" />
           </a>
         </ul>
         <ul className="flex items-center space-x-4 ml-auto p-6">
