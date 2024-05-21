@@ -9,7 +9,6 @@ import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle';
 import RenderFrontend from './components/AutoFrontend/RenderFrontend';
 import { checkLoggedIn } from './utils/checkLoggedIn';
-// import titleImg from './assets/img/title.jpeg';
 import settings from './data/articleSettings.json';
 
 const App: React.FC = () => {
@@ -50,7 +49,7 @@ const App: React.FC = () => {
       <nav className="flex items-center justify-between bg-gray-700 p-4">
         <ul className="bg-gray-700">
           <a href="/" className="m-0 p-0">
-            {/* <img className="w-16 rounded-full" src={titleImg} alt="title" /> */}
+            <img className="w-16 rounded-full" src={process.env.PUBLIC_URL + 'assets/img/title.jpeg'} alt="title" />
           </a>
         </ul>
         <ul className="flex items-center space-x-4 ml-auto p-6">
