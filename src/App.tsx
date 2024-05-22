@@ -60,7 +60,7 @@ const App: React.FC = () => {
             Software
           </a>
         </ul>
-        {/* {serverOn && <ul className="space-x-4"><UserInNav /></ul>} */}
+        {serverOn as boolean ? <ul className="space-x-4"><UserInNav /></ul> : null}
       </nav>
       <Router>
         <div className="">
