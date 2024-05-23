@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import Articles from './components/Articles';
-import AuthorProfile from './components/AuthorProfile';
-import Article from './components/Article';
-import UserInNav from './components/UserInNav';
-import ArticleList from './components/ArticleList';
-// import EditArticle from './components/AutoArticle/EditArticle';
-import RenderFrontend from './components/AutoFrontend/RenderFrontend';
-import { checkLoggedIn } from './utils/checkLoggedIn';
-import settings from './data/articleSettings.json';
+import Articles from './components/Articles'
+import AuthorProfile from './components/AuthorProfile'
+import Article from './components/Article'
+import UserInNav from './components/UserInNav'
+import ArticleList from './components/ArticleList'
+// import EditArticle from './components/AutoArticle/EditArticle'
+import RenderFrontend from './components/AutoFrontend/RenderFrontend'
+import { checkLoggedIn } from './utils/checkLoggedIn'
+import settings from './data/articleSettings.json'
 
 const App: React.FC = () => {
-  const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
-  const [serverOn, setServerOn] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  
-  const articleRoutes = Object.entries(settings).map(([key, value], index) => (
-    <Route
-      key={index}
-      path={`blog/${value['url']}`}
-      element={<Article setting={value} />}
-    />
-  ));
+  const helloWorldUrl = process.env.REACT_APP_HOST_DEV
+  const [serverOn, setServerOn] = useState<boolean>(false)
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
+  const articleRoutes = Object.entries(settings).map(([, value], index) => (
+    <Route key={index} path={`blog/${value['url']}`} element={<Article setting={value} />} />
+  ))
 
   const fetchRequireData = async () => {
-    if(!helloWorldUrl) return
+    if(!helloWorldUrl) {
+      return 
+    }
 
     try {
       const isServerOn = await axios.get(helloWorldUrl)
@@ -34,7 +31,7 @@ const App: React.FC = () => {
       setServerOn(false)
     }
 
-    if (serverOn) return;
+    if (serverOn) return
 
     const isLoggedInResponse = await checkLoggedIn()
     setLoggedIn(isLoggedInResponse.loggedIn)
@@ -92,4 +89,4 @@ const App: React.FC = () => {
   )
 }
 
-export default App;
+export default App

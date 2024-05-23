@@ -3,7 +3,7 @@ interface RequestOptions {
   headers?: Record<string, string>;
   body?: string;
 }
-  
+
 const superFetch = async (
   endpoint: string,
   options: RequestOptions
@@ -20,4 +20,4 @@ const superFetch = async (
   }
 };
 
-export default superFetch
+export default superFetch;

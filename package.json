@@ -41,7 +41,7 @@
     "eject": "react-scripts eject",
     "coverage": "jest --coverage",
     "lint": "eslint  --fix src/**/*.js",
-    "format": "prettier src/**/*.js --write. --config ./.prettierrc"
+    "format": "prettier --config .prettierrc 'src/**/*.ts' --write"
   },
   "browserslist": {
     "production": [
