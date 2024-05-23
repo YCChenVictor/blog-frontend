@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 import GptModal from './GptModal';
-import StandardRender from '../Interfaces/StandardRender'
+import StandardRender from '../Interfaces/StandardRender';
 
-const RenderFrontend: FC<StandardRender> = ({isLoggedIn}) => {
+const RenderFrontend: FC<StandardRender> = ({ isLoggedIn }) => {
   // Because GPT cannot read image, the ImageUpload wont work now
   // I will try to render a component posted by GPT first
 
@@ -20,17 +20,21 @@ const RenderFrontend: FC<StandardRender> = ({isLoggedIn}) => {
   };
 
   return (
-    <div className="min-h-screen p-8 m-4"  onContextMenu={handleRightClick}>
+    <div className="min-h-screen p-8 m-4" onContextMenu={handleRightClick}>
       {isLoggedIn && (
         <div>
           <h1>Your Content Goes Here</h1>
-          <GptModal isOpen={isModalOpen} isLoggedIn={isLoggedIn} handleClose={handleCloseModal}>
+          <GptModal
+            isOpen={isModalOpen}
+            isLoggedIn={isLoggedIn}
+            handleClose={handleCloseModal}
+          >
             <p>Modal Content</p>
           </GptModal>
         </div>
       )}
     </div>
   );
-}
+};
 
-export default RenderFrontend
+export default RenderFrontend;
