@@ -1,551 +1,493 @@
 {
   "1": {
     "url": "software/main",
-    "specialTitle": null,
-    "createAt": "2023-02-04",
-    "useMathjax": null,
-    "useMermaidJS": null,
-    "useThreeJS": null,
+    "date": "2023-02-04",
+    "category": "main",
     "publish": true
   },
   "2": {
     "url": "software/dsa/main",
-    "specialTitle": null,
     "date": "2021-11-25",
-    "categories": "DSA",
-    "note": null,
-    "useMathjax": true,
-    "useThreeJS": true,
-    "publish": true,
-    "TODO": "bit Manipulation, memory (stack vs. heap)"
+    "category": "DSA",
+    "publish": true
   },
   "3": {
     "url": "software/dsa/graph",
-    "specialTitle": null,
     "date": "2023-03-19",
-    "categories": "DSA",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "DSA",
     "publish": false
   },
   "4": {
     "url": "software/dsa/greedy_algorithm",
-    "specialTitle": null,
     "date": "2023-07-20",
-    "categories": "DSA",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "DSA",
     "publish": true
   },
   "5": {
     "url": "software/rails/main",
-    "specialTitle": null,
     "date": "2023-01-01",
-    "categories": "rails",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "rails",
     "publish": false
   },
   "6": {
     "url": "software/rails/database",
-    "specialTitle": null,
     "date": "2023-01-01",
-    "categories": "rails",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "rails",
     "publish": true
   },
   "7": {
     "url": "software/dsa/complexity",
-    "specialTitle": null,
     "date": "2022-05-02",
-    "categories": "DSA",
-    "note": null,
-    "useMathjax": true,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "DSA",
     "publish": true
   },
   "8": {
     "url": "software/css/main",
-    "specialTitle": null,
     "date": "2022-10-15",
-    "categories": "css",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "css",
     "publish": true
   },
   "9": {
     "url": "gene/main",
-    "specialTitle": null,
     "date": "2023-07-22",
-    "categories": "gene",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "gene",
     "publish": true
   },
   "10": {
     "url": "gene/biology",
-    "specialTitle": null,
     "date": "2023-07-29",
-    "categories": "gene",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "gene",
     "publish": true
   },
   "11": {
     "url": "software/dsa/solve-problem",
-    "specialTitle": null,
     "date": "2023-03-08",
-    "categories": "DSA",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "DSA",
     "publish": true
   },
   "12": {
     "url": "software/dsa/heap",
-    "specialTitle": null,
     "date": "2023-05-03",
-    "categories": "DSA",
-    "note": null,
-    "useMathjax": false,
-    "useThreeJS": false,
-    "useMermaidJS": true,
+    "category": "DSA",
     "publish": false
   },
   "13": {
     "url": "aesthetics/main",
     "date": "2023-04-29",
-    "categories": "aesthetics",
+    "category": "aesthetics",
     "publish": true
   },
   "14": {
     "url": "software/react/main",
     "date": "2021-06-13",
-    "categories": "react",
+    "category": "react",
     "publish": false
   },
   "15": {
     "url": "aesthetics/music/main",
-    "data": "2023-04-11",
+    "date": "2023-04-11",
     "category": "music",
     "publish": true
   },
   "16": {
     "url": "software/dsa/dynamic-programming",
-    "data": "2023-03-24",
+    "date": "2023-03-24",
     "category": "DSA",
     "publish": true
   },
   "17": {
     "url": "software/dsa/sorting",
-    "data": "2023-03-09",
+    "date": "2023-03-09",
     "category": "DSA",
     "publish": false
   },
   "18": {
     "url": "software/concept/object-oriented-design",
-    "data": "2023-06-12",
+    "date": "2023-06-12",
     "category": "DSA",
     "publish": false
   },
   "19": {
     "url": "software/ood/oop",
-    "data": "2021-11-21",
+    "date": "2021-11-21",
     "category": "OOD",
     "publish": true
   },
   "20": {
     "url": "software/dsa/array",
-    "data": "2022-05-22",
+    "date": "2022-05-22",
     "category": "DSA",
     "publish": true
   },
   "21": {
     "url": "software/dsa/linked-list",
-    "data": "2022-05-23",
+    "date": "2022-05-23",
     "category": "DSA",
     "publish": true
   },
   "22": {
     "url": "software/dsa/queue",
-    "data": "2022-06-24",
+    "date": "2022-06-24",
     "category": "DSA",
     "publish": true
   },
   "23": {
     "url": "software/dsa/stack",
-    "data": "2022-06-24",
+    "date": "2022-06-24",
     "category": "DSA",
     "publish": true
   },
   "24": {
     "url": "software/dsa/tree",
-    "data": "2022-06-26",
+    "date": "2022-06-26",
     "category": "DSA",
     "publish": true
   },
   "25": {
     "url": "software/dsa/hash-table",
-    "data": "2022-04-23",
+    "date": "2022-04-23",
     "category": "DSA",
     "publish": false
   },
   "26": {
     "url": "software/dsa/tries",
-    "data": "2022-04-26",
+    "date": "2022-04-26",
     "category": "DSA",
     "publish": true
   },
   "27": {
     "url": "software/os/main",
-    "data": "2023-04-02",
+    "date": "2023-04-02",
     "category": "OS",
     "publish": true
   },
   "28": {
     "url": "software/os/process-management",
-    "data": "2021-12-24",
+    "date": "2021-12-24",
     "category": "OS",
     "publish": true
   },
   "29": {
     "url": "software/database/main",
-    "data": "2022-08-12",
+    "date": "2022-08-12",
     "category": "DB",
     "publish": true
   },
   "30": {
     "url": "software/database/mysql",
-    "data": "2022-08-12",
+    "date": "2022-08-12",
     "category": "DB",
     "publish": true
   },
   "31": {
     "url": "software/test/main",
-    "data": "2023-08-09",
+    "date": "2023-08-09",
     "category": "test",
     "publish": false
   },
   "32": {
     "url": "investment/main",
-    "data": "2023-08-09",
+    "date": "2023-08-09",
     "category": "investment",
     "publish": false
   },
   "33": {
     "url": "software/system-design/main",
-    "data": "2023-03-27",
+    "date": "2023-03-27",
     "category": "SYS_D",
     "publish": true
   },
   "34": {
     "url": "software/system-design/scalability",
-    "data": "2023-06-16",
+    "date": "2023-06-16",
     "category": "SYS_D",
     "publish": true
   },
   "35": {
     "url": "software/ood/main",
-    "data": "2023-08-12",
+    "date": "2023-08-12",
     "category": "OOD",
     "publish": true
   },
   "36": {
     "url": "software/design-pattern/main",
-    "data": "2023-08-12",
+    "date": "2023-08-12",
     "category": "OOD",
     "publish": true
   },
   "37": {
     "url": "software/javascript/main",
-    "data": "2022-12-12",
+    "date": "2022-12-12",
     "category": "JS",
     "publish": false
   },
   "38": {
     "url": "software/tdd/main",
-    "data": "2021-04-06",
+    "date": "2021-04-06",
     "category": "tdd",
     "publish": true
   },
   "39": {
     "url": "software/design-pattern/adapter",
-    "data": "2023-03-30",
+    "date": "2023-03-30",
     "category": "design-pattern",
     "publish": true
   },
   "40": {
     "url": "software/design-pattern/facade",
-    "data": "2022-07-28",
+    "date": "2022-07-28",
     "category": "design-pattern",
     "publish": true
   },
   "41": {
     "url": "software/ood/solid",
-    "data": "2022-07-28",
+    "date": "2022-07-28",
     "category": "design-pattern",
     "publish": false
   },
   "42": {
     "url": "software/design-pattern/visitor",
-    "data": "2022-10-28",
+    "date": "2022-10-28",
     "category": "design-pattern",
     "publish": true
   },
   "43": {
     "url": "software/design-pattern/command",
-    "data": "2022-08-25",
+    "date": "2022-08-25",
     "category": "design-pattern",
     "publish": false
   },
   "44": {
     "url": "software/javascript/AJAX",
-    "data": "2021-06-19",
+    "date": "2021-06-19",
     "category": "javascript",
     "publish": false
   },
   "45": {
     "url": "software/design-pattern/decorator",
-    "data": "2022-04-02",
+    "date": "2022-04-02",
     "category": "design-pattern",
     "publish": false
   },
   "46": {
     "url": "software/design-pattern/observer",
-    "data": "2022-03-25",
+    "date": "2022-03-25",
     "category": "design-pattern",
     "publish": false
   },
   "47": {
     "url": "software/robotic/main",
-    "data": "2022-08-26",
+    "date": "2022-08-26",
     "category": "robotic",
     "publish": false
   },
   "48": {
     "url": "software/express/main",
-    "data": "2022-12-30",
+    "date": "2022-12-30",
     "category": "express",
     "publish": false
   },
   "49": {
     "url": "software/design-pattern/factory-method",
-    "data": "2022-04-06",
+    "date": "2022-04-06",
     "category": "design-pattern",
     "publish": true
   },
   "50": {
     "url": "software/design-pattern/strategy",
-    "data": "2022-03-22",
+    "date": "2022-03-22",
     "category": "design-pattern",
     "publish": true
   },
   "51": {
     "url": "software/design-pattern/prototype",
-    "data": "2022-06-17",
+    "date": "2022-06-17",
     "category": "design-pattern",
     "publish": true
   },
   "52": {
     "url": "software/design-pattern/abstract-factory",
-    "data": "2022-04-09",
+    "date": "2022-04-09",
     "category": "design-pattern",
     "publish": true
   },
   "53": {
     "url": "software/design-pattern/proxy",
-    "data": "2023-08-28",
+    "date": "2023-08-28",
     "category": "design-pattern",
     "publish": true
   },
   "54": {
     "url": "software/design-pattern/composite",
-    "data": "2023-08-29",
+    "date": "2023-08-29",
     "category": "design-pattern",
     "publish": true
   },
   "55": {
     "url": "software/design-pattern/singleton",
-    "data": "2023-09-03",
+    "date": "2023-09-03",
     "category": "design-pattern",
     "publish": true
   },
   "56": {
     "url": "software/refactor/main",
-    "data": "2023-09-03",
+    "date": "2023-09-03",
     "category": "refactor",
     "publish": false
   },
   "57": {
     "url": "software/javascript/快速入門",
-    "data": "2023-10-02",
+    "date": "2023-10-02",
     "category": "javascript",
     "publish": false
   },
   "58": {
     "url": "aesthetics/english/ielts/main",
-    "data": "2023-10-10",
+    "date": "2023-10-10",
     "category": "ielts",
     "publish": false
   },
   "59": {
     "url": "aesthetics/english/ielts/preparation-course",
-    "data": "2023-10-10",
+    "date": "2023-10-10",
     "category": "ielts",
     "publish": false
   },
   "60": {
     "url": "software/react/api",
-    "data": "2022-09-14",
+    "date": "2022-09-14",
     "category": "react",
     "publish": false
   },
   "61": {
     "url": "software/react/routes",
-    "data": "2023-04-21",
+    "date": "2023-04-21",
     "category": "react",
     "publish": false
   },
   "62": {
     "url": "software/javascript/typescript-類別與介面",
-    "data": "2023-10-27",
+    "date": "2023-10-27",
     "category": "javascript",
     "publish": false
   },
   "63": {
     "url": "software/javascript/typescript-運用物件",
-    "data": "2023-11-03",
+    "date": "2023-11-03",
     "category": "javascript",
     "publish": false
   },
   "64": {
     "url": "software/react/hook",
-    "data": "2021-06-18",
+    "date": "2021-06-18",
     "category": "react",
     "publish": false
   },
   "65": {
     "url": "software/dsa/quick-sort",
-    "data": "2024-03-04",
+    "date": "2024-03-04",
     "category": "DSA",
     "publish": false
   },
   "66": {
     "url": "software/internet/main",
-    "data": "2021-03-29",
+    "date": "2021-03-29",
     "category": "internet",
     "publish": true
   },
   "67": {
     "url": "software/api/main",
-    "data": "2021-02-18",
+    "date": "2021-02-18",
     "category": "api",
     "publish": false
   },
   "68": {
     "url": "software/cache/main",
-    "data": "2023-06-17",
+    "date": "2023-06-17",
     "category": "cache",
     "publish": false
   },
   "69": {
     "url": "software/web-security/main",
-    "data": "2022-08-31",
+    "date": "2022-08-31",
     "category": "web-security",
     "publish": false
   },
   "70": {
     "url": "software/ci-cd/main",
-    "data": "2022-08-13",
+    "date": "2022-08-13",
     "category": "ci-cd",
     "publish": false
   },
   "71": {
     "url": "software/database/scaling",
-    "data": "2022-08-13",
+    "date": "2022-08-13",
     "category": "database",
     "publish": false
   },
   "72": {
     "url": "software/database/ORM",
-    "data": "2022-01-04",
+    "date": "2022-01-04",
     "category": "database",
     "publish": false
   },
   "73": {
     "url": "software/rails/ORM",
-    "data": "2022-01-13",
+    "date": "2022-01-13",
     "category": "rails",
     "publish": false
   },
   "74": {
     "url": "for-new-feature",
-    "data": "2024-04-09",
+    "date": "2024-04-09",
     "category": "new-feature",
     "publish": false
   },
   "75": {
     "url": "software/database/relational-vs-non-relational",
-    "data": "2024-03-31",
+    "date": "2024-03-31",
     "category": "database",
     "publish": false
   },
   "76": {
     "url": "software/functional-programming/main",
-    "data": "2022-12-10",
+    "date": "2022-12-10",
     "category": "functional-programming",
     "publish": false
   },
   "77": {
     "url": "software/system-design/distributed-system",
-    "data": "2023-06-16",
+    "date": "2023-06-16",
     "category": "system-design",
     "publish": false
   },
   "78": {
     "url": "algorithmic-game-theory",
-    "data": "2024-04-22",
+    "date": "2024-04-22",
     "category": "self",
     "publish": false
   },
   "79": {
     "url": "software/functional-programming/separating-actions-calculations-data",
-    "data": "2022-12-10",
+    "date": "2022-12-10",
     "category": "functional-programming",
     "publish": false
   },
   "80": {
     "url": "software/javascript/typescript-進階泛型功能",
-    "data": "2023-11-27",
+    "date": "2023-11-27",
     "category": "javascript",
     "publish": false
   },
   "81": {
     "url": "software/express/database",
-    "data": "2023-05-28",
+    "date": "2023-05-28",
     "category": "express",
     "publish": false
   },
   "82": {
     "url": "software/react/component",
-    "data": "2023-01-27",
+    "date": "2023-01-27",
     "category": "react",
     "publish": false
   }

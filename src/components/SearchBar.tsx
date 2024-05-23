@@ -2,22 +2,22 @@ import React, { useState, useEffect } from "react"
 import searchData from '../data/software/searchBar.json'
 
 const SearchBar = () => {
-  const [items, setItems] = useState([])
   const [query, setQuery] = useState("")
+  const [items, setItems] = useState<{ title: string; content: string; url: string; }[]>([]) // Update the type of the items state variable
 
   useEffect(() => {
     setItems(searchData['items'])
   }, [])
 
-  function handleInputChange(event) {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setQuery(event.target.value)
   }
-  
+
   function searchItems() {
     return items.filter(item => {
       const itemText = `${item.title} ${item.content}`.toLowerCase()
       const searchText = query.toLowerCase()
-      
+
       return itemText.includes(searchText) // the core
     });
   }

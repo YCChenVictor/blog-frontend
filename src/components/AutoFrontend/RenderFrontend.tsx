@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react'
 import ImageUpload from './ImageUpload'
 import RenderOneComponent from './RenderOneComponent'
-import GptModal from './GptModal.tsx';
-import StandardRender from '../Interfaces/StandardRender.tsx'
+import GptModal from './GptModal';
+import StandardRender from '../Interfaces/StandardRender'
 
 const RenderFrontend: FC<StandardRender> = ({isLoggedIn}) => {
   // Because GPT cannot read image, the ImageUpload wont work now

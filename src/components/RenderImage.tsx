@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const RenderImage = (props) => {
+const RenderImage = (props: { src: string }) => {
   const [image, setImage] = useState('')
   useEffect(() => {
     const fetchImage = async () => {

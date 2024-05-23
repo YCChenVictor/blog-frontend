@@ -12,19 +12,18 @@ const SidebarLayout = ({
     setting,
     articleContent,
     rawTitles
+  }: {
+    isCollapsed: boolean,
+    loggedIn: boolean,
+    setting: any, // Replace 'any' with the actual type
+    articleContent: any, // Replace 'any' with the actual type
+    rawTitles: any // Replace 'any' with the actual type
   }) => {
-  const titles = rawTitles.map((item) => ({
+  const titles = rawTitles.map((item: { content: string, tagName: string }) => ({
     content: item.content,
-    tagName: item.tagName.match(/\d+/)[0],
+    tagName: item.tagName.match(/\d+/)?.[0] || '',
     position: rawTitles.indexOf(item)
   }))
-  const textSizeMapping = {
-    '2': 'text-xl',
-    '3': 'text-lg',
-    '4': 'text-base',
-    '5': 'text-sm',
-    '6': 'text-xs',
-  }
   const textColorMapping = {
     '2': 'text-zinc-900',
     '3': 'text-zinc-800',
@@ -39,19 +38,29 @@ const SidebarLayout = ({
     '5': 'pl-8',
     '6': 'pl-10',
   }
-  const menuItemsDesired = titles.map((title, index) => {
+
+  const textSizeMapping: { [key: string]: string } = {
+    '2': 'text-xl',
+    '3': 'text-lg',
+    '4': 'text-base',
+    '5': 'text-sm',
+    '6': 'text-xs',
+  }
+
+  const menuItemsDesired = titles.map((title: { content: string, tagName: string }, index: number) => {
     return (
-    <MenuItem
-      key={index}
-      component={<HashLink to={`#${title.content.toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, '-')}`} />}
-    >
-      <p
-        className={`${textColorMapping[title.tagName]} ${paddingLeft[title.tagName]} ${textSizeMapping[title.tagName]}`}
+      <MenuItem
+        key={index}
+        component={<HashLink to={`#${title.content.toLowerCase().replace(/[^\w\s]|_/g, "").replace(/\s+/g, '-')}`} />}
       >
-        {title.content}
-      </p>
-    </MenuItem>
-  )})
+        <p
+          className={`${textColorMapping[title.tagName as keyof typeof textColorMapping]} ${paddingLeft[title.tagName as keyof typeof paddingLeft]} ${textSizeMapping[title.tagName]}`}
+        >
+          {title.content}
+        </p>
+      </MenuItem>
+    )
+  })
 
   return (
     <Sidebar

@@ -4,22 +4,26 @@ import remarkGfm from 'remark-gfm'
 import { marked } from 'marked'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
-
-import SidebarLayout from './SidebarLayout.jsx'
-import RenderImage from './RenderImage.jsx'
-import RenderCodeBlock from './RenderCodeBlock.jsx'
-import RenderMermaid from './RenderMermaid.jsx'
-import ScrollToTopButton from './ScrollToTopButton.jsx'
+import SidebarLayout from './SidebarLayout'
+import RenderImage from './RenderImage'
+import RenderCodeBlock from './RenderCodeBlock'
+import RenderMermaid from './RenderMermaid'
+import ScrollToTopButton from './ScrollToTopButton'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 
 interface ArticleComponent {
-  setting: Object
+  setting: {
+    url: string;
+    date: string;
+    category: string;
+    publish: boolean;
+  }
 }
 
 function Article({setting}: ArticleComponent) {
   const filePath = `posts/${setting['url']}.md`
   const [markdownContent, setMarkdownContent] = useState('')
-  const [rawTitles, setRawTitles] = useState([])
+  const [rawTitles, setRawTitles] = useState<Array<{ content: string, tagName: string }>>([])
   const [loggedIn, setLoggedIn] = useState(true)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [showMobileSidebar, setShowMobileSidebar] = useState(false)
@@ -41,16 +45,17 @@ function Article({setting}: ArticleComponent) {
       const parsedHTML = marked.parse(text)
       const container = document.createElement('div')
       container.innerHTML = parsedHTML
-      const tags = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6')).map((tag) => ({
-        content: tag.textContent,
-        tagName: tag.tagName,
-      }));
+      const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
+      const tags = tagNames
+        .flatMap(tagName => Array.from(container.querySelectorAll(tagName)))
+        .map(tag => ({ content: tag.textContent || '', tagName: tag.tagName }));
+
       setRawTitles(tags);
     }
     importFileAndFetchContent()
   }, []);
 
-  const generateSlug = (string) => {
+  const generateSlug = (string: String) => {
     let str = string.replace(/^\s+|\s+$/g, "");
     str = str.toLowerCase();
     str = str
@@ -63,31 +68,27 @@ function Article({setting}: ArticleComponent) {
   return (
     <div className='bg-gray-400 flex'>
       <div className='' ref={componentSidebarRef}>
-        {rawTitles.length > 0 ? (
-          <div className="sticky top-0 h-screen overflow-y-auto">
-            <div className="hidden lg:block"> {/* Hide SidebarLayout on screens smaller than "lg" */}
-              <div className="p-2"> {/* Add these classes */}
-                <button
-                  className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                  onClick={() => {
-                    setIsCollapsed(!isCollapsed)
-                  }}
-                >
-                  <MenuOutlinedIcon />
-                </button>
-                <SidebarLayout
-                  isCollapsed={isCollapsed}
-                  loggedIn={loggedIn}
-                  setting={setting}
-                  articleContent={markdownContent}
-                  rawTitles={rawTitles}
-                />
-              </div>
-            </div>
+      <div className="sticky top-0 h-screen overflow-y-auto">
+        <div className="hidden lg:block"> {/* Hide SidebarLayout on screens smaller than "lg" */}
+          <div className="p-2"> {/* Add these classes */}
+            <button
+              className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+              onClick={() => {
+                setIsCollapsed(!isCollapsed)
+              }}
+            >
+              <MenuOutlinedIcon />
+            </button>
+            <SidebarLayout
+              isCollapsed={isCollapsed}
+              loggedIn={loggedIn}
+              setting={setting}
+              articleContent={markdownContent}
+              rawTitles={rawTitles}
+            />
           </div>
-        ) : (
-          <div>Loading...</div>
-        )}
+        </div>
+      </div>
       </div>
       <div id='article' className={`p-8 ${showMobileSidebar ? 'backdrop-brightness-50' : ''}`}>
         <div>
@@ -96,19 +97,31 @@ function Article({setting}: ArticleComponent) {
               h1: () => (
                 <h1 className="text-center">{`(${category}) ${articleName}`}</h1>
               ),
-              h2: ({ node, ...props }) => (
-                <h2 id={generateSlug(props.children)} {...props}></h2>
-              ),
-              h3: ({ node, ...props }) => (
-                <h3 id={generateSlug(props.children)} {...props}></h3>
-              ),
-              h4: ({ node, ...props }) => (
-                <h4 id={generateSlug(props.children)} {...props}></h4>
-              ),
+              h2: ({ node, ...props }) => {
+                if (props.children) {
+                  return <h2 id={generateSlug(props.children.toString())} {...props}></h2>
+                } else {
+                  return null;
+                }
+              },
+              h3: ({ node, ...props }) => {
+                if (props.children) {
+                  return <h3 id={generateSlug(props.children.toString())} {...props}></h3>
+                } else {
+                  return null;
+                }
+              },
+              h4: ({ node, ...props }) => {
+                if (props.children) {
+                  return <h4 id={generateSlug(props.children.toString())} {...props}></h4>
+                } else {
+                  return null;
+                }
+              },
               img: ({ node, ...props }) => (
-                RenderImage(props)
+                RenderImage({ ...props, src: props.src ?? '' })
               ),
-              code: ({ node, ...props }) => {
+              code: ({ node, ...props }: { node: any; children: React.ReactNode; className: string }) => {
                 if (props.className === 'language-mermaid') {
                   return RenderMermaid(props)
                 } else {
@@ -123,10 +136,11 @@ function Article({setting}: ArticleComponent) {
                 )
               },
               span: ({node, ...props}) => { // done
-                if (props.className === 'math math-inline') {
-                  return <span className="math math-inline inline-flex">{props.children[0]}</span>;
+                if (props.className === 'math math-inline' && props.children) {
+                  const content = props.children;
+                  return <span className="math math-inline inline-flex">{content}</span>;
                 } else {
-                  return props.children[0]
+                  return null
                 }
               }
             }}
@@ -142,6 +156,7 @@ function Article({setting}: ArticleComponent) {
           {showMobileSidebar ? (
             <div className="overflow-y-auto">
               <SidebarLayout
+                isCollapsed={false}
                 loggedIn={loggedIn}
                 setting={setting}
                 articleContent={markdownContent}
@@ -157,7 +172,7 @@ function Article({setting}: ArticleComponent) {
               setShowMobileSidebar(!showMobileSidebar)
             }}
           >
-            <MenuOutlinedIcon />
+            {/* <MenuOutlinedIcon /> */}
           </button>
         </div>
       </div>

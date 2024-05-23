@@ -3,19 +3,21 @@ import ForceGraph2D from "react-force-graph-2d"
 import articleSettings from '../data/articleSettings.json'
 import axios from "axios"
 
-const NodeGraph = ({category, loggedIn}) => {
+const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;}) => {
   const [nodes, setNodes] = useState([])
   const [links, setLinks] = useState([])
   const forceRef = useRef()
 
-  const handleNodeClick = (node) => {
+  const handleNodeClick = (node: {url: string}) => {
     const url = window.location.href
     const pathname = window.location.pathname
     const baseUrl = url.replace(pathname, "")
-    window.open(baseUrl + node.url, '_blank').focus()
+    if (node) {
+      window.open(baseUrl + node.url, '_blank')
+    }
   }
 
-  const generateNodes = async (category) => {
+  const generateNodes = async (category: string) => {
     const url = `http://localhost:5000/node-graph?category=${category}`
     const postData = {
       category: category
@@ -36,7 +38,7 @@ const NodeGraph = ({category, loggedIn}) => {
     if (nodes === undefined || links === undefined) {
       return false
     }
-    nodes.map((node) => { // refine this size modification
+    nodes.map((node: { id: number; val: number }) => { // refine this size modification
       if (node['id'] === 1) {
         return node['val'] = 5
       } else {
@@ -49,40 +51,45 @@ const NodeGraph = ({category, loggedIn}) => {
       return { ...result, ...currentObj }
     }, {})
 
-    const removedNode = []
-    nodes = nodes.filter((node) => {
+    const removedNode: string[] = []
+    nodes = nodes.filter((node: {id: string, url: string}) => {
       if (nodeCondition[node.url.replace('/blog/', '')]) {
-        return node
+        return true;
       } else {
-        removedNode.push(node.id)
+        removedNode.push(node.id);
+        return false;
       }
-    })
-    links = links.filter((link) => {
+    });
+    links = links.filter((link: {source: string, target: string}) => {
       if (removedNode.includes(link["source"]) || removedNode.includes(link["target"])) {
-        return
+        return false;
       } else {
-        return link
+        return true;
       }
-    })
+    });
     setNodes(nodes)
     setLinks(links)
     return true
   }
 
   useEffect(() => { // please extract following as method
-    forceRef.current.zoom(2, 300)
+    if(forceRef && forceRef.current) {
+      (forceRef.current as any).zoom(2, 300) // fix it later
+    }
 
     fetchNodeData().then((success) => {
-      if(!success) return
+      if (!success) return
       setTimeout(function() { // Give it time to render
         const linkLengthConstant = 20
-        forceRef.current.d3Force('link').distance((link) => {
-          if(link.source.id === 1) {
-            return linkLengthConstant
-          } else {
-            return linkLengthConstant * (link.source.val + link.target.val) 
-          }
-        })
+        if (forceRef.current) {
+          (forceRef.current as any).d3Force('link').distance((link: any) => { // Explicitly define the type of 'link' as any
+            if (link.source.id === 1) {
+              return linkLengthConstant
+            } else {
+              return linkLengthConstant * (link.source.val + link.target.val) 
+            }
+          })
+        }
         // forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400) // fix it later
       }, 500)
     })
@@ -110,13 +117,8 @@ const NodeGraph = ({category, loggedIn}) => {
         nodeRelSize={5}
         linkDirectionalArrowRelPos={1}
         linkDirectionalArrowLength={5}
-        linkDirectionalArrowResolution={0}
         d3VelocityDecay={0.6} // Decrease velocity decay to reduce node overlap
-        d3Force="charge" // Use only charge force
         d3AlphaDecay={0.03} // Decrease alpha decay to increase simulation time
-        d3Charge={-80} // Decrease charge to reduce node repulsion
-        d3LinkDistance={80} // Increase link distance to reduce link overlap
-        enableZoomPanInteraction={true} // Enable zooming
         onNodeClick={handleNodeClick} // redirect to the page when click node
         nodeCanvasObjectMode={() => "after"}
         nodeCanvasObject={(node, ctx) => {
@@ -125,8 +127,8 @@ const NodeGraph = ({category, loggedIn}) => {
           ctx.fillStyle = "black"
           const lineHeight = 5
           const lines = node.name.split("-")
-          let x = node.x
-          let y = node.y - lineHeight
+          let x = node.x ?? 0;
+          let y = (node.y ?? 0) - lineHeight;
           for (let i = 0; i < lines.length; ++i) {
             ctx.fillText(lines[i], x, y)
             y += lineHeight

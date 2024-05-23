@@ -1,4 +1,13 @@
-const ArticleList = ({articleSettings}) => {
+import * as React from 'react';
+
+interface ArticleSettings {
+  [key: string]: {
+    url: string;
+    category: string;
+  };
+}
+
+const ArticleList = ({articleSettings}: {articleSettings: ArticleSettings}) => {
   const modifiedObject = Object.values(articleSettings).map((value, key) => {
     return (
       <div>
@@ -13,5 +22,4 @@ const ArticleList = ({articleSettings}) => {
   )
 }
 
-export default ArticleList
-
+export default ArticleList;
