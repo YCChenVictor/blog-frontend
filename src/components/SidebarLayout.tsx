@@ -3,8 +3,8 @@ import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { HashLink } from 'react-router-hash-link';
 
 import WordCounts from './WordCounts.jsx';
-import LinkPage from './LinkPage.jsx';
-import Gpt from './AutoArticle/Gpt.jsx';
+import LinkPage from './LinkPage';
+import Gpt from './AutoArticle/Gpt';
 
 const SidebarLayout = ({
   isCollapsed,
