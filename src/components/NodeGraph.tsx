@@ -38,9 +38,6 @@ const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;})
     if (nodes === undefined || links === undefined) {
       return false
     }
-    const articleSettings: { [key: string]: { url: string; date: string; category: string; publish: boolean } } = {
-      // Add your existing articleSettings here
-    };
 
     nodes.map((node: { id: number; val: number }) => { // refine this size modification
       if (node['id'] === 1) {
@@ -49,9 +46,8 @@ const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;})
         return node['val'] = 1
       }
     })
-    const nodeCondition = Object.keys(articleSettings).map(key => {
-      const { url, publish } = articleSettings[key]
-      return {[url]: publish}
+    const nodeCondition = Object.entries(articleSettings).map(([key, value], index) => {
+      return {[value["url"]]: value["publish"]}
     }).reduce((result, currentObj) => {
       return { ...result, ...currentObj }
     }, {})
