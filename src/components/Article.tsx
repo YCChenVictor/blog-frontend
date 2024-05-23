@@ -98,21 +98,21 @@ function Article({setting}: ArticleComponent) {
                 <h1 className="text-center">{`(${category}) ${articleName}`}</h1>
               ),
               h2: ({ node, ...props }) => {
-                if (props.className === 'math math-inline' && props.children) {
+                if (props.children) {
                   return <h2 id={generateSlug(props.children.toString())} {...props}></h2>
                 } else {
                   return null;
                 }
               },
               h3: ({ node, ...props }) => {
-                if (props.className === 'math math-inline' && props.children) {
+                if (props.children) {
                   return <h3 id={generateSlug(props.children.toString())} {...props}></h3>
                 } else {
                   return null;
                 }
               },
               h4: ({ node, ...props }) => {
-                if (props.className === 'math math-inline' && props.children) {
+                if (props.children) {
                   return <h4 id={generateSlug(props.children.toString())} {...props}></h4>
                 } else {
                   return null;
