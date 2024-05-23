@@ -10,7 +10,6 @@ import RenderCodeBlock from './RenderCodeBlock'
 import RenderMermaid from './RenderMermaid'
 import ScrollToTopButton from './ScrollToTopButton'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
-}
 
 function Article({setting}: {
   setting: {

@@ -3,9 +3,6 @@ import ForceGraph2D from 'react-force-graph-2d'
 import articleSettings from '../data/articleSettings.json'
 import axios from 'axios'
 
-const NodeGraph = ({category}) => {
-  const loggedIn = true // should fix it with true logics
-
 const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;}) => {
   const [nodes, setNodes] = useState([])
   const [links, setLinks] = useState([])
@@ -41,6 +38,10 @@ const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;})
     if (nodes === undefined || links === undefined) {
       return false
     }
+    const articleSettings: { [key: string]: { url: string; date: string; category: string; publish: boolean } } = {
+      // Add your existing articleSettings here
+    };
+
     nodes.map((node: { id: number; val: number }) => { // refine this size modification
       if (node['id'] === 1) {
         return node['val'] = 5
