@@ -1,12 +1,4 @@
 module.exports = {
-  root: true, 
-  parserOptions: {
-    ecmaVersion: 2020, 
-    sourceType: 'module', 
-    ecmaFeatures: {
-      jsx: true
-    }
-  },
   settings: {
     react: {
       version: 'detect'
@@ -18,16 +10,16 @@ module.exports = {
     amd: true, 
     node: true 
   },
-  'parser': '@typescript-eslint/parser',
+  parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:prettier/recommended' // Make this the last element so prettier config overrides other formatting rules
+    'plugin:prettier/recommended'
   ],
   rules: {
     'max-len': ['error', {
       code: 80,
-      ignorePattern: '^\\s*<', // ignores lines that start with a JSX opening tag
+      ignorePattern: '^\\s*<',
       ignoreComments: true 
     }],
     'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }],
