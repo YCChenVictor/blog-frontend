@@ -4,7 +4,6 @@ import remarkGfm from 'remark-gfm'
 import { marked } from 'marked'
 import remarkMath from 'remark-math'
 import rehypeMathjax from 'rehype-mathjax'
-
 import SidebarLayout from './SidebarLayout'
 import RenderImage from './RenderImage'
 import RenderCodeBlock from './RenderCodeBlock'
@@ -24,7 +23,7 @@ interface ArticleComponent {
 function Article({setting}: ArticleComponent) {
   const filePath = `posts/${setting['url']}.md`
   const [markdownContent, setMarkdownContent] = useState('')
-  const [rawTitles, setRawTitles] = useState([])
+  const [rawTitles, setRawTitles] = useState<Array<{ content: string, tagName: string }>>([])
   const [loggedIn, setLoggedIn] = useState(true)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [showMobileSidebar, setShowMobileSidebar] = useState(false)
@@ -46,11 +45,12 @@ function Article({setting}: ArticleComponent) {
       const parsedHTML = marked.parse(text)
       const container = document.createElement('div')
       container.innerHTML = parsedHTML
-      const tags = Array.from(container.querySelectorAll('h2, h3, h4, h5, h6')).map((tag) => ({
-        content: tag.textContent,
-        tagName: tag.tagName,
-      }));
-      // setRawTitles(tags);
+      const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
+      const tags = tagNames
+        .flatMap(tagName => Array.from(container.querySelectorAll(tagName)))
+        .map(tag => ({ content: tag.textContent || '', tagName: tag.tagName }));
+
+      setRawTitles(tags);
     }
     importFileAndFetchContent()
   }, []);
@@ -68,31 +68,27 @@ function Article({setting}: ArticleComponent) {
   return (
     <div className='bg-gray-400 flex'>
       <div className='' ref={componentSidebarRef}>
-        {rawTitles.length > 0 ? (
-          <div className="sticky top-0 h-screen overflow-y-auto">
-            <div className="hidden lg:block"> {/* Hide SidebarLayout on screens smaller than "lg" */}
-              <div className="p-2"> {/* Add these classes */}
-                <button
-                  className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                  onClick={() => {
-                    setIsCollapsed(!isCollapsed)
-                  }}
-                >
-                  {/* <MenuOutlinedIcon /> */}
-                </button>
-                <SidebarLayout
-                  isCollapsed={isCollapsed}
-                  loggedIn={loggedIn}
-                  setting={setting}
-                  articleContent={markdownContent}
-                  rawTitles={rawTitles}
-                />
-              </div>
-            </div>
+      <div className="sticky top-0 h-screen overflow-y-auto">
+        <div className="hidden lg:block"> {/* Hide SidebarLayout on screens smaller than "lg" */}
+          <div className="p-2"> {/* Add these classes */}
+            <button
+              className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+              onClick={() => {
+                setIsCollapsed(!isCollapsed)
+              }}
+            >
+              {/* <MenuOutlinedIcon /> */}
+            </button>
+            <SidebarLayout
+              isCollapsed={isCollapsed}
+              loggedIn={loggedIn}
+              setting={setting}
+              articleContent={markdownContent}
+              rawTitles={rawTitles}
+            />
           </div>
-        ) : (
-          <div>Loading...</div>
-        )}
+        </div>
+      </div>
       </div>
       <div id='article' className={`p-8 ${showMobileSidebar ? 'backdrop-brightness-50' : ''}`}>
         <div>
