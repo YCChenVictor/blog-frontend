@@ -6,7 +6,7 @@ import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
 import UserInNav from './components/UserInNav';
 import ArticleList from './components/ArticleList';
-// import EditArticle from './components/AutoArticle/EditArticle';
+// import EditArticle from './components/AutoArticle/EditArticle'
 import RenderFrontend from './components/AutoFrontend/RenderFrontend';
 import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
@@ -15,8 +15,7 @@ const App: React.FC = () => {
   const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  
-  const articleRoutes = Object.entries(settings).map(([key, value], index) => (
+  const articleRoutes = Object.entries(settings).map(([, value], index) => (
     <Route
       key={index}
       path={`blog/${value['url']}`}
@@ -25,7 +24,9 @@ const App: React.FC = () => {
   ));
 
   const fetchRequireData = async () => {
-    if(!helloWorldUrl) return
+    if (!helloWorldUrl) {
+      return;
+    }
 
     try {
       const isServerOn = await axios.get(helloWorldUrl);
@@ -49,7 +50,11 @@ const App: React.FC = () => {
       <nav className="flex items-center justify-between bg-gray-700 p-4">
         <ul className="bg-gray-700">
           <a href="/" className="m-0 p-0">
-            <img className="w-16 rounded-full" src={process.env.REACT_APP_PUBLIC_URL + 'assets/img/title.jpeg'} alt="title" />
+            <img
+              className="w-16 rounded-full"
+              src={process.env.REACT_APP_ROOT_URL + 'assets/img/title.jpeg'}
+              alt="title"
+            />
           </a>
         </ul>
         <ul className="flex items-center space-x-4 ml-auto p-6">
@@ -60,7 +65,11 @@ const App: React.FC = () => {
             Software
           </a>
         </ul>
-        {serverOn as boolean ? <ul className="space-x-4"><UserInNav /></ul> : null}
+        {(serverOn as boolean) ? (
+          <ul className="space-x-4">
+            <UserInNav />
+          </ul>
+        ) : null}
       </nav>
       <Router>
         <div className="">
@@ -74,7 +83,8 @@ const App: React.FC = () => {
             />
             <Route
               path="/blog/gene"
-              element={<Articles category={'gene'} loggedIn={loggedIn} />} />
+              element={<Articles category={'gene'} loggedIn={loggedIn} />}
+            />
             <Route
               path="/blog/aesthetics"
               element={<Articles category={'aesthetics'} loggedIn={loggedIn} />}
@@ -85,7 +95,7 @@ const App: React.FC = () => {
             />
             <Route
               path="/auto-frontend"
-              element={<RenderFrontend isLoggedIn={loggedIn}/>}
+              element={<RenderFrontend isLoggedIn={loggedIn} />}
             />
             {articleRoutes}
           </Routes>
@@ -93,6 +103,6 @@ const App: React.FC = () => {
       </Router>
     </div>
   );
-}
+};
 
 export default App;

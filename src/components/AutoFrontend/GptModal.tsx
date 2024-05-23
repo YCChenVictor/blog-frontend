@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import superFetch from '../../utils/apiUtils'; 
+import superFetch from '../../utils/apiUtils';
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,17 +10,19 @@ interface ModalProps {
 }
 
 const GptModal: FC<ModalProps> = ({ isOpen, isLoggedIn, handleClose }) => {
-  const [request, setRequest] = useState('')
+  const [request, setRequest] = useState('');
 
-  const handleRequestChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleRequestChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setRequest(event.target.value);
   };
 
   const handleSendRequest = async () => {
     await superFetch('your-post-endpoint', {
       method: 'POST',
-      headers: { "Authorization": `Bearer ${localStorage['blog logged in']}` },
-      body: '', // This may be wrong
+      headers: { Authorization: `Bearer ${localStorage['blog logged in']}` },
+      body: '' // This may be wrong
     });
   };
 
@@ -41,5 +43,5 @@ const GptModal: FC<ModalProps> = ({ isOpen, isLoggedIn, handleClose }) => {
     </div>
   );
 };
-  
+
 export default GptModal;

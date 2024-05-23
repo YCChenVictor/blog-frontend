@@ -1,58 +1,69 @@
-import React, { useState, useEffect, useRef } from "react"
-import ForceGraph2D from "react-force-graph-2d"
-import articleSettings from '../data/articleSettings.json'
-import axios from "axios"
+import React, { useState, useEffect, useRef } from 'react';
+import ForceGraph2D from 'react-force-graph-2d';
+import articleSettings from '../data/articleSettings.json';
+import axios from 'axios';
 
-const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;}) => {
-  const [nodes, setNodes] = useState([])
-  const [links, setLinks] = useState([])
-  const forceRef = useRef()
+const NodeGraph = ({
+  category,
+  loggedIn
+}: {
+  category: string;
+  loggedIn: boolean;
+}) => {
+  const [nodes, setNodes] = useState([]);
+  const [links, setLinks] = useState([]);
+  const forceRef = useRef();
 
-  const handleNodeClick = (node: {url: string}) => {
-    const url = window.location.href
-    const pathname = window.location.pathname
-    const baseUrl = url.replace(pathname, "")
+  const handleNodeClick = (node: { url: string }) => {
+    const url = window.location.href;
+    const pathname = window.location.pathname;
+    const baseUrl = url.replace(pathname, '');
     if (node) {
-      window.open(baseUrl + node.url, '_blank')
+      window.open(baseUrl + node.url, '_blank');
     }
-  }
+  };
 
   const generateNodes = async (category: string) => {
-    const url = `http://localhost:5000/node-graph?category=${category}`
+    const url = `http://localhost:5000/node-graph?category=${category}`;
     const postData = {
       category: category
-    }
-    axios.post(url, postData)
-      .then(response => {
-        console.log('Response:', response.data)
+    };
+    axios
+      .post(url, postData)
+      .then((response) => {
+        console.log('Response:', response.data);
       })
-      .catch(error => {
-        console.error('Error:', error)
-      })
-  }
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
 
   const fetchNodeData = async () => {
-    const nodeData = await import(`../data/${category}/nodeGraph.json`) // After deploy backend, should get from backend
-    let { nodes, links } = nodeData
+    const nodeData = await import(`../data/${category}/nodeGraph.json`); // After deploy backend, should get from backend
+    let { nodes, links } = nodeData;
 
     if (nodes === undefined || links === undefined) {
-      return false
+      return false;
     }
-    nodes.map((node: { id: number; val: number }) => { // refine this size modification
-      if (node['id'] === 1) {
-        return node['val'] = 5
-      } else {
-        return node['val'] = 1
-      }
-    })
-    const nodeCondition = Object.entries(articleSettings).map(([key, value], index) => {
-      return {[value["url"]]: value["publish"]}
-    }).reduce((result, currentObj) => {
-      return { ...result, ...currentObj }
-    }, {})
 
-    const removedNode: string[] = []
-    nodes = nodes.filter((node: {id: string, url: string}) => {
+    nodes.map((node: { id: number; val: number }) => {
+      // refine this size modification
+      if (node['id'] === 1) {
+        return (node['val'] = 5);
+      } else {
+        return (node['val'] = 1);
+      }
+    });
+    const nodeCondition = Object.entries(articleSettings)
+      .map(([key, value], index) => {
+        return { [value['url']]: value['publish'] };
+      })
+      .reduce((result, currentObj) => {
+        return { ...result, ...currentObj };
+      }, {});
+
+    const removedNode: string[] = [];
+    nodes = nodes.filter((node: { id: string; url: string }) => {
       if (nodeCondition[node.url.replace('/blog/', '')]) {
         return true;
       } else {
@@ -60,55 +71,57 @@ const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;})
         return false;
       }
     });
-    links = links.filter((link: {source: string, target: string}) => {
-      if (removedNode.includes(link["source"]) || removedNode.includes(link["target"])) {
+    links = links.filter((link: { source: string; target: string }) => {
+      if (
+        removedNode.includes(link['source']) ||
+        removedNode.includes(link['target'])
+      ) {
         return false;
       } else {
         return true;
       }
     });
-    setNodes(nodes)
-    setLinks(links)
-    return true
-  }
+    setNodes(nodes);
+    setLinks(links);
+    return true;
+  };
 
-  useEffect(() => { // please extract following as method
-    if(forceRef && forceRef.current) {
-      (forceRef.current as any).zoom(2, 300) // fix it later
+  useEffect(() => {
+    // please extract following as method
+    if (forceRef && forceRef.current) {
+      (forceRef.current as any).zoom(2, 300); // fix it later
     }
 
     fetchNodeData().then((success) => {
-      if (!success) return
-      setTimeout(function() { // Give it time to render
-        const linkLengthConstant = 20
+      if (!success) return;
+      setTimeout(function () {
+        // Give it time to render
+        const linkLengthConstant = 20;
         if (forceRef.current) {
-          (forceRef.current as any).d3Force('link').distance((link: any) => { // Explicitly define the type of 'link' as any
+          (forceRef.current as any).d3Force('link').distance((link: any) => {
+            // Explicitly define the type of 'link' as any
             if (link.source.id === 1) {
-              return linkLengthConstant
+              return linkLengthConstant;
             } else {
-              return linkLengthConstant * (link.source.val + link.target.val) 
+              return linkLengthConstant * (link.source.val + link.target.val);
             }
-          })
+          });
         }
         // forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400) // fix it later
-      }, 500)
-    })
-  }, [])
+      }, 500);
+    });
+  }, []);
 
-  return(
-    <div style={{
-      }}
-    >
-      {true ? (
+  return (
+    <div>
+      {loggedIn ? (
         <button
           onClick={() => generateNodes(category)}
           className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
         >
           Draw Again
         </button>
-      ) : (
-        null
-      )}
+      ) : null}
       <ForceGraph2D
         ref={forceRef}
         graphData={{ nodes, links }}
@@ -120,23 +133,23 @@ const NodeGraph = ({category, loggedIn}: {category: string; loggedIn: boolean;})
         d3VelocityDecay={0.6} // Decrease velocity decay to reduce node overlap
         d3AlphaDecay={0.03} // Decrease alpha decay to increase simulation time
         onNodeClick={handleNodeClick} // redirect to the page when click node
-        nodeCanvasObjectMode={() => "after"}
+        nodeCanvasObjectMode={() => 'after'}
         nodeCanvasObject={(node, ctx) => {
-          ctx.textAlign = "center"
-          ctx.font = `5px Sans-Serif`
-          ctx.fillStyle = "black"
-          const lineHeight = 5
-          const lines = node.name.split("-")
+          ctx.textAlign = 'center';
+          ctx.font = '5px Sans-Serif';
+          ctx.fillStyle = 'black';
+          const lineHeight = 5;
+          const lines = node.name.split('-');
           let x = node.x ?? 0;
           let y = (node.y ?? 0) - lineHeight;
           for (let i = 0; i < lines.length; ++i) {
-            ctx.fillText(lines[i], x, y)
-            y += lineHeight
+            ctx.fillText(lines[i], x, y);
+            y += lineHeight;
           }
         }}
       />
     </div>
-  )
-}
+  );
+};
 
-export default NodeGraph
+export default NodeGraph;

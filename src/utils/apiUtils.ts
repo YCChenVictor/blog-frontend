@@ -3,12 +3,11 @@ interface RequestOptions {
   headers?: Record<string, string>;
   body?: string;
 }
-  
+
 const superFetch = async (
   endpoint: string,
   options: RequestOptions
 ): Promise<Response> => {
-  debugger
   const url = `${process.env.REACT_APP_ENDPOINT_DEV}/${endpoint}`;
 
   try {
@@ -21,4 +20,4 @@ const superFetch = async (
   }
 };
 
-export default superFetch
+export default superFetch;

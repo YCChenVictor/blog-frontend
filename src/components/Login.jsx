@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import Modal from "react-modal"
+import Modal from 'react-modal'
 
 function Login() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [modalOpen, setModalOpen] = useState(true)
 
   const PostLoginInfo = (params) => {
     fetch(`${process.env.HOST_DEV}/login`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(params),
     }).then((res) => {
@@ -30,43 +30,43 @@ function Login() {
       className='rounded-lg md:h-auto fixed inset-0 flex items-center justify-center'
       appElement={document.getElementById('root')}
     >
-      <div className="p-6">
-        <h1 className="text-xl font-semibold text-gray-900 mb-4">
+      <div className='p-6'>
+        <h1 className='text-xl font-semibold text-gray-900 mb-4'>
           Login
         </h1>
-        <form className="space-y-4">
+        <form className='space-y-4'>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className='block text-sm font-medium text-gray-700'>
               Email
               <input
-                type="text"
+                type='text'
                 value={email}
-                placeholder="Email"
+                placeholder='Email'
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:border-gray-600"
+                className='mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:border-gray-600'
               />
             </label>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className='block text-sm font-medium text-gray-700'>
               Password
               <input
-                type="password"
+                type='password'
                 value={password}
-                placeholder="Password"
+                placeholder='Password'
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:border-gray-600"
+                className='mt-1 focus:ring-blue-300 focus:border-blue-300 block w-full sm:text-sm border-gray-300 rounded-md dark:border-gray-600'
               />
             </label>
           </div>
-          <div className="flex justify-between">
+          <div className='flex justify-between'>
             <button
               onClick={(e) => {
                 e.preventDefault()
                 PostLoginInfo({ email: email, password: password })
                 setModalOpen(!modalOpen)
               }}
-              className="btn-primary"
+              className='btn-primary'
             >
               Login
             </button>
@@ -75,7 +75,7 @@ function Login() {
                 e.preventDefault()
                 setModalOpen(!modalOpen)
               }}
-              className="btn-secondary"
+              className='btn-secondary'
             >
               Close
             </button>

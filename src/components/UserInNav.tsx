@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import SignUpLogin from './SignUpLogin.jsx'
+import React from 'react';
+import SignUpLogin from './SignUpLogin.jsx';
 
 const UserInNav: React.FC = (loggedIn: boolean) => {
   return (
@@ -15,7 +15,7 @@ const UserInNav: React.FC = (loggedIn: boolean) => {
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default UserInNav
+export default UserInNav;

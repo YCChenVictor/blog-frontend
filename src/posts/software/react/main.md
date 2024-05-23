@@ -287,6 +287,10 @@ This is a simple setup for creating Jest test files in a React project. You can 
 
 **run test by running npm run test**
 
+### Linter
+
+refer to https://react-typescript-cheatsheet.netlify.app/docs/basic/linting/
+
 ### Typescript
 
 #### Install
