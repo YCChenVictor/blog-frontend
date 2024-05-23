@@ -9,7 +9,7 @@ import RenderImage from './RenderImage'
 import RenderCodeBlock from './RenderCodeBlock'
 import RenderMermaid from './RenderMermaid'
 import ScrollToTopButton from './ScrollToTopButton'
-// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 
 interface ArticleComponent {
   setting: {
@@ -77,7 +77,7 @@ function Article({setting}: ArticleComponent) {
                 setIsCollapsed(!isCollapsed)
               }}
             >
-              {/* <MenuOutlinedIcon /> */}
+              <MenuOutlinedIcon />
             </button>
             <SidebarLayout
               isCollapsed={isCollapsed}
