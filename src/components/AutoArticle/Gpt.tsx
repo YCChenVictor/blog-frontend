@@ -28,7 +28,7 @@ function Gpt() {
       });
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCreateRequest(e.target.value);
   };
 
@@ -46,7 +46,7 @@ function Gpt() {
           }
         }
       );
-      let article = response.data.message.content;
+      const article = response.data.message.content;
       localStorage['article'] = article;
       setPreviewArticle(article);
     } catch (error) {
