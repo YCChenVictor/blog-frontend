@@ -7,7 +7,7 @@ const RenderMermaid = (props: React.PropsWithChildren<{}>) => {
   useEffect(() => {
     const renderMermaid = async () => {
       // const svg = await mermaid.render(markId.current, String(props.children));
-      setSvg(svg.svg);
+      // setSvg(svg.svg);
     };
     renderMermaid();
   }, []);

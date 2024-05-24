@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import ForceGraph2D from 'react-force-graph-2d';
+import ForceGraph2D from 'react-force-graph-2d';
 import articleSettings from '../data/articleSettings.json';
 import axios from 'axios';
 
@@ -122,7 +122,7 @@ const NodeGraph = ({
           Draw Again
         </button>
       ) : null}
-      {/* <ForceGraph2D
+      <ForceGraph2D
         ref={forceRef}
         graphData={{ nodes, links }}
         height={window.innerHeight}
@@ -140,14 +140,14 @@ const NodeGraph = ({
           ctx.fillStyle = 'black';
           const lineHeight = 5;
           const lines = node.name.split('-');
-          let x = node.x ?? 0;
+          const x = node.x ?? 0;
           let y = (node.y ?? 0) - lineHeight;
           for (let i = 0; i < lines.length; ++i) {
             ctx.fillText(lines[i], x, y);
             y += lineHeight;
           }
         }}
-      /> */}
+      />
     </div>
   );
 };

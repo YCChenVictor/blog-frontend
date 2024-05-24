@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Login from './Login.jsx';
-import SignUp from './SignUp.jsx';
+import Login from './Login.js';
+import SignUp from './SignUp.js';
 
 function SignUpLogin() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);

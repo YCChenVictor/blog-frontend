@@ -2,7 +2,7 @@ import React from 'react';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { HashLink } from 'react-router-hash-link';
 
-import WordCounts from './WordCounts.jsx';
+import WordCounts from './WordCounts';
 import LinkPage from './LinkPage';
 // import Gpt from './AutoArticle/Gpt';
 
