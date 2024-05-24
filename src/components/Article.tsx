@@ -39,12 +39,24 @@ function Article({
 
   const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    // try to dynamic import from filePath
     const importFileAndFetchContent = async () => {
       const fileModule = await import(`../${filePath}`);
       const response = await fetch(fileModule.default);
-      const parsedHTML = await marked.parse(markdownContent);
-      container.current.innerHTML = parsedHTML;
+      const text = await response.text();
+      setMarkdownContent(text);
+
+      const parsedHTML = await marked.parse(text);
+      const container = document.createElement('div');
+      container.innerHTML = parsedHTML;
+      const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
+      const tags = tagNames
+        .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
+        .map((tag) => ({
+          content: tag.textContent || '',
+          tagName: tag.tagName
+        }));
+
+      setRawTitles(tags);
     };
     importFileAndFetchContent();
   }, []);
