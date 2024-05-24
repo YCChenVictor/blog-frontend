@@ -1,5 +1,5 @@
 const RenderTable = (props) => {
-  console.log(props)
-}
+  console.log(props);
+};
 
-export default RenderTable
+export default RenderTable;

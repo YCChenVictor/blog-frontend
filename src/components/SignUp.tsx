@@ -1,37 +1,38 @@
 import React, { useState } from 'react';
-// import Modal from 'react-modal';
+import Modal from 'react-modal';
 
 function SignUp() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [modalOpen, setModalOpen] = useState(true)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [modalOpen, setModalOpen] = useState(true);
 
   const PostSignUpInfo = (params) => {
     fetch('http://localhost:5000/signup', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ params }),
-    }).then((res) => {
-      return res.json()
-    }).then((data) => {
-      localStorage.setItem('token', data.token);
-    }).catch(error => {
-      console.log(error)
+      body: JSON.stringify({ params })
     })
-  }
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        localStorage.setItem('token', data.token);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  return(
+  return (
     <Modal
       isOpen={modalOpen}
-      className='rounded-lg md:h-auto fixed inset-0 flex items-center justify-center'
+      className="rounded-lg md:h-auto fixed inset-0 flex items-center justify-center"
       appElement={document.getElementById('root')}
     >
       <div className="p-6">
-        <h1 className="text-xl font-semibold text-gray-900 mb-4">
-          Sign Up
-        </h1>
+        <h1 className="text-xl font-semibold text-gray-900 mb-4">Sign Up</h1>
         <form className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -59,15 +60,17 @@ function SignUp() {
           </div>
           <div className="flex justify-between">
             <button
-              onClick={() => PostSignUpInfo({ email: email, password: password })}
+              onClick={() =>
+                PostSignUpInfo({ email: email, password: password })
+              }
               className="btn-primary"
             >
               Sign Up
             </button>
             <button
               onClick={(e) => {
-                e.preventDefault()
-                setModalOpen(!modalOpen)
+                e.preventDefault();
+                setModalOpen(!modalOpen);
               }}
               className="btn-secondary"
             >
@@ -77,7 +80,7 @@ function SignUp() {
         </form>
       </div>
     </Modal>
-  )
+  );
 }
 
 export default SignUp;

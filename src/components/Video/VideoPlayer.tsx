@@ -1,5 +1,5 @@
 import React from 'react';
-  
+
 const VideoPlayer = ({ videoUrl }) => {
   return (
     <div>
@@ -13,5 +13,5 @@ const VideoPlayer = ({ videoUrl }) => {
     </div>
   );
 };
-  
+
 export default VideoPlayer;

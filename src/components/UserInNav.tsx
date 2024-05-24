@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpLogin from './SignUpLogin.jsx';
+import SignUpLogin from './SignUpLogin';
 
 const UserInNav: React.FC = (loggedIn: boolean) => {
   return (

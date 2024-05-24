@@ -1,10 +1,10 @@
 import React from 'react';
-import VideoPlayer from './VideoPlayer.jsx'
+import VideoPlayer from './VideoPlayer';
 
 function Youtube() {
   const categories = {
-    'music': ['TNHDNHtghK4']
-  }
+    music: ['TNHDNHtghK4']
+  };
 
   // useEffect(() => {
   //   fetch('http://localhost:3000/youtube_v3/') // do not know the best way to get it
@@ -16,7 +16,7 @@ function Youtube() {
   //       })
   //     })
   //     .catch(error => {
-  //       console.log(error);    
+  //       console.log(error);
   //     });
   // }, [])
 
@@ -27,9 +27,11 @@ function Youtube() {
         <li key={category}>
           <h2>{category}</h2>
           <ul>
-            {videos.map(videoId => (
+            {videos.map((videoId) => (
               <li key={videoId}>
-                <VideoPlayer videoUrl={`https://www.youtube.com/watch?v=${videoId}`} />
+                <VideoPlayer
+                  videoUrl={`https://www.youtube.com/watch?v=${videoId}`}
+                />
               </li>
             ))}
           </ul>

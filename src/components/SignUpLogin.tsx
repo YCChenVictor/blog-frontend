@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Login from './Login.js';
-import SignUp from './SignUp.js';
+import Login from './Login';
+import SignUp from './SignUp';
 
 function SignUpLogin() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -14,14 +14,13 @@ function SignUpLogin() {
         {showLoginButton ? (
           <button
             onClick={() => {
-              setLoginModalOpen(!loginModalOpen)
+              setLoginModalOpen(!loginModalOpen);
             }}
             className="px-4 py-2 text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:outline-none"
-          >Login
+          >
+            Login
           </button>
-        ) : (
-          null
-        )}
+        ) : null}
         {showSignupButton ? (
           <button
             onClick={() => setSignUpModalOpen(!signUpModalOpen)}
@@ -29,22 +28,10 @@ function SignUpLogin() {
           >
             Signup
           </button>
-        ) : (
-          null
-        )}
+        ) : null}
       </div>
-      {loginModalOpen ? (
-        <Login
-        />
-      ) : (
-        null
-      )}
-      {signUpModalOpen ? (
-        <SignUp
-        />
-      ) : (
-        null
-      )}
+      {loginModalOpen ? <Login /> : null}
+      {signUpModalOpen ? <SignUp /> : null}
     </div>
   );
 }

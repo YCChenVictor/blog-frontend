@@ -11,7 +11,7 @@ const RenderCodeBlock = (props: {
   if (props.inline === true || !props.className) {
     language = 'inline';
   } else {
-    let match = /language-(\w+)/.exec(props['className'] || '');
+    const match = /language-(\w+)/.exec(props['className'] || '');
     language = match ? match[1] : 'inline';
   }
 
