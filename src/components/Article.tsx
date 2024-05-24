@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { marked } from 'marked'; // may need to remove this one
 import remarkMath from 'remark-math';
@@ -49,7 +49,7 @@ function Article({
     importFileAndFetchContent();
   }, []);
 
-  const generateSlug = (string: String) => {
+  const generateSlug = (string: string) => {
     let str = string.replace(/^\s+|\s+$/g, '');
     str = str.toLowerCase();
     str = str
@@ -93,7 +93,7 @@ function Article({
         className={`p-8 ${showMobileSidebar ? 'backdrop-brightness-50' : ''}`}
       >
         <div>
-          <ReactMarkdown
+          {/* <ReactMarkdown
             components={{
               h1: () => (
                 <h1 className="text-center">{`(${category}) ${articleName}`}</h1>
@@ -175,7 +175,7 @@ function Article({
             // rehypePlugins={[rehypeMathjax]}
           >
             {markdownContent}
-          </ReactMarkdown>
+          </ReactMarkdown> */}
         </div>
       </div>
       <div className="lg:hidden">

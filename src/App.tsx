@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Articles from './components/Articles';
@@ -10,6 +11,7 @@ import ArticleList from './components/ArticleList';
 // import RenderFrontend from './components/AutoFrontend/RenderFrontend';
 import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
+// import ErrorBoundary from './components/ErrorBoundary';
 
 const App: React.FC = () => {
   const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
@@ -65,9 +67,7 @@ const App: React.FC = () => {
           </a>
         </ul>
         {(serverOn as boolean) ? (
-          <ul className="space-x-4">
-            {/* <UserInNav /> */}
-          </ul>
+          <ul className="space-x-4">{/* <UserInNav /> */}</ul>
         ) : null}
       </nav>
       <Router>
@@ -96,7 +96,7 @@ const App: React.FC = () => {
               path="/auto-frontend"
               // element={<RenderFrontend isLoggedIn={loggedIn} />}
             />
-            {articleRoutes}
+            {/* {articleRoutes} */}
           </Routes>
         </div>
       </Router>
