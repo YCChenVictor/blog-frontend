@@ -8,10 +8,8 @@ import Article from './components/Article';
 // import UserInNav from './components/UserInNav';
 import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
-// import RenderFrontend from './components/AutoFrontend/RenderFrontend';
 import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
-// import ErrorBoundary from './components/ErrorBoundary';
 
 const App: React.FC = () => {
   const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
@@ -96,7 +94,7 @@ const App: React.FC = () => {
               path="/auto-frontend"
               // element={<RenderFrontend isLoggedIn={loggedIn} />}
             />
-            {/* {articleRoutes} */}
+            {articleRoutes}
           </Routes>
         </div>
       </Router>
