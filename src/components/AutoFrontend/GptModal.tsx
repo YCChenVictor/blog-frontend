@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 import superFetch from '../../utils/apiUtils';
 
 interface ModalProps {
@@ -30,14 +30,14 @@ const GptModal: FC<ModalProps> = ({ isOpen, isLoggedIn, handleClose }) => {
     <div>
       {isLoggedIn && (
         <div>
-          <Modal isOpen={isOpen} onRequestClose={handleClose}>
+          {/* <Modal isOpen={isOpen} onRequestClose={handleClose}>
             <textarea
               placeholder="Request GPT for component"
               value={request}
               onChange={handleRequestChange}
             />
             <button onClick={handleSendRequest}>Send Request</button>
-          </Modal>
+          </Modal> */}
         </div>
       )}
     </div>

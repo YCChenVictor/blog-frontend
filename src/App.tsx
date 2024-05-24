@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Articles from './components/Articles';
 import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
-import UserInNav from './components/UserInNav';
+// import UserInNav from './components/UserInNav';
 import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
-import RenderFrontend from './components/AutoFrontend/RenderFrontend';
+// import RenderFrontend from './components/AutoFrontend/RenderFrontend';
 import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
 
@@ -17,7 +17,6 @@ const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const articleRoutes = Object.entries(settings).map(([, value], index) => (
     <Route
-      key={index}
       path={`blog/${value['url']}`}
       element={<Article setting={value} />}
     />
@@ -67,7 +66,7 @@ const App: React.FC = () => {
         </ul>
         {(serverOn as boolean) ? (
           <ul className="space-x-4">
-            <UserInNav />
+            {/* <UserInNav /> */}
           </ul>
         ) : null}
       </nav>
@@ -95,7 +94,7 @@ const App: React.FC = () => {
             />
             <Route
               path="/auto-frontend"
-              element={<RenderFrontend isLoggedIn={loggedIn} />}
+              // element={<RenderFrontend isLoggedIn={loggedIn} />}
             />
             {articleRoutes}
           </Routes>

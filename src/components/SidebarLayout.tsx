@@ -4,7 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 
 import WordCounts from './WordCounts.jsx';
 import LinkPage from './LinkPage';
-import Gpt from './AutoArticle/Gpt';
+// import Gpt from './AutoArticle/Gpt';
 
 const SidebarLayout = ({
   isCollapsed,
@@ -79,7 +79,7 @@ const SidebarLayout = ({
         <h3 className="p-4">Attributes</h3>
         <div className="p-4">
           <WordCounts articleContent={articleContent} />
-          {loggedIn ? <Gpt /> : <div>{}</div>}
+          {/* {loggedIn ? <Gpt /> : <div>{}</div>} */}
           {setting.publish ? (
             <LinkPage articleUrl={setting['url']} />
           ) : (

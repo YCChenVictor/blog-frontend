@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
+// import Modal from 'react-modal';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 
@@ -73,7 +73,7 @@ function Gpt() {
           GPT
         </button>
       ) : null} */}
-      <Modal
+      {/* <Modal
         isOpen={Boolean(modalOpen)}
         onRequestClose={() => setModalOpen(false)}
         className="p-4"
@@ -120,7 +120,7 @@ function Gpt() {
           </button>
           <ReactMarkdown>{previewArticle}</ReactMarkdown>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

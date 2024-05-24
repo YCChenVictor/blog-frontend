@@ -1,19 +1,11 @@
 {
   "compilerOptions": {
     "outDir": "build/dist",
-    "module": "preserve",
-    "target": "es5",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
-    "allowJs": true,
+    "module": "esnext",
     "jsx": "react",
-    "moduleResolution": "bundler",
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true
   },
-  "include": ["src", "test"]
+  "include": ["src", "tests"]
 }

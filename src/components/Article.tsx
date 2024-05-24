@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { marked } from 'marked';
+import { marked } from 'marked'; // may need to remove this one
 import remarkMath from 'remark-math';
-import rehypeMathjax from 'rehype-mathjax';
+// import rehypeMathjax from 'rehype-mathjax';
 import SidebarLayout from './SidebarLayout';
 import RenderImage from './RenderImage';
 import RenderCodeBlock from './RenderCodeBlock';
 import RenderMermaid from './RenderMermaid';
 import ScrollToTopButton from './ScrollToTopButton';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 function Article({
   setting
@@ -37,26 +37,14 @@ function Article({
   let articleName = filePath.split('/')[length - 1].split('.')[0];
   articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1);
 
+  const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // try to dynamic import from filePath
     const importFileAndFetchContent = async () => {
       const fileModule = await import(`../${filePath}`);
       const response = await fetch(fileModule.default);
-      const text = await response.text();
-      setMarkdownContent(text);
-
-      const parsedHTML = marked.parse(text);
-      const container = document.createElement('div');
-      container.innerHTML = parsedHTML;
-      const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
-      const tags = tagNames
-        .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
-        .map((tag) => ({
-          content: tag.textContent || '',
-          tagName: tag.tagName
-        }));
-
-      setRawTitles(tags);
+      const parsedHTML = await marked.parse(markdownContent);
+      container.current.innerHTML = parsedHTML;
     };
     importFileAndFetchContent();
   }, []);
@@ -87,7 +75,7 @@ function Article({
                   setIsCollapsed(!isCollapsed);
                 }}
               >
-                <MenuOutlinedIcon />
+                {/* <MenuOutlinedIcon /> */}
               </button>
               <SidebarLayout
                 isCollapsed={isCollapsed}
@@ -184,7 +172,7 @@ function Article({
               }
             }}
             remarkPlugins={[remarkGfm, remarkMath]}
-            rehypePlugins={[rehypeMathjax]}
+            // rehypePlugins={[rehypeMathjax]}
           >
             {markdownContent}
           </ReactMarkdown>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import imageCompression from 'browser-image-compression'
+// import imageCompression from 'browser-image-compression'
 
 function ImageUpload() {
   const [imageFile, setImageFile] = useState(null)

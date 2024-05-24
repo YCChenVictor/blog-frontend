@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import GptModal from './GptModal';
+// import GptModal from './GptModal';
 import StandardRender from '../Interfaces/StandardRender';
 
 const RenderFrontend: FC<StandardRender> = ({ isLoggedIn }) => {
@@ -24,13 +24,13 @@ const RenderFrontend: FC<StandardRender> = ({ isLoggedIn }) => {
       {isLoggedIn && (
         <div>
           <h1>Your Content Goes Here</h1>
-          <GptModal
+          {/* <GptModal
             isOpen={isModalOpen}
             isLoggedIn={isLoggedIn}
             handleClose={handleCloseModal}
           >
             <p>Modal Content</p>
-          </GptModal>
+          </GptModal> */}
         </div>
       )}
     </div>

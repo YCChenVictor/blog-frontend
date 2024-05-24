@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Modal from 'react-modal'
+// import Modal from 'react-modal' // remove react-modal and build it from scratch
 
 function Login() {
   const [email, setEmail] = useState('')
