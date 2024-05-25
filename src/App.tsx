@@ -15,8 +15,9 @@ const App: React.FC = () => {
   const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const articleRoutes = Object.entries(settings).map(([key, value], index) => (
+  const articleRoutes = Object.entries(settings).map(([key, value]) => (
     <Route
+      key={'mykey' + key}
       path={`blog/${value['url']}`}
       element={<Article setting={value} />}
     />
