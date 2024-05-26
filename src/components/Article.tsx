@@ -21,7 +21,7 @@ function Article({
     publish: boolean;
   };
 }) {
-  const filePath = `posts/${setting['url']}.md`;
+  const filePath = `posts-submodule/${setting['url']}.md`;
   const [markdownContent, setMarkdownContent] = useState('');
   const [rawTitles, setRawTitles] = useState<
     Array<{ content: string; tagName: string }>
