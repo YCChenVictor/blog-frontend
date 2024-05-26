@@ -1,3 +1,3 @@
 [submodule "src/posts-submodule"]
 	path = src/posts-submodule
-	url = git@github.com:YCChenVictor/blog-articles.git
+	url = https://github.com/YCChenVictor/blog_backend.git # currently public without ssh key
