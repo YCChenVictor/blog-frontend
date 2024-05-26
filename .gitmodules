@@ -1,0 +1,3 @@
+[submodule "src/posts-submodule"]
+	path = src/posts-submodule
+	url = git@github.com:YCChenVictor/blog-articles.git
