@@ -59,7 +59,7 @@ const App: React.FC = () => {
         </ul>
         <ul className="flex items-center space-x-4 ml-auto p-6">
           <a
-            href="/blog/software"
+            href="/blog/software-dashboard"
             className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition"
           >
             Software
@@ -76,7 +76,7 @@ const App: React.FC = () => {
             <Route path="/" element={<AuthorProfile />} />
             <Route path="/blog" element={<AuthorProfile />} />
             <Route
-              path="/blog/software"
+              path="/blog/software-dashboard"
               element={<Articles category={'software'} loggedIn={loggedIn} />}
             />
             <Route
