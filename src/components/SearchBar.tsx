@@ -27,7 +27,7 @@ const SearchBar = () => {
   const searchResults = searchItems();
 
   return (
-    <div>
+    <div id="search-bar">
       <div>{searchResults.length}</div>
       <input
         type="text"

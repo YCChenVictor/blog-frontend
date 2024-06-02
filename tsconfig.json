@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "outDir": "dist",
+    "target": "esnext",
+    "lib": ["esnext"],
     "module": "esnext",
-    "jsx": "react",
-    "lib": ["dom", "esnext"],
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    // "strict": true,
+    "jsx": "react",
   },
-  "include": ["src", "tests"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

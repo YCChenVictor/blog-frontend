@@ -26,9 +26,9 @@ exports[`App renders App component without crashing 1`] = `
     >
       <a
         className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition"
-        href="/blog/software"
+        href="/blog/software-dashboard"
       >
-        Software
+        Web Development
       </a>
     </ul>
   </nav>

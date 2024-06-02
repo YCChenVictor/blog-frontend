@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-undef
 module.exports = {
+  setupFiles: ['jest-canvas-mock', '<rootDir>/tests/setup.ts'],
   testEnvironment: 'jsdom',
   preset: 'ts-jest',
   transform: {
@@ -11,7 +12,5 @@ module.exports = {
     ],
     '\\.tsx?$': 'ts-jest'
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)',
-  ]
+  transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)']
 };

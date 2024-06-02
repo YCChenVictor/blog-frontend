@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
 import articleSettings from '../data/articleSettings.json';
 import axios from 'axios';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const NodeGraph = ({
   category,
@@ -113,7 +114,7 @@ const NodeGraph = ({
   }, []);
 
   return (
-    <div>
+    <div id="node-graph">
       {loggedIn ? (
         <button
           onClick={() => generateNodes(category)}
@@ -122,32 +123,34 @@ const NodeGraph = ({
           Draw Again
         </button>
       ) : null}
-      <ForceGraph2D
-        ref={forceRef}
-        graphData={{ nodes, links }}
-        height={window.innerHeight}
-        width={window.innerWidth * 0.75}
-        nodeRelSize={5}
-        linkDirectionalArrowRelPos={1}
-        linkDirectionalArrowLength={5}
-        d3VelocityDecay={0.6} // Decrease velocity decay to reduce node overlap
-        d3AlphaDecay={0.03} // Decrease alpha decay to increase simulation time
-        onNodeClick={handleNodeClick} // redirect to the page when click node
-        nodeCanvasObjectMode={() => 'after'}
-        nodeCanvasObject={(node, ctx) => {
-          ctx.textAlign = 'center';
-          ctx.font = '5px Sans-Serif';
-          ctx.fillStyle = 'black';
-          const lineHeight = 5;
-          const lines = node.name.split('-');
-          const x = node.x ?? 0;
-          let y = (node.y ?? 0) - lineHeight;
-          for (let i = 0; i < lines.length; ++i) {
-            ctx.fillText(lines[i], x, y);
-            y += lineHeight;
-          }
-        }}
-      />
+      <ErrorBoundary fallback={<div>Something went wrong</div>}>
+        <ForceGraph2D
+          ref={forceRef}
+          graphData={{ nodes, links }}
+          height={window.innerHeight}
+          width={window.innerWidth * 0.75}
+          nodeRelSize={5}
+          linkDirectionalArrowRelPos={1}
+          linkDirectionalArrowLength={5}
+          d3VelocityDecay={0.6} // Decrease velocity decay to reduce node overlap
+          d3AlphaDecay={0.03} // Decrease alpha decay to increase simulation time
+          onNodeClick={handleNodeClick} // redirect to the page when click node
+          nodeCanvasObjectMode={() => 'after'}
+          nodeCanvasObject={(node, ctx) => {
+            ctx.textAlign = 'center';
+            ctx.font = '5px Sans-Serif';
+            ctx.fillStyle = 'black';
+            const lineHeight = 5;
+            const lines = node.name.split('-');
+            const x = node.x ?? 0;
+            let y = (node.y ?? 0) - lineHeight;
+            for (let i = 0; i < lines.length; ++i) {
+              ctx.fillText(lines[i], x, y);
+              y += lineHeight;
+            }
+          }}
+        />
+      </ErrorBoundary>
     </div>
   );
 };
