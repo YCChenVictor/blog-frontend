@@ -2,7 +2,7 @@ import React from 'react';
 import NodeGraph from './NodeGraph';
 import SearchBar from './SearchBar';
 
-const Articles = ({
+const Dashboard = ({
   category,
   loggedIn
 }: {
@@ -25,4 +25,4 @@ const Articles = ({
   );
 };
 
-export default Articles;
+export default Dashboard;

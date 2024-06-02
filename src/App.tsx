@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
-import Articles from './components/Articles';
+import Dashboard from './components/Dashboard';
 import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
 // import UserInNav from './components/UserInNav';
@@ -77,15 +77,15 @@ const App: React.FC = () => {
             <Route path="/blog" element={<AuthorProfile />} />
             <Route
               path="/blog/software-dashboard"
-              element={<Articles category={'software'} loggedIn={loggedIn} />}
+              element={<Dashboard category={'software'} loggedIn={loggedIn} />}
             />
             <Route
               path="/blog/gene"
-              element={<Articles category={'gene'} loggedIn={loggedIn} />}
+              element={<Dashboard category={'gene'} loggedIn={loggedIn} />}
             />
             <Route
               path="/blog/aesthetics"
-              element={<Articles category={'aesthetics'} loggedIn={loggedIn} />}
+              // element={<Dashboard category={'aesthetics'} loggedIn={loggedIn} />}
             />
             <Route
               path="/blog/article-list"
