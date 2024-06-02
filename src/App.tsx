@@ -62,7 +62,7 @@ const App: React.FC = () => {
             href="/blog/software-dashboard"
             className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition"
           >
-            Software
+            Web Development
           </a>
         </ul>
         {(serverOn as boolean) ? (
