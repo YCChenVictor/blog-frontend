@@ -20,7 +20,7 @@ const SearchBar = () => {
   // array of hashes, {filename: string, content: string}
   const markdownFiles = importAllFiles(
     require.context('../posts-submodule', true, /\.md$/)
-  );
+  ).filter((file) => !file.filename.includes('in-progress'));
 
   useEffect(() => {
     Promise.all(markdownFiles.map(fetchFileContent))
