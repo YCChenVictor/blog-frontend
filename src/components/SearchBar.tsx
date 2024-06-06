@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import searchData from '../data/software/searchBar.json';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -59,21 +58,23 @@ const SearchBar = () => {
         onChange={handleInputChange}
       />
 
-      <ul>
-        {searchResults
-          .sort((a, b) => (a.filename > b.filename ? 1 : -1))
-          .map((item, index) => {
-            if (item.filename === '') {
-              return;
-            } else {
-              return (
-                <div key={item.filename}>
-                  <a href={item.filename}>{item.filename}</a>
-                </div>
-              );
-            }
-          })}
-      </ul>
+      {query && (
+        <ul>
+          {searchResults
+            .sort((a, b) => (a.filename > b.filename ? 1 : -1))
+            .map((item, index) => {
+              if (item.filename === '') {
+                return;
+              } else {
+                return (
+                  <div key={item.filename}>
+                    <a href={item.filename}>{item.filename}</a>
+                  </div>
+                );
+              }
+            })}
+        </ul>
+      )}
     </div>
   );
 };
