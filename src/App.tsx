@@ -18,7 +18,7 @@ const App: React.FC = () => {
   const articleRoutes = Object.entries(settings).map(([key, value]) => (
     <Route
       key={'mykey' + key}
-      path={`blog/${value['url']}`}
+      path={`${value['url']}`}
       element={<Article setting={value} />}
     />
   ));
