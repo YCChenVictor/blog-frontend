@@ -10,18 +10,20 @@ import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
 import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
+import { fileUrls } from './utils/loadArticles';
 
 const App: React.FC = () => {
   const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const articleRoutes = Object.entries(settings).map(([key, value]) => (
-    <Route
-      key={'mykey' + key}
-      path={`${value['url']}`}
-      element={<Article setting={value} />}
-    />
-  ));
+  const articleRoutes = fileUrls.map((fileUrl) => {
+    return (
+      <Route
+        path={'/concept/complexity'}
+        element={<Article url={'/concept/complexity'} />}
+      />
+    );
+  });
 
   const fetchRequireData = async () => {
     if (!helloWorldUrl) {

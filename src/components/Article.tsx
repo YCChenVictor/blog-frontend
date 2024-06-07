@@ -9,19 +9,12 @@ import RenderImage from './RenderImage';
 import RenderCodeBlock from './RenderCodeBlock';
 import RenderMermaid from './RenderMermaid';
 import ScrollToTopButton from './ScrollToTopButton';
+import { importAllFilesAndFetchContent } from '../utils/loadArticles';
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-function Article({
-  setting
-}: {
-  setting: {
-    url: string;
-    date: string;
-    category: string;
-    publish: boolean;
-  };
-}) {
-  const filePath = `posts-submodule/${setting['url']}.md`;
+function Article({ url }: { url: string }) {
+  // directly input the articleContext
+  const filePath = `../posts-submodule/concept/complexity.md`;
   const [markdownContent, setMarkdownContent] = useState('');
   const [rawTitles, setRawTitles] = useState<
     Array<{ content: string; tagName: string }>
@@ -37,28 +30,29 @@ function Article({
   let articleName = filePath.split('/')[length - 1].split('.')[0];
   articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1);
 
-  const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const importFileAndFetchContent = async () => {
-      const fileModule = await import(`../${filePath}`);
-      const response = await fetch(fileModule.default);
-      const text = await response.text();
-      setMarkdownContent(text);
+    const fetchData = async () => {
+      try {
+        const response = await importAllFilesAndFetchContent(`.${url}.md`);
+        setMarkdownContent(response[0].content);
+        const parsedHTML = await marked.parse(response[0].content);
+        const container = document.createElement('div');
+        container.innerHTML = parsedHTML;
+        const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
+        const tags = tagNames
+          .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
+          .map((tag) => ({
+            content: tag.textContent || '',
+            tagName: tag.tagName
+          }));
 
-      const parsedHTML = await marked.parse(text);
-      const container = document.createElement('div');
-      container.innerHTML = parsedHTML;
-      const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
-      const tags = tagNames
-        .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
-        .map((tag) => ({
-          content: tag.textContent || '',
-          tagName: tag.tagName
-        }));
-
-      setRawTitles(tags);
+        setRawTitles(tags);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    importFileAndFetchContent();
+
+    fetchData();
   }, []);
 
   const generateSlug = (string: string) => {
@@ -92,7 +86,7 @@ function Article({
               <SidebarLayout
                 isCollapsed={isCollapsed}
                 loggedIn={loggedIn}
-                setting={setting}
+                url={url}
                 articleContent={markdownContent}
                 rawTitles={rawTitles}
               />
@@ -196,13 +190,13 @@ function Article({
         <div className="fixed bottom-4 left-4 z-10 h-screen flex flex-col justify-end">
           {showMobileSidebar ? (
             <div className="overflow-y-auto">
-              <SidebarLayout
+              {/* <SidebarLayout
                 isCollapsed={false}
                 loggedIn={loggedIn}
                 setting={setting}
                 articleContent={markdownContent}
                 rawTitles={rawTitles}
-              />
+              /> */}
             </div>
           ) : (
             <></>
