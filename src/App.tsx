@@ -59,7 +59,7 @@ const App: React.FC = () => {
         </ul>
         <ul className="flex items-center space-x-4 ml-auto p-6">
           <a
-            href="/blog/software-dashboard"
+            href="/software-dashboard"
             className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition"
           >
             Web Development
@@ -72,28 +72,10 @@ const App: React.FC = () => {
       <Router>
         <div className="">
           <Routes>
-            {/* <Route path="/blog/edit-article" element={<EditArticle />} /> */}
             <Route path="/" element={<AuthorProfile />} />
-            <Route path="/blog" element={<AuthorProfile />} />
             <Route
-              path="/blog/software-dashboard"
+              path="/software-dashboard"
               element={<Dashboard category={'software'} loggedIn={loggedIn} />}
-            />
-            <Route
-              path="/blog/gene"
-              element={<Dashboard category={'gene'} loggedIn={loggedIn} />}
-            />
-            <Route
-              path="/blog/aesthetics"
-              // element={<Dashboard category={'aesthetics'} loggedIn={loggedIn} />}
-            />
-            <Route
-              path="/blog/article-list"
-              element={<ArticleList articleSettings={settings} />}
-            />
-            <Route
-              path="/auto-frontend"
-              // element={<RenderFrontend isLoggedIn={loggedIn} />}
             />
             {articleRoutes}
           </Routes>
