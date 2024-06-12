@@ -9,13 +9,13 @@ import LinkPage from './LinkPage';
 const SidebarLayout = ({
   isCollapsed,
   loggedIn,
-  setting,
+  url,
   articleContent,
   rawTitles
 }: {
   isCollapsed: boolean;
   loggedIn: boolean;
-  setting: any; // Replace 'any' with the actual type
+  url: string;
   articleContent: any; // Replace 'any' with the actual type
   rawTitles: any; // Replace 'any' with the actual type
 }) => {
@@ -80,11 +80,7 @@ const SidebarLayout = ({
         <div className="p-4">
           <WordCounts articleContent={articleContent} />
           {/* {loggedIn ? <Gpt /> : <div>{}</div>} */}
-          {setting.publish ? (
-            <LinkPage articleUrl={setting['url']} />
-          ) : (
-            <div>{}</div>
-          )}
+          {/* <LinkPage articleUrl={url} /> */}
         </div>
         <h3 className="p-4">Titles</h3>
         {menuItemsDesired}

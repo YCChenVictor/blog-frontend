@@ -10,18 +10,20 @@ import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
 import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
+import { fileUrls } from './utils/loadArticles';
 
 const App: React.FC = () => {
   const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const articleRoutes = Object.entries(settings).map(([key, value]) => (
-    <Route
-      key={'mykey' + key}
-      path={`blog/${value['url']}`}
-      element={<Article setting={value} />}
-    />
-  ));
+  const articleRoutes = fileUrls.map((fileUrl) => {
+    return (
+      <Route
+        path={'/concept/complexity'}
+        element={<Article url={'/concept/complexity'} />}
+      />
+    );
+  });
 
   const fetchRequireData = async () => {
     if (!helloWorldUrl) {
@@ -59,7 +61,7 @@ const App: React.FC = () => {
         </ul>
         <ul className="flex items-center space-x-4 ml-auto p-6">
           <a
-            href="/blog/software-dashboard"
+            href="/software-dashboard"
             className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-400 transition"
           >
             Web Development
@@ -72,28 +74,10 @@ const App: React.FC = () => {
       <Router>
         <div className="">
           <Routes>
-            {/* <Route path="/blog/edit-article" element={<EditArticle />} /> */}
             <Route path="/" element={<AuthorProfile />} />
-            <Route path="/blog" element={<AuthorProfile />} />
             <Route
-              path="/blog/software-dashboard"
+              path="/software-dashboard"
               element={<Dashboard category={'software'} loggedIn={loggedIn} />}
-            />
-            <Route
-              path="/blog/gene"
-              element={<Dashboard category={'gene'} loggedIn={loggedIn} />}
-            />
-            <Route
-              path="/blog/aesthetics"
-              // element={<Dashboard category={'aesthetics'} loggedIn={loggedIn} />}
-            />
-            <Route
-              path="/blog/article-list"
-              element={<ArticleList articleSettings={settings} />}
-            />
-            <Route
-              path="/auto-frontend"
-              // element={<RenderFrontend isLoggedIn={loggedIn} />}
             />
             {articleRoutes}
           </Routes>
