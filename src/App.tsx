@@ -10,17 +10,20 @@ import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
 // import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
-import { fileUrls } from './utils/loadArticles';
+import { articleUrls } from './utils/loadArticles';
 
 const App: React.FC = () => {
   const backendHost = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const articleRoutes = fileUrls.map((fileUrl) => {
+
+  const articleRoutes = articleUrls.map((url) => {
     return (
       <Route
-        path={'/concept/complexity'}
-        element={<Article url={'/concept/complexity'} />}
+        path={url}
+        element={
+          <Article filePath={`../posts-submodule${url.replace('.', '')}.md`} />
+        }
       />
     );
   });

@@ -9,12 +9,10 @@ import RenderImage from './RenderImage';
 import RenderCodeBlock from './RenderCodeBlock';
 import RenderMermaid from './RenderMermaid';
 import ScrollToTopButton from './ScrollToTopButton';
-import { importAllFilesAndFetchContent } from '../utils/loadArticles';
+import { importFileAndFetchContent } from '../utils/loadArticles';
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-function Article({ url }: { url: string }) {
-  // directly input the articleContext
-  const filePath = `../posts-submodule/concept/complexity.md`;
+function Article({ filePath }: { filePath: string }) {
   const [markdownContent, setMarkdownContent] = useState('');
   const [rawTitles, setRawTitles] = useState<
     Array<{ content: string; tagName: string }>
@@ -33,7 +31,7 @@ function Article({ url }: { url: string }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await importAllFilesAndFetchContent(`.${url}.md`);
+        const response = await importFileAndFetchContent(filePath);
         setMarkdownContent(response[0].content);
         const parsedHTML = await marked.parse(response[0].content);
         const container = document.createElement('div');
@@ -86,7 +84,7 @@ function Article({ url }: { url: string }) {
               <SidebarLayout
                 isCollapsed={isCollapsed}
                 loggedIn={loggedIn}
-                url={url}
+                url={filePath} // TODO: fix this filePath, it should be the url or remove this one
                 articleContent={markdownContent}
                 rawTitles={rawTitles}
               />
