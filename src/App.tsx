@@ -8,12 +8,12 @@ import Article from './components/Article';
 // import UserInNav from './components/UserInNav';
 import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
-import { checkLoggedIn } from './utils/checkLoggedIn';
+// import { checkLoggedIn } from './utils/checkLoggedIn';
 import settings from './data/articleSettings.json';
 import { fileUrls } from './utils/loadArticles';
 
 const App: React.FC = () => {
-  const helloWorldUrl = process.env.REACT_APP_HOST_DEV;
+  const backendHost = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const articleRoutes = fileUrls.map((fileUrl) => {
@@ -26,21 +26,17 @@ const App: React.FC = () => {
   });
 
   const fetchRequireData = async () => {
-    if (!helloWorldUrl) {
+    if (!backendHost) {
       return;
     }
 
-    try {
-      const isServerOn = await axios.get(helloWorldUrl);
-      setServerOn(isServerOn.data); // Assuming the server response indicates its status.
-    } catch (error) {
-      setServerOn(false);
+    const isServerOn = await axios.get(backendHost);
+    if (isServerOn.status === 200) {
+      setServerOn(true);
     }
 
-    if (serverOn) return;
-
-    const isLoggedInResponse = await checkLoggedIn();
-    setLoggedIn(isLoggedInResponse.loggedIn);
+    // const isLoggedInResponse = await checkLoggedIn();
+    // setLoggedIn(isLoggedInResponse.loggedIn);
   };
 
   useEffect(() => {
@@ -77,7 +73,7 @@ const App: React.FC = () => {
             <Route path="/" element={<AuthorProfile />} />
             <Route
               path="/software-dashboard"
-              element={<Dashboard category={'software'} loggedIn={loggedIn} />}
+              element={<Dashboard category={'software'} serverOn={serverOn} />}
             />
             {articleRoutes}
           </Routes>

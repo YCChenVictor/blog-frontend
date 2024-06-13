@@ -4,10 +4,10 @@ import SearchBar from './SearchBar';
 
 const Dashboard = ({
   category,
-  loggedIn
+  serverOn
 }: {
   category: string;
-  loggedIn: boolean;
+  serverOn: boolean;
 }) => {
   const title = category.charAt(0).toUpperCase() + category.slice(1);
   return (
@@ -17,7 +17,7 @@ const Dashboard = ({
         <SearchBar />
       </div>
       <div className="p-4 rounded-lg m-4">
-        <NodeGraph category={category} loggedIn={loggedIn} />
+        <NodeGraph category={category} showDrawAgain={serverOn} />
       </div>
     </div>
   );

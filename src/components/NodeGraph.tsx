@@ -6,10 +6,10 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 const NodeGraph = ({
   category,
-  loggedIn
+  showDrawAgain
 }: {
   category: string;
-  loggedIn: boolean;
+  showDrawAgain: boolean;
 }) => {
   const [nodes, setNodes] = useState([]);
   const [links, setLinks] = useState([]);
@@ -115,7 +115,7 @@ const NodeGraph = ({
 
   return (
     <div id="node-graph">
-      {loggedIn ? (
+      {showDrawAgain ? (
         <button
           onClick={() => generateNodes(category)}
           className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
