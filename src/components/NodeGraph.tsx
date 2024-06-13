@@ -25,18 +25,9 @@ const NodeGraph = ({
   };
 
   const generateNodes = async (category: string) => {
-    const url = `http://localhost:5000/node-graph?category=${category}`;
-    const postData = {
-      category: category
-    };
-    axios
-      .post(url, postData)
-      .then((response) => {
-        console.log('Response:', response.data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    const url = `${process.env.REACT_APP_HOST_DEV}node-graph?category=${category}`;
+    const postData = { category: category };
+    axios.post(url, postData);
   };
 
   const fetchNodeData = async () => {
