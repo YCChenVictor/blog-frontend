@@ -25,7 +25,7 @@ const NodeGraph = ({
   };
 
   const generateNodes = async (category: string) => {
-    const url = `${process.env.REACT_APP_HOST_DEV}node-graph?category=${category}`;
+    const url = `${process.env.REACT_APP_HOST_DEV}node-graph/create?category=${category}`;
     const postData = { category: category };
     axios.post(url, postData);
   };
@@ -84,24 +84,24 @@ const NodeGraph = ({
       (forceRef.current as any).zoom(2, 300); // fix it later
     }
 
-    fetchNodeData().then((success) => {
-      if (!success) return;
-      setTimeout(function () {
-        // Give it time to render
-        const linkLengthConstant = 20;
-        if (forceRef.current) {
-          (forceRef.current as any).d3Force('link').distance((link: any) => {
-            // Explicitly define the type of 'link' as any
-            if (link.source.id === 1) {
-              return linkLengthConstant;
-            } else {
-              return linkLengthConstant * (link.source.val + link.target.val);
-            }
-          });
-        }
-        // forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400) // fix it later
-      }, 500);
-    });
+    // fetchNodeData().then((success) => {
+    //   if (!success) return;
+    //   setTimeout(function () {
+    //     // Give it time to render
+    //     const linkLengthConstant = 20;
+    //     if (forceRef.current) {
+    //       (forceRef.current as any).d3Force('link').distance((link: any) => {
+    //         // Explicitly define the type of 'link' as any
+    //         if (link.source.id === 1) {
+    //           return linkLengthConstant;
+    //         } else {
+    //           return linkLengthConstant * (link.source.val + link.target.val);
+    //         }
+    //       });
+    //     }
+    //     // forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400) // fix it later
+    //   }, 500);
+    // });
   }, []);
 
   return (

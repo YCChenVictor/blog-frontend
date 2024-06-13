@@ -73,7 +73,9 @@ const App: React.FC = () => {
             <Route path="/" element={<AuthorProfile />} />
             <Route
               path="/software-dashboard"
-              element={<Dashboard category={'software'} serverOn={serverOn} />}
+              element={
+                <Dashboard category={'web-development'} serverOn={serverOn} />
+              }
             />
             {articleRoutes}
           </Routes>
