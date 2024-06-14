@@ -1,11 +1,9 @@
 import * as React from 'react';
 
-interface ArticleSettings {
-  [key: string]: {
+type ArticleSettings = Record<string, {
     url: string;
     category: string;
-  };
-}
+  }>;
 
 const ArticleList = ({
   articleSettings
@@ -15,9 +13,9 @@ const ArticleList = ({
   const modifiedObject = Object.values(articleSettings).map((value, key) => {
     return (
       <div>
-        <a key={key} href={value['url']}>
-          {value['category']}
-          {value['url']}
+        <a key={key} href={value.url}>
+          {value.category}
+          {value.url}
         </a>
       </div>
     );

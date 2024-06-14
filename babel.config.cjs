@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-undef
+ 
 module.exports = {
   babelrc: false,
   presets: ['@babel/preset-env', '@babel/preset-react'],

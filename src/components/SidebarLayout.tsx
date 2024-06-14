@@ -41,7 +41,7 @@ const SidebarLayout = ({
     '6': 'pl-10'
   };
 
-  const textSizeMapping: { [key: string]: string } = {
+  const textSizeMapping: Record<string, string> = {
     '2': 'text-xl',
     '3': 'text-lg',
     '4': 'text-base',

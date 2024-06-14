@@ -66,7 +66,7 @@ const App: React.FC = () => {
             Web Development
           </a>
         </ul>
-        {(serverOn as boolean) ? (
+        {(serverOn) ? (
           <ul className="space-x-4">{/* <UserInNav /> */}</ul>
         ) : null}
       </nav>

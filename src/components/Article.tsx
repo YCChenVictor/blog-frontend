@@ -15,7 +15,7 @@ import { importFileAndFetchContent } from '../utils/loadArticles';
 function Article({ filePath }: { filePath: string }) {
   const [markdownContent, setMarkdownContent] = useState('');
   const [rawTitles, setRawTitles] = useState<
-    Array<{ content: string; tagName: string }>
+    { content: string; tagName: string }[]
   >([]);
   const [loggedIn, setLoggedIn] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);

@@ -21,7 +21,7 @@ function Gpt() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setLoggedIn(data['loggedIn']);
+        setLoggedIn(data.loggedIn);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -47,7 +47,7 @@ function Gpt() {
         }
       );
       const article = response.data.message.content;
-      localStorage['article'] = article;
+      localStorage.article = article;
       setPreviewArticle(article);
     } catch (error) {
       console.log(error);

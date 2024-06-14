@@ -40,15 +40,15 @@ const NodeGraph = ({
 
     nodes.map((node: { id: number; val: number }) => {
       // refine this size modification
-      if (node['id'] === 1) {
-        return (node['val'] = 5);
+      if (node.id === 1) {
+        return (node.val = 5);
       } else {
-        return (node['val'] = 1);
+        return (node.val = 1);
       }
     });
     const nodeCondition = Object.entries(articleSettings)
       .map(([key, value], index) => {
-        return { [value['url']]: value['publish'] };
+        return { [value.url]: value.publish };
       })
       .reduce((result, currentObj) => {
         return { ...result, ...currentObj };
@@ -65,8 +65,8 @@ const NodeGraph = ({
     });
     links = links.filter((link: { source: string; target: string }) => {
       if (
-        removedNode.includes(link['source']) ||
-        removedNode.includes(link['target'])
+        removedNode.includes(link.source) ||
+        removedNode.includes(link.target)
       ) {
         return false;
       } else {
@@ -80,7 +80,7 @@ const NodeGraph = ({
 
   useEffect(() => {
     // please extract following as method
-    if (forceRef && forceRef.current) {
+    if (forceRef?.current) {
       (forceRef.current as any).zoom(2, 300); // fix it later
     }
 

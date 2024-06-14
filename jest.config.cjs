@@ -1,4 +1,4 @@
-// eslint-disable-next-line no-undef
+ 
 module.exports = {
   setupFiles: ['jest-canvas-mock', '<rootDir>/tests/setup.ts'],
   testEnvironment: 'jsdom',
