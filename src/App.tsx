@@ -33,9 +33,13 @@ const App: React.FC = () => {
       return;
     }
 
-    const isServerOn = await axios.get(backendHost);
-    if (isServerOn.status === 200) {
-      setServerOn(true);
+    try {
+      const isServerOn = await axios.get(backendHost);
+      if (isServerOn.status === 200) {
+        setServerOn(true);
+      }
+    } catch (error) {
+      console.error(error);
     }
 
     // const isLoggedInResponse = await checkLoggedIn();
