@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Login from './Login';
-import SignUp from './SignUp';
+// import Login from './Login';
+// import SignUp from './SignUp';
 
 function SignUpLogin() {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -30,8 +30,8 @@ function SignUpLogin() {
           </button>
         ) : null}
       </div>
-      {loginModalOpen ? <Login /> : null}
-      {signUpModalOpen ? <SignUp /> : null}
+      {/* {loginModalOpen ? <Login /> : null} */}
+      {/* {signUpModalOpen ? <SignUp /> : null} */}
     </div>
   );
 }

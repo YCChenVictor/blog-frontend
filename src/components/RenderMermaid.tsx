@@ -9,7 +9,7 @@ const RenderMermaid = (props: React.PropsWithChildren) => {
       const svg = await mermaid.render(markId.current, String(props.children));
       setSvg(svg.svg);
     };
-    renderMermaid();
+    renderMermaid().catch((error) => {console.log(error)});
   }, []);
   return <div dangerouslySetInnerHTML={{ __html: svg }}></div>;
 };

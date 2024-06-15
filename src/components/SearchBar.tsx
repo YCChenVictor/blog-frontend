@@ -40,7 +40,7 @@ const SearchBar = () => {
         <ul>
           {searchItems()
             .sort((a, b) => (a.url > b.url ? 1 : -1))
-            .map((item, index) => {
+            .map((item) => {
               if (item.url === '') {
                 return;
               } else {

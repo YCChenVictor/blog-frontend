@@ -5,7 +5,7 @@ import { marked } from 'marked'; // may need to remove this one
 import remarkMath from 'remark-math';
 // import rehypeMathjax from 'rehype-mathjax';
 import SidebarLayout from './SidebarLayout';
-import RenderImage from './RenderImage';
+// import RenderImage from './RenderImage';
 import RenderCodeBlock from './RenderCodeBlock';
 import RenderMermaid from './RenderMermaid';
 import ScrollToTopButton from './ScrollToTopButton';
@@ -17,7 +17,6 @@ function Article({ filePath }: { filePath: string }) {
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
-  const [loggedIn, setLoggedIn] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
@@ -40,7 +39,7 @@ function Article({ filePath }: { filePath: string }) {
         const tags = tagNames
           .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
           .map((tag) => ({
-            content: tag.textContent || '',
+            content: tag.textContent ?? '',
             tagName: tag.tagName
           }));
 
@@ -50,7 +49,7 @@ function Article({ filePath }: { filePath: string }) {
       }
     };
 
-    fetchData();
+    fetchData().catch((error) => {console.log(error)});
   }, []);
 
   const generateSlug = (string: string) => {
@@ -83,8 +82,8 @@ function Article({ filePath }: { filePath: string }) {
               </button>
               <SidebarLayout
                 isCollapsed={isCollapsed}
-                loggedIn={loggedIn}
-                url={filePath} // TODO: fix this filePath, it should be the url or remove this one
+                // loggedIn={true}
+                // url={filePath} // TODO: fix this filePath, it should be the url or remove this one
                 articleContent={markdownContent}
                 rawTitles={rawTitles}
               />
@@ -102,7 +101,7 @@ function Article({ filePath }: { filePath: string }) {
               h1: () => (
                 <h1 className="text-center">{`(${category}) ${articleName}`}</h1>
               ),
-              h2: ({ node, ...props }) => {
+              h2: ({ ...props }) => {
                 if (props.children) {
                   return (
                     <h2
@@ -114,7 +113,7 @@ function Article({ filePath }: { filePath: string }) {
                   return null;
                 }
               },
-              h3: ({ node, ...props }) => {
+              h3: ({ ...props }) => {
                 if (props.children) {
                   return (
                     <h3
@@ -126,7 +125,7 @@ function Article({ filePath }: { filePath: string }) {
                   return null;
                 }
               },
-              h4: ({ node, ...props }) => {
+              h4: ({ ...props }) => {
                 if (props.children) {
                   return (
                     <h4
@@ -138,21 +137,19 @@ function Article({ filePath }: { filePath: string }) {
                   return null;
                 }
               },
-              img: ({ node, ...props }) =>
-                RenderImage({ ...props, src: props.src ?? '' }),
+              // img: ({ ...props }) =>
+              //   RenderImage({ ...props, src: props.src ?? '' }),
+              // @ts-expect-error - The types for RenderMermaid and RenderCodeBlock are not compatible with the expected types here, but we know this code works
               code: ({
-                node,
-                ...props
+                children,
+                className,
               }: {
-                node: any;
                 children: React.ReactNode;
                 className: string;
               }) => {
-                if (props.className === 'language-mermaid') {
-                  return RenderMermaid(props);
-                } else {
-                  return RenderCodeBlock(props);
-                }
+                return className === 'language-mermaid' 
+                  ? RenderMermaid({ children }) 
+                  : RenderCodeBlock({ children, className });
               },
               table: ({ ...props }) => {
                 return (
@@ -161,7 +158,7 @@ function Article({ filePath }: { filePath: string }) {
                   </div>
                 );
               },
-              span: ({ node, ...props }) => {
+              span: ({ ...props }) => {
                 // done
                 if (props.className === 'math math-inline' && props.children) {
                   const content = props.children;

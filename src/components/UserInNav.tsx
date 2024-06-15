@@ -1,7 +1,11 @@
 import React from 'react';
 import SignUpLogin from './SignUpLogin';
 
-const UserInNav: React.FC = (loggedIn: boolean) => {
+interface UserInNavProps {
+  loggedIn: boolean;
+}
+
+const UserInNav: React.FC<UserInNavProps> = ({ loggedIn }) => {
   return (
     <>
       {loggedIn ? (

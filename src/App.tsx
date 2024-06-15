@@ -6,16 +6,16 @@ import Dashboard from './components/Dashboard';
 import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
 // import UserInNav from './components/UserInNav';
-import ArticleList from './components/ArticleList';
+// import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
 // import { checkLoggedIn } from './utils/checkLoggedIn';
-import settings from './data/articleSettings.json';
+// import settings from './data/articleSettings.json';
 import { articleUrls } from './utils/loadArticles';
 
 const App: React.FC = () => {
   const backendHost = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  // const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   const articleRoutes = articleUrls.map((url) => {
     return (
@@ -47,7 +47,7 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchRequireData();
+    fetchRequireData().catch(error => console.error(error));
   }, []);
 
   return (

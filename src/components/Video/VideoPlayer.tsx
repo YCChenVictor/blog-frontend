@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VideoPlayer = ({ videoUrl }) => {
+const VideoPlayer = ({ videoUrl }: { videoUrl: string }) => {
   return (
     <div>
       <iframe

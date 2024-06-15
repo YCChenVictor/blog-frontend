@@ -4,7 +4,6 @@ import { render } from '@testing-library/react';
 import Dashboard from '../src/components/Dashboard';
 import NodeGraph from '../src/components/NodeGraph';
 import SearchBar from '../src/components/SearchBar';
-import { TextEncoder, TextDecoder } from 'util';
 
 jest.doMock('../src/components/NodeGraph', () => {
   return () => <div>NodeGraph mock</div>;
@@ -24,14 +23,14 @@ describe('Dashboard', () => {
 
   it('renders NodeGraph', () => {
     const { container } = render(
-      <Dashboard category="software" loggedIn={true} />
+      <NodeGraph category="software" loggedIn={true} />
     );
     expect(container.querySelector('#node-graph')).toBeInTheDocument();
   });
 
   it('renders SearchBar', () => {
     const { container } = render(
-      <Dashboard category="software" loggedIn={true} />
+      <SearchBar category="software" loggedIn={true} />
     );
     expect(container.querySelector('#search-bar')).toBeInTheDocument();
   });

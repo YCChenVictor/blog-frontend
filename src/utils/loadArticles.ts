@@ -1,4 +1,14 @@
-const fetchFileContent = async (file) => {
+interface RequireContext {
+  keys: () => string[];
+  id: string;
+  (filename: string): any;
+}
+
+declare let require: {
+  context: (directory: string, useSubdirectories?: boolean, regExp?: RegExp) => RequireContext;
+};
+
+const fetchFileContent = async (file: { content: string; filename: string }) => {
   try {
     const response = await fetch(file.content);
     const content = await response.text();
@@ -7,12 +17,12 @@ const fetchFileContent = async (file) => {
       content
     };
   } catch (error) {
-    console.error(`Failed to fetch file content: ${error}`);
+    console.error(`Failed to fetch file content: ${String(error)}`);
     throw error;
   }
 };
 
-const createFileObject = (context, filename) => ({
+const createFileObject = (context: RequireContext, filename: string) => ({
   filename,
   content: context(filename)
 });
@@ -28,7 +38,7 @@ const importAllFilesAndFetchContent = async () => {
 };
 
 // should utilize single file import, currently just load all files
-const importFileAndFetchContent = async (filePath) => {
+const importFileAndFetchContent = async (filePath: string) => {
   const context = require.context('../posts-submodule', true, /\.md$/);
   const files = context
     .keys()

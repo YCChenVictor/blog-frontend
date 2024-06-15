@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WordCounts = ({ articleContent }) => {
+const WordCounts = ({ articleContent }: { articleContent: string }) => {
   const words = articleContent.split(' ');
 
   return (

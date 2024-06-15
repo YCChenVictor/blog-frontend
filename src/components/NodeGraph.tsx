@@ -1,8 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
-import articleSettings from '../data/articleSettings.json';
 import axios from 'axios';
 import { ErrorBoundary } from 'react-error-boundary';
+
+interface NodeType { id: number; name: string; url: string; color: string; }
+interface LinkType { source: number; target: number; }
+
+interface ForceRef {
+  zoom: (scale: number, duration: number) => void;
+  d3Force: (type: string) => {
+    distance: (callback: (link: LinkType) => number) => void;
+  };
+}
 
 const NodeGraph = ({
   category,
@@ -11,8 +20,8 @@ const NodeGraph = ({
   category: string;
   showDrawAgain: boolean;
 }) => {
-  const [nodes, setNodes] = useState([]);
-  const [links, setLinks] = useState([]);
+  const [nodes, setNodes] = useState<NodeType[]>([]);
+  const [links, setLinks] = useState<LinkType[]>([]);
   const forceRef = useRef();
 
   const handleNodeClick = (node: { url: string }) => {
@@ -24,55 +33,20 @@ const NodeGraph = ({
     }
   };
 
-  const generateNodes = async (category: string) => {
+  const generateNodes = (category: string) => {
     const url = `${process.env.REACT_APP_HOST_DEV}node-graph/create?category=${category}`;
     const postData = { category: category };
-    axios.post(url, postData);
+    axios.post(url, postData).catch((error) => {console.log(error)});
   };
 
   const fetchNodeData = async () => {
-    const nodeData = await import(`../data/${category}/nodeGraph.json`); // After deploy backend, should get from backend
-    let { nodes, links } = nodeData;
+    const nodeData = await import(`../posts-submodule/nodeGraph.json`);
+    const { nodes, links } = nodeData;
 
     if (nodes === undefined || links === undefined) {
       return false;
     }
 
-    nodes.map((node: { id: number; val: number }) => {
-      // refine this size modification
-      if (node.id === 1) {
-        return (node.val = 5);
-      } else {
-        return (node.val = 1);
-      }
-    });
-    const nodeCondition = Object.entries(articleSettings)
-      .map(([key, value], index) => {
-        return { [value.url]: value.publish };
-      })
-      .reduce((result, currentObj) => {
-        return { ...result, ...currentObj };
-      }, {});
-
-    const removedNode: string[] = [];
-    nodes = nodes.filter((node: { id: string; url: string }) => {
-      if (nodeCondition[node.url.replace('/blog/', '')]) {
-        return true;
-      } else {
-        removedNode.push(node.id);
-        return false;
-      }
-    });
-    links = links.filter((link: { source: string; target: string }) => {
-      if (
-        removedNode.includes(link.source) ||
-        removedNode.includes(link.target)
-      ) {
-        return false;
-      } else {
-        return true;
-      }
-    });
     setNodes(nodes);
     setLinks(links);
     return true;
@@ -81,27 +55,29 @@ const NodeGraph = ({
   useEffect(() => {
     // please extract following as method
     if (forceRef?.current) {
-      (forceRef.current as any).zoom(2, 300); // fix it later
+      const current = forceRef.current as ForceRef;
+      current.zoom(2, 300);
     }
 
-    // fetchNodeData().then((success) => {
-    //   if (!success) return;
-    //   setTimeout(function () {
-    //     // Give it time to render
-    //     const linkLengthConstant = 20;
-    //     if (forceRef.current) {
-    //       (forceRef.current as any).d3Force('link').distance((link: any) => {
-    //         // Explicitly define the type of 'link' as any
-    //         if (link.source.id === 1) {
-    //           return linkLengthConstant;
-    //         } else {
-    //           return linkLengthConstant * (link.source.val + link.target.val);
-    //         }
-    //       });
-    //     }
-    //     // forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400) // fix it later
-    //   }, 500);
-    // });
+    fetchNodeData().then((success) => {
+      if (!success) return;
+
+      setTimeout(function () {
+        // Give it time to render
+        const linkLengthConstant = 20;
+        if (forceRef.current) {
+          (forceRef.current as ForceRef).d3Force('link').distance((link: LinkType) => {
+            // Explicitly define the type of 'link' as any
+            if (link.source === 1) {
+              return linkLengthConstant;
+            } else {
+              return linkLengthConstant * (link.source + link.target);
+            }
+          });
+        }
+        // forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400) // fix it later
+      }, 500);
+    }).catch((error) => {console.log(error)});
   }, []);
 
   return (
@@ -132,11 +108,11 @@ const NodeGraph = ({
             ctx.font = '5px Sans-Serif';
             ctx.fillStyle = 'black';
             const lineHeight = 5;
-            const lines = node.name.split('-');
+            const lines = (node as NodeType).name.split('-');
             const x = node.x ?? 0;
             let y = (node.y ?? 0) - lineHeight;
-            for (let i = 0; i < lines.length; ++i) {
-              ctx.fillText(lines[i], x, y);
+            for (const line of lines) {
+              ctx.fillText(line, x, y);
               y += lineHeight;
             }
           }}

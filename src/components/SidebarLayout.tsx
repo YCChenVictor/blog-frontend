@@ -3,26 +3,26 @@ import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { HashLink } from 'react-router-hash-link';
 
 import WordCounts from './WordCounts';
-import LinkPage from './LinkPage';
+// import LinkPage from './LinkPage';
 // import Gpt from './AutoArticle/Gpt';
 
 const SidebarLayout = ({
   isCollapsed,
-  loggedIn,
-  url,
+  // loggedIn,
+  // url,
   articleContent,
   rawTitles
 }: {
   isCollapsed: boolean;
-  loggedIn: boolean;
-  url: string;
-  articleContent: any; // Replace 'any' with the actual type
-  rawTitles: any; // Replace 'any' with the actual type
+  // loggedIn: boolean;
+  // url: string;
+  articleContent: string;
+  rawTitles: { content: string; tagName: string }[];
 }) => {
   const titles = rawTitles.map(
     (item: { content: string; tagName: string }) => ({
       content: item.content,
-      tagName: item.tagName.match(/\d+/)?.[0] || '',
+      tagName: item.tagName.match(/\d+/)?.[0] ?? '',
       position: rawTitles.indexOf(item)
     })
   );
