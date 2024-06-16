@@ -25,11 +25,8 @@ const NodeGraph = ({
   const forceRef = useRef();
 
   const handleNodeClick = (node: { url: string }) => {
-    const url = window.location.href;
-    const pathname = window.location.pathname;
-    const baseUrl = url.replace(pathname, '');
     if (node) {
-      window.open(baseUrl + node.url, '_blank');
+      window.open(node.url, '_blank');
     }
   };
 
