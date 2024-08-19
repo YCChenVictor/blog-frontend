@@ -11,7 +11,6 @@ jest.doMock('../src/components/NodeGraph', () => {
 jest.doMock('../src/components/SearchBar', () => () => (
   <div>SearchBar mock</div>
 ));
-jest.mock('../src/data/software/nodeGraph.json', () => ({ test: 'test' }));
 
 describe('Dashboard', () => {
   it('renders without crashing', () => {
