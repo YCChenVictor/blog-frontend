@@ -29,6 +29,7 @@
     "dev": "react-scripts start",
     "test": "jest",
     "test:coverage": "jest --coverage",
+    "test:fix": "jest --bail",
     "updateSnapshot": "jest --updateSnapshot",
     "eject": "react-scripts eject",
     "coverage": "jest --coverage",

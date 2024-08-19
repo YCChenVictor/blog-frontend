@@ -16,21 +16,21 @@ jest.mock('../src/data/software/nodeGraph.json', () => ({ test: 'test' }));
 describe('Dashboard', () => {
   it('renders without crashing', () => {
     const { getByText } = render(
-      <Dashboard category="software" loggedIn={true} />
+      <Dashboard category="software" serverOn={true} />
     );
     expect(getByText('Draw Again')).toBeInTheDocument(); // use Draw Again to check whether the graph is rendered
   });
 
   it('renders NodeGraph', () => {
     const { container } = render(
-      <NodeGraph category="software" loggedIn={true} />
+      <NodeGraph category="software" showDrawAgain={true} />
     );
     expect(container.querySelector('#node-graph')).toBeInTheDocument();
   });
 
   it('renders SearchBar', () => {
     const { container } = render(
-      <SearchBar category="software" loggedIn={true} />
+      <SearchBar />
     );
     expect(container.querySelector('#search-bar')).toBeInTheDocument();
   });
