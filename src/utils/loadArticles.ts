@@ -1,17 +1,9 @@
-interface RequireContext {
-  keys: () => string[];
-  id: string;
-  (filename: string): any;
-}
-
-declare let require: {
-  context: (directory: string, useSubdirectories?: boolean, regExp?: RegExp) => RequireContext;
-};
+import fs from 'fs';
+import path from 'path';
 
 const fetchFileContent = async (file: { content: string; filename: string }) => {
   try {
-    const response = await fetch(file.content);
-    const content = await response.text();
+    const content: string = fs.readFileSync(file.content, 'utf-8');
     return {
       url: file.filename.replace('.md', ''),
       content
@@ -22,40 +14,37 @@ const fetchFileContent = async (file: { content: string; filename: string }) => 
   }
 };
 
-const createFileObject = (context: RequireContext, filename: string) => ({
+const createFileObject = (directory: string, filename: string) => ({
   filename,
-  content: context(filename)
+  content: path.join(directory, filename)
 });
 
 const importAllFilesAndFetchContent = async () => {
-  const context = require.context('../posts-submodule', true, /\.md$/);
-  const files = context
-    .keys()
-    .map((filename) => createFileObject(context, filename))
-    .filter((file) => !file.filename.includes('in-progress'));
+  const directory = path.resolve(__dirname, '../posts-submodule');
+  const files = fs.readdirSync(directory)
+    .filter((filename) => filename.endsWith('.md') && !filename.includes('in-progress'))
+    .map((filename) => createFileObject(directory, filename));
   const contentPromises = files.map(fetchFileContent);
   return Promise.all(contentPromises);
 };
 
-// should utilize single file import, currently just load all files
 const importFileAndFetchContent = async (filePath: string) => {
-  const context = require.context('../posts-submodule', true, /\.md$/);
-  const files = context
-    .keys()
-    .map((filename) => createFileObject(context, filename))
-    .filter((file) =>
-      file.filename.includes(filePath.replace('../posts-submodule', ''))
-    );
+  const directory = path.resolve(__dirname, '../posts-submodule');
+  const files = fs.readdirSync(directory)
+    .filter((filename) => filename.includes(filePath.replace('../posts-submodule', '')))
+    .map((filename) => createFileObject(directory, filename));
   const contentPromises = files.map(fetchFileContent);
   return Promise.all(contentPromises);
 };
 
-const articleUrls = require
-  .context('../posts-submodule', true, /\.md$/)
-  .keys()
-  .map((filePath) => {
-    return filePath.replace('.md', '').replace('.', '');
-  });
+const getArticleUrls = () => {
+  const directory = path.resolve(__dirname, '../posts-submodule');
+  return fs.readdirSync(directory)
+    .filter((filename) => filename.endsWith('.md') && !filename.includes('in-progress'))
+    .map((filename) => filename.replace('.md', '').replace('.', ''));
+};
+
+const articleUrls = getArticleUrls();
 
 export {
   articleUrls,
