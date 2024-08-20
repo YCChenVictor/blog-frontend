@@ -15,16 +15,13 @@ const fetchFileContent = (file: { content: string; filename: string }) => {
   }
 };
 
-const importAllFilesAndFetchContent = () => {
-  const modules = importAll(require.context('../posts-submodule/concept', false, /\.md$/));
-  const files = Object.keys(modules).map((filename) => ({
-    filename,
-    content: modules
-  }));
-  console.log(files);
-  debugger
-  // const contentPromises = files.map(fetchFileContent);
-  // return Promise.all(contentPromises);
+const importAllFilesAndFetchContents = async (): Promise<{ url: string; content: string }[]> => {
+  const markdownFiles = importAll(require.context('../posts-submodule/concept', false, /\.md$/));
+  const fetchPromises = (markdownFiles as string[]).map((fileUrl: string) =>
+    fetch(fileUrl).then(response => response.text().then(content => ({ url: fileUrl, content })))
+  );
+  const fileContents = await Promise.all(fetchPromises);
+  return fileContents;
 };
 
 // const importFileAndFetchContent = async (filePath: string) => {
@@ -45,6 +42,6 @@ const importAllFilesAndFetchContent = () => {
 
 export {
   // getArticleUrls,
-  importAllFilesAndFetchContent,
+  importAllFilesAndFetchContents,
   // importFileAndFetchContent
 };
