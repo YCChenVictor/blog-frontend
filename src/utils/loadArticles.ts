@@ -1,9 +1,10 @@
-import fs from 'fs';
-import path from 'path';
+const importAll = (r: __WebpackModuleApi.RequireContext) => {
+  return r.keys().map(r);
+}
 
-const fetchFileContent = async (file: { content: string; filename: string }) => {
+const fetchFileContent = (file: { content: string; filename: string }) => {
   try {
-    const content: string = fs.readFileSync(file.content, 'utf-8');
+    const content: string = file.content;
     return {
       url: file.filename.replace('.md', ''),
       content
@@ -14,40 +15,36 @@ const fetchFileContent = async (file: { content: string; filename: string }) => 
   }
 };
 
-const createFileObject = (directory: string, filename: string) => ({
-  filename,
-  content: path.join(directory, filename)
-});
-
-const importAllFilesAndFetchContent = async () => {
-  const directory = path.resolve(__dirname, '../posts-submodule');
-  const files = fs.readdirSync(directory)
-    .filter((filename) => filename.endsWith('.md') && !filename.includes('in-progress'))
-    .map((filename) => createFileObject(directory, filename));
-  const contentPromises = files.map(fetchFileContent);
-  return Promise.all(contentPromises);
+const importAllFilesAndFetchContent = () => {
+  const modules = importAll(require.context('../posts-submodule/concept', false, /\.md$/));
+  const files = Object.keys(modules).map((filename) => ({
+    filename,
+    content: modules
+  }));
+  console.log(files);
+  debugger
+  // const contentPromises = files.map(fetchFileContent);
+  // return Promise.all(contentPromises);
 };
 
-const importFileAndFetchContent = async (filePath: string) => {
-  const directory = path.resolve(__dirname, '../posts-submodule');
-  const files = fs.readdirSync(directory)
-    .filter((filename) => filename.includes(filePath.replace('../posts-submodule', '')))
-    .map((filename) => createFileObject(directory, filename));
-  const contentPromises = files.map(fetchFileContent);
-  return Promise.all(contentPromises);
-};
+// const importFileAndFetchContent = async (filePath: string) => {
+//   const directory = path.resolve(__dirname, '../posts-submodule');
+//   const files = fs.readdirSync(directory)
+//     .filter((filename) => filename.includes(filePath.replace('../posts-submodule', '')))
+//     .map((filename) => createFileObject(directory, filename));
+//   const contentPromises = files.map(fetchFileContent);
+//   return Promise.all(contentPromises);
+// };
 
-const getArticleUrls = () => {
-  const directory = path.resolve(__dirname, '../posts-submodule');
-  return fs.readdirSync(directory)
-    .filter((filename) => filename.endsWith('.md') && !filename.includes('in-progress'))
-    .map((filename) => filename.replace('.md', '').replace('.', ''));
-};
-
-const articleUrls = getArticleUrls();
+// const getArticleUrls = async () => {
+//   const directory = path.resolve(__dirname, '../posts-submodule');
+//   return fs.readdirSync(directory)
+//     .filter((filename) => filename.endsWith('.md') && !filename.includes('in-progress'))
+//     .map((filename) => filename.replace('.md', '').replace('.', ''));
+// };
 
 export {
-  articleUrls,
+  // getArticleUrls,
   importAllFilesAndFetchContent,
-  importFileAndFetchContent
+  // importFileAndFetchContent
 };

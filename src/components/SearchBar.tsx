@@ -19,11 +19,11 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    Promise.all([importAllFilesAndFetchContent()])
-      .then((items) => {
-        return setItems(...items);
-      })
-      .catch(console.error); // Add error handling
+    Promise.all([importAllFilesAndFetchContent()]).catch(console.error)
+      // .then((items) => {
+      //   return setItems(...items);
+      // })
+      // .catch(console.error); // Add error handling
   }, []);
 
   return (

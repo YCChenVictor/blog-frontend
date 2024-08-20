@@ -4,29 +4,29 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Dashboard from './components/Dashboard';
 import AuthorProfile from './components/AuthorProfile';
-import Article from './components/Article';
+// import Article from './components/Article';
 // import UserInNav from './components/UserInNav';
 // import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
 // import { checkLoggedIn } from './utils/checkLoggedIn';
 // import settings from './data/articleSettings.json';
-import { articleUrls } from './utils/loadArticles';
+// import { getArticleUrls } from './utils/loadArticles';
 
 const App: React.FC = () => {
   const backendHost = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
   // const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
-  const articleRoutes = articleUrls.map((url) => {
-    return (
-      <Route
-        path={url}
-        element={
-          <Article filePath={`../posts-submodule${url.replace('.', '')}.md`} />
-        }
-      />
-    );
-  });
+  // const articleRoutes = articleUrls.map((url) => {
+  //   return (
+  //     <Route
+  //       path={url}
+  //       element={
+  //         <Article filePath={`../posts-submodule${url.replace('.', '')}.md`} />
+  //       }
+  //     />
+  //   );
+  // });
 
   const fetchRequireData = async () => {
     if (!backendHost) {
@@ -47,7 +47,7 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchRequireData().catch(error => console.error(error));
+    // fetchRequireData().catch(error => console.error(error));
   }, []);
 
   return (
@@ -84,7 +84,7 @@ const App: React.FC = () => {
                 <Dashboard category={'web-development'} serverOn={serverOn} />
               }
             />
-            {articleRoutes}
+            {/* {articleRoutes} */}
           </Routes>
         </div>
       </Router>

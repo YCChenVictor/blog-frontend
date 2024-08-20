@@ -9,7 +9,7 @@ import SidebarLayout from './SidebarLayout';
 import RenderCodeBlock from './RenderCodeBlock';
 import RenderMermaid from './RenderMermaid';
 import ScrollToTopButton from './ScrollToTopButton';
-import { importFileAndFetchContent } from '../utils/loadArticles';
+// import { importFileAndFetchContent } from '../utils/loadArticles';
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 function Article({ filePath }: { filePath: string }) {
@@ -29,24 +29,24 @@ function Article({ filePath }: { filePath: string }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await importFileAndFetchContent(filePath);
-        setMarkdownContent(response[0].content);
-        const parsedHTML = await marked.parse(response[0].content);
-        const container = document.createElement('div');
-        container.innerHTML = parsedHTML;
-        const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
-        const tags = tagNames
-          .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
-          .map((tag) => ({
-            content: tag.textContent ?? '',
-            tagName: tag.tagName
-          }));
+      // try {
+      //   const response = await importFileAndFetchContent(filePath);
+      //   setMarkdownContent(response[0].content);
+      //   const parsedHTML = await marked.parse(response[0].content);
+      //   const container = document.createElement('div');
+      //   container.innerHTML = parsedHTML;
+      //   const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
+      //   const tags = tagNames
+      //     .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
+      //     .map((tag) => ({
+      //       content: tag.textContent ?? '',
+      //       tagName: tag.tagName
+      //     }));
 
-        setRawTitles(tags);
-      } catch (error) {
-        console.log(error);
-      }
+      //   setRawTitles(tags);
+      // } catch (error) {
+      //   console.log(error);
+      // }
     };
 
     fetchData().catch((error) => {console.log(error)});

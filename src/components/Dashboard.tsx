@@ -17,7 +17,7 @@ const Dashboard = ({
         <SearchBar />
       </div>
       <div className="p-4 rounded-lg m-4">
-        <NodeGraph category={category} showDrawAgain={serverOn} />
+        {/* <NodeGraph category={category} showDrawAgain={serverOn} /> */}
       </div>
     </div>
   );
