@@ -27,17 +27,14 @@
     "remark-math": "^6.0.0"
   },
   "scripts": {
-    "deploy": "gh-pages -d build",
     "dev": "react-scripts start",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:fix": "jest --bail",
     "updateSnapshot": "jest --updateSnapshot",
-    "eject": "react-scripts eject",
     "coverage": "jest --coverage",
     "eslint": "eslint",
-    "eslint:fix": "eslint --fix",
-    "format": "prettier --config .prettierrc 'src/**/*.{ts,tsx}' --write"
+    "eslint:fix": "eslint --fix"
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
