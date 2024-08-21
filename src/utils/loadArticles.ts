@@ -16,7 +16,7 @@ const fetchFileContent = (file: { content: string; filename: string }) => {
 };
 
 const importAllFilesAndFetchContents = async (): Promise<{ url: string; content: string }[]> => {
-  const markdownFiles = importAll(require.context('../posts-submodule/concept', false, /\.md$/));
+  const markdownFiles = importAll(require.context('../posts-submodule/', true, /\.md$/));
   const fetchPromises = (markdownFiles as string[]).map((fileUrl: string) =>
     fetch(fileUrl).then(response => response.text().then(content => ({ url: fileUrl, content })))
   );
