@@ -1,5 +1,7 @@
-const importAll = (r: __WebpackModuleApi.RequireContext) => {
-  return r.keys().map(r);
+const importAll = (context: __WebpackModuleApi.RequireContext) => {
+  return context.keys().map((key) => {
+    return { url: key, staticUrl: context(key) as string };
+  });
 }
 
 const fetchFileContent = (file: { content: string; filename: string }) => {
@@ -17,8 +19,8 @@ const fetchFileContent = (file: { content: string; filename: string }) => {
 
 const importAllFilesAndFetchContents = async (): Promise<{ url: string; content: string }[]> => {
   const markdownFiles = importAll(require.context('../posts-submodule/', true, /\.md$/));
-  const fetchPromises = (markdownFiles as string[]).map((fileUrl: string) =>
-    fetch(fileUrl).then(response => response.text().then(content => ({ url: fileUrl, content })))
+  const fetchPromises = (markdownFiles as { url: string; staticUrl: string; }[]).map((markdownFile) =>
+    fetch(markdownFile.staticUrl).then(response => response.text().then(content => ({ url: markdownFile.url, content })))
   );
   const fileContents = await Promise.all(fetchPromises);
   return fileContents;
