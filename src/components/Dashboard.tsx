@@ -4,7 +4,6 @@ import SearchBar from './SearchBar';
 
 const Dashboard = ({
   category,
-  items,
   serverOn
 }: {
   category: string;
@@ -19,7 +18,7 @@ const Dashboard = ({
         <SearchBar />
       </div>
       <div className="p-4 rounded-lg m-4">
-        {/* <NodeGraph category={category} showDrawAgain={serverOn} /> */}
+        <NodeGraph category={category} showDrawAgain={serverOn} />
       </div>
     </div>
   );
