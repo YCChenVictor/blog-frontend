@@ -17,27 +17,6 @@ const App: React.FC = () => {
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [items, setItems] = useState<{ url: string; content: string }[]>([]);
   const [articleRoutes, setArticleRoutes] = useState<JSX.Element[]>([]);
-  // const [loggedIn, setLoggedIn] = useState<boolean>(false);
-
-  // const articleUrls = getArticleUrls();
-
-  const fetchRequireData = async () => {
-    if (!backendHost) {
-      return;
-    }
-
-    try {
-      const isServerOn = await axios.get(backendHost);
-      if (isServerOn.status === 200) {
-        setServerOn(true);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-    // const isLoggedInResponse = await checkLoggedIn();
-    // setLoggedIn(isLoggedInResponse.loggedIn);
-  };
 
   useEffect(() => {
     importAllFilesAndFetchContents()
@@ -94,12 +73,6 @@ const App: React.FC = () => {
                 <Dashboard category={'web-development'} items={items} serverOn={serverOn} />
               }
             />
-            {/* <Route
-                path="/concept/complexity"
-                element={
-                  <Article filePath={`../posts-submodule$/concept/complexity.md`} />
-                }
-              /> */}
             {articleRoutes}
           </Routes>
         </div>
