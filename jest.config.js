@@ -12,6 +12,9 @@ const config = {
     ],
     '\\.tsx?$': 'ts-jest'
   },
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'jest-transform-stub',
+  },
   collectCoverageFrom: [
     "src/**/*.ts",
     "src/**/*.tsx",
