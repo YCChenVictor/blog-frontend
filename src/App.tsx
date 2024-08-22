@@ -45,13 +45,12 @@ const App: React.FC = () => {
         setItems(items);
         setArticleRoutes(
           items.map((item: { url: string; content: string }) => {
-            console.log(`../posts-submodule${item.url.replace('.', '')}`)
             return (
               <Route
                 key={item.url}
                 path={item.url}
                 element={
-                  <Article filePath={`../posts-submodule${item.url.replace('.', '')}`} />
+                  <Article filePath={item.url} content={item.content} />
                 }
               />
             );
@@ -95,6 +94,12 @@ const App: React.FC = () => {
                 <Dashboard category={'web-development'} items={items} serverOn={serverOn} />
               }
             />
+            {/* <Route
+                path="/concept/complexity"
+                element={
+                  <Article filePath={`../posts-submodule$/concept/complexity.md`} />
+                }
+              /> */}
             {articleRoutes}
           </Routes>
         </div>

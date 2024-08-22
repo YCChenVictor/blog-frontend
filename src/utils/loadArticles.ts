@@ -20,7 +20,7 @@ const fetchFileContent = (file: { content: string; filename: string }) => {
 const importAllFilesAndFetchContents = async (): Promise<{ url: string; content: string }[]> => {
   const markdownFiles = importAll(require.context('../posts-submodule/', true, /\.md$/));
   const fetchPromises = (markdownFiles as { url: string; staticUrl: string; }[]).map((markdownFile) =>
-    fetch(markdownFile.staticUrl).then(response => response.text().then(content => ({ url: markdownFile.url, content })))
+    fetch(markdownFile.staticUrl).then(response => response.text().then(content => ({ url: markdownFile.url.replace('.md', '').replace('.', ''), content })))
   );
   const fileContents = await Promise.all(fetchPromises);
   return fileContents;
