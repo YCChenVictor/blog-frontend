@@ -12,7 +12,7 @@ import ScrollToTopButton from './ScrollToTopButton';
 // import { importFileAndFetchContent } from '../utils/loadArticles';
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-function Article({ filePath, content }: { filePath: string, content: string }) {
+const Article = ({ filePath, content }: { filePath: string, content: string }) => {
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
