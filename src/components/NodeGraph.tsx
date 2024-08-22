@@ -63,7 +63,7 @@ const NodeGraph = ({
         // Give it time to render
         const linkLengthConstant = 20;
         if (forceRef.current) {
-          (forceRef.current as ForceRef).d3Force('link').distance((link: LinkType) => linkLengthConstant);
+          (forceRef.current as ForceRef).d3Force('link').distance(() => linkLengthConstant);
         }
         // forceRef.current.centerAt(nodes[0].x, nodes[0].y, 400) // fix it later
       }, 500);
