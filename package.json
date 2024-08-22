@@ -27,6 +27,7 @@
     "remark-math": "^6.0.0"
   },
   "scripts": {
+    "build": "react-scripts build",
     "dev": "react-scripts start",
     "test": "jest",
     "test:coverage": "jest --coverage",
