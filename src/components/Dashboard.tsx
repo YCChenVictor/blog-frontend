@@ -4,9 +4,11 @@ import SearchBar from './SearchBar';
 
 const Dashboard = ({
   category,
+  items,
   serverOn
 }: {
   category: string;
+  items: { url: string; content: string }[];
   serverOn: boolean;
 }) => {
   const title = category.charAt(0).toUpperCase() + category.slice(1);

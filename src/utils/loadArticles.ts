@@ -35,15 +35,7 @@ const importAllFilesAndFetchContents = async (): Promise<{ url: string; content:
 //   return Promise.all(contentPromises);
 // };
 
-// const getArticleUrls = async () => {
-//   const directory = path.resolve(__dirname, '../posts-submodule');
-//   return fs.readdirSync(directory)
-//     .filter((filename) => filename.endsWith('.md') && !filename.includes('in-progress'))
-//     .map((filename) => filename.replace('.md', '').replace('.', ''));
-// };
-
 export {
-  // getArticleUrls,
   importAllFilesAndFetchContents,
   // importFileAndFetchContent
 };
