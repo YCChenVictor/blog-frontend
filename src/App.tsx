@@ -1,7 +1,7 @@
+import axios from 'axios';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import axios from 'axios';
 import Dashboard from './components/Dashboard';
 import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
@@ -13,12 +13,20 @@ import Article from './components/Article';
 import { importAllFilesAndFetchContents } from './utils/loadArticles';
 
 const App: React.FC = () => {
-  const backendHost = process.env.REACT_APP_HOST_DEV;
+  const backendHost = process.env.REACT_APP_HOST_DEV ?? '';
   const [serverOn, setServerOn] = useState<boolean>(false);
   const [items, setItems] = useState<{ url: string; content: string }[]>([]);
   const [articleRoutes, setArticleRoutes] = useState<JSX.Element[]>([]);
 
+  const checkServer = async () => {
+    const serverResponse = await axios.get(backendHost);
+    if (serverResponse.status === 200) {
+      setServerOn(true);
+    }
+  }
+
   useEffect(() => {
+    checkServer().catch(console.error);
     importAllFilesAndFetchContents()
       .then((items) => {
         setItems(items);
