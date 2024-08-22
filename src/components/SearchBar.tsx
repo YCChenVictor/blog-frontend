@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { importAllFilesAndFetchContent } from '../utils/loadArticles';
+import { importAllFilesAndFetchContents } from '../utils/loadArticles';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -19,11 +19,11 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    Promise.all([importAllFilesAndFetchContent()])
+    importAllFilesAndFetchContents()
       .then((items) => {
-        return setItems(...items);
+        setItems(items);
       })
-      .catch(console.error); // Add error handling
+      .catch(console.error);
   }, []);
 
   return (

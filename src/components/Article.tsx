@@ -9,11 +9,10 @@ import SidebarLayout from './SidebarLayout';
 import RenderCodeBlock from './RenderCodeBlock';
 import RenderMermaid from './RenderMermaid';
 import ScrollToTopButton from './ScrollToTopButton';
-import { importFileAndFetchContent } from '../utils/loadArticles';
+// import { importFileAndFetchContent } from '../utils/loadArticles';
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-function Article({ filePath }: { filePath: string }) {
-  const [markdownContent, setMarkdownContent] = useState('');
+function Article({ filePath, content }: { filePath: string, content: string }) {
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
@@ -27,29 +26,27 @@ function Article({ filePath }: { filePath: string }) {
   let articleName = filePath.split('/')[length - 1].split('.')[0];
   articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1);
 
+  const parseArticle = async () => {
+    try {
+      const parsedHTML = await marked.parse(content);
+      const container = document.createElement('div');
+      container.innerHTML = parsedHTML;
+      const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
+      const tags = tagNames
+        .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
+        .map((tag) => ({
+          content: tag.textContent ?? '',
+          tagName: tag.tagName
+        }));
+
+      setRawTitles(tags);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await importFileAndFetchContent(filePath);
-        setMarkdownContent(response[0].content);
-        const parsedHTML = await marked.parse(response[0].content);
-        const container = document.createElement('div');
-        container.innerHTML = parsedHTML;
-        const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
-        const tags = tagNames
-          .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
-          .map((tag) => ({
-            content: tag.textContent ?? '',
-            tagName: tag.tagName
-          }));
-
-        setRawTitles(tags);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData().catch((error) => {console.log(error)});
+    parseArticle().catch((error) => {console.log(error)});
   }, []);
 
   const generateSlug = (string: string) => {
@@ -84,7 +81,7 @@ function Article({ filePath }: { filePath: string }) {
                 isCollapsed={isCollapsed}
                 // loggedIn={true}
                 // url={filePath} // TODO: fix this filePath, it should be the url or remove this one
-                articleContent={markdownContent}
+                articleContent={content}
                 rawTitles={rawTitles}
               />
             </div>
@@ -175,7 +172,7 @@ function Article({ filePath }: { filePath: string }) {
             remarkPlugins={[remarkGfm, remarkMath]}
             // rehypePlugins={[rehypeMathjax]}
           >
-            {markdownContent}
+            {content}
           </ReactMarkdown>
         </div>
       </div>

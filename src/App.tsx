@@ -10,23 +10,16 @@ import Article from './components/Article';
 // import EditArticle from './components/AutoArticle/EditArticle'
 // import { checkLoggedIn } from './utils/checkLoggedIn';
 // import settings from './data/articleSettings.json';
-import { articleUrls } from './utils/loadArticles';
+import { importAllFilesAndFetchContents } from './utils/loadArticles';
 
 const App: React.FC = () => {
   const backendHost = process.env.REACT_APP_HOST_DEV;
   const [serverOn, setServerOn] = useState<boolean>(false);
+  const [items, setItems] = useState<{ url: string; content: string }[]>([]);
+  const [articleRoutes, setArticleRoutes] = useState<JSX.Element[]>([]);
   // const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
-  const articleRoutes = articleUrls.map((url) => {
-    return (
-      <Route
-        path={url}
-        element={
-          <Article filePath={`../posts-submodule${url.replace('.', '')}.md`} />
-        }
-      />
-    );
-  });
+  // const articleUrls = getArticleUrls();
 
   const fetchRequireData = async () => {
     if (!backendHost) {
@@ -47,7 +40,24 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchRequireData().catch(error => console.error(error));
+    importAllFilesAndFetchContents()
+      .then((items) => {
+        setItems(items);
+        setArticleRoutes(
+          items.map((item: { url: string; content: string }) => {
+            return (
+              <Route
+                key={item.url}
+                path={item.url}
+                element={
+                  <Article filePath={item.url} content={item.content} />
+                }
+              />
+            );
+          })
+        );
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -81,9 +91,15 @@ const App: React.FC = () => {
             <Route
               path="/software-dashboard"
               element={
-                <Dashboard category={'web-development'} serverOn={serverOn} />
+                <Dashboard category={'web-development'} items={items} serverOn={serverOn} />
               }
             />
+            {/* <Route
+                path="/concept/complexity"
+                element={
+                  <Article filePath={`../posts-submodule$/concept/complexity.md`} />
+                }
+              /> */}
             {articleRoutes}
           </Routes>
         </div>

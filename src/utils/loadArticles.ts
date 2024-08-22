@@ -1,17 +1,12 @@
-interface RequireContext {
-  keys: () => string[];
-  id: string;
-  (filename: string): any;
+const importAll = (context: __WebpackModuleApi.RequireContext) => {
+  return context.keys().map((key) => {
+    return { url: key, staticUrl: context(key) as string };
+  });
 }
 
-declare let require: {
-  context: (directory: string, useSubdirectories?: boolean, regExp?: RegExp) => RequireContext;
-};
-
-const fetchFileContent = async (file: { content: string; filename: string }) => {
+const fetchFileContent = (file: { content: string; filename: string }) => {
   try {
-    const response = await fetch(file.content);
-    const content = await response.text();
+    const content: string = file.content;
     return {
       url: file.filename.replace('.md', ''),
       content
@@ -22,43 +17,25 @@ const fetchFileContent = async (file: { content: string; filename: string }) => 
   }
 };
 
-const createFileObject = (context: RequireContext, filename: string) => ({
-  filename,
-  content: context(filename)
-});
-
-const importAllFilesAndFetchContent = async () => {
-  const context = require.context('../posts-submodule', true, /\.md$/);
-  const files = context
-    .keys()
-    .map((filename) => createFileObject(context, filename))
-    .filter((file) => !file.filename.includes('in-progress'));
-  const contentPromises = files.map(fetchFileContent);
-  return Promise.all(contentPromises);
+const importAllFilesAndFetchContents = async (): Promise<{ url: string; content: string }[]> => {
+  const markdownFiles = importAll(require.context('../posts-submodule/', true, /\.md$/));
+  const fetchPromises = (markdownFiles as { url: string; staticUrl: string; }[]).map((markdownFile) =>
+    fetch(markdownFile.staticUrl).then(response => response.text().then(content => ({ url: markdownFile.url.replace('.md', '').replace('.', ''), content })))
+  );
+  const fileContents = await Promise.all(fetchPromises);
+  return fileContents;
 };
 
-// should utilize single file import, currently just load all files
-const importFileAndFetchContent = async (filePath: string) => {
-  const context = require.context('../posts-submodule', true, /\.md$/);
-  const files = context
-    .keys()
-    .map((filename) => createFileObject(context, filename))
-    .filter((file) =>
-      file.filename.includes(filePath.replace('../posts-submodule', ''))
-    );
-  const contentPromises = files.map(fetchFileContent);
-  return Promise.all(contentPromises);
-};
-
-const articleUrls = require
-  .context('../posts-submodule', true, /\.md$/)
-  .keys()
-  .map((filePath) => {
-    return filePath.replace('.md', '').replace('.', '');
-  });
+// const importFileAndFetchContent = async (filePath: string) => {
+//   const directory = path.resolve(__dirname, '../posts-submodule');
+//   const files = fs.readdirSync(directory)
+//     .filter((filename) => filename.includes(filePath.replace('../posts-submodule', '')))
+//     .map((filename) => createFileObject(directory, filename));
+//   const contentPromises = files.map(fetchFileContent);
+//   return Promise.all(contentPromises);
+// };
 
 export {
-  articleUrls,
-  importAllFilesAndFetchContent,
-  importFileAndFetchContent
+  importAllFilesAndFetchContents,
+  // importFileAndFetchContent
 };
