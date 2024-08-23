@@ -1,11 +1,5 @@
 interface MarkdownFile { url: string; staticUrl: string };
 
-const importAll = (context: __WebpackModuleApi.RequireContext) => {
-  return context.keys().map((key) => {
-    return { url: key, staticUrl: context(key) as string };
-  });
-}
-
 const fetchMarkdownContent = async (markdownFile: { url: string; staticUrl: string; }): Promise<{ url: string; content: string }> => {
   const response = await fetch(markdownFile.staticUrl);
   const content = await response.text();
