@@ -1,5 +1,5 @@
 import React from 'react';
-// import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 
 const RenderCodeBlock = (props: {
   inline?: boolean;
@@ -20,16 +20,10 @@ const RenderCodeBlock = (props: {
       <code className="bg-gray-500 text-white p-0.5">{props.children}</code>
     );
   } else {
-    // result =
-    // <SyntaxHighlighter
-    //   {...props}
-    //   lineProps={{style: {wordBreak: 'break-all', whiteSpace: 'pre-wrap'}}}
-    //   wrapLines={true}
-    //   language={language}
-    //   PreTag="div"
-    // >
-    //   {React.Children.toArray([props.children])}
-    // </SyntaxHighlighter>
+    result =
+    <SyntaxHighlighter language={language} wrapLines={true} lineProps={{style: {wordBreak: 'break-all', whiteSpace: 'pre-wrap'}}} PreTag="div">
+      {props.children as string[]}
+    </SyntaxHighlighter>
   }
 
   return result;
