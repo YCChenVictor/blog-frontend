@@ -78,7 +78,7 @@ const App: React.FC = () => {
             <Route
               path="/software-dashboard"
               element={
-                <Dashboard category={'web-development'} items={items} serverOn={serverOn} />
+                <Dashboard category={'web-development'} serverOn={serverOn} />
               }
             />
             {articleRoutes}
