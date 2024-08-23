@@ -15,7 +15,7 @@ import { importAllFilesAndFetchContents } from './utils/loadArticles';
 const App: React.FC = () => {
   const backendHost = process.env.REACT_APP_HOST_DEV ?? '';
   const [serverOn, setServerOn] = useState<boolean>(false);
-  const [items, setItems] = useState<{ url: string; content: string }[]>([]);
+  const [articles, setArticles] = useState<{ url: string; content: string }[]>([]);
   const [articleRoutes, setArticleRoutes] = useState<JSX.Element[]>([]);
 
   const checkServer = async () => {
@@ -25,13 +25,20 @@ const App: React.FC = () => {
     }
   }
 
+  const importAll = (context: __WebpackModuleApi.RequireContext) => {
+    return context.keys().map((key) => {
+      return { url: key, staticUrl: context(key) as string };
+    });
+  }
+
   useEffect(() => {
+    const markdownFiles = importAll(require.context('./posts-submodule/', true, /\.md$/));
     checkServer().catch(console.error);
-    importAllFilesAndFetchContents()
-      .then((items) => {
-        setItems(items);
+    importAllFilesAndFetchContents(markdownFiles)
+      .then((articles) => {
+        setArticles(articles);
         setArticleRoutes(
-          items.map((item: { url: string; content: string }) => {
+          articles.map((item: { url: string; content: string }) => {
             return (
               <Route
                 key={item.url}
@@ -78,7 +85,7 @@ const App: React.FC = () => {
             <Route
               path="/software-dashboard"
               element={
-                <Dashboard category={'web-development'} serverOn={serverOn} />
+                <Dashboard articles={articles} category={'web-development'} serverOn={serverOn} />
               }
             />
             {articleRoutes}
