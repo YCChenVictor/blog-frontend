@@ -1,34 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { importAllFilesAndFetchContents } from '../utils/loadArticles';
 
-const SearchBar = () => {
+const SearchBar = ({articles}: { articles: { url: string; content: string }[] }) => {
   const [query, setQuery] = useState('');
-  const [items, setItems] = useState<{ url: string; content: string }[]>([]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
 
-  const searchItems = () => {
-    return items.filter((item) => {
-      const itemText = `${item.url} ${item.content}`.toLowerCase();
+  const searchArticles = () => {
+    return articles.filter((article) => {
+      const articleText = `${article.url} ${article.content}`.toLowerCase();
       const searchText = query.toLowerCase();
 
-      return itemText.includes(searchText); // the core
+      return articleText.includes(searchText); // the core
     });
   };
 
-  useEffect(() => {
-    importAllFilesAndFetchContents()
-      .then((items) => {
-        setItems(items);
-      })
-      .catch(console.error);
-  }, []);
-
   return (
     <div id="search-bar">
-      <div>{searchItems().length}</div>
+      <div>{searchArticles()?.length}</div>
       <input
         type="text"
         placeholder="Search..."
@@ -38,15 +29,15 @@ const SearchBar = () => {
 
       {query && (
         <ul>
-          {searchItems()
+          {searchArticles()
             .sort((a, b) => (a.url > b.url ? 1 : -1))
-            .map((item) => {
-              if (item.url === '') {
+            .map((article) => {
+              if (article.url === '') {
                 return;
               } else {
                 return (
-                  <div key={item.url}>
-                    <a href={item.url}>{item.url}</a>
+                  <div key={article.url}>
+                    <a href={article.url}>{article.url}</a>
                   </div>
                 );
               }

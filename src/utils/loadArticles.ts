@@ -1,41 +1,37 @@
-const importAll = (context: __WebpackModuleApi.RequireContext) => {
-  return context.keys().map((key) => {
-    return { url: key, staticUrl: context(key) as string };
-  });
-}
+interface MarkdownFile { url: string; staticUrl: string };
 
-const fetchFileContent = (file: { content: string; filename: string }) => {
-  try {
-    const content: string = file.content;
-    return {
-      url: file.filename.replace('.md', ''),
-      content
-    };
-  } catch (error) {
-    console.error(`Failed to fetch file content: ${String(error)}`);
-    throw error;
-  }
+const fetchMarkdownContent = async (markdownFile: { url: string; staticUrl: string; }): Promise<{ url: string; content: string }> => {
+  const response = await fetch(markdownFile.staticUrl);
+  const content = await response.text();
+  return { url: markdownFile.url.replace('.md', '').replace('.', ''), content };
 };
 
-const importAllFilesAndFetchContents = async (): Promise<{ url: string; content: string }[]> => {
-  const markdownFiles = importAll(require.context('../posts-submodule/', true, /\.md$/));
-  const fetchPromises = (markdownFiles as { url: string; staticUrl: string; }[]).map((markdownFile) =>
-    fetch(markdownFile.staticUrl).then(response => response.text().then(content => ({ url: markdownFile.url.replace('.md', '').replace('.', ''), content })))
-  );
+const importAllFilesAndFetchContents = async (markdownFiles: MarkdownFile[]): Promise<{ url: string; content: string }[]> => {
+  // const markdownFiles = importAll(require.context('../posts-submodule/', true, /\.md$/));
+  const fetchPromises = (markdownFiles as { url: string; staticUrl: string; }[]).map(fetchMarkdownContent);
   const fileContents = await Promise.all(fetchPromises);
   return fileContents;
 };
 
-// const importFileAndFetchContent = async (filePath: string) => {
-//   const directory = path.resolve(__dirname, '../posts-submodule');
-//   const files = fs.readdirSync(directory)
-//     .filter((filename) => filename.includes(filePath.replace('../posts-submodule', '')))
-//     .map((filename) => createFileObject(directory, filename));
-//   const contentPromises = files.map(fetchFileContent);
-//   return Promise.all(contentPromises);
-// };
-
 export {
   importAllFilesAndFetchContents,
-  // importFileAndFetchContent
 };
+
+// interface MarkdownFile { url: string; staticUrl: string };
+
+// const fetchMarkdownContent = async (markdownFile: MarkdownFile): Promise<{ url: string; content: string }> => {
+//   const response = await fetch(markdownFile.staticUrl);
+//   const content = await response.text();
+//   return { url: markdownFile.url.replace('.md', '').replace('.', ''), content };
+// };
+
+// const importAllFilesAndFetchContents = async (markdownFiles: MarkdownFile[]): Promise<{ url: string; content: string }[]> => {
+//   const fetchPromises = markdownFiles.map(fetchMarkdownContent);
+//   const fileContents = await Promise.all(fetchPromises);
+//   return fileContents;
+// };
+
+// export {
+//   importAllFilesAndFetchContents,
+// };
+

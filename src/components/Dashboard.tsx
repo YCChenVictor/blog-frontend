@@ -3,11 +3,12 @@ import NodeGraph from './NodeGraph';
 import SearchBar from './SearchBar';
 
 const Dashboard = ({
+  articles,
   category,
   serverOn
 }: {
+  articles: { url: string; content: string }[];
   category: string;
-  items: { url: string; content: string }[];
   serverOn: boolean;
 }) => {
   const title = category.charAt(0).toUpperCase() + category.slice(1);
@@ -15,7 +16,7 @@ const Dashboard = ({
     <div className="bg-gray-400">
       <h1 className="text-center font-bold p-6">{title}</h1>
       <div className="p-4 rounded-lg m-4">
-        <SearchBar />
+        <SearchBar articles={articles} />
       </div>
       <div className="p-4 rounded-lg m-4">
         <NodeGraph category={category} showDrawAgain={serverOn} />

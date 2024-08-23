@@ -1,7 +1,7 @@
+import axios from 'axios';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import axios from 'axios';
 import Dashboard from './components/Dashboard';
 import AuthorProfile from './components/AuthorProfile';
 import Article from './components/Article';
@@ -13,38 +13,32 @@ import Article from './components/Article';
 import { importAllFilesAndFetchContents } from './utils/loadArticles';
 
 const App: React.FC = () => {
-  const backendHost = process.env.REACT_APP_HOST_DEV;
+  const backendHost = process.env.REACT_APP_HOST_DEV ?? '';
   const [serverOn, setServerOn] = useState<boolean>(false);
-  const [items, setItems] = useState<{ url: string; content: string }[]>([]);
+  const [articles, setArticles] = useState<{ url: string; content: string }[]>([]);
   const [articleRoutes, setArticleRoutes] = useState<JSX.Element[]>([]);
-  // const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
-  // const articleUrls = getArticleUrls();
-
-  const fetchRequireData = async () => {
-    if (!backendHost) {
-      return;
+  const checkServer = async () => {
+    const serverResponse = await axios.get(backendHost);
+    if (serverResponse.status === 200) {
+      setServerOn(true);
     }
+  }
 
-    try {
-      const isServerOn = await axios.get(backendHost);
-      if (isServerOn.status === 200) {
-        setServerOn(true);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-    // const isLoggedInResponse = await checkLoggedIn();
-    // setLoggedIn(isLoggedInResponse.loggedIn);
-  };
+  const importAll = (context: __WebpackModuleApi.RequireContext) => {
+    return context.keys().map((key) => {
+      return { url: key, staticUrl: context(key) as string };
+    });
+  }
 
   useEffect(() => {
-    importAllFilesAndFetchContents()
-      .then((items) => {
-        setItems(items);
+    const markdownFiles = importAll(require.context('./posts-submodule/', true, /\.md$/));
+    checkServer().catch(console.error);
+    importAllFilesAndFetchContents(markdownFiles)
+      .then((articles) => {
+        setArticles(articles);
         setArticleRoutes(
-          items.map((item: { url: string; content: string }) => {
+          articles.map((item: { url: string; content: string }) => {
             return (
               <Route
                 key={item.url}
@@ -91,15 +85,9 @@ const App: React.FC = () => {
             <Route
               path="/software-dashboard"
               element={
-                <Dashboard category={'web-development'} items={items} serverOn={serverOn} />
+                <Dashboard articles={articles} category={'web-development'} serverOn={serverOn} />
               }
             />
-            {/* <Route
-                path="/concept/complexity"
-                element={
-                  <Article filePath={`../posts-submodule$/concept/complexity.md`} />
-                }
-              /> */}
             {articleRoutes}
           </Routes>
         </div>

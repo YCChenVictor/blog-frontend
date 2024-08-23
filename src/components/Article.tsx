@@ -12,7 +12,7 @@ import ScrollToTopButton from './ScrollToTopButton';
 // import { importFileAndFetchContent } from '../utils/loadArticles';
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-function Article({ filePath, content }: { filePath: string, content: string }) {
+const Article = ({ filePath, content }: { filePath: string, content: string }) => {
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
@@ -102,7 +102,7 @@ function Article({ filePath, content }: { filePath: string, content: string }) {
                 if (props.children) {
                   return (
                     <h2
-                      id={generateSlug(props.children.toString())}
+                      id={generateSlug(JSON.stringify(props.children))}
                       {...props}
                     ></h2>
                   );
@@ -114,7 +114,7 @@ function Article({ filePath, content }: { filePath: string, content: string }) {
                 if (props.children) {
                   return (
                     <h3
-                      id={generateSlug(props.children.toString())}
+                      id={generateSlug(JSON.stringify(props.children) )}
                       {...props}
                     ></h3>
                   );
@@ -126,7 +126,7 @@ function Article({ filePath, content }: { filePath: string, content: string }) {
                 if (props.children) {
                   return (
                     <h4
-                      id={generateSlug(props.children.toString())}
+                      id={generateSlug(JSON.stringify(props.children) )}
                       {...props}
                     ></h4>
                   );
