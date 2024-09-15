@@ -41,7 +41,7 @@ const NodeGraph = ({
   };
 
   const fetchNodeData = async () => {
-    const nodeData: NodeData = await import(`../posts-submodule/nodeGraph.json`);
+    const nodeData: NodeData = (await import(`../posts-submodule/nodeGraph.json`)) as NodeData;
     const { nodes, links } = nodeData;
 
     if (nodes === undefined || links === undefined) {
