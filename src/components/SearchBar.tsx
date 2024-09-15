@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { importAllFilesAndFetchContents } from '../utils/loadArticles';
+import React, { useState } from 'react';
 
 const SearchBar = ({articles}: { articles: { url: string; content: string }[] }) => {
   const [query, setQuery] = useState('');
