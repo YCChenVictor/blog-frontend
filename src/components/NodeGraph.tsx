@@ -9,7 +9,6 @@ interface NodeData {
   nodes: NodeType[];
   links: LinkType[];
 }
-
 interface ForceRef {
   zoom: (scale: number, duration: number) => void;
   d3Force: (type: string) => {
@@ -41,7 +40,7 @@ const NodeGraph = ({
   };
 
   const fetchNodeData = async () => {
-    const nodeData: NodeData = (await import(`../posts-submodule/nodeGraph.json`)) as NodeData;
+    const nodeData: NodeData = (await import(`../nodeGraph.json`)) as NodeData;
     const { nodes, links } = nodeData;
 
     if (nodes === undefined || links === undefined) {
