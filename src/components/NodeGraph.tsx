@@ -5,7 +5,10 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 interface NodeType { id: number; name: string; url: string; color: string; }
 interface LinkType { source: number; target: number; }
-
+interface NodeData {
+  nodes: NodeType[];
+  links: LinkType[];
+}
 interface ForceRef {
   zoom: (scale: number, duration: number) => void;
   d3Force: (type: string) => {
@@ -37,7 +40,7 @@ const NodeGraph = ({
   };
 
   const fetchNodeData = async () => {
-    const nodeData = await import(`../posts-submodule/nodeGraph.json`);
+    const nodeData: NodeData = (await import(`../nodeGraph.json`)) as NodeData;
     const { nodes, links } = nodeData;
 
     if (nodes === undefined || links === undefined) {
