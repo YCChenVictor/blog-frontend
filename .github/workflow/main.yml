@@ -8,6 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
     - name: Install dependencies
       run: yarn install --frozen-lockfile # the yarn.lock is updated according to the node version
     - name: Lint Code
