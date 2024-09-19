@@ -1,11 +1,11 @@
-import React from 'react';
-import NodeGraph from './NodeGraph';
-import SearchBar from './SearchBar';
+import React from "react";
+import NodeGraph from "./NodeGraph";
+import SearchBar from "./SearchBar";
 
 const Dashboard = ({
   articles,
   category,
-  serverOn
+  serverOn,
 }: {
   articles: { url: string; content: string }[];
   category: string;

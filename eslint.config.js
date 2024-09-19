@@ -1,25 +1,27 @@
-// @ts-check
-
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import globals from "globals";
+import prettierPlugin from "eslint-plugin-prettier";
 
 export default tseslint.config(
   eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
+  ...tseslint.configs.strict,
+  ...tseslint.configs.stylistic,
   {
-    languageOptions: {
-      parserOptions: {
-        project: true,
-      },
-      globals: {
-        ...globals.node,
-      }
+    ignores: [
+      '**/coverage/**',
+      '**/dist/**',
+      '**/migrations/**',
+      '**/*.config.js',
+      '**/*.config.ts'
+    ],
+  },
+  {
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    rules: {
+      "prettier/prettier": "error",
     },
   },
-   {
-    files: ['**/*.js', '**/*.cjs', '**/*.mjs'],
-    ...tseslint.configs.disableTypeChecked,
-  },
-)
+);
+

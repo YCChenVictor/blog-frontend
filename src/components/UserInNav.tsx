@@ -1,5 +1,5 @@
-import React from 'react';
-import SignUpLogin from './SignUpLogin';
+import React from "react";
+import SignUpLogin from "./SignUpLogin";
 
 interface UserInNavProps {
   loggedIn: boolean;

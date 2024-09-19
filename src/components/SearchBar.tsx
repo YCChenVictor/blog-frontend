@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const SearchBar = ({articles}: { articles: { url: string; content: string }[] }) => {
-  const [query, setQuery] = useState('');
+const SearchBar = ({
+  articles,
+}: {
+  articles: { url: string; content: string }[];
+}) => {
+  const [query, setQuery] = useState("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
@@ -31,7 +35,7 @@ const SearchBar = ({articles}: { articles: { url: string; content: string }[] })
           {searchArticles()
             .sort((a, b) => (a.url > b.url ? 1 : -1))
             .map((article) => {
-              if (article.url === '') {
+              if (article.url === "") {
                 return;
               } else {
                 return (
