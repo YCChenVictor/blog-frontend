@@ -1,8 +1,8 @@
-import React from 'react';
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { HashLink } from 'react-router-hash-link';
+import React from "react";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { HashLink } from "react-router-hash-link";
 
-import WordCounts from './WordCounts';
+import WordCounts from "./WordCounts";
 // import LinkPage from './LinkPage';
 // import Gpt from './AutoArticle/Gpt';
 
@@ -11,7 +11,7 @@ const SidebarLayout = ({
   // loggedIn,
   // url,
   articleContent,
-  rawTitles
+  rawTitles,
 }: {
   isCollapsed: boolean;
   // loggedIn: boolean;
@@ -22,31 +22,31 @@ const SidebarLayout = ({
   const titles = rawTitles.map(
     (item: { content: string; tagName: string }) => ({
       content: item.content,
-      tagName: item.tagName.match(/\d+/)?.[0] ?? '',
-      position: rawTitles.indexOf(item)
-    })
+      tagName: item.tagName.match(/\d+/)?.[0] ?? "",
+      position: rawTitles.indexOf(item),
+    }),
   );
   const textColorMapping = {
-    '2': 'text-zinc-900',
-    '3': 'text-zinc-800',
-    '4': 'text-zinc-700',
-    '5': 'text-zinc-600',
-    '6': 'text-zinc-500'
+    "2": "text-zinc-900",
+    "3": "text-zinc-800",
+    "4": "text-zinc-700",
+    "5": "text-zinc-600",
+    "6": "text-zinc-500",
   };
   const paddingLeft = {
-    '2': '',
-    '3': 'pl-4',
-    '4': 'pl-6',
-    '5': 'pl-8',
-    '6': 'pl-10'
+    "2": "",
+    "3": "pl-4",
+    "4": "pl-6",
+    "5": "pl-8",
+    "6": "pl-10",
   };
 
   const textSizeMapping: Record<string, string> = {
-    '2': 'text-xl',
-    '3': 'text-lg',
-    '4': 'text-base',
-    '5': 'text-sm',
-    '6': 'text-xs'
+    "2": "text-xl",
+    "3": "text-lg",
+    "4": "text-base",
+    "5": "text-sm",
+    "6": "text-xs",
   };
 
   const menuItemsDesired = titles.map(
@@ -58,8 +58,8 @@ const SidebarLayout = ({
             <HashLink
               to={`#${title.content
                 .toLowerCase()
-                .replace(/[^\w\s]|_/g, '')
-                .replace(/\s+/g, '-')}`}
+                .replace(/[^\w\s]|_/g, "")
+                .replace(/\s+/g, "-")}`}
             />
           }
         >
@@ -70,7 +70,7 @@ const SidebarLayout = ({
           </p>
         </MenuItem>
       );
-    }
+    },
   );
 
   return (

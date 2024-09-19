@@ -1,18 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { marked } from 'marked'; // may need to remove this one
-import remarkMath from 'remark-math';
+import React, { useState, useEffect, useRef } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { marked } from "marked"; // may need to remove this one
+import remarkMath from "remark-math";
 // import rehypeMathjax from 'rehype-mathjax';
-import SidebarLayout from './SidebarLayout';
+import SidebarLayout from "./SidebarLayout";
 // import RenderImage from './RenderImage';
-import RenderCodeBlock from './RenderCodeBlock';
-import RenderMermaid from './RenderMermaid';
-import ScrollToTopButton from './ScrollToTopButton';
+import RenderCodeBlock from "./RenderCodeBlock";
+import RenderMermaid from "./RenderMermaid";
+import ScrollToTopButton from "./ScrollToTopButton";
 // import { importFileAndFetchContent } from '../utils/loadArticles';
 // import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-const Article = ({ filePath, content }: { filePath: string, content: string }) => {
+const Article = ({
+  filePath,
+  content,
+}: {
+  filePath: string;
+  content: string;
+}) => {
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
@@ -21,22 +27,22 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
 
   const componentSidebarRef = useRef(null);
 
-  const length = filePath.split('/').length;
-  const category = filePath.split('/')[length - 2];
-  let articleName = filePath.split('/')[length - 1].split('.')[0];
+  const length = filePath.split("/").length;
+  const category = filePath.split("/")[length - 2];
+  let articleName = filePath.split("/")[length - 1].split(".")[0];
   articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1);
 
   const parseArticle = async () => {
     try {
       const parsedHTML = await marked.parse(content);
-      const container = document.createElement('div');
+      const container = document.createElement("div");
       container.innerHTML = parsedHTML;
-      const tagNames = ['h2', 'h3', 'h4', 'h5', 'h6'];
+      const tagNames = ["h2", "h3", "h4", "h5", "h6"];
       const tags = tagNames
         .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
         .map((tag) => ({
-          content: tag.textContent ?? '',
-          tagName: tag.tagName
+          content: tag.textContent ?? "",
+          tagName: tag.tagName,
         }));
 
       setRawTitles(tags);
@@ -46,16 +52,18 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
   };
 
   useEffect(() => {
-    parseArticle().catch((error) => {console.log(error)});
+    parseArticle().catch((error) => {
+      console.log(error);
+    });
   }, []);
 
   const generateSlug = (string: string) => {
-    let str = string.replace(/^\s+|\s+$/g, '');
+    let str = string.replace(/^\s+|\s+$/g, "");
     str = str.toLowerCase();
     str = str
-      .replace(/[^a-z0-9 -]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-');
+      .replace(/[^a-z0-9 -]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
     return str;
   };
 
@@ -64,10 +72,10 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
       <div className="" ref={componentSidebarRef}>
         <div className="sticky top-0 h-screen overflow-y-auto">
           <div className="hidden lg:block">
-            {' '}
+            {" "}
             {/* Hide SidebarLayout on screens smaller than "lg" */}
             <div className="p-2">
-              {' '}
+              {" "}
               {/* Add these classes */}
               <button
                 className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
@@ -90,7 +98,7 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
       </div>
       <div
         id="article"
-        className={`p-8 ${showMobileSidebar ? 'backdrop-brightness-50' : ''}`}
+        className={`p-8 ${showMobileSidebar ? "backdrop-brightness-50" : ""}`}
       >
         <div>
           <ReactMarkdown
@@ -114,7 +122,7 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
                 if (props.children) {
                   return (
                     <h3
-                      id={generateSlug(JSON.stringify(props.children) )}
+                      id={generateSlug(JSON.stringify(props.children))}
                       {...props}
                     ></h3>
                   );
@@ -126,7 +134,7 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
                 if (props.children) {
                   return (
                     <h4
-                      id={generateSlug(JSON.stringify(props.children) )}
+                      id={generateSlug(JSON.stringify(props.children))}
                       {...props}
                     ></h4>
                   );
@@ -144,8 +152,8 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
                 children: React.ReactNode;
                 className: string;
               }) => {
-                return className === 'language-mermaid' 
-                  ? RenderMermaid({ children }) 
+                return className === "language-mermaid"
+                  ? RenderMermaid({ children })
                   : RenderCodeBlock({ children, className });
               },
               table: ({ ...props }) => {
@@ -157,7 +165,7 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
               },
               span: ({ ...props }) => {
                 // done
-                if (props.className === 'math math-inline' && props.children) {
+                if (props.className === "math math-inline" && props.children) {
                   const content = props.children;
                   return (
                     <span className="math math-inline inline-flex">
@@ -167,7 +175,7 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
                 } else {
                   return null;
                 }
-              }
+              },
             }}
             remarkPlugins={[remarkGfm, remarkMath]}
             // rehypePlugins={[rehypeMathjax]}
@@ -177,7 +185,7 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
         </div>
       </div>
       <div className="lg:hidden">
-        {' '}
+        {" "}
         {/* Display SidebarLayout on screens smaller than "lg" */}
         <div className="fixed bottom-4 left-4 z-10 h-screen flex flex-col justify-end">
           {showMobileSidebar ? (
@@ -208,6 +216,6 @@ const Article = ({ filePath, content }: { filePath: string, content: string }) =
       </div>
     </div>
   );
-}
+};
 
 export default Article;

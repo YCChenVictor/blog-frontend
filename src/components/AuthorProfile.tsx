@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 // import headImg from '../assets/img/head.jpeg'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const AuthorProfile = () => {
   return (
@@ -10,7 +10,7 @@ const AuthorProfile = () => {
         <div className="text-center text-indigo flex items-center justify-center flex-col">
           <img
             className="w-32 rounded-full"
-            src={process.env.PUBLIC_URL + 'assets/img/head.jpeg'}
+            src={process.env.PUBLIC_URL + "assets/img/head.jpeg"}
             alt="head"
           />
           <p className="text-5xl font-bold">YCChen</p>
@@ -23,7 +23,7 @@ const AuthorProfile = () => {
           </div>
           <div className="text-center">
             <a
-              href={'https://github.com/YCChenVictor'}
+              href={"https://github.com/YCChenVictor"}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -35,7 +35,7 @@ const AuthorProfile = () => {
               </button>
             </a>
             <a
-              href={'https://www.linkedin.com/in/ycchen1'}
+              href={"https://www.linkedin.com/in/ycchen1"}
               target="_blank"
               rel="noopener noreferrer"
             >

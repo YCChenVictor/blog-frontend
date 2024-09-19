@@ -1,21 +1,23 @@
-import axios from 'axios';
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import AuthorProfile from './components/AuthorProfile';
-import Article from './components/Article';
+import axios from "axios";
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import AuthorProfile from "./components/AuthorProfile";
+import Article from "./components/Article";
 // import UserInNav from './components/UserInNav';
 // import ArticleList from './components/ArticleList';
 // import EditArticle from './components/AutoArticle/EditArticle'
 // import { checkLoggedIn } from './utils/checkLoggedIn';
 // import settings from './data/articleSettings.json';
-import { importAllFilesAndFetchContents } from './utils/loadArticles';
+import { importAllFilesAndFetchContents } from "./utils/loadArticles";
 
 const App: React.FC = () => {
-  const backendHost = process.env.REACT_APP_HOST_DEV ?? '';
+  const backendHost = process.env.REACT_APP_HOST_DEV ?? "";
   const [serverOn, setServerOn] = useState<boolean>(false);
-  const [articles, setArticles] = useState<{ url: string; content: string }[]>([]);
+  const [articles, setArticles] = useState<{ url: string; content: string }[]>(
+    [],
+  );
   const [articleRoutes, setArticleRoutes] = useState<JSX.Element[]>([]);
 
   const checkServer = async () => {
@@ -23,16 +25,18 @@ const App: React.FC = () => {
     if (serverResponse.status === 200) {
       setServerOn(true);
     }
-  }
+  };
 
   const importAll = (context: __WebpackModuleApi.RequireContext) => {
     return context.keys().map((key) => {
       return { url: key, staticUrl: context(key) as string };
     });
-  }
+  };
 
   useEffect(() => {
-    const markdownFiles = importAll(require.context('./posts-submodule/', true, /\.md$/));
+    const markdownFiles = importAll(
+      require.context("./posts-submodule/", true, /\.md$/),
+    );
     checkServer().catch(console.error);
     importAllFilesAndFetchContents(markdownFiles)
       .then((articles) => {
@@ -43,12 +47,10 @@ const App: React.FC = () => {
               <Route
                 key={item.url}
                 path={item.url}
-                element={
-                  <Article filePath={item.url} content={item.content} />
-                }
+                element={<Article filePath={item.url} content={item.content} />}
               />
             );
-          })
+          }),
         );
       })
       .catch(console.error);
@@ -61,7 +63,7 @@ const App: React.FC = () => {
           <a href="/" className="m-0 p-0">
             <img
               className="w-16 rounded-full"
-              src={process.env.REACT_APP_ROOT_URL + 'assets/img/title.jpeg'}
+              src={process.env.REACT_APP_ROOT_URL + "assets/img/title.jpeg"}
               alt="title"
             />
           </a>
@@ -74,9 +76,7 @@ const App: React.FC = () => {
             Web Development
           </a>
         </ul>
-        {(serverOn) ? (
-          <ul className="space-x-4">{/* <UserInNav /> */}</ul>
-        ) : null}
+        {serverOn ? <ul className="space-x-4">{/* <UserInNav /> */}</ul> : null}
       </nav>
       <Router>
         <div className="">
@@ -85,7 +85,11 @@ const App: React.FC = () => {
             <Route
               path="/software-dashboard"
               element={
-                <Dashboard articles={articles} category={'web-development'} serverOn={serverOn} />
+                <Dashboard
+                  articles={articles}
+                  category={"web-development"}
+                  serverOn={serverOn}
+                />
               }
             />
             {articleRoutes}

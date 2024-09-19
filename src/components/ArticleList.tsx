@@ -1,12 +1,15 @@
-import * as React from 'react';
+import * as React from "react";
 
-type ArticleSettings = Record<string, {
+type ArticleSettings = Record<
+  string,
+  {
     url: string;
     category: string;
-  }>;
+  }
+>;
 
 const ArticleList = ({
-  articleSettings
+  articleSettings,
 }: {
   articleSettings: ArticleSettings;
 }) => {
