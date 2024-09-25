@@ -63,7 +63,7 @@ const App: React.FC = () => {
           <a href="/" className="m-0 p-0">
             <img
               className="w-16 rounded-full"
-              src={process.env.REACT_APP_ROOT_URL + "assets/img/title.jpeg"}
+              src={"/assets/img/title.jpeg"}
               alt="title"
             />
           </a>
