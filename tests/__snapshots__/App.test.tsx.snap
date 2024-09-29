@@ -17,7 +17,7 @@ exports[`App renders App component without crashing 1`] = `
         <img
           alt="title"
           className="w-16 rounded-full"
-          src="undefinedassets/img/title.jpeg"
+          src="assets/img/title.jpeg"
         />
       </a>
     </ul>
