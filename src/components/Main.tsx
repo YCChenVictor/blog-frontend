@@ -1,5 +1,5 @@
 import React from "react";
-import NodeGraph from "./NodeGraph";
+import ForceGraph from "./ForceGraph";
 import SearchBar from "./SearchBar";
 import AuthorProfile from "./AuthorProfile";
 
@@ -8,7 +8,7 @@ interface MainProps {
   serverOn: boolean;
 }
 
-const Main: React.FC<MainProps> = ({ articles, serverOn }) => {
+const Main: React.FC<MainProps> = ({ articles }) => {
   return (
     <>
       <div className="lg:w-1/3  p-4">
@@ -20,7 +20,7 @@ const Main: React.FC<MainProps> = ({ articles, serverOn }) => {
             <SearchBar articles={articles} />
           </div>
           <div className="p-4 rounded-lg shadow-md">
-            <NodeGraph category={""} showDrawAgain={serverOn} />
+            <ForceGraph />
           </div>
         </div>
       </div>
