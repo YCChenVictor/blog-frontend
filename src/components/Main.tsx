@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 import AuthorProfile from "./AuthorProfile";
 
 interface MainProps {
-  articles: any[]; // Replace 'any' with the actual article type if available
+  articles: { url: string; content: string }[]; // Replace 'any' with the actual article type if available
   serverOn: boolean;
 }
 
