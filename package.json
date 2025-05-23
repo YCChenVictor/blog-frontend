@@ -29,9 +29,10 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "dev": "react-scripts start",
+    "start": "react-scripts start",
     "test": "jest",
     "test:coverage": "jest --coverage",
+    "test:updateSnapshot": "jest --updateSnapshot",
     "test:fix": "jest --bail",
     "updateSnapshot": "jest --updateSnapshot",
     "coverage": "jest --coverage",

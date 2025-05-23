@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { marked } from "marked"; // may need to remove this one
+import { marked } from "marked";
 import remarkMath from "remark-math";
-// import rehypeMathjax from 'rehype-mathjax';
 import SidebarLayout from "./SidebarLayout";
-// import RenderImage from './RenderImage';
 import RenderCodeBlock from "./RenderCodeBlock";
 import RenderMermaid from "./RenderMermaid";
 import ScrollToTopButton from "./ScrollToTopButton";
-// import { importFileAndFetchContent } from '../utils/loadArticles';
-// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 const Article = ({
   filePath,
@@ -22,8 +18,6 @@ const Article = ({
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
   const componentSidebarRef = useRef(null);
 
@@ -77,16 +71,8 @@ const Article = ({
             <div className="p-2">
               {" "}
               {/* Add these classes */}
-              <button
-                className="p-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                onClick={() => {
-                  setIsCollapsed(!isCollapsed);
-                }}
-              >
-                {/* <MenuOutlinedIcon /> */}
-              </button>
               <SidebarLayout
-                isCollapsed={isCollapsed}
+                isCollapsed={false}
                 // loggedIn={true}
                 // url={filePath} // TODO: fix this filePath, it should be the url or remove this one
                 articleContent={content}
@@ -96,10 +82,7 @@ const Article = ({
           </div>
         </div>
       </div>
-      <div
-        id="article"
-        className={`p-8 ${showMobileSidebar ? "backdrop-brightness-50" : ""}`}
-      >
+      <div id="article" className={`p-8`}>
         <div>
           <ReactMarkdown
             components={{
@@ -187,29 +170,6 @@ const Article = ({
       <div className="lg:hidden">
         {" "}
         {/* Display SidebarLayout on screens smaller than "lg" */}
-        <div className="fixed bottom-4 left-4 z-10 h-screen flex flex-col justify-end">
-          {showMobileSidebar ? (
-            <div className="overflow-y-auto">
-              {/* <SidebarLayout
-                isCollapsed={false}
-                loggedIn={loggedIn}
-                setting={setting}
-                articleContent={markdownContent}
-                rawTitles={rawTitles}
-              /> */}
-            </div>
-          ) : (
-            <></>
-          )}
-          <button
-            className="items-center p-2 space-x-2 bg-gray-500 text-white rounded hover:bg-gray-600 focus:outline-none focus:ring"
-            onClick={() => {
-              setShowMobileSidebar(!showMobileSidebar);
-            }}
-          >
-            {/* <MenuOutlinedIcon /> */}
-          </button>
-        </div>
       </div>
       <div>
         <ScrollToTopButton />
