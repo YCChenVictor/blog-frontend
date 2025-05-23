@@ -115,7 +115,7 @@ const NodeGraph = ({
           nodeCanvasObject={(node, ctx) => {
             ctx.textAlign = "center";
             ctx.font = "5px Sans-Serif";
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "gray";
             const lineHeight = 5;
             const lines = (node as NodeType).name.split("-");
             const x = node.x ?? 0;
