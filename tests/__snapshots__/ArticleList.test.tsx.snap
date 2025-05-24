@@ -2,21 +2,40 @@
 
 exports[`ArticleList renders ArticleList component without crashing 1`] = `
 <div>
-  <div>
-    <a
-      href="http://example.com/1"
+  <h1>
+    Articles
+  </h1>
+  <div
+    className="mb-6"
+  >
+    <h2
+      className="font-bold text-gray-800 mb-4"
+    />
+     
+    <div
+      className="space-y-4"
     >
-      Category 1
-      http://example.com/1
-    </a>
-  </div>
-  <div>
-    <a
-      href="http://example.com/2"
-    >
-      Category 2
-      http://example.com/2
-    </a>
+      <div
+        className="p-4 bg-gray-600 rounded-lg shadow-md hover:bg-gray-200"
+      >
+        <a
+          className="text-black hover:underline"
+          href="http://example.com/1"
+        >
+          example.com
+        </a>
+      </div>
+      <div
+        className="p-4 bg-gray-600 rounded-lg shadow-md hover:bg-gray-200"
+      >
+        <a
+          className="text-black hover:underline"
+          href="http://example.com/2"
+        >
+          example.com
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 `;
