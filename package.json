@@ -9,6 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.7.2",
     "browserify-fs": "^1.0.0",
+    "d3": "^7.9.0",
     "marked": "^12.0.2",
     "mermaid": "^10.9.1",
     "path-browserify": "^1.0.1",
@@ -34,7 +35,6 @@
     "test:coverage": "jest --coverage",
     "test:updateSnapshot": "jest --updateSnapshot",
     "test:fix": "jest --bail",
-    "updateSnapshot": "jest --updateSnapshot",
     "coverage": "jest --coverage",
     "eslint": "eslint",
     "eslint:fix": "eslint --fix"
@@ -43,6 +43,7 @@
     "@eslint/js": "^9.4.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
+    "@types/d3": "^7.4.3",
     "@types/eslint__js": "^8.42.3",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.3.3",
