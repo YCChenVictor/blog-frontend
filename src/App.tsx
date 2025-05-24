@@ -31,30 +31,28 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const rawData = (await import(`./nodeGraph.json`)).default;
         const markdownFiles = importAll(
           require.context("./posts-submodule/", true, /\.md$/),
         );
+        console.log(rawData.nodes)
+        console.log(rawData.links)
         checkServer().catch(console.error);
-        importAllFilesAndFetchContents(markdownFiles)
-          .then((articles) => {
-            setArticles(articles);
-            setArticleRoutes(
-              articles.map((item: { url: string; content: string }) => {
-                return (
-                  <Route
-                    key={item.url}
-                    path={item.url}
-                    element={
-                      <Article filePath={item.url} content={item.content} />
-                    }
-                  />
-                );
-              }),
+        const articles = await importAllFilesAndFetchContents(markdownFiles);
+        setArticles(articles);
+        setArticleRoutes(
+          articles.map((item: { url: string; content: string }) => {
+            return (
+              <Route
+                key={item.url}
+                path={item.url}
+                element={<Article filePath={item.url} content={item.content} />}
+              />
             );
-          })
-          .catch(console.error);
+          }),
+        );
       } catch (err) {
-        console.error("Failed to load nodeGraph.json", err);
+        console.error("error", err);
       }
     };
 

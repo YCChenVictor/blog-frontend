@@ -149,8 +149,10 @@ const ForceGraph = () => {
   }, []);
 
   return (
+    <div>
     <div ref={containerRef} style={{ width: "100%", height: "100vh" }}>
       <svg ref={ref} style={{ width: "100%", height: "100%" }} />
+    </div>
     </div>
   );
 };

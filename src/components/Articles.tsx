@@ -30,13 +30,17 @@ const Articles = ({ articles }: { articles: Articles }) => {
         {groupedArticles[category].map((article, idx) => {
           const title = article.url.split("/")[2];
           return (
-            <div
-              key={idx}
-              className="p-4 bg-gray-600 rounded-lg shadow-md hover:bg-gray-200"
-            >
-              <a href={article.url} className="text-black hover:underline">
-                {title}
-              </a>
+            <div className="flex">
+              <div
+                key={idx}
+                className="p-4 bg-gray-600 rounded-lg shadow-md hover:bg-gray-200"
+              >
+                <a href={article.url} className="text-black hover:underline">
+                  {title}
+                </a>
+              </div>
+              <div>parent</div>
+              <div>children</div>
             </div>
           );
         })}
