@@ -11,8 +11,6 @@ const SearchBar = ({
     setQuery(event.target.value);
   };
 
-  console.log(articles);
-
   const searchArticles = () => {
     return articles.filter((article) => {
       const articleText = `${article.url} ${article.content}`.toLowerCase();

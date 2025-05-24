@@ -1,17 +1,15 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import ArticleList from "../src/components/ArticleList";
+import Articles from "../src/components/Articles";
 
 describe("ArticleList", () => {
   it("renders ArticleList component without crashing", () => {
-    const articleSettings = {
-      article1: { url: "http://example.com/1", category: "Category 1" },
-      article2: { url: "http://example.com/2", category: "Category 2" },
-    };
+    const articles = [
+      { url: "http://example.com/1", content: "Category 1" },
+      { url: "http://example.com/2", content: "Category 2" },
+    ];
 
-    const component = renderer.create(
-      <ArticleList articleSettings={articleSettings} />,
-    );
+    const component = renderer.create(<Articles articles={articles} />);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
