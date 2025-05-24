@@ -2,25 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import axios from "axios";
 import { ErrorBoundary } from "react-error-boundary";
+import { Node, Link, NodesStructure } from "../types/nodes";
 
-interface NodeType {
-  id: number;
-  name: string;
-  url: string;
-  color: string;
-}
-interface LinkType {
-  source: number;
-  target: number;
-}
-interface NodeData {
-  nodes: NodeType[];
-  links: LinkType[];
-}
 interface ForceRef {
   zoom: (scale: number, duration: number) => void;
   d3Force: (type: string) => {
-    distance: (callback: (link: LinkType) => number) => void;
+    distance: (callback: (link: Link) => number) => void;
   };
 }
 
@@ -31,13 +18,13 @@ const NodeGraph = ({
   category: string;
   showDrawAgain: boolean;
 }) => {
-  const [nodes, setNodes] = useState<NodeType[]>([]);
-  const [links, setLinks] = useState<LinkType[]>([]);
+  const [nodes, setNodes] = useState<Node[]>([]);
+  const [links, setLinks] = useState<Link[]>([]);
   const forceRef = useRef();
 
-  const handleNodeClick = (node: { url: string }) => {
+  const handleNodeClick = (node: Node) => {
     if (node) {
-      window.open(node.url, "_blank");
+      window.open(node.key, "_blank");
     }
   };
 
@@ -50,7 +37,9 @@ const NodeGraph = ({
   };
 
   const fetchNodeData = async () => {
-    const nodeData: NodeData = (await import(`../nodeGraph.json`)) as NodeData;
+    const nodeData: NodesStructure = (await import(
+      `../node-structure.json`
+    )) as NodesStructure;
     const { nodes, links } = nodeData;
 
     if (nodes === undefined || links === undefined) {
@@ -117,7 +106,7 @@ const NodeGraph = ({
             ctx.font = "5px Sans-Serif";
             ctx.fillStyle = "gray";
             const lineHeight = 5;
-            const lines = (node as NodeType).name.split("-");
+            const lines = (node as Node).name.split("-");
             const x = node.x ?? 0;
             let y = (node.y ?? 0) - lineHeight;
             for (const line of lines) {

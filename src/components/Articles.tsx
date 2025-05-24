@@ -1,11 +1,18 @@
 import * as React from "react";
+import { NodesStructure } from "../types/nodes";
 
 type Articles = {
   url: string;
   content: string;
 }[];
 
-const Articles = ({ articles }: { articles: Articles }) => {
+const Articles = ({
+  articles,
+  nodesStructure,
+}: {
+  articles: Articles;
+  nodesStructure: NodesStructure;
+}) => {
   // Group articles by their category
   const groupedArticles = Object.values(articles).reduce(
     (acc, value) => {
@@ -29,6 +36,11 @@ const Articles = ({ articles }: { articles: Articles }) => {
       <div className="space-y-4">
         {groupedArticles[category].map((article, idx) => {
           const title = article.url.split("/")[2];
+          // Check if the article is present in the nodesStructure
+          const inNodeGraph = Object.prototype.hasOwnProperty.call(
+            nodesStructure.nodes,
+            article.url,
+          );
           return (
             <div className="flex">
               <div
@@ -38,6 +50,10 @@ const Articles = ({ articles }: { articles: Articles }) => {
                 <a href={article.url} className="text-black hover:underline">
                   {title}
                 </a>
+              </div>
+              <div>
+                <div>in node graph</div>
+                <div>{inNodeGraph ? "Yes" : "No"}</div>
               </div>
               <div>parent</div>
               <div>children</div>
