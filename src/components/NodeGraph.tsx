@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import axios from "axios";
 import { ErrorBoundary } from "react-error-boundary";
-import { Node, Link, NodesStructure } from "../types/nodes";
+import { Node, Link, NodesStructure } from "../types/nodesStructure";
 
 interface ForceRef {
   zoom: (scale: number, duration: number) => void;
