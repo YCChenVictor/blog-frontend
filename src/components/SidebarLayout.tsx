@@ -3,19 +3,13 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { HashLink } from "react-router-hash-link";
 
 import WordCounts from "./WordCounts";
-// import LinkPage from './LinkPage';
-// import Gpt from './AutoArticle/Gpt';
 
 const SidebarLayout = ({
   isCollapsed,
-  // loggedIn,
-  // url,
   articleContent,
   rawTitles,
 }: {
   isCollapsed: boolean;
-  // loggedIn: boolean;
-  // url: string;
   articleContent: string;
   rawTitles: { content: string; tagName: string }[];
 }) => {
@@ -74,18 +68,20 @@ const SidebarLayout = ({
   );
 
   return (
-    <Sidebar backgroundColor="rgb(156 163 175)" collapsed={isCollapsed}>
-      <Menu>
-        <h3 className="p-4">Attributes</h3>
-        <div className="p-4">
-          <WordCounts articleContent={articleContent} />
-          {/* {loggedIn ? <Gpt /> : <div>{}</div>} */}
-          {/* <LinkPage articleUrl={url} /> */}
-        </div>
-        <h3 className="p-4">Titles</h3>
-        {menuItemsDesired}
-      </Menu>
-    </Sidebar>
+    <>
+      <Sidebar backgroundColor="rgb(156 163 175)" collapsed={isCollapsed}>
+        <Menu>
+          <h3 className="p-4">Attributes</h3>
+          <div className="p-4">
+            <WordCounts articleContent={articleContent} />
+            {/* {loggedIn ? <Gpt /> : <div>{}</div>} */}
+            {/* <LinkPage articleUrl={url} /> */}
+          </div>
+          <h3 className="p-4">Titles</h3>
+          {menuItemsDesired}
+        </Menu>
+      </Sidebar>
+    </>
   );
 };
 

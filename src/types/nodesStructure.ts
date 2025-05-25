@@ -16,9 +16,18 @@ interface Link {
   target: number;
 }
 
+type RawLinks = Record<
+  string,
+  {
+    parents: string[];
+    children: string[];
+  }
+>;
+
 interface NodesStructure {
   nodes: Node[];
+  rawLinks: RawLinks;
   links: Link[];
 }
 
-export { Node, Link, NodesStructure };
+export { Node, Link, RawLinks, NodesStructure };

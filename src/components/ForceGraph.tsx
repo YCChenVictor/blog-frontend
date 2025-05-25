@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import { Node, Link, NodesStructure } from "../types/nodes";
+import { Node, Link, RawLinks, NodesStructure } from "../types/nodesStructure";
 
 const ForceGraph = () => {
   const ref = useRef<SVGSVGElement | null>(null);
@@ -19,7 +19,8 @@ const ForceGraph = () => {
 
       const nodes: Node[] = rawData.nodes;
       const links: Link[] = rawData.links;
-      const nodeData: NodesStructure = { nodes, links };
+      const rawLinks: RawLinks = {};
+      const nodeData: NodesStructure = { nodes, links, rawLinks };
 
       const width = containerRef.current.clientWidth;
       const height = containerRef.current.clientHeight;

@@ -7,17 +7,22 @@ import SidebarLayout from "./SidebarLayout";
 import RenderCodeBlock from "./RenderCodeBlock";
 import RenderMermaid from "./RenderMermaid";
 import ScrollToTopButton from "./ScrollToTopButton";
+import LinkPage from "./LinkPage";
 
 const Article = ({
   filePath,
   content,
+  parents,
 }: {
   filePath: string;
   content: string;
+  parents: string[];
 }) => {
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
+
+  console.log(filePath);
 
   const componentSidebarRef = useRef(null);
 
@@ -67,7 +72,7 @@ const Article = ({
         <div className="sticky top-0 h-screen overflow-y-auto">
           <div className="hidden lg:block">
             {" "}
-            {/* Hide SidebarLayout on screens smaller than "lg" */}
+            <LinkPage self={filePath} parents={parents} children={[]} />
             <div className="p-2">
               {" "}
               {/* Add these classes */}
@@ -167,10 +172,7 @@ const Article = ({
           </ReactMarkdown>
         </div>
       </div>
-      <div className="lg:hidden">
-        {" "}
-        {/* Display SidebarLayout on screens smaller than "lg" */}
-      </div>
+      <div className="lg:hidden"> </div>
       <div>
         <ScrollToTopButton />
       </div>
