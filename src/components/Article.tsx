@@ -78,7 +78,7 @@ const Article = ({
           <div className="hidden lg:block">
             {serverOn ? (
               <LinkPage
-                self={filePath}
+                self={`${category}/${articleName}`}
                 allNodes={nodeStructure.nodes.map((item) => item.key)}
                 parents={parents}
                 children={children}
