@@ -10,6 +10,8 @@ import { NodesStructure } from "./types/nodesStructure";
 import nodeStructure from "./node-structure.json";
 import { ServerProvider, useServer } from "./components/ServerProvider";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL ?? "";
+
 const App: React.FC = () => {
   const backendHost = process.env.REACT_APP_BACKEND_URL ?? "";
   const [articles, setArticles] = useState<{ url: string; content: string }[]>(
@@ -42,10 +44,27 @@ const App: React.FC = () => {
 
   const handleRefreshNodes = async () => {
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL ?? "";
       if (!backendUrl) throw new Error("BACKEND_URL env is not set");
 
       const response = await fetch(backendUrl + "/refresh-nodes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key: "value" }),
+      });
+
+      if (!response.ok) throw new Error("Request failed");
+      const result = await response.json();
+      console.log("Backend Response:", result);
+    } catch (error) {
+      console.error("Error during request:", error);
+    }
+  };
+
+  const handleRefreshLinks = async () => {
+    try {
+      if (!backendUrl) throw new Error("BACKEND_URL env is not set");
+
+      const response = await fetch(backendUrl + "/refresh-links", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ key: "value" }),
@@ -89,6 +108,14 @@ const App: React.FC = () => {
                       >
                     )[item.url]?.parents || []
                   }
+                  children={
+                    (
+                      nodeStructure.rawLinks as Record<
+                        string,
+                        { children: string[] }
+                      >
+                    )[item.url]?.children || []
+                  }
                 />
               }
             />
@@ -113,12 +140,20 @@ const App: React.FC = () => {
           Homepage
         </a>
         {serverOn && (
-          <button
-            onClick={handleRefreshNodes}
-            className="text-2xl font-bold text-gray-900 bg-gray-600 hover:bg-gray-400 px-4 py-2 rounded-lg shadow"
-          >
-            Refresh Nodes
-          </button>
+          <>
+            <button
+              onClick={handleRefreshNodes}
+              className="text-2xl font-bold text-gray-900 bg-gray-600 hover:bg-gray-400 px-4 py-2 rounded-lg shadow"
+            >
+              Refresh Nodes
+            </button>
+            <button
+              onClick={handleRefreshLinks}
+              className="text-2xl font-bold text-gray-900 bg-gray-600 hover:bg-gray-400 px-4 py-2 rounded-lg shadow"
+            >
+              Refresh Links
+            </button>
+          </>
         )}
       </div>
       <div className="prose p-4 mx-auto flex flex-col lg:flex-row lg:space-x-4">
