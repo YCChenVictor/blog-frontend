@@ -1,31 +1,31 @@
 import React, { useState } from "react";
+import Select from "react-select";
 
 interface LinkPageProps {
   self: string;
   parents: string[];
   children: string[];
+  allNodes: string[];
 }
 
-const LinkPage = ({ self, parents, children }: LinkPageProps) => {
+const LinkPage = ({ self, parents, children, allNodes }: LinkPageProps) => {
   const [open, setOpen] = useState(false);
   const [parentState, setParentState] = useState(parents);
   const [childrenState, setChildrenState] = useState(children);
   const [parentTemp, setParentTemp] = useState<string[]>([]);
   const [childrenTemp, setChildrenTemp] = useState<string[]>([]);
 
-  console.log(self);
-  console.log(parentState);
-  console.log(childrenState);
+  const options = allNodes.map((n) => ({ value: n, label: n }));
 
   return (
     <div className="p-6 max-w-md mx-auto space-y-4">
       <div>
         <div className="text-lg font-semibold">Parent</div>
-        <div className="text-gray-700">{parentState.join(",")}</div>
+        <div className="text-gray-700">{parentState.join(", ")}</div>
       </div>
       <div>
         <div className="text-lg font-semibold">Children</div>
-        <div className="text-gray-700">{childrenState}</div>
+        <div className="text-gray-700">{childrenState.join(", ")}</div>
       </div>
       <button
         onClick={() => {
@@ -45,26 +45,22 @@ const LinkPage = ({ self, parents, children }: LinkPageProps) => {
               <label className="block text-sm font-medium text-gray-700">
                 Parent
               </label>
-              <input
-                value={parentTemp}
-                onChange={(e) =>
-                  setParentTemp(e.target.value.split(",").map((s) => s.trim()))
-                }
-                className="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              <Select
+                isMulti
+                options={options}
+                value={parentTemp.map((v) => ({ value: v, label: v }))}
+                onChange={(vals) => setParentTemp(vals.map((v) => v.value))}
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Children
               </label>
-              <input
-                value={childrenTemp}
-                onChange={(e) =>
-                  setChildrenTemp(
-                    e.target.value.split(",").map((s) => s.trim()),
-                  )
-                }
-                className="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              <Select
+                isMulti
+                options={options}
+                value={childrenTemp.map((v) => ({ value: v, label: v }))}
+                onChange={(vals) => setChildrenTemp(vals.map((v) => v.value))}
               />
             </div>
             <div className="flex justify-end gap-2">
@@ -77,14 +73,13 @@ const LinkPage = ({ self, parents, children }: LinkPageProps) => {
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({
                         key: self,
-                        parent: parentTemp,
+                        parents: parentTemp,
                         children: childrenTemp,
                       }),
                     });
                   } catch (error) {
                     console.log("Error", error);
                   }
-
                   setParentState(parentTemp);
                   setChildrenState(childrenTemp);
                   setOpen(false);

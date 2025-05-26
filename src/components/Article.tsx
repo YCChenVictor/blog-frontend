@@ -8,6 +8,8 @@ import RenderCodeBlock from "./RenderCodeBlock";
 import RenderMermaid from "./RenderMermaid";
 import ScrollToTopButton from "./ScrollToTopButton";
 import LinkPage from "./LinkPage";
+import nodeStructure from "../node-structure.json";
+import { useServer } from "./ServerProvider";
 
 const Article = ({
   filePath,
@@ -21,14 +23,15 @@ const Article = ({
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
-
-  console.log(filePath);
+  const { serverOn } = useServer();
 
   const componentSidebarRef = useRef(null);
-
-  const length = filePath.split("/").length;
-  const category = filePath.split("/")[length - 2];
-  let articleName = filePath.split("/")[length - 1].split(".")[0];
+  const filePathSplit = filePath.split("/");
+  let articleName = filePathSplit.pop() || "undefined";
+  let category = filePathSplit.pop();
+  if (!category) {
+    category = "base";
+  }
   articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1);
 
   const parseArticle = async () => {
@@ -71,15 +74,20 @@ const Article = ({
       <div className="" ref={componentSidebarRef}>
         <div className="sticky top-0 h-screen overflow-y-auto">
           <div className="hidden lg:block">
-            {" "}
-            <LinkPage self={filePath} parents={parents} children={[]} />
+            {serverOn ? (
+              <LinkPage
+                self={filePath}
+                allNodes={nodeStructure.nodes.map((item) => item.name)}
+                parents={parents}
+                children={[]}
+              />
+            ) : (
+              <></>
+            )}
             <div className="p-2">
               {" "}
-              {/* Add these classes */}
               <SidebarLayout
                 isCollapsed={false}
-                // loggedIn={true}
-                // url={filePath} // TODO: fix this filePath, it should be the url or remove this one
                 articleContent={content}
                 rawTitles={rawTitles}
               />
