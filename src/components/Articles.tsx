@@ -7,18 +7,21 @@ type Articles = {
 }[];
 
 const Articles = ({
-  nodesStructure,
+  articles,
 }: {
   articles: Articles;
   nodesStructure: NodesStructure;
 }) => {
   // Group articles by their category
   const grouped: Record<string, string[]> = {};
-  for (const node of nodesStructure.nodes) {
-    if (!grouped[node.group]) {
-      grouped[node.group] = [];
+  for (const article of articles) {
+    const parts = article.url.split("/");
+    const name = parts.pop() || "";
+    const category = parts.pop() || "base";
+    if (!grouped[category]) {
+      grouped[category] = [];
     }
-    grouped[node.group].push(node.name);
+    grouped[category].push(name);
   }
 
   const list = Object.keys(grouped).map((category, index) => (
