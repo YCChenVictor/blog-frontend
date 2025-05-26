@@ -9,7 +9,10 @@ const fetchMarkdownContent = async (markdownFile: {
 }): Promise<{ url: string; content: string }> => {
   const response = await fetch(markdownFile.staticUrl);
   const content = await response.text();
-  return { url: markdownFile.url.replace(".md", "").replace(".", ""), content };
+  return {
+    url: markdownFile.url.replace(".md", "").replace("./", ""),
+    content,
+  };
 };
 
 const importAllFilesAndFetchContents = async (

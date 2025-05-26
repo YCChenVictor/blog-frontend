@@ -29,15 +29,8 @@ const Articles = ({
       <h2 className="font-bold text-gray-800 mb-4">{category}</h2>{" "}
       <div className="space-y-4">
         {grouped[category].map((title) => {
-          let url: string;
-          let key: string;
-          if (category === "base") {
-            key = `base/${title}`;
-            url = `/${title}`;
-          } else {
-            key = `${category}/${title}`;
-            url = `${category}/${title}`;
-          }
+          const url = `${category}/${title}`;
+          const key = `${category}/${title}`;
 
           return (
             <div key={key} className="flex">
