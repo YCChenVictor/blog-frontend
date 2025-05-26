@@ -72,7 +72,7 @@ const Article = ({
   };
 
   return (
-    <div className="bg-gray-400 flex">
+    <div className="bg-gray-400 flex min-h-screen w-full">
       <div className="" ref={componentSidebarRef}>
         <div className="sticky top-0 h-screen overflow-y-auto">
           <div className="hidden lg:block">
