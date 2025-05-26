@@ -15,10 +15,12 @@ const Article = ({
   filePath,
   content,
   parents,
+  children,
 }: {
   filePath: string;
   content: string;
   parents: string[];
+  children: string[];
 }) => {
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
@@ -77,9 +79,9 @@ const Article = ({
             {serverOn ? (
               <LinkPage
                 self={filePath}
-                allNodes={nodeStructure.nodes.map((item) => item.name)}
+                allNodes={nodeStructure.nodes.map((item) => item.key)}
                 parents={parents}
-                children={[]}
+                children={children}
               />
             ) : (
               <></>
