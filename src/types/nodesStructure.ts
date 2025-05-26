@@ -12,8 +12,8 @@ interface Node extends SimulationNodeDatum {
 }
 
 interface Link {
-  source: number;
-  target: number;
+  source: string;
+  target: string;
 }
 
 type RawLinks = Record<

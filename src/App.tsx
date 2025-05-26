@@ -8,10 +8,10 @@ import { importAllFilesAndFetchContents } from "./utils/loadArticles";
 import Main from "./components/Main";
 import { NodesStructure } from "./types/nodesStructure";
 import nodeStructure from "./node-structure.json";
+import { ServerProvider, useServer } from "./components/ServerProvider";
 
 const App: React.FC = () => {
-  const backendHost = process.env.REACT_APP_HOST_DEV ?? "";
-  const [serverOn, setServerOn] = useState<boolean>(false);
+  const backendHost = process.env.REACT_APP_BACKEND_URL ?? "";
   const [articles, setArticles] = useState<{ url: string; content: string }[]>(
     [],
   );
@@ -21,11 +21,16 @@ const App: React.FC = () => {
     links: [],
     rawLinks: {},
   });
+  const { serverOn, setServerOn } = useServer();
 
   const checkServer = async () => {
-    const serverResponse = await axios.get(backendHost);
-    if (serverResponse.status === 200) {
-      setServerOn(true);
+    try {
+      const serverResponse = await axios.get(backendHost);
+      if (serverResponse.status === 200) {
+        setServerOn(true);
+      }
+    } catch {
+      setServerOn(false);
     }
   };
 
@@ -137,4 +142,10 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+const AppWithServerProvider = () => (
+  <ServerProvider>
+    <App />
+  </ServerProvider>
+);
+
+export default AppWithServerProvider;
