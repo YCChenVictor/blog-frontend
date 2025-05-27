@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
+import { useServer } from "./ServerProvider";
 
 interface LinkPageProps {
   self: string;
@@ -9,6 +10,7 @@ interface LinkPageProps {
 }
 
 const LinkPage = ({ self, parents, children, allNodes }: LinkPageProps) => {
+  const { serverOn } = useServer();
   const [open, setOpen] = useState(false);
   const [parentState, setParentState] = useState(parents);
   const [childrenState, setChildrenState] = useState(children);
@@ -21,37 +23,42 @@ const LinkPage = ({ self, parents, children, allNodes }: LinkPageProps) => {
     <div className="p-6 max-w-md mx-auto space-y-4">
       <div>
         <div className="text-lg font-semibold">Parent</div>
-        <div className="text-gray-700">{parentState.join(", ")}</div>
+        <div className="text-gray-700">
+          {parentState.map((p, i) => (
+            <div key={i}>
+              <a href={p}>{p}</a>
+            </div>
+          ))}
+        </div>
       </div>
       <div>
         <div className="text-lg font-semibold">Children</div>
-        <div className="text-gray-700">{childrenState.join(", ")}</div>
+        <div className="text-gray-700">
+          {childrenState.map((p, i) => (
+            <div key={i}>
+              <a href={p}>{p}</a>
+            </div>
+          ))}
+        </div>
       </div>
-      <button
-        onClick={() => {
-          setParentTemp(parentState);
-          setChildrenTemp(childrenState);
-          setOpen(true);
-        }}
-        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-      >
-        Edit
-      </button>
+      {serverOn ? (
+        <button
+          onClick={() => {
+            setParentTemp(parentState);
+            setChildrenTemp(childrenState);
+            setOpen(true);
+          }}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          Edit
+        </button>
+      ) : (
+        <></>
+      )}
 
       {open && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 w-full max-w-sm space-y-4 shadow-lg">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Parent
-              </label>
-              <Select
-                isMulti
-                options={options}
-                value={parentTemp.map((v) => ({ value: v, label: v }))}
-                onChange={(vals) => setParentTemp(vals.map((v) => v.value))}
-              />
-            </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Children
