@@ -6,35 +6,27 @@ const RenderCodeBlock = (props: {
   className?: string;
   children: React.ReactNode;
 }) => {
-  let language;
-  let result;
-  if (props.inline === true || !props.className) {
-    language = "inline";
-  } else {
-    const match = /language-(\w+)/.exec(props.className || "");
-    language = match ? match[1] : "inline";
-  }
+  const { inline, className, children } = props;
+
+  const match = /language-(\w+)/.exec(className || "");
+  const language = inline || !className ? "inline" : match?.[1] || "inline";
 
   if (language === "inline") {
-    result = (
-      <code className="bg-gray-500 text-white p-0.5">{props.children}</code>
-    );
-  } else {
-    result = (
-      <SyntaxHighlighter
-        language={language}
-        wrapLines={true}
-        lineProps={{
-          style: { wordBreak: "break-all", whiteSpace: "pre-wrap" },
-        }}
-        PreTag="div"
-      >
-        {props.children as string[]}
-      </SyntaxHighlighter>
-    );
+    return <code className="bg-gray-500 text-white p-0.5">{children}</code>;
   }
 
-  return result;
+  return (
+    <SyntaxHighlighter
+      language={language}
+      wrapLines
+      lineProps={{
+        style: { wordBreak: "break-all", whiteSpace: "pre-wrap" },
+      }}
+      PreTag="div"
+    >
+      {typeof children === "string" ? children : String(children)}
+    </SyntaxHighlighter>
+  );
 };
 
 export default RenderCodeBlock;

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { marked } from "marked";
 import remarkMath from "remark-math";
+import { marked } from "marked";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import SidebarLayout from "./SidebarLayout";
 import RenderCodeBlock from "./RenderCodeBlock";
 import RenderMermaid from "./RenderMermaid";
@@ -29,12 +30,11 @@ const Article = ({
 
   const componentSidebarRef = useRef(null);
   const filePathSplit = filePath.split("/");
-  let articleName = filePathSplit.pop() || "undefined";
+  const articleName = filePathSplit.pop() || "undefined";
   let category = filePathSplit.pop();
   if (!category) {
     category = "base";
   }
-  articleName = articleName.charAt(0).toUpperCase() + articleName.slice(1);
 
   const parseArticle = async () => {
     try {
@@ -87,7 +87,6 @@ const Article = ({
               <></>
             )}
             <div className="p-2">
-              {" "}
               <SidebarLayout
                 isCollapsed={false}
                 articleContent={content}
@@ -97,86 +96,57 @@ const Article = ({
           </div>
         </div>
       </div>
-      <div id="article" className={`p-8`}>
+      <div id="article" className="p-8">
         <div>
           <ReactMarkdown
             components={{
               h1: () => (
                 <h1 className="text-center">{`(${category}) ${articleName}`}</h1>
               ),
-              h2: ({ ...props }) => {
-                if (props.children) {
-                  return (
-                    <h2
-                      id={generateSlug(JSON.stringify(props.children))}
-                      {...props}
-                    ></h2>
-                  );
-                } else {
-                  return null;
-                }
-              },
-              h3: ({ ...props }) => {
-                if (props.children) {
-                  return (
-                    <h3
-                      id={generateSlug(JSON.stringify(props.children))}
-                      {...props}
-                    ></h3>
-                  );
-                } else {
-                  return null;
-                }
-              },
-              h4: ({ ...props }) => {
-                if (props.children) {
-                  return (
-                    <h4
-                      id={generateSlug(JSON.stringify(props.children))}
-                      {...props}
-                    ></h4>
-                  );
-                } else {
-                  return null;
-                }
-              },
-              // img: ({ ...props }) =>
-              //   RenderImage({ ...props, src: props.src ?? '' }),
-              // @ts-expect-error - The types for RenderMermaid and RenderCodeBlock are not compatible with the expected types here, but we know this code works
-              code: ({
-                children,
-                className,
-              }: {
-                children: React.ReactNode;
-                className: string;
-              }) => {
-                return className === "language-mermaid"
-                  ? RenderMermaid({ children })
-                  : RenderCodeBlock({ children, className });
-              },
-              table: ({ ...props }) => {
-                return (
-                  <div className="p-2">
-                    <table className="border w-full" {...props}></table>
-                  </div>
-                );
-              },
-              span: ({ ...props }) => {
-                // done
-                if (props.className === "math math-inline" && props.children) {
-                  const content = props.children;
-                  return (
-                    <span className="math math-inline inline-flex">
-                      {content}
-                    </span>
-                  );
-                } else {
-                  return null;
-                }
-              },
+              h2: ({ children, ...props }) =>
+                children ? (
+                  <h2
+                    id={generateSlug(React.Children.toArray(children).join(""))}
+                    {...props}
+                  >
+                    {children}
+                  </h2>
+                ) : null,
+              h3: ({ children, ...props }) =>
+                children ? (
+                  <h3
+                    id={generateSlug(React.Children.toArray(children).join(""))}
+                    {...props}
+                  >
+                    {children}
+                  </h3>
+                ) : null,
+              h4: ({ children, ...props }) =>
+                children ? (
+                  <h4
+                    id={generateSlug(React.Children.toArray(children).join(""))}
+                    {...props}
+                  >
+                    {children}
+                  </h4>
+                ) : null,
+              code: ({ children, className }) =>
+                className === "language-mermaid" ? (
+                  <RenderMermaid>{children}</RenderMermaid>
+                ) : (
+                  <RenderCodeBlock className={className}>
+                    {children}
+                  </RenderCodeBlock>
+                ),
+              table: ({ ...props }) => (
+                <div className="p-2">
+                  <table className="border w-full" {...props}></table>
+                </div>
+              ),
+              span: ({ ...props }) => <span {...props} />,
             }}
-            remarkPlugins={[remarkGfm, remarkMath]}
-            // rehypePlugins={[rehypeMathjax]}
+            remarkPlugins={[remarkMath]}
+            rehypePlugins={[rehypeKatex]}
           >
             {content}
           </ReactMarkdown>
