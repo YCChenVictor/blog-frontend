@@ -10,7 +10,7 @@ import RenderMermaid from "./RenderMermaid";
 import ScrollToTopButton from "./ScrollToTopButton";
 import LinkPage from "./LinkPage";
 import nodeStructure from "../node-structure.json";
-import { useServer } from "./ServerProvider";
+import remarkGfm from "remark-gfm";
 
 const Article = ({
   filePath,
@@ -26,7 +26,6 @@ const Article = ({
   const [rawTitles, setRawTitles] = useState<
     { content: string; tagName: string }[]
   >([]);
-  const { serverOn } = useServer();
 
   const componentSidebarRef = useRef(null);
   const filePathSplit = filePath.split("/");
@@ -76,16 +75,12 @@ const Article = ({
       <div className="" ref={componentSidebarRef}>
         <div className="sticky top-0 h-screen overflow-y-auto">
           <div className="hidden lg:block">
-            {serverOn ? (
-              <LinkPage
-                self={`${category}/${articleName}`}
-                allNodes={nodeStructure.nodes.map((item) => item.key)}
-                parents={parents}
-                children={children}
-              />
-            ) : (
-              <></>
-            )}
+            <LinkPage
+              self={`${category}/${articleName}`}
+              allNodes={nodeStructure.nodes.map((item) => item.key)}
+              parents={parents}
+              children={children}
+            />
             <div className="p-2">
               <SidebarLayout
                 isCollapsed={false}
@@ -138,14 +133,23 @@ const Article = ({
                     {children}
                   </RenderCodeBlock>
                 ),
-              table: ({ ...props }) => (
-                <div className="p-2">
-                  <table className="border w-full" {...props}></table>
+              table: ({ children }) => (
+                <div className="overflow-x-auto p-4">
+                  <table className="min-w-full table-auto border-collapse border border-gray-200">
+                    {children}
+                  </table>
                 </div>
               ),
+              tr: ({ children }) => (
+                <tr className="border-t border-gray-200">{children}</tr>
+              ),
+              th: ({ children }) => (
+                <th className="px-4 py-2 text-left font-bold">{children}</th>
+              ),
+              td: ({ children }) => <td className="px-4 py-2">{children}</td>,
               span: ({ ...props }) => <span {...props} />,
             }}
-            remarkPlugins={[remarkMath]}
+            remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
           >
             {content}

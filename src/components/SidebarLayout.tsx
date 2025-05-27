@@ -71,11 +71,8 @@ const SidebarLayout = ({
     <>
       <Sidebar backgroundColor="rgb(156 163 175)" collapsed={isCollapsed}>
         <Menu>
-          <h3 className="p-4">Attributes</h3>
           <div className="p-4">
             <WordCounts articleContent={articleContent} />
-            {/* {loggedIn ? <Gpt /> : <div>{}</div>} */}
-            {/* <LinkPage articleUrl={url} /> */}
           </div>
           <h3 className="p-4">Titles</h3>
           {menuItemsDesired}
