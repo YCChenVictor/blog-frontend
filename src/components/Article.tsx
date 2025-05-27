@@ -40,14 +40,12 @@ const Article = ({
       const parsedHTML = await marked.parse(content);
       const container = document.createElement("div");
       container.innerHTML = parsedHTML;
-      const tagNames = ["h2", "h3", "h4", "h5", "h6"];
-      const tags = tagNames
-        .flatMap((tagName) => Array.from(container.querySelectorAll(tagName)))
-        .map((tag) => ({
-          content: tag.textContent ?? "",
-          tagName: tag.tagName,
-        }));
-
+      const tags = Array.from(
+        container.querySelectorAll("h2, h3, h4, h5, h6"),
+      ).map((tag) => ({
+        content: tag.textContent || "",
+        tagName: tag.tagName,
+      }));
       setRawTitles(tags);
     } catch (error) {
       console.log(error);
