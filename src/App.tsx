@@ -28,7 +28,10 @@ const App: React.FC = () => {
   const checkServer = async () => {
     try {
       const serverResponse = await axios.get(backendHost);
-      if (serverResponse.status === 200) {
+      if (
+        serverResponse.status === 200 &&
+        process.env.NODE_ENV === "development"
+      ) {
         setServerOn(true);
       }
     } catch {
