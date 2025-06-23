@@ -16,9 +16,7 @@ const AuthorProfile = () => {
         <h2 className="text-xl font-semibold">YCChen</h2>
         <div className="leading-relaxed text-gray-800">
           I'm a software engineer with 4 years of experience. This blog
-          showcases my technical knowledge as I pursue research opportunities in
-          Australia. I'm looking for a professor to guide my thesis in software
-          engineering or related areas.
+          showcases my technical knowledge.
         </div>
         <div className="justify-center space-x-2">
           <a href="https://github.com/YCChenVictor">
